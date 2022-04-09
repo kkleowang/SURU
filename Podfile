@@ -14,6 +14,7 @@ target 'SURU_Leo' do
   pod 'lottie-ios'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'SwiftLint'
 end
 
 post_install do |installer|

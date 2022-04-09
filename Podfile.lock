@@ -288,6 +288,7 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.12)
+  - SwiftLint (0.46.5)
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
@@ -298,6 +299,7 @@ DEPENDENCIES:
   - Kingfisher (~> 7.0)
   - lottie-ios
   - MJRefresh
+  - SwiftLint
   - Toast-Swift
 
 SPEC REPOS:
@@ -321,6 +323,7 @@ SPEC REPOS:
     - MJRefresh
     - nanopb
     - PromisesObjC
+    - SwiftLint
     - Toast-Swift
 
 SPEC CHECKSUMS:
@@ -343,8 +346,9 @@ SPEC CHECKSUMS:
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: f30bd6ec4974c6a113f3a8005eac3949595e9fca
+PODFILE CHECKSUM: 2a8fba5a9601319d61dd3fd4e36343b4113bc4e4
 
 COCOAPODS: 1.11.3
