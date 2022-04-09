@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */; };
 		B830608828015A9D002558BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608728015A9D002558BE /* AppDelegate.swift */; };
 		B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608928015A9D002558BE /* SceneDelegate.swift */; };
 		B830608C28015A9D002558BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608B28015A9D002558BE /* ViewController.swift */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78C47A99BAC6766DE55A8ACD /* Pods-SURU_Leo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.release.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.release.xcconfig"; sourceTree = "<group>"; };
+		8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_Leo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830608428015A9D002558BE /* SURU_Leo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SURU_Leo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830608728015A9D002558BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B830608928015A9D002558BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +32,7 @@
 		B830609B28015AD0002558BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B830609D28015B75002558BE /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		B86D5BA528015C5C004FCB1E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,18 +40,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70C4D18F69DE8D1F3776D85F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */,
+				78C47A99BAC6766DE55A8ACD /* Pods-SURU_Leo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		722176CD197EF0B42744BAD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B830607B28015A9D002558BE = {
 			isa = PBXGroup;
 			children = (
 				B86D5BA428015C47004FCB1E /* HiddenFile */,
 				B830608628015A9D002558BE /* SURU_Leo */,
 				B830608528015A9D002558BE /* Products */,
+				70C4D18F69DE8D1F3776D85F /* Pods */,
+				722176CD197EF0B42744BAD9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B830609828015A9E002558BE /* Build configuration list for PBXNativeTarget "SURU_Leo" */;
 			buildPhases = (
+				873E44E23E87E058145B672E /* [CP] Check Pods Manifest.lock */,
 				B830608028015A9D002558BE /* Sources */,
 				B830608128015A9D002558BE /* Frameworks */,
 				B830608228015A9D002558BE /* Resources */,
+				BE39D12141A18368668C13B9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +176,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		873E44E23E87E058145B672E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SURU_Leo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE39D12141A18368668C13B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B830608028015A9D002558BE /* Sources */ = {
@@ -303,6 +372,7 @@
 		};
 		B830609928015A9E002558BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -331,6 +401,7 @@
 		};
 		B830609A28015A9E002558BE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78C47A99BAC6766DE55A8ACD /* Pods-SURU_Leo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
