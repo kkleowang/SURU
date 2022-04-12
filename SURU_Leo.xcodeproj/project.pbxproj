@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */; };
-		B81026F82803D055007A3047 /* wave.json in Resources */ = {isa = PBXBuildFile; fileRef = B81026F72803D055007A3047 /* wave.json */; };
 		B830608828015A9D002558BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608728015A9D002558BE /* AppDelegate.swift */; };
 		B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608928015A9D002558BE /* SceneDelegate.swift */; };
 		B830608C28015A9D002558BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608B28015A9D002558BE /* ViewController.swift */; };
@@ -17,13 +16,19 @@
 		B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830609228015A9E002558BE /* LaunchScreen.storyboard */; };
 		B830609C28015AD0002558BE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B830609B28015AD0002558BE /* GoogleService-Info.plist */; };
 		B830609E28015B75002558BE /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830609D28015B75002558BE /* Token.swift */; };
-		B8BAEC6128018CB700EB2236 /* Boat_Loader.json in Resources */ = {isa = PBXBuildFile; fileRef = B8BAEC6028018CB700EB2236 /* Boat_Loader.json */; };
+		B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */; };
+		B8EC70012805275300DA8B78 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70002805275300DA8B78 /* UIView+.swift */; };
+		B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700928052D4300DA8B78 /* UIViewController+.swift */; };
+		B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */; };
+		B8EC700E2805468400DA8B78 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700D2805468400DA8B78 /* UIColor+.swift */; };
+		B8EC7010280546A800DA8B78 /* UISreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700F280546A800DA8B78 /* UISreen+.swift */; };
+		B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC7011280546D900DA8B78 /* UITableView+.swift */; };
+		B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70132805471900DA8B78 /* UILabel+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		78C47A99BAC6766DE55A8ACD /* Pods-SURU_Leo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.release.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.release.xcconfig"; sourceTree = "<group>"; };
 		8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_Leo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B81026F72803D055007A3047 /* wave.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = wave.json; path = ../../../Downloads/wave.json; sourceTree = "<group>"; };
 		B830608428015A9D002558BE /* SURU_Leo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SURU_Leo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830608728015A9D002558BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B830608928015A9D002558BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +40,16 @@
 		B830609B28015AD0002558BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B830609D28015B75002558BE /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		B86D5BA528015C5C004FCB1E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		B8BAEC6028018CB700EB2236 /* Boat_Loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Boat_Loader.json; path = "../../../Downloads/lottie-ios-master/Tests/Samples/Boat_Loader.json"; sourceTree = "<group>"; };
+		B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragingValueViewController.swift; sourceTree = "<group>"; };
+		B8EC70002805275300DA8B78 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		B8EC7003280528F800DA8B78 /* wave.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wave.json; sourceTree = "<group>"; };
+		B8EC7004280528F800DA8B78 /* Boat_Loader.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Boat_Loader.json; sourceTree = "<group>"; };
+		B8EC700928052D4300DA8B78 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = liquidBarViewController.swift; sourceTree = "<group>"; };
+		B8EC700D2805468400DA8B78 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		B8EC700F280546A800DA8B78 /* UISreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISreen+.swift"; sourceTree = "<group>"; };
+		B8EC7011280546D900DA8B78 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		B8EC70132805471900DA8B78 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +85,11 @@
 		B830607B28015A9D002558BE = {
 			isa = PBXGroup;
 			children = (
+				B8EC70072805291400DA8B78 /* Controller */,
+				B8EC70062805290F00DA8B78 /* View */,
+				B8EC70052805290A00DA8B78 /* Model */,
+				B8EC7002280528F000DA8B78 /* LottieFile */,
+				B8EC6FFF2805274100DA8B78 /* Extension */,
 				B86D5BA428015C47004FCB1E /* HiddenFile */,
 				B830608628015A9D002558BE /* SURU_Leo */,
 				B830608528015A9D002558BE /* Products */,
@@ -92,9 +111,6 @@
 			children = (
 				B830608728015A9D002558BE /* AppDelegate.swift */,
 				B830608928015A9D002558BE /* SceneDelegate.swift */,
-				B8BAEC6028018CB700EB2236 /* Boat_Loader.json */,
-				B81026F72803D055007A3047 /* wave.json */,
-				B830608B28015A9D002558BE /* ViewController.swift */,
 				B830608D28015A9D002558BE /* Main.storyboard */,
 				B830609028015A9E002558BE /* Assets.xcassets */,
 				B830609228015A9E002558BE /* LaunchScreen.storyboard */,
@@ -111,6 +127,52 @@
 				B830609D28015B75002558BE /* Token.swift */,
 			);
 			path = HiddenFile;
+			sourceTree = "<group>";
+		};
+		B8EC6FFF2805274100DA8B78 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B8EC70002805275300DA8B78 /* UIView+.swift */,
+				B8EC7011280546D900DA8B78 /* UITableView+.swift */,
+				B8EC700928052D4300DA8B78 /* UIViewController+.swift */,
+				B8EC700D2805468400DA8B78 /* UIColor+.swift */,
+				B8EC700F280546A800DA8B78 /* UISreen+.swift */,
+				B8EC70132805471900DA8B78 /* UILabel+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B8EC7002280528F000DA8B78 /* LottieFile */ = {
+			isa = PBXGroup;
+			children = (
+				B8EC7004280528F800DA8B78 /* Boat_Loader.json */,
+				B8EC7003280528F800DA8B78 /* wave.json */,
+			);
+			path = LottieFile;
+			sourceTree = "<group>";
+		};
+		B8EC70052805290A00DA8B78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B8EC70062805290F00DA8B78 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B8EC70072805291400DA8B78 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B830608B28015A9D002558BE /* ViewController.swift */,
+				B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */,
+				B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,8 +238,6 @@
 			files = (
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
 				B830609C28015AD0002558BE /* GoogleService-Info.plist in Resources */,
-				B8BAEC6128018CB700EB2236 /* Boat_Loader.json in Resources */,
-				B81026F82803D055007A3047 /* wave.json in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
 			);
@@ -249,10 +309,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */,
+				B8EC70012805275300DA8B78 /* UIView+.swift in Sources */,
+				B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */,
+				B8EC7010280546A800DA8B78 /* UISreen+.swift in Sources */,
+				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
 				B830608C28015A9D002558BE /* ViewController.swift in Sources */,
+				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
+				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
 				B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */,
 				B830609E28015B75002558BE /* Token.swift in Sources */,
+				B8EC700E2805468400DA8B78 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

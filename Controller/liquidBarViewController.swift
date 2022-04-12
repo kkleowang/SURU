@@ -1,41 +1,39 @@
 //
-//  ViewController.swift
+//  liquidBarViewController.swift
 //  SURU_Leo
 //
-//  Created by LEO W on 2022/4/9.
+//  Created by LEO W on 2022/4/12.
 //
 
 import UIKit
 import Lottie
-import Kingfisher
-import Firebase
-import FirebaseFirestoreSwift
-
-class ViewController: UIViewController {
+class LiquidBarViewController: UIViewController {
     let mask = CALayer()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .black
+        setLottieView()
+    }
+    //AnimationViewHolder
+    func setLottieView() {
         let animationView = AnimationView(name: "wave")
         animationView.center = self.view.center
+        view.addSubview(animationView)
+//        animationView.frame = CGRect(x: 0, y: 0, width: 600, height: 200)
         animationView.contentMode = .scaleAspectFill
         mask.backgroundColor = UIColor.black.cgColor
-        mask.frame = CGRect(x: 50, y: 50, width: 150, height: 800)
-        //        mask.cornerRadius =  mask.frame.width/2
+        mask.frame = CGRect(x: 0, y: 0, width: 150, height: 300)
         animationView.layer.mask = mask
-        view.addSubview(animationView)
+        
         
         animationView.play(completion: nil)
         setGesture(importView: animationView)
-        //        let doc: DocumentReference
-        
-        
-        //        self.view.addSubview(processedImage)
     }
+    
     func setGesture(importView: UIView) {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))
         importView.addGestureRecognizer(pan)
     }
+    
     @objc func handlePan(sender: UIPanGestureRecognizer) {
         let controledView = sender.view
         let translation = sender.translation(in: view)
@@ -43,15 +41,13 @@ class ViewController: UIViewController {
         case .began, .changed:
             controledView?.center = CGPoint(x: (controledView?.center.x)! , y: (controledView?.center.y)! + translation.y)
             sender.setTranslation(CGPoint.zero, in: view)
-            
         case .ended:
+            print(translation.y)
+            print(controledView?.center.y)
+            print((controledView?.center.y)! + translation.y)
             print("end")
-            break
         default:
             print("end")
-            break
         }
     }
-    
 }
-
