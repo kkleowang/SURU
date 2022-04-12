@@ -24,6 +24,7 @@
 		B8EC7010280546A800DA8B78 /* UISreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700F280546A800DA8B78 /* UISreen+.swift */; };
 		B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC7011280546D900DA8B78 /* UITableView+.swift */; };
 		B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70132805471900DA8B78 /* UILabel+.swift */; };
+		B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70152805B0FD00DA8B78 /* UIFont+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		B8EC700F280546A800DA8B78 /* UISreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISreen+.swift"; sourceTree = "<group>"; };
 		B8EC7011280546D900DA8B78 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		B8EC70132805471900DA8B78 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		B8EC70152805B0FD00DA8B78 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 				B8EC700D2805468400DA8B78 /* UIColor+.swift */,
 				B8EC700F280546A800DA8B78 /* UISreen+.swift */,
 				B8EC70132805471900DA8B78 /* UILabel+.swift */,
+				B8EC70152805B0FD00DA8B78 /* UIFont+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
 				B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */,
 				B8EC70012805275300DA8B78 /* UIView+.swift in Sources */,
 				B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */,

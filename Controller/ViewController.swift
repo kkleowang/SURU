@@ -29,9 +29,11 @@ class ViewController: UIViewController {
         controller.view.backgroundColor = UIColor.C5
         controller.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
         controller.view.corner(byRoundingCorners: [UIRectCorner.topRight, UIRectCorner.bottomRight], radii: 30)
+        controller.setupLayout(type: .noodle)
         UIView.animate(withDuration: 0.5) {
             controller.view.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.main.bounds.height)
         }
+        
     }
     
 }
