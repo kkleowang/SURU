@@ -34,7 +34,7 @@ extension UIColor {
     
     static let C3 = STColor(.C3)
     
-    static let C4 = STColor(.C6)
+    static let C4 = STColor(.C4)
     
     static let C5 = STColor(.C5)
     

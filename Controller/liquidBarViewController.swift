@@ -12,20 +12,12 @@ class LiquidBarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLottieView()
+        view.clipsToBounds = true
     }
     //AnimationViewHolder
     func setLottieView() {
-        let animationView = AnimationView(name: "wave")
-        animationView.center = self.view.center
-        view.addSubview(animationView)
-//        animationView.frame = CGRect(x: 0, y: 0, width: 600, height: 200)
-        animationView.contentMode = .scaleAspectFill
-        mask.backgroundColor = UIColor.black.cgColor
-        mask.frame = CGRect(x: 0, y: 0, width: 150, height: 300)
-        animationView.layer.mask = mask
-        
-        
-        animationView.play(completion: nil)
+        let animationView = setGradientView()
+        self.view.addSubview(animationView)
         setGesture(importView: animationView)
     }
     
@@ -39,15 +31,36 @@ class LiquidBarViewController: UIViewController {
         let translation = sender.translation(in: view)
         switch sender.state {
         case .began, .changed:
-            controledView?.center = CGPoint(x: (controledView?.center.x)! , y: (controledView?.center.y)! + translation.y)
+            guard let positionY = controledView?.center.y, let positionX = controledView?.center.x else { return }
+            let total = positionY + translation.y
+            if total < 240 {
+                controledView?.center = CGPoint(x: positionX, y: 240)
+            } else if total > 680 {
+                controledView?.center = CGPoint(x: positionX, y: 600)
+            } else {
+                controledView?.center = CGPoint(x: positionX, y: total)
+            }
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
-            print(translation.y)
-            print(controledView?.center.y)
-            print((controledView?.center.y)! + translation.y)
+            print( Int(((controledView?.center.y)! - 720) / -4.8))
             print("end")
         default:
             print("end")
         }
+    }
+}
+//setGradientView
+extension LiquidBarViewController {
+    func setGradientView() -> UIView {
+        let gradientView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 480))
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.frame = gradientView.bounds
+        gradientLayer.colors = [UIColor.C2?.cgColor, UIColor.C3?.cgColor, UIColor.C4?.cgColor, UIColor.C7?.cgColor]
+        
+        gradientView.layer.addSublayer(gradientLayer)
+        
+        return gradientView
     }
 }
