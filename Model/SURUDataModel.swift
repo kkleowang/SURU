@@ -8,13 +8,13 @@
 import Foundation
 
 struct Store: Codable {
-    var storeID: String
+    var storeID: String = ""
     var name: String
     var coordinate: Coordinate
     var tags: [String]
     var meals: [String]
     var seat: Int
-    var opentime: Opentime
+    var opentime: Opentime = Opentime(lunchTime: "", dinnertime: "")
     var menuImage: String
     var mainImage: String
     var closeDay: Int
@@ -30,23 +30,23 @@ struct Opentime: Codable {
 
 // MARK: -
 struct StoreQueueReport: Codable {
-    var reportID: String
+    var reportID: String = ""
     var queueCount: Int
-    var createdTime: Double
+    var createdTime: Double = 0
 }
 
 // MARK: -
 struct Comment: Codable {
-    var commentID: String
+    var commentID: String = ""
     var userID: String
     var storeID: String
     var meal: String
     var content: CommentContent
-    var detailText: String
-    var detailImage: String
-    var createdTime: Double
-    var likedUserList: [String]
-    var collectedUserList: [String]
+    var detailText: String = ""
+    var detailImage: String = ""
+    var createdTime: Double = 0
+    var likedUserList: [String] = []
+    var collectedUserList: [String] = []
 }
 struct CommentContent: Codable {
     var happiness: Int
@@ -55,14 +55,14 @@ struct CommentContent: Codable {
 }
 // MARK: -
 struct Account: Codable {
-    var userID: String
+    var userID: String = ""
     var name: String
     var mainImage: String
     var provider: String
-    var commentCount: Int
-    var createdTime: Double
-    var likedComment: [LikeComment]
-    var collectedComment: [CollectComment]
+    var commentCount: Int = 0
+    var createdTime: Double = 0
+    var likedComment: [LikeComment] = []
+    var collectedComment: [CollectComment] = []
 }
 struct LikeComment: Codable {
     var likeComment: String

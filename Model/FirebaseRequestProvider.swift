@@ -109,13 +109,25 @@ class FirebaseRequestProvider {
         completion(.success(docment.documentID))
     }
     
-    func likeStore() {
+    func publishRegistedAccount(account: inout Account, completion: @escaping (Result<String, Error>) -> Void) {
+        let docment = database.collection("accounts").document()
+        account.userID = docment.documentID
+        account.createdTime = Date().timeIntervalSince1970
+        do {
+            try docment.setData(from: account)
+        } catch {
+            completion(.failure(error))
+        }
+        completion(.success(docment.documentID))
     }
-    func collectStore() {
+    
+    private func likeStore() {
     }
-    func loginin() {
+    private func collectStore() {
     }
-    func deleteAccount() {
+    private func loginin() {
+    }
+    private func deleteAccount() {
     }
 }
 

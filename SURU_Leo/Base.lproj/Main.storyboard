@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,7 +34,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBq-SI-DKp">
-                                        <rect key="frame" x="127" y="0.0" width="80" height="100"/>
+                                        <rect key="frame" x="84.5" y="0.0" width="80" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="7mX-0V-qW1"/>
                                             <constraint firstAttribute="width" constant="80" id="aAn-9c-2XB"/>
@@ -45,7 +46,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEO-JS-uHA">
-                                        <rect key="frame" x="254" y="0.0" width="80" height="100"/>
+                                        <rect key="frame" x="169.5" y="0.0" width="80" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="8aL-yx-QiS"/>
                                             <constraint firstAttribute="height" constant="100" id="yhw-sG-wuQ"/>
@@ -54,6 +55,18 @@
                                         <buttonConfiguration key="configuration" style="tinted" title="Happy"/>
                                         <connections>
                                             <action selector="happyButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sKA-Ec-XUg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZA-cz-gcH">
+                                        <rect key="frame" x="254" y="0.0" width="80" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="UpP-Zx-aeX"/>
+                                            <constraint firstAttribute="width" constant="80" id="fht-B5-I0i"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="測試按鈕"/>
+                                        <connections>
+                                            <segue destination="h4L-wU-Ogs" kind="presentation" id="NGe-E4-yyl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -72,10 +85,177 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="100.44642857142857"/>
         </scene>
+        <!--Testing Center View Controller-->
+        <scene sceneID="Y64-A4-nx5">
+            <objects>
+                <viewController id="h4L-wU-Ogs" customClass="TestingCenterViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iG8-iS-lbV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="BZw-tN-ujt">
+                                <rect key="frame" x="40" y="150" width="334" height="389.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="duI-uk-gOe">
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwV-O0-zNc">
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Hi-6S-QIv">
+                                                <rect key="frame" x="69" y="0.0" width="136" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="ReadAllComment"/>
+                                                <connections>
+                                                    <action selector="readAllComment" destination="h4L-wU-Ogs" eventType="touchUpInside" id="rhe-3U-nAQ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1e-kC-8qV">
+                                                <rect key="frame" x="228" y="0.0" width="67" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="8PT-X4-sfx">
+                                        <rect key="frame" x="0.0" y="67" width="323.5" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxR-tD-vsB">
+                                                <rect key="frame" x="0.0" y="0.0" width="48.5" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esZ-XF-Bbq">
+                                                <rect key="frame" x="71.5" y="0.0" width="107.5" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="ReadAllStore"/>
+                                                <connections>
+                                                    <action selector="readAllStore" destination="h4L-wU-Ogs" eventType="touchUpInside" id="Jc6-ao-XaY"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycp-EZ-AsR">
+                                                <rect key="frame" x="202" y="0.0" width="121.5" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="ReadStoreByID"/>
+                                                <connections>
+                                                    <action selector="readStoreByID" destination="h4L-wU-Ogs" eventType="touchUpInside" id="IXg-JD-sKY"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="tn7-IT-T1m">
+                                        <rect key="frame" x="0.0" y="134" width="326" height="48"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3V-yw-xCg">
+                                                <rect key="frame" x="0.0" y="0.0" width="48.5" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6l-iu-NWx">
+                                                <rect key="frame" x="71.5" y="0.0" width="151.5" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="WriteCommentByStoreID"/>
+                                                <connections>
+                                                    <action selector="writeCommentByStoreID" destination="h4L-wU-Ogs" eventType="touchUpInside" id="Lw8-eb-3zE"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWb-3W-ghI">
+                                                <rect key="frame" x="246" y="0.0" width="80" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="0Mn-bu-fzk">
+                                        <rect key="frame" x="0.0" y="218" width="329" height="48"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCl-kq-9IX">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59w-Ye-r56">
+                                                <rect key="frame" x="72" y="0.0" width="153" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="WriteReportByStoreID"/>
+                                                <connections>
+                                                    <action selector="writeReportByStoreID" destination="h4L-wU-Ogs" eventType="touchUpInside" id="Azx-zD-dTs"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDf-GZ-8Du">
+                                                <rect key="frame" x="248" y="0.0" width="81" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="wHO-DJ-hzc">
+                                        <rect key="frame" x="0.0" y="302" width="334" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Page5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3e-mQ-bFY">
+                                                <rect key="frame" x="0.0" y="0.0" width="43.5" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8R6-4o-sA9">
+                                                <rect key="frame" x="66.5" y="0.0" width="111.5" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="WriteAccount"/>
+                                                <connections>
+                                                    <action selector="writeAccount" destination="h4L-wU-Ogs" eventType="touchUpInside" id="Xg1-dI-JhV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWo-Kz-VSq">
+                                                <rect key="frame" x="201" y="0.0" width="133" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="AdminWriteStore"/>
+                                                <connections>
+                                                    <action selector="adminWriteStore" destination="h4L-wU-Ogs" eventType="touchUpInside" id="VH4-gq-DgB"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="MgM-P3-Zqw">
+                                        <rect key="frame" x="0.0" y="369" width="35" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yi-I7-0Td">
+                                                <rect key="frame" x="0.0" y="0.0" width="35" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Vmf-Ic-MfH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BZw-tN-ujt" firstAttribute="top" secondItem="Vmf-Ic-MfH" secondAttribute="top" constant="150" id="4U3-BK-grY"/>
+                            <constraint firstItem="BZw-tN-ujt" firstAttribute="leading" secondItem="Vmf-Ic-MfH" secondAttribute="leading" constant="40" id="Y33-l8-1It"/>
+                            <constraint firstItem="Vmf-Ic-MfH" firstAttribute="trailing" secondItem="BZw-tN-ujt" secondAttribute="trailing" constant="40" id="i09-9G-PZD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pfw-S8-bp5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1074" y="95"/>
+        </scene>
     </scenes>
     <resources>
         <namedColor name="Color-4">
             <color red="0.059000000357627869" green="0.054999999701976776" blue="0.046999998390674591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
