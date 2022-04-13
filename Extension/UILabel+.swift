@@ -8,13 +8,10 @@
 import UIKit
 
 extension UILabel {
-    //字距
+    // 字距
     @IBInspectable var characterSpacing: CGFloat {
-
         set {
-
             if let labelText = text, labelText.isEmpty != true {
-
                 let attributedString = NSMutableAttributedString(attributedString: attributedText!)
 
                 attributedString.addAttribute(
@@ -32,6 +29,5 @@ extension UILabel {
             return attributedText?.value(forKey: NSAttributedString.Key.kern.rawValue) as! CGFloat
             // swiftlint:enable force_cast
         }
-
     }
 }

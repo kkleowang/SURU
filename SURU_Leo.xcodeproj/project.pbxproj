@@ -16,6 +16,8 @@
 		B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830609228015A9E002558BE /* LaunchScreen.storyboard */; };
 		B830609C28015AD0002558BE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B830609B28015AD0002558BE /* GoogleService-Info.plist */; };
 		B830609E28015B75002558BE /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830609D28015B75002558BE /* Token.swift */; };
+		B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */; };
+		B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3C28068850006C85F3 /* multipleSimulators.config */; };
 		B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */; };
 		B8EC70012805275300DA8B78 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70002805275300DA8B78 /* UIView+.swift */; };
 		B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700928052D4300DA8B78 /* UIViewController+.swift */; };
@@ -40,6 +42,8 @@
 		B830609528015A9E002558BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B830609B28015AD0002558BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B830609D28015B75002558BE /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = multipleSimulatorsStartup.sh; sourceTree = "<group>"; };
+		B8659C3C28068850006C85F3 /* multipleSimulators.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multipleSimulators.config; sourceTree = "<group>"; };
 		B86D5BA528015C5C004FCB1E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragingValueViewController.swift; sourceTree = "<group>"; };
 		B8EC70002805275300DA8B78 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 		B830607B28015A9D002558BE = {
 			isa = PBXGroup;
 			children = (
+				B8659C3C28068850006C85F3 /* multipleSimulators.config */,
+				B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */,
 				B8EC70072805291400DA8B78 /* Controller */,
 				B8EC70062805290F00DA8B78 /* View */,
 				B8EC70052805290A00DA8B78 /* Model */,
@@ -191,6 +197,7 @@
 				B830608228015A9D002558BE /* Resources */,
 				BE39D12141A18368668C13B9 /* [CP] Embed Pods Frameworks */,
 				B8643B75280161E200A4E366 /* ShellScript */,
+				B8659C3928068262006C85F3 /* Multiple Simulators */,
 			);
 			buildRules = (
 			);
@@ -239,6 +246,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
+				B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */,
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
 				B830609C28015AD0002558BE /* GoogleService-Info.plist in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
@@ -287,6 +296,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		B8659C3928068262006C85F3 /* Multiple Simulators */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Multiple Simulators";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "custom_sim=`xcrun simctl list | grep 'Multiple Simulators' | awk -F'[()]' '{print $2}'`\nif [ ! -z \"${custom_sim}\" ] && [ \"${TARGET_DEVICE_IDENTIFIER}\" = \"${custom_sim}\" ]; then\n/bin/sh multipleSimulatorsStartup.sh &\nfi\n";
 		};
 		BE39D12141A18368668C13B9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

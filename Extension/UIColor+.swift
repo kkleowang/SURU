@@ -24,6 +24,20 @@ private enum SURUColor: String {
     
     case C7
     
+    case B1
+
+    case B2
+
+    case B3
+
+    case B4
+
+    case B5
+
+    case B6
+    
+    case G7
+    
 }
 
 extension UIColor {
@@ -41,6 +55,20 @@ extension UIColor {
     static let C6 = STColor(.C6)
     
     static let C7 = STColor(.C7)
+    
+    static let B1 = STColor(.B1)
+    
+    static let B2 = STColor(.B2)
+    
+    static let B3 = STColor(.B3)
+    
+    static let B4 = STColor(.B4)
+    
+    static let B5 = STColor(.B5)
+    
+    static let B6 = STColor(.B6)
+    
+    static let G7 = STColor(.G7)
 
     private static func STColor(_ color: SURUColor) -> UIColor? {
 

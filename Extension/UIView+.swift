@@ -25,7 +25,6 @@ extension UIView {
         self.layer.mask = maskLayer
     }
     func stickSubView(_ objectView: UIView) {
-
         objectView.removeFromSuperview()
 
         addSubview(objectView)
@@ -42,7 +41,6 @@ extension UIView {
     }
 
     func stickSubView(_ objectView: UIView, inset: UIEdgeInsets) {
-
         objectView.removeFromSuperview()
 
         addSubview(objectView)

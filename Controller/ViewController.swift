@@ -33,7 +33,5 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 0.5) {
             controller.view.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.main.bounds.height)
         }
-        
     }
-    
 }

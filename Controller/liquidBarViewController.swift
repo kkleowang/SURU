@@ -7,6 +7,11 @@
 
 import UIKit
 import Lottie
+
+protocol SelectionValueManager {
+    func getSelectionValue(didGet: Int)
+}
+
 class LiquidBarViewController: UIViewController {
     let mask = CALayer()
     override func viewDidLoad() {
@@ -14,7 +19,7 @@ class LiquidBarViewController: UIViewController {
         setLottieView()
         view.clipsToBounds = true
     }
-    //AnimationViewHolder
+    // AnimationViewHolder
     func setLottieView() {
         let animationView = setGradientView()
         self.view.addSubview(animationView)
@@ -42,14 +47,15 @@ class LiquidBarViewController: UIViewController {
             }
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
-            print( Int(((controledView?.center.y)! - 720) / -4.8))
+            guard let positionY = controledView?.center.y else { return }
+            print( Int((positionY - 720) / -4.8))
             print("end")
         default:
             print("end")
         }
     }
 }
-//setGradientView
+// setGradientView
 extension LiquidBarViewController {
     func setGradientView() -> UIView {
         let gradientView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 480))

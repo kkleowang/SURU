@@ -8,22 +8,20 @@
 import UIKit
 
 extension UITableView {
-//註冊
+// 註冊
     func lk_registerCellWithNib(identifier: String, bundle: Bundle?) {
-
         let nib = UINib(nibName: identifier, bundle: bundle)
 
         register(nib, forCellReuseIdentifier: identifier)
     }
 
     func lk_registerHeaderWithNib(identifier: String, bundle: Bundle?) {
-
         let nib = UINib(nibName: identifier, bundle: bundle)
 
         register(nib, forHeaderFooterViewReuseIdentifier: identifier)
     }
     
-//拿indexPath
+// 拿indexPath
     func indexPath(for view: UIView) -> IndexPath? {
         let location = view.convert(CGPoint.zero, to: self)
         return self.indexPathForRow(at: location)
@@ -31,7 +29,6 @@ extension UITableView {
 }
 
 extension UITableViewCell {
-    
     static var identifier: String {
         
         return String(describing: self)
@@ -39,9 +36,7 @@ extension UITableViewCell {
 }
 
 extension UITableViewHeaderFooterView {
-    
     static var identifier: String {
-        
         return String(describing: self)
     }
 }

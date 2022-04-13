@@ -22,7 +22,7 @@ class DragingValueViewController: UIViewController {
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
     let liquilBarview = LiquidBarViewController()
-    
+
     func setupLayout(type: SelectionTitle) {
         switch type {
         case .noodle :
@@ -32,27 +32,24 @@ class DragingValueViewController: UIViewController {
         case .happy :
             titleLabel.text = type.rawValue
         }
-        titleLabel.font = UIFont.regular(size: 18)
+        let spacing = (UIScreen.height * 0.9 - 480) / 2
+        titleLabel.font = UIFont.regular(size: 30)
         titleLabel.characterSpacing = 2.5
-        subTitleLabel.font = UIFont.regular(size: 14)
+        titleLabel.textColor = UIColor.B1
+        subTitleLabel.font = UIFont.regular(size: 18)
         subTitleLabel.characterSpacing = 2.5
+        subTitleLabel.textColor = UIColor.B2
         self.view.addSubview(titleLabel)
         self.view.addSubview(subTitleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 60).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
-        subTitleLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 60).isActive = true
-        subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40).isActive = true
-        subTitleLabel.text = SelectionSubTitle.text.rawValue
-        initDashBar(position: [96, 144, 192, 240, 288, 336, 384], value: [80, 70, 60, 50, 40 , 30, 20])
-//        initDashBar(position: 336, value: 80)
-//        initDashBar(position: 384)
-//        initDashBar(position: 432, value: 60)
-//        initDashBar(position: 480)
-//        initDashBar(position: 528, value: 40)
-//        initDashBar(position: 576)
-//        initDashBar(position: 624, value: 20)
+        titleLabel.leadingAnchor.constraint(equalTo: liquilBarview.view.leadingAnchor, constant: 0).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: spacing).isActive = true
+//        titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: liquilBarview.view.topAnchor, constant: -20).isActive = true
+        subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 0).isActive = true
+        subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
+//        subTitleLabel.text = SelectionSubTitle.text.rawValue
+        initDashBar(position: [96, 144, 192, 240, 288, 336, 384], value: [80, 70, 60, 50, 40, 30, 20])
     }
     func initDashBar(position: [CGFloat], value: [Int]) {
         for line in 0..<position.count {
@@ -64,18 +61,19 @@ class DragingValueViewController: UIViewController {
             dashBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 135).isActive = true
             dashBar.centerYAnchor.constraint(equalTo: liquilBarview.view.topAnchor, constant: positionOfDashBar).isActive = true
             dashBar.heightAnchor.constraint(equalToConstant: 1).isActive = true
-            dashBar.backgroundColor = UIColor.gray
+            dashBar.backgroundColor = UIColor.B5
             if valueOfDashBar % 20 == 0 {
-                dashBar.widthAnchor.constraint(equalToConstant: 30).isActive = true
+                dashBar.widthAnchor.constraint(equalToConstant: 70).isActive = true
                 let valueLabel = UILabel()
                 self.view.addSubview(valueLabel)
+                valueLabel.textColor = UIColor.B6
                 valueLabel.translatesAutoresizingMaskIntoConstraints = false
                 valueLabel.leadingAnchor.constraint(equalTo: dashBar.trailingAnchor, constant: 5).isActive = true
-                valueLabel.topAnchor.constraint(equalTo: dashBar.topAnchor, constant: 0).isActive = true
+                valueLabel.centerYAnchor.constraint(equalTo: dashBar.centerYAnchor, constant: 0).isActive = true
                 valueLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
                 valueLabel.text = String(valueOfDashBar)
             } else {
-                dashBar.widthAnchor.constraint(equalToConstant: 10).isActive = true
+                dashBar.widthAnchor.constraint(equalToConstant: 25).isActive = true
             }
         }
     }
@@ -87,6 +85,7 @@ class DragingValueViewController: UIViewController {
     }
     
     func setLiquidView() {
+        
         
         self.addChild(liquilBarview)
         self.view.addSubview(liquilBarview.view)
