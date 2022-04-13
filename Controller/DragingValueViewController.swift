@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum SelectionTitle: String {
+enum SelectionType: String {
     case noodle = "麵條喜好度"
     case soup = "湯頭喜好度"
     case happy = "幸福感"
@@ -22,15 +22,16 @@ class DragingValueViewController: UIViewController {
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
     let liquilBarview = LiquidBarViewController()
+    var selectionType: SelectionType = .noodle
 
-    func setupLayout(type: SelectionTitle) {
-        switch type {
+    func setupLayout() {
+        switch selectionType {
         case .noodle :
-            titleLabel.text = type.rawValue
+            titleLabel.text = selectionType.rawValue
         case .soup :
-            titleLabel.text = type.rawValue
+            titleLabel.text = selectionType.rawValue
         case .happy :
-            titleLabel.text = type.rawValue
+            titleLabel.text = selectionType.rawValue
         }
         let spacing = (UIScreen.height * 0.9 - 480) / 2
         titleLabel.font = UIFont.regular(size: 30)
@@ -80,8 +81,12 @@ class DragingValueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setBackButton()
         setLiquidView()
+        setupLayout()
     }
     
     func setLiquidView() {
@@ -89,6 +94,7 @@ class DragingValueViewController: UIViewController {
         
         self.addChild(liquilBarview)
         self.view.addSubview(liquilBarview.view)
+        liquilBarview.selectionType = selectionType
         liquilBarview.view.translatesAutoresizingMaskIntoConstraints = false
         liquilBarview.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -UIScreen.height/10).isActive = true
         liquilBarview.view.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true

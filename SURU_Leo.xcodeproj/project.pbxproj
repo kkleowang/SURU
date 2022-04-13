@@ -18,6 +18,8 @@
 		B830609E28015B75002558BE /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830609D28015B75002558BE /* Token.swift */; };
 		B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */; };
 		B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3C28068850006C85F3 /* multipleSimulators.config */; };
+		B8659C402806AB45006C85F3 /* FirebaseRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */; };
+		B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8659C412806ABA3006C85F3 /* SURUDataModel.swift */; };
 		B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */; };
 		B8EC70012805275300DA8B78 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70002805275300DA8B78 /* UIView+.swift */; };
 		B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700928052D4300DA8B78 /* UIViewController+.swift */; };
@@ -44,6 +46,8 @@
 		B830609D28015B75002558BE /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = multipleSimulatorsStartup.sh; sourceTree = "<group>"; };
 		B8659C3C28068850006C85F3 /* multipleSimulators.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multipleSimulators.config; sourceTree = "<group>"; };
+		B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRequestProvider.swift; sourceTree = "<group>"; };
+		B8659C412806ABA3006C85F3 /* SURUDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SURUDataModel.swift; sourceTree = "<group>"; };
 		B86D5BA528015C5C004FCB1E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragingValueViewController.swift; sourceTree = "<group>"; };
 		B8EC70002805275300DA8B78 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 		B8EC70052805290A00DA8B78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */,
+				B8659C412806ABA3006C85F3 /* SURUDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
+				B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */,
 				B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */,
 				B8EC70012805275300DA8B78 /* UIView+.swift in Sources */,
 				B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */,
@@ -351,6 +358,7 @@
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
 				B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */,
 				B830609E28015B75002558BE /* Token.swift in Sources */,
+				B8659C402806AB45006C85F3 /* FirebaseRequestProvider.swift in Sources */,
 				B8EC700E2805468400DA8B78 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

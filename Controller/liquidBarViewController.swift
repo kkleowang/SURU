@@ -8,12 +8,14 @@
 import UIKit
 import Lottie
 
-protocol SelectionValueManager {
-    func getSelectionValue(didGet: Int)
+protocol SelectionValueManager: AnyObject {
+    func getSelectionValue(type: SelectionType, value: Int)
 }
 
 class LiquidBarViewController: UIViewController {
     let mask = CALayer()
+    var selectionType: SelectionType = .noodle
+    weak var delegate: SelectionValueManager?
     override func viewDidLoad() {
         super.viewDidLoad()
         setLottieView()
@@ -48,7 +50,9 @@ class LiquidBarViewController: UIViewController {
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
             guard let positionY = controledView?.center.y else { return }
-            print( Int((positionY - 720) / -4.8))
+            let selectionValue = Int((positionY - 720) / -4.8)
+            print("Get Value", selectionValue)
+            delegate?.getSelectionValue(type: selectionType, value: selectionValue)
             print("end")
         default:
             print("end")

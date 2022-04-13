@@ -29,7 +29,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Noodle"/>
                                         <connections>
-                                            <action selector="noodle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Yt-ca-Be5"/>
+                                            <action selector="noodleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A1l-Qj-rmD"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBq-SI-DKp">
@@ -40,6 +40,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Soup"/>
+                                        <connections>
+                                            <action selector="soupButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tcb-Ct-g1g"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEO-JS-uHA">
                                         <rect key="frame" x="254" y="0.0" width="80" height="100"/>
@@ -49,6 +52,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Happy"/>
+                                        <connections>
+                                            <action selector="happyButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sKA-Ec-XUg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
