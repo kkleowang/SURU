@@ -7,68 +7,68 @@
 
 import Foundation
 
-struct Store {
-    let storeID: String
-    let name: String
-    let coordinate: Coordinate
-    let tags: [String]
-    let meals: [String]
-    let seat: Int
-    let opentime: Opentime
-    let menuImage: String
-    let mainImage: String
-    let closeDay: Int
+struct Store: Codable {
+    var storeID: String
+    var name: String
+    var coordinate: Coordinate
+    var tags: [String]
+    var meals: [String]
+    var seat: Int
+    var opentime: Opentime
+    var menuImage: String
+    var mainImage: String
+    var closeDay: Int
 }
-struct Coordinate {
-    let long: Double
-    let lat: Double
+struct Coordinate: Codable {
+    var long: Double
+    var lat: Double
 }
-struct Opentime {
-    let lunchTime: String
-    let dinnertime: String
-}
-
-// MARK: -
-struct StoreQueueReport {
-    let reportID: String
-    let queueCount: Int
-    let createTime: Double
+struct Opentime: Codable {
+    var lunchTime: String
+    var dinnertime: String
 }
 
 // MARK: -
-struct Comment {
-    let commentID: String
-    let userID: String
-    let storeID: String
-    let meal: String
-    let content: CommentContent
-    let detailText: String
-    let detailImage: String
-    let createTime: Double
-    let likedUserList: [String]
-    let collectedUserList: [String]
+struct StoreQueueReport: Codable {
+    var reportID: String
+    var queueCount: Int
+    var createdTime: Double
 }
-struct CommentContent {
-    let happiness: Int
-    let noodle: Int
-    let soup: Int
+
+// MARK: -
+struct Comment: Codable {
+    var commentID: String
+    var userID: String
+    var storeID: String
+    var meal: String
+    var content: CommentContent
+    var detailText: String
+    var detailImage: String
+    var createdTime: Double
+    var likedUserList: [String]
+    var collectedUserList: [String]
+}
+struct CommentContent: Codable {
+    var happiness: Int
+    var noodle: Int
+    var soup: Int
 }
 // MARK: -
-struct Account {
-    let userID: String
-    let name: String
-    let mainImage: String
-    let provider: String
-    let commentCount: Int
-    let createTime: Double
-    let likedComment: [LikeComment]
-    let collectedComment: [CollectComment]
+struct Account: Codable {
+    var userID: String
+    var name: String
+    var mainImage: String
+    var provider: String
+    var commentCount: Int
+    var createdTime: Double
+    var likedComment: [LikeComment]
+    var collectedComment: [CollectComment]
 }
-struct LikeComment {
-    let likeComment: String
-    let createTime: Double
+struct LikeComment: Codable {
+    var likeComment: String
+    var createdTime: Double
 }
-struct CollectComment {
-    let collectComment: String
-    let createTime: Double
+struct CollectComment: Codable {
+    var collectComment: String
+    var createdTime: Double
 }
