@@ -10,14 +10,16 @@ import Foundation
 struct Store: Codable {
     var storeID: String = ""
     var name: String
+    var address: String
     var coordinate: Coordinate
+    var phone: String = ""
     var tags: [String]
     var meals: [String]
     var seat: Int
     var opentime: Opentime = Opentime(lunchTime: "", dinnertime: "")
     var menuImage: String
     var mainImage: String
-    var closeDay: Int
+    var closeDay: [Int] = []
 }
 struct Coordinate: Codable {
     var long: Double
