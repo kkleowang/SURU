@@ -30,6 +30,7 @@
 		B8A00346280A97A100A64750 /* UIStoryboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00345280A97A100A64750 /* UIStoryboard+.swift */; };
 		B8A00348280A9BE100A64750 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00347280A9BE100A64750 /* CommentViewController.swift */; };
 		B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00349280A9E1100A64750 /* UIImage+.swift */; };
+		B8A00352280B064200A64750 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00351280B064200A64750 /* MapView.swift */; };
 		B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */; };
 		B8EC70012805275300DA8B78 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70002805275300DA8B78 /* UIView+.swift */; };
 		B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700928052D4300DA8B78 /* UIViewController+.swift */; };
@@ -69,6 +70,7 @@
 		B8A00345280A97A100A64750 /* UIStoryboard+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+.swift"; sourceTree = "<group>"; };
 		B8A00347280A9BE100A64750 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		B8A00349280A9E1100A64750 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		B8A00351280B064200A64750 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragingValueViewController.swift; sourceTree = "<group>"; };
 		B8EC70002805275300DA8B78 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		B8EC7003280528F800DA8B78 /* wave.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wave.json; sourceTree = "<group>"; };
@@ -204,6 +206,42 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		B8A0034C280B041800A64750 /* Waterfalls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Waterfalls;
+			sourceTree = "<group>";
+		};
+		B8A0034D280B042000A64750 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B8A0034E280B042C00A64750 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		B8A0034F280B043200A64750 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		B8A00350280B043A00A64750 /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				B8A00351280B064200A64750 /* MapView.swift */,
+			);
+			path = Mapping;
+			sourceTree = "<group>";
+		};
 		B8EC6FFF2805274100DA8B78 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +280,11 @@
 		B8EC70062805290F00DA8B78 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B8A0034C280B041800A64750 /* Waterfalls */,
+				B8A00350280B043A00A64750 /* Mapping */,
+				B8A0034F280B043200A64750 /* Report */,
+				B8A0034E280B042C00A64750 /* Comment */,
+				B8A0034D280B042000A64750 /* Profile */,
 				B830608D28015A9D002558BE /* Main.storyboard */,
 			);
 			path = View;
@@ -432,6 +475,7 @@
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
+				B8A00352280B064200A64750 /* MapView.swift in Sources */,
 				B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */,
 				B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */,
 				B830609E28015B75002558BE /* Token.swift in Sources */,

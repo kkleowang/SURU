@@ -9,10 +9,15 @@ import UIKit
 
 class WaterfaillsViewController: UIViewController {
 
+    let commDataProvider = FirebaseRequestProvider()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "評論瀑布牆"
-        // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
 
