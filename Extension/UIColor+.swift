@@ -42,35 +42,35 @@ private enum SURUColor: String {
 
 extension UIColor {
 
-    static let C1 = STColor(.C1)
+    static let C1 = toUIColor(.C1)
     
-    static let C2 = STColor(.C2)
+    static let C2 = toUIColor(.C2)
     
-    static let C3 = STColor(.C3)
+    static let C3 = toUIColor(.C3)
     
-    static let C4 = STColor(.C4)
+    static let C4 = toUIColor(.C4)
     
-    static let C5 = STColor(.C5)
+    static let C5 = toUIColor(.C5)
     
-    static let C6 = STColor(.C6)
+    static let C6 = toUIColor(.C6)
     
-    static let C7 = STColor(.C7)
+    static let C7 = toUIColor(.C7)
     
-    static let B1 = STColor(.B1)
+    static let B1 = toUIColor(.B1)
     
-    static let B2 = STColor(.B2)
+    static let B2 = toUIColor(.B2)
     
-    static let B3 = STColor(.B3)
+    static let B3 = toUIColor(.B3)
     
-    static let B4 = STColor(.B4)
+    static let B4 = toUIColor(.B4)
     
-    static let B5 = STColor(.B5)
+    static let B5 = toUIColor(.B5)
     
-    static let B6 = STColor(.B6)
+    static let B6 = toUIColor(.B6)
     
-    static let G7 = STColor(.G7)
+    static let G7 = toUIColor(.G7)
 
-    private static func STColor(_ color: SURUColor) -> UIColor? {
+    private static func toUIColor(_ color: SURUColor) -> UIColor? {
 
         return UIColor (named: color.rawValue)
     }

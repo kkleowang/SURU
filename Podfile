@@ -17,6 +17,7 @@ target 'SURU_Leo' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'SwiftLint'
+  pod 'SDWebImage', '~> 5.0'
 end
 
 post_install do |installer|

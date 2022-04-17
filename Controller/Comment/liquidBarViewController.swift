@@ -18,12 +18,16 @@ class LiquidBarViewController: UIViewController {
     weak var delegate: SelectionValueManager?
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLottieView()
         view.clipsToBounds = true
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setLottieView()
     }
     // AnimationViewHolder
     func setLottieView() {
-        let animationView = setGradientView()
+        let animationView = settingLottieView()
+//        animationView.layer.cornerRadius = 25
         self.view.addSubview(animationView)
         setGesture(importView: animationView)
     }
@@ -61,16 +65,23 @@ class LiquidBarViewController: UIViewController {
 }
 // setGradientView
 extension LiquidBarViewController {
-    func setGradientView() -> UIView {
-        let gradientView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 480))
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [UIColor.C2?.cgColor, UIColor.C3?.cgColor, UIColor.C4?.cgColor, UIColor.C7?.cgColor]
-        
-        gradientView.layer.addSublayer(gradientLayer)
-        
-        return gradientView
+    func settingLottieView() -> UIView {
+        var liqid: String
+        switch selectionType {
+        case .noodle :
+            liqid = "orange"
+        case .soup :
+            liqid = "blue"
+        case .happy :
+            liqid = "orange"
+        }
+        let animationView = AnimationView(name: "orange")
+        animationView.frame = CGRect(x: 0, y: 192, width: 80, height: 480)
+        animationView.contentMode = .scaleAspectFill
+
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1
+        animationView.play()
+        return animationView
     }
 }

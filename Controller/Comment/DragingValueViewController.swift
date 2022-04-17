@@ -11,6 +11,7 @@ enum SelectionType: String {
     case noodle = "麵條喜好度"
     case soup = "湯頭喜好度"
     case happy = "幸福感"
+    
 }
 enum SelectionSubTitle: String {
     case text = "拖曳後記得按下儲存"
@@ -23,7 +24,7 @@ class DragingValueViewController: UIViewController {
     let subTitleLabel = UILabel()
     let liquilBarview = LiquidBarViewController()
     var selectionType: SelectionType = .noodle
-
+    
     func setupLayout() {
         switch selectionType {
         case .noodle :
@@ -46,10 +47,10 @@ class DragingValueViewController: UIViewController {
         subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.leadingAnchor.constraint(equalTo: liquilBarview.view.leadingAnchor, constant: 0).isActive = true
         titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: spacing).isActive = true
-//        titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: liquilBarview.view.topAnchor, constant: -20).isActive = true
+        //        titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: liquilBarview.view.topAnchor, constant: -20).isActive = true
         subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 0).isActive = true
         subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
-//        subTitleLabel.text = SelectionSubTitle.text.rawValue
+        //        subTitleLabel.text = SelectionSubTitle.text.rawValue
         initDashBar(position: [96, 144, 192, 240, 288, 336, 384], value: [80, 70, 60, 50, 40, 30, 20])
     }
     func initDashBar(position: [CGFloat], value: [Int]) {
@@ -96,6 +97,7 @@ class DragingValueViewController: UIViewController {
         self.view.addSubview(liquilBarview.view)
         liquilBarview.selectionType = selectionType
         liquilBarview.view.translatesAutoresizingMaskIntoConstraints = false
+        liquilBarview.view.layer.cornerRadius = 40
         liquilBarview.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -UIScreen.height/10).isActive = true
         liquilBarview.view.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
         liquilBarview.view.widthAnchor.constraint(equalToConstant: 80).isActive = true
@@ -117,5 +119,4 @@ class DragingValueViewController: UIViewController {
     @objc func dismissSelf() {
         self.view.removeFromSuperview()
     }
-    
 }

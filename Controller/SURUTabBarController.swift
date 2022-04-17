@@ -56,9 +56,7 @@ private enum Tab {
     }
 
     func tabBarItem() -> UITabBarItem {
-
         switch self {
-
         case .waterfalls:
             return UITabBarItem(
                 title: nil,

@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="-286" y="-1278"/>
         </scene>
-        <!--View Controller-->
+        <!--Comment View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="CommentViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CommentViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -308,10 +308,10 @@
             </objects>
             <point key="canvasLocation" x="-287" y="-590"/>
         </scene>
-        <!--Comment View Controller-->
+        <!--Send Comment Conm View Controller-->
         <scene sceneID="r7Y-0Z-es6">
             <objects>
-                <viewController id="06E-zG-7Ph" customClass="CommentViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentViewController" id="06E-zG-7Ph" customClass="SendCommentConmViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dbx-mq-cMb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

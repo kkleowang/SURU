@@ -6,15 +6,26 @@
 //
 
 import UIKit
+import MapKit
+import Kingfisher
 
-class MapView: UIView {
+class MapView: MKMapView {
+    
+    func layoutView(from stores: [Store]) {
+        self.frame = CGRect(x: 0, y: 0, width: UIScreen.width, height: UIScreen.height)
+        if !stores.isEmpty {
+            for store in stores {
+                let mark = MKPointAnnotation()
+                mark.coordinate =  CLLocationCoordinate2D(
+                    latitude: store.coordinate.lat,
+                    longitude: store.coordinate.long)
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+                mark.title = store.name
+                self.addAnnotation(mark)
+            }
+        }
     }
-    */
-
+    
+    
+    
 }
