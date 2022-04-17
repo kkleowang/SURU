@@ -24,6 +24,9 @@ extension UIView {
         maskLayer.path = maskPath.cgPath
         self.layer.mask = maskLayer
     }
+    func cornerForAll(radii: CGFloat) {
+        corner(byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radii: radii)
+    }
     func stickSubView(_ objectView: UIView) {
         objectView.removeFromSuperview()
 

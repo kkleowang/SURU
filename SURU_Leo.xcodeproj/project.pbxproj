@@ -26,6 +26,8 @@
 		B87BF61F280C476E00FE885C /* yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = B87BF61E280C476E00FE885C /* yellow.json */; };
 		B87BF621280C4BCD00FE885C /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B87BF620280C4BCD00FE885C /* blue.json */; };
 		B87BF624280C61E100FE885C /* SendCommentConmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF623280C61E100FE885C /* SendCommentConmViewController.swift */; };
+		B87BF626280C832300FE885C /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF625280C832300FE885C /* CommentCardView.swift */; };
+		B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF627280CA5A500FE885C /* CommentStartingView.swift */; };
 		B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0033B280A92BC00A64750 /* WaterfaillsViewController.swift */; };
 		B8A0033E280A92D300A64750 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0033D280A92D300A64750 /* MappingViewController.swift */; };
 		B8A00340280A92DC00A64750 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0033F280A92DC00A64750 /* ReportViewController.swift */; };
@@ -69,6 +71,8 @@
 		B87BF61E280C476E00FE885C /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = yellow.json; path = ../../../Desktop/yellow.json; sourceTree = "<group>"; };
 		B87BF620280C4BCD00FE885C /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = blue.json; path = ../../../Desktop/blue.json; sourceTree = "<group>"; };
 		B87BF623280C61E100FE885C /* SendCommentConmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCommentConmViewController.swift; sourceTree = "<group>"; };
+		B87BF625280C832300FE885C /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
+		B87BF627280CA5A500FE885C /* CommentStartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStartingView.swift; sourceTree = "<group>"; };
 		B8A0033B280A92BC00A64750 /* WaterfaillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfaillsViewController.swift; sourceTree = "<group>"; };
 		B8A0033D280A92D300A64750 /* MappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
 		B8A0033F280A92DC00A64750 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 		B8A0034E280B042C00A64750 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
+				B87BF625280C832300FE885C /* CommentCardView.swift */,
+				B87BF627280CA5A500FE885C /* CommentStartingView.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -476,6 +482,7 @@
 			files = (
 				B8A0033E280A92D300A64750 /* MappingViewController.swift in Sources */,
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
+				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
 				B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */,
 				B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */,
 				B8659C462806C534006C85F3 /* TestingCenterViewController.swift in Sources */,
@@ -484,6 +491,7 @@
 				B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */,
 				B8A00340280A92DC00A64750 /* ReportViewController.swift in Sources */,
 				B8EC7010280546A800DA8B78 /* UISreen+.swift in Sources */,
+				B87BF626280C832300FE885C /* CommentCardView.swift in Sources */,
 				B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */,
 				B87BF624280C61E100FE885C /* SendCommentConmViewController.swift in Sources */,
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
