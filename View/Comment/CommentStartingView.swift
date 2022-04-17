@@ -28,6 +28,7 @@ class CommentStartingView: UIView {
         startButton.setTitle("開始評論", for: .normal)
         startButton.setTitleColor(.B1, for: .normal)
         startButton.addTarget(self, action: #selector(startComment), for: .touchUpInside)
+        
     }
     
     @objc func startComment() {

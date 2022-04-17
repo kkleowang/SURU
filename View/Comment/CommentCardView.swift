@@ -26,22 +26,26 @@ class CommentCardView: UIView {
     }()
     weak var delegate: SURUUserCommentInputDelegate?
     
-    func layoutCommendCardView() {
+    func layoutCommendCardView(completion: () -> ()) {
+        self.layer.cornerRadius = 40
         layoutCommentImageView()
         layoutCommentDescriptionView()
+        completion()
     }
     private func layoutCommentDescriptionView() {
         self.addSubview(commentDescriptionView)
         self.addSubview(storeNameLabel)
         self.addSubview(mealNameLabel)
+//        commentDescriptionView.corner(byRoundingCorners: [.topLeft, .topRight], radii: 25)
         commentDescriptionView.translatesAutoresizingMaskIntoConstraints = false
         storeNameLabel.translatesAutoresizingMaskIntoConstraints = false
         mealNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        commentDescriptionView.corner(byRoundingCorners: [.topLeft, .topRight], radii: 25)
         commentDescriptionView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         commentDescriptionView.heightAnchor.constraint(equalTo: commentDescriptionView.widthAnchor, multiplier: 270/1080 ).isActive = true
         commentDescriptionView.topAnchor.constraint(equalTo: self.commentImageView.bottomAnchor).isActive = true
         commentDescriptionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        commentDescriptionView.corner(byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radii: 25)
+//        commentDescriptionView.corner(byRoundingCorners: [.topLeft, .topRight], radii: 25)
         commentDescriptionView.backgroundColor = .blue
         
         storeNameLabel.font = UIFont.medium(size: 30)
@@ -60,10 +64,10 @@ class CommentCardView: UIView {
         self.addSubview(commentImageView)
         commentImageView.translatesAutoresizingMaskIntoConstraints = false
         commentImageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        commentImageView.heightAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        commentImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 5/4).isActive = true
         commentImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         commentImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        commentImageView.contentMode = .scaleAspectFit
+        commentImageView.contentMode = .scaleAspectFill
         // placeHolder
 //        commentImageView.image = UIImage(named: "DDD")
         commentImageView.isUserInteractionEnabled = true
@@ -81,7 +85,7 @@ extension CommentCardView: UIImagePickerControllerDelegate, UINavigationControll
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
-        guard let image = info[.editedImage] as? UIImage else { return }
+        guard let image = info[.originalImage] as? UIImage else { return }
         commentImageView.image = image
         self.delegate?.didFinishPickImage(self, imagePicker: picker)
     }

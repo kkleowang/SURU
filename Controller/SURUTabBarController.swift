@@ -100,7 +100,7 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .white
         viewControllers = tabs.map({ $0.controller() })
 
         delegate = self

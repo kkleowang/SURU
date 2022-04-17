@@ -43,9 +43,9 @@ struct Comment: Codable {
     var userID: String
     var storeID: String
     var meal: String
-    var content: CommentContent
-    var detailText: String = ""
-    var detailImage: String = ""
+    var contentValue: CommentContent
+    var contenText: String
+    var mainImage: String 
     var createdTime: Double = 0
     var likedUserList: [String] = []
     var collectedUserList: [String] = []

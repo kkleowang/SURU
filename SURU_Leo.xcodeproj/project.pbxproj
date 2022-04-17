@@ -45,6 +45,7 @@
 		B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC7011280546D900DA8B78 /* UITableView+.swift */; };
 		B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70132805471900DA8B78 /* UILabel+.swift */; };
 		B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70152805B0FD00DA8B78 /* UIFont+.swift */; };
+		B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		B8EC7011280546D900DA8B78 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		B8EC70132805471900DA8B78 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B8EC70152805B0FD00DA8B78 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSelectionView.swift; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,8 +241,9 @@
 		B8A0034E280B042C00A64750 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				B87BF625280C832300FE885C /* CommentCardView.swift */,
 				B87BF627280CA5A500FE885C /* CommentStartingView.swift */,
+				B87BF625280C832300FE885C /* CommentCardView.swift */,
+				B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */,
 				B8A00340280A92DC00A64750 /* ReportViewController.swift in Sources */,
 				B8EC7010280546A800DA8B78 /* UISreen+.swift in Sources */,
+				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
 				B87BF626280C832300FE885C /* CommentCardView.swift in Sources */,
 				B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */,
 				B87BF624280C61E100FE885C /* SendCommentConmViewController.swift in Sources */,
