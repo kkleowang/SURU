@@ -10,21 +10,21 @@
 		5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */; };
 		B830608828015A9D002558BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608728015A9D002558BE /* AppDelegate.swift */; };
 		B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608928015A9D002558BE /* SceneDelegate.swift */; };
-		B830608C28015A9D002558BE /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608B28015A9D002558BE /* CommentViewController.swift */; };
+		B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608B28015A9D002558BE /* OLDCommentView.swift */; };
 		B830608F28015A9D002558BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830608D28015A9D002558BE /* Main.storyboard */; };
 		B830609128015A9E002558BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B830609028015A9E002558BE /* Assets.xcassets */; };
 		B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830609228015A9E002558BE /* LaunchScreen.storyboard */; };
 		B830609E28015B75002558BE /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830609D28015B75002558BE /* Token.swift */; };
+		B85B63C5280D2CDD00621E4A /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C2280D2CDD00621E4A /* blue.json */; };
+		B85B63C6280D2CDD00621E4A /* orange.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C3280D2CDD00621E4A /* orange.json */; };
+		B85B63C7280D2CDD00621E4A /* yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C4280D2CDD00621E4A /* yellow.json */; };
 		B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */; };
 		B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3C28068850006C85F3 /* multipleSimulators.config */; };
 		B8659C402806AB45006C85F3 /* FirebaseRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */; };
 		B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8659C412806ABA3006C85F3 /* SURUDataModel.swift */; };
 		B8659C442806BB5B006C85F3 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8659C432806BB5B006C85F3 /* Date+.swift */; };
 		B8659C462806C534006C85F3 /* TestingCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8659C452806C534006C85F3 /* TestingCenterViewController.swift */; };
-		B87BF61D280C0B4900FE885C /* orange.json in Resources */ = {isa = PBXBuildFile; fileRef = B87BF61B280C0B4900FE885C /* orange.json */; };
-		B87BF61F280C476E00FE885C /* yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = B87BF61E280C476E00FE885C /* yellow.json */; };
-		B87BF621280C4BCD00FE885C /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B87BF620280C4BCD00FE885C /* blue.json */; };
-		B87BF624280C61E100FE885C /* SendCommentConmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF623280C61E100FE885C /* SendCommentConmViewController.swift */; };
+		B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF623280C61E100FE885C /* CommentViewController.swift */; };
 		B87BF626280C832300FE885C /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF625280C832300FE885C /* CommentCardView.swift */; };
 		B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF627280CA5A500FE885C /* CommentStartingView.swift */; };
 		B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */; };
@@ -56,22 +56,22 @@
 		B830608428015A9D002558BE /* SURU_Leo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SURU_Leo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830608728015A9D002558BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B830608928015A9D002558BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B830608B28015A9D002558BE /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		B830608B28015A9D002558BE /* OLDCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLDCommentView.swift; sourceTree = "<group>"; };
 		B830608E28015A9D002558BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B830609028015A9E002558BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B830609328015A9E002558BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B830609528015A9E002558BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B830609D28015B75002558BE /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		B85B63C2280D2CDD00621E4A /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
+		B85B63C3280D2CDD00621E4A /* orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orange.json; sourceTree = "<group>"; };
+		B85B63C4280D2CDD00621E4A /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = yellow.json; sourceTree = "<group>"; };
 		B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = multipleSimulatorsStartup.sh; sourceTree = "<group>"; };
 		B8659C3C28068850006C85F3 /* multipleSimulators.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multipleSimulators.config; sourceTree = "<group>"; };
 		B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRequestProvider.swift; sourceTree = "<group>"; };
 		B8659C412806ABA3006C85F3 /* SURUDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SURUDataModel.swift; sourceTree = "<group>"; };
 		B8659C432806BB5B006C85F3 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		B8659C452806C534006C85F3 /* TestingCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingCenterViewController.swift; sourceTree = "<group>"; };
-		B87BF61B280C0B4900FE885C /* orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = orange.json; path = ../../../Desktop/orange.json; sourceTree = "<group>"; };
-		B87BF61E280C476E00FE885C /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = yellow.json; path = ../../../Desktop/yellow.json; sourceTree = "<group>"; };
-		B87BF620280C4BCD00FE885C /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = blue.json; path = ../../../Desktop/blue.json; sourceTree = "<group>"; };
-		B87BF623280C61E100FE885C /* SendCommentConmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCommentConmViewController.swift; sourceTree = "<group>"; };
+		B87BF623280C61E100FE885C /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		B87BF625280C832300FE885C /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		B87BF627280CA5A500FE885C /* CommentStartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStartingView.swift; sourceTree = "<group>"; };
 		B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCommentCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -132,11 +132,10 @@
 			children = (
 				B8659C3C28068850006C85F3 /* multipleSimulators.config */,
 				B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */,
+				B8EC6FFF2805274100DA8B78 /* Extension */,
 				B8EC70072805291400DA8B78 /* Controller */,
 				B8EC70062805290F00DA8B78 /* View */,
 				B8EC70052805290A00DA8B78 /* Model */,
-				B8EC7002280528F000DA8B78 /* LottieFile */,
-				B8EC6FFF2805274100DA8B78 /* Extension */,
 				B86D5BA428015C47004FCB1E /* HiddenFile */,
 				B830608628015A9D002558BE /* SURU_Leo */,
 				B830608528015A9D002558BE /* Products */,
@@ -156,6 +155,8 @@
 		B830608628015A9D002558BE /* SURU_Leo */ = {
 			isa = PBXGroup;
 			children = (
+				B85B63C8280D2D3B00621E4A /* unUsedFile */,
+				B8EC7002280528F000DA8B78 /* LottieFile */,
 				B899FF26280D237200BD5715 /* GoogleService-Info.plist */,
 				B830608728015A9D002558BE /* AppDelegate.swift */,
 				B830608928015A9D002558BE /* SceneDelegate.swift */,
@@ -166,20 +167,21 @@
 			path = SURU_Leo;
 			sourceTree = "<group>";
 		};
+		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
+			isa = PBXGroup;
+			children = (
+				B830608B28015A9D002558BE /* OLDCommentView.swift */,
+				B8659C452806C534006C85F3 /* TestingCenterViewController.swift */,
+			);
+			path = unUsedFile;
+			sourceTree = "<group>";
+		};
 		B86D5BA428015C47004FCB1E /* HiddenFile */ = {
 			isa = PBXGroup;
 			children = (
 				B830609D28015B75002558BE /* Token.swift */,
 			);
 			path = HiddenFile;
-			sourceTree = "<group>";
-		};
-		B87BF622280C61BD00FE885C /* NewCommentView */ = {
-			isa = PBXGroup;
-			children = (
-				B87BF623280C61E100FE885C /* SendCommentConmViewController.swift */,
-			);
-			path = NewCommentView;
 			sourceTree = "<group>";
 		};
 		B8A00335280A91F000A64750 /* Waterfalls */ = {
@@ -209,11 +211,9 @@
 		B8A00339280A924200A64750 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				B87BF622280C61BD00FE885C /* NewCommentView */,
-				B830608B28015A9D002558BE /* CommentViewController.swift */,
+				B87BF623280C61E100FE885C /* CommentViewController.swift */,
 				B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */,
 				B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */,
-				B8659C452806C534006C85F3 /* TestingCenterViewController.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -286,9 +286,9 @@
 		B8EC7002280528F000DA8B78 /* LottieFile */ = {
 			isa = PBXGroup;
 			children = (
-				B87BF61E280C476E00FE885C /* yellow.json */,
-				B87BF620280C4BCD00FE885C /* blue.json */,
-				B87BF61B280C0B4900FE885C /* orange.json */,
+				B85B63C2280D2CDD00621E4A /* blue.json */,
+				B85B63C3280D2CDD00621E4A /* orange.json */,
+				B85B63C4280D2CDD00621E4A /* yellow.json */,
 			);
 			path = LottieFile;
 			sourceTree = "<group>";
@@ -391,15 +391,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87BF61D280C0B4900FE885C /* orange.json in Resources */,
 				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
 				B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */,
-				B87BF621280C4BCD00FE885C /* blue.json in Resources */,
 				B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */,
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
-				B87BF61F280C476E00FE885C /* yellow.json in Resources */,
+				B85B63C5280D2CDD00621E4A /* blue.json in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
+				B85B63C7280D2CDD00621E4A /* yellow.json in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
+				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,9 +503,9 @@
 				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
 				B87BF626280C832300FE885C /* CommentCardView.swift in Sources */,
 				B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */,
-				B87BF624280C61E100FE885C /* SendCommentConmViewController.swift in Sources */,
+				B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */,
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
-				B830608C28015A9D002558BE /* CommentViewController.swift in Sources */,
+				B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
