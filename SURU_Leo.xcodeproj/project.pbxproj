@@ -46,6 +46,7 @@
 		B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70132805471900DA8B78 /* UILabel+.swift */; };
 		B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70152805B0FD00DA8B78 /* UIFont+.swift */; };
 		B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */; };
+		B8F22DED280CE2500096FB91 /* FirebaseStorageRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		B8EC70132805471900DA8B78 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B8EC70152805B0FD00DA8B78 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSelectionView.swift; sourceTree = "<group>"; };
+		B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageRequestProvider.swift; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */,
+				B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */,
 				B8659C412806ABA3006C85F3 /* SURUDataModel.swift */,
 			);
 			path = Model;
@@ -490,6 +493,7 @@
 				B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */,
 				B8659C462806C534006C85F3 /* TestingCenterViewController.swift in Sources */,
 				B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */,
+				B8F22DED280CE2500096FB91 /* FirebaseStorageRequestProvider.swift in Sources */,
 				B8EC70012805275300DA8B78 /* UIView+.swift in Sources */,
 				B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */,
 				B8A00340280A92DC00A64750 /* ReportViewController.swift in Sources */,

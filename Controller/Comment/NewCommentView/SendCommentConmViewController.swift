@@ -39,6 +39,7 @@ class SendCommentConmViewController: UIViewController {
     }
     func setupCommentView() {
         self.view.addSubview(commentSelectionView)
+        commentSelectionView.delegate = self
         commentSelectionView.frame = CGRect(x: 20, y: UIScreen.height - 300, width: UIScreen.width - 40, height: 200)
         commentSelectionView.layoutCommentSelectionView(dataSource: stores)
         
@@ -89,6 +90,7 @@ extension SendCommentConmViewController: SURUCommentStartingViewDelegate {
     
     func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage) {
         setupCardView(image)
+//        commentData.mainImage =
         imagePicker.dismiss(animated: true) {
             view.removeFromSuperview()
         }
@@ -129,10 +131,13 @@ extension SendCommentConmViewController: SelectionValueManager {
         switch type {
         case .noodle:
             commentData.contentValue.noodle = value
+            print("MainPageGet noodel", value)
         case .soup:
             commentData.contentValue.soup = value
+            print("MainPageGet soup", value)
         case .happy:
             commentData.contentValue.happiness = value
+            print("MainPageGet happy", value)
         }
     }
     

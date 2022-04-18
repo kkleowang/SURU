@@ -16,8 +16,8 @@ target 'SURU_Leo' do
   pod 'lottie-ios'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Storage'
   pod 'SwiftLint'
-  pod 'SDWebImage', '~> 5.0'
 end
 
 post_install do |installer|
