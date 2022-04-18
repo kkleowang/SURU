@@ -19,6 +19,8 @@ protocol SURUCommentSelectionViewDelegate: AnyObject {
     func didgetSelectedComment(_ view: CommentSelectionView, comment: String)
     
     func didTapLikeView(_ view: CommentSelectionView)
+    
+    func didTapSendData(_ view: CommentSelectionView)
 }
 
 class CommentSelectionView: UIView {
@@ -32,6 +34,7 @@ class CommentSelectionView: UIView {
     var storeData: [Store] = []
     let storePicker = UIPickerView()
     let mealPicker = UIPickerView()
+    let sendButton = UIButton()
     
     func layoutCommentSelectionView(dataSource: [Store]) {
         self.backgroundColor = .C1
@@ -41,11 +44,13 @@ class CommentSelectionView: UIView {
         setupViews(view: mealPickerTextField)
         setupViews(view: likeButton)
         setupViews(view: commentButton)
+        setupViews(view: sendButton)
         storePickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         mealPickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 70).isActive = true
         likeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 130).isActive = true
         commentButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 190).isActive = true
-        
+        sendButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250).isActive = true
+        sendButton.backgroundColor = .C7
         storePicker.dataSource = self
         storePicker.delegate = self
         storePicker.tag = 100
@@ -59,17 +64,19 @@ class CommentSelectionView: UIView {
         mealPickerTextField.backgroundColor = .red
         likeButton.backgroundColor = .red
         commentButton.backgroundColor = .red
-        likeButton.isEnabled = true
-        likeButton.isUserInteractionEnabled = true
+        sendButton.addTarget(self, action: #selector(sendData), for: .touchUpInside)
         likeButton.addTarget(self, action: #selector(showLikeView), for: .touchUpInside)
         commentButton.addTarget(self, action: #selector(showCommentView), for: .touchUpInside)
         
+    }
+    @objc func sendData() {
+        self.delegate?.didTapSendData(self)
     }
     @objc func showLikeView() {
         self.delegate?.didTapLikeView(self)
     }
     @objc func showCommentView() {
-        
+        self.delegate?.didgetSelectedComment(self, comment: "我是評論測試\(Date())")
     }
     func setupViews(view: UIView){
         self.addSubview(view)

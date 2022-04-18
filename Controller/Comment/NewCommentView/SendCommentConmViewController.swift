@@ -90,7 +90,17 @@ extension SendCommentConmViewController: SURUCommentStartingViewDelegate {
     
     func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage) {
         setupCardView(image)
-//        commentData.mainImage =
+        let imageData = image.jpegData(compressionQuality: 0.1) ?? Data()
+        let fileName = "\(commentData.userID)_\(Date())"
+        FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: imageData, fileName: fileName) { result in
+            switch result {
+            case .success(let url) :
+                print("上傳圖片成功", url.description)
+                self.commentData.mainImage = url.description
+            case .failure(let error) :
+                print("上傳圖片失敗", error)
+            }
+        }
         imagePicker.dismiss(animated: true) {
             view.removeFromSuperview()
         }
@@ -99,6 +109,7 @@ extension SendCommentConmViewController: SURUCommentStartingViewDelegate {
 
 extension SendCommentConmViewController: SURUUserCommentInputDelegate {
     func didFinishPickImage(_ view: CommentCardView, imagePicker: UIImagePickerController) {
+        
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
@@ -107,6 +118,17 @@ extension SendCommentConmViewController: SURUUserCommentInputDelegate {
     }
 }
 extension SendCommentConmViewController: SURUCommentSelectionViewDelegate {
+    func didTapSendData(_ view: CommentSelectionView) {
+        FirebaseRequestProvider.shared.publishComment(comment: &commentData) { result in
+            switch result {
+            case .success(let message):
+                print("上傳評論成功", message)
+            case .failure(let error):
+                print("上傳評論失敗", error)
+            }
+        }
+    }
+    
     func didgetSelectedStore(_ view: CommentSelectionView, storeID: String) {
         commentData.storeID = storeID
         print("MainPageGet", storeID)
