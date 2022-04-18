@@ -14,6 +14,25 @@ class FirebaseRequestProvider {
     
     private lazy var database = Firestore.firestore()
     
+    func fetchAccounts(completion: @escaping (Result<[Account], Error>) -> Void) {
+        database.collection("accounts").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                var accounts = [Account]()
+                for document in querySnapshot!.documents {
+                    do {
+                        if let account = try document.data(as: Account.self, decoder: Firestore.Decoder()) {
+                            accounts.append(account)
+                        }
+                    } catch {
+                        completion(.failure(error))
+                    }
+                }
+                completion(.success(accounts))
+            }
+        }
+    }
     func fetchComments(completion: @escaping (Result<[Comment], Error>) -> Void) {
         database.collection("comments").order(by: "createdTime", descending: true).getDocuments { (querySnapshot, error) in
             if let error = error {

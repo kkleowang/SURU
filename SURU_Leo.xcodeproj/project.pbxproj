@@ -14,7 +14,6 @@
 		B830608F28015A9D002558BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830608D28015A9D002558BE /* Main.storyboard */; };
 		B830609128015A9E002558BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B830609028015A9E002558BE /* Assets.xcassets */; };
 		B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830609228015A9E002558BE /* LaunchScreen.storyboard */; };
-		B830609C28015AD0002558BE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B830609B28015AD0002558BE /* GoogleService-Info.plist */; };
 		B830609E28015B75002558BE /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830609D28015B75002558BE /* Token.swift */; };
 		B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */; };
 		B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3C28068850006C85F3 /* multipleSimulators.config */; };
@@ -28,6 +27,8 @@
 		B87BF624280C61E100FE885C /* SendCommentConmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF623280C61E100FE885C /* SendCommentConmViewController.swift */; };
 		B87BF626280C832300FE885C /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF625280C832300FE885C /* CommentCardView.swift */; };
 		B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF627280CA5A500FE885C /* CommentStartingView.swift */; };
+		B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */; };
+		B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B899FF26280D237200BD5715 /* GoogleService-Info.plist */; };
 		B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0033B280A92BC00A64750 /* WaterfaillsViewController.swift */; };
 		B8A0033E280A92D300A64750 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0033D280A92D300A64750 /* MappingViewController.swift */; };
 		B8A00340280A92DC00A64750 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0033F280A92DC00A64750 /* ReportViewController.swift */; };
@@ -60,7 +61,6 @@
 		B830609028015A9E002558BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B830609328015A9E002558BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B830609528015A9E002558BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B830609B28015AD0002558BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B830609D28015B75002558BE /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = multipleSimulatorsStartup.sh; sourceTree = "<group>"; };
 		B8659C3C28068850006C85F3 /* multipleSimulators.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multipleSimulators.config; sourceTree = "<group>"; };
@@ -68,13 +68,14 @@
 		B8659C412806ABA3006C85F3 /* SURUDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SURUDataModel.swift; sourceTree = "<group>"; };
 		B8659C432806BB5B006C85F3 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		B8659C452806C534006C85F3 /* TestingCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingCenterViewController.swift; sourceTree = "<group>"; };
-		B86D5BA528015C5C004FCB1E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B87BF61B280C0B4900FE885C /* orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = orange.json; path = ../../../Desktop/orange.json; sourceTree = "<group>"; };
 		B87BF61E280C476E00FE885C /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = yellow.json; path = ../../../Desktop/yellow.json; sourceTree = "<group>"; };
 		B87BF620280C4BCD00FE885C /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = blue.json; path = ../../../Desktop/blue.json; sourceTree = "<group>"; };
 		B87BF623280C61E100FE885C /* SendCommentConmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCommentConmViewController.swift; sourceTree = "<group>"; };
 		B87BF625280C832300FE885C /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		B87BF627280CA5A500FE885C /* CommentStartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStartingView.swift; sourceTree = "<group>"; };
+		B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCommentCellTableViewCell.swift; sourceTree = "<group>"; };
+		B899FF26280D237200BD5715 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8A0033B280A92BC00A64750 /* WaterfaillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfaillsViewController.swift; sourceTree = "<group>"; };
 		B8A0033D280A92D300A64750 /* MappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
 		B8A0033F280A92DC00A64750 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
@@ -155,12 +156,12 @@
 		B830608628015A9D002558BE /* SURU_Leo */ = {
 			isa = PBXGroup;
 			children = (
+				B899FF26280D237200BD5715 /* GoogleService-Info.plist */,
 				B830608728015A9D002558BE /* AppDelegate.swift */,
 				B830608928015A9D002558BE /* SceneDelegate.swift */,
 				B830609028015A9E002558BE /* Assets.xcassets */,
 				B830609228015A9E002558BE /* LaunchScreen.storyboard */,
 				B830609528015A9E002558BE /* Info.plist */,
-				B830609B28015AD0002558BE /* GoogleService-Info.plist */,
 			);
 			path = SURU_Leo;
 			sourceTree = "<group>";
@@ -168,7 +169,6 @@
 		B86D5BA428015C47004FCB1E /* HiddenFile */ = {
 			isa = PBXGroup;
 			children = (
-				B86D5BA528015C5C004FCB1E /* GoogleService-Info.plist */,
 				B830609D28015B75002558BE /* Token.swift */,
 			);
 			path = HiddenFile;
@@ -229,6 +229,7 @@
 		B8A0034C280B041800A64750 /* Waterfalls */ = {
 			isa = PBXGroup;
 			children = (
+				B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */,
 			);
 			path = Waterfalls;
 			sourceTree = "<group>";
@@ -392,10 +393,10 @@
 			files = (
 				B87BF61D280C0B4900FE885C /* orange.json in Resources */,
 				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
+				B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */,
 				B87BF621280C4BCD00FE885C /* blue.json in Resources */,
 				B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */,
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
-				B830609C28015AD0002558BE /* GoogleService-Info.plist in Resources */,
 				B87BF61F280C476E00FE885C /* yellow.json in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
@@ -498,6 +499,7 @@
 				B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */,
 				B8A00340280A92DC00A64750 /* ReportViewController.swift in Sources */,
 				B8EC7010280546A800DA8B78 /* UISreen+.swift in Sources */,
+				B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */,
 				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
 				B87BF626280C832300FE885C /* CommentCardView.swift in Sources */,
 				B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */,
