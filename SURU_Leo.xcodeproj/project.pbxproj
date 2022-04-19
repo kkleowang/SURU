@@ -17,6 +17,15 @@
 		B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E4535280E896A00B13B0C /* StorageManager.swift */; };
 		B83E4539280E8B7200B13B0C /* SURU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B83E4537280E8B7200B13B0C /* SURU.xcdatamodeld */; };
 		B83E9584280EA071009DD17F /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9583280EA071009DD17F /* Double+.swift */; };
+		B83E9586280EACF7009DD17F /* StoreRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9585280EACF7009DD17F /* StoreRequestProvider.swift */; };
+		B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9589280EAD12009DD17F /* AccountRequestProvider.swift */; };
+		B83E958D280EAD24009DD17F /* CommentRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E958C280EAD24009DD17F /* CommentRequestProvider.swift */; };
+		B83E9590280EB475009DD17F /* QueueReportRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E958F280EB475009DD17F /* QueueReportRequestProvider.swift */; };
+		B83E9594280EB653009DD17F /* CommentDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9593280EB653009DD17F /* CommentDataModel.swift */; };
+		B83E9596280EB666009DD17F /* AccountDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9595280EB666009DD17F /* AccountDataModel.swift */; };
+		B83E9598280EB670009DD17F /* StoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9597280EB670009DD17F /* StoreDataModel.swift */; };
+		B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9599280EB6C9009DD17F /* QueueReportDataModel.swift */; };
+		B83E959C280EC59D009DD17F /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E959B280EC59D009DD17F /* UIImageView+.swift */; };
 		B85B63C5280D2CDD00621E4A /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C2280D2CDD00621E4A /* blue.json */; };
 		B85B63C6280D2CDD00621E4A /* orange.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C3280D2CDD00621E4A /* orange.json */; };
 		B85B63C7280D2CDD00621E4A /* yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C4280D2CDD00621E4A /* yellow.json */; };
@@ -66,6 +75,15 @@
 		B83E4535280E896A00B13B0C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B83E4538280E8B7200B13B0C /* SURU.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SURU.xcdatamodel; sourceTree = "<group>"; };
 		B83E9583280EA071009DD17F /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		B83E9585280EACF7009DD17F /* StoreRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRequestProvider.swift; sourceTree = "<group>"; };
+		B83E9589280EAD12009DD17F /* AccountRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRequestProvider.swift; sourceTree = "<group>"; };
+		B83E958C280EAD24009DD17F /* CommentRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRequestProvider.swift; sourceTree = "<group>"; };
+		B83E958F280EB475009DD17F /* QueueReportRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueReportRequestProvider.swift; sourceTree = "<group>"; };
+		B83E9593280EB653009DD17F /* CommentDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDataModel.swift; sourceTree = "<group>"; };
+		B83E9595280EB666009DD17F /* AccountDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataModel.swift; sourceTree = "<group>"; };
+		B83E9597280EB670009DD17F /* StoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDataModel.swift; sourceTree = "<group>"; };
+		B83E9599280EB6C9009DD17F /* QueueReportDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueReportDataModel.swift; sourceTree = "<group>"; };
+		B83E959B280EC59D009DD17F /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		B85B63C2280D2CDD00621E4A /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
 		B85B63C3280D2CDD00621E4A /* orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orange.json; sourceTree = "<group>"; };
 		B85B63C4280D2CDD00621E4A /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = yellow.json; sourceTree = "<group>"; };
@@ -179,9 +197,54 @@
 			path = "Local Storage";
 			sourceTree = "<group>";
 		};
+		B83E9587280EACFA009DD17F /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				B83E9585280EACF7009DD17F /* StoreRequestProvider.swift */,
+				B83E9597280EB670009DD17F /* StoreDataModel.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		B83E9588280EAD03009DD17F /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				B83E9589280EAD12009DD17F /* AccountRequestProvider.swift */,
+				B83E9595280EB666009DD17F /* AccountDataModel.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		B83E958B280EAD1A009DD17F /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				B83E958C280EAD24009DD17F /* CommentRequestProvider.swift */,
+				B83E9593280EB653009DD17F /* CommentDataModel.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		B83E958E280EB465009DD17F /* QueueReport */ = {
+			isa = PBXGroup;
+			children = (
+				B83E958F280EB475009DD17F /* QueueReportRequestProvider.swift */,
+				B83E9599280EB6C9009DD17F /* QueueReportDataModel.swift */,
+			);
+			path = QueueReport;
+			sourceTree = "<group>";
+		};
+		B83E9592280EB52A009DD17F /* FirebaseStorage */ = {
+			isa = PBXGroup;
+			children = (
+				B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */,
+			);
+			path = FirebaseStorage;
+			sourceTree = "<group>";
+		};
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
 			isa = PBXGroup;
 			children = (
+				B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */,
 				B830608B28015A9D002558BE /* OLDCommentView.swift */,
 				B8659C452806C534006C85F3 /* TestingCenterViewController.swift */,
 			);
@@ -284,6 +347,7 @@
 				B8A00345280A97A100A64750 /* UIStoryboard+.swift */,
 				B8A00349280A9E1100A64750 /* UIImage+.swift */,
 				B83E9583280EA071009DD17F /* Double+.swift */,
+				B83E959B280EC59D009DD17F /* UIImageView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -301,9 +365,12 @@
 		B8EC70052805290A00DA8B78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B83E9592280EB52A009DD17F /* FirebaseStorage */,
+				B83E958E280EB465009DD17F /* QueueReport */,
+				B83E958B280EAD1A009DD17F /* Comment */,
+				B83E9588280EAD03009DD17F /* Account */,
+				B83E9587280EACFA009DD17F /* Store */,
 				B83E4534280E88C100B13B0C /* Local Storage */,
-				B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */,
-				B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */,
 				B8659C412806ABA3006C85F3 /* SURUDataModel.swift */,
 			);
 			path = Model;
@@ -498,8 +565,10 @@
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
 				B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */,
 				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
+				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
 				B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */,
 				B8659C462806C534006C85F3 /* TestingCenterViewController.swift in Sources */,
+				B83E958D280EAD24009DD17F /* CommentRequestProvider.swift in Sources */,
 				B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */,
 				B8F22DED280CE2500096FB91 /* FirebaseStorageRequestProvider.swift in Sources */,
 				B8EC70012805275300DA8B78 /* UIView+.swift in Sources */,
@@ -508,24 +577,31 @@
 				B8EC7010280546A800DA8B78 /* UISreen+.swift in Sources */,
 				B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */,
 				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
+				B83E9596280EB666009DD17F /* AccountDataModel.swift in Sources */,
 				B87BF626280C832300FE885C /* CommentCardView.swift in Sources */,
+				B83E9594280EB653009DD17F /* CommentDataModel.swift in Sources */,
 				B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */,
 				B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */,
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
 				B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */,
+				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
 				B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */,
 				B8A00352280B064200A64750 /* MapView.swift in Sources */,
+				B83E959C280EC59D009DD17F /* UIImageView+.swift in Sources */,
 				B83E4539280E8B7200B13B0C /* SURU.xcdatamodeld in Sources */,
 				B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */,
+				B83E9586280EACF7009DD17F /* StoreRequestProvider.swift in Sources */,
 				B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */,
 				B8659C402806AB45006C85F3 /* FirebaseRequestProvider.swift in Sources */,
 				B8A00342280A931800A64750 /* ProfileViewController.swift in Sources */,
 				B8A00346280A97A100A64750 /* UIStoryboard+.swift in Sources */,
 				B8EC700E2805468400DA8B78 /* UIColor+.swift in Sources */,
 				B8659C442806BB5B006C85F3 /* Date+.swift in Sources */,
+				B83E9590280EB475009DD17F /* QueueReportRequestProvider.swift in Sources */,
+				B83E9598280EB670009DD17F /* StoreDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

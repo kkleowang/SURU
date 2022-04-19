@@ -13,45 +13,44 @@ typealias CommentDraftResult = (Result<CommentDraft, Error>) -> Void
 
 class StorageManager {
     static let storageManager = StorageManager()
+    
     private enum Entity: String, CaseIterable {
-        
         case commentDraft = "CommentDraft"
-        
     }
-    private struct Draft {
-        
-        static let createTime = "createTime"
+    
+    private enum Draft: String {
+        case createTime 
     }
     
     private init() {
         print(" Core data file path: \(NSPersistentContainer.defaultDirectoryURL())")
     }
-    //KVO
+    // KVO
     @objc dynamic var comments: [CommentDraft] = []
     
     lazy var persistanceContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "SURU")
-        container.loadPersistentStores(completionHandler: {
-            (_, error) in
+        container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Unresolved error \(error)")
             }
-        })
+        }
         return container
     }()
     
     var viewContext: NSManagedObjectContext {
         return persistanceContainer.viewContext
     }
-    func addDraftComment(comment: Comment, image: Data, completion: (Result<Void,Error>) -> Void) {
+    
+    func addDraftComment(comment: Comment, image: Data, completion: (Result<Void, Error>) -> Void) {
         let draft = CommentDraft(context: viewContext)
         draft.image = image
         draft.mapping(comment)
         draft.createTime = Double(Date().timeIntervalSince1970)
         save(completion: completion)
     }
-    //小bug
-    func updateToCoreData(commentDraft: CommentDraft,comment: Comment, image: Data, completion: (Result<Void,Error>) -> Void) {
+    
+    func updateToCoreData(commentDraft: CommentDraft, comment: Comment, image: Data, completion: (Result<Void, Error>) -> Void) {
         deleteComment(commentDraft) { _ in
             let draft = CommentDraft(context: viewContext)
             draft.image = image
@@ -59,12 +58,12 @@ class StorageManager {
             draft.createTime = commentDraft.createTime
             save()
         }
-      }
+    }
+    
     func fetchComments(completion: CommentDraftResults = { _ in }) {
-        
         let request = NSFetchRequest<CommentDraft>(entityName: Entity.commentDraft.rawValue)
         
-        request.sortDescriptors = [NSSortDescriptor(key: Draft.createTime, ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: Draft.createTime.rawValue, ascending: true)]
         
         do {
             let comments = try viewContext.fetch(request)
@@ -74,15 +73,16 @@ class StorageManager {
             completion(Result.failure(error))
         }
     }
+    
     func save(completion: (Result<Void, Error>) -> Void = { _ in }) {
         do {
             try viewContext.save()
-            fetchComments(completion: { result in
+            fetchComments { result in
                 switch result {
                 case .success: completion(Result.success(()))
                 case .failure(let error): completion(Result.failure(error))
                 }
-            })
+            }
         } catch {
             completion(Result.failure(error))
         }
@@ -91,7 +91,7 @@ class StorageManager {
         viewContext.delete(comment)
         save()
     }
-    func deleteAllComment(completion: (Result<Void,Error>) -> Void) {
+    func deleteAllComment(completion: (Result<Void, Error>) -> Void) {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Entity.commentDraft.rawValue)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -105,9 +105,7 @@ class StorageManager {
     }
 }
 
-
 private extension CommentDraft {
-    
     func mapping(_ object: Comment) {
         storeID = object.storeID
         mealName = object.meal

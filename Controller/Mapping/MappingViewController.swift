@@ -12,7 +12,7 @@ import Kingfisher
 class MappingViewController: UIViewController {
     var storeData: [Store] = []
     func fetchData(competion: @escaping () -> Void) {
-        FirebaseRequestProvider.shared.fetchStores { [weak self] result in
+        StoreRequestProvider.shared.fetchStores { [weak self] result in
             switch result {
             case .success(let data):
                 self?.storeData = data

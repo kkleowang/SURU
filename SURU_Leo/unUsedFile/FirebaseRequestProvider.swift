@@ -5,7 +5,6 @@
 //  Created by LEO W on 2022/4/13.
 //
 
-import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
@@ -15,12 +14,13 @@ class FirebaseRequestProvider {
     private lazy var database = Firestore.firestore()
     
     func fetchAccounts(completion: @escaping (Result<[Account], Error>) -> Void) {
-        database.collection("accounts").getDocuments { (querySnapshot, error) in
+        database.collection("accounts").getDocuments { querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
                 var accounts = [Account]()
-                for document in querySnapshot!.documents {
+                guard let snapshot = querySnapshot else { return }
+                for document in snapshot.documents {
                     do {
                         if let account = try document.data(as: Account.self, decoder: Firestore.Decoder()) {
                             accounts.append(account)
@@ -72,6 +72,16 @@ class FirebaseRequestProvider {
             }
         }
     }
+    func adminPublishNewStore(store: inout Store, completion: @escaping (Result<String, Error>) -> Void) {
+        let docment = database.collection("stores").document()
+        store.storeID = docment.documentID
+        do {
+            try docment.setData(from: store)
+        } catch {
+            completion(.failure(error))
+        }
+        completion(.success(docment.documentID))
+    }
     
     func fetchQueueReport(targetStoreID: String, completion: @escaping (Result<[StoreQueueReport], Error>) -> Void) {
         database.collection("stores").document(targetStoreID).collection("queueReport").getDocuments { (querySnapshot, error) in
@@ -104,17 +114,7 @@ class FirebaseRequestProvider {
         }
         completion(.success(docment.documentID))
     }
-    
-    func adminPublishNewStore(store: inout Store, completion: @escaping (Result<String, Error>) -> Void) {
-        let docment = database.collection("stores").document()
-        store.storeID = docment.documentID
-        do {
-            try docment.setData(from: store)
-        } catch {
-            completion(.failure(error))
-        }
-        completion(.success(docment.documentID))
-    }
+
     
     func publishStoreQueueReport(targetStoreID: String, report: inout StoreQueueReport, completion: @escaping (Result<String, Error>) -> Void) {
         let docment = database.collection("stores").document(targetStoreID).collection("queueReport").document()
@@ -149,5 +149,3 @@ class FirebaseRequestProvider {
     private func deleteAccount() {
     }
 }
-
-

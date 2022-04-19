@@ -15,9 +15,35 @@ class CommentStartingView: UIView {
 
     weak var delegate: SURUCommentStartingViewDelegate?
     let startButton = UIButton()
-
+    func setupViewWithIcon(icon: String, size: Double)-> UIView {
+        let view = UIView()
+        let imageview = UIImageView(image: UIImage(named: icon))
+        imageview.frame = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: size * 0.8, height: size * 0.8)
+        imageview.tintColor = .B1
+        view.frame = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: size, height: size)
+        view.layer.cornerRadius = size / 2
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        
+        return view
+    }
+        
     func layoutStartingView() {
         self.addSubview(startButton)
+        
+        let imageView = UIImageView()
+        let view = UIView()
+        self.addSubview(imageView)
+        self.addSubview(view)
+        view.frame = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 100, height: 100)
+        view.layer.cornerRadius = 100 / 2
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        
+        imageView.image =  UIImage(named: "store")
+        imageView.frame = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 100 * 0.8, height: 100 * 0.8)
+        imageView.tintColor = .B1
+       
+        
+        
         startButton.translatesAutoresizingMaskIntoConstraints = false
         startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         startButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true

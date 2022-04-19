@@ -11,7 +11,6 @@ enum SelectionType: String {
     case noodle = "麵條喜好度"
     case soup = "湯頭喜好度"
     case happy = "幸福感"
-    
 }
 enum SelectionSubTitle: String {
     case text = "拖曳後記得按下儲存"

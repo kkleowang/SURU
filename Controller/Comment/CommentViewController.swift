@@ -13,8 +13,17 @@ class CommentViewController: UIViewController {
     let cardView = CommentCardView()
     let commentSelectionView = CommentSelectionView()
     var stores: [Store] = []
-    var commentData: Comment = Comment(userID: "ZBrsbRumZjvowPKfpFZL", storeID: "", meal: "", contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0), contenText: "", mainImage: "")
-    
+    var commentData: Comment = {
+        let comment = Comment(
+        userID: "ZBrsbRumZjvowPKfpFZL",
+        storeID: "",
+        meal: "",
+        contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0),
+        contenText: "",
+        mainImage: "")
+        return comment
+    }()
+    var imageDataHolder: Data?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.B6
@@ -42,10 +51,9 @@ class CommentViewController: UIViewController {
         commentSelectionView.delegate = self
         commentSelectionView.frame = CGRect(x: 20, y: UIScreen.height - 300, width: UIScreen.width - 40, height: 200)
         commentSelectionView.layoutCommentSelectionView(dataSource: stores)
-
     }
     func fetchData() {
-        FirebaseRequestProvider.shared.fetchStores { result in
+        StoreRequestProvider.shared.fetchStores { result in
             switch result {
             case .success(let data):
                 self.stores = data
@@ -61,7 +69,7 @@ class CommentViewController: UIViewController {
         startingView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         startingView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         startingView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
-        startingView.heightAnchor.constraint(equalTo: startingView.widthAnchor, multiplier: 5/4).isActive = true
+        startingView.heightAnchor.constraint(equalTo: startingView.widthAnchor, multiplier: 5 / 4).isActive = true
         //        startingView.cornerForAll(radii: 30)
         startingView.delegate = self
         startingView.layoutStartingView()
@@ -78,8 +86,18 @@ class CommentViewController: UIViewController {
         cardView.commentImageView.image = image
         //        cardView.cornerForAll(radii: 40)
         cardView.delegate = self
-        cardView.layoutCommendCardView() {
+        cardView.layoutCommendCardView {
             setupCommentView()
+        }
+    }
+    func sendCommentToFireBase() {
+        CommentRequestProvider.shared.publishComment(comment: &commentData) { result in
+            switch result {
+            case .success(let message):
+                print("上傳評論成功", message)
+            case .failure(let error):
+                print("上傳評論失敗", error)
+            }
         }
     }
 }
@@ -90,17 +108,7 @@ extension CommentViewController: SURUCommentStartingViewDelegate {
     
     func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage) {
         setupCardView(image)
-        let imageData = image.jpegData(compressionQuality: 0.1) ?? Data()
-        let fileName = "\(commentData.userID)_\(Date())"
-        FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: imageData, fileName: fileName) { result in
-            switch result {
-            case .success(let url) :
-                print("上傳圖片成功", url.description)
-                self.commentData.mainImage = url.description
-            case .failure(let error) :
-                print("上傳圖片失敗", error)
-            }
-        }
+        imageDataHolder = image.jpegData(compressionQuality: 0.1) ?? Data()
         imagePicker.dismiss(animated: true) {
             view.removeFromSuperview()
         }
@@ -109,7 +117,6 @@ extension CommentViewController: SURUCommentStartingViewDelegate {
 
 extension CommentViewController: SURUUserCommentInputDelegate {
     func didFinishPickImage(_ view: CommentCardView, imagePicker: UIImagePickerController) {
-        
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
@@ -119,12 +126,16 @@ extension CommentViewController: SURUUserCommentInputDelegate {
 }
 extension CommentViewController: SURUCommentSelectionViewDelegate {
     func didTapSendData(_ view: CommentSelectionView) {
-        FirebaseRequestProvider.shared.publishComment(comment: &commentData) { result in
+        guard let image = imageDataHolder else { return }
+        let fileName = "\(commentData.userID)_\(Date())"
+        FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
             switch result {
-            case .success(let message):
-                print("上傳評論成功", message)
-            case .failure(let error):
-                print("上傳評論失敗", error)
+            case .success(let url) :
+                print("上傳圖片成功", url.description)
+                self.commentData.mainImage = url.description
+                self.sendCommentToFireBase()
+            case .failure(let error) :
+                print("上傳圖片失敗", error)
             }
         }
     }
@@ -162,6 +173,4 @@ extension CommentViewController: SelectionValueManager {
             print("MainPageGet happy", value)
         }
     }
-    
-    
 }

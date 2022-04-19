@@ -10,10 +10,8 @@ import UIKit
 
 extension UIView {
     /// 部分圓角
-    /// - Parameters:
     ///   - corners: 需要實現爲圓角的角，可傳入多個
     ///   - radii: 圓角半徑
-    ///
     func corner(byRoundingCorners corners: UIRectCorner, radii: CGFloat) {
         let maskPath = UIBezierPath(
             roundedRect: self.bounds,

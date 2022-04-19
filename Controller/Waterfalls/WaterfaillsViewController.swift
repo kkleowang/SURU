@@ -39,7 +39,7 @@ class WaterfaillsViewController: UIViewController {
         
     }
     func fetchUserData() {
-        FirebaseRequestProvider.shared.fetchAccounts { result in
+        AccountRequestProvider.shared.fetchAccounts { result in
             switch result {
             case .success(let data) :
                 self.accounts = data
@@ -49,7 +49,7 @@ class WaterfaillsViewController: UIViewController {
         }
     }
     func fetchStoreData() {
-        FirebaseRequestProvider.shared.fetchStores { result in
+        StoreRequestProvider.shared.fetchStores { result in
             switch result {
             case .success(let data) :
                 self.stores = data
@@ -60,7 +60,7 @@ class WaterfaillsViewController: UIViewController {
         }
     }
     func fetchCommentData(com: @escaping () -> ()) {
-        FirebaseRequestProvider.shared.fetchComments { result in
+        CommentRequestProvider.shared.fetchComments { result in
             switch result {
             case .success(let data) :
                 self.comments = data

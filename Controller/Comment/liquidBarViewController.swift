@@ -27,7 +27,6 @@ class LiquidBarViewController: UIViewController {
     // AnimationViewHolder
     func setLottieView() {
         let animationView = settingLottieView()
-//        animationView.layer.cornerRadius = 25
         self.view.addSubview(animationView)
         setGesture(importView: animationView)
     }
@@ -54,7 +53,7 @@ class LiquidBarViewController: UIViewController {
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
             guard let positionY = controledView?.center.y else { return }
-            let selectionValue = Double((positionY - 720) / -48).cel
+            let selectionValue = Double((positionY - 720) / -48).ceiling(toDecimal: 1)
             print("Get Value", selectionValue)
             delegate?.getSelectionValue(type: selectionType, value: selectionValue)
             print("end")
@@ -78,7 +77,7 @@ extension LiquidBarViewController {
         let animationView = AnimationView(name: "orange")
         animationView.frame = CGRect(x: 0, y: 192, width: 80, height: 480)
         animationView.contentMode = .scaleAspectFill
-
+        
         animationView.loopMode = .loop
         animationView.animationSpeed = 1
         animationView.play()
