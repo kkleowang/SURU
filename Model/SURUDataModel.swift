@@ -51,9 +51,9 @@ struct Comment: Codable {
     var collectedUserList: [String] = []
 }
 struct CommentContent: Codable {
-    var happiness: Int
-    var noodle: Int
-    var soup: Int
+    var happiness: Double
+    var noodle: Double
+    var soup: Double
 }
 // MARK: -
 struct Account: Codable {

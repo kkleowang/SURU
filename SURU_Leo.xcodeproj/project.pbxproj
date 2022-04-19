@@ -14,6 +14,9 @@
 		B830608F28015A9D002558BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830608D28015A9D002558BE /* Main.storyboard */; };
 		B830609128015A9E002558BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B830609028015A9E002558BE /* Assets.xcassets */; };
 		B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830609228015A9E002558BE /* LaunchScreen.storyboard */; };
+		B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E4535280E896A00B13B0C /* StorageManager.swift */; };
+		B83E4539280E8B7200B13B0C /* SURU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B83E4537280E8B7200B13B0C /* SURU.xcdatamodeld */; };
+		B83E9584280EA071009DD17F /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9583280EA071009DD17F /* Double+.swift */; };
 		B85B63C5280D2CDD00621E4A /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C2280D2CDD00621E4A /* blue.json */; };
 		B85B63C6280D2CDD00621E4A /* orange.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C3280D2CDD00621E4A /* orange.json */; };
 		B85B63C7280D2CDD00621E4A /* yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C4280D2CDD00621E4A /* yellow.json */; };
@@ -60,6 +63,9 @@
 		B830609028015A9E002558BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B830609328015A9E002558BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B830609528015A9E002558BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B83E4535280E896A00B13B0C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		B83E4538280E8B7200B13B0C /* SURU.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SURU.xcdatamodel; sourceTree = "<group>"; };
+		B83E9583280EA071009DD17F /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		B85B63C2280D2CDD00621E4A /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
 		B85B63C3280D2CDD00621E4A /* orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orange.json; sourceTree = "<group>"; };
 		B85B63C4280D2CDD00621E4A /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = yellow.json; sourceTree = "<group>"; };
@@ -162,6 +168,15 @@
 				B830609528015A9E002558BE /* Info.plist */,
 			);
 			path = SURU_Leo;
+			sourceTree = "<group>";
+		};
+		B83E4534280E88C100B13B0C /* Local Storage */ = {
+			isa = PBXGroup;
+			children = (
+				B83E4535280E896A00B13B0C /* StorageManager.swift */,
+				B83E4537280E8B7200B13B0C /* SURU.xcdatamodeld */,
+			);
+			path = "Local Storage";
 			sourceTree = "<group>";
 		};
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
@@ -268,6 +283,7 @@
 				B8659C432806BB5B006C85F3 /* Date+.swift */,
 				B8A00345280A97A100A64750 /* UIStoryboard+.swift */,
 				B8A00349280A9E1100A64750 /* UIImage+.swift */,
+				B83E9583280EA071009DD17F /* Double+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -285,6 +301,7 @@
 		B8EC70052805290A00DA8B78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B83E4534280E88C100B13B0C /* Local Storage */,
 				B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */,
 				B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */,
 				B8659C412806ABA3006C85F3 /* SURUDataModel.swift */,
@@ -480,6 +497,7 @@
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
 				B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */,
+				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
 				B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */,
 				B8659C462806C534006C85F3 /* TestingCenterViewController.swift in Sources */,
 				B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */,
@@ -498,7 +516,9 @@
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
+				B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */,
 				B8A00352280B064200A64750 /* MapView.swift in Sources */,
+				B83E4539280E8B7200B13B0C /* SURU.xcdatamodeld in Sources */,
 				B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */,
 				B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */,
 				B8659C402806AB45006C85F3 /* FirebaseRequestProvider.swift in Sources */,
@@ -736,6 +756,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B83E4537280E8B7200B13B0C /* SURU.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B83E4538280E8B7200B13B0C /* SURU.xcdatamodel */,
+			);
+			currentVersion = B83E4538280E8B7200B13B0C /* SURU.xcdatamodel */;
+			path = SURU.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B830607C28015A9D002558BE /* Project object */;
 }

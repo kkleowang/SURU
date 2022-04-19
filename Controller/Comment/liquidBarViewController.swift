@@ -9,7 +9,7 @@ import UIKit
 import Lottie
 
 protocol SelectionValueManager: AnyObject {
-    func getSelectionValue(type: SelectionType, value: Int)
+    func getSelectionValue(type: SelectionType, value: Double)
 }
 
 class LiquidBarViewController: UIViewController {
@@ -54,7 +54,7 @@ class LiquidBarViewController: UIViewController {
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
             guard let positionY = controledView?.center.y else { return }
-            let selectionValue = Int((positionY - 720) / -4.8)
+            let selectionValue = Double((positionY - 720) / -48).cel
             print("Get Value", selectionValue)
             delegate?.getSelectionValue(type: selectionType, value: selectionValue)
             print("end")

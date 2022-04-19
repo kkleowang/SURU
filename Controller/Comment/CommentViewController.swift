@@ -42,7 +42,7 @@ class CommentViewController: UIViewController {
         commentSelectionView.delegate = self
         commentSelectionView.frame = CGRect(x: 20, y: UIScreen.height - 300, width: UIScreen.width - 40, height: 200)
         commentSelectionView.layoutCommentSelectionView(dataSource: stores)
-        
+
     }
     func fetchData() {
         FirebaseRequestProvider.shared.fetchStores { result in
@@ -149,7 +149,7 @@ extension CommentViewController: SURUCommentSelectionViewDelegate {
     }
 }
 extension CommentViewController: SelectionValueManager {
-    func getSelectionValue(type: SelectionType, value: Int) {
+    func getSelectionValue(type: SelectionType, value: Double) {
         switch type {
         case .noodle:
             commentData.contentValue.noodle = value
