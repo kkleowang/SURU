@@ -659,6 +659,10 @@
 				DEVELOPMENT_TEAM = WAYYQS9S9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SURU_Leo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SURU;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Write image";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Load image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -688,6 +692,10 @@
 				DEVELOPMENT_TEAM = WAYYQS9S9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SURU_Leo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SURU;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Write image";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Load image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
