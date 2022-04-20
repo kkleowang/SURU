@@ -10,13 +10,13 @@ import Alamofire
 
 
 protocol CommentSelectionViewDelegate: AnyObject {
-    func didTapSelectStore(_ view: CommentSelectionView, storeID: String)
+    func didGetSelectStore(_ view: CommentSelectionView, storeID: String)
     
-    func didTapSelectMeal(_ view: CommentSelectionView, meal: String)
+    func didGetSelectMeal(_ view: CommentSelectionView, meal: String)
     
     func didTapSelectNoodleValue(_ view: CommentSelectionView)
     
-    func didTapSelectSoupValue(_ view: CommentSelectionView)
+    func didTapSelectSoupValue(_ view: CommentSelectionView, type: SelectionType)
     
     func didTapSelectHappyValue(_ view: CommentSelectionView)
     
@@ -25,6 +25,8 @@ protocol CommentSelectionViewDelegate: AnyObject {
     func didTapNotWriteComment(_ view: CommentSelectionView)
     
     func didTapSendComment(_ view: CommentSelectionView)
+    
+    func didTapSaveComment(_ view: CommentSelectionView)
     
     func didTapDownloadImage(_ view: CommentSelectionView)
     
@@ -48,38 +50,46 @@ enum SelectionButton: String {
 class CommentSelectionView: UIView {
     weak var delegate: CommentSelectionViewDelegate?
     
-    
-    
+    var selectedStoreTextField: UITextField! {
+        didSet {
+            self.selectedMealTextField.delegate = self
+        }
+    }
+    var selectedMealTextField: UITextField! {
+        didSet {
+            self.selectedMealTextField.delegate = self
+        }
+    }
+    let selectValueButton: UIButton = {
+        let button = UIButton()
+        button.tag = 1
+        
+        button.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
+        return button
+    }()
+    var storePickerView: UIPickerView! {
+        didSet {
+            self.storePickerView.delegate = self
+            self.storePickerView.dataSource = self
+            self.storePickerView.reloadAllComponents()
+        }
+    }
+    let mealPickerView: UIPickerView! {
+        didSet {
+            self.storePickerView.delegate = self
+            self.storePickerView.dataSource = self
+            self.storePickerView.reloadAllComponents()
+        }
+    }
     var selectedStoreID: String = ""
-    var storeData: [Store] = []
-    let storePicker = UIPickerView()
-    let mealPicker = UIPickerView()
-    // MARK: -
-    let selectStoreButton: UIButton = {
-       let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        button.layer.cornerRadius = 15
-        button.setImage( UIImage(named: SelectionButton.selectStore.rawValue), for: .normal)
-        button.addTarget(self, action: #selector(selectStore), for: .touchUpInside)
-        return button
-    }()
+    var stores: [Store] = []
     
-    let selectMealButton: UIButton = {
-       let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        button.layer.cornerRadius = 15
-        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
-        button.addTarget(self, action: #selector(selectMeal), for: .touchUpInside)
-        return button
-    }()
-
+    // MARK: -
+   
     // MARK: -
     let selectNoodelValueButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
+        button.tag = 1
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -89,7 +99,8 @@ class CommentSelectionView: UIView {
         return button
     }()
     let selectSouplValueButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
+        button.tag = 2
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -99,7 +110,8 @@ class CommentSelectionView: UIView {
         return button
     }()
     let selectHappyValueButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
+        button.tag = 3
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -110,7 +122,7 @@ class CommentSelectionView: UIView {
     }()
     // MARK: -
     let writeCommentButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -120,7 +132,7 @@ class CommentSelectionView: UIView {
         return button
     }()
     let notWriteCommentButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -134,44 +146,36 @@ class CommentSelectionView: UIView {
         self.backgroundColor = .C1
         self.layer.cornerRadius = 30
         storeData = dataSource
-//        setupViews(view: storePickerTextField)
-//        setupViews(view: mealPickerTextField)
-//        setupViews(view: likeButton)
-//        setupViews(view: commentButton)
-//        setupViews(view: sendButton)
-//        storePickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-//        mealPickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 70).isActive = true
-//        likeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 130).isActive = true
-//        commentButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 190).isActive = true
-//        sendButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250).isActive = true
-//        sendButton.backgroundColor = .C7
-////        storePicker.dataSource = self
-////        storePicker.delegate = self
-////        storePicker.tag = 100
-////        storePickerTextField.inputView = storePicker
-////        storePickerTextField.backgroundColor = .red
-////
-////        mealPicker.dataSource = self
-////        mealPicker.delegate = self
-////        mealPicker.tag = 200
-////        mealPickerTextField.inputView = mealPicker
-////        mealPickerTextField.backgroundColor = .red
-//        likeButton.backgroundColor = .red
-//        commentButton.backgroundColor = .red
-//        sendButton.addTarget(self, action: #selector(sendData), for: .touchUpInside)
-//        likeButton.addTarget(self, action: #selector(showLikeView), for: .touchUpInside)
-//        commentButton.addTarget(self, action: #selector(showCommentView), for: .touchUpInside)
+        //        setupViews(view: storePickerTextField)
+        //        setupViews(view: mealPickerTextField)
+        //        setupViews(view: likeButton)
+        //        setupViews(view: commentButton)
+        //        setupViews(view: sendButton)
+        //        storePickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        //        mealPickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 70).isActive = true
+        //        likeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 130).isActive = true
+        //        commentButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 190).isActive = true
+        //        sendButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250).isActive = true
+        //        sendButton.backgroundColor = .C7
+        ////        storePicker.dataSource = self
+        ////        storePicker.delegate = self
+        ////        storePicker.tag = 100
+        ////        storePickerTextField.inputView = storePicker
+        ////        storePickerTextField.backgroundColor = .red
+        ////
+        ////        mealPicker.dataSource = self
+        ////        mealPicker.delegate = self
+        ////        mealPicker.tag = 200
+        ////        mealPickerTextField.inputView = mealPicker
+        ////        mealPickerTextField.backgroundColor = .red
+        //        likeButton.backgroundColor = .red
+        //        commentButton.backgroundColor = .red
+        //        sendButton.addTarget(self, action: #selector(sendData), for: .touchUpInside)
+        //        likeButton.addTarget(self, action: #selector(showLikeView), for: .touchUpInside)
+        //        commentButton.addTarget(self, action: #selector(showCommentView), for: .touchUpInside)
         
     }
-    @objc func sendData() {
-        self.delegate?.didTapSendData(self)
-    }
-    @objc func showLikeView() {
-        self.delegate?.didTapLikeView(self)
-    }
-    @objc func showCommentView() {
-        self.delegate?.didgetSelectedComment(self, comment: "我是評論測試\(Date())")
-    }
+    
     func setupViews(view: UIView){
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -194,76 +198,121 @@ func setupViewWithIcon(icon: String, size: Double)-> UIView {
     imageView.frame = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 100 * 0.8, height: 100 * 0.8)
     imageView.tintColor = .B1
 }
-extension  CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
+
+// MARK: - Button objc func
+extension CommentSelectionView {
+    @objc func selectValue(sender: UIButton) {
+        let selectionType: SelectionType = {
+            switch sender {
+            case selectNoodelValueButton:
+                return SelectionType.noodle
+            case selectSouplValueButton:
+                return SelectionType.soup
+            case selectHappyValueButton:
+                return SelectionType.happy
+            default:
+                return SelectionType.happy
+            }
+        }()
+        self.delegate?.didTapSelectSoupValue(self, type: selectionType)
+    }
+    @objc func writeComment() {
+        self.delegate?.didTapWriteComment(self)
+    }
+    @objc func notWriteComment() {
+        self.delegate?.didTapNotWriteComment(self)
+    }
+    @objc func downloadImage() {
+        self.delegate?.didTapDownloadImage(self)
+    }
+    @objc func sendComment() {
+        self.delegate?.didTapSendComment(self)
+    }
+    @objc func saveCommentDraft() {
+        self.delegate?.didTapSaveComment(self)
+    }
+    
+}
+
+extension CommentSelectionView: UITextFieldDelegate {
+    private func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = ""
+            textView.textColor = UIColor.B2
+        }
+    }
+    private func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.textColor = UIColor.lightGray
+            switch textView {
+            case selectedStoreTextField:
+                textView.text = "輸入店家"
+            case selectedMealTextField:
+                textView.text = "輸入品項"
+            default:
+                textView.text = ""
+            }
+        }
+    }
+}
+extension CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var count: Int?
-        if pickerView.tag == 100 {
-            count = storeData.count
-        } else {
-            for storedata in storeData where selectedStoreID == storedata.storeID {
-                count = storedata.meals.count
+        switch pickerView {
+        case storePickerView:
+            return stores.count
+        case mealPickerView:
+            var storeHodler: Store?
+            for store in stores where selectedStoreID == store.storeID {
+                storeHodler = store
             }
+            guard let storeHodler = storeHodler else {
+                return 0
+            }
+            return storeHodler.meals.count
+        default :
+            return 0
         }
-        guard let count = count else {
-            return 1
-        }
-        
-        return count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        var count: String?
-        if pickerView.tag == 100 {
-            count = storeData[row].name
-        } else {
-            for storedata in storeData where selectedStoreID == storedata.storeID {
-                count = storedata.meals[row]
+        switch pickerView {
+        case storePickerView:
+            return stores[row].name
+        case mealPickerView:
+            var storeHodler: Store?
+            for store in stores where selectedStoreID == store.storeID {
+                storeHodler = store
             }
-        }
-        return count
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == 100 {
-            selectedStoreID = storeData[row].storeID
-            mealPicker.reloadAllComponents()
-            self.delegate?.didgetSelectedStore(self, storeID: selectedStoreID)
-        } else {
-            for storedata in storeData where selectedStoreID == storedata.storeID {
-                let meal = storedata.meals[row]
-                self.delegate?.didgetSelectedMeal(self, meal: meal)
+            guard let storeHodler = storeHodler else {
+                return ""
             }
+            return storeHodler.meals[row]
+        default :
+            return ""
         }
-    }
-}
-// MARK: - Button objc func
-extension CommentSelectionView {
-    @objc func selectStore() {
-        self.delegate.
-    }
-    @objc func selectMeal() {
-        
-    }
-    @objc func selectValue(sender: UIButton) {
-        
-    }
-    @objc func writeComment() {
-        
-    }
-    @objc func notWriteComment() {
-        
-    }
-    @objc func downloadImage() {
-        
-    }
-    @objc func sendComment() {
-        
-    }
-    @objc func saveCommentDraft() {
         
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView {
+        case storePickerView:
+            selectedStoreTextField.text = stores[row].storeID
+            self.delegate?.didGetSelectStore(self, storeID: selectedStoreID)
+        case mealPickerView:
+            for store in stores where selectedStoreID == store.storeID {
+                for store in stores where selectedStoreID == store.storeID {
+                    let meal = store.meals[row]
+                    selectedMealTextField.text = meal
+                    self.delegate?.didGetSelectMeal(self, meal: meal)
+                }
+            }
+        default :
+            return
+        }
+        
+    }
 }

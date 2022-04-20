@@ -13,6 +13,17 @@ class CommentViewController: UIViewController {
     let cardView = CommentCardView()
     let commentSelectionView = CommentSelectionView()
     var stores: [Store] = []
+    var selectedStoreID: String = "" {
+        didSet {
+            commentData.storeID = selectedStoreID
+        }
+    }
+    var selectedMeal: String = "" {
+        didSet {
+            commentData.meal = selectedMeal
+        }
+    }
+    
     var commentData: Comment = {
         let comment = Comment(
         userID: "ZBrsbRumZjvowPKfpFZL",
@@ -125,7 +136,35 @@ extension CommentViewController: SURUUserCommentInputDelegate {
     }
 }
 extension CommentViewController: CommentSelectionViewDelegate {
-    func didTapSendData(_ view: CommentSelectionView) {
+    func didTapSelectStore(_ view: CommentSelectionView) {
+        print("didTapSelectStore")
+    }
+    
+    func didTapSelectMeal(_ view: CommentSelectionView) {
+        print("didTapSelectMeal")
+    }
+    
+    func didTapSelectNoodleValue(_ view: CommentSelectionView) {
+        print("didTapSelectNoodleValue")
+    }
+    
+    func didTapSelectSoupValue(_ view: CommentSelectionView, type: SelectionType) {
+        print("didTapSelectSoupValue", type.rawValue)
+    }
+    
+    func didTapSelectHappyValue(_ view: CommentSelectionView) {
+        print("didTapSelectHappyValue")
+    }
+    
+    func didTapWriteComment(_ view: CommentSelectionView) {
+        print("didTapWriteComment")
+    }
+    
+    func didTapNotWriteComment(_ view: CommentSelectionView) {
+        print("didTapNotWriteComment")
+    }
+    
+    func didTapSendComment(_ view: CommentSelectionView) {
         guard let image = imageDataHolder else { return }
         let fileName = "\(commentData.userID)_\(Date())"
         FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
@@ -140,24 +179,22 @@ extension CommentViewController: CommentSelectionViewDelegate {
         }
     }
     
-    func didgetSelectedStore(_ view: CommentSelectionView, storeID: String) {
-        commentData.storeID = storeID
-        print("MainPageGet", storeID)
+    func didTapSaveComment(_ view: CommentSelectionView) {
+        print("didTapSaveComment")
     }
     
-    func didgetSelectedMeal(_ view: CommentSelectionView, meal: String) {
-        commentData.meal = meal
-        print("MainPageGet", meal)
+    func didTapDownloadImage(_ view: CommentSelectionView) {
+        print("didTapDownloadImage")
     }
     
-    func didgetSelectedComment(_ view: CommentSelectionView, comment: String) {
-        commentData.contenText = comment
-        print("MainPageGet", comment)
+    func didTapAddoneMore(_ view: CommentSelectionView) {
+        print("didTapAddoneMore")
     }
     
-    func didTapLikeView(_ view: CommentSelectionView) {
-        setupLiqidViewController()
+    func didTapGoAllPage(_ view: CommentSelectionView) {
+        print("didTapGoAllPage")
     }
+    
 }
 extension CommentViewController: SelectionValueManager {
     func getSelectionValue(type: SelectionType, value: Double) {
@@ -174,3 +211,4 @@ extension CommentViewController: SelectionValueManager {
         }
     }
 }
+
