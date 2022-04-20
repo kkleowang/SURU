@@ -244,6 +244,7 @@
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
 			isa = PBXGroup;
 			children = (
+				B8659C412806ABA3006C85F3 /* SURUDataModel.swift */,
 				B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */,
 				B830608B28015A9D002558BE /* OLDCommentView.swift */,
 				B8659C452806C534006C85F3 /* TestingCenterViewController.swift */,
@@ -371,7 +372,6 @@
 				B83E9588280EAD03009DD17F /* Account */,
 				B83E9587280EACFA009DD17F /* Store */,
 				B83E4534280E88C100B13B0C /* Local Storage */,
-				B8659C412806ABA3006C85F3 /* SURUDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

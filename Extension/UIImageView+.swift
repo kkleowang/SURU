@@ -9,15 +9,8 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-   
+    func asset(_ name: String) -> UIImageView {
+        let view = UIImageView(image: UIImage(named: name))
+        return view
+    }
 }
-//var circleIconView: UIImageView {
-//
-//    translatesAutoresizingMaskIntoConstraints = false
-//    image = UIImage(named: "store")
-//    widthAnchor.constraint(equalToConstant: 30).isActive = true
-//    heightAnchor.constraint(equalToConstant: 30).isActive = true
-//    layer.cornerRadius = size / 2
-//    backgroundColor = UIColor.black.withAlphaComponent(0.8)
-//
-//}

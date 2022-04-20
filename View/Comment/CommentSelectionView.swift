@@ -9,64 +9,158 @@ import UIKit
 import Alamofire
 
 
-protocol SURUCommentSelectionViewDelegate: AnyObject {
-    func didgetSelectedStore(_ view: CommentSelectionView, storeID: String)
+protocol CommentSelectionViewDelegate: AnyObject {
+    func didTapSelectStore(_ view: CommentSelectionView, storeID: String)
     
-    func didgetSelectedMeal(_ view: CommentSelectionView, meal: String)
+    func didTapSelectMeal(_ view: CommentSelectionView, meal: String)
     
-    //    func didgetSelectedLike(_ view: CommentSelectionView, like: CommentContent)
+    func didTapSelectNoodleValue(_ view: CommentSelectionView)
     
-    func didgetSelectedComment(_ view: CommentSelectionView, comment: String)
+    func didTapSelectSoupValue(_ view: CommentSelectionView)
     
-    func didTapLikeView(_ view: CommentSelectionView)
+    func didTapSelectHappyValue(_ view: CommentSelectionView)
     
-    func didTapSendData(_ view: CommentSelectionView)
+    func didTapWriteComment(_ view: CommentSelectionView)
+    
+    func didTapNotWriteComment(_ view: CommentSelectionView)
+    
+    func didTapSendComment(_ view: CommentSelectionView)
+    
+    func didTapDownloadImage(_ view: CommentSelectionView)
+    
+    func didTapAddoneMore(_ view: CommentSelectionView)
+    
+    func didTapGoAllPage(_ view: CommentSelectionView)
+}
+enum SelectionButton: String {
+    case addPicture = "addMedia"
+    case selectStore = "store"
+    case selectMeal = "noodle"
+    case selectValue = "favorite"
+    case writeComment = "writeComment"
+    case notWriteComment = "notwriteComment"
+    case saveCommentToDraft = "draftmark"
+    case downloadPicture = "download"
+    case backToCommentPage = "back"
+    case addAnotherOne = "goPage"
 }
 
 class CommentSelectionView: UIView {
+    weak var delegate: CommentSelectionViewDelegate?
     
-    weak var delegate: SURUCommentSelectionViewDelegate?
-    let storePickerTextField = UITextField()
-    let mealPickerTextField  = UITextField()
-    let likeButton = UIButton()
-    let commentButton = UIButton()
+    
+    
     var selectedStoreID: String = ""
     var storeData: [Store] = []
     let storePicker = UIPickerView()
     let mealPicker = UIPickerView()
-    let sendButton = UIButton()
+    // MARK: -
+    let selectStoreButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.layer.cornerRadius = 15
+        button.setImage( UIImage(named: SelectionButton.selectStore.rawValue), for: .normal)
+        button.addTarget(self, action: #selector(selectStore), for: .touchUpInside)
+        return button
+    }()
+    
+    let selectMealButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.layer.cornerRadius = 15
+        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
+        button.addTarget(self, action: #selector(selectMeal), for: .touchUpInside)
+        return button
+    }()
+
+    // MARK: -
+    let selectNoodelValueButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.layer.cornerRadius = 15
+        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
+        button.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
+        return button
+    }()
+    let selectSouplValueButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.layer.cornerRadius = 15
+        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
+        button.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
+        return button
+    }()
+    let selectHappyValueButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.layer.cornerRadius = 15
+        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
+        button.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
+        return button
+    }()
+    // MARK: -
+    let writeCommentButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.layer.cornerRadius = 15
+        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
+        button.addTarget(self, action: #selector(writeComment), for: .touchUpInside)
+        return button
+    }()
+    let notWriteCommentButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.layer.cornerRadius = 15
+        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
+        button.addTarget(self, action: #selector(notWriteComment), for: .touchUpInside)
+        return button
+    }()
     
     func layoutCommentSelectionView(dataSource: [Store]) {
         self.backgroundColor = .C1
         self.layer.cornerRadius = 30
         storeData = dataSource
-        setupViews(view: storePickerTextField)
-        setupViews(view: mealPickerTextField)
-        setupViews(view: likeButton)
-        setupViews(view: commentButton)
-        setupViews(view: sendButton)
-        storePickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-        mealPickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 70).isActive = true
-        likeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 130).isActive = true
-        commentButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 190).isActive = true
-        sendButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250).isActive = true
-        sendButton.backgroundColor = .C7
-        storePicker.dataSource = self
-        storePicker.delegate = self
-        storePicker.tag = 100
-        storePickerTextField.inputView = storePicker
-        storePickerTextField.backgroundColor = .red
-       
-        mealPicker.dataSource = self
-        mealPicker.delegate = self
-        mealPicker.tag = 200
-        mealPickerTextField.inputView = mealPicker
-        mealPickerTextField.backgroundColor = .red
-        likeButton.backgroundColor = .red
-        commentButton.backgroundColor = .red
-        sendButton.addTarget(self, action: #selector(sendData), for: .touchUpInside)
-        likeButton.addTarget(self, action: #selector(showLikeView), for: .touchUpInside)
-        commentButton.addTarget(self, action: #selector(showCommentView), for: .touchUpInside)
+//        setupViews(view: storePickerTextField)
+//        setupViews(view: mealPickerTextField)
+//        setupViews(view: likeButton)
+//        setupViews(view: commentButton)
+//        setupViews(view: sendButton)
+//        storePickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+//        mealPickerTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 70).isActive = true
+//        likeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 130).isActive = true
+//        commentButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 190).isActive = true
+//        sendButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250).isActive = true
+//        sendButton.backgroundColor = .C7
+////        storePicker.dataSource = self
+////        storePicker.delegate = self
+////        storePicker.tag = 100
+////        storePickerTextField.inputView = storePicker
+////        storePickerTextField.backgroundColor = .red
+////
+////        mealPicker.dataSource = self
+////        mealPicker.delegate = self
+////        mealPicker.tag = 200
+////        mealPickerTextField.inputView = mealPicker
+////        mealPickerTextField.backgroundColor = .red
+//        likeButton.backgroundColor = .red
+//        commentButton.backgroundColor = .red
+//        sendButton.addTarget(self, action: #selector(sendData), for: .touchUpInside)
+//        likeButton.addTarget(self, action: #selector(showLikeView), for: .touchUpInside)
+//        commentButton.addTarget(self, action: #selector(showCommentView), for: .touchUpInside)
         
     }
     @objc func sendData() {
@@ -85,6 +179,20 @@ class CommentSelectionView: UIView {
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         view.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
     }
+}
+func setupViewWithIcon(icon: String, size: Double)-> UIView {
+    
+    let imageView = UIImageView()
+    let view = UIView()
+    self.addSubview(imageView)
+    self.addSubview(view)
+    view.frame = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 100, height: 100)
+    view.layer.cornerRadius = 100 / 2
+    view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+    
+    imageView.image =  UIImage(named: "store")
+    imageView.frame = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 100 * 0.8, height: 100 * 0.8)
+    imageView.tintColor = .B1
 }
 extension  CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -130,4 +238,32 @@ extension  CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
             }
         }
     }
+}
+// MARK: - Button objc func
+extension CommentSelectionView {
+    @objc func selectStore() {
+        self.delegate.
+    }
+    @objc func selectMeal() {
+        
+    }
+    @objc func selectValue(sender: UIButton) {
+        
+    }
+    @objc func writeComment() {
+        
+    }
+    @objc func notWriteComment() {
+        
+    }
+    @objc func downloadImage() {
+        
+    }
+    @objc func sendComment() {
+        
+    }
+    @objc func saveCommentDraft() {
+        
+    }
+    
 }

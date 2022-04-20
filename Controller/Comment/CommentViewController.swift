@@ -124,7 +124,7 @@ extension CommentViewController: SURUUserCommentInputDelegate {
         present(view.imagePicker, animated: true, completion: nil)
     }
 }
-extension CommentViewController: SURUCommentSelectionViewDelegate {
+extension CommentViewController: CommentSelectionViewDelegate {
     func didTapSendData(_ view: CommentSelectionView) {
         guard let image = imageDataHolder else { return }
         let fileName = "\(commentData.userID)_\(Date())"
