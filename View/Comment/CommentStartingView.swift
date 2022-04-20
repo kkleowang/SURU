@@ -8,38 +8,58 @@
 import UIKit
 
 protocol SURUCommentStartingViewDelegate: AnyObject {
-    func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController)
+    func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController?)
+    
     func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage)
 }
 class CommentStartingView: UIView {
-
     weak var delegate: SURUCommentStartingViewDelegate?
-    let startButton = UIButton()
     
+    var startCommentButton: UIButton? {
+        let button = UIButton()
+        self.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: SelectionButton.addPicture.rawValue), for: .normal)
+        button.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        button.layer.cornerRadius = 30
+        button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+        button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30).isActive = true
+        button.backgroundColor = .black.withAlphaComponent(0.4)
+        button.tintColor = .white
+        button.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        button.addTarget(self, action: #selector(startComment), for: .touchUpInside)
+        return button
+    }
+    
+    var commentTableView: UITableView? {
+        let tableView = UITableView()
+            self.addSubview(tableView)
+            tableView.translatesAutoresizingMaskIntoConstraints = false
+            tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            tableView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+            tableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        return tableView
+    }
+    
+    var imagePicker: UIImagePickerController? {
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        return imagePicker
+    }
         
     func layoutStartingView() {
-        self.addSubview(startButton)
-        
-        startButton.translatesAutoresizingMaskIntoConstraints = false
-        startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        startButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        startButton.layer.borderColor = UIColor.B1?.cgColor
-        startButton.layer.borderWidth = 1
-        startButton.layer.cornerRadius = 15
-//        startButton.backgroundColor = .black.withAlphaComponent(0.7)
-        startButton.setTitle("開始評論", for: .normal)
-        startButton.setTitleColor(.B1, for: .normal)
-        startButton.addTarget(self, action: #selector(startComment), for: .touchUpInside)
+        startCommentButton?.isHidden = false
     }
     
     @objc func startComment() {
-        let imagePicker = UIImagePickerController()
-            imagePicker.allowsEditing = true
-            imagePicker.sourceType = .photoLibrary
-            imagePicker.delegate = self
         self.delegate?.didTapImageView(self, imagePicker: imagePicker)
     }
 }
+
 extension CommentStartingView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(
         _ picker: UIImagePickerController,

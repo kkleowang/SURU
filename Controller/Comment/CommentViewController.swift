@@ -9,20 +9,15 @@ import UIKit
 import SwiftUI
 
 class CommentViewController: UIViewController {
+    // View
     let startingView = CommentStartingView()
+    
     let cardView = CommentCardView()
+    
     let commentSelectionView = CommentSelectionView()
+    
+    // datasource放置
     var stores: [Store] = []
-    var selectedStoreID: String = "" {
-        didSet {
-            commentData.storeID = selectedStoreID
-        }
-    }
-    var selectedMeal: String = "" {
-        didSet {
-            commentData.meal = selectedMeal
-        }
-    }
     
     var commentData: Comment = {
         let comment = Comment(
@@ -34,16 +29,60 @@ class CommentViewController: UIViewController {
         mainImage: "")
         return comment
     }()
+    
+    // 上傳前的照片
     var imageDataHolder: Data?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.B6
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchData()
+        fetchStoreData()
         setupStartingView()
     }
+    
+    func fetchStoreData() {
+        StoreRequestProvider.shared.fetchStores { result in
+            switch result {
+            case .success(let data):
+                self.stores = data
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func setupStartingView() {
+        self.view.addSubview(startingView)
+        startingView.translatesAutoresizingMaskIntoConstraints = false
+        startingView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        startingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        startingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        startingView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        startingView.commentTableView?.isHidden = false
+        startingView.commentTableView?.delegate = self
+        startingView.commentTableView?.dataSource = self
+        startingView.delegate = self
+        startingView.layoutStartingView()
+    }
+    
+    func setupCardView(_ image: UIImage) {
+        self.view.addSubview(cardView)
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.clipsToBounds = true
+        cardView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
+        cardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
+        cardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
+        cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 5 / 4).isActive = true
+        cardView.commentImageView.image = image
+        cardView.delegate = self
+        cardView.layoutCommendCardView {
+            setupCommentView()
+        }
+    }
+    
     func setupLiqidViewController() {
         let controller = DragingValueViewController()
         controller.liquilBarview.delegate = self
@@ -61,47 +100,10 @@ class CommentViewController: UIViewController {
         self.view.addSubview(commentSelectionView)
         commentSelectionView.delegate = self
         commentSelectionView.frame = CGRect(x: 20, y: UIScreen.height - 300, width: UIScreen.width - 40, height: 200)
-        commentSelectionView.layoutCommentSelectionView(dataSource: stores)
+//        commentSelectionView.layoutCommentSelectionView(dataSource: stores)
     }
-    func fetchData() {
-        StoreRequestProvider.shared.fetchStores { result in
-            switch result {
-            case .success(let data):
-                self.stores = data
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    func setupStartingView() {
-        self.view.addSubview(startingView)
-        //        startingView.cornerForAll(radii: 30)
-        startingView.translatesAutoresizingMaskIntoConstraints = false
-        startingView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        startingView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        startingView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
-        startingView.heightAnchor.constraint(equalTo: startingView.widthAnchor, multiplier: 5 / 4).isActive = true
-        //        startingView.cornerForAll(radii: 30)
-        startingView.delegate = self
-        startingView.layoutStartingView()
-    }
-    func setupCardView(_ image: UIImage) {
-        self.view.addSubview(cardView)
-        //        cardView.cornerForAll(radii: 40)
-        cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.clipsToBounds = true
-        cardView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
-        cardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
-        cardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
-        cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 5 / 4).isActive = true
-        cardView.commentImageView.image = image
-        //        cardView.cornerForAll(radii: 40)
-        cardView.delegate = self
-        cardView.layoutCommendCardView {
-            setupCommentView()
-        }
-    }
-    func sendCommentToFireBase() {
+
+    func publishComment() {
         CommentRequestProvider.shared.publishComment(comment: &commentData) { result in
             switch result {
             case .success(let message):
@@ -113,7 +115,10 @@ class CommentViewController: UIViewController {
     }
 }
 extension CommentViewController: SURUCommentStartingViewDelegate {
-    func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController) {
+    func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController?) {
+        guard let imagePicker = imagePicker else {
+            return
+        }
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -126,6 +131,27 @@ extension CommentViewController: SURUCommentStartingViewDelegate {
     }
 }
 
+extension CommentViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "你的評論草稿"
+        } else {
+            return "你發表過的評論"
+        }
+    }
+    
+}
+
 extension CommentViewController: SURUUserCommentInputDelegate {
     func didFinishPickImage(_ view: CommentCardView, imagePicker: UIImagePickerController) {
         imagePicker.dismiss(animated: true, completion: nil)
@@ -136,12 +162,12 @@ extension CommentViewController: SURUUserCommentInputDelegate {
     }
 }
 extension CommentViewController: CommentSelectionViewDelegate {
-    func didTapSelectStore(_ view: CommentSelectionView) {
-        print("didTapSelectStore")
+    func didGetSelectStore(_ view: CommentSelectionView, storeID: String) {
+        print("didTapSelectNoodleValue")
     }
     
-    func didTapSelectMeal(_ view: CommentSelectionView) {
-        print("didTapSelectMeal")
+    func didGetSelectMeal(_ view: CommentSelectionView, meal: String) {
+        print("didTapSelectNoodleValue")
     }
     
     func didTapSelectNoodleValue(_ view: CommentSelectionView) {
@@ -172,7 +198,7 @@ extension CommentViewController: CommentSelectionViewDelegate {
             case .success(let url) :
                 print("上傳圖片成功", url.description)
                 self.commentData.mainImage = url.description
-                self.sendCommentToFireBase()
+                self.publishComment()
             case .failure(let error) :
                 print("上傳圖片失敗", error)
             }

@@ -241,6 +241,15 @@
 			path = FirebaseStorage;
 			sourceTree = "<group>";
 		};
+		B83E959D2810479A009DD17F /* LiquidBar */ = {
+			isa = PBXGroup;
+			children = (
+				B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */,
+				B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */,
+			);
+			path = LiquidBar;
+			sourceTree = "<group>";
+		};
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,9 +288,8 @@
 		B8A00339280A924200A64750 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
+				B83E959D2810479A009DD17F /* LiquidBar */,
 				B87BF623280C61E100FE885C /* CommentViewController.swift */,
-				B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */,
-				B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
