@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */; };
+		B814DF312810741900176C13 /* ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814DF302810741900176C13 /* ref.swift */; };
+		B814DF3328108E4E00176C13 /* CommentDraggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814DF3228108E4E00176C13 /* CommentDraggingView.swift */; };
+		B814DF3528108F0000176C13 /* LottieLiquidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814DF3428108F0000176C13 /* LottieLiquidView.swift */; };
 		B830608828015A9D002558BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608728015A9D002558BE /* AppDelegate.swift */; };
 		B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608928015A9D002558BE /* SceneDelegate.swift */; };
 		B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608B28015A9D002558BE /* OLDCommentView.swift */; };
@@ -36,7 +39,7 @@
 		B8659C442806BB5B006C85F3 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8659C432806BB5B006C85F3 /* Date+.swift */; };
 		B8659C462806C534006C85F3 /* TestingCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8659C452806C534006C85F3 /* TestingCenterViewController.swift */; };
 		B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF623280C61E100FE885C /* CommentViewController.swift */; };
-		B87BF626280C832300FE885C /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF625280C832300FE885C /* CommentCardView.swift */; };
+		B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */; };
 		B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF627280CA5A500FE885C /* CommentStartingView.swift */; };
 		B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */; };
 		B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B899FF26280D237200BD5715 /* GoogleService-Info.plist */; };
@@ -64,6 +67,9 @@
 /* Begin PBXFileReference section */
 		78C47A99BAC6766DE55A8ACD /* Pods-SURU_Leo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.release.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.release.xcconfig"; sourceTree = "<group>"; };
 		8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_Leo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B814DF302810741900176C13 /* ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ref.swift; sourceTree = "<group>"; };
+		B814DF3228108E4E00176C13 /* CommentDraggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDraggingView.swift; sourceTree = "<group>"; };
+		B814DF3428108F0000176C13 /* LottieLiquidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieLiquidView.swift; sourceTree = "<group>"; };
 		B830608428015A9D002558BE /* SURU_Leo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SURU_Leo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830608728015A9D002558BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B830608928015A9D002558BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +100,7 @@
 		B8659C432806BB5B006C85F3 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		B8659C452806C534006C85F3 /* TestingCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingCenterViewController.swift; sourceTree = "<group>"; };
 		B87BF623280C61E100FE885C /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
-		B87BF625280C832300FE885C /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
+		B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentImageCardViewDelegate.swift; sourceTree = "<group>"; };
 		B87BF627280CA5A500FE885C /* CommentStartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStartingView.swift; sourceTree = "<group>"; };
 		B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCommentCellTableViewCell.swift; sourceTree = "<group>"; };
 		B899FF26280D237200BD5715 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -244,8 +250,8 @@
 		B83E959D2810479A009DD17F /* LiquidBar */ = {
 			isa = PBXGroup;
 			children = (
-				B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */,
 				B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */,
+				B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */,
 			);
 			path = LiquidBar;
 			sourceTree = "<group>";
@@ -257,6 +263,7 @@
 				B8659C3F2806AB45006C85F3 /* FirebaseRequestProvider.swift */,
 				B830608B28015A9D002558BE /* OLDCommentView.swift */,
 				B8659C452806C534006C85F3 /* TestingCenterViewController.swift */,
+				B814DF302810741900176C13 /* ref.swift */,
 			);
 			path = unUsedFile;
 			sourceTree = "<group>";
@@ -321,8 +328,10 @@
 			isa = PBXGroup;
 			children = (
 				B87BF627280CA5A500FE885C /* CommentStartingView.swift */,
-				B87BF625280C832300FE885C /* CommentCardView.swift */,
+				B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */,
 				B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */,
+				B814DF3228108E4E00176C13 /* CommentDraggingView.swift */,
+				B814DF3428108F0000176C13 /* LottieLiquidView.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -569,6 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8A0033E280A92D300A64750 /* MappingViewController.swift in Sources */,
+				B814DF3328108E4E00176C13 /* CommentDraggingView.swift in Sources */,
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
 				B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */,
@@ -586,8 +596,9 @@
 				B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */,
 				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
 				B83E9596280EB666009DD17F /* AccountDataModel.swift in Sources */,
-				B87BF626280C832300FE885C /* CommentCardView.swift in Sources */,
+				B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */,
 				B83E9594280EB653009DD17F /* CommentDataModel.swift in Sources */,
+				B814DF3528108F0000176C13 /* LottieLiquidView.swift in Sources */,
 				B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */,
 				B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */,
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
@@ -595,6 +606,7 @@
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
+				B814DF312810741900176C13 /* ref.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
 				B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */,
 				B8A00352280B064200A64750 /* MapView.swift in Sources */,

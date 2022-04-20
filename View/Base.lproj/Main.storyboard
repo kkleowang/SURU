@@ -423,17 +423,6 @@
                     <view key="view" contentMode="scaleToFill" id="Dbx-mq-cMb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGw-U5-The">
-                                <rect key="frame" x="181" y="344" width="72" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="imageEdgeInsets" minX="10" minY="5" maxX="5" maxY="5"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="notwriteComment">
-                                    <backgroundConfiguration key="background" image="checked_checkbox"/>
-                                </buttonConfiguration>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="nEn-Gp-ioP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -459,8 +448,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checked_checkbox" width="128" height="128"/>
-        <image name="notwriteComment" width="48" height="48"/>
         <namedColor name="Color-4">
             <color red="0.059000000357627869" green="0.054999999701976776" blue="0.046999998390674591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

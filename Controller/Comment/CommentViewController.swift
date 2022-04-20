@@ -12,9 +12,9 @@ class CommentViewController: UIViewController {
     // View
     let startingView = CommentStartingView()
     
-    let cardView = CommentCardView()
+    let imageCardView = CommentImageCardView()
     
-    let commentSelectionView = CommentSelectionView()
+    let selectionView = CommentSelectionView()
     
     // datasource放置
     var stores: [Store] = []
@@ -68,39 +68,44 @@ class CommentViewController: UIViewController {
         startingView.layoutStartingView()
     }
     
-    func setupCardView(_ image: UIImage) {
-        self.view.addSubview(cardView)
-        cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.clipsToBounds = true
-        cardView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
-        cardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
-        cardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
-        cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 5 / 4).isActive = true
-        cardView.commentImageView.image = image
-        cardView.delegate = self
-        cardView.layoutCommendCardView {
-            setupCommentView()
+    func setupImageCardView(_ image: UIImage) {
+        self.view.addSubview(imageCardView)
+        imageCardView.translatesAutoresizingMaskIntoConstraints = false
+        imageCardView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
+        imageCardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
+        imageCardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
+        imageCardView.heightAnchor.constraint(equalTo: imageCardView.widthAnchor, multiplier: 5 / 4).isActive = true
+        imageCardView.delegate = self
+        imageCardView.layoutCommendCardView(image: image) { [weak self] in
+            guard let self = self else { return }
+            self.setupCommentSelectionView()
         }
     }
     
-    func setupLiqidViewController() {
-        let controller = DragingValueViewController()
-        controller.liquilBarview.delegate = self
-        self.addChild(controller)
-        view.addSubview(controller.view)
-        controller.view.backgroundColor = UIColor.C5
-        controller.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
-        controller.view.corner(byRoundingCorners: [UIRectCorner.topRight, UIRectCorner.bottomRight], radii: 30)
-        controller.selectionType = .noodle
-        UIView.animate(withDuration: 0.5) {
-            controller.view.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.main.bounds.height)
-        }
+    func setupCommentSelectionView() {
+        self.view.addSubview(selectionView)
+        selectionView.translatesAutoresizingMaskIntoConstraints = false
+        selectionView.delegate = self
+        selectionView.backgroundColor = .red
+        selectionView.topAnchor.constraint(equalTo: self.imageCardView.bottomAnchor, constant: -100).isActive = true
+        selectionView.leadingAnchor.constraint(equalTo: self.imageCardView.leadingAnchor, constant: 10).isActive = true
+        selectionView.trailingAnchor.constraint(equalTo: self.imageCardView.trailingAnchor, constant: -10).isActive = true
+        selectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        selectionView.layoutSelectView(dataSource: stores)
     }
-    func setupCommentView() {
-        self.view.addSubview(commentSelectionView)
-        commentSelectionView.delegate = self
-        commentSelectionView.frame = CGRect(x: 20, y: UIScreen.height - 300, width: UIScreen.width - 40, height: 200)
-//        commentSelectionView.layoutCommentSelectionView(dataSource: stores)
+    
+    func setupDraggingView(_ type: SelectionType) {
+        let draggingView = CommentDraggingView()
+        view.addSubview(draggingView)
+        draggingView.delegate = self
+        draggingView.translatesAutoresizingMaskIntoConstraints = false
+       
+        draggingView.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
+        draggingView.corner(byRoundingCorners: [UIRectCorner.topRight, UIRectCorner.bottomRight], radii: 30)
+        draggingView.layoutDraggingView(type: type)
+        UIView.animate(withDuration: 0.5) {
+            draggingView.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.main.bounds.height)
+        }
     }
 
     func publishComment() {
@@ -114,7 +119,9 @@ class CommentViewController: UIViewController {
         }
     }
 }
-extension CommentViewController: SURUCommentStartingViewDelegate {
+
+// StartingView Delegate
+extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegate, UITableViewDataSource {
     func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController?) {
         guard let imagePicker = imagePicker else {
             return
@@ -123,15 +130,13 @@ extension CommentViewController: SURUCommentStartingViewDelegate {
     }
     
     func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage) {
-        setupCardView(image)
+        setupImageCardView(image)
         imageDataHolder = image.jpegData(compressionQuality: 0.1) ?? Data()
         imagePicker.dismiss(animated: true) {
             view.removeFromSuperview()
         }
     }
-}
-
-extension CommentViewController: UITableViewDelegate, UITableViewDataSource {
+    // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         0
     }
@@ -149,18 +154,20 @@ extension CommentViewController: UITableViewDelegate, UITableViewDataSource {
             return "你發表過的評論"
         }
     }
-    
 }
 
-extension CommentViewController: SURUUserCommentInputDelegate {
-    func didFinishPickImage(_ view: CommentCardView, imagePicker: UIImagePickerController) {
+// CommentImageCardView Delegate
+extension CommentViewController: CommentImageCardViewDelegate {
+    func didFinishPickImage(_ view: CommentImageCardView, imagePicker: UIImagePickerController) {
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
-    func didTapImageView(_ view: CommentCardView) {
-        present(view.imagePicker, animated: true, completion: nil)
+    func didTapImageView(_ view: CommentImageCardView) {
+        guard let imagePicker = view.imagePicker else { return }
+        present(imagePicker, animated: true, completion: nil)
     }
 }
+
 extension CommentViewController: CommentSelectionViewDelegate {
     func didGetSelectStore(_ view: CommentSelectionView, storeID: String) {
         print("didTapSelectNoodleValue")
@@ -171,15 +178,15 @@ extension CommentViewController: CommentSelectionViewDelegate {
     }
     
     func didTapSelectNoodleValue(_ view: CommentSelectionView) {
-        print("didTapSelectNoodleValue")
+        setupDraggingView(.noodle)
     }
     
     func didTapSelectSoupValue(_ view: CommentSelectionView, type: SelectionType) {
-        print("didTapSelectSoupValue", type.rawValue)
+        setupDraggingView(.soup)
     }
     
     func didTapSelectHappyValue(_ view: CommentSelectionView) {
-        print("didTapSelectHappyValue")
+        setupDraggingView(.happy)
     }
     
     func didTapWriteComment(_ view: CommentSelectionView) {
@@ -220,21 +227,16 @@ extension CommentViewController: CommentSelectionViewDelegate {
     func didTapGoAllPage(_ view: CommentSelectionView) {
         print("didTapGoAllPage")
     }
-    
 }
-extension CommentViewController: SelectionValueManager {
-    func getSelectionValue(type: SelectionType, value: Double) {
-        switch type {
-        case .noodle:
-            commentData.contentValue.noodle = value
-            print("MainPageGet noodel", value)
-        case .soup:
-            commentData.contentValue.soup = value
-            print("MainPageGet soup", value)
-        case .happy:
-            commentData.contentValue.happiness = value
-            print("MainPageGet happy", value)
-        }
+
+
+extension CommentViewController: CommentDraggingViewDelegate {
+    func didGetSelectionValue(view: CommentDraggingView, type: SelectionType, value: Double) {
+        print("didTapGoAllPage")
+    }
+    
+    func didTapBackButton(view: CommentDraggingView) {
+        print("didTapGoAllPage")
     }
 }
 

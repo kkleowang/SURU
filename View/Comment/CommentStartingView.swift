@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol SURUCommentStartingViewDelegate: AnyObject {
+protocol CommentStartingViewDelegate: AnyObject {
     func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController?)
     
     func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage)
 }
 class CommentStartingView: UIView {
-    weak var delegate: SURUCommentStartingViewDelegate?
+    weak var delegate: CommentStartingViewDelegate?
     
     var startCommentButton: UIButton? {
         let button = UIButton()

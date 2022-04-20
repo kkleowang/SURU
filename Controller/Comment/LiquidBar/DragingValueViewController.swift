@@ -17,8 +17,7 @@ enum SelectionSubTitle: String {
 }
 
 class DragingValueViewController: UIViewController {
-    //    let backButton = UIButton()
-    //    let uiview = UIView()
+    
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
     let liquilBarview = LiquidBarViewController()
@@ -46,7 +45,7 @@ class DragingValueViewController: UIViewController {
         subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.leadingAnchor.constraint(equalTo: liquilBarview.view.leadingAnchor, constant: 0).isActive = true
         titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: spacing).isActive = true
-        //        titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: liquilBarview.view.topAnchor, constant: -20).isActive = true
+        
         subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 0).isActive = true
         subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
         //        subTitleLabel.text = SelectionSubTitle.text.rawValue

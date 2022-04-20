@@ -37,11 +37,13 @@ protocol CommentSelectionViewDelegate: AnyObject {
 // 素材名稱
 enum SelectionButton: String {
     case addPicture = "addMedia"
-    case selectStore = "store"
-    case selectMeal = "noodle"
-    case selectValue = "favorite"
+    
+    case selectNoodle = "noodle"
+    case selectSoup = "water"
+    case selectHappy = "thumb"
     case writeComment = "writeComment"
     case notWriteComment = "notwriteComment"
+    
     case saveCommentToDraft = "draftmark"
     case downloadPicture = "download"
     case backToCommentPage = "back"
@@ -50,101 +52,127 @@ enum SelectionButton: String {
 
 class CommentSelectionView: UIView {
     weak var delegate: CommentSelectionViewDelegate?
+    
     var selectedStoreID: String = ""
+    
     var stores: [Store] = []
     
-    
+    func layoutSelectView(dataSource: [Store]) {
+        stores = dataSource
+        self.layer.cornerRadius = 40
+        self.clipsToBounds = true
+        initPickerView()
+        initTextField()
+        initButton()
+    }
     // MARK: - 選取店家物件
-    var selectedStoreTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = .clear
-        textField.widthAnchor.constraint(equalToConstant: UIScreen.width).isActive = true
-        textField.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        return textField
-    }()
-    
-    var selectedMealTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = .clear
-        textField.widthAnchor.constraint(equalToConstant: UIScreen.width).isActive = true
-        textField.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        return textField
-    }()
-    
-    var storePickerView: UIPickerView! {
-        didSet {
-            self.storePickerView.delegate = self
-            self.storePickerView.dataSource = self
-            self.storePickerView.reloadAllComponents()
-        }
-    }
-    
-    var mealPickerView: UIPickerView! {
-        didSet {
-            self.storePickerView.delegate = self
-            self.storePickerView.dataSource = self
-            self.storePickerView.reloadAllComponents()
-        }
-    }
-    
+    var selectedStoreTextField = UITextField()
+    var selectedMealTextField = UITextField()
+    var storePickerView = UIPickerView()
+    var mealPickerView = UIPickerView()
     // MARK: - Value按鈕
-    let selectNoodelValueButton: UIButton = {
-        let button = UIButton()
-        button.tag = 1
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        button.layer.cornerRadius = 15
-        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
-        button.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
-        return button
-    }()
-    let selectSouplValueButton: UIButton = {
-        let button = UIButton()
-        button.tag = 2
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        button.layer.cornerRadius = 15
-        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
-        button.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
-        return button
-    }()
-    let selectHappyValueButton: UIButton = {
-        let button = UIButton()
-        button.tag = 3
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        button.layer.cornerRadius = 15
-        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
-        button.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
-        return button
-    }()
-    
+    let selectNoodelValueButton = UIButton()
+    let selectSouplValueButton = UIButton()
+    let selectHappyValueButton = UIButton()
     // MARK: - 評論按鈕
-    let writeCommentButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        button.layer.cornerRadius = 15
-        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
-        button.addTarget(self, action: #selector(writeComment), for: .touchUpInside)
-        return button
-    }()
-    let notWriteCommentButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        button.layer.cornerRadius = 15
-        button.setImage( UIImage(named: SelectionButton.selectMeal.rawValue), for: .normal)
-        button.addTarget(self, action: #selector(notWriteComment), for: .touchUpInside)
-        return button
-    }()
+    let writeCommentButton = UIButton()
+    let notWriteCommentButton = UIButton()
+    let stackView = UIStackView()
+    
+    func initTextField() {
+        self.addSubview(selectedStoreTextField)
+        selectedStoreTextField.translatesAutoresizingMaskIntoConstraints = false
+        selectedStoreTextField.backgroundColor = .clear
+        selectedStoreTextField.text = "輸入店家"
+        selectedStoreTextField.textColor = .B1
+        selectedStoreTextField.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        selectedStoreTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        selectedStoreTextField.font = UIFont.medium(size: 30)
+        selectedStoreTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        selectedStoreTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        selectedStoreTextField.inputView = storePickerView
+        
+        self.addSubview(selectedMealTextField)
+        selectedMealTextField.translatesAutoresizingMaskIntoConstraints = false
+        selectedMealTextField.backgroundColor = .clear
+        selectedMealTextField.text = "輸入品項"
+        selectedMealTextField.textColor = .B1
+        selectedMealTextField.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        selectedMealTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        selectedStoreTextField.font = UIFont.medium(size: 20)
+        selectedMealTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 80).isActive = true
+        selectedMealTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        selectedMealTextField.inputView = mealPickerView
+    }
+    func initPickerView() {
+        storePickerView.tag = 1
+        storePickerView.delegate = self
+        storePickerView.dataSource = self
+        storePickerView.reloadAllComponents()
+        
+        mealPickerView.tag = 2
+        mealPickerView.delegate = self
+        mealPickerView.dataSource = self
+        mealPickerView.reloadAllComponents()
+    }
+    
+    func initButton() {
+        self.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.topAnchor.constraint(equalTo: selectedMealTextField.bottomAnchor, constant: 20).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        stackView.addArrangedSubview(selectNoodelValueButton)
+        stackView.addArrangedSubview(selectSouplValueButton)
+        stackView.addArrangedSubview(selectHappyValueButton)
+        stackView.addArrangedSubview(notWriteCommentButton)
+        
+        selectNoodelValueButton.translatesAutoresizingMaskIntoConstraints = false
+        selectNoodelValueButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        selectNoodelValueButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        selectNoodelValueButton.layer.cornerRadius = 15
+        selectNoodelValueButton.setImage( UIImage(named: SelectionButton.selectNoodle.rawValue), for: .normal)
+        selectNoodelValueButton.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
+        selectNoodelValueButton.backgroundColor = .black.withAlphaComponent(0.4)
+        selectNoodelValueButton.tintColor = .white
+        selectNoodelValueButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        
+        selectSouplValueButton.translatesAutoresizingMaskIntoConstraints = false
+        selectSouplValueButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        selectSouplValueButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        selectSouplValueButton.layer.cornerRadius = 15
+        selectSouplValueButton.setImage( UIImage(named: SelectionButton.selectSoup.rawValue), for: .normal)
+        selectSouplValueButton.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
+        selectSouplValueButton.backgroundColor = .black.withAlphaComponent(0.4)
+        selectSouplValueButton.tintColor = .white
+        selectSouplValueButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        
+        selectHappyValueButton.translatesAutoresizingMaskIntoConstraints = false
+        selectHappyValueButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        selectHappyValueButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        selectHappyValueButton.layer.cornerRadius = 15
+        selectHappyValueButton.setImage( UIImage(named: SelectionButton.selectHappy.rawValue), for: .normal)
+        selectHappyValueButton.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
+        selectHappyValueButton.backgroundColor = .black.withAlphaComponent(0.4)
+        selectHappyValueButton.tintColor = .white
+        selectHappyValueButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        
+        
+        
+        notWriteCommentButton.translatesAutoresizingMaskIntoConstraints = false
+        notWriteCommentButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        notWriteCommentButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        notWriteCommentButton.layer.cornerRadius = 15
+        notWriteCommentButton.setImage( UIImage(named: SelectionButton.notWriteComment.rawValue), for: .normal)
+        notWriteCommentButton.addTarget(self, action: #selector(notWriteComment), for: .touchUpInside)
+        notWriteCommentButton.backgroundColor = .black.withAlphaComponent(0.4)
+        notWriteCommentButton.tintColor = .white
+        notWriteCommentButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+    }
 }
 // MARK: - Button objc func
 extension CommentSelectionView {
@@ -178,7 +206,6 @@ extension CommentSelectionView {
     @objc func saveCommentDraft() {
         self.delegate?.didTapSaveComment(self)
     }
-    
 }
 
 extension CommentSelectionView: UITextFieldDelegate {
@@ -208,10 +235,10 @@ extension CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch pickerView {
-        case storePickerView:
+        switch pickerView.tag {
+        case 1:
             return stores.count
-        case mealPickerView:
+        case 2:
             var storeHodler: Store?
             for store in stores where selectedStoreID == store.storeID {
                 storeHodler = store
@@ -226,10 +253,10 @@ extension CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch pickerView {
-        case storePickerView:
+        switch pickerView.tag {
+        case 1:
             return stores[row].name
-        case mealPickerView:
+        case 2:
             var storeHodler: Store?
             for store in stores where selectedStoreID == store.storeID {
                 storeHodler = store
@@ -238,18 +265,18 @@ extension CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
                 return ""
             }
             return storeHodler.meals[row]
-        default :
+        default:
             return ""
         }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch pickerView {
-        case storePickerView:
-            selectedStoreTextField.text = stores[row].storeID
+        switch pickerView.tag {
+        case 1:
+            selectedStoreID = stores[row].storeID
+            selectedStoreTextField.text = stores[row].name
             self.delegate?.didGetSelectStore(self, storeID: selectedStoreID)
-        case mealPickerView:
+        case 2:
             for store in stores where selectedStoreID == store.storeID {
                 for store in stores where selectedStoreID == store.storeID {
                     let meal = store.meals[row]
@@ -257,9 +284,8 @@ extension CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
                     self.delegate?.didGetSelectMeal(self, meal: meal)
                 }
             }
-        default :
+        default:
             return
         }
-        
     }
 }

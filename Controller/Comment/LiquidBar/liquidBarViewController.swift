@@ -24,7 +24,6 @@ class LiquidBarViewController: UIViewController {
         super.viewWillAppear(animated)
         setLottieView()
     }
-    // AnimationViewHolder
     func setLottieView() {
         let animationView = settingLottieView()
         self.view.addSubview(animationView)
