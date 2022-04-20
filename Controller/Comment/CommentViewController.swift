@@ -86,25 +86,39 @@ class CommentViewController: UIViewController {
         self.view.addSubview(selectionView)
         selectionView.translatesAutoresizingMaskIntoConstraints = false
         selectionView.delegate = self
-        selectionView.backgroundColor = .red
-        selectionView.topAnchor.constraint(equalTo: self.imageCardView.bottomAnchor, constant: -100).isActive = true
-        selectionView.leadingAnchor.constraint(equalTo: self.imageCardView.leadingAnchor, constant: 10).isActive = true
-        selectionView.trailingAnchor.constraint(equalTo: self.imageCardView.trailingAnchor, constant: -10).isActive = true
+        selectionView.backgroundColor = .C2
+        selectionView.topAnchor.constraint(equalTo: self.imageCardView.bottomAnchor, constant: -50).isActive = true
+        selectionView.leadingAnchor.constraint(equalTo: self.imageCardView.leadingAnchor).isActive = true
+        selectionView.trailingAnchor.constraint(equalTo: self.imageCardView.trailingAnchor).isActive = true
         selectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         selectionView.layoutSelectView(dataSource: stores)
     }
     
+//    func setupDraggingView(_ type: SelectionType) {
+//        let draggingView = CommentDraggingView()
+//        view.addSubview(draggingView)
+//        draggingView.delegate = self
+//        draggingView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        draggingView.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.height)
+//        draggingView.layoutDraggingView(type: type)
+//        UIView.animate(withDuration: 0.5) {
+//            draggingView.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.height)
+//        }
+//    }
     func setupDraggingView(_ type: SelectionType) {
-        let draggingView = CommentDraggingView()
-        view.addSubview(draggingView)
-        draggingView.delegate = self
-        draggingView.translatesAutoresizingMaskIntoConstraints = false
-       
-        draggingView.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
-        draggingView.corner(byRoundingCorners: [UIRectCorner.topRight, UIRectCorner.bottomRight], radii: 30)
-        draggingView.layoutDraggingView(type: type)
+        let controller = DragingValueViewController()
+        controller.liquilBarview.delegate = self
+        controller.delegate = self
+        self.addChild(controller)
+        view.addSubview(controller.view)
+        controller.view.backgroundColor = UIColor.C5
+        controller.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
+        controller.view.corner(byRoundingCorners: [UIRectCorner.topRight, UIRectCorner.bottomRight], radii: 30)
+        controller.setupLayout(type)
         UIView.animate(withDuration: 0.5) {
-            draggingView.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.main.bounds.height)
+            self.tabBarController?.tabBar.isHidden = true
+            controller.view.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.main.bounds.height)
         }
     }
 
@@ -177,17 +191,11 @@ extension CommentViewController: CommentSelectionViewDelegate {
         print("didTapSelectNoodleValue")
     }
     
-    func didTapSelectNoodleValue(_ view: CommentSelectionView) {
-        setupDraggingView(.noodle)
+
+    func didTapSelectValue(_ view: CommentSelectionView, type: SelectionType) {
+        setupDraggingView(type)
     }
     
-    func didTapSelectSoupValue(_ view: CommentSelectionView, type: SelectionType) {
-        setupDraggingView(.soup)
-    }
-    
-    func didTapSelectHappyValue(_ view: CommentSelectionView) {
-        setupDraggingView(.happy)
-    }
     
     func didTapWriteComment(_ view: CommentSelectionView) {
         print("didTapWriteComment")
@@ -231,12 +239,23 @@ extension CommentViewController: CommentSelectionViewDelegate {
 
 
 extension CommentViewController: CommentDraggingViewDelegate {
-    func didGetSelectionValue(view: CommentDraggingView, type: SelectionType, value: Double) {
-        print("didTapGoAllPage")
+    func didTapBackButton(vc: DragingValueViewController) {
+        UIView.animate(withDuration: 0.5) {
+            vc.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
+            self.tabBarController?.tabBar.isHidden = false
+        }
     }
-    
-    func didTapBackButton(view: CommentDraggingView) {
-        print("didTapGoAllPage")
+}
+extension CommentViewController: LiquidViewDelegate {
+    func didGetSelectionValue(view: LiquidBarViewController, type: SelectionType, value: Double) {
+        switch type {
+        case .noodle:
+            commentData.contentValue.noodle = value
+        case .soup:
+            commentData.contentValue.soup = value
+        case .happy:
+            commentData.contentValue.happiness = value
+        }
     }
 }
 

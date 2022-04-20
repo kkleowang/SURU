@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol CommentDraggingViewDelegate: AnyObject {
+    func didTapBackButton(vc: DragingValueViewController)
+}
 enum SelectionType: String {
     case noodle = "麵條喜好度"
     case soup = "湯頭喜好度"
@@ -17,13 +20,14 @@ enum SelectionSubTitle: String {
 }
 
 class DragingValueViewController: UIViewController {
-    
+    weak var delegate: CommentDraggingViewDelegate?
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
     let liquilBarview = LiquidBarViewController()
     var selectionType: SelectionType = .noodle
     
-    func setupLayout() {
+    func setupLayout(_ type: SelectionType) {
+        selectionType = type
         switch selectionType {
         case .noodle :
             titleLabel.text = selectionType.rawValue
@@ -32,6 +36,8 @@ class DragingValueViewController: UIViewController {
         case .happy :
             titleLabel.text = selectionType.rawValue
         }
+        setBackButton()
+        setLiquidView()
         let spacing = (UIScreen.height * 0.9 - 480) / 2
         titleLabel.font = UIFont.regular(size: 30)
         titleLabel.characterSpacing = 2.5
@@ -49,7 +55,7 @@ class DragingValueViewController: UIViewController {
         subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 0).isActive = true
         subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
         //        subTitleLabel.text = SelectionSubTitle.text.rawValue
-        initDashBar(position: [96, 144, 192, 240, 288, 336, 384], value: [80, 70, 60, 50, 40, 30, 20])
+        initDashBar(position: [96, 144, 192, 240, 288, 336, 384], value: [8, 7, 6, 5, 4, 3, 2])
     }
     func initDashBar(position: [CGFloat], value: [Int]) {
         for line in 0..<position.count {
@@ -83,17 +89,12 @@ class DragingValueViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setBackButton()
-        setLiquidView()
-        setupLayout()
     }
     
     func setLiquidView() {
-        
-        
         self.addChild(liquilBarview)
         self.view.addSubview(liquilBarview.view)
-        liquilBarview.selectionType = selectionType
+        liquilBarview.setLottieView(selectionType)
         liquilBarview.view.translatesAutoresizingMaskIntoConstraints = false
         liquilBarview.view.layer.cornerRadius = 40
         liquilBarview.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -UIScreen.height/10).isActive = true
@@ -115,6 +116,6 @@ class DragingValueViewController: UIViewController {
     }
     
     @objc func dismissSelf() {
-        self.view.removeFromSuperview()
+        self.delegate?.didTapBackButton(vc: self)
     }
 }

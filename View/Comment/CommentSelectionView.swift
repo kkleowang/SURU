@@ -14,11 +14,7 @@ protocol CommentSelectionViewDelegate: AnyObject {
     
     func didGetSelectMeal(_ view: CommentSelectionView, meal: String)
     
-    func didTapSelectNoodleValue(_ view: CommentSelectionView)
-    
-    func didTapSelectSoupValue(_ view: CommentSelectionView, type: SelectionType)
-    
-    func didTapSelectHappyValue(_ view: CommentSelectionView)
+    func didTapSelectValue(_ view: CommentSelectionView, type: SelectionType)
     
     func didTapWriteComment(_ view: CommentSelectionView)
     
@@ -177,7 +173,7 @@ class CommentSelectionView: UIView {
 // MARK: - Button objc func
 extension CommentSelectionView {
     @objc func selectValue(sender: UIButton) {
-        let selectionType: SelectionType = {
+        let type: SelectionType = {
             switch sender {
             case selectNoodelValueButton:
                 return SelectionType.noodle
@@ -189,7 +185,7 @@ extension CommentSelectionView {
                 return SelectionType.happy
             }
         }()
-        self.delegate?.didTapSelectSoupValue(self, type: selectionType)
+        self.delegate?.didTapSelectValue(self, type: type)
     }
     @objc func writeComment() {
         self.delegate?.didTapWriteComment(self)

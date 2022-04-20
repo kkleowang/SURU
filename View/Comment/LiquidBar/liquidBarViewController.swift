@@ -8,23 +8,25 @@
 import UIKit
 import Lottie
 
-protocol SelectionValueManager: AnyObject {
-    func getSelectionValue(type: SelectionType, value: Double)
+protocol LiquidViewDelegate: AnyObject {
+    func didGetSelectionValue(view: LiquidBarViewController, type: SelectionType, value: Double)
 }
 
 class LiquidBarViewController: UIViewController {
     let mask = CALayer()
-    var selectionType: SelectionType = .noodle
-    weak var delegate: SelectionValueManager?
+    var selectionType: SelectionType?
+    weak var delegate: LiquidViewDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.clipsToBounds = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setLottieView()
+
     }
-    func setLottieView() {
+    func setLottieView(_ type: SelectionType) {
+        selectionType = type
+        view.clipsToBounds = true
         let animationView = settingLottieView()
         self.view.addSubview(animationView)
         setGesture(importView: animationView)
@@ -51,10 +53,11 @@ class LiquidBarViewController: UIViewController {
             }
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
-            guard let positionY = controledView?.center.y else { return }
+            guard let positionY = controledView?.center.y, let selectionType = selectionType else { return }
             let selectionValue = Double((positionY - 720) / -48).ceiling(toDecimal: 1)
             print("Get Value", selectionValue)
-            delegate?.getSelectionValue(type: selectionType, value: selectionValue)
+            
+            delegate?.didGetSelectionValue(view: self, type: selectionType, value: selectionValue)
             print("end")
         default:
             print("end")
@@ -64,7 +67,8 @@ class LiquidBarViewController: UIViewController {
 // setGradientView
 extension LiquidBarViewController {
     func settingLottieView() -> UIView {
-        var liqid: String
+        guard let selectionType = selectionType else { return UIView() }
+        var liqid = ""
         switch selectionType {
         case .noodle :
             liqid = "orange"
@@ -73,7 +77,7 @@ extension LiquidBarViewController {
         case .happy :
             liqid = "orange"
         }
-        let animationView = AnimationView(name: "orange")
+        let animationView = AnimationView(name: liqid)
         animationView.frame = CGRect(x: 0, y: 192, width: 80, height: 480)
         animationView.contentMode = .scaleAspectFill
         
