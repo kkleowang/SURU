@@ -10,6 +10,7 @@
 		5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */; };
 		B814DF312810741900176C13 /* ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814DF302810741900176C13 /* ref.swift */; };
 		B814DF3328108E4E00176C13 /* CommentDraggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814DF3228108E4E00176C13 /* CommentDraggingView.swift */; };
+		B814DF38281175FE00176C13 /* StoreCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B814DF37281175FE00176C13 /* StoreCardView.xib */; };
 		B830608828015A9D002558BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608728015A9D002558BE /* AppDelegate.swift */; };
 		B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608928015A9D002558BE /* SceneDelegate.swift */; };
 		B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608B28015A9D002558BE /* OLDCommentView.swift */; };
@@ -68,6 +69,8 @@
 		8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_Leo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B814DF302810741900176C13 /* ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ref.swift; sourceTree = "<group>"; };
 		B814DF3228108E4E00176C13 /* CommentDraggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDraggingView.swift; sourceTree = "<group>"; };
+		B814DF362811271400176C13 /* MapkitTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MapkitTest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		B814DF37281175FE00176C13 /* StoreCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCardView.xib; sourceTree = "<group>"; };
 		B830608428015A9D002558BE /* SURU_Leo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SURU_Leo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830608728015A9D002558BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B830608928015A9D002558BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 				B830608B28015A9D002558BE /* OLDCommentView.swift */,
 				B8659C452806C534006C85F3 /* TestingCenterViewController.swift */,
 				B814DF302810741900176C13 /* ref.swift */,
+				B814DF362811271400176C13 /* MapkitTest.playground */,
 			);
 			path = unUsedFile;
 			sourceTree = "<group>";
@@ -344,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				B8A00351280B064200A64750 /* MapView.swift */,
+				B814DF37281175FE00176C13 /* StoreCardView.xib */,
 			);
 			path = Mapping;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
 				B85B63C5280D2CDD00621E4A /* blue.json in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
+				B814DF38281175FE00176C13 /* StoreCardView.xib in Resources */,
 				B85B63C7280D2CDD00621E4A /* yellow.json in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
 				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,

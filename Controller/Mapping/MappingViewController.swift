@@ -11,6 +11,21 @@ import Kingfisher
 
 class MappingViewController: UIViewController {
     var storeData: [Store] = []
+    var gestureHolder: [UITapGestureRecognizer] = []
+    var storeHolder: [Store] = []
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = "地圖頁"
+        fetchData {
+            self.setupMapView()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = "地圖頁"
+    }
+    
     func fetchData(competion: @escaping () -> Void) {
         StoreRequestProvider.shared.fetchStores { [weak self] result in
             switch result {
@@ -23,6 +38,7 @@ class MappingViewController: UIViewController {
             competion()
         }
     }
+    
     func setupMapView() {
         let mapView = MapView()
         self.view.addSubview(mapView)
@@ -34,18 +50,16 @@ class MappingViewController: UIViewController {
         mapView.delegate = self
         mapView.layoutView(from: storeData)
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = "地圖頁"
-        fetchData {
-            self.setupMapView()
-        }
+    
+    func setupDescriptionCardView(_ store: Store) {
+        //init newView
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationItem.title = "地圖頁"
+    
+    func zoomMapViewin(_ to: Coordinate) {
+        //call mapView function
     }
 }
+
 extension MappingViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let imageView: UIImageView = {
@@ -70,13 +84,25 @@ extension MappingViewController: MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         // set Image
+        annotationView?.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         switch annotation.title {
         default:
             for store in storeData where annotation.title == store.name {
                 imageView.kf.setImage(with: URL(string: store.mainImage))
                 annotationView?.addSubview(imageView)
+                let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAnnotationView(sender:)))
+                gestureHolder.append(tap)
+                storeHolder.append(store)
+                annotationView?.addGestureRecognizer(tap)
             }
         }
         return annotationView
+    }
+    @objc func didTapAnnotationView(sender: UITapGestureRecognizer) {
+        let index = gestureHolder.firstIndex(of: sender)
+        guard let index = index else {
+            return
+        }
+        setupDescriptionCardView(storeHolder[index])
     }
 }
