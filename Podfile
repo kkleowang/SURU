@@ -18,6 +18,7 @@ target 'SURU_Leo' do
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Storage'
   pod 'SwiftLint'
+  pod 'Cosmos', '~> 23.0'
 end
 
 post_install do |installer|

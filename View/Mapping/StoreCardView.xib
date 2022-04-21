@@ -15,23 +15,23 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="230"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVh-xc-2TU">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yVh-xc-2TU">
                     <rect key="frame" x="4" y="4" width="382" height="85"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ssk-au-aNl">
-                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="85"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="D2256435-CD95-44BA-B841-2EC26739FF3D_1_105_c" translatesAutoresizingMaskIntoConstraints="NO" id="ssk-au-aNl">
+                            <rect key="frame" x="0.0" y="1" width="124" height="83"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="ssk-au-aNl" secondAttribute="height" multiplier="3:2" id="M6S-oP-LUU"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p2F-Fb-lfb">
-                            <rect key="frame" x="127.5" y="0.0" width="127.5" height="85"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDD" translatesAutoresizingMaskIntoConstraints="NO" id="p2F-Fb-lfb">
+                            <rect key="frame" x="129" y="1" width="124" height="83"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="p2F-Fb-lfb" secondAttribute="height" multiplier="3:2" id="Rv6-qC-mjj"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rbk-wU-1aG">
-                            <rect key="frame" x="255" y="0.0" width="127" height="85"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDD" translatesAutoresizingMaskIntoConstraints="NO" id="Rbk-wU-1aG">
+                            <rect key="frame" x="258" y="1" width="124" height="83"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Rbk-wU-1aG" secondAttribute="height" multiplier="3:2" id="Ork-gz-l2o"/>
                             </constraints>
@@ -105,6 +105,8 @@
         </view>
     </objects>
     <resources>
+        <image name="D2256435-CD95-44BA-B841-2EC26739FF3D_1_105_c" width="1024" height="768"/>
+        <image name="DDD" width="480" height="479"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
