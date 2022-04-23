@@ -2,9 +2,9 @@
 //import UIKit
 //
 //class anc: UIView {
-//    //
+////    //
 //    lazy var selectedStoreTextField = UITextField() {
-//        didSet {
+//
 //        self.addSubview(selectedStoreTextField)
 //            selectedStoreTextField.translatesAutoresizingMaskIntoConstraints = false
 //            selectedStoreTextField.backgroundColor = .clear
@@ -15,11 +15,12 @@
 //            selectedStoreTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
 //            selectedStoreTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
 //            selectedStoreTextField.inputView = storePickerView
-//        }
+//        self()
+//
 //    }
-//    
+//
 //    var selectedMealTextField: UITextField? {
-//        
+//
 //        let textField = UITextField()
 //        self.addSubview(textField)
 //        textField.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +34,8 @@
 //        textField.inputView = mealPickerView
 //        return textField
 //    }
-//    
+//    selectedMealTextField?.isHidden = false
+//
 //    var storePickerView: UIPickerView? {
 //        let pickView = UIPickerView()
 //        pickView.tag = 1

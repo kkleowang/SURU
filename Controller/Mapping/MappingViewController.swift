@@ -7,25 +7,41 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 import Kingfisher
 
 class MappingViewController: UIViewController {
     var storeData: [Store] = []
+    //計算對應的function用
     var gestureHolder: [UITapGestureRecognizer] = []
     var storeHolder: [Store] = []
+    
+    let mapView = MapView()
+    var locationManager = CLLocationManager()
+    
+    //    var collectionViewLayout =  UICollectionViewLayout()
+    var storeCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "地圖頁"
         fetchData {
             self.setupMapView()
         }
+        storeCardCollectionView.register(UINib(nibName: String(describing: StoreCardCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: StoreCardCell.self))
+        //        collectionViewLayout = generateLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "地圖頁"
+        storeCardCollectionView.dataSource = self
+        storeCardCollectionView.collectionViewLayout = generateLayout()
+        
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupLocationManager()
+    }
     func fetchData(competion: @escaping () -> Void) {
         StoreRequestProvider.shared.fetchStores { [weak self] result in
             switch result {
@@ -40,7 +56,7 @@ class MappingViewController: UIViewController {
     }
     
     func setupMapView() {
-        let mapView = MapView()
+        
         self.view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
@@ -52,11 +68,22 @@ class MappingViewController: UIViewController {
     }
     
     func setupDescriptionCardView(_ store: Store) {
-        //init newView
+        
+        storeCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.stickSubView(storeCardCollectionView, inset: UIEdgeInsets(top: 50, left: 20, bottom: 600, right: 20))
     }
     
     func zoomMapViewin(_ to: Coordinate) {
         //call mapView function
+    }
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
     }
 }
 
@@ -104,5 +131,57 @@ extension MappingViewController: MKMapViewDelegate {
             return
         }
         setupDescriptionCardView(storeHolder[index])
+    }
+}
+extension MappingViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return storeData.count
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(StoreCardCell.self)", for: indexPath) as! StoreCardCell
+        let distanceArray: [Double] = {
+            var array: [Double] = []
+            for store in self.storeData {
+                array.append((MKUserLocation().location?.distance(from: CLLocation(latitude: store.coordinate.lat, longitude: store.coordinate.long))) ?? 123)
+            }
+            return array
+        }()
+        
+        cell.layoutCardView(dataSource: storeData[indexPath.row], areaName: "還沒做出來區", distance: distanceArray[indexPath.row])
+        return cell
+    }
+    
+    func generateLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalWidth(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupFractionalWidth = 0.9
+        let groupFractionalHeight = 1
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
+            heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+}
+extension MappingViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let mUserLocation:CLLocation = locations[0] as CLLocation
+        
+        let center = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
+        let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        mapView.setRegion(mRegion, animated: true)
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error - locationManager: \(error.localizedDescription)")
     }
 }

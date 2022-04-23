@@ -8,6 +8,8 @@
 import Foundation
 
 struct Store: Codable {
+    
+    
     var storeID: String = ""
     var name: String
     var address: String

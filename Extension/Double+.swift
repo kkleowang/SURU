@@ -7,7 +7,6 @@
 
 import Foundation
 extension Double {
-    
     func ceiling(toDecimal decimal: Int) -> Double {
         let numberOfDigits = abs(pow(10.0, Double(decimal)))
         if self.sign == .minus {
