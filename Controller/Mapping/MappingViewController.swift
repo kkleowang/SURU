@@ -22,7 +22,12 @@ class MappingViewController: UIViewController {
     var commentOfStore: [[Comment]] = []
     var selectedIndex = 0 {
         didSet {
+            if selectedIndex != oldValue {
+                storeCardCollectionView.scrollToItem(at: IndexPath(item: selectedIndex, section: 0), at: .centeredVertically, animated: true)
+            storeCardCollectionView.collectionViewLayout.invalidateLayout()
+            mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: storeData[selectedIndex].coordinate.lat-0.002, longitude: storeData[selectedIndex].coordinate.long), latitudinalMeters: 800, longitudinalMeters: 800), animated: true)
 //            print(letSelectindexPath())
+            }
         }
     }
     
@@ -37,6 +42,7 @@ class MappingViewController: UIViewController {
         fetchCommentData()
         fetchStoreData {
             self.setupMapView()
+            self.setupHiddenCollectionView()
         }
         storeCardCollectionView.register(UINib(nibName: String(describing: StoreCardCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: StoreCardCell.self))
         //        collectionViewLayout = generateLayout()
@@ -89,25 +95,25 @@ class MappingViewController: UIViewController {
         mapView.delegate = self
         mapView.layoutView(from: storeData)
     }
-    
+    func setupHiddenCollectionView() {
+        setupDataForCollectionCell()
+        storeCardCollectionView.isHidden = true
+        self.view.addSubview(storeCardCollectionView)
+        storeCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
+//        storeCardCollectionView.clipsToBounds = true
+        storeCardCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        storeCardCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        storeCardCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+        storeCardCollectionView.heightAnchor.constraint(equalTo: storeCardCollectionView.widthAnchor, multiplier: 230/390).isActive = true
+        storeCardCollectionView.backgroundColor = .clear
+    }
     func setupDescriptionCardView() {
         
         
-        if self.view.subviews.last != storeCardCollectionView {
-            setupDataForCollectionCell()
-            self.view.addSubview(storeCardCollectionView)
-            storeCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
-            storeCardCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            storeCardCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-            storeCardCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 40).isActive = true
-            storeCardCollectionView.heightAnchor.constraint(equalToConstant: 400).isActive = true
-            storeCardCollectionView.backgroundColor = .clear
-//            storeCardCollectionView.isScrollEnabled = false
-//            storeCardCollectionView.
-            
-            storeCardCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: true, scrollPosition: .centeredVertically)
+        if storeCardCollectionView.isHidden {
+            storeCardCollectionView.isHidden = false
         }
-        storeCardCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: true, scrollPosition: .centeredVertically)
+        
     }
     
     func zoomMapViewin(_ point: Coordinate) {
@@ -179,7 +185,9 @@ extension MappingViewController: MKMapViewDelegate {
     @objc func didTapAnnotationView(sender: UITapGestureRecognizer) {
         guard let name = sender.name else { return }
         for (index, store) in storeData.enumerated() where store.storeID == name {
+            
             selectedIndex = index
+            print(index)
             setupDescriptionCardView()
         }
     }
@@ -197,7 +205,7 @@ extension MappingViewController: UICollectionViewDataSource {
     }
     
     func generateLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.6))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupFractionalWidth = 0.9
         let groupFractionalHeight = 1
@@ -230,12 +238,9 @@ extension MappingViewController: UICollectionViewDataSource {
 extension MappingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.row
+        
+        print(indexPath.row + 1)
     }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("scrollViewDidScroll")
-    }
-    
 }
 
 
