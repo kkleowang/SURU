@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 # ignore all warnings from all pods
 inhibit_all_warnings!
@@ -19,6 +19,8 @@ target 'SURU_Leo' do
   pod 'Firebase/Storage'
   pod 'SwiftLint'
   pod 'Cosmos', '~> 23.0'
+  pod 'XLPagerTabStrip', '~> 9.0'
+  pod 'CHTCollectionViewWaterfallLayout/Swift'
 end
 
 post_install do |installer|
