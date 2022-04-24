@@ -18,6 +18,8 @@ class CommentViewController: UIViewController {
     
     // datasource放置
     var stores: [Store] = []
+    var comments: [Comment] = []
+    var commentDrafts: [CommentDraft] = []
     
     var commentData: Comment = {
         let comment = Comment(
@@ -35,12 +37,20 @@ class CommentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        startingView.commentTableView?.register(UINib(nibName: String(describing: CommentTableViewCell.self), bundle: nil), forCellReuseIdentifier: "CommentsCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchStoreData()
-        setupStartingView()
+        fetchCoreData {
+            
+        }
+        fetchCommentOfUser {
+            self.setupStartingView()
+        }
+        
     }
     
     func fetchStoreData() {
@@ -50,6 +60,30 @@ class CommentViewController: UIViewController {
                 self.stores = data
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    func fetchCommentOfUser(com: @escaping () -> Void) {
+        CommentRequestProvider.shared.fetchCommentsOfUser(useID: "ZBrsbRumZjvowPKfpFZL") { result in
+            switch result {
+            case .success(let data):
+                self.comments = data
+                com()
+            case .failure(let error):
+                print(error)
+                com()
+            }
+        }
+    }
+    func fetchCoreData(com: @escaping () -> Void) {
+        StorageManager.shared.fetchComments { result in
+            switch result {
+            case .success(let data):
+                self.commentDrafts = data
+                com()
+            case .failure(let error):
+                print(error)
+                com()
             }
         }
     }
@@ -136,6 +170,9 @@ class CommentViewController: UIViewController {
 
 // StartingView Delegate
 extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
     func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController?) {
         guard let imagePicker = imagePicker else {
             return
@@ -152,11 +189,22 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     }
     // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        if section == 0 {
+            return comments.count
+        } else {
+            return commentDrafts.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
+        if indexPath.section == 0 {
+            cell.layoutCommentCell(data: comments[indexPath.row])
+            return cell
+        } else {
+            cell.layoutDraftCell(data: commentDrafts[indexPath.row])
+            return cell
+        }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         2

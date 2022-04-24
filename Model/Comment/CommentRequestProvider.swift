@@ -35,6 +35,27 @@ class CommentRequestProvider {
         }
     }
     
+    func fetchCommentsOfUser(useID: String, completion: @escaping (Result<[Comment], Error>) -> Void) {
+        database.collection("comments").whereField("userID", isEqualTo: useID as Any).getDocuments { querySnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                var comments = [Comment]()
+                guard let snapshot = querySnapshot else { return }
+                for document in snapshot.documents {
+                    do {
+                        if let comment = try document.data(as: Comment.self, decoder: Firestore.Decoder()) {
+                            comments.append(comment)
+                        }
+                    } catch {
+                        completion(.failure(error))
+                    }
+                }
+                completion(.success(comments))
+            }
+        }
+    }
+    
     func publishComment(comment: inout Comment, completion: @escaping (Result<String, Error>) -> Void) {
         let docment = database.collection("comments").document()
         comment.commentID = docment.documentID

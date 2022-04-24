@@ -12,7 +12,7 @@ typealias CommentDraftResults = (Result<[CommentDraft], Error>) -> Void
 typealias CommentDraftResult = (Result<CommentDraft, Error>) -> Void
 
 class StorageManager {
-    static let storageManager = StorageManager()
+    static let shared = StorageManager()
     
     private enum Entity: String, CaseIterable {
         case commentDraft = "CommentDraft"
