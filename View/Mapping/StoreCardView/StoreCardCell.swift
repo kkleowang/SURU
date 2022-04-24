@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 import Cosmos
 
 class StoreCardCell: UICollectionViewCell {
@@ -29,7 +30,7 @@ class StoreCardCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak private var avgRatingView: CosmosView!
     @IBOutlet weak private var ratingCountLabel: UILabel!
     @IBOutlet weak private var tagsStackView: UIStackView!
@@ -38,13 +39,17 @@ class StoreCardCell: UICollectionViewCell {
     @IBOutlet weak private var timeUntillLabel: UILabel!
     
     @IBOutlet weak private var distanceLabel: UILabel!
-    func layoutCardView(dataSource: Store, areaName: String, distance: Double) {
+    func layoutCardView(dataSource: Store, commentData: [Comment], areaName: String, distance: Double) {
         self.backgroundColor = .black.withAlphaComponent(0.7)
         self.clipsToBounds = true
         self.cornerForAll(radii: 10)
         self.nameLabel.text = dataSource.name
         self.localtionAreaLabel.text = areaName
-        self.distanceLabel.text = String("\(distance.ceiling(toDecimal: 1)) 公里")
+        let kilometer = Double(distance/1000).ceiling(toDecimal: 1)
+        self.distanceLabel.text = String("\(kilometer) 公里")
+        if !commentData.isEmpty {
+            leftImageView.kf.setImage(with: URL(string: commentData.first!.mainImage))
+        }
        
     }
 }

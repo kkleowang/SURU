@@ -109,4 +109,7 @@ extension WaterfaillsViewController: UITableViewDelegate, UITableViewDataSource 
         cell.layoutSampleCommentCell(store: store, comment: comment, account: user)
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        AppDataProvider.shared.allInOne()
+    }
 }

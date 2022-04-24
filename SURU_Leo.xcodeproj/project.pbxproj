@@ -65,6 +65,7 @@
 		B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70152805B0FD00DA8B78 /* UIFont+.swift */; };
 		B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */; };
 		B8F22DED280CE2500096FB91 /* FirebaseStorageRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */; };
+		B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517728159A55002E2A3C /* StoreFromJson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,7 @@
 		B8EC70152805B0FD00DA8B78 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSelectionView.swift; sourceTree = "<group>"; };
 		B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageRequestProvider.swift; sourceTree = "<group>"; };
+		B8F3517728159A55002E2A3C /* StoreFromJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFromJson.swift; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +217,7 @@
 			children = (
 				B83E9585280EACF7009DD17F /* StoreRequestProvider.swift */,
 				B83E9597280EB670009DD17F /* StoreDataModel.swift */,
+				B8F3517728159A55002E2A3C /* StoreFromJson.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -554,7 +557,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "
+";
 		};
 		B8659C3928068262006C85F3 /* Multiple Simulators */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -624,6 +628,7 @@
 				B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */,
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
 				B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */,
+				B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */,
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,

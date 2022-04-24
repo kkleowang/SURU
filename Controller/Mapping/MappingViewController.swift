@@ -12,9 +12,19 @@ import Kingfisher
 
 class MappingViewController: UIViewController {
     var storeData: [Store] = []
-    //計算對應的function用
+    var commentData: [Comment] = []
+    // 計算對應的function用
     var gestureHolder: [UITapGestureRecognizer] = []
     var storeHolder: [Store] = []
+    
+    // 計算對應的datasource用
+    var distance: [Double] = []
+    var commentOfStore: [[Comment]] = []
+    var selectedIndex = 0 {
+        didSet {
+//            print(letSelectindexPath())
+        }
+    }
     
     let mapView = MapView()
     var locationManager = CLLocationManager()
@@ -24,7 +34,8 @@ class MappingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "地圖頁"
-        fetchData {
+        fetchCommentData()
+        fetchStoreData {
             self.setupMapView()
         }
         storeCardCollectionView.register(UINib(nibName: String(describing: StoreCardCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: StoreCardCell.self))
@@ -35,6 +46,7 @@ class MappingViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationItem.title = "地圖頁"
         storeCardCollectionView.dataSource = self
+        storeCardCollectionView.delegate = self
         storeCardCollectionView.collectionViewLayout = generateLayout()
         
     }
@@ -42,11 +54,23 @@ class MappingViewController: UIViewController {
         super.viewDidAppear(animated)
         setupLocationManager()
     }
-    func fetchData(competion: @escaping () -> Void) {
+    func fetchCommentData() {
+        CommentRequestProvider.shared.fetchComments { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.commentData = data
+                print("Get all comment data from firebase in Mapping page")
+            case .failure(let error):
+                print("Mapping page error with code: \(error)")
+            }
+        }
+    }
+    func fetchStoreData(competion: @escaping () -> Void) {
         StoreRequestProvider.shared.fetchStores { [weak self] result in
             switch result {
             case .success(let data):
-                self?.storeData = data
+                self?.storeData = data.sorted(by: { $0.coordinate.long < $1.coordinate.long
+                })
                 print("Get all store data from firebase in Mapping page")
             case .failure(let error):
                 print("Mapping page error with code: \(error)")
@@ -56,7 +80,6 @@ class MappingViewController: UIViewController {
     }
     
     func setupMapView() {
-        
         self.view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
@@ -67,15 +90,41 @@ class MappingViewController: UIViewController {
         mapView.layoutView(from: storeData)
     }
     
-    func setupDescriptionCardView(_ store: Store) {
+    func setupDescriptionCardView() {
         
-        storeCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.stickSubView(storeCardCollectionView, inset: UIEdgeInsets(top: 50, left: 20, bottom: 600, right: 20))
+        
+        if self.view.subviews.last != storeCardCollectionView {
+            setupDataForCollectionCell()
+            self.view.addSubview(storeCardCollectionView)
+            storeCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
+            storeCardCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+            storeCardCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+            storeCardCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 40).isActive = true
+            storeCardCollectionView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+            storeCardCollectionView.backgroundColor = .clear
+//            storeCardCollectionView.isScrollEnabled = false
+//            storeCardCollectionView.
+            
+            storeCardCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: true, scrollPosition: .centeredVertically)
+        }
+        storeCardCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: true, scrollPosition: .centeredVertically)
     }
     
-    func zoomMapViewin(_ to: Coordinate) {
-        //call mapView function
+    func zoomMapViewin(_ point: Coordinate) {
+        // call mapView function
     }
+    func setupDataForCollectionCell() {
+        let fakeLocationAkaTaipei101 = CLLocation(latitude: 25.038685278051556, longitude: 121.5323763590289)
+        for (index, data) in storeData.enumerated() {
+            var commentHolder: [Comment] = []
+            distance.append(fakeLocationAkaTaipei101.distance(from: CLLocation(latitude: data.coordinate.lat, longitude: data.coordinate.long)))
+            for comment in commentData where comment.storeID == data.storeID {
+                commentHolder.append(comment)
+            }
+            commentOfStore.insert(commentHolder, at: index)
+        }
+    }
+    
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -90,9 +139,9 @@ class MappingViewController: UIViewController {
 extension MappingViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let imageView: UIImageView = {
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-            imageView.layer.cornerRadius = 25.0
-            imageView.layer.borderWidth = 3.0
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            imageView.layer.cornerRadius = 15.0
+            imageView.layer.borderWidth = 2.0
             imageView.layer.borderColor = UIColor.white.cgColor
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
@@ -111,52 +160,44 @@ extension MappingViewController: MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         // set Image
-        annotationView?.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        annotationView?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
         switch annotation.title {
         default:
             for store in storeData where annotation.title == store.name {
                 imageView.kf.setImage(with: URL(string: store.mainImage))
                 annotationView?.addSubview(imageView)
                 let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAnnotationView(sender:)))
-                gestureHolder.append(tap)
-                storeHolder.append(store)
+                tap.name = store.storeID
+                //                gestureHolder.append(tap)
+                
                 annotationView?.addGestureRecognizer(tap)
             }
         }
         return annotationView
     }
     @objc func didTapAnnotationView(sender: UITapGestureRecognizer) {
-        let index = gestureHolder.firstIndex(of: sender)
-        guard let index = index else {
-            return
+        guard let name = sender.name else { return }
+        for (index, store) in storeData.enumerated() where store.storeID == name {
+            selectedIndex = index
+            setupDescriptionCardView()
         }
-        setupDescriptionCardView(storeHolder[index])
     }
 }
 extension MappingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return storeData.count
     }
-    
-    
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(StoreCardCell.self)", for: indexPath) as! StoreCardCell
-        let distanceArray: [Double] = {
-            var array: [Double] = []
-            for store in self.storeData {
-                array.append((MKUserLocation().location?.distance(from: CLLocation(latitude: store.coordinate.lat, longitude: store.coordinate.long))) ?? 123)
-            }
-            return array
-        }()
-        
-        cell.layoutCardView(dataSource: storeData[indexPath.row], areaName: "還沒做出來區", distance: distanceArray[indexPath.row])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(StoreCardCell.self)", for: indexPath) as? StoreCardCell else { return UICollectionViewCell() }
+        cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], areaName: "還沒做出來區", distance: distance[indexPath.row])
         return cell
     }
     
     func generateLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalWidth(1))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupFractionalWidth = 0.9
         let groupFractionalHeight = 1
@@ -169,14 +210,39 @@ extension MappingViewController: UICollectionViewDataSource {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPagingCentered
         
-        return UICollectionViewCompositionalLayout(section: section)
+        var layout = UICollectionViewCompositionalLayout(section: section)
+        
+        return layout
+    }
+    func letSelectindexPath() -> Int {
+        
+        for cell in storeCardCollectionView.visibleCells  {
+            guard let cells = cell as? StoreCardCell else { return  0 }
+            if cells.nameLabel.text! == storeData[selectedIndex].name {
+            let row = (storeCardCollectionView.indexPath(for: cell)?.row)!
+            return row
+            }
+        }
+        return 0
     }
 }
+
+extension MappingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("scrollViewDidScroll")
+    }
+    
+}
+
+
 extension MappingViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let mUserLocation:CLLocation = locations[0] as CLLocation
-        
-        let center = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
+        let userLocation: CLLocation = locations[0] as CLLocation
+        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
         mapView.setRegion(mRegion, animated: true)

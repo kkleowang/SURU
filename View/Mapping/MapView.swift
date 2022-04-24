@@ -13,7 +13,7 @@ class MapView: MKMapView {
     
     func layoutView(from stores: [Store]) {
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.width, height: UIScreen.height)
-//        self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.09108, longitude: 121.5598), latitudinalMeters: 40000, longitudinalMeters: 40000)
+        self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.09108, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000)
         if !stores.isEmpty {
             for store in stores {
                 let mark = MKPointAnnotation()
