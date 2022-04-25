@@ -32,16 +32,7 @@ class CommentStartingView: UIView {
         return button
     }
     
-    var commentTableView: UITableView? {
-        let tableView = UITableView()
-            self.addSubview(tableView)
-            tableView.translatesAutoresizingMaskIntoConstraints = false
-            tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            tableView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-            tableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        return tableView
-    }
+    var commentTableView =  UITableView()
     
     var imagePicker: UIImagePickerController? {
         let imagePicker = UIImagePickerController()
@@ -53,6 +44,15 @@ class CommentStartingView: UIView {
         
     func layoutStartingView() {
         startCommentButton?.isHidden = false
+        
+            self.addSubview(commentTableView)
+        commentTableView.register(UINib(nibName: String(describing: CommentTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: CommentTableViewCell.self))
+        commentTableView.translatesAutoresizingMaskIntoConstraints = false
+        commentTableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        commentTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        commentTableView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        commentTableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        
     }
     
     @objc func startComment() {

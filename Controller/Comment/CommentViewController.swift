@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 
 class CommentViewController: UIViewController {
     // View
@@ -38,7 +38,8 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        startingView.commentTableView?.register(UINib(nibName: String(describing: CommentTableViewCell.self), bundle: nil), forCellReuseIdentifier: "CommentsCell")
+        
+            
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,9 +96,11 @@ class CommentViewController: UIViewController {
         startingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         startingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         startingView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        startingView.commentTableView?.isHidden = false
-        startingView.commentTableView?.delegate = self
-        startingView.commentTableView?.dataSource = self
+        startingView.commentTableView.isHidden = false
+        startingView.commentTableView.delegate = self
+        startingView.commentTableView.dataSource = self
+        startingView.commentTableView.allowsSelection = true
+        startingView.commentTableView.isUserInteractionEnabled = true
         startingView.delegate = self
         startingView.layoutStartingView()
     }
@@ -117,11 +120,11 @@ class CommentViewController: UIViewController {
     }
     
     func setupCommentSelectionView() {
-        self.view.addSubview(selectionView)
+        self.view.insertSubview(selectionView, belowSubview: imageCardView)
         selectionView.translatesAutoresizingMaskIntoConstraints = false
         selectionView.delegate = self
-        selectionView.backgroundColor = .C2
-        selectionView.topAnchor.constraint(equalTo: self.imageCardView.bottomAnchor, constant: -50).isActive = true
+        selectionView.backgroundColor = .B6
+        selectionView.topAnchor.constraint(equalTo: self.imageCardView.bottomAnchor, constant: 10).isActive = true
         selectionView.leadingAnchor.constraint(equalTo: self.imageCardView.leadingAnchor).isActive = true
         selectionView.trailingAnchor.constraint(equalTo: self.imageCardView.trailingAnchor).isActive = true
         selectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
@@ -146,7 +149,7 @@ class CommentViewController: UIViewController {
         controller.delegate = self
         self.addChild(controller)
         view.addSubview(controller.view)
-        controller.view.backgroundColor = UIColor.C5
+        controller.view.backgroundColor = UIColor.B5
         controller.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
         controller.view.corner(byRoundingCorners: [UIRectCorner.topRight, UIRectCorner.bottomRight], radii: 30)
         controller.setupLayout(type)
@@ -189,7 +192,7 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     }
     // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 1 {
             return comments.count
         } else {
             return commentDrafts.count
@@ -197,8 +200,8 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
-        if indexPath.section == 0 {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
+        if indexPath.section == 1 {
             cell.layoutCommentCell(data: comments[indexPath.row])
             return cell
         } else {
@@ -214,6 +217,12 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
             return "你的評論草稿"
         } else {
             return "你發表過的評論"
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            setupImageCardView(UIImage(data: commentDrafts[indexPath.row].image!)!)
+            startingView.removeFromSuperview()
         }
     }
 }
@@ -269,6 +278,14 @@ extension CommentViewController: CommentSelectionViewDelegate {
     }
     
     func didTapSaveComment(_ view: CommentSelectionView) {
+        StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
+            switch result {
+            case .success(let data):
+                    print("COredata")
+            case .failure(let error):
+                print(error)
+            }
+        }
         print("didTapSaveComment")
     }
     
@@ -299,11 +316,92 @@ extension CommentViewController: LiquidViewDelegate {
         switch type {
         case .noodle:
             commentData.contentValue.noodle = value
+            initValueView(on: selectionView.selectNoodelValueButton, value: value,color: UIColor.systemYellow.cgColor)
+            
         case .soup:
             commentData.contentValue.soup = value
+            initValueView(on: selectionView.selectSouplValueButton, value: value,color: UIColor.systemBlue.cgColor)
+            
         case .happy:
             commentData.contentValue.happiness = value
+            initValueView(on: selectionView.selectHappyValueButton, value: value,color: UIColor.systemPink.cgColor)
+            
         }
+        if  commentData.contentValue.noodle != 0 &&  commentData.contentValue.soup != 0 &&  commentData.contentValue.happiness != 0 {
+            initSendButton()
+        }
+    }
+}
+
+extension CommentViewController {
+    func initSendButton() {
+        let button = UIButton()
+        view.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
+        button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        button.layer.cornerRadius = 25
+        button.setImage( UIImage(named: "plus"), for: .normal)
+        button.addTarget(self, action: #selector(sendComment), for: .touchUpInside)
+        button.backgroundColor = .black.withAlphaComponent(0.4)
+        button.tintColor = .white
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
+    @objc func sendComment() {
+        guard let image = imageDataHolder else { return }
+        let fileName = "\(commentData.userID)_\(Date())"
+        FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
+            switch result {
+            case .success(let url) :
+                print("上傳圖片成功", url.description)
+                self.commentData.mainImage = url.description
+                self.publishComment()
+            case .failure(let error) :
+                print("上傳圖片失敗", error)
+            }
+        }
+    }
+    func initValueView(on view: UIView, value: Double, color: CGColor) {
+        // round view
+            let roundView = UIView(
+                frame: CGRect(
+                    x: view.bounds.origin.x,
+                    y: view.bounds.origin.y,
+                    width: view.bounds.size.width - 4,
+                    height: view.bounds.size.height - 4
+                )
+            )
+        
+            roundView.backgroundColor = .B5
+            roundView.layer.cornerRadius = roundView.frame.size.width / 2
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: roundView.bounds.width, height: roundView.bounds.height))
+        label.center = CGPoint(x: roundView.center.x, y: roundView.center.y)
+        label.textAlignment = .center
+        label.text = "\(value)"
+        roundView.addSubview(label)
+            // bezier path
+            let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
+                                          radius: roundView.frame.size.width / 2,
+                                          startAngle: CGFloat(-0.5 * .pi),
+                                          endAngle: CGFloat(1.5 * .pi),
+                                          clockwise: true)
+            // circle shape
+            let circleShape = CAShapeLayer()
+            circleShape.path = circlePath.cgPath
+            circleShape.strokeColor = color
+            circleShape.fillColor = UIColor.clear.cgColor
+            circleShape.lineWidth = 4
+            // set start and end values
+            circleShape.strokeStart = 0.0
+        circleShape.strokeEnd = value*0.1
+            
+            // add sublayer
+            roundView.layer.addSublayer(circleShape)
+            // add subview
+            view.addSubview(roundView)
+        view.backgroundColor = .B6
     }
 }
 

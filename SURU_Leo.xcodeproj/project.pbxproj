@@ -66,8 +66,8 @@
 		B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */; };
 		B8F22DED280CE2500096FB91 /* FirebaseStorageRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */; };
 		B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517728159A55002E2A3C /* StoreFromJson.swift */; };
-		B8F3517C2815E854002E2A3C /* CommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F3517B2815E854002E2A3C /* CommentsCell.xib */; };
 		B8F3517E2815E8EE002E2A3C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */; };
+		B8F351802815F225002E2A3C /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,8 +134,8 @@
 		B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSelectionView.swift; sourceTree = "<group>"; };
 		B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageRequestProvider.swift; sourceTree = "<group>"; };
 		B8F3517728159A55002E2A3C /* StoreFromJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFromJson.swift; sourceTree = "<group>"; };
-		B8F3517B2815E854002E2A3C /* CommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCell.xib; sourceTree = "<group>"; };
 		B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -357,7 +357,7 @@
 				B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */,
 				B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */,
 				B83E959D2810479A009DD17F /* LiquidBar */,
-				B8F3517B2815E854002E2A3C /* CommentsCell.xib */,
+				B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */,
 				B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */,
 			);
 			path = Comment;
@@ -512,7 +512,7 @@
 				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
 				B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */,
 				B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */,
-				B8F3517C2815E854002E2A3C /* CommentsCell.xib in Resources */,
+				B8F351802815F225002E2A3C /* CommentTableViewCell.xib in Resources */,
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
 				B85B63C5280D2CDD00621E4A /* blue.json in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,

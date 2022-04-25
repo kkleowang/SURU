@@ -24,6 +24,7 @@ class CommentImageCardView: UIView {
         imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         imageView.contentMode = .scaleAspectFill
+        
         imageView.isUserInteractionEnabled = true
         let tab = UITapGestureRecognizer(target: self, action: #selector(tapGesture(sender:)))
         imageView.addGestureRecognizer(tab)

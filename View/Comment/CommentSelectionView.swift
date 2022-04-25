@@ -74,6 +74,7 @@ class CommentSelectionView: UIView {
     let writeCommentButton = UIButton()
     let notWriteCommentButton = UIButton()
     let stackView = UIStackView()
+    let saveDraftButton = UIButton()
     
     func initTextField() {
         self.addSubview(selectedStoreTextField)
@@ -84,8 +85,8 @@ class CommentSelectionView: UIView {
         selectedStoreTextField.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         selectedStoreTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         selectedStoreTextField.font = UIFont.medium(size: 30)
-        selectedStoreTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        selectedStoreTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        selectedStoreTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        selectedStoreTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         selectedStoreTextField.inputView = storePickerView
         
         self.addSubview(selectedMealTextField)
@@ -96,8 +97,8 @@ class CommentSelectionView: UIView {
         selectedMealTextField.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         selectedMealTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         selectedStoreTextField.font = UIFont.medium(size: 20)
-        selectedMealTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 80).isActive = true
-        selectedMealTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        selectedMealTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
+        selectedMealTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         selectedMealTextField.inputView = mealPickerView
     }
     func initPickerView() {
@@ -168,6 +169,54 @@ class CommentSelectionView: UIView {
         notWriteCommentButton.backgroundColor = .black.withAlphaComponent(0.4)
         notWriteCommentButton.tintColor = .white
         notWriteCommentButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        
+        self.addSubview(saveDraftButton)
+        saveDraftButton.translatesAutoresizingMaskIntoConstraints = false
+        saveDraftButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        saveDraftButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        saveDraftButton.layer.cornerRadius = 20
+        saveDraftButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        saveDraftButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40).isActive = true
+        saveDraftButton.setImage( UIImage(named: "draftmark"), for: .normal)
+        saveDraftButton.addTarget(self, action: #selector(saveCommentDraft), for: .touchUpInside)
+        saveDraftButton.backgroundColor = .black.withAlphaComponent(0.4)
+        saveDraftButton.tintColor = .white
+        saveDraftButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+    }
+    func initValueView(on view: UIView, value: Double) {
+        // round view
+            let roundView = UIView(
+                frame: CGRect(
+                    x: view.bounds.origin.x,
+                    y: view.bounds.origin.y,
+                    width: view.bounds.size.width - 4,
+                    height: view.bounds.size.height - 4
+                )
+            )
+            roundView.backgroundColor = .B5
+            roundView.layer.cornerRadius = roundView.frame.size.width / 2
+            
+            // bezier path
+            let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
+                                          radius: roundView.frame.size.width / 2,
+                                          startAngle: CGFloat(-0.5 * .pi),
+                                          endAngle: CGFloat(1.5 * .pi),
+                                          clockwise: true)
+            // circle shape
+            let circleShape = CAShapeLayer()
+            circleShape.path = circlePath.cgPath
+            circleShape.strokeColor = UIColor.red.cgColor
+            circleShape.fillColor = UIColor.clear.cgColor
+            circleShape.lineWidth = 4
+            // set start and end values
+            circleShape.strokeStart = 0.0
+        circleShape.strokeEnd = value*0.1
+            
+            // add sublayer
+            roundView.layer.addSublayer(circleShape)
+            // add subview
+            view.addSubview(roundView)
+        view.removeFromSuperview()
     }
 }
 // MARK: - Button objc func

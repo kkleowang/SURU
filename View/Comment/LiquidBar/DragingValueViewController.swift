@@ -67,12 +67,13 @@ class DragingValueViewController: UIViewController {
             dashBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 135).isActive = true
             dashBar.centerYAnchor.constraint(equalTo: liquilBarview.view.topAnchor, constant: positionOfDashBar).isActive = true
             dashBar.heightAnchor.constraint(equalToConstant: 1).isActive = true
-            dashBar.backgroundColor = UIColor.B5
+            dashBar.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+
             if valueOfDashBar % 20 == 0 {
                 dashBar.widthAnchor.constraint(equalToConstant: 70).isActive = true
                 let valueLabel = UILabel()
                 self.view.addSubview(valueLabel)
-                valueLabel.textColor = UIColor.B6
+                valueLabel.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                 valueLabel.translatesAutoresizingMaskIntoConstraints = false
                 valueLabel.leadingAnchor.constraint(equalTo: dashBar.trailingAnchor, constant: 5).isActive = true
                 valueLabel.centerYAnchor.constraint(equalTo: dashBar.centerYAnchor, constant: 0).isActive = true
@@ -103,15 +104,23 @@ class DragingValueViewController: UIViewController {
         liquilBarview.view.heightAnchor.constraint(equalToConstant: 480).isActive = true
         liquilBarview.view.backgroundColor = UIColor.white
     }
+   
     func setBackButton() {
         let backButton = UIButton()
         self.view.addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
         backButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        backButton.backgroundColor = UIColor.red
+        backButton.layer.cornerRadius = 15
+        
+        backButton.setImage( UIImage(named: "plus"), for: .normal)
+        
+        backButton.backgroundColor = .black.withAlphaComponent(0.4)
+        backButton.tintColor = .white
+        backButton.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        
         backButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
     }
     
@@ -119,3 +128,4 @@ class DragingValueViewController: UIViewController {
         self.delegate?.didTapBackButton(vc: self)
     }
 }
+

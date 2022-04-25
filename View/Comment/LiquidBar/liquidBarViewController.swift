@@ -11,11 +11,15 @@ import Lottie
 protocol LiquidViewDelegate: AnyObject {
     func didGetSelectionValue(view: LiquidBarViewController, type: SelectionType, value: Double)
 }
+protocol LiquidViewDrawValueDelegate: AnyObject {
+    func didGetSelectionValue(view: LiquidBarViewController, type: SelectionType, value: Double)
+}
 
 class LiquidBarViewController: UIViewController {
     let mask = CALayer()
     var selectionType: SelectionType?
     weak var delegate: LiquidViewDelegate?
+    weak var drawDelegate: LiquidViewDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.clipsToBounds = true
@@ -58,6 +62,7 @@ class LiquidBarViewController: UIViewController {
             print("Get Value", selectionValue)
             
             delegate?.didGetSelectionValue(view: self, type: selectionType, value: selectionValue)
+            drawDelegate?.didGetSelectionValue(view: self, type: selectionType, value: selectionValue)
             print("end")
         default:
             print("end")
