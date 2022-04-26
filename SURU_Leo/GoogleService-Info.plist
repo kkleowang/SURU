@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>305551715776-gqgcskkd9gp7crjo5npf04g6adtrl4ua.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.305551715776-gqgcskkd9gp7crjo5npf04g6adtrl4ua</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDk_IrP9BV9KYGb3__gBa0sF4dzfxzaTDQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>305551715776</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.leowang.SURU-Leo</string>
+	<key>PROJECT_ID</key>
+	<string>suru-4c219</string>
+	<key>STORAGE_BUCKET</key>
+	<string>suru-4c219.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:305551715776:ios:5815b9c1c196c1ed9f6c25</string>
+</dict>
+</plist>
