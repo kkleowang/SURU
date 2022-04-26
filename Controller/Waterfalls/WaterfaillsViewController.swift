@@ -13,6 +13,7 @@ class WaterfaillsViewController: UIViewController {
     var accounts: [Account] = []
     var comments: [Comment] = []
     var stores: [Store] = []
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -25,21 +26,16 @@ class WaterfaillsViewController: UIViewController {
         listenDatabase()
         fetchUserData()
         fetchStoreData()
-            
-        
         fetchCommentData() {
-            
         }
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        fetchStoreData
-//            self.tableView.reloadData()
-        
     }
+    
     func fetchUserData() {
-        FirebaseRequestProvider.shared.fetchAccounts { result in
+        AccountRequestProvider.shared.fetchAccounts { result in
             switch result {
             case .success(let data) :
                 self.accounts = data
@@ -49,7 +45,7 @@ class WaterfaillsViewController: UIViewController {
         }
     }
     func fetchStoreData() {
-        FirebaseRequestProvider.shared.fetchStores { result in
+        StoreRequestProvider.shared.fetchStores { result in
             switch result {
             case .success(let data) :
                 self.stores = data
@@ -60,7 +56,7 @@ class WaterfaillsViewController: UIViewController {
         }
     }
     func fetchCommentData(com: @escaping () -> ()) {
-        FirebaseRequestProvider.shared.fetchComments { result in
+        CommentRequestProvider.shared.fetchComments { result in
             switch result {
             case .success(let data) :
                 self.comments = data
@@ -84,19 +80,19 @@ class WaterfaillsViewController: UIViewController {
     }
     func listenDatabase() {
         Firestore.firestore().collection("comments").addSnapshotListener { querySnapshot, error in
-                guard let snapshot = querySnapshot else {
-                    print("Error fetching snapshots: \(error!)")
-                    return
-                }
-                snapshot.documentChanges.forEach { diff in
-                    if (diff.type == .added) {
-                        print("New Data ID: \(diff.document.documentID), post title: \(diff.document.data()["title"] ?? "") ")
-                        self.fetchCommentData() {
-                            self.tableView.reloadData()
-                        }
+            guard let snapshot = querySnapshot else {
+                print("Error fetching snapshots: \(error!)")
+                return
+            }
+            snapshot.documentChanges.forEach { diff in
+                if (diff.type == .added) {
+                    print("New Data ID: \(diff.document.documentID), post title: \(diff.document.data()["title"] ?? "") ")
+                    self.fetchCommentData() {
+                        self.tableView.reloadData()
                     }
                 }
             }
+        }
     }
 }
 extension WaterfaillsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -113,6 +109,5 @@ extension WaterfaillsViewController: UITableViewDelegate, UITableViewDataSource 
         cell.layoutSampleCommentCell(store: store, comment: comment, account: user)
         return cell
     }
-    
     
 }

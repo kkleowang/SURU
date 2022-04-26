@@ -1,0 +1,2044 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Page1</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>鬼金棒(總店沾麵部)</string>
+				<key>engName</key>
+				<string>Kikanbo, Main branch</string>
+				<key>address</key>
+				<string>台北市中山區中山北路一段92號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.04939734</real>
+				<key>coordinate_long</key>
+				<real>121.5211383</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t31.18172-8/11082363_357700417749212_600042810833697394_o.jpg?_nc_cat=101&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=6YmwM93ajOMAX8K6HiK&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT-ZenznH96hdpaq0VWoo8BryPWqid0mN0J1vdMEMzZFSQ&amp;oe=628A194C</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/kikanbotw/</string>
+				<key>tags</key>
+				<string>#濃厚系 #辣味 #麻味 #味噌醬底 #豚雞湯 #豚雞魚介 #2019金賞 #2020金賞 #2021金賞 #2022金賞 #殿堂級 #外帶 #冷凍調理包 #內用</string>
+				<key>meals</key>
+				<string>特製辣麻味噌沾麵 辣麻味噌沾麵 辣麻味噌拉麵 豚骨拉麵 特製豚骨拉麵</string>
+				<key>seat</key>
+				<integer>12</integer>
+				<key>sun</key>
+				<string>12:00–15:30 17:00–20:30</string>
+				<key>mon</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>tue</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>wed</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>thu</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>fri</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>sat</key>
+				<string>12:00–15:30 17:00–20:30</string>
+				<key>note</key>
+				<string>來自日本東京，口味在日本、台灣都是自成一派的「辣麻味噌沾麵、拉麵」。
+
+總店為沾麵專賣店，販賣品項為可調整辣度、麻度的辣麻味噌沾麵以及博多豚骨拉麵。
+
+店主對於食材挑選極為用心，店內叉燒除了類似控肉的角煮外，也有低溫烹調的和牛及依比利豬叉燒可供選擇，白飯使用伊馬嵐池上米，博多豚骨拉麵使用杜蘭小麥混蕎麥麵。建議前往前先參考官方粉專。
+
+*【本店可付費另購沾湯】
+【2021年10月20日，開放內用、外帶僅限冷凍調理包】
+
+免付費項目：沾麵麵量加大免費
+加點特色：角煮、豆芽菜、獅子頭、和牛叉燒、伊比利豬
+沾麵湯割：鰹節湯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>鬼金棒(總店拉麵部)</string>
+				<key>engName</key>
+				<string>Kikanbo, Main branch</string>
+				<key>address</key>
+				<string>台北市中山區中山北路一段94號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.04939734</real>
+				<key>coordinate_long</key>
+				<real>121.5211383</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t31.18172-8/11082363_357700417749212_600042810833697394_o.jpg?_nc_cat=101&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=6YmwM93ajOMAX8K6HiK&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT-ZenznH96hdpaq0VWoo8BryPWqid0mN0J1vdMEMzZFSQ&amp;oe=628A194C</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/kikanbotw/</string>
+				<key>tags</key>
+				<string>#濃厚系 #辣味 #麻味 #味噌醬底 #豚雞湯 #豚雞魚介 #2019金賞 #2020金賞 #2021金賞 #2022金賞 #殿堂級 #外帶 #冷凍調理包 #內用</string>
+				<key>meals</key>
+				<string>特製辣麻味噌沾麵 辣麻味噌沾麵 辣麻味噌拉麵 豚骨拉麵 特製豚骨拉麵</string>
+				<key>seat</key>
+				<integer>10</integer>
+				<key>sun</key>
+				<string>12:00–15:30 17:00–20:30</string>
+				<key>mon</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>tue</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>wed</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>thu</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>fri</key>
+				<string>12:00–14:00 17:00–20:30</string>
+				<key>sat</key>
+				<string>12:00–15:30 17:00–20:30</string>
+				<key>note</key>
+				<string>來自日本東京，口味在日本台灣都是自成一派的「辣麻味噌拉麵」。
+
+本店為拉(湯)麵專賣店，販賣品項為可調整辣度麻度的辣麻味噌拉麵以及鬼金棒的豚骨拉麵。
+
+店內招牌的辣麻味噌拉麵是混合豚骨及魚介兩種湯底（目前夏日為豚雞魚介湯）再混入味噌，麵條也是三種不同麵條混合，叉燒則是類似控肉的角煮，在在顯露出強烈的自我風格。
+
+店內不時會有特殊限定，建議前往前先參考官方粉專。
+
+*【2021年10月20日，開放內用、外帶僅限冷凍調理包】
+
+加點特色:炒豆芽菜、香菜、角煮</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>鬼金棒(松江南京店)</string>
+				<key>engName</key>
+				<string>Kikanbo, Songjiang Nanjing branch</string>
+				<key>address</key>
+				<string>台北市中山區松江路123巷8-2號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.05285577</real>
+				<key>coordinate_long</key>
+				<real>121.5339892</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t31.18172-8/11082363_357700417749212_600042810833697394_o.jpg?_nc_cat=101&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=6YmwM93ajOMAX8K6HiK&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT-ZenznH96hdpaq0VWoo8BryPWqid0mN0J1vdMEMzZFSQ&amp;oe=628A194C</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/kikanbotw/</string>
+				<key>tags</key>
+				<string>#濃厚系 #辣味 #麻味 #味噌醬底 #豚雞湯 #豚雞魚介 #2019金賞 #2020金賞 #2021金賞 #2022金賞 #殿堂級 #外帶 #冷凍調理包 #內用</string>
+				<key>meals</key>
+				<string>特製辣麻味噌沾麵 辣麻味噌沾麵 辣麻味噌拉麵 豚骨拉麵 特製豚骨拉麵</string>
+				<key>seat</key>
+				<integer>12</integer>
+				<key>sun</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>mon</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>tue</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>wed</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>thu</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>sat</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>note</key>
+				<string>來自日本東京，口味在日本台灣都是自成一派的「辣麻味噌拉麵」。
+
+南京松江店為拉(湯)麵專賣店，販賣品項為可調整辣度麻度的辣麻味噌拉麵以及鬼金棒的豚骨拉麵。
+
+與總店不同的是店內的辣麻味噌拉麵是只使用豚骨單一湯底再混入味噌，麵條也是單一的粗麵，叉燒則是類似控肉的角煮，是最接近日本本店的味道。麻辣的程度也是三店之冠，角煮也是最為穩定且大塊的一家分店。
+
+加點特色:角煮、豆芽菜</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>勝王</string>
+				<key>engName</key>
+				<string>Ramen Katsuo</string>
+				<key>address</key>
+				<string>台北市中山區林森北路306號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.05617257</real>
+				<key>coordinate_long</key>
+				<real>121.5253039</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/117962868_3365145467043036_8855065056347049531_n.jpg?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=0ALMH9LsHKAAX-xZPjV&amp;_nc_oc=AQlt2lGaIkENIsnHIXi-PbmDPovCW1FUQA2aRgPaWVjo7BJt5bsloOYEZAKOGzYsXEI&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT9SN8JtoXnCUF1_eNHMqZ_gGetA0JWrS7k_KsI0SIsbZA&amp;oe=6288B00C</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/276008071_3889310951293149_3017314055733020477_n.jpg?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=730e14&amp;_nc_ohc=lvfL5Na4IwkAX8JTKpK&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT9oPx0MFBbjtdbTScte0BhQes7WYy6w-tmS4HcOdblvIg&amp;oe=626A10C3</string>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/ramenkatsuo/</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #創作拉麵 #塩味醬底 #醬油醬底 #雞豚湯 #雞白湯 #限定 #變化 #2019金賞 #2020金賞 #2021金賞 #冷凍調理包 #內用 </string>
+				<key>meals</key>
+				<string>八幡屋本膳七味胡麻擔擔麵 八幡屋本膳七味醋橘薩索雞清湯柳麵 八幡屋七味本膳薩索雞白湯柳麵 </string>
+				<key>seat</key>
+				<integer>10</integer>
+				<key>sun</key>
+				<string>11:30–15:00 17:00–20:30</string>
+				<key>mon</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>tue</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>wed</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>thu</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>sat</key>
+				<string>11:30–15:00 17:00–20:30</string>
+				<key>note</key>
+				<string>2020年8月22日重新開幕，本店為台灣第一個二毛作(原意為同一塊耕地一年內種植不同作物，在餐飲業為在不同時間提供不同服務及商品)的拉麵店。
+
+勝王是間實驗性質相當高的店家，除了經常出現各種特別煮干、魚類食材外，各式醬油、香料、麵體、甚至水也是店家嘗試的對象，可以說是台灣新潮流拉麵的頂點，每週的特別食材除了吸引大量拉麵愛好者前來之外，台灣的店家，甚至日本拉麵店長也都前來嘗試過。
+
+*【2021年10月20日，開放內用、外帶僅限冷凍調理包】
+
+免付費項目:加麵一球免費
+加點特色:黑醋角煮、伊比利豬、和牛叉燒、八幡屋七味粉</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>雞吉君</string>
+				<key>engName</key>
+				<string>Toriyoshikun</string>
+				<key>address</key>
+				<string>台北市內湖區環山路一段33號</string>
+				<key>area</key>
+				<string>內湖區</string>
+				<key>coordinate_lat</key>
+				<real>25.086427</real>
+				<key>coordinate_long</key>
+				<real>121.5670192</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.18169-9/20915508_1812208969091301_4611166791914556672_n.jpg?_nc_cat=111&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=IYza-NXSXuMAX_3Gw_u&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT_9VZjYoYU0brv28OcQiTlQOkwzt8aYAOeCFe0YJY6-hw&amp;oe=628876BE</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>287978978</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/%E9%B6%8F%E5%90%89%E5%90%9B-%E3%81%A8%E3%82%8A%E3%82%88%E3%81%97%E3%81%8F%E3%82%93-%E3%82%89%E3%83%BC%E3%82%81%E3%82%93%E9%9B%9E%E7%99%BD%E6%B9%AF%E5%B0%88%E9%96%80-1812208619091336/</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #塩味醬底 #醬油醬底 #油拌麵 #雞白湯 #雞濃湯 #雞清湯 #煮干 #2019金賞 #2020金賞 #內用 #2021金賞</string>
+				<key>meals</key>
+				<string>鹽味雞清湯拉麵 鹽味雞白湯拉麵 雞吉君手揉拌麵</string>
+				<key>seat</key>
+				<integer>13</integer>
+				<key>sun</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>mon</key>
+				<string>close close</string>
+				<key>tue</key>
+				<string>17:30–21:00 17:30–21:00</string>
+				<key>wed</key>
+				<string>17:30–21:00 17:30–21:00</string>
+				<key>thu</key>
+				<string>17:30–21:00 17:30–21:00</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>sat</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>closeDay</key>
+				<integer>1</integer>
+				<key>note</key>
+				<string>雞吉君是雞湯愛好者必朝聖的一間店，口味上從清淡到濃厚分別是淡麗-&gt;濃厚-&gt;特濃，三種口味各有千秋，可以按照自己的喜好做選擇。
+
+叉燒飯則有分大小，週日中午販售煮干拉麵，唯一須注意是店內無廁所，請留意。
+
+*【2021年10月1日，開放內用、暫停外帶】
+
+加點特色:叉燒飯、鷄吉君手揉拌麵、和え玉</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>隱家拉麵-士林店</string>
+				<key>engName</key>
+				<string>Kakurega Ramen, Shilin branch</string>
+				<key>address</key>
+				<string>台北市士林區中山北路五段505巷1號</string>
+				<key>area</key>
+				<string>士林區</string>
+				<key>coordinate_lat</key>
+				<real>25.09344403</real>
+				<key>coordinate_long</key>
+				<real>121.5274784</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/72781819_129867358417337_3957393299009961984_n.jpg?_nc_cat=105&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=DdFNwW6idEsAX9h-np0&amp;_nc_ht=scontent.ftpe8-1.fna&amp;oh=00_AT_EO8gGa0GlNLeW12ttEXT9oj-kHcsTMB-rf9Eq57msoA&amp;oe=628B63EB</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<string>02 2888 1026</string>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/kakuregaramen/</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #塩味醬底 #醬油醬底 #雞白湯 #雞清湯 #豚白湯 #雞魚介 #豚骨蝦 #加麵一球免費 #2020金賞 #外送 #冷凍調埋包 #咖哩 #內用 #2021金賞</string>
+				<key>meals</key>
+				<string>豚骨醬油拉麵 辛豚骨拉麵 濃厚海老沾麵 黃金雞湯拉麵</string>
+				<key>seat</key>
+				<integer>12</integer>
+				<key>sun</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>mon</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>tue</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>wed</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>thu</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>fri</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>sat</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>note</key>
+				<string>試營運於2019年10月1日，開幕於同月10日，本店的風格為多樣化的湯頭，目前提供雞湯與豚骨湯二種湯頭，以及濃厚蝦沾麵的品項。店主對於拉麵的專精與與人為善的熱情，造就本店的自信美味，但店主想在此店傳達除了美味之外，更在乎店家與食客之間心的連繫，因此創立了隱家拉麵，希望可以與食客一起分享美食與生活。
+
+*【2021年10月20日，開放內用、暫停外帶服務。
+7月16日，販售冷凍調理包】
+
+免付費項目:加麵一球免費
+加點特色:豪華叉燒拼盤
+沾麵湯割:雞清湯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>隱家拉麵-赤峰店</string>
+				<key>engName</key>
+				<string>Kakurega Ramen, Tufon branch</string>
+				<key>address</key>
+				<string>台北市大同區南京西路25巷28號</string>
+				<key>area</key>
+				<string>大同區</string>
+				<key>coordinate_lat</key>
+				<real>25.05649144</real>
+				<key>coordinate_long</key>
+				<real>121.5204223</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/72781819_129867358417337_3957393299009961984_n.jpg?_nc_cat=105&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=DdFNwW6idEsAX9h-np0&amp;_nc_ht=scontent.ftpe8-1.fna&amp;oh=00_AT_EO8gGa0GlNLeW12ttEXT9oj-kHcsTMB-rf9Eq57msoA&amp;oe=628B63EB</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>225595970</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/%E9%9A%B1%E5%AE%B6%E6%8B%89%E9%BA%B5%E8%B5%A4%E5%B3%B0%E5%BA%97-110911113953386/</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #塩味醬底 #醬油醬底 #雞白湯 #雞清湯 #豚白湯 #雞魚介 #魚白湯 #擔擔麵 #加麵一球免費 #2020金賞 #外送 #冷凍調埋包 #咖哩 #內用 #2021金賞</string>
+				<key>meals</key>
+				<string>豚骨醬油拉麵 辛豚骨拉麵 濃厚海老沾麵 黃金雞湯拉麵 真鯛沾麵</string>
+				<key>seat</key>
+				<integer>18</integer>
+				<key>sun</key>
+				<string>11:30–14:30 16:30–22:00</string>
+				<key>mon</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>tue</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>wed</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>thu</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>fri</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>sat</key>
+				<string>11:30–14:30 16:30–22:00</string>
+				<key>note</key>
+				<string>開幕於2020年5月，本店為隱家拉麵二店，主打黃金雞湯、辛豚骨，並有每日限定擔擔麵、鯛白湯沾麵享用。
+【2021年10月20日，開放內用、暫停外帶服務。
+7月16日，販售冷凍調理包】
+
+
+免付費項目:加麵一球免費
+加點特色:豪華叉燒拼盤
+沾麵湯割:雞清湯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>隱家拉麵-芝山店</string>
+				<key>engName</key>
+				<string>Kakurega Ramen, Zyusan branch</string>
+				<key>address</key>
+				<string>台北市士林區福華路140號1樓</string>
+				<key>area</key>
+				<string>士林區</string>
+				<key>coordinate_lat</key>
+				<real>25.1032389</real>
+				<key>coordinate_long</key>
+				<real>121.5228223</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/72781819_129867358417337_3957393299009961984_n.jpg?_nc_cat=105&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=DdFNwW6idEsAX9h-np0&amp;_nc_ht=scontent.ftpe8-1.fna&amp;oh=00_AT_EO8gGa0GlNLeW12ttEXT9oj-kHcsTMB-rf9Eq57msoA&amp;oe=628B63EB</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>228383696</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/profile.php?id=100064270351973</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #塩味醬底 #醬油醬底 #雞白湯 #雞清湯 #豚白湯 #雞魚介 #鯛白湯 #加麵一球免費 #2020金賞 #外送 #冷凍調埋包 #咖哩 #內用 #2021金賞</string>
+				<key>meals</key>
+				<string>豚骨醬油拉麵 辛豚骨拉麵 黃金雞湯拉麵 濃厚海老沾麵 極・濃厚海老沾麵 真鯛魚白湯拉麵</string>
+				<key>seat</key>
+				<integer>14</integer>
+				<key>sun</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>mon</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>tue</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>wed</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>thu</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>fri</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>sat</key>
+				<string>11:30–14:00 16:30–22:00</string>
+				<key>note</key>
+				<string>於2020年11月21日試營運，本店的風格為多樣化的湯頭，目前提供雞湯與豚骨湯二種湯頭，以及本店限定 真鯛魚拉麵、極濃厚海老沾麵 的品品項。
+
+店主對於拉麵的專精與與人為善的熱情，造就本店的自信美味，但店主想在此店傳達除了美味之外，更在乎店家與食客之間心的連繫，因此創立了隱家拉麵，希望可以與食客一起分享美食與生活。
+
+*【2021年10月20日，開放內用、暫停外帶服務。
+7月16日，販售冷凍調理包】
+
+免付費項目:加麵一球免費
+加點特色:豪華叉燒拼盤
+沾麵湯割:雞清湯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>柑橘Shinn - Soba</string>
+				<key>engName</key>
+				<string>Soba Shinn Citrus</string>
+				<key>address</key>
+				<string>台北市大安區仁愛路四段228-6號</string>
+				<key>area</key>
+				<string>大安區</string>
+				<key>coordinate_lat</key>
+				<real>25.03722253</real>
+				<key>coordinate_long</key>
+				<real>121.5522628</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.6435-9/79278909_1489417137882937_3759105241753059328_n.png?_nc_cat=102&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=5XoWz0sWL3QAX9qDikX&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe8-4.fna&amp;oh=00_AT8RfSAUDsc65DNYfRUFKERrcwvRhsk6lCN0IbCoY5liEg&amp;oe=628B42CF</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/133299674_1838366789654635_9032729817048824710_n.jpg?_nc_cat=108&amp;ccb=1-5&amp;_nc_sid=c4c01c&amp;_nc_ohc=RUk_9CIyYooAX_SfkKc&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe8-1.fna&amp;oh=00_AT9JLym3CLTlQbVWFBoEBU6ruI8uAsqTPllzGU6kZ1VruQ&amp;oe=62898B6F</string>
+				<key>phone</key>
+				<string>02 2755 6705</string>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/sobashinncitrus</string>
+				<key>tags</key>
+				<string>#淡麗系 #濃厚系 #泡系 #咖哩 #辣味 #塩味醬底 #醬油醬底 #味噌醬底 #油拌麵 #柑橘 #雞清湯 #雞白湯 #雞貝湯 #雞魚介 #2019金賞 #2020金賞 #外帶 #冷凍調理包 #內用 #2021金賞</string>
+				<key>meals</key>
+				<string>醬油東京乾拉麵 鹽味東京乾拉麵 辣味噌東京乾拉麵 日式咖哩東京乾拉麵 雞鹽味東京乾拉麵 柑橘鹽味拉麵 柑橘醬油魚介拉麵 柑橘濃厚雞白湯拉麵 淡麗柑橘蛤蜊拉麵 濃厚柑橘蛤蜊拉麵 雞白湯柑橘蛤蜊拉麵</string>
+				<key>seat</key>
+				<integer>14</integer>
+				<key>sun</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>mon</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>tue</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>wed</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>thu</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>sat</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>note</key>
+				<string>開業於2017年3月，融合美日台三種文化風格融合的油拌麵，面對的族群以女性客人及上班族居多，自推出柑橘系列的拉麵之後，大受各方饕客好評，目前首推 柑橘蛤蜊鹽味淡麗雞清湯 ，是台灣難得一見的淡麗味覺，後續推出鴨蔥拉麵，饕客間皆有不錯的好評。
+
+*【目前不定時於粉專販售冷凍調理包，可來店自取冷凍調理包，請詳見FB粉專】
+*【滿12歲以上低消150/人】
+
+加點特色:辣味噌餛飩
+沾麵湯割:柴魚昆布湯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>柑橘Shinn - 鴨蔥</string>
+				<key>engName</key>
+				<string>Kamonegi Shinn Citrus</string>
+				<key>address</key>
+				<string>台北市信義區嘉興街315號</string>
+				<key>area</key>
+				<string>信義區</string>
+				<key>coordinate_lat</key>
+				<real>25.02313126</real>
+				<key>coordinate_long</key>
+				<real>121.5544962</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe8-2.fna.fbcdn.net/v/t1.6435-9/119912947_1749146465243335_805015986231022136_n.jpg?_nc_cat=100&amp;ccb=1-5&amp;_nc_sid=8bfeb9&amp;_nc_ohc=205v8917ntEAX-DXi_K&amp;_nc_ht=scontent.ftpe8-2.fna&amp;oh=00_AT_UhmK9nek9INUvWYksmPjkLzch0MCPKVgMaY8aPh_RMQ&amp;oe=628BBCEB</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.6435-9/133066278_1838371056320875_7615336038389891777_n.jpg?_nc_cat=104&amp;ccb=1-5&amp;_nc_sid=c4c01c&amp;_nc_ohc=k2Ku0YgNdTkAX8gnZU5&amp;_nc_ht=scontent.ftpe8-4.fna&amp;oh=00_AT895TGwZsrSMe_uZaJzj3bwUgnX3dcAiXKrq7arNG6eRg&amp;oe=62887341</string>
+				<key>phone</key>
+				<integer>287320977</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/sobashinncitrus</string>
+				<key>tags</key>
+				<string>#淡麗系 #濃厚系 #泡系 #塩味醬底 #醬油醬底 #柑橘 #鴨骨 #鴨清湯 #鴨白湯 #鴨貝湯 #外帶 #冷凍調理包 #外送 #內用</string>
+				<key>meals</key>
+				<string>淡麗・柑橘鴨拉麵 淡麗・柑橘鴨蛤拉麵 柑橘蛤蜊鴨白湯拉麵（女版） 淡麗・鴨拉麵 淡麗・鴨蛤拉麵 柑橘蛤蜊鴨白湯拉麵（男版） 泡系・鴨拉麵 泡系・鴨蛤拉麵 乾拉麵－鴨 乾拉麵－柑橘鴨 乾拉麵－鴨蛤 乾拉麵－柑橘鴨蛤 乾拉麵－醬油 乾拉麵－鹽味 乾拉麵－辣味噌</string>
+				<key>seat</key>
+				<integer>18</integer>
+				<key>sun</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>mon</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>tue</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>wed</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>thu</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>sat</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>note</key>
+				<string>開業於2019年12月，以拉麵元素創立的加熱滷味，亦販售鴨蔥2.0拉麵，2020年9月2日改為拉麵專門店，專門製作鴨蔥拉麵</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>柑橘Shinn - 魚水</string>
+				<key>engName</key>
+				<string>Uomitsu Shinn Citrus</string>
+				<key>address</key>
+				<string>台北市信義區基隆路一段428號</string>
+				<key>area</key>
+				<string>信義區</string>
+				<key>coordinate_lat</key>
+				<real>25.03385797</real>
+				<key>coordinate_long</key>
+				<real>121.5598212</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe8-2.fna.fbcdn.net/v/t39.30808-6/265729099_133130462475769_1336718004755855907_n.jpg?_nc_cat=101&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=Wn6CAP7fR1cAX8Udx4f&amp;_nc_ht=scontent.ftpe8-2.fna&amp;oh=00_AT987ANBze9VI5dU4h1sWXftsvT45tgcYzmwDipZ0t28SA&amp;oe=62696E71</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<string>02 8786 0535</string>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/sobashinncitrus</string>
+				<key>tags</key>
+				<string>#淡麗系 #鮮魚系 #泡系 #塩味醬底 #醬油醬底 #鮮魚系拉麵 #柑橘 #生魚片叉燒 #魚清湯 #魚白湯</string>
+				<key>meals</key>
+				<string>柑橘鮮魚淡麗拉麵 柑橘鮮魚白湯拉麵 柑橘鮮魚泡系拉麵 </string>
+				<key>seat</key>
+				<integer>22</integer>
+				<key>sun</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>mon</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>tue</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>wed</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>thu</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>sat</key>
+				<string>11:30–14:00 17:00–20:30</string>
+				<key>note</key>
+				<string>以柑橘搭配魚湯為主軸，配上生魚片叉燒、自家種植的食用花，不一樣的味蕾及視覺衝擊。</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>五之神製作所 台灣</string>
+				<key>engName</key>
+				<string>Gonokami</string>
+				<key>address</key>
+				<string>台北市信義區忠孝東路四段553巷6弄6號</string>
+				<key>area</key>
+				<string>信義區</string>
+				<key>coordinate_lat</key>
+				<real>25.04221919</real>
+				<key>coordinate_long</key>
+				<real>121.5630792</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/105896522_2743485265936105_6748146098871070811_n.png?_nc_cat=109&amp;ccb=1-5&amp;_nc_sid=730e14&amp;_nc_ohc=xMGUiYqyVfYAX92_M2c&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe8-1.fna&amp;oh=00_AT9R0W1LTt0VPRiwfzlsaK06S7v2JC9nUp9q_hf-OL2lLg&amp;oe=628B700C</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe8-2.fna.fbcdn.net/v/t39.30808-6/272669009_3188732188078075_6935868255096541935_n.jpg?_nc_cat=101&amp;ccb=1-5&amp;_nc_sid=c4c01c&amp;_nc_ohc=y9vosQfpf2AAX_lnZMg&amp;_nc_ht=scontent.ftpe8-2.fna&amp;oh=00_AT_3FTxLcyggQFdG44DvbFk2uOMdmWm-tSy74EBsYgLZRg&amp;oe=6268DB6F</string>
+				<key>phone</key>
+				<integer>227466867</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/gonokamitw</string>
+				<key>tags</key>
+				<string>#濃厚系 #創作系 #醬油醬底 #沾麵 #油拌麵 #豚骨 #豚骨魚介 #蝦豚骨 #限定 #變化 #2019金賞 #冷凍調理包 #2020金賞 #外帶 #外送 #UberEats #內用 #2021金賞</string>
+				<key>meals</key>
+				<string>濃厚豚骨蝦沾麵 濃厚豚骨番茄蝦沾麵 濃出汁蝦拉麵</string>
+				<key>seat</key>
+				<integer>27</integer>
+				<key>sun</key>
+				<string>11:30–21:00 11:30–21:00</string>
+				<key>mon</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>tue</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>wed</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>thu</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>fri</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>sat</key>
+				<string>11:30–21:00 11:30–21:00</string>
+				<key>note</key>
+				<string>2017年7月1日開幕，為拉麵界較為少見的，以蝦作為主體的拉麵店，一共分為豚骨蝦湯麵、蝦沾麵與番茄蝦沾麵，其叉燒飯則為相當傳統的鹹甜醬香口味，其周末經常有限定沾麵/拉麵與對應的限定飯，均為水準之作，惟其麵條鹼水味較為鮮明，還請留意。
+
+*【2021年10月11日，開放內用，暫停外帶】
+
+加點特色:炸雞、起司飯、蝦油拌飯
+沾麵湯割:豚骨、雞湯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>拉麵公子</string>
+				<key>engName</key>
+				<string>The Ramen Boy</string>
+				<key>address</key>
+				<string>台北市中山區八德路二段279號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.04711363</real>
+				<key>coordinate_long</key>
+				<real>121.5416898</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.6435-9/79456051_2388391541425459_2858672336058449920_n.jpg?_nc_cat=102&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=9eDCz7CAcnkAX_hTu6B&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe8-4.fna&amp;oh=00_AT8QbNnoBJzlviW8VMQPSmZSz2VCfzJlvHoe_Z18EuOpLA&amp;oe=628971F1</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/TheRamenBoy/</string>
+				<key>tags</key>
+				<string>#濃厚系 #塩味醬底 #醬油醬底 #雞白湯 #雞清湯 #豚白湯 #煮干 #限定 #變化 #2020名店 #外帶 #冷凍調理包 #外送 #豚濃湯 #內用 #2021金賞</string>
+				<key>meals</key>
+				<string>鹽味雞湯溏心蛋拉麵 鹽味雞湯叉燒拉麵 醬油雞湯溏心蛋拉麵 醬油雞湯叉燒拉麵 清湯煮干鹽味叉燒拉麵 清湯煮干鹽味溏心蛋拉麵 清湯煮干醬油叉燒拉麵 清湯煮干醬油溏心蛋拉麵 濃厚雞白湯拉麵 濃厚煮干雞白湯拉麵 濃厚魚介雞白湯沾麵</string>
+				<key>seat</key>
+				<integer>12</integer>
+				<key>sun</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>mon</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>tue</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>wed</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>thu</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>fri</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>sat</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>note</key>
+				<string>開業於2019年12月3日，此店為知名拉麵部落客，品嘗各地拉麵吃出心得，轉而開店的範例之一，本店是以雞湯與進階型煮干為主軸的店家，雞湯甘美香醇，煮干苦鮮醇厚。
+加點特色：北海道春よ恋麵粉、鴨胸、鴨叉燒飯、廣島牡蠣、螢烏賊</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>麵屋壹の穴 ICHI</string>
+				<key>engName</key>
+				<string>The One Ramen</string>
+				<key>address</key>
+				<string>台北市大安區延吉街137巷22號</string>
+				<key>area</key>
+				<string>大安區</string>
+				<key>coordinate_lat</key>
+				<real>25.0418909</real>
+				<key>coordinate_long</key>
+				<real>121.5552512</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.6435-9/70494037_2326949620892888_3094828879446016000_n.jpg?_nc_cat=102&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=Mb7V1zjg1AEAX8jW4Mc&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT9T6haXMWFjMcsY227RsGFnSntXae-G3uPLIRTKBimCpw&amp;oe=6289483C</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>227114319</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/Topichiramen</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #辣味 #松露 #塩味醬底 #醬油醬底 #油拌麵 #豚白湯 #豚雞湯 #雞白湯  #豚骨魚介 #二郎風 #限定 #變化 #2019金賞 #2020名店 #外帶 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>小魚干雞湯拉麵 豚骨魚介拉麵 煮干拉麵 壹の雞湯拉麵 魚介麻辣拉麵 日式乾擔擔麵 壹の二郎拉麵 痛風二郎拉麵 清湯醬油拉麵 秋刀魚拉麵</string>
+				<key>seat</key>
+				<integer>23</integer>
+				<key>sun</key>
+				<string>11:30–15:00 17:30–21:00</string>
+				<key>mon</key>
+				<string>close close</string>
+				<key>tue</key>
+				<string>11:30–15:00 17:30–21:00</string>
+				<key>wed</key>
+				<string>11:30–15:00 17:30–21:00</string>
+				<key>thu</key>
+				<string>11:30–15:00 17:30–21:00</string>
+				<key>fri</key>
+				<string>11:30–15:00 17:30–21:00</string>
+				<key>sat</key>
+				<string>11:30–15:00 17:30–21:00</string>
+				<key>closeDay</key>
+				<integer>1</integer>
+				<key>note</key>
+				<string>老闆號稱180，除了招牌的魚介湯頭外，亦開發了豚骨、雞湯、煮干、醬油等湯頭，也有日式擔擔麵，是少數可以品嚐到多種拉麵的店家。除此之外，壹之穴也有推出大份量的二郎系拉麵，分成壹之二郎與痛風二郎兩種，份量與價格皆相當實在。
+
+除了多樣化的拉麵外，其他副食則有相當受到好評的叉燒飯、唐揚雞塊、醃漬小番茄可供選擇。配料的部分叉燒和溏心蛋皆可以加點，中午用餐時段也有優惠的套餐組合。
+
+*【2021年8月3日，開放內用、外帶，並不定時販售冷凍調理包】
+
+免付費項目:加麵一球免費(不包括汁無し擔擔麵)</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>麵屋壹の穴ichi-沾麵專門店</string>
+				<key>engName</key>
+				<string>The One Ramen Tsukemen branch</string>
+				<key>address</key>
+				<string>台北市大安區復興南路二段350號</string>
+				<key>area</key>
+				<string>大安區</string>
+				<key>coordinate_lat</key>
+				<real>25.02215427</real>
+				<key>coordinate_long</key>
+				<real>121.5431599</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/278156558_420515373214304_7009800355458867040_n.jpg?_nc_cat=107&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=JezhtfvA3UIAX8Zq6Ct&amp;_nc_oc=AQla7nnHbwKHMDDibVQz_TTzC5axd_SwXtA9PFemDHwkM3vXMx0SjuJobxc_6oAiEiI&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT9Bsm_s0pTV3nXy3XzRqORDURxdYa7U0RUhZdZKVk5K8A&amp;oe=626AE669</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t1.6435-9/96667613_187890332666936_4176748643300147200_n.jpg?_nc_cat=105&amp;ccb=1-5&amp;_nc_sid=8bfeb9&amp;_nc_ohc=8z6_fO1P5k4AX_bgwnK&amp;_nc_oc=AQkr-2s1gGS6o4BYGePOCG85dqKJ8RqcFQnA6WPR7u2_-2AvVehABCZYBRhIMErxvXE&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT-iTtYXhpOgOJfXkmwG4Um1d3F_jFShkujIf6LiWHbOSA&amp;oe=628BE68D</string>
+				<key>phone</key>
+				<integer>223776326</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/profile.php?id=100057675330094</string>
+				<key>tags</key>
+				<string>#濃厚系 #咖哩 #雞白湯 #雞魚介 #雞煮干 #沾麵 #豚雞 #限定 #2020名店 #外帶 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>豚雞沾麵 豚雞咖哩沾麵 豚雞煮干沾麵</string>
+				<key>seat</key>
+				<integer>25</integer>
+				<key>sun</key>
+				<string>close close</string>
+				<key>mon</key>
+				<string>close close</string>
+				<key>tue</key>
+				<string>12:00–14:00 17:00–20:00</string>
+				<key>wed</key>
+				<string>12:00–14:00 17:00–20:00</string>
+				<key>thu</key>
+				<string>12:00–14:00 17:00–20:00</string>
+				<key>fri</key>
+				<string>12:00–14:00 17:00–20:00</string>
+				<key>sat</key>
+				<string>12:00–14:00 17:00–20:00</string>
+				<key>closeDay</key>
+				<string>0 1</string>
+				<key>note</key>
+				<string>開業於2019年11月，為壹之穴系列第四間店，一、三、五出咖哩沾麵，二、四、六出煮干沾麵。</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>麵屋壹慶</string>
+				<key>engName</key>
+				<string>Ramen Ichi</string>
+				<key>address</key>
+				<string>台北市中山區雙城街32巷2號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.06618018</real>
+				<key>coordinate_long</key>
+				<real>121.5242353</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t1.6435-9/90314288_692148681530736_4990937123927359488_n.jpg?_nc_cat=107&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=CJ3KYIFuBV8AX8iPtq8&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT8sxpnbQAsRyjiaD0oJdKtIPq7_lOnPaRARSXixECP7UQ&amp;oe=628B11BC</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/ichi09102018</string>
+				<key>tags</key>
+				<string>#淡麗系 #濃厚系 #泡系 #塩味醬底 #醬油醬底 #雞白湯 #豚清湯 #豚白湯 #2019金賞 #2020名店 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>特盛豚骨醬油拉麵 豚骨醬油拉麵 特盛豚骨鹽味拉麵 豚骨鹽味拉麵 特盛清湯醬油拉麵 清湯醬油拉麵 雞白湯拉麵</string>
+				<key>seat</key>
+				<integer>9</integer>
+				<key>sun</key>
+				<string>close close</string>
+				<key>mon</key>
+				<string>close close</string>
+				<key>tue</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>wed</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>thu</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>fri</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>sat</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>closeDay</key>
+				<string>0 1</string>
+				<key>note</key>
+				<string>開業於2018年9月，台灣首間以泡系為主題的店家，豚骨醬油、豚骨塩味、清湯醬油以上三種味道都有其特色，領先市場推出的泡系雞白湯，湯溫心暖醇郁順口，亦有不錯的好評。
+
+*【2021年8月4日，開放內用】
+
+免付費項目:加麵一球免費
+加點特色:雞腿叉燒</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>真劍拉麵</string>
+				<key>engName</key>
+				<string>Shinken Ramen</string>
+				<key>address</key>
+				<string>台北市大安區師大路126巷1號</string>
+				<key>area</key>
+				<string>大安區</string>
+				<key>coordinate_lat</key>
+				<real>25.02157937</real>
+				<key>coordinate_long</key>
+				<real>121.5278851</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t1.6435-9/45450029_1440044059459917_1333830960247996416_n.jpg?_nc_cat=101&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=HnCBAx_CGLUAX-Oapp1&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT_IQyzxWC24E3Qdzruhz2FlSG_zcsEmb8_FOqu37k5DKQ&amp;oe=628BB8288</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/%E7%9C%9F%E5%8A%8D%E6%8B%89%E9%BA%B5-1439647916166198/</string>
+				<key>tags</key>
+				<string>#淡麗系 #濃厚系 #塩味醬底 #醬油醬底 #雞清湯 #雞白湯 #豚濃湯 #加麵一球免費 #2019名店 #2020名店 #外帶 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>豚骨拉麵 醬油雞湯拉麵 鹽味翠雞拉麵 醬油豚骨拉麵</string>
+				<key>seat</key>
+				<integer>7</integer>
+				<key>sun</key>
+				<string>11:30–14:00 17:30–21:30</string>
+				<key>mon</key>
+				<string>11:30–14:00 17:30–21:30</string>
+				<key>tue</key>
+				<string>11:30–14:00 17:30–21:30</string>
+				<key>wed</key>
+				<string>11:30–14:00 17:30–21:30</string>
+				<key>thu</key>
+				<string>11:30–14:00 17:30–21:30</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:30–21:30</string>
+				<key>sat</key>
+				<string>11:30–14:00 17:30–21:30</string>
+				<key>note</key>
+				<string>開幕於2018年11月，以鹽味翠雞拉麵擁有的藍色雞湯味湯頭而知名的拉麵店，是台灣IG照片上的常客，店門口懸掛沙包也是特色，是屬於師大區域的知名店家，詳情請見下方食記。
+
+*【2021年8月10日，開放內用，外帶僅提供油拌麵】
+
+免付費項目:加麵一球免費</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>吉天元拉麵店</string>
+				<key>address</key>
+				<string>台北市萬華區西寧南路70號B1</string>
+				<key>area</key>
+				<string>萬華區</string>
+				<key>coordinate_lat</key>
+				<real>25.04355361</real>
+				<key>coordinate_long</key>
+				<real>121.5059008</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/278681808_1202411310164979_6910762197922517375_n.jpg?_nc_cat=100&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=-HnOq4o-2bgAX_QFRvn&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT-eNemDFKzFfVPQ5AyEIKSlCCexk7VOmVeaSnMq2pd6CQ&amp;oe=6269884E</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/276237967_1186647421741368_3606638108795269975_n.jpg?_nc_cat=104&amp;ccb=1-5&amp;_nc_sid=8bfeb9&amp;_nc_ohc=pzpEdpKG-oYAX_i9mqC&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT_ThQuk12ZBmp0Wzjli5de2DQLnFUw_SCKE4T-lBthGOQ&amp;oe=6269B5A0</string>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/negi2508/</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #辣味 #咖哩 #塩味醬底 #醬油醬底 #雞清湯 #雞白湯 #泡系 #限定 #2019名店 #2020名店 #外帶 #UberEats #foodpanda #內用 #2021名店</string>
+				<key>meals</key>
+				<string>醬油雞湯拉麵 鹽味雞湯拉麵 蝦味雞湯拉麵 雞白湯拉麵 辛雞白湯拉麵 櫻花蝦味白湯拉麵 咖哩拉麵 野菜雞白湯拉麵 特盛雞白湯拉麵</string>
+				<key>seat</key>
+				<integer>18</integer>
+				<key>sun</key>
+				<string>12:00–20:30 12:00–20:30</string>
+				<key>mon</key>
+				<string>close 17:30–21:00</string>
+				<key>tue</key>
+				<string>12:00–14:30 17:30–21:00</string>
+				<key>wed</key>
+				<string>12:00–14:30 17:30–21:00</string>
+				<key>thu</key>
+				<string>12:00–14:30 17:30–21:00</string>
+				<key>fri</key>
+				<string>12:00–14:30 17:30–21:00</string>
+				<key>sat</key>
+				<string>12:00–20:30 12:00–20:30</string>
+				<key>note</key>
+				<string>開業於2018年10月2日，位於西門町萬年大樓B1，湯頭是以雞濃白湯為主軸，湯頭濃醇鮮鹹甘，是西門町區域的優選雞濃湯拉麵店，主推野菜雞白湯拉麵，不定時會推出限定以嚮麵友們的味蕾。
+
+*【2021年8月3日，開放內用、外帶，店家外送取消，如需外送，請使用UberEats、foodpanda】
+
+免付費項目:加麵一球免費
+加點特色:豚叉燒飯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>道樂屋台</string>
+				<key>engName</key>
+				<string>Douraku Yatai</string>
+				<key>address</key>
+				<string>台北市士林區基河路112號</string>
+				<key>area</key>
+				<string>士林區</string>
+				<key>coordinate_lat</key>
+				<real>25.08809716</real>
+				<key>coordinate_long</key>
+				<real>121.5235424</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t1.18169-9/14199178_247126019016042_3434460247365041751_n.jpg?_nc_cat=105&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=UcqTcBTtKLAAX9TbGl0&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT_Re2BolwV9qrEc65a69tH7NFOzfby0j6BmmjNqbZZxFQ&amp;oe=628B6269</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>228820852</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/dourakuyatai/</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #辣味 #塩味醬底 #醬油醬底 #味噌醬底 #雞清湯 #雞白湯 #豚白湯 #加麵一球免費 #限定 #變化 #2019名店 #2020名店 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>激辛豚骨拉麵 味玉激辛拉麵 豪華激辛拉麵 醬油拉麵 味玉醬油拉麵 豪華醬油拉麵 豚骨拉麵 味玉豚骨拉麵 豪華豚骨拉麵 雞白湯拉麵 濃厚味噌拉麵 辛味噌拉麵 豪華黑麻油拉麵</string>
+				<key>seat</key>
+				<string>24+</string>
+				<key>sun</key>
+				<string>12:00–14:00 17:00–22:45</string>
+				<key>mon</key>
+				<string>17:00–22:45 17:00–22:45</string>
+				<key>tue</key>
+				<string>17:00–22:45 17:00–22:45</string>
+				<key>wed</key>
+				<string>17:00–22:45 17:00–22:45</string>
+				<key>thu</key>
+				<string>17:00–22:45 17:00–22:45</string>
+				<key>fri</key>
+				<string>17:00–22:45 17:00–22:45</string>
+				<key>sat</key>
+				<string>12:00–14:00 17:00–22:45</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>道樂ラーメン專門店</string>
+				<key>engName</key>
+				<string>Douraku Ramen</string>
+				<key>address</key>
+				<string>台北市士林區大北路9號</string>
+				<key>area</key>
+				<string>士林區</string>
+				<key>coordinate_lat</key>
+				<real>25.08965879</real>
+				<key>coordinate_long</key>
+				<real>121.5266518</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.6435-9/38442126_241790176445586_9123493169386749952_n.jpg?_nc_cat=111&amp;ccb=1-5&amp;_nc_sid=174925&amp;_nc_ohc=AhilAGg0Fk8AX-pizvd&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT8sCGgCcRf0bLo6-JJHGE1a1OPEu8WvRrrZTAYnWm9aHA&amp;oe=628B7EF5</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/69172964_405211380103464_3262177826253570048_n.jpg?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=8bfeb9&amp;_nc_ohc=2G1f-WipXv8AX--igZ_&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT-idDXJ-3hYA0YFEStjcWLTBvgY861_EN2tbFwbiK_mVA&amp;oe=628B1B9D</string>
+				<key>phone</key>
+				<integer>228818558</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/dourakuramen2</string>
+				<key>tags</key>
+				<string>#濃厚系 #辣味 #家系 #塩味醬底 #醬油醬底 #雞白湯 #豚骨湯 #限定 #變化 #加麵一球免費 #2019名店 #2020名店 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>豚骨拉麵 味玉豚骨拉麵 豪華豚骨拉麵 激辛豚骨拉麵 味玉激辛豚骨拉麵 豪華激辛豚骨拉麵 醬油拉麵 味玉醬油拉麵 豪華醬油拉麵 雞白湯拉麵 蛤蠣雞白湯拉麵 蛤蠣豚骨拉麵 檸檬冷拌麵</string>
+				<key>seat</key>
+				<integer>18</integer>
+				<key>sun</key>
+				<string>12:00–14:00 17:00–22:00</string>
+				<key>mon</key>
+				<string>12:00–14:00 17:00–22:00</string>
+				<key>tue</key>
+				<string>12:00–14:00 17:00–22:00</string>
+				<key>wed</key>
+				<string>12:00–14:00 17:00–22:00</string>
+				<key>thu</key>
+				<string>12:00–14:00 17:00–22:00</string>
+				<key>fri</key>
+				<string>12:00–14:00 17:00–22:30</string>
+				<key>sat</key>
+				<string>12:00–14:00 17:00–22:30</string>
+				<key>note</key>
+				<string>開業於2018年8月，位於士林夜市文林路旁，與原道樂屋台味道迥異的拉麵店，主打平民小吃，屋台風情，店內的豪華豚骨、蛤蜊豚骨、海老豚骨拉麵都有其愛好者，不定時出現的限定餐點，也受到麵友們的喜愛。
+
+加點特色：角煮</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>道樂商店</string>
+				<key>engName</key>
+				<string>Douraku Baiten</string>
+				<key>address</key>
+				<string>台北市萬華區成都路27巷12號</string>
+				<key>area</key>
+				<string>萬華區</string>
+				<key>coordinate_lat</key>
+				<real>25.04324662</real>
+				<key>coordinate_long</key>
+				<real>121.5067524</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.6435-9/97094337_119523713086494_5949969824674217984_n.jpg?_nc_cat=102&amp;ccb=1-5&amp;_nc_sid=174925&amp;_nc_ohc=VSfBQboME_YAX8DZeWS&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT_XwBRaYJ_GPUKQc9RRiQqulouuug04C9QtI-Z77HYfqA&amp;oe=62894A9E</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/277100169_523565096015685_864142276885953796_n.jpg?_nc_cat=109&amp;ccb=1-5&amp;_nc_sid=c4c01c&amp;_nc_ohc=OfOhDhsXJuoAX9dFPgE&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT8X2Ywxcs2z-0K91kM4bQjHhOzr32yqwkZJ8Pzyt9INMw&amp;oe=6269D830</string>
+				<key>phone</key>
+				<integer>223815557</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/dourakubaiten</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #辣味 #家系 #塩味醬底 #醬油醬底 #味噌醬底 #雞白湯 #豚骨湯 #雞魚介 #加麵一球免費 #限定 #變化 #2019名店 #2020名店 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>豚骨拉麵 味玉豚骨拉麵 豪華豚骨拉麵 激辛豚骨拉麵 味玉激辛豚骨拉麵 豪華激辛豚骨拉麵 醬油拉麵 味玉醬油拉麵 豪華醬油拉麵 雞白湯拉麵 味玉雞白湯拉麵 濃厚味噌拉麵 濃厚辛味噌拉麵 海老味噌沾麵</string>
+				<key>seat</key>
+				<integer>15</integer>
+				<key>sun</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>mon</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>tue</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>wed</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>thu</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>fri</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>sat</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>note</key>
+				<string>於2020年5月開幕，本店為道樂四店，主打平民小吃，屋台風情，店內的豪華豚骨、蛤蜊豚骨、海老豚骨拉麵都有其愛好者，不定時出現的限定餐點，也受到麵友們的喜愛。</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>鷄道樂</string>
+				<key>address</key>
+				<string>新北市淡水區公明街55-2號</string>
+				<key>area</key>
+				<string>淡水區</string>
+				<key>coordinate_lat</key>
+				<real>25.16899782</real>
+				<key>coordinate_long</key>
+				<real>121.4435873</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/271486194_110685388163180_6372619977087507340_n.jpg?_nc_cat=111&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=a6hB0OiftKgAX8gmJfj&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT-zYQ_NXnh36qWaBHa4mGjJQwDmP7LHtH7FGj5KT-3Tcg&amp;oe=626A5322</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/276160045_136198338945218_8409321615745758624_n.jpg?_nc_cat=107&amp;ccb=1-5&amp;_nc_sid=c4c01c&amp;_nc_ohc=drOST4WDA0IAX89VQOo&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT8ys6mvp6EqpXGaXtQPh6mBqWDqiKhwsSgTLwssCRuVOQ&amp;oe=626A1C2C</string>
+				<key>phone</key>
+				<integer>226251088</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/%E9%B7%84%E9%81%93%E6%A8%82-105773151987737/</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #雞白湯 #雞清湯 </string>
+				<key>meals</key>
+				<string>雞白湯拉麵 豪華雞白湯拉麵 雞清湯拉麵 豪華雞清湯拉麵 海老雞白湯拉麵 松露雞白湯拉麵</string>
+				<key>seat</key>
+				<integer>10</integer>
+				<key>sun</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>mon</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>tue</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>wed</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>thu</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>fri</key>
+				<string>12:00–14:00 17:00–21:00</string>
+				<key>sat</key>
+				<string>12:00–14:00 17:00–21:00</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>創作拉麵 悠然</string>
+				<key>engName</key>
+				<string>Creative Ramen Yuuzen </string>
+				<key>address</key>
+				<string>台北市中山區林森北路487號1 樓 209 室</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.0612894</real>
+				<key>coordinate_long</key>
+				<real>121.5269022</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t31.18172-8/21551835_1952738471672829_8157091269706817490_o.jpg?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=w29IptBgrEYAX-N6vys&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT9LmOr5TRAUPyUw5B0qew3Z2QzTRMWGmg1Yxx96iWZ1KA&amp;oe=6289333D</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/creative.ramen.yuuzen</string>
+				<key>tags</key>
+				<string>#淡麗系 #創作 #塩味醬底 #醬油醬底 #雞清湯 #限定 #2019名店 #2020名店 #完全預約制 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>醬油拉麵 塩味拉麵 季節限定拉麵</string>
+				<key>seat</key>
+				<integer>8</integer>
+				<key>sun</key>
+				<string>close close</string>
+				<key>mon</key>
+				<string>close close</string>
+				<key>tue</key>
+				<string>close close</string>
+				<key>wed</key>
+				<string>close 16:00–20:30</string>
+				<key>thu</key>
+				<string>close 16:00–20:30</string>
+				<key>fri</key>
+				<string>close 16:00–20:30</string>
+				<key>sat</key>
+				<string>close 16:00–20:30</string>
+				<key>closeDay</key>
+				<string>0 1 2</string>
+				<key>note</key>
+				<string>於2017年9月12日試營運，同年9月19日開幕。店主繼承過往修業經驗，加上自身對於拉麵的詮釋及對品質的堅持，重新定義了"台灣拉麵"一詞。 從初期名為"琢磨"的虱目魚鹽味拉麵，創作了以季節為主的十二碗拉麵，並不時創作以節慶為主的限定拉麵，以嚮麵友們的味蕾。 目前是以一週固定只販賣一種拉麵的方式經營，每週販賣品項，請參考粉專。
+
+*【2021年6月30日，開設社團供喜歡悠然的朋友加入,，上限6000人即截止。 https://www.facebook.com/groups/1434663830201294/ 2021年3月22日，本店採顧客分級制，亦請洽粉專。】
+
+加點特色:氣泡飲、特色啤酒</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>麵屋昕家</string>
+				<key>engName</key>
+				<string>Shinga Ramen</string>
+				<key>address</key>
+				<string>台北市內湖區東湖路24號</string>
+				<key>area</key>
+				<string>內湖區</string>
+				<key>coordinate_lat</key>
+				<real>25.06866693</real>
+				<key>coordinate_long</key>
+				<real>121.6127708</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/67574939_111705703510877_2176710118765232128_n.jpg?_nc_cat=100&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=ccHEOdld7oIAX-SR5El&amp;tn=sQj66EUAUpezOEYu&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT8bT8VVMjVoD1f5CEoz6bAW6_QNanWgfUY3bNoJ7PUtYQ&amp;oe=6288E22C</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>918953118</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/shingaramen/</string>
+				<key>tags</key>
+				<string>#淡麗系 #濃厚系 #泡系 #創作 #塩味醬底 #醬油醬底 #雞清湯 #雞白湯 #雞煮干 #加麵一球免費 #限定 #變化 #2020名店 #外帶 #冷凍調理包 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>雞白湯拉麵 雞白湯玉子拉麵 鹽味雞湯拉麵 鹽味雞湯玉子拉麵 醬油雞湯拉麵 醬油雞湯玉子拉麵 </string>
+				<key>seat</key>
+				<integer>12</integer>
+				<key>sun</key>
+				<string>11:30–13:30 17:30–20:00</string>
+				<key>mon</key>
+				<string>close close</string>
+				<key>tue</key>
+				<string>close 17:00–20:30</string>
+				<key>wed</key>
+				<string>close 17:00–20:30</string>
+				<key>thu</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>fri</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>sat</key>
+				<string>11:30–13:30 17:30–20:30</string>
+				<key>closeDay</key>
+				<integer>1</integer>
+				<key>note</key>
+				<string>開業於2019年9月，修業自麵屋真登，湯頭屬於雞湯系味道舒服和煦的路線。
+
+*【2021年8月17日，開放內用。
+7月12日，不定時於粉專販售冷凍調理包。
+2021年5月26日開啟外帶鹽味／醬油／雞白湯，敬請到店點餐。】
+
+免付費項目:加麵一球免費</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>豚人ラ－メン-敦化本店</string>
+				<key>engName</key>
+				<string>Butanchu Ramen, Main Branch</string>
+				<key>address</key>
+				<string>台北市大安區忠孝東路四段170巷5弄10號</string>
+				<key>area</key>
+				<string>大安區</string>
+				<key>coordinate_lat</key>
+				<real>25.04071936</real>
+				<key>coordinate_long</key>
+				<real>121.5513836</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/35659862_247892369311836_4342769672119123968_n.png?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=dvohdOWW6NoAX_-BBq3&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT9YOju-3krYDB6jeII8bKxo4cM257svhIgU2JOm0u77mw&amp;oe=6288DE73</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.6435-9/49825983_397443377690067_1702696134746570752_n.jpg?_nc_cat=104&amp;ccb=1-5&amp;_nc_sid=0aa96f&amp;_nc_ohc=t1Xlp_MtTH8AX_4Z3Q4&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT99oVlUtrbXOGGIvA4MpiZYdfV4f92W5oFtqhp3LK1PDA&amp;oe=6288E3D3</string>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/ButanchuTW</string>
+				<key>tags</key>
+				<string>#濃厚系 #二郎風 #大食 #塩味醬底 #醬油醬底 #豚雞白湯 #限定 #2019名店 #2020名店 #冷凍調理包 #外帶 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>徹濃豚骨拉麵 徹濃鹽豚骨拉麵 醬油豚骨拉麵 鹽味豚骨拉麵</string>
+				<key>seat</key>
+				<integer>15</integer>
+				<key>sun</key>
+				<string>11:30–21:00 11:30–21:00</string>
+				<key>mon</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>tue</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>wed</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>thu</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>fri</key>
+				<string>11:30–03:00 11:30–03:00</string>
+				<key>sat</key>
+				<string>11:30–03:00 11:30–03:00</string>
+				<key>note</key>
+				<string>於2018年7月2日試營運，10月3日開幕，本店為豚人台灣本店，承襲前夢語店面，來自京都的拉麵店，主要顧客以學生與大食麵友居多，特色是軟嫩叉燒肉與多樣性的麵條，目前提供三種麵條，以及二郎旁系拉麵，深受大食麵友喜愛，詳情可察看下方網友食記。
+
+*【2021年10月22日，販售冷凍調理包。
+2021年8月20日，深夜食堂回歸，並提供內用、外帶，如需外帶請來電預約02-87739380】
+
+免付費項目:辣豆芽菜(與店員告知)、加麵一球免費</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>豚人ラ－メン-復興店</string>
+				<key>engName</key>
+				<string>Butanchu Ramen, Fuhsin Branch</string>
+				<key>address</key>
+				<string>台北市大安區大安路一段16巷6號</string>
+				<key>area</key>
+				<string>大安區</string>
+				<key>coordinate_lat</key>
+				<real>25.04429955</real>
+				<key>coordinate_long</key>
+				<real>121.545936</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/35659862_247892369311836_4342769672119123968_n.png?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=dvohdOWW6NoAX_-BBq3&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT9YOju-3krYDB6jeII8bKxo4cM257svhIgU2JOm0u77mw&amp;oe=6288DE73</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.6435-9/49825983_397443377690067_1702696134746570752_n.jpg?_nc_cat=104&amp;ccb=1-5&amp;_nc_sid=0aa96f&amp;_nc_ohc=t1Xlp_MtTH8AX_4Z3Q4&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT99oVlUtrbXOGGIvA4MpiZYdfV4f92W5oFtqhp3LK1PDA&amp;oe=6288E3D3</string>
+				<key>phone</key>
+				<string>0979-093-749</string>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/ButanchuTW</string>
+				<key>tags</key>
+				<string>#濃厚系 #二郎風 #大食 #塩味醬底 #醬油醬底 #豚雞白湯 #限定 #2019名店 #2020名店 #冷凍調理包 #外帶 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>徹濃豚骨拉麵 徹濃鹽豚骨拉麵 辣味鹽豚骨拉麵 醬油豚骨拉麵 鹽味豚骨拉麵</string>
+				<key>seat</key>
+				<integer>9</integer>
+				<key>sun</key>
+				<string>12:00–15:00 17:00–22:00</string>
+				<key>mon</key>
+				<string>12:00–15:00 17:00–22:00</string>
+				<key>tue</key>
+				<string>close close</string>
+				<key>wed</key>
+				<string>12:00–15:00 17:00–22:00</string>
+				<key>thu</key>
+				<string>12:00–15:00 17:00–22:00</string>
+				<key>fri</key>
+				<string>12:00–15:00 17:00–22:00</string>
+				<key>sat</key>
+				<string>12:00–15:00 17:00–22:00</string>
+				<key>closeDay</key>
+				<integer>2</integer>
+				<key>note</key>
+				<string>開業於2020年2月14日，來自京都的拉麵店，特色是軟嫩叉燒肉與多樣性的麵條，目前提供三種麵條，以及二郎旁系拉麵，深受大食麵友喜愛，本店的限定味道為辣味鹽豚骨，亦有不少客人喜愛。
+
+*【2021年8月4日，因防疫二級開放內用、外帶。UberEats外送】
+
+免付費項目:加麵一球免費，辣豆芽菜(與店員告知)</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>墨洋拉麵</string>
+				<key>engName</key>
+				<string>Dark Ocean Ramen</string>
+				<key>address</key>
+				<string>台北市中正區羅斯福路四段136巷10號</string>
+				<key>area</key>
+				<string>中正區</string>
+				<key>coordinate_lat</key>
+				<real>25.01260393</real>
+				<key>coordinate_long</key>
+				<real>121.53546</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.6435-9/81396099_124585872343357_3420769467888566272_n.jpg?_nc_cat=103&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=6OWMr7YBgYAAX-7y7pu&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT8dhpS_guPeJczmL2O1t0j9pRAyU-FJ27At4NrOaAJ0RA&amp;oe=628B03A99</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/245536037_429169888551619_948984016456969035_n.jpg?_nc_cat=104&amp;ccb=1-5&amp;_nc_sid=dbeb18&amp;_nc_ohc=Cf022-ulc0AAX-q7i1X&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT_6igQJTKU5sYVehus2nicyYZGei69tcCp9GsVLR0SeDg&amp;oe=626A128B</string>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/a9822233</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #貝系 #塩味醬底 #醬油醬底 #雞豚湯 #貝魚湯 #限定 #變化 #加麵無限免費 #2020名店 #UberEats #內用 #2021名店 #大食</string>
+				<key>meals</key>
+				<string>極限柚香貝貝拉麵 極上貝貝拉麵 柚香貝出汁拉麵 貝出汁拉麵 泡系香檸雞豚拉麵 泡系雞豚拉麵</string>
+				<key>seat</key>
+				<integer>20</integer>
+				<key>sun</key>
+				<string>11:30–14:30 17:00–21:00</string>
+				<key>mon</key>
+				<string>11:30–14:00 17:00–21:00</string>
+				<key>tue</key>
+				<string>11:30–14:00 17:00–21:00</string>
+				<key>wed</key>
+				<string>11:30–14:00 17:00–21:00</string>
+				<key>thu</key>
+				<string>11:30–14:00 17:00–21:00</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:00–22:00</string>
+				<key>sat</key>
+				<string>11:30–14:00 17:00–22:00</string>
+				<key>note</key>
+				<string>於2020年1月18日於公館商圈開業，是屬於台灣少見魚貝系店家，主打貝系醬油風味，限定品項大多皆為海鮮品系，於2021年5月18日採外帶模式營業。
+
+*【2021年9月25日，開放內用，暫停外帶】
+
+免付費項目:黑胡椒豆芽菜、加麵無限免費
+加點特色:究極星鰻海陸TKG</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>麵屋武藏-本店</string>
+				<key>engName</key>
+				<string>Menya Musashi</string>
+				<key>address</key>
+				<string>台北市中正區忠孝西路一段36號B1</string>
+				<key>area</key>
+				<string>中正區</string>
+				<key>coordinate_lat</key>
+				<real>25.04600722</real>
+				<key>coordinate_long</key>
+				<real>121.5170407</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.18169-9/13669114_1153410981383685_1902127217594948122_n.jpg?_nc_cat=103&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=sAPIGbrXdaUAX_YnlpA&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT-88DORRLS7H06Yv9k_b9pchkcp-ShW5xVIXWAiS11Obg&amp;oe=628A422B</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t39.30808-6/278287255_5305400929517982_8520530603624733160_n.jpg?_nc_cat=100&amp;ccb=1-5&amp;_nc_sid=0debeb&amp;_nc_ohc=C6lGhtSTGM4AX_b22sb&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT-TyGi4p5676ZllUq-uJVlcFd3rFYNKC8FAsgoLhYMO1g&amp;oe=626AE204</string>
+				<key>phone</key>
+				<integer>223711889</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/menya634taiwan</string>
+				<key>tags</key>
+				<string>#濃厚系 #辣味 #創作 #塩味醬底 #醬油醬底 #雞白湯 #雞清湯 #豚骨魚介 #加麵一球免費 #限定 #變化 #2019名店 #2020名店 #外帶 #UberEats #冷凍調理包 #foodpanda #內用 #2021名店</string>
+				<key>meals</key>
+				<string>味玉武藏拉麵 武藏拉麵 味玉叉燒武藏沾麵 武藏沾麵 味玉叉燒魚介雞沾麵 味玉魚介雞沾麵 魚介雞沾麵</string>
+				<key>seat</key>
+				<integer>34</integer>
+				<key>sun</key>
+				<string>11:00–20:30 11:00–20:30</string>
+				<key>mon</key>
+				<string>11:00–20:30 11:00–20:30</string>
+				<key>tue</key>
+				<string>11:00–20:30 11:00–20:30</string>
+				<key>wed</key>
+				<string>11:00–20:30 11:00–20:30</string>
+				<key>thu</key>
+				<string>11:00–20:30 11:00–20:30</string>
+				<key>fri</key>
+				<string>11:00–21:00 11:00–21:00</string>
+				<key>sat</key>
+				<string>11:00–21:00 11:00–21:00</string>
+				<key>note</key>
+				<string>來自日本的品牌，開啟W湯頭的領航者，位於HOYII和億B2，不同於麵屋武藏-神山，本店以雞白湯頭為主打，有沾麵和拉麵可供選擇。
+
+免付費項目：加麵一球免費
+加點特色：太刀、可樂餅
+沾麵湯割：雞清湯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>麵屋武藏-神山</string>
+				<key>engName</key>
+				<string>Menya Musashi Kamiyama</string>
+				<key>address</key>
+				<string>台北市中山區中山北路一段121巷18號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.05103481</real>
+				<key>coordinate_long</key>
+				<real>121.5235767</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.18169-9/13669114_1153410981383685_1902127217594948122_n.jpg?_nc_cat=103&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=sAPIGbrXdaUAX_YnlpA&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT-88DORRLS7H06Yv9k_b9pchkcp-ShW5xVIXWAiS11Obg&amp;oe=628A422B</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/278613315_5305378042853604_8517939133540124367_n.jpg?_nc_cat=104&amp;ccb=1-5&amp;_nc_sid=0debeb&amp;_nc_ohc=W8H84MFEwLYAX9Mom2O&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT-qm3jPJFfL9gzqQxIRZWJPn58aw6efGtn6GTLKbO4grg&amp;oe=6269C42A</string>
+				<key>phone</key>
+				<integer>225428222</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/menya634taiwan</string>
+				<key>tags</key>
+				<string>#濃厚系 #辣味 #擔擔麵 #創作 #塩味醬底 #醬油醬底 #豚骨魚介 #布丁 #限定 #變化 #加麵一球免費 #2019名店 #2020名店 #外帶 #外送 #UberEats #foodpanda #冷凍調理包 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>味玉叉燒神山拉麵 味玉神山拉麵 神山拉麵 味玉叉燒塩味拉麵 味玉塩味拉麵 塩味拉麵 味玉叉燒辛辣拉麵 味玉辛辣拉麵 辛辣拉麵 味玉叉燒濃厚沾麵 味玉濃厚沾麵 濃厚沾麵 太刀拉麵 干貝豚骨拉麵</string>
+				<key>seat</key>
+				<integer>15</integer>
+				<key>sun</key>
+				<string>11:30–21:30 11:30–21:30</string>
+				<key>mon</key>
+				<string>11:30–21:30 11:30–21:30</string>
+				<key>tue</key>
+				<string>11:30–21:30 11:30–21:30</string>
+				<key>wed</key>
+				<string>11:30–21:30 11:30–21:30</string>
+				<key>thu</key>
+				<string>11:30–21:30 11:30–21:30</string>
+				<key>fri</key>
+				<string>11:30–21:30 11:30–21:30</string>
+				<key>sat</key>
+				<string>11:30–21:30 11:30–21:30</string>
+				<key>note</key>
+				<string>來自日本的品牌，在日本是"動物系"加上"魚介系"雙湯頭的創始名店。神山店延續日本雙湯頭的特色，加上粗麵以及豪邁的大塊炙燒叉燒，為台灣拉麵風潮的開拓者之一，也是屬於深夜食堂之中的名店。
+
+*【2021年8月3日，開放內用、冷凍調理包限量販售中。 https://tpgroup.waca.ec/
+2021年5月19日，來電02-25428222。 外帶自取8折。 外送三公里內滿1000免運，1000元以下運費100元。 外帶菜單請見FB粉專。】
+
+免付費項目:加麵一球免費(需留一半的湯)、加清湯
+加點特色：炸雞、布丁
+沾麵湯割：豚清湯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>鷹流東京醤油拉麺蘭丸 中山店</string>
+				<key>engName</key>
+				<string>Ranmaru Ramen</string>
+				<key>address</key>
+				<string>台北市大同區南京西路18巷6-3號</string>
+				<key>area</key>
+				<string>大同區</string>
+				<key>coordinate_lat</key>
+				<real>25.05183817</real>
+				<key>coordinate_long</key>
+				<real>121.520182</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t31.18172-8/12901262_1598367507155937_4136820440191216665_o.jpg?_nc_cat=108&amp;ccb=1-5&amp;_nc_sid=174925&amp;_nc_ohc=Yf-98QtlgRUAX8PkAGR&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT9YjdAhZ1t2BIatPWvKvOZH46_S3a6qPkdrCl0wMgv4WQ&amp;oe=628A2C4B</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/RANMARUnakayama/</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #塩味醬底 #醬油醬底 #豚清湯 #豚濃湯 #豚骨魚介 #加麵一球免費 #每月29號 #限定 #2019名店 #2020名店 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>清湯肉肉SP拉麵 濃湯肉肉SP拉麵 清湯蘭丸SP拉麵 濃湯蘭丸SP拉麵 清湯溏心蛋拉麵 濃湯溏心蛋拉麵 清湯蔥拉麵 濃湯蔥拉麵 濃湯海苔拉麵 清湯海苔拉麵</string>
+				<key>seat</key>
+				<integer>10</integer>
+				<key>sun</key>
+				<string>11:30–14:00 17:00–22:00</string>
+				<key>mon</key>
+				<string>11:30–14:00 17:00–22:00</string>
+				<key>tue</key>
+				<string>11:30–14:00 17:00–22:00</string>
+				<key>wed</key>
+				<string>11:30–14:00 17:00–22:00</string>
+				<key>thu</key>
+				<string>11:30–14:00 17:00–22:00</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:00–22:00</string>
+				<key>sat</key>
+				<string>11:30–14:00 17:00–22:00</string>
+				<key>note</key>
+				<string>來自鷹流老闆鷹峰涼一，魚介風味的醬油拉麵，湯底有清湯以及濃湯可供選擇，店內使用的是自家製麵的細麵，可以無限加麵，味付玉子(糖心蛋)以及生玉子(生蛋)都是自由捐獻，一個30元起。蘭丸雖然是醬油拉麵，但是口味跟鷹流一樣相當強烈而且豪邁，搭配齒切感十足的細麵以及鮮嫩的叉燒，排隊人潮絡繹不絕，該店也是台灣第一個使用弓削多醬油，以及將叉燒排成肉圈圈的店家，每月29日有特別叉燒增量活動。有別於另一家延吉店，本店限定為鹽味拉麵。
+
+*【2021年8月3日，開放內用、無法外帶】
+
+免付費項目:加麵無限免費</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>雞二拉麵-本店</string>
+				<key>engName</key>
+				<string>G2 Ramen</string>
+				<key>address</key>
+				<string>台北市大安區文昌街30號</string>
+				<key>area</key>
+				<string>大安區</string>
+				<key>coordinate_lat</key>
+				<real>25.03282287</real>
+				<key>coordinate_long</key>
+				<real>121.5497205</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/31732435_2195042454075669_3965273249738129408_n.jpg?_nc_cat=100&amp;ccb=1-5&amp;_nc_sid=e3f864&amp;_nc_ohc=UQ4LpUfzY10AX-T5YIk&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT8RWq9ObZzy4dJpOoUfSpfS5KWP0j7ZiYgYy3n8VDj8fg&amp;oe=6289BB37</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>227099672</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/g2ramen</string>
+				<key>tags</key>
+				<string>#濃厚系 #二郎風 #辣味 #泰式 #塩味醬底 #醬油醬底 #雞白湯 #雞魚介 #二郎風 #大食 #2019名店 #2020名店 #外帶 #冷凍調理包 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>小小雞鹽味拉麵 小小雞醬油拉麵 小小魚鹽味拉麵 小小魚醬油拉麵 小雞二鹽味拉麵 小雞二醬油拉麵 小魚鹽味拉麵 小魚醬油拉麵 小小麻辣味拉麵 小雞二麻辣拉麵 大雞二鹽味拉麵 大雞二醬油拉麵</string>
+				<key>seat</key>
+				<integer>13</integer>
+				<key>sun</key>
+				<string>close close</string>
+				<key>mon</key>
+				<string>11:30–14:30 17:00–21:00</string>
+				<key>tue</key>
+				<string>11:30–14:30 17:00–21:00</string>
+				<key>wed</key>
+				<string>11:30–14:30 17:00–21:00</string>
+				<key>thu</key>
+				<string>11:30–14:30 17:00–21:00</string>
+				<key>fri</key>
+				<string>11:30–14:30 17:00–21:00</string>
+				<key>sat</key>
+				<string>close close</string>
+				<key>closeDay</key>
+				<string>0 7</string>
+				<key>note</key>
+				<string>主打超大份量，可外帶，且價格實惠的雞湯拉麵，主要分成三種分量：小小雞、小雞二、大雞二。大雞二是許多大食量麵友喜愛挑戰的目標，小雞二則適合一般食量的麵友。經典款的拉麵有醬油和鹽味，也有推出如蝦醬雞白湯等特殊口味，若愛吃鹹的麵友，建議味道加鹹，會感覺更加豐厚。
+
+*【本店可另外加湯，需付費】
+*【販售冷凍調理包，敬請事先撥電並到店自取。】</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>鳳華拉麵 （4月公告頂讓中）</string>
+				<key>engName</key>
+				<string>Houou Ramen</string>
+				<key>address</key>
+				<string>台北市內湖區內湖路一段411巷6號</string>
+				<key>area</key>
+				<string>內湖區</string>
+				<key>coordinate_lat</key>
+				<real>25.0820686</real>
+				<key>coordinate_long</key>
+				<real>121.5709844</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/69997441_108358720553655_5782443877969428480_n.jpg?_nc_cat=106&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=1qJ4BlBSK2cAX8Tpoxf&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT8A0nm5A-ik7rNqqWgMpMOJ_1MaxczQkowUWsV0fdVkUQ&amp;oe=6289D559</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/279020532_810547063668147_8665947646478749462_n.jpg?_nc_cat=111&amp;ccb=1-5&amp;_nc_sid=8bfeb9&amp;_nc_ohc=1UZPblPZyF8AX9umGpd&amp;_nc_oc=AQk6I-EvwpGUgsH1ai7zhds1DogAFHb-WDYmTVXFIytktkVhNxVKPqARUWv_YEsiRdA&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT_qEARIHYDvN9gy4aQg3keJafdLoteOFf0zqIFfDmUV8A&amp;oe=626A01EC</string>
+				<key>phone</key>
+				<integer>226272388</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/%E3%82%89%E3%81%81%E9%BA%BA-%E9%B3%B3%E8%8F%AF%E9%B3%B3%E8%8F%AF%E6%8B%89%E9%BA%B5-108346973888163/</string>
+				<key>tags</key>
+				<string>#淡麗系 #濃厚系 #泡系 #創作 #塩味醬底 #醬油醬底 #雞煮干 #雞豚魚介 #雞豚煮干 #雞白湯 #油拌麵 #雞豚白湯 #雞豚清湯 #雞豚煮干#限定 #2020名店 #二毛作 #玄武醬油拉麵 #冷凍調理包 #內用 #每月29日 #2021名店</string>
+				<key>meals</key>
+				<string>塩味雞清湯拉麵 背脂塩味雞清湯拉麵 黑松露醬塩味雞清湯拉麵 麻辣雞清湯拉麵 魚介醬油雞清湯拉麵 背脂魚介醬油雞清湯拉麵 黑松露醬魚介醬油雞清湯拉麵 黑蒜麻油魚介醬油雞清湯拉麵 泡系塩味雞豚濃湯拉麵 松露醬塩味雞豚濃湯拉麵 蒜碎背脂塩味雞豚濃湯拉麵 麻辣雞豚濃湯拉麵 魚介醬油雞豚濃湯拉麵 背脂魚介醬油雞豚濃湯拉麵 黑蒜麻油魚介醬油雞豚濃湯拉麵 魚介醬油雞豚濃湯拉麵 塩味煮干雞豚濃湯拉麵 魚介醬油煮干雞豚濃湯拉麵 九鬼星印胡麻担担麵 魚介醬油油拌麵 濃厚焙煎魚介醬油沾麵</string>
+				<key>seat</key>
+				<integer>24</integer>
+				<key>sun</key>
+				<string>close close</string>
+				<key>mon</key>
+				<string>close close</string>
+				<key>tue</key>
+				<string>close 17:30–20:45</string>
+				<key>wed</key>
+				<string>close 17:30–20:45</string>
+				<key>thu</key>
+				<string>close 17:30–20:45</string>
+				<key>fri</key>
+				<string>close 17:30–20:45</string>
+				<key>sat</key>
+				<string>close 17:30–20:45</string>
+				<key>closeDay</key>
+				<string>0 1</string>
+				<key>note</key>
+				<string>開業於2019年9月24日，店主修業自鷹流，以雞豚湯為主體，並主打泡系雞豚湯拉麵，之後大換菜單有煮干、豚雞系列。
+
+且不定時出現的限定拉麵、丼飯，讓內湖的麵友們有耳目一新感覺，本店亦有肉暴走選項讓肉食系麵友享用，詳情可察看下方網友食記。
+
+*【2021年11月7日，開放內用、玄武醬油拉麵網路品牌暫停中，https://linktr.ee/ramen8678】
+
+免付費項目：加麵一球免費
+加點特色：肉暴走</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>橫濱家系ラーメン大和家-復興店</string>
+				<key>engName</key>
+				<string>Yamatoya, Fuhsin branch</string>
+				<key>address</key>
+				<string>台北市大安區市民大道四段12號</string>
+				<key>area</key>
+				<string>大安區</string>
+				<key>coordinate_lat</key>
+				<real>25.04470729</real>
+				<key>coordinate_long</key>
+				<real>121.5444393</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.18169-9/999877_428637277243935_954991233_n.jpg?_nc_cat=109&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=gpyaoQBB6LcAX9-Yguq&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT8jpaSvpXpPkYuq05MCyCkBQ3i1SaXvEg0AO75I5Rrh7g&amp;oe=628A8CA9</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/36508117_1750537785053871_7217958682871463936_n.png?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=0aa96f&amp;_nc_ohc=_6K_qp3_xGYAX_HXxRN&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT9blV41lgJFrP842o4g1AJG3l0ibc6BwO61oMn6TA1vBg&amp;oe=6289F2A0</string>
+				<key>phone</key>
+				<integer>227718810</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/yamatoyataipei</string>
+				<key>tags</key>
+				<string>#塩味醬底 #醬油醬底 #家系 #豚骨 #每月1號 #每月20號 #2019名店 #2020名店 #外帶 #外送 #UberEats #foodpanda #內用 #2021名店</string>
+				<key>meals</key>
+				<string>黃金醬油拉麵 黃金塩味拉麵 631醬油拉麵 631塩味拉麵 海苔醬油拉麵 海苔塩味拉麵 叉燒醬油拉麵 叉燒塩味拉麵 青蔥醬油拉麵 青蔥塩味拉麵 醬油拉麵 塩味拉麵 沾麵 631沾麵 黃金沾麵</string>
+				<key>seat</key>
+				<integer>22</integer>
+				<key>sun</key>
+				<string>11:30–22:30 11:30–22:30</string>
+				<key>mon</key>
+				<string>11:30–22:30 11:30–22:30</string>
+				<key>tue</key>
+				<string>11:30–22:30 11:30–22:30</string>
+				<key>wed</key>
+				<string>11:30–22:30 11:30–22:30</string>
+				<key>thu</key>
+				<string>11:30–22:30 11:30–22:30</string>
+				<key>fri</key>
+				<string>11:30–22:30 11:30–22:30</string>
+				<key>sat</key>
+				<string>11:30–22:30 11:30–22:30</string>
+				<key>note</key>
+				<string>日本發祥台灣初上陸「橫濱家系大和家拉麵」是直營的拉麵連鎖店，在日本目前擁有11家分店，且持續擴大中。
+“最強家系拉麵”
+在競爭激烈的日本拉麵市場中，期望以濃厚豚骨醬油湯頭、Q彈中粗直條麵，自豪的橫濱家系大和家拉麵能成為拉麵業界NO.1，因此將滿腔熱血化為文字，朝「家系最強」目標邁進。
+【8月2日，提供內用。
+2021年5月20日，因疫情因素調整營業時間並採外帶、外送供應。】</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>橫濱家系ラーメン大和家-中山店</string>
+				<key>engName</key>
+				<string>Yamatoya, Zhongshan branch</string>
+				<key>address</key>
+				<string>台北市中山區中山北路一段105巷13-2號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.05077889</real>
+				<key>coordinate_long</key>
+				<real>121.5233825</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.18169-9/999877_428637277243935_954991233_n.jpg?_nc_cat=109&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=gpyaoQBB6LcAX9-Yguq&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT8jpaSvpXpPkYuq05MCyCkBQ3i1SaXvEg0AO75I5Rrh7g&amp;oe=628A8CA9</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/36508117_1750537785053871_7217958682871463936_n.png?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=0aa96f&amp;_nc_ohc=_6K_qp3_xGYAX_HXxRN&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT9blV41lgJFrP842o4g1AJG3l0ibc6BwO61oMn6TA1vBg&amp;oe=6289F2A0</string>
+				<key>phone</key>
+				<integer>225672508</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/yamatoyataipei</string>
+				<key>tags</key>
+				<string>#塩味醬底 #醬油醬底 #家系 #豚骨 #每月1號 #每月20號 #2019名店 #2020名店 #外帶 #外送 #UberEats #foodpanda #內用 #2021名店</string>
+				<key>meals</key>
+				<string>黃金醬油拉麵 黃金塩味拉麵 631醬油拉麵 631塩味拉麵 海苔醬油拉麵 海苔塩味拉麵 叉燒醬油拉麵 叉燒塩味拉麵 青蔥醬油拉麵 青蔥塩味拉麵 醬油拉麵 塩味拉麵 沾麵 631沾麵 黃金沾麵</string>
+				<key>seat</key>
+				<string>28+</string>
+				<key>sun</key>
+				<string>11:30–23:00 11:30–23:00</string>
+				<key>mon</key>
+				<string>11:30–23:00 11:30–23:00</string>
+				<key>tue</key>
+				<string>11:30–23:00 11:30–23:00</string>
+				<key>wed</key>
+				<string>11:30–23:00 11:30–23:00</string>
+				<key>thu</key>
+				<string>11:30–23:00 11:30–23:00</string>
+				<key>fri</key>
+				<string>11:30–23:00 11:30–23:00</string>
+				<key>sat</key>
+				<string>11:30–23:00 11:30–23:00</string>
+				<key>note</key>
+				<string>日本發祥台灣初上陸「橫濱家系大和家拉麵」是直營的拉麵連鎖店，在日本目前擁有11家分店，且持續擴大中。
+“最強家系拉麵”
+在競爭激烈的日本拉麵市場中，期望以濃厚豚骨醬油湯頭、Q彈中粗直條麵，自豪的橫濱家系大和家拉麵能成為拉麵業界NO.1，因此將滿腔熱血化為文字，朝「家系最強」目標邁進。
+【8月2日，提供內用。
+2021年5月20日，因疫情因素調整營業時間並採外帶、外送供應。】</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>一番星拉麵</string>
+				<key>engName</key>
+				<string>Ichibanboshi Ramen</string>
+				<key>address</key>
+				<string>台北市內湖區內湖路一段285號二樓(101攤位)</string>
+				<key>area</key>
+				<string>內湖區</string>
+				<key>coordinate_lat</key>
+				<real>25.08242496</real>
+				<key>coordinate_long</key>
+				<real>121.566496</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.18169-9/10671232_655600844547940_2676214460535927360_n.jpg?_nc_cat=108&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=hIVHYlRXXtEAX-JkUJU&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT_0etH4oxHB_VwXc3Zd2w88--AFz4iiYdULog37-P9fpA&amp;oe=628A13C8</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/efanxing</string>
+				<key>tags</key>
+				<string>#濃厚系 #辣味 #咖哩 #二郎風 #醬油醬底 #味噌醬底 #豚骨湯 #豚骨煮干 #煮干 #限定 #2019名店 #2020名店 #外帶 #外送 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>招牌醬油拉麵 背脂醬油拉麵 味噌拉麵 黑胡椒辣拉麵 辛味噌辣拌麵 醬油辣拌麵 辣味噌拉麵 醬油辣拉麵 小魚乾拌麵 咖哩拌麵 超背脂醬油拉麵 小魚乾拉麵 超背脂小魚乾拉麵</string>
+				<key>seat</key>
+				<string>美食街座位</string>
+				<key>sun</key>
+				<string>close close</string>
+				<key>mon</key>
+				<string>11:15–14:00 17:30–18:30</string>
+				<key>tue</key>
+				<string>11:15–14:00 17:30–18:30</string>
+				<key>wed</key>
+				<string>11:15–14:00 17:30–18:30</string>
+				<key>thu</key>
+				<string>11:15–14:00 17:30–18:30</string>
+				<key>fri</key>
+				<string>11:15–14:00 17:30–18:30</string>
+				<key>sat</key>
+				<string>close close</string>
+				<key>closeDay</key>
+				<string>0 7</string>
+				<key>note</key>
+				<string>位於西湖市場2樓飲食區內，店主為二郎系愛好者，醬油拉麵與油拌麵等皆為定番，也不定期會推出限定品項，由於本店位於西湖市場飲食區，用餐動線也與一般美食街相若。</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>橫濱家系拉麵 特濃屋</string>
+				<key>engName</key>
+				<string>Tokunouya</string>
+				<key>address</key>
+				<string>台北市中山區中山北路二段77巷22號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.05741391</real>
+				<key>coordinate_long</key>
+				<real>121.5250401</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/277580041_4916557955132411_2684331412784803451_n.jpg?_nc_cat=105&amp;ccb=1-5&amp;_nc_sid=8bfeb9&amp;_nc_ohc=AM5UHcuR1goAX9GBsqs&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT_8gVRF-IuOqBpX4Nwya3xdfkQ1y2F2GEib53niWhWl6w&amp;oe=6269CAC3</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t39.30808-6/273517617_4756322104489331_7120744856308616364_n.jpg?_nc_cat=102&amp;ccb=1-5&amp;_nc_sid=c4c01c&amp;_nc_ohc=4Dxe0sMqVN8AX_yPT3U&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT_e-pOMVSD0wmw3OSiI56HtEpVFcgUdVNMwc_NxDLP4cA&amp;oe=626A4F47</string>
+				<key>phone</key>
+				<integer>225222808</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/tokunouya</string>
+				<key>tags</key>
+				<string>#濃厚系 #辣味 #家系 #塩味醬底 #醬油醬底 #味噌醬底 #豚骨湯 #炸雞 #2019名店 #2020名店 #外帶 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>豚骨醬油拉麵 豚骨醬油叉燒拉麵 味玉豚骨醬油拉麵 味玉旨辛RED拉麵 旨辛RED拉麵 旨辛RED DX拉麵 味玉豚骨RED拉麵 豚骨RED拉麵 RED叉燒拉麵 味玉爆蔥豚骨拉麵 爆蔥豚骨拉麵 爆蔥豚骨叉燒拉麵 和風豚骨拉麵 和風豚骨DX拉麵 j味玉豆芽菜豚骨味噌拉麵 味玉豚骨RED味噌拉麵 豆芽菜豚骨味噌DX拉麵 味玉豚骨味噌拉麵 豚骨味噌拉麵 沾麵 沾麵RED 冷麵RED 冷麵</string>
+				<key>seat</key>
+				<integer>25</integer>
+				<key>sun</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>mon</key>
+				<string>close close</string>
+				<key>tue</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>wed</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>thu</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>fri</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>sat</key>
+				<string>11:30–15:00 17:00–21:00</string>
+				<key>closeDay</key>
+				<integer>1</integer>
+				<key>note</key>
+				<string>主打橫濱家系的拉麵，豪邁大海苔和菠菜是特色之一。炸雞是麵友推薦必點項目，所以又有炸雞屋的別稱。
+
+*【2021年5月29日，如需外帶，請來電預購02-25222808】
+
+免付費項目：中午加麵、飯一碗免費。
+加點特色：炸雞</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>麵屋一燈</string>
+				<key>engName</key>
+				<string>Menya Itto Taiwan</string>
+				<key>address</key>
+				<string>台北市中山區南京東路一段29號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.05237252</real>
+				<key>coordinate_long</key>
+				<real>121.5243886</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/66804303_2560386144005180_7013935624503689216_n.png?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=TLDV_pMILd8AX9EIteF&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT8BlbBYnefNnkROA0UMTRK5ynHKWbctj9ubbMXPv4_1FA&amp;oe=6289A740</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.6435-9/90842293_3107537549290034_769776225274036224_n.jpg?_nc_cat=102&amp;ccb=1-5&amp;_nc_sid=0aa96f&amp;_nc_ohc=Tf0WMNsTxLUAX9BTYnx&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT9K5APk4K2Pw-IIePp1L0Vx0Yvg5nb-k4-BR5VXD7R-GQ&amp;oe=628C581A</string>
+				<key>phone</key>
+				<integer>225116161</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/menyaittotw</string>
+				<key>tags</key>
+				<string>#濃厚系 #醬油醬底 #雞白湯 #沾麵 #雞煮干 #雞魚介 #限定 #點餐前加麵免費 #2019名店 #2020名店 #冷凍調理包 #外帶 #foodpanda #內用 #2021名店</string>
+				<key>meals</key>
+				<string>濃厚魚介沾麵 濃厚魚介拉麵 金澄幸貝拉麵 芳醇干貝雞湯拉麵</string>
+				<key>seat</key>
+				<string>96+</string>
+				<key>sun</key>
+				<string>11:00–21:00 11:00–21:00</string>
+				<key>mon</key>
+				<string>11:00–21:00 11:00–21:00</string>
+				<key>tue</key>
+				<string>11:00–21:00 11:00–21:00</string>
+				<key>wed</key>
+				<string>11:00–21:00 11:00–21:00</string>
+				<key>thu</key>
+				<string>11:00–21:00 11:00–21:00</string>
+				<key>fri</key>
+				<string>11:00–21:00 11:00–21:00</string>
+				<key>sat</key>
+				<string>11:00–21:00 11:00–21:00</string>
+				<key>note</key>
+				<string>來自日本，長年雄霸Ramen DB的名店，其招牌濃厚魚介沾麵沾湯為相當特別的雞骨魚介風味，低溫雞肉叉燒與豬肉叉燒軍軟嫩彈牙而無纖維感，非常可口。
+
+其拉麵款式中，最為出眾的則為干貝雞湯拉麵，在一般雞湯湯底的香甜之餘，更可額外加入干貝醬增添醇厚風味。
+
+此外，也有當日限定的副食可以加點，均相當有特色。
+
+*【2021年9月12日，開放內用、外帶，若欲購買冷凍調理包，請先來電02--25116161確認】
+
+免付費項目：點餐前沾麵量加大免費
+沾麵湯割：雞清湯</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>麵屋一燈Express</string>
+				<key>engName</key>
+				<string>Menya Itto Express</string>
+				<key>address</key>
+				<string>台北市信義區松高路11號B2</string>
+				<key>area</key>
+				<string>信義區</string>
+				<key>coordinate_lat</key>
+				<real>25.03952968</real>
+				<key>coordinate_long</key>
+				<real>121.5652004</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/66804303_2560386144005180_7013935624503689216_n.png?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=TLDV_pMILd8AX9EIteF&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT8BlbBYnefNnkROA0UMTRK5ynHKWbctj9ubbMXPv4_1FA&amp;oe=6289A740</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t39.30808-6/217662625_4477923968918045_8893507009483875144_n.jpg?_nc_cat=111&amp;ccb=1-5&amp;_nc_sid=c4c01c&amp;_nc_ohc=mkY1zxZAJs0AX9dROEG&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT-JILMBbxyQxRKOOeaKZIppP7WECIuc_EVgtsO2h99WIQ&amp;oe=626A2371</string>
+				<key>phone</key>
+				<integer>225811711</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/menyaittotw</string>
+				<key>tags</key>
+				<string>#濃厚系 #醬油醬底 #豚骨 #雞白湯 #2019名店 #2020名店 #外帶 #UberEats #內用</string>
+				<key>meals</key>
+				<string>蒜香豚骨拉麵 濃醇雞白湯拉麵 辛十二香拉麵 日式鮮蔬豚骨拉麵 日式鮮蔬雞白湯拉麵</string>
+				<key>seat</key>
+				<string>美食街座位</string>
+				<key>sun</key>
+				<string>11:00–22:00 11:00–22:00</string>
+				<key>mon</key>
+				<string>11:00–22:00 11:00–22:00</string>
+				<key>tue</key>
+				<string>11:00–22:00 11:00–22:00</string>
+				<key>wed</key>
+				<string>11:00–22:00 11:00–22:00</string>
+				<key>thu</key>
+				<string>11:00–22:00 11:00–22:00</string>
+				<key>fri</key>
+				<string>11:00–23:00 11:00–23:00</string>
+				<key>sat</key>
+				<string>11:00–23:00 11:00–23:00</string>
+				<key>note</key>
+				<string>開業於2019年11月，位於B2誠品信義美食街。</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>吉鴙ラーメン（吉鴙拉麵）</string>
+				<key>address</key>
+				<string>台北市大安區信義路三段166巷2-1號</string>
+				<key>area</key>
+				<string>信義區</string>
+				<key>coordinate_lat</key>
+				<real>25.03306327</real>
+				<key>coordinate_long</key>
+				<real>121.5418143</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/91273606_114623840183012_3749029218411872256_n.jpg?_nc_cat=106&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=jqoxiUt-OCwAX_zIXPb&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT91Ker9t3HmhUFXJ6UsIV8LdFNme1rxEeUz3Xf7GMTIzA&amp;oe=628A1477</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-1.fna.fbcdn.net/v/t1.6435-9/115667391_163460881965974_1510643578692467992_n.jpg?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=8bfeb9&amp;_nc_ohc=4C-HsTVt4VcAX8npKF0&amp;tn=7bAmK7rt03IxIud3&amp;_nc_ht=scontent.ftpe7-1.fna&amp;oh=00_AT8_nbq0dTS6nlW_HRbZPpPQRRGsNPfpGLZh8UsASwpiZA&amp;oe=628BBA64</string>
+				<key>phone</key>
+				<string>02-23250010</string>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/%E5%90%89%E9%B4%99%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3-114617796850283/</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #辣味 #塩味醬底 #醬油醬底 #雞清湯 #雞白湯 #雞煮干 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>鹽味雞湯拉麵 醬油雞湯拉麵 濃厚雞白湯拉麵 濃厚煮干拉麵</string>
+				<key>seat</key>
+				<integer>19</integer>
+				<key>sun</key>
+				<string>close close</string>
+				<key>mon</key>
+				<string>11:00–14:30 16:00–20:30</string>
+				<key>tue</key>
+				<string>11:00–14:30 16:00–20:30</string>
+				<key>wed</key>
+				<string>11:00–14:30 16:00–20:30</string>
+				<key>thu</key>
+				<string>11:00–14:30 16:00–20:30</string>
+				<key>fri</key>
+				<string>11:00–14:30 16:00–20:30</string>
+				<key>sat</key>
+				<string>11:00–14:30 16:00–20:30</string>
+				<key>closeDay</key>
+				<integer>0</integer>
+				<key>note</key>
+				<string>於2020年6月開幕，以雞湯為主軸，是台北少見以煮干為定番的店家。</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>鶏そば本舗梓山</string>
+				<key>engName</key>
+				<string>Azusayama</string>
+				<key>address</key>
+				<string>台北市中山區雙城街15-5號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.06432627</real>
+				<key>coordinate_long</key>
+				<real>121.5244494</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.6435-9/71479294_124483442276098_2748560073352544256_n.jpg?_nc_cat=111&amp;ccb=1-5&amp;_nc_sid=174925&amp;_nc_ohc=dernoUt7jKUAX8qUGT5&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT8S6_UNTYaT4y4v7Eo_WJUHvqkLCPnNUHyfyVei_EK38A&amp;oe=628C97A6</string>
+				<key>menuImage</key>
+				<integer>0</integer>
+				<key>phone</key>
+				<integer>0</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/azusayamataipei</string>
+				<key>tags</key>
+				<string>#濃厚系 #淡麗系 #塩味醬底 #雞清湯 #雞白湯 #每月29號 #外帶 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>清湯溏心蛋拉麵 清湯雞湯拉麵 清湯蔥拉麵 清湯肉肉拉麵 清湯拉麵 清湯SP拉麵 清湯海菜拉麵 濃湯拉麵 溏心蛋濃湯拉麵</string>
+				<key>seat</key>
+				<integer>8</integer>
+				<key>sun</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>mon</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>tue</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>wed</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>thu</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>fri</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>sat</key>
+				<string>11:30–14:00 17:30–21:00</string>
+				<key>note</key>
+				<string>開業於2019年9月，是鷹流系列的雞白湯拉麵店(鶏そば本舗)，亦有99元雞清湯拉麵可供選擇。</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>麵屋千雲</string>
+				<key>engName</key>
+				<string>Menya Chikumo</string>
+				<key>address</key>
+				<string>台北市中山區林森北路105-1號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.05018712</real>
+				<key>coordinate_long</key>
+				<real>121.525194</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.6435-9/49283486_606041946499461_143474185681764352_n.jpg?_nc_cat=102&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=uT2Mo1kek54AX-s4YhI&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT_rRglE8GR-jPeVSrPUxg6bQwOBzlSFRCDl5zrUTGp-Uw&amp;oe=628B9AD7</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-4.fna.fbcdn.net/v/t39.30808-6/272316599_1380935135676801_204281796558507277_n.jpg?_nc_cat=107&amp;ccb=1-5&amp;_nc_sid=c4c01c&amp;_nc_ohc=qPD8VfVnmaUAX9Zs0EA&amp;_nc_ht=scontent.ftpe7-4.fna&amp;oh=00_AT9Wwj3B5VS0D91C9df-NK5O0QUB-0Fi_zRhiA7X5K9MDQ&amp;oe=62696B14</string>
+				<key>phone</key>
+				<integer>225233198</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/menya.chikumo</string>
+				<key>tags</key>
+				<string>#濃厚系 #塩味醬底 #沾麵 #雞白湯 #雞濃湯 #2019名店 #2020名店 #外帶 #外送 #UberEats #內用 #2021名店</string>
+				<key>meals</key>
+				<string>濃厚雞白湯拉麵 雞白湯拉麵 鹽味雞湯拉麵 鹽味雞白湯沾麵 魚介雞白湯沾麵 柚香塩味雞拉麵</string>
+				<key>seat</key>
+				<integer>30</integer>
+				<key>sun</key>
+				<string>12:00–15:30 17:00–03:00</string>
+				<key>mon</key>
+				<string>12:00–15:30 17:00–03:00</string>
+				<key>tue</key>
+				<string>12:00–15:30 17:00–03:00</string>
+				<key>wed</key>
+				<string>12:00–15:30 17:00–03:00</string>
+				<key>thu</key>
+				<string>12:00–15:30 17:00–03:00</string>
+				<key>fri</key>
+				<string>12:00–15:30 17:00–03:00</string>
+				<key>sat</key>
+				<string>12:00–15:30 17:00–03:00</string>
+				<key>note</key>
+				<string>開幕於2019年2月，前身為鏡花水月拉麵店，之後轉型為麵屋千雲雞白湯拉麵店，湯內有雞肉丸是其特色，並且每日營業至凌晨3點，是台北市少見的深夜拉麵店。</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>京都柚子豚骨拉麵研究中心-中山店</string>
+				<key>engName</key>
+				<string>Ramen Yottekoya, Zhongshan branch</string>
+				<key>address</key>
+				<string>台北市中山區長安西路19巷2弄23號</string>
+				<key>area</key>
+				<string>中山區</string>
+				<key>coordinate_lat</key>
+				<real>25.05102951</real>
+				<key>coordinate_long</key>
+				<real>121.5204279</real>
+				<key>mainImage</key>
+				<string>https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.6435-9/107760805_123415789423197_9027828600942200796_n.jpg?_nc_cat=111&amp;ccb=1-5&amp;_nc_sid=09cbfe&amp;_nc_ohc=QdPCwqYHT9sAX_8dxJT&amp;_nc_ht=scontent.ftpe7-2.fna&amp;oh=00_AT_tDqZc5c97j3HlCOYCry-QmTtIXTOELtuv-NI4gb13Lw&amp;oe=62892240</string>
+				<key>menuImage</key>
+				<string>https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.6435-9/182362690_293659752398799_3451925305380488183_n.jpg?_nc_cat=108&amp;ccb=1-5&amp;_nc_sid=c4c01c&amp;_nc_ohc=Br4y9J6fES8AX-RZPm4&amp;_nc_ht=scontent.ftpe7-3.fna&amp;oh=00_AT_rZmE8h1toGqkjJdeu7DhP5n3mWhmo_r9HHgpmbD7Rmg&amp;oe=628BC0ED</string>
+				<key>phone</key>
+				<integer>225630689</integer>
+				<key>facebookLink</key>
+				<string>https://www.facebook.com/112031670561609</string>
+				<key>tags</key>
+				<string>#濃厚系 #辣味 #柚子 #黑蒜 #塩味醬底 #醬油醬底 #味噌醬底 #豚白湯 #雞豚湯 #雞白湯 #柚子 #外帶 #UberEats #冷凍調理包 #內用 #2021名店</string>
+				<key>meals</key>
+				<string>京都水產柚子胡椒辣味豚骨拉麵 低溫熟成黑大蒜豚骨拉麵 日本酒風味吟釀味噌豚骨拉麵 台灣肉味噌辛辣豚骨拉麵 雞高湯豚骨拉麵 京都水產柚子胡椒辣味叉燒豚骨拉麵 低溫熟成黑大蒜叉燒豚骨拉麵 雞高湯叉燒豚骨拉麵</string>
+				<key>seat</key>
+				<integer>18</integer>
+				<key>sun</key>
+				<string>11:30–14:30 17:00–20:30</string>
+				<key>mon</key>
+				<string>11:30–14:30 17:00–20:30</string>
+				<key>tue</key>
+				<string>11:30–14:30 17:00–20:30</string>
+				<key>wed</key>
+				<string>11:30–14:30 17:00–20:30</string>
+				<key>thu</key>
+				<string>11:30–14:30 17:00–20:30</string>
+				<key>fri</key>
+				<string>11:30–14:30 17:00–20:30</string>
+				<key>sat</key>
+				<string>11:30–14:30 17:00–20:30</string>
+				<key>note</key>
+				<string>開業於2020年7月13日，來自日本的よってこや，由王座集團下的大阪王將所代理，與太陽的蕃茄麵同集團，湯頭以豚雞湯為主體，來自京都的柚子是本店的招牌味道，詳情可察看下方網友食記。
+
+*【2021年8月3日，開放內用。
+2021年5月19日，因疫情因素提供外帶，若購買5份以上，請預先撥電02-25630689，5月26日提供UberEats外送。】
+
+加點特色:炸海苔、肉味噌飯</string>
+			</dict>
+		</array>
+	</dict>
+</plist>
