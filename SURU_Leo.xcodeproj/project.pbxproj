@@ -68,6 +68,7 @@
 		B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517728159A55002E2A3C /* StoreFromJson.swift */; };
 		B8F3517E2815E8EE002E2A3C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */; };
 		B8F351802815F225002E2A3C /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */; };
+		B8F35184281794D9002E2A3C /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F35183281794D9002E2A3C /* UserProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +137,8 @@
 		B8F3517728159A55002E2A3C /* StoreFromJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFromJson.swift; sourceTree = "<group>"; };
 		B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		B8F35183281794D9002E2A3C /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
+		B8F351852817969F002E2A3C /* SURU_LeoDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SURU_LeoDebug.entitlements; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +198,7 @@
 		B830608628015A9D002558BE /* SURU_Leo */ = {
 			isa = PBXGroup;
 			children = (
+				B8F351852817969F002E2A3C /* SURU_LeoDebug.entitlements */,
 				B85B63C8280D2D3B00621E4A /* unUsedFile */,
 				B8EC7002280528F000DA8B78 /* LottieFile */,
 				B899FF26280D237200BD5715 /* GoogleService-Info.plist */,
@@ -411,6 +415,7 @@
 		B8EC70052805290A00DA8B78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B8F35182281794C4002E2A3C /* User */,
 				B83E9592280EB52A009DD17F /* FirebaseStorage */,
 				B83E958E280EB465009DD17F /* QueueReport */,
 				B83E958B280EAD1A009DD17F /* Comment */,
@@ -445,6 +450,14 @@
 				B8A00343280A964B00A64750 /* SURUTabBarController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		B8F35182281794C4002E2A3C /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B8F35183281794D9002E2A3C /* UserProvider.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -613,6 +626,7 @@
 				B814DF3328108E4E00176C13 /* CommentDraggingView.swift in Sources */,
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
+				B8F35184281794D9002E2A3C /* UserProvider.swift in Sources */,
 				B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */,
 				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
 				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
@@ -805,13 +819,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SURU_Leo/SURU_LeoDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = WAYYQS9S9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SURU_Leo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SURU;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use camera";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Write image";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Load image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -839,12 +855,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = WAYYQS9S9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SURU_Leo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SURU;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use camera";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Write image";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Load image";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
