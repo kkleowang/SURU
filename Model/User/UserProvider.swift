@@ -7,8 +7,19 @@
 
 import Foundation
 import CryptoKit
+import fire
 
 class UserProvider {
+    
+    static let shared = UserProvider()
+    
+    func addfakeUser() {
+        
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+          // ...
+        }
+
+    }
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         let charset: [Character] =

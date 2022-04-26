@@ -16,6 +16,7 @@ target 'SURU_Leo' do
   pod 'lottie-ios'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'SwiftLint'
   pod 'Cosmos', '~> 23.0'
