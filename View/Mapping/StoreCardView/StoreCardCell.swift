@@ -43,6 +43,7 @@ class StoreCardCell: UICollectionViewCell {
     @IBOutlet weak private var lunchLabel: UILabel!
     @IBOutlet weak private var dinnerLabel: UILabel!
     @IBOutlet weak private var distanceLabel: UILabel!
+    
     func layoutCardView(dataSource: Store, commentData: [Comment], areaName: String, distance: Double) {
         self.backgroundColor = .white.withAlphaComponent(0.7)
         self.clipsToBounds = true

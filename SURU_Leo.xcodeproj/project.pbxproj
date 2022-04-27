@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */; };
+		B80096002817FEC800BB05AE /* SignInAndOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */; };
 		B814DF312810741900176C13 /* ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814DF302810741900176C13 /* ref.swift */; };
 		B814DF3328108E4E00176C13 /* CommentDraggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814DF3228108E4E00176C13 /* CommentDraggingView.swift */; };
 		B814DF38281175FE00176C13 /* StoreCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B814DF37281175FE00176C13 /* StoreCardView.xib */; };
@@ -54,6 +55,9 @@
 		B8A00352280B064200A64750 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00351280B064200A64750 /* MapView.swift */; };
 		B8A11AF02813E4100079A080 /* StoreCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A11AEF2813E4100079A080 /* StoreCardCell.xib */; };
 		B8A11AF22813E52D0079A080 /* StoreCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A11AF12813E52D0079A080 /* StoreCardCell.swift */; };
+		B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD437E2818EC2800D2BCCE /* WelcomeView.swift */; };
+		B8CD43812818EF0600D2BCCE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD43802818EF0600D2BCCE /* WelcomeViewController.swift */; };
+		B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CD43822818F0E900D2BCCE /* WelcomeView.xib */; };
 		B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */; };
 		B8EC70012805275300DA8B78 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70002805275300DA8B78 /* UIView+.swift */; };
 		B8EC700A28052D4300DA8B78 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700928052D4300DA8B78 /* UIViewController+.swift */; };
@@ -68,12 +72,13 @@
 		B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517728159A55002E2A3C /* StoreFromJson.swift */; };
 		B8F3517E2815E8EE002E2A3C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */; };
 		B8F351802815F225002E2A3C /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */; };
-		B8F35184281794D9002E2A3C /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F35183281794D9002E2A3C /* UserProvider.swift */; };
+		B8F35184281794D9002E2A3C /* UserRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F35183281794D9002E2A3C /* UserRequestProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		78C47A99BAC6766DE55A8ACD /* Pods-SURU_Leo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.release.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.release.xcconfig"; sourceTree = "<group>"; };
 		8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_Leo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndOutViewController.swift; sourceTree = "<group>"; };
 		B814DF302810741900176C13 /* ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ref.swift; sourceTree = "<group>"; };
 		B814DF3228108E4E00176C13 /* CommentDraggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDraggingView.swift; sourceTree = "<group>"; };
 		B814DF362811271400176C13 /* MapkitTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MapkitTest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -123,6 +128,9 @@
 		B8A00351280B064200A64750 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B8A11AEF2813E4100079A080 /* StoreCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCardCell.xib; sourceTree = "<group>"; };
 		B8A11AF12813E52D0079A080 /* StoreCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCardCell.swift; sourceTree = "<group>"; };
+		B8CD437E2818EC2800D2BCCE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		B8CD43802818EF0600D2BCCE /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		B8CD43822818F0E900D2BCCE /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragingValueViewController.swift; sourceTree = "<group>"; };
 		B8EC70002805275300DA8B78 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		B8EC700928052D4300DA8B78 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
@@ -137,7 +145,7 @@
 		B8F3517728159A55002E2A3C /* StoreFromJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFromJson.swift; sourceTree = "<group>"; };
 		B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
-		B8F35183281794D9002E2A3C /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
+		B8F35183281794D9002E2A3C /* UserRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestProvider.swift; sourceTree = "<group>"; };
 		B8F351852817969F002E2A3C /* SURU_LeoDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SURU_LeoDebug.entitlements; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +177,15 @@
 				8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B80095FE2817FEBC00BB05AE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B8CD43802818EF0600D2BCCE /* WelcomeViewController.swift */,
+				B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		B830607B28015A9D002558BE = {
@@ -383,6 +400,15 @@
 			path = Mapping;
 			sourceTree = "<group>";
 		};
+		B8CD437B2818E8D600D2BCCE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B8CD43822818F0E900D2BCCE /* WelcomeView.xib */,
+				B8CD437E2818EC2800D2BCCE /* WelcomeView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		B8EC6FFF2805274100DA8B78 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,7 +441,7 @@
 		B8EC70052805290A00DA8B78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B8F35182281794C4002E2A3C /* User */,
+				B8F35182281794C4002E2A3C /* Login */,
 				B83E9592280EB52A009DD17F /* FirebaseStorage */,
 				B83E958E280EB465009DD17F /* QueueReport */,
 				B83E958B280EAD1A009DD17F /* Comment */,
@@ -429,6 +455,7 @@
 		B8EC70062805290F00DA8B78 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B8CD437B2818E8D600D2BCCE /* Login */,
 				B8A0034C280B041800A64750 /* Waterfalls */,
 				B8A00350280B043A00A64750 /* Mapping */,
 				B8A0034F280B043200A64750 /* Report */,
@@ -442,6 +469,7 @@
 		B8EC70072805291400DA8B78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B80095FE2817FEBC00BB05AE /* Login */,
 				B8A00335280A91F000A64750 /* Waterfalls */,
 				B8A00337280A922000A64750 /* Mapping */,
 				B8A00338280A922F00A64750 /* Report */,
@@ -452,12 +480,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		B8F35182281794C4002E2A3C /* User */ = {
+		B8F35182281794C4002E2A3C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				B8F35183281794D9002E2A3C /* UserProvider.swift */,
+				B8F35183281794D9002E2A3C /* UserRequestProvider.swift */,
 			);
-			path = User;
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -534,6 +562,7 @@
 				B85B63C7280D2CDD00621E4A /* yellow.json in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
 				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,
+				B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,7 +606,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n";
+			shellScript = "
+";
 		};
 		B8659C3928068262006C85F3 /* Multiple Simulators */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -625,7 +655,7 @@
 				B814DF3328108E4E00176C13 /* CommentDraggingView.swift in Sources */,
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
-				B8F35184281794D9002E2A3C /* UserProvider.swift in Sources */,
+				B8F35184281794D9002E2A3C /* UserRequestProvider.swift in Sources */,
 				B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */,
 				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
 				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
@@ -648,6 +678,7 @@
 				B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */,
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
 				B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */,
+				B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */,
 				B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */,
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
@@ -659,11 +690,13 @@
 				B83E959C280EC59D009DD17F /* UIImageView+.swift in Sources */,
 				B8A11AF22813E52D0079A080 /* StoreCardCell.swift in Sources */,
 				B83E4539280E8B7200B13B0C /* SURU.xcdatamodeld in Sources */,
+				B80096002817FEC800BB05AE /* SignInAndOutViewController.swift in Sources */,
 				B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */,
 				B83E9586280EACF7009DD17F /* StoreRequestProvider.swift in Sources */,
 				B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */,
 				B8659C402806AB45006C85F3 /* FirebaseRequestProvider.swift in Sources */,
 				B8A00342280A931800A64750 /* ProfileViewController.swift in Sources */,
+				B8CD43812818EF0600D2BCCE /* WelcomeViewController.swift in Sources */,
 				B8A00346280A97A100A64750 /* UIStoryboard+.swift in Sources */,
 				B8F3517E2815E8EE002E2A3C /* CommentTableViewCell.swift in Sources */,
 				B8EC700E2805468400DA8B78 /* UIColor+.swift in Sources */,

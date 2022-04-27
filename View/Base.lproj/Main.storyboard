@@ -24,6 +24,21 @@
             </objects>
             <point key="canvasLocation" x="-1245" y="-1306"/>
         </scene>
+        <!--Sign In And Out View Controller-->
+        <scene sceneID="JV2-1N-lG2">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="ZMb-2p-ZGm" customClass="SignInAndOutViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hma-7f-GkU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="QDa-bS-rvQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C6D-Cn-qKS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-313" y="-1938"/>
+        </scene>
         <!--Waterfaills View Controller-->
         <scene sceneID="Eu8-YQ-tGF">
             <objects>

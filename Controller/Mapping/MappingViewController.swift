@@ -102,8 +102,8 @@ class MappingViewController: UIViewController {
         storeCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
 //        storeCardCollectionView.clipsToBounds = true
         storeCardCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        storeCardCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         storeCardCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+        storeCardCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         storeCardCollectionView.heightAnchor.constraint(equalTo: storeCardCollectionView.widthAnchor, multiplier: 230/390).isActive = true
         storeCardCollectionView.backgroundColor = .clear
     }
@@ -201,7 +201,7 @@ extension MappingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(StoreCardCell.self)", for: indexPath) as? StoreCardCell else { return UICollectionViewCell() }
         
-        cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], areaName: "還沒做出來區", distance: distance[indexPath.row])
+//        cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], areaName: "還沒做出來區", distance: distance[indexPath.row])
         return cell
     }
     
