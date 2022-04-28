@@ -306,6 +306,7 @@ PODS:
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.7.1)
   - IQKeyboardManagerSwift (6.5.9)
+  - JGProgressHUD (2.2)
   - Kingfisher (7.2.0)
   - leveldb-library (1.22.1)
   - lottie-ios (3.3.0)
@@ -317,7 +318,6 @@ PODS:
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.12)
   - SwiftLint (0.46.5)
-  - Toast-Swift (5.0.1)
   - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
@@ -329,11 +329,11 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - IQKeyboardManagerSwift
+  - JGProgressHUD
   - Kingfisher (~> 7.0)
   - lottie-ios
   - MJRefresh
   - SwiftLint
-  - Toast-Swift
   - XLPagerTabStrip (~> 9.0)
 
 SPEC REPOS:
@@ -356,6 +356,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
+    - JGProgressHUD
     - Kingfisher
     - leveldb-library
     - lottie-ios
@@ -363,7 +364,6 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SwiftLint
-    - Toast-Swift
     - XLPagerTabStrip
 
 SPEC CHECKSUMS:
@@ -385,6 +385,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: 4577a4cc914a5a07c40a8a0ad0acc22080418c2d
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
+  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
@@ -392,9 +393,8 @@ SPEC CHECKSUMS:
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
-  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: a08a882feb1c46dab99589aed8fe947682894d6f
+PODFILE CHECKSUM: 5be085cde0887931311932db7fc4949b6614bbe1
 
 COCOAPODS: 1.11.3

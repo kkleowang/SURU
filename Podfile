@@ -12,7 +12,7 @@ target 'SURU_Leo' do
   pod 'MJRefresh'
   pod 'Alamofire', '~> 5.5'
   pod 'IQKeyboardManagerSwift'
-  pod 'Toast-Swift'
+  pod 'JGProgressHUD'
   pod 'lottie-ios'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
