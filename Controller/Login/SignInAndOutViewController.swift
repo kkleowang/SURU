@@ -10,6 +10,7 @@ import UIKit
 import AuthenticationServices
 import FirebaseAuth
 import CryptoKit
+
 enum SignPageState {
     case sighUp
     case signIn
@@ -17,9 +18,21 @@ enum SignPageState {
 class SignInAndOutViewController: UIViewController {
     fileprivate var currentNonce: String?
     var pageState: SignPageState?
+    let signInAndOutView: SignInAndOutView = .fromNib()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.stickSubView(signInAndOutView)
+        signInAndOutView.delegate = self
+    }
+    func layoutSignView() {
+        guard let state = pageState else { return }
+        switch state {
+        case .sighUp:
+            signInAndOutView.layoutSignUpPage()
+        case .signIn:
+            signInAndOutView.layoutSignInPage()
+        }
     }
 }
 
@@ -86,8 +99,6 @@ extension SignInAndOutViewController: ASAuthorizationControllerDelegate, ASAutho
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         view.window!
     }
-    
-
   func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
     if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
       guard let nonce = currentNonce else {
@@ -120,10 +131,32 @@ extension SignInAndOutViewController: ASAuthorizationControllerDelegate, ASAutho
       }
     }
   }
-
   func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
     // Handle error.
     print("Sign in with Apple errored: \(error)")
   }
 
+}
+extension SignInAndOutViewController: SignInAndOutViewDelegate {
+    func didTapSendButton(_ view: UIView, email: String, password: String) {
+        guard let state = pageState else { return }
+        switch state {
+        case .sighUp:
+            UserRequestProvider.shared.nativeSignUp(withEmail: email, withPassword: password)
+        case .signIn:
+            UserRequestProvider.shared.nativeLogIn(withEmail: email, withPassword: password)
+        }
+    }
+    
+    func didTapAppleButton(_ view: UIView) {
+        startSignInWithAppleFlow()
+    }
+    
+    func didTapForgotPasswordButton(_ view: UIView) {
+        print("ForgotPassword")
+    }
+    
+    
+   
+    
 }

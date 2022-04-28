@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+
 private struct StoryboardCategory {
 
     static let waterfalls = "WaterfaillsViewController"
@@ -102,12 +105,24 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         viewControllers = tabs.map({ $0.controller() })
-
         delegate = self
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let user = Auth.auth().currentUser {
+            print("Login success, id: \(user.uid), email: \(user.email)")
+        }else {
+            presentWelcomePage()
+        }
+    }
 
+    func presentWelcomePage() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+        self.present(controller, animated: true, completion: nil)
+    }
     // MARK: - UITabBarControllerDelegate
-
+    
     func tabBarController(
         _ tabBarController: UITabBarController,
         shouldSelect viewController: UIViewController

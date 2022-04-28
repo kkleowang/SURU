@@ -7,23 +7,48 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController {
 
+class WelcomeViewController: UIViewController {
+    let welcomeView: WelcomeView = .fromNib()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.stickSubView(welcomeView)
+        welcomeView.delegate = self
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func initSignView(state: SignPageState) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "SignInAndOutViewController") as? SignInAndOutViewController else { return }
+        controller.pageState = state
+        controller.layoutSignView()
+        if #available(iOS 15.0, *) {
+            if let sheet = controller.sheetPresentationController {
+                       sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 20
+                
+            }
+        }
+            // Below iOS 15, change frame here
+            self.present(controller, animated: true, completion: nil)
+        
+        
     }
-    */
+}
 
+extension WelcomeViewController: WelcomeViewDelegate {
+    func didTapSignUp(_ view: WelcomeView) {
+        initSignView(state: .sighUp)
+    }
+    
+    func didTapLogIn(_ view: WelcomeView) {
+        initSignView(state: .signIn)
+    }
+    
+    func didTapVisetAsGuest(_ view: WelcomeView) {
+        self.removeFromParent()
+    }
+    
+    
 }

@@ -53,7 +53,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1s-kz-ha7" customClass="CosmosView" customModule="Cosmos">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1s-kz-ha7" customClass="CosmosView" customModule="SURU_Leo">
                         <rect key="frame" x="16" y="133" width="60" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="173-26-7D8"/>

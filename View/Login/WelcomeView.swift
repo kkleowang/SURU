@@ -7,8 +7,15 @@
 
 import UIKit
 
+protocol WelcomeViewDelegate: AnyObject {
+    func didTapSignUp(_ view: WelcomeView)
+    func didTapLogIn(_ view: WelcomeView)
+    func didTapVisetAsGuest(_ view: WelcomeView)
+}
+
 class WelcomeView: UIView {
 
+    weak var delegate: WelcomeViewDelegate?
     @IBOutlet weak var appLogoImage: UIImageView!
     @IBOutlet weak var appWelcomeLabel: UILabel!
     
@@ -18,10 +25,13 @@ class WelcomeView: UIView {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBAction func signUp(_ sender: UIButton) {
+        self.delegate?.didTapSignUp(self)
     }
     @IBAction func logIn(_ sender: UIButton) {
+        self.delegate?.didTapLogIn(self)
     }
     @IBAction func visetAsGuest(_ sender: UIButton) {
+        self.delegate?.didTapVisetAsGuest(self)
     }
     
 }
