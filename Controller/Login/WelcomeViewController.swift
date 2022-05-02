@@ -39,16 +39,15 @@ class WelcomeViewController: UIViewController {
 
 extension WelcomeViewController: WelcomeViewDelegate {
     func didTapSignUp(_ view: WelcomeView) {
+        
         initSignView(state: .sighUp)
+        
     }
     
     func didTapLogIn(_ view: WelcomeView) {
         initSignView(state: .signIn)
     }
-    
     func didTapVisetAsGuest(_ view: WelcomeView) {
-        self.removeFromParent()
+        self.dismiss(animated: true, completion: nil)
     }
-    
-    
 }

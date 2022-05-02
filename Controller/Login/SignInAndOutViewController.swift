@@ -116,12 +116,8 @@ extension SignInAndOutViewController: ASAuthorizationControllerDelegate, ASAutho
       let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                 idToken: idTokenString,
                                                 rawNonce: nonce)
-      // Sign in with Firebase.
       Auth.auth().signIn(with: credential) { (authResult, error) in
         if let error = error {
-          // Error. If error.code == .MissingOrInvalidNonce, make sure
-          // you're sending the SHA256-hashed nonce as a hex string with
-          // your request to Apple.
           print(error)
           return
         }
@@ -142,11 +138,9 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
         guard let state = pageState else { return }
         switch state {
         case .sighUp:
-            UserRequestProvider.shared.nativeSignUp(withEmail: email, withPassword: password) { result in
-                
-            }
+            signUP(email: email, password: password)
         case .signIn:
-            UserRequestProvider.shared.nativeSignIn(withEmail: email, withPassword: password)
+            signIn(email: email, password: password)
         }
     }
     
@@ -156,6 +150,62 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
     
     func didTapForgotPasswordButton(_ view: UIView) {
         print("ForgotPassword")
+    }
+    
+    func signUP(email: String, password: String) {
+        UserRequestProvider.shared.nativeSignUp(withEmail: email, withPassword: password) { result in
+            switch result {
+            case .failure(let error):
+                LKProgressHUD.showFailure(text: error.localizedDescription)
+            case .success(let message):
+                self.showAddInfoAlert()
+                LKProgressHUD.showSuccess(text: message)
+                
+            }
+        }
+    }
+    
+    func signIn(email: String, password: String) {
+        
+        UserRequestProvider.shared.nativeSignIn(withEmail: email, withPassword: password) { result in
+            switch result {
+            case .failure(let error):
+                LKProgressHUD.showFailure(text: error.localizedDescription)
+            case .success(let message):
+                self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+                LKProgressHUD.showSuccess(text: message)
+                
+            }
+        }
+    }
+    
+    func showAddInfoAlert() {
+        let alert = UIAlertController(title: "提示", message: "現在就去編輯自己的個人資料嗎", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "好", style: .default) { _ in
+           print("去個人頁面")
+        }
+        let cancelAction = UIAlertAction(title: "先去逛逛", style: .cancel) { _ in
+            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func initInfoView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "SignInAndOutViewController") as? SignInAndOutViewController else { return }
+//        controller.pageState = state
+        controller.layoutSignView()
+        if #available(iOS 15.0, *) {
+            if let sheet = controller.sheetPresentationController {
+                       sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 20
+                
+            }
+        }
+            // Below iOS 15, change frame here
+            self.present(controller, animated: true, completion: nil)
     }
     
     

@@ -22,11 +22,11 @@ class WaterfaillsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "評論瀑布牆"
-        LKProgressHUD.show()
+        
         fetchUserData()
         fetchStoreData()
         fetchCommentData() {
-            LKProgressHUD.dismiss()
+            
         }
         
     }

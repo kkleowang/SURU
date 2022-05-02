@@ -12,12 +12,17 @@ class UserRequestProvider {
     
     static let shared = UserRequestProvider()
     // Native
+    lazy var currentUserID = firebaseAuth.currentUser?.uid
     lazy var firebaseAuth = Auth.auth()
     
-    func nativeSignIn(withEmail email: String, withPassword password: String) {
+    func nativeSignIn(withEmail email: String, withPassword password: String, completion: @escaping (Result<String, Error>) -> Void) {
         firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
-          guard let strongSelf = self else { return }
-          // ...
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("登入成功"))
+            }
+            
         }
     }
     
@@ -36,36 +41,42 @@ class UserRequestProvider {
                     completion(.failure(error))
                 }
             }
-        
+            
         }
     }
     func mappingNativeUser(user: User) -> Account {
         let account = Account(userID: user.uid, provider: user.providerID)
         return account
     }
-//    func mappingAppleUser(user: User) -> Account {
-//        let account = Account(
-//    }
     
     func logOut() {
         do {
-          try firebaseAuth.signOut()
+            try firebaseAuth.signOut()
         } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
         }
     }
     
-    func nativeDeleteAccount() {
+    func nativeDeleteAccount(password: String, completion: @escaping (Result<String, Error>) -> Void) {
         let user = firebaseAuth.currentUser
-        user?.delete(completion: { error in
-            if let error = error {
-                print("nativeDeleteAccount", error)
-            } else {
-                print("nativeDeleteAccount", "Success")
-            }
-        })
+        
+        let credential = EmailAuthProvider.credential(withEmail: (user?.email)!, password: password)
+        user?.reauthenticate(with: credential) { _, error in
+          if let error = error {
+              completion(.failure(error))
+          } else {
+              user?.delete(completion: { error in
+                  if let error = error {
+                      completion(.failure(error))
+                  } else {
+                      completion(.success("刪除帳號成功"))
+                  }
+              })
+          }
+        }
+        
     }
     
     
-
+    
 }

@@ -19,7 +19,7 @@ class SignInAndOutView: UIView {
     
     weak var delegate: SignInAndOutViewDelegate?
     
-    @IBOutlet weak var appleButton: ASAuthorizationAppleIDButton!
+    @IBOutlet weak var appleButtonView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordCheckTextField: UITextField!
@@ -39,8 +39,9 @@ class SignInAndOutView: UIView {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         passwordTextField.isEnabled = false
-        
+        let appleButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
         appleButton.addTarget(self, action: #selector(tapAppleButton), for: .touchUpInside)
+        appleButtonView.stickSubView(appleButton)
         
     }
     func layoutSignUpPage() {
@@ -51,8 +52,17 @@ class SignInAndOutView: UIView {
         passwordCheckTextField.delegate = self
         passwordTextField.isEnabled = false
         passwordCheckTextField.isEnabled = false
+        if #available(iOS 13.2, *) {
+            let appleButton = ASAuthorizationAppleIDButton(type: .signUp, style: .black)
+            appleButton.addTarget(self, action: #selector(tapAppleButton), for: .touchUpInside)
+            appleButtonView.stickSubView(appleButton)
+        } else {
+            let appleButton = ASAuthorizationAppleIDButton(type: .continue, style: .black)
+            appleButton.addTarget(self, action: #selector(tapAppleButton), for: .touchUpInside)
+            appleButtonView.stickSubView(appleButton)
+        }
+       
         
-        appleButton.addTarget(self, action: #selector(tapAppleButton), for: .touchUpInside)
         
     }
     

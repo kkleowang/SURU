@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ProfileViewDelegate: AnyObject {
-    func didTapLogoutButton(view: ProfileView)
+    func didTapLogoutButton(_ view: ProfileView)
+    func didTapDeleteButton(_ view: ProfileView)
 }
 
 class ProfileView: UIView {
@@ -22,15 +23,10 @@ class ProfileView: UIView {
     @IBOutlet weak var logoutLabel: UIButton!
     
     @IBAction func logout(_ sender: UIButton) {
-        self.delegate?.didTapLogoutButton(view: self)
+        self.delegate?.didTapLogoutButton(self)
     }
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBAction func deleteAccount(_ sender: UIButton) {
+        self.delegate?.didTapDeleteButton(self)
     }
-    */
 
 }

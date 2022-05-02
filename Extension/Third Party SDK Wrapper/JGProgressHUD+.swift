@@ -23,7 +23,7 @@ class LKProgressHUD {
     let hud = JGProgressHUD(style: .dark)
 
     var view: UIView {
-        let viewController = UIApplication.shared.windows.first!.rootViewController
+        let viewController = UIApplication.shared.windows.last!.rootViewController
         return (viewController?.view)!
     }
 

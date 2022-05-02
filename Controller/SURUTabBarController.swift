@@ -110,8 +110,8 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let user = Auth.auth().currentUser {
-            print("Login success, id: \(user.uid), email: \(user.email)")
+        if let userID = UserRequestProvider.shared.currentUserID {
+            print("Login success, id: \(userID)")
         }else {
             presentWelcomePage()
         }

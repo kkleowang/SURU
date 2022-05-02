@@ -56,7 +56,21 @@ class AccountRequestProvider {
         } catch {
             completion(.failure(error))
         }
-        completion(.success(docment.documentID))
+        completion(.success("註冊成功"))
+    }
+    
+    func deleteAccountInfo(userID: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let docRef = database.collection("accounts").document(userID)
+        docRef.updateData([
+            "mainImage": "",
+            "name": "刪除的帳號"
+        ]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("刪除資料庫成功"))
+            }
+        }
     }
     
 }
