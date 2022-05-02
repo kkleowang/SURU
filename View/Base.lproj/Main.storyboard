@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -234,6 +235,93 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smB-P5-cAJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="540.57971014492762" y="-1271.6517857142856"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="fXX-Zt-Wdc">
+            <objects>
+                <viewController id="mhE-EX-8s0" customClass="DetailViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UKq-gf-wjL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdc-fb-EOu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hUR-9Q-lqi">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="44"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ojd-af-CaU">
+                                                <rect key="frame" x="0.0" y="0.0" width="161.5" height="44"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJw-HI-GBE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="44"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="Icons_44px_Back01"/>
+                                                        <connections>
+                                                            <action selector="tapBackButton:" destination="mhE-EX-8s0" eventType="touchUpInside" id="txT-7r-igb"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDD" translatesAutoresizingMaskIntoConstraints="NO" id="ygS-Sx-ajo">
+                                                        <rect key="frame" x="79" y="7" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="1KL-o8-CxA"/>
+                                                            <constraint firstAttribute="height" constant="30" id="D3x-kW-1rb"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6y-sd-dNb">
+                                                        <rect key="frame" x="120" y="12" width="41.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TF9-Um-IUR">
+                                                <rect key="frame" x="341" y="0.0" width="53" height="44"/>
+                                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="追隨"/>
+                                                <connections>
+                                                    <action selector="tapFollowButton:" destination="mhE-EX-8s0" eventType="touchUpInside" id="MOl-bf-Gup"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hUR-9Q-lqi" secondAttribute="trailing" constant="20" id="Hre-mg-CfA"/>
+                                    <constraint firstAttribute="bottom" secondItem="hUR-9Q-lqi" secondAttribute="bottom" id="MVs-Uz-GYh"/>
+                                    <constraint firstAttribute="height" constant="44" id="Pxn-DA-KPF"/>
+                                    <constraint firstItem="hUR-9Q-lqi" firstAttribute="top" secondItem="Tdc-fb-EOu" secondAttribute="top" id="ooI-UW-2jc"/>
+                                    <constraint firstItem="hUR-9Q-lqi" firstAttribute="leading" secondItem="Tdc-fb-EOu" secondAttribute="leading" id="t4i-Ea-ZwV"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5Jg-wf-AYA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2KF-FS-XwM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5Jg-wf-AYA" firstAttribute="leading" secondItem="2KF-FS-XwM" secondAttribute="leading" id="EV1-k9-yj0"/>
+                            <constraint firstItem="Tdc-fb-EOu" firstAttribute="leading" secondItem="2KF-FS-XwM" secondAttribute="leading" id="HDe-eC-xr8"/>
+                            <constraint firstItem="Tdc-fb-EOu" firstAttribute="top" secondItem="2KF-FS-XwM" secondAttribute="top" id="IaV-jQ-1rs"/>
+                            <constraint firstItem="5Jg-wf-AYA" firstAttribute="top" secondItem="Tdc-fb-EOu" secondAttribute="bottom" id="QqL-3C-7LI"/>
+                            <constraint firstItem="Tdc-fb-EOu" firstAttribute="trailing" secondItem="2KF-FS-XwM" secondAttribute="trailing" id="l9I-cC-72Z"/>
+                            <constraint firstItem="2KF-FS-XwM" firstAttribute="bottom" secondItem="5Jg-wf-AYA" secondAttribute="bottom" id="r1L-Vk-veI"/>
+                            <constraint firstItem="2KF-FS-XwM" firstAttribute="trailing" secondItem="5Jg-wf-AYA" secondAttribute="trailing" id="uVb-jl-0vO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="authorImageView" destination="ygS-Sx-ajo" id="Fsr-Ho-rqC"/>
+                        <outlet property="authorNameLabel" destination="g6y-sd-dNb" id="0VG-8W-G1q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zl6-wq-MRp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1523" y="-1891"/>
         </scene>
         <!--Discovery View Controller-->
         <scene sceneID="Mlo-0V-3m9">
@@ -670,6 +758,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="DDD" width="480" height="479"/>
+        <image name="Icons_44px_Back01" width="44" height="44"/>
         <namedColor name="Color-4">
             <color red="0.059000000357627869" green="0.054999999701976776" blue="0.046999998390674591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

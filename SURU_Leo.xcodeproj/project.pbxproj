@@ -72,6 +72,12 @@
 		B8BBBE80281D32C7001782F5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7F281D32C7001782F5 /* FollowViewController.swift */; };
 		B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */; };
 		B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */; };
+		B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BD5F96282072DF00A1C138 /* DetailViewController.swift */; };
+		B8BD5F9A282078B500A1C138 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BD5F99282078B500A1C138 /* DetailView.xib */; };
+		B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BD5F9B28207E9900A1C138 /* CommentCell.xib */; };
+		B8BD5F9E28207F4B00A1C138 /* CommentStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BD5F9D28207F4B00A1C138 /* CommentStoreCell.xib */; };
+		B8BD5FA02820818E00A1C138 /* CommentStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BD5F9F2820818E00A1C138 /* CommentStoreCell.swift */; };
+		B8BD5FA22820819D00A1C138 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BD5FA12820819D00A1C138 /* CommentCell.swift */; };
 		B8CD2D7728205EA800D047B9 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD2D7628205EA800D047B9 /* String+.swift */; };
 		B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD437E2818EC2800D2BCCE /* WelcomeView.swift */; };
 		B8CD43812818EF0600D2BCCE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD43802818EF0600D2BCCE /* WelcomeViewController.swift */; };
@@ -165,6 +171,12 @@
 		B8BBBE7F281D32C7001782F5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryCell.xib; sourceTree = "<group>"; };
 		B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCell.swift; sourceTree = "<group>"; };
+		B8BD5F96282072DF00A1C138 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B8BD5F99282078B500A1C138 /* DetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
+		B8BD5F9B28207E9900A1C138 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		B8BD5F9D28207F4B00A1C138 /* CommentStoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentStoreCell.xib; sourceTree = "<group>"; };
+		B8BD5F9F2820818E00A1C138 /* CommentStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStoreCell.swift; sourceTree = "<group>"; };
+		B8BD5FA12820819D00A1C138 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		B8CD2D7628205EA800D047B9 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		B8CD437E2818EC2800D2BCCE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B8CD43802818EF0600D2BCCE /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +345,7 @@
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
 			isa = PBXGroup;
 			children = (
+				B8BD5F99282078B500A1C138 /* DetailView.xib */,
 				B86AB7E528203B0300154B26 /* WrireCommentViewController.swift */,
 				B814DF37281175FE00176C13 /* StoreCardView.xib */,
 				B87AF25628128CD10058197F /* StoreCardView.swift */,
@@ -371,6 +384,7 @@
 			children = (
 				B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */,
 				B8BBBE7A281D3274001782F5 /* 標籤 */,
+				B8BD5F96282072DF00A1C138 /* DetailViewController.swift */,
 			);
 			path = Waterfalls;
 			sourceTree = "<group>";
@@ -410,6 +424,7 @@
 		B8A0034C280B041800A64750 /* Waterfalls */ = {
 			isa = PBXGroup;
 			children = (
+				B8BD5F98282078A800A1C138 /* DetailView */,
 				B8BBBE82281E9AA0001782F5 /* DiscoveryView */,
 				B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */,
 			);
@@ -481,6 +496,17 @@
 				B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */,
 			);
 			path = DiscoveryView;
+			sourceTree = "<group>";
+		};
+		B8BD5F98282078A800A1C138 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				B8BD5F9B28207E9900A1C138 /* CommentCell.xib */,
+				B8BD5FA12820819D00A1C138 /* CommentCell.swift */,
+				B8BD5F9D28207F4B00A1C138 /* CommentStoreCell.xib */,
+				B8BD5F9F2820818E00A1C138 /* CommentStoreCell.swift */,
+			);
+			path = DetailView;
 			sourceTree = "<group>";
 		};
 		B8CD437B2818E8D600D2BCCE /* Login */ = {
@@ -641,9 +667,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */,
+				B8BD5F9E28207F4B00A1C138 /* CommentStoreCell.xib in Resources */,
 				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
 				B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */,
 				B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */,
+				B8BD5F9A282078B500A1C138 /* DetailView.xib in Resources */,
 				B8F351802815F225002E2A3C /* CommentTableViewCell.xib in Resources */,
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
 				B86AB7EA28203D0700154B26 /* WriteCommentView.xib in Resources */,
@@ -654,6 +682,7 @@
 				B85B63C7280D2CDD00621E4A /* yellow.json in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
 				B893379228190F08000C75C3 /* ProfileView.xib in Resources */,
+				B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */,
 				B8CD43872818F17400D2BCCE /* SignInAndOutView.xib in Resources */,
 				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,
 				B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */,
@@ -755,6 +784,7 @@
 				B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */,
 				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
 				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
+				B8BD5FA02820818E00A1C138 /* CommentStoreCell.swift in Sources */,
 				B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */,
 				B87AF25728128CD10058197F /* StoreCardView.swift in Sources */,
 				B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */,
@@ -781,6 +811,7 @@
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
 				B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */,
 				B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */,
+				B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */,
 				B89337942819120D000C75C3 /* ProfileView.swift in Sources */,
 				B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */,
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
@@ -799,6 +830,7 @@
 				B80096002817FEC800BB05AE /* SignInAndOutViewController.swift in Sources */,
 				B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */,
 				B8BBBE80281D32C7001782F5 /* FollowViewController.swift in Sources */,
+				B8BD5FA22820819D00A1C138 /* CommentCell.swift in Sources */,
 				B893379628191EE0000C75C3 /* AuthorizationAppleIDButton.swift in Sources */,
 				B83E9586280EACF7009DD17F /* StoreRequestProvider.swift in Sources */,
 				B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */,

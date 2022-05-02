@@ -20,6 +20,11 @@ class DiscoveryCell: UICollectionViewCell {
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBAction func tapLikeButton(_ sender: UIButton) {
+        if likeButton.tintColor == .systemRed {
+            likeButton.tintColor = .B5
+        } else {
+            likeButton.tintColor = .systemRed
+        }
         self.delegate?.didTapLikeButton(self)
     }
     
@@ -31,18 +36,21 @@ class DiscoveryCell: UICollectionViewCell {
             authorNameLabel.text = author.name
         
         likeButton.titleLabel?.text = String(comment.likedUserList.count)
-        if currentUser.likedComment.contains(where: { $0.likeComment == comment.commentID}) {
-            likeButton.isSelected = true
-        } else {
-            likeButton.isSelected = false
-        }
+//        if currentUser.likedComment.contains(where: { $0.likeComment == comment.commentID}) {
+//            likeButton.isSelected = true
+//        } else {
+//            likeButton.isSelected = false
+//        }
                                   
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         //配置点赞按钮被选中时的样式
-        let icon = UIImage(systemName: "heart.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
-        likeButton.setImage(icon, for: .selected)
+        self.layer.borderColor = UIColor.B5?.cgColor
+        self.layer.borderWidth = 0.5
+//        let icon = UIImage(systemName: "heart.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+//        likeButton.setImage(icon, for: .selected)
+        
     }
     
 }

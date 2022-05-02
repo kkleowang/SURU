@@ -58,11 +58,11 @@
                             </stackView>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeQ-Cw-ebz">
-                        <rect key="frame" x="131" y="269" width="69" height="31"/>
-                        <color key="tintColor" name="B3"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title="123"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeQ-Cw-ebz">
+                        <rect key="frame" x="174.5" y="269" width="20.5" height="22"/>
+                        <color key="tintColor" name="B5"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="heart.fill" catalog="system"/>
                         <connections>
                             <action selector="tapLikeButton:" destination="BJV-fz-jei" eventType="touchUpInside" id="Kv1-vU-cTt"/>
                         </connections>
@@ -70,14 +70,14 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="KeQ-Cw-ebz" secondAttribute="bottom" id="6kA-gJ-LLC"/>
-                    <constraint firstAttribute="trailing" secondItem="KeQ-Cw-ebz" secondAttribute="trailing" id="8gb-tl-e8Z"/>
+                    <constraint firstAttribute="trailing" secondItem="KeQ-Cw-ebz" secondAttribute="trailing" constant="5" id="8gb-tl-e8Z"/>
                     <constraint firstAttribute="trailing" secondItem="dQx-vz-3NO" secondAttribute="trailing" id="9UQ-cx-7Bt"/>
                     <constraint firstItem="dQx-vz-3NO" firstAttribute="top" secondItem="ZsX-uH-617" secondAttribute="top" id="BCh-qk-8mW"/>
                     <constraint firstAttribute="trailing" secondItem="pXG-Ly-mGy" secondAttribute="trailing" constant="10" id="TuL-L2-N3c"/>
                     <constraint firstItem="dQx-vz-3NO" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" id="dEQ-hf-DPt"/>
                     <constraint firstItem="pXG-Ly-mGy" firstAttribute="top" secondItem="dQx-vz-3NO" secondAttribute="bottom" constant="10" id="nLu-Ic-oOc"/>
                     <constraint firstAttribute="bottom" secondItem="pXG-Ly-mGy" secondAttribute="bottom" constant="10" id="pJI-Li-rDg"/>
+                    <constraint firstItem="KeQ-Cw-ebz" firstAttribute="centerY" secondItem="qbo-pj-MN3" secondAttribute="centerY" id="udX-hH-6yc"/>
                     <constraint firstItem="pXG-Ly-mGy" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" constant="10" id="yEU-MZ-QvX"/>
                 </constraints>
             </collectionViewCellContentView>
@@ -94,9 +94,9 @@
     <resources>
         <image name="D2256435-CD95-44BA-B841-2EC26739FF3D_1_105_c" width="1024" height="768"/>
         <image name="DDD" width="480" height="479"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
-        <namedColor name="B3">
-            <color red="0.53299999237060547" green="0.53299999237060547" blue="0.53299999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <namedColor name="B5">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

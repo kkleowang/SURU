@@ -79,7 +79,7 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return UICollectionViewCell() }
-        
+        cell.delegate = self
         if commentData.count != 0 {
         let comment = commentData[indexPath.row]
         let store = storeData.first(where: {$0.storeID == comment.storeID})
@@ -185,3 +185,10 @@ extension DiscoveryViewController {
     }
 }
 
+extension DiscoveryViewController: DiscoveryCellDelegate {
+    func didTapLikeButton(_ view: DiscoveryCell) {
+        print("Like")
+    }
+    
+    
+}
