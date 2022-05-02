@@ -133,6 +133,7 @@
                     <constraint firstItem="bNC-Ms-4Mu" firstAttribute="top" secondItem="hD5-nq-1og" secondAttribute="bottom" constant="10" id="wfX-9m-0iF"/>
                 </constraints>
             </collectionViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <size key="customSize" width="204" height="99"/>
             <connections>
                 <outlet property="avgRatingView" destination="i1s-kz-ha7" id="Jj3-ta-xLM"/>

@@ -41,18 +41,18 @@ class CommentStartingView: UIView {
         imagePicker.delegate = self
         return imagePicker
     }
-        
+    
     func layoutStartingView() {
-        startCommentButton?.isHidden = false
         
-            self.addSubview(commentTableView)
+        
+        self.addSubview(commentTableView)
         commentTableView.register(UINib(nibName: String(describing: CommentTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: CommentTableViewCell.self))
         commentTableView.translatesAutoresizingMaskIntoConstraints = false
         commentTableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         commentTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         commentTableView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         commentTableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        
+        startCommentButton?.isHidden = false
     }
     
     @objc func startComment() {

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish2" translatesAutoresizingMaskIntoConstraints="NO" id="S1Z-rd-1eO">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="S1Z-rd-1eO">
                     <rect key="frame" x="150" y="476" width="114" height="114"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="S1Z-rd-1eO" secondAttribute="height" multiplier="1:1" id="w9t-yu-PMj"/>
@@ -97,7 +97,7 @@
         </view>
     </objects>
     <resources>
-        <image name="fish2" width="8192" height="5467"/>
+        <image name="appstore" width="1024" height="1024"/>
         <namedColor name="B4">
             <color red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -11,7 +11,7 @@ import FirebaseAuth
 
 private struct StoryboardCategory {
 
-    static let waterfalls = "WaterfaillsViewController"
+    static let waterfalls = "CommentWallViewController"
 
     static let mapping = "MappingViewController"
 
