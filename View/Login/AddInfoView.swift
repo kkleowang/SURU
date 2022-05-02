@@ -9,6 +9,7 @@ import UIKit
 
 protocol AddInfoViewDelegate: AnyObject {
     func didTapOnImageView(_ view: AddInfoView)
+    func didTapSendButton(_ view: AddInfoView, image: UIImage?, nikeName: String?)
 }
 class AddInfoView: UIView {
     weak var delegate: AddInfoViewDelegate?
@@ -22,6 +23,9 @@ class AddInfoView: UIView {
     @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     
+    @IBAction func tapSendButton() {
+        self.delegate?.didTapSendButton(self, image: mainImageImageView.image, nikeName: nickNameTextField.text)
+    }
     func layoutAddInfoView() {
         addGestureForImagePicker()
         nickNameTextField.delegate = self

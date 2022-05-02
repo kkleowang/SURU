@@ -10,6 +10,10 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     let profileView: ProfileView = UIView.fromNib()
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.stickSubView(profileView)

@@ -142,9 +142,11 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
         guard let state = pageState else { return }
         switch state {
         case .sighUp:
-            UserRequestProvider.shared.nativeSignUp(withEmail: email, withPassword: password)
+            UserRequestProvider.shared.nativeSignUp(withEmail: email, withPassword: password) { result in
+                
+            }
         case .signIn:
-            UserRequestProvider.shared.nativeLogIn(withEmail: email, withPassword: password)
+            UserRequestProvider.shared.nativeSignIn(withEmail: email, withPassword: password)
         }
     }
     

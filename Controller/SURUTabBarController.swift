@@ -100,6 +100,7 @@ private enum Tab {
 
 class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private let tabs: [Tab] = [.waterfalls, .mapping, .report, .comment, .profile]
+//    static let shared = SURUTabBarViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()

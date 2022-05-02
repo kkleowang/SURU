@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseFirestoreSwift
+
 
 class WaterfaillsViewController: UIViewController {
     var accounts: [Account] = []
@@ -23,10 +22,11 @@ class WaterfaillsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "評論瀑布牆"
-        listenDatabase()
+        LKProgressHUD.show()
         fetchUserData()
         fetchStoreData()
         fetchCommentData() {
+            LKProgressHUD.dismiss()
         }
         
     }
@@ -78,22 +78,22 @@ class WaterfaillsViewController: UIViewController {
         }
         return stores.first
     }
-    func listenDatabase() {
-        Firestore.firestore().collection("comments").addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                print("Error fetching snapshots: \(error!)")
-                return
-            }
-            snapshot.documentChanges.forEach { diff in
-                if (diff.type == .added) {
-                    print("New Data ID: \(diff.document.documentID), post title: \(diff.document.data()["title"] ?? "") ")
-                    self.fetchCommentData() {
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        }
-    }
+//    func listenDatabase() {
+//        Firestore.firestore().collection("comments").addSnapshotListener { querySnapshot, error in
+//            guard let snapshot = querySnapshot else {
+//                print("Error fetching snapshots: \(error!)")
+//                return
+//            }
+//            snapshot.documentChanges.forEach { diff in
+//                if (diff.type == .added) {
+//                    print("New Data ID: \(diff.document.documentID), post title: \(diff.document.data()["title"] ?? "") ")
+//                    self.fetchCommentData() {
+//                        self.tableView.reloadData()
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 extension WaterfaillsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

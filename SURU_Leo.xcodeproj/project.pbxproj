@@ -49,6 +49,8 @@
 		B893379828197F13000C75C3 /* AddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893379728197F13000C75C3 /* AddInfoViewController.swift */; };
 		B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379928197F24000C75C3 /* AddInfoView.xib */; };
 		B893379C281983BF000C75C3 /* AddInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893379B281983BF000C75C3 /* AddInfoView.swift */; };
+		B893379F281A1D9A000C75C3 /* JGProgressHUD+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893379E281A1D9A000C75C3 /* JGProgressHUD+.swift */; };
+		B89337A1281A1DA8000C75C3 /* KingFisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89337A0281A1DA8000C75C3 /* KingFisher+.swift */; };
 		B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */; };
 		B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B899FF26280D237200BD5715 /* GoogleService-Info.plist */; };
 		B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0033B280A92BC00A64750 /* WaterfaillsViewController.swift */; };
@@ -61,6 +63,12 @@
 		B8A00352280B064200A64750 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00351280B064200A64750 /* MapView.swift */; };
 		B8A11AF02813E4100079A080 /* StoreCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A11AEF2813E4100079A080 /* StoreCardCell.xib */; };
 		B8A11AF22813E52D0079A080 /* StoreCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A11AF12813E52D0079A080 /* StoreCardCell.swift */; };
+		B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */; };
+		B8BBBE7C281D328B001782F5 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */; };
+		B8BBBE7E281D32AE001782F5 /* CollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */; };
+		B8BBBE80281D32C7001782F5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7F281D32C7001782F5 /* FollowViewController.swift */; };
+		B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */; };
+		B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */; };
 		B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD437E2818EC2800D2BCCE /* WelcomeView.swift */; };
 		B8CD43812818EF0600D2BCCE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD43802818EF0600D2BCCE /* WelcomeViewController.swift */; };
 		B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CD43822818F0E900D2BCCE /* WelcomeView.xib */; };
@@ -130,6 +138,8 @@
 		B893379728197F13000C75C3 /* AddInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInfoViewController.swift; sourceTree = "<group>"; };
 		B893379928197F24000C75C3 /* AddInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddInfoView.xib; sourceTree = "<group>"; };
 		B893379B281983BF000C75C3 /* AddInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInfoView.swift; sourceTree = "<group>"; };
+		B893379E281A1D9A000C75C3 /* JGProgressHUD+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JGProgressHUD+.swift"; sourceTree = "<group>"; };
+		B89337A0281A1DA8000C75C3 /* KingFisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KingFisher+.swift"; sourceTree = "<group>"; };
 		B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCommentCellTableViewCell.swift; sourceTree = "<group>"; };
 		B899FF26280D237200BD5715 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8A0033B280A92BC00A64750 /* WaterfaillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfaillsViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +152,12 @@
 		B8A00351280B064200A64750 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B8A11AEF2813E4100079A080 /* StoreCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCardCell.xib; sourceTree = "<group>"; };
 		B8A11AF12813E52D0079A080 /* StoreCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCardCell.swift; sourceTree = "<group>"; };
+		B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWallViewController.swift; sourceTree = "<group>"; };
+		B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
+		B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectViewController.swift; sourceTree = "<group>"; };
+		B8BBBE7F281D32C7001782F5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
+		B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryCell.xib; sourceTree = "<group>"; };
+		B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCell.swift; sourceTree = "<group>"; };
 		B8CD437E2818EC2800D2BCCE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B8CD43802818EF0600D2BCCE /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		B8CD43822818F0E900D2BCCE /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
@@ -331,10 +347,21 @@
 			path = StoreCardView;
 			sourceTree = "<group>";
 		};
+		B893379D281A1D5D000C75C3 /* Third Party SDK Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				B893379E281A1D9A000C75C3 /* JGProgressHUD+.swift */,
+				B89337A0281A1DA8000C75C3 /* KingFisher+.swift */,
+			);
+			path = "Third Party SDK Wrapper";
+			sourceTree = "<group>";
+		};
 		B8A00335280A91F000A64750 /* Waterfalls */ = {
 			isa = PBXGroup;
 			children = (
 				B8A0033B280A92BC00A64750 /* WaterfaillsViewController.swift */,
+				B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */,
+				B8BBBE7A281D3274001782F5 /* 標籤 */,
 			);
 			path = Waterfalls;
 			sourceTree = "<group>";
@@ -374,6 +401,7 @@
 		B8A0034C280B041800A64750 /* Waterfalls */ = {
 			isa = PBXGroup;
 			children = (
+				B8BBBE82281E9AA0001782F5 /* DiscoveryView */,
 				B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */,
 			);
 			path = Waterfalls;
@@ -417,6 +445,33 @@
 			path = Mapping;
 			sourceTree = "<group>";
 		};
+		B8BBBE7A281D3274001782F5 /* 標籤 */ = {
+			isa = PBXGroup;
+			children = (
+				B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */,
+				B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */,
+				B8BBBE7F281D32C7001782F5 /* FollowViewController.swift */,
+				B8BBBE81281D35AD001782F5 /* Discovery */,
+			);
+			path = "標籤";
+			sourceTree = "<group>";
+		};
+		B8BBBE81281D35AD001782F5 /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		B8BBBE82281E9AA0001782F5 /* DiscoveryView */ = {
+			isa = PBXGroup;
+			children = (
+				B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */,
+				B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */,
+			);
+			path = DiscoveryView;
+			sourceTree = "<group>";
+		};
 		B8CD437B2818E8D600D2BCCE /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +488,7 @@
 		B8EC6FFF2805274100DA8B78 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B893379D281A1D5D000C75C3 /* Third Party SDK Wrapper */,
 				B8EC70002805275300DA8B78 /* UIView+.swift */,
 				B8EC7011280546D900DA8B78 /* UITableView+.swift */,
 				B8EC700928052D4300DA8B78 /* UIViewController+.swift */,
@@ -588,6 +644,7 @@
 				B8CD43872818F17400D2BCCE /* SignInAndOutView.xib in Resources */,
 				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,
 				B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */,
+				B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,9 +738,11 @@
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
 				B8F35184281794D9002E2A3C /* UserRequestProvider.swift in Sources */,
+				B8BBBE7C281D328B001782F5 /* DiscoveryViewController.swift in Sources */,
 				B8A0033C280A92BC00A64750 /* WaterfaillsViewController.swift in Sources */,
 				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
 				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
+				B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */,
 				B87AF25728128CD10058197F /* StoreCardView.swift in Sources */,
 				B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */,
 				B8659C462806C534006C85F3 /* TestingCenterViewController.swift in Sources */,
@@ -694,13 +753,16 @@
 				B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */,
 				B8A00340280A92DC00A64750 /* ReportViewController.swift in Sources */,
 				B8EC7010280546A800DA8B78 /* UISreen+.swift in Sources */,
+				B89337A1281A1DA8000C75C3 /* KingFisher+.swift in Sources */,
 				B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */,
 				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
+				B8BBBE7E281D32AE001782F5 /* CollectViewController.swift in Sources */,
 				B83E9596280EB666009DD17F /* AccountDataModel.swift in Sources */,
 				B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */,
 				B83E9594280EB653009DD17F /* CommentDataModel.swift in Sources */,
 				B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */,
 				B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */,
+				B893379F281A1D9A000C75C3 /* JGProgressHUD+.swift in Sources */,
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
 				B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */,
 				B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */,
@@ -709,6 +771,7 @@
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
+				B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */,
 				B814DF312810741900176C13 /* ref.swift in Sources */,
 				B893379828197F13000C75C3 /* AddInfoViewController.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
@@ -719,6 +782,7 @@
 				B83E4539280E8B7200B13B0C /* SURU.xcdatamodeld in Sources */,
 				B80096002817FEC800BB05AE /* SignInAndOutViewController.swift in Sources */,
 				B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */,
+				B8BBBE80281D32C7001782F5 /* FollowViewController.swift in Sources */,
 				B893379628191EE0000C75C3 /* AuthorizationAppleIDButton.swift in Sources */,
 				B83E9586280EACF7009DD17F /* StoreRequestProvider.swift in Sources */,
 				B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */,
