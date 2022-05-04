@@ -63,7 +63,7 @@ extension UIView {
     }
     
         enum GlowEffect: Float {
-            case small = 0.4, normal = 2, mid = 15, big = 30
+            case small = 15, normal = 20, mid = 25, big = 30
         }
 
         func doGlowAnimation(withColor color: UIColor, withEffect effect: GlowEffect = .normal) {

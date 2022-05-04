@@ -50,6 +50,7 @@ struct Store: Codable {
     var menuImage: String
     var mainImage: String
     var closeDay: [Int] = []
+    var queueReport: [QueueReport]? = []
 }
 struct Coordinate: Codable {
     var long: Double

@@ -174,13 +174,25 @@ extension MappingViewController: MKMapViewDelegate {
         switch annotation.title {
         default:
             for (index, store) in storeData.enumerated() where annotation.title == store.name {
+                switch cogfigRepore(store: store) {
+                case 1:
+                    annotationView?.doGlowAnimation(withColor: .blue, withEffect: .small)
+                case 2:
+                    annotationView?.doGlowAnimation(withColor: .green, withEffect: .normal)
+                case 3:
+                    annotationView?.doGlowAnimation(withColor: .orange, withEffect: .mid)
+                case 4:
+                    annotationView?.doGlowAnimation(withColor: .red, withEffect: .big)
+                default:
+                    break
+                }
                 imageView.kf.setImage(with: URL(string: store.mainImage))
                 annotionIndexOfStore.append(index)
                 annotationView?.subviews.forEach { $0.removeFromSuperview() }
                 annotationView?.addSubview(imageView)
                 let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAnnotationView(sender:)))
                 tap.name = store.storeID
-                //                gestureHolder.append(tap)
+                                gestureHolder.append(tap)
                 
                 annotationView?.addGestureRecognizer(tap)
             }
@@ -194,6 +206,20 @@ extension MappingViewController: MKMapViewDelegate {
             setupDescriptionCardView()
         }
     }
+    func cogfigRepore(store: Store) -> Int {
+        guard let reports = store.queueReport else { return 0 }
+        let date = Double(Date().timeIntervalSince1970)
+        if !reports.isEmpty {
+            guard let report = reports.sorted(by: {$0.createdTime > $1.createdTime}).first else { return 0 }
+            if (report.createdTime + 30*15) > date {
+                return report.queueCount
+            } else {
+                return 0
+            }
+        }
+        return 0
+    }
+    
 }
 extension MappingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -298,11 +324,56 @@ extension MappingViewController {
        gesture.setTranslation(.zero, in: self.view)
    }
    @objc func floatBtnAction(sender: UIButton) {
-       print("floatBtnAction")
+       initReportQueueView()
    }
-
+    private func initReportQueueView() {
+        let storeName = storeData[selectedIndex].name
+        let reportView: ReportView = UIView.fromNib()
+        reportView.delegate = self
+        self.view.addSubview(reportView)
+        reportView.layoutView(name: storeName)
+        reportView.translatesAutoresizingMaskIntoConstraints = false
+        reportView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        reportView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        reportView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        reportView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        UIView.animate(withDuration: 0.6) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    private func pulishQueue(queue: Int) {
+        let storeID = storeData[selectedIndex].storeID
+        var queue = QueueReport(queueCount: queue)
+        QueueReportRequestProvider.shared.publishQueueReport(targetStoreID: storeID, report: &queue) { result in
+            switch result {
+            case .failure:
+                LKProgressHUD.showFailure(text: "回報失敗")
+            case .success(let count):
+                LKProgressHUD.showSuccess(text: "回報成功")
+                for gesture in self.gestureHolder where gesture.name == storeID {
+                    switch count {
+                    case 1:
+                        gesture.view?.doGlowAnimation(withColor: .blue, withEffect: .small)
+                    case 2:
+                        gesture.view?.doGlowAnimation(withColor: .green, withEffect: .normal)
+                    case 3:
+                        gesture.view?.doGlowAnimation(withColor: .orange, withEffect: .mid)
+                    case 4:
+                        gesture.view?.doGlowAnimation(withColor: .red, withEffect: .big)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+    }
 }
-
+extension MappingViewController: ReportViewDelegate {
+    func didTapSendButton(_ view: ReportView, queue: Int) {
+        pulishQueue(queue: queue)
+    }
+    
+}
 //extension MappingViewController: CLLocationManagerDelegate {
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        let userLocation: CLLocation = locations[0] as CLLocation

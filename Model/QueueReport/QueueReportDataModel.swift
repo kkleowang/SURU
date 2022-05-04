@@ -8,8 +8,6 @@
 import Foundation
 
 struct QueueReport: Codable {
-    var storeID: String
-    var reportID: String = ""
     var queueCount: Int
     var createdTime: Double = 0
 }
