@@ -80,6 +80,8 @@ extension UIView {
             glowAnimation.repeatCount = .infinity
             glowAnimation.duration = 2
             glowAnimation.autoreverses = true
+            layer.removeAllAnimations()
+            
             layer.add(glowAnimation, forKey: "shadowGlowingAnimation")
         }
     

@@ -13,12 +13,17 @@ import Kingfisher
 class MappingViewController: UIViewController {
     var storeData: [Store] = []
     var commentData: [Comment] = []
+    var originStoreData: [Store] = []
+    var btn = UIButton()
+    
+    // annotion對應的store index
+    var annotionIndexOfStore: [Int] = []
     // 計算對應的function用
     var gestureHolder: [UITapGestureRecognizer] = []
     var storeHolder: [Store] = []
-//    let view = UIImageView()
-//    let pan = UIPanGestureRecognizer()
-//    pan.addTarget(self, action: #s)
+    //    let view = UIImageView()
+    //    let pan = UIPanGestureRecognizer()
+    //    pan.addTarget(self, action: #s)
     // 計算對應的datasource用
     var distance: [Double] = []
     var commentOfStore: [[Comment]] = []
@@ -73,6 +78,7 @@ class MappingViewController: UIViewController {
         StoreRequestProvider.shared.fetchStores { [weak self] result in
             switch result {
             case .success(let data):
+                self?.originStoreData = data
                 self?.storeData = data.sorted(by: { $0.coordinate.long < $1.coordinate.long
                 })
                 print("Get all store data from firebase in Mapping page")
@@ -107,6 +113,7 @@ class MappingViewController: UIViewController {
     func setupDescriptionCardView() {
         if storeCardCollectionView.isHidden {
             storeCardCollectionView.isHidden = false
+            addDragFloatBtn()
             
         }
     }
@@ -139,9 +146,10 @@ class MappingViewController: UIViewController {
 
 extension MappingViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let viewSize = 50.0
         let imageView: UIImageView = {
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-            imageView.layer.cornerRadius = 20
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: viewSize, height: viewSize))
+            imageView.layer.cornerRadius = viewSize/2
             imageView.layer.borderWidth = 2.0
             imageView.layer.borderColor = UIColor.white.cgColor
             imageView.contentMode = .scaleAspectFill
@@ -161,12 +169,14 @@ extension MappingViewController: MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         // set Image
-        annotationView?.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        annotationView?.frame = CGRect(x: 0, y: 0, width: viewSize, height: viewSize)
         
         switch annotation.title {
         default:
-            for store in storeData where annotation.title == store.name {
+            for (index, store) in storeData.enumerated() where annotation.title == store.name {
                 imageView.kf.setImage(with: URL(string: store.mainImage))
+                annotionIndexOfStore.append(index)
+                annotationView?.subviews.forEach { $0.removeFromSuperview() }
                 annotationView?.addSubview(imageView)
                 let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAnnotationView(sender:)))
                 tap.name = store.storeID
@@ -201,16 +211,18 @@ extension MappingViewController: UICollectionViewDataSource {
 
 extension MappingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        mapView.view(for: mapView.annotations[indexPath.row])?.doGlowAnimation(withColor: .red, withEffect: .mid)
+        self.selectedIndex = indexPath.row
     }
-     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let itemSize = CGSize(width: self.storeCardCollectionView.frame.size.width - 2 * 16, height: self.storeCardCollectionView.frame.size.height - 2 * 6)
         let xCenterOffset = targetContentOffset.pointee.x + (itemSize.width / 2.0)
         let indexPath = IndexPath(item: Int(xCenterOffset / (itemSize.width + 16 / 2.0)), section: 0)
-         self.selectedIndex = indexPath.row
-        let offset = CGPoint(x: (itemSize.width + 16.0 / 2.0*2) * CGFloat(indexPath.item), y: 0)
+        self.selectedIndex = indexPath.row
+        let offset = CGPoint(x: (itemSize.width + 16.0 / 2.0) * CGFloat(indexPath.item), y: 0)
+        scrollView.decelerationRate = UIScrollView.DecelerationRate.fast
         targetContentOffset.pointee = offset
-         
+        
+        
     }
 }
 extension MappingViewController: UICollectionViewDelegateFlowLayout {
@@ -232,6 +244,63 @@ extension MappingViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 6.0, left: 16.0, bottom: 6.0, right: 16.0)
     }
     
+}
+
+extension MappingViewController {
+    func addDragFloatBtn() {
+        btn.frame = CGRect(x: UIScreen.width-70, y: 30, width: 60, height: 60)
+        
+        btn.layer.cornerRadius = 30.0
+        self.view .addSubview(btn)
+        btn.setImage( UIImage(named: "broadcast"), for: .normal)
+        
+        btn.backgroundColor = .black.withAlphaComponent(0.4)
+        btn.tintColor = .white
+        btn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        btn.addTarget(self, action: #selector(floatBtnAction(sender:)), for: .touchUpInside)
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragAction(gesture:)))
+        btn .addGestureRecognizer(panGesture)
+    }
+
+   @objc func dragAction(gesture: UIPanGestureRecognizer) {
+       // 移动状态
+       let moveState = gesture.state
+       switch moveState {
+           case .began:
+               break
+           case .changed:
+               // floatBtn 获取移动轨迹
+               let point = gesture.translation(in: self.view)
+               self.btn.center = CGPoint(x: self.btn.center.x                 + point.x, y: self.btn.center.y + point.y)
+               break
+           case .ended:
+               // floatBtn 移动结束吸边
+               let point = gesture.translation(in: self.view)
+               var newPoint = CGPoint(x: self.btn.center.x +                     point.x, y: self.btn.center.y + point.y)
+               if newPoint.x < self.view.bounds.width / 2.0 {
+                   newPoint.x = 40.0
+               } else {
+                   newPoint.x = self.view.bounds.width - 40.0
+               }
+               if newPoint.y <= 40.0 {
+                   newPoint.y = 40.0
+               } else if newPoint.y >= self.view.bounds.height - 40.0 {
+                   newPoint.y = self.view.bounds.height - 40.0
+               }
+               // 0.5秒 吸边动画
+               UIView.animate(withDuration: 0.5) {
+                   self.btn.center = newPoint
+               }
+               break
+           default:
+               break
+       }
+       gesture.setTranslation(.zero, in: self.view)
+   }
+   @objc func floatBtnAction(sender: UIButton) {
+       print("floatBtnAction")
+   }
+
 }
 
 //extension MappingViewController: CLLocationManagerDelegate {

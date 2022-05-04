@@ -67,6 +67,8 @@
 		B8A11AF02813E4100079A080 /* StoreCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A11AEF2813E4100079A080 /* StoreCardCell.xib */; };
 		B8A11AF22813E52D0079A080 /* StoreCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A11AF12813E52D0079A080 /* StoreCardCell.swift */; };
 		B8A4FFC9282134BC0023F0BA /* mappingViewBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4FFC8282134BC0023F0BA /* mappingViewBackup.swift */; };
+		B8A4FFCC28224EA20023F0BA /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A4FFCB28224EA20023F0BA /* ReportView.xib */; };
+		B8A4FFCE282252B30023F0BA /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4FFCD282252B30023F0BA /* ReportView.swift */; };
 		B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */; };
 		B8BBBE7C281D328B001782F5 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */; };
 		B8BBBE7E281D32AE001782F5 /* CollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */; };
@@ -167,6 +169,8 @@
 		B8A11AEF2813E4100079A080 /* StoreCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCardCell.xib; sourceTree = "<group>"; };
 		B8A11AF12813E52D0079A080 /* StoreCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCardCell.swift; sourceTree = "<group>"; };
 		B8A4FFC8282134BC0023F0BA /* mappingViewBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mappingViewBackup.swift; sourceTree = "<group>"; };
+		B8A4FFCB28224EA20023F0BA /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
+		B8A4FFCD282252B30023F0BA /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWallViewController.swift; sourceTree = "<group>"; };
 		B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectViewController.swift; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
 			isa = PBXGroup;
 			children = (
+				B8A4FFC8282134BC0023F0BA /* mappingViewBackup.swift */,
 				B8BD5F99282078B500A1C138 /* DetailView.xib */,
 				B86AB7E528203B0300154B26 /* WrireCommentViewController.swift */,
 				B814DF37281175FE00176C13 /* StoreCardView.xib */,
@@ -397,7 +402,6 @@
 			isa = PBXGroup;
 			children = (
 				B8A0033D280A92D300A64750 /* MappingViewController.swift */,
-				B8A4FFC8282134BC0023F0BA /* mappingViewBackup.swift */,
 			);
 			path = Mapping;
 			sourceTree = "<group>";
@@ -470,10 +474,20 @@
 		B8A00350280B043A00A64750 /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
+				B8A4FFCA28224E900023F0BA /* ReportView */,
 				B87AF25528128CC40058197F /* StoreCardView */,
 				B8A00351280B064200A64750 /* MapView.swift */,
 			);
 			path = Mapping;
+			sourceTree = "<group>";
+		};
+		B8A4FFCA28224E900023F0BA /* ReportView */ = {
+			isa = PBXGroup;
+			children = (
+				B8A4FFCB28224EA20023F0BA /* ReportView.xib */,
+				B8A4FFCD282252B30023F0BA /* ReportView.swift */,
+			);
+			path = ReportView;
 			sourceTree = "<group>";
 		};
 		B8BBBE7A281D3274001782F5 /* 標籤 */ = {
@@ -689,6 +703,7 @@
 				B893379228190F08000C75C3 /* ProfileView.xib in Resources */,
 				B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */,
 				B8CD43872818F17400D2BCCE /* SignInAndOutView.xib in Resources */,
+				B8A4FFCC28224EA20023F0BA /* ReportView.xib in Resources */,
 				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,
 				B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */,
 				B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */,
@@ -830,6 +845,7 @@
 				B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */,
 				B8A00352280B064200A64750 /* MapView.swift in Sources */,
 				B83E959C280EC59D009DD17F /* UIImageView+.swift in Sources */,
+				B8A4FFCE282252B30023F0BA /* ReportView.swift in Sources */,
 				B8A11AF22813E52D0079A080 /* StoreCardCell.swift in Sources */,
 				B83E4539280E8B7200B13B0C /* SURU.xcdatamodeld in Sources */,
 				B80096002817FEC800BB05AE /* SignInAndOutViewController.swift in Sources */,
