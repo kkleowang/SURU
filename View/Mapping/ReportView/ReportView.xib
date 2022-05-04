@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ReportView" customModule="SURU_Leo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北一家拉麵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwB-gG-c0V">
+                    <rect key="frame" x="30" y="74" width="122" height="29"/>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RfU-1w-ccz">
+                    <rect key="frame" x="20" y="162" width="374" height="32"/>
+                    <segments>
+                        <segment title="0~5"/>
+                        <segment title="5~10"/>
+                        <segment title="10~20"/>
+                        <segment title="20+"/>
+                    </segments>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ozy-DE-CK7">
+                    <rect key="frame" x="341" y="208" width="53" height="31"/>
+                    <color key="backgroundColor" red="0.92549019610000005" green="0.83529411760000005" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="送出"/>
+                    <connections>
+                        <action selector="tapSendButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="DhM-1R-tc7"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提供排隊情報給全部的的使用者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BF-60-MJ8">
+                    <rect key="frame" x="30" y="111" width="243" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="RfU-1w-ccz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="4aB-5m-PJp"/>
+                <constraint firstItem="WwB-gG-c0V" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="4it-id-REy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ozy-DE-CK7" secondAttribute="trailing" constant="20" id="R4c-8U-qux"/>
+                <constraint firstItem="WwB-gG-c0V" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="Yf7-Cc-7rX"/>
+                <constraint firstItem="Ozy-DE-CK7" firstAttribute="top" secondItem="RfU-1w-ccz" secondAttribute="bottom" constant="15" id="gAf-0f-wDN"/>
+                <constraint firstItem="RfU-1w-ccz" firstAttribute="top" secondItem="6BF-60-MJ8" secondAttribute="bottom" constant="30" id="prB-Nr-ZXb"/>
+                <constraint firstItem="6BF-60-MJ8" firstAttribute="leading" secondItem="WwB-gG-c0V" secondAttribute="leading" id="qwk-yo-KHP"/>
+                <constraint firstItem="6BF-60-MJ8" firstAttribute="top" secondItem="WwB-gG-c0V" secondAttribute="bottom" constant="8" id="t0C-9J-jjw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RfU-1w-ccz" secondAttribute="trailing" constant="20" id="xXh-n3-ygh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="peopleCountSegement" destination="RfU-1w-ccz" id="zBO-By-ogg"/>
+                <outlet property="sendBuuton" destination="Ozy-DE-CK7" id="c1g-hr-iHv"/>
+                <outlet property="subTitleLabel" destination="6BF-60-MJ8" id="TIx-an-DrN"/>
+                <outlet property="titleLabel" destination="WwB-gG-c0V" id="QF3-th-Swv"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="30.803571428571427"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

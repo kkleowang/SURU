@@ -17,41 +17,53 @@ class CommentViewController: UIViewController {
     let selectionView = CommentSelectionView()
     
     // datasource放置
+    var orderObserver: NSKeyValueObservation!
     var stores: [Store] = []
     var comments: [Comment] = []
     var commentDrafts: [CommentDraft] = []
-    
-    var commentData: Comment = {
-        let comment = Comment(
-        userID: "ZBrsbRumZjvowPKfpFZL",
+    let userID = UserRequestProvider.shared.currentUserID
+    var commentData: Comment = Comment(
+        userID: "",
         storeID: "",
         meal: "",
         contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0),
         contenText: "",
         mainImage: "")
-        return comment
-    }()
+        
+    
     
     // 上傳前的照片
     var imageDataHolder: Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-            
+        if userID != nil {
+        commentData.userID = userID!
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        settingKVO()
         fetchStoreData()
         fetchCoreData {
-            
         }
         fetchCommentOfUser {
             self.setupStartingView()
         }
         
+    }
+    
+    func settingKVO() {
+        orderObserver = StorageManager.shared.observe(
+            \StorageManager.comments,
+            options: .new,
+            changeHandler: { [weak self] _, change in
+          
+                self!.startingView.commentTableView.reloadSections([1], with: .none)
+               
+            }
+        )
     }
     
     func fetchStoreData() {
@@ -65,7 +77,8 @@ class CommentViewController: UIViewController {
         }
     }
     func fetchCommentOfUser(com: @escaping () -> Void) {
-        CommentRequestProvider.shared.fetchCommentsOfUser(useID: "ZBrsbRumZjvowPKfpFZL") { result in
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        CommentRequestProvider.shared.fetchCommentsOfUser(useID: userID) { result in
             switch result {
             case .success(let data):
                 self.comments = data
@@ -164,6 +177,11 @@ class CommentViewController: UIViewController {
             switch result {
             case .success(let message):
                 print("上傳評論成功", message)
+                LKProgressHUD.showSuccess(text: "上傳評論成功")
+                self.fetchCommentOfUser {
+                    self.setupStartingView()
+                    
+                }
             case .failure(let error):
                 print("上傳評論失敗", error)
             }
@@ -202,10 +220,12 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
         if indexPath.section == 1 {
-            cell.layoutCommentCell(data: comments[indexPath.row])
+            let name = stores.first(where: {$0.storeID == comments[indexPath.row].storeID})?.name
+            cell.layoutCommentCell(data: comments[indexPath.row], name: name ?? "未輸入店名")
             return cell
         } else {
-            cell.layoutDraftCell(data: commentDrafts[indexPath.row])
+            let name = stores.first(where: {$0.storeID == comments[indexPath.row].storeID})?.name
+            cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name ?? "未輸入店名")
             return cell
         }
     }
@@ -241,11 +261,11 @@ extension CommentViewController: CommentImageCardViewDelegate {
 
 extension CommentViewController: CommentSelectionViewDelegate {
     func didGetSelectStore(_ view: CommentSelectionView, storeID: String) {
-        print("didTapSelectNoodleValue")
+        commentData.storeID = storeID
     }
     
     func didGetSelectMeal(_ view: CommentSelectionView, meal: String) {
-        print("didTapSelectNoodleValue")
+        commentData.meal = meal
     }
     
 
@@ -255,11 +275,11 @@ extension CommentViewController: CommentSelectionViewDelegate {
     
     
     func didTapWriteComment(_ view: CommentSelectionView) {
-        print("didTapWriteComment")
+        preSentWriteCommentView()
     }
     
     func didTapNotWriteComment(_ view: CommentSelectionView) {
-        print("didTapNotWriteComment")
+        preSentWriteCommentView()
     }
     
     func didTapSendComment(_ view: CommentSelectionView) {
@@ -281,7 +301,7 @@ extension CommentViewController: CommentSelectionViewDelegate {
         StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
             switch result {
             case .success(let data):
-                    print("COredata")
+                    print("Coredata")
             case .failure(let error):
                 print(error)
             }
@@ -308,6 +328,7 @@ extension CommentViewController: CommentDraggingViewDelegate {
         UIView.animate(withDuration: 0.5) {
             vc.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
             self.tabBarController?.tabBar.isHidden = false
+            self.imageCardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
         }
     }
 }
@@ -334,6 +355,15 @@ extension CommentViewController: LiquidViewDelegate {
 }
 
 extension CommentViewController {
+    func preSentWriteCommentView() {
+        let controller = UIViewController()
+        let writeCommentView: WriteCommentView = UIView.fromNib()
+        writeCommentView.delegate = self
+        controller.view.stickSubView(writeCommentView)
+        let name = stores.first(where: {$0.storeID == commentData.storeID})?.name
+        writeCommentView.layoutView(comment: commentData, name: name ?? "")
+        self.present(controller, animated: true, completion: nil)
+    }
     func initSendButton() {
         let button = UIButton()
         view.addSubview(button)
@@ -404,4 +434,10 @@ extension CommentViewController {
         view.backgroundColor = .B6
     }
 }
-
+extension CommentViewController: WrireCommentViewControllerDelegate {
+    func didTapSaveComment(_ view: WriteCommentView, text: String) {
+        commentData.contenText = text
+    }
+    
+    
+}

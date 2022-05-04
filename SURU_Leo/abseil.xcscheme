@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1320"
+   LastUpgradeVersion = "1240"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B830608328015A9D002558BE"
-               BuildableName = "SURU_Leo.app"
-               BlueprintName = "SURU_Leo"
-               ReferencedContainer = "container:SURU_Leo.xcodeproj">
+               BlueprintIdentifier = "73CDC3D182DB953135F62609681B443D"
+               BuildableName = "absl.framework"
+               BlueprintName = "abseil"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,16 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B830608328015A9D002558BE"
-            BuildableName = "SURU_Leo.app"
-            BlueprintName = "SURU_Leo"
-            ReferencedContainer = "container:SURU_Leo.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,16 +47,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B830608328015A9D002558BE"
-            BuildableName = "SURU_Leo.app"
-            BlueprintName = "SURU_Leo"
-            ReferencedContainer = "container:SURU_Leo.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

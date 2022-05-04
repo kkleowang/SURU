@@ -12,10 +12,11 @@ target 'SURU_Leo' do
   pod 'MJRefresh'
   pod 'Alamofire', '~> 5.5'
   pod 'IQKeyboardManagerSwift'
-  pod 'Toast-Swift'
+  pod 'JGProgressHUD'
   pod 'lottie-ios'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'SwiftLint'
   pod 'Cosmos', '~> 23.0'
@@ -26,7 +27,6 @@ end
 post_install do |installer|
   installer.pods_project.build_configurations.each do |config|
     config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-config.build_settings.delete('CODE_SIGNING_ALLOWED')
-        config.build_settings.delete('CODE_SIGNING_REQUIRED')
+
   end
 end

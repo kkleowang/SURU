@@ -89,6 +89,8 @@ class CommentSelectionView: UIView {
         selectedStoreTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         selectedStoreTextField.inputView = storePickerView
         
+        
+        
         self.addSubview(selectedMealTextField)
         selectedMealTextField.translatesAutoresizingMaskIntoConstraints = false
         selectedMealTextField.backgroundColor = .clear
@@ -100,6 +102,7 @@ class CommentSelectionView: UIView {
         selectedMealTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         selectedMealTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         selectedMealTextField.inputView = mealPickerView
+        
     }
     func initPickerView() {
         storePickerView.tag = 1
@@ -176,12 +179,12 @@ class CommentSelectionView: UIView {
         saveDraftButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         saveDraftButton.layer.cornerRadius = 20
         saveDraftButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        saveDraftButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40).isActive = true
+        saveDraftButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         saveDraftButton.setImage( UIImage(named: "draftmark"), for: .normal)
         saveDraftButton.addTarget(self, action: #selector(saveCommentDraft), for: .touchUpInside)
         saveDraftButton.backgroundColor = .black.withAlphaComponent(0.4)
         saveDraftButton.tintColor = .white
-        saveDraftButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        saveDraftButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
     func initValueView(on view: UIView, value: Double) {
         // round view

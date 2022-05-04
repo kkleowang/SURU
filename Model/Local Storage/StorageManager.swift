@@ -11,7 +11,7 @@ typealias CommentDraftResults = (Result<[CommentDraft], Error>) -> Void
 
 typealias CommentDraftResult = (Result<CommentDraft, Error>) -> Void
 
-class StorageManager {
+class StorageManager: NSObject {
     static let shared = StorageManager()
     
     private enum Entity: String, CaseIterable {
@@ -22,7 +22,7 @@ class StorageManager {
         case createTime 
     }
     
-    private init() {
+    private override init() {
         print(" Core data file path: \(NSPersistentContainer.defaultDirectoryURL())")
     }
     // KVO

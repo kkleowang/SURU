@@ -36,13 +36,14 @@ class StoreCardCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak private var avgRatingView: CosmosView!
     @IBOutlet weak private var ratingCountLabel: UILabel!
-//    @IBOutlet weak private var tagsView: UIStackView!
+    @IBOutlet weak private var tagsView: UIStackView!
     @IBOutlet weak private var localtionAreaLabel: UILabel!
     @IBOutlet weak private var openingWaringLabel: UILabel!
     @IBOutlet weak private var timeUntillLabel: UILabel!
     @IBOutlet weak private var lunchLabel: UILabel!
     @IBOutlet weak private var dinnerLabel: UILabel!
     @IBOutlet weak private var distanceLabel: UILabel!
+    
     func layoutCardView(dataSource: Store, commentData: [Comment], areaName: String, distance: Double) {
         self.backgroundColor = .white.withAlphaComponent(0.7)
         self.clipsToBounds = true
@@ -75,17 +76,24 @@ class StoreCardCell: UICollectionViewCell {
         default:
             return
         }
-        var total: Double = 0
-        for data in commentData {
-            let value = (data.contentValue.happiness + data.contentValue.soup + data.contentValue.noodle)/3
-            total += value
-        }
+//        var total: Double = 0
+//        for data in commentData {
+//            let value = (data.contentValue.happiness + data.contentValue.soup + data.contentValue.noodle)/3
+//            total += value
+//        }
         if commentData.count > 0 {
+            var total: Double = 0
+            for data in commentData {
+                let value = (data.contentValue.happiness + data.contentValue.soup + data.contentValue.noodle)/3
+                total += value
+            }
         ratingCountLabel.text = "\(commentData.count) reviews"
+            avgRatingView.rating = total/Double(commentData.count)
         } else {
             ratingCountLabel.text = "no review"
+            avgRatingView.rating = 0
         }
-        avgRatingView.rating = total/Double(commentData.count)
+//        avgRatingView.rating = total/Double(commentData.count)
         let kilometer = Double(distance/1000).ceiling(toDecimal: 1)
         self.distanceLabel.text = String("\(kilometer) 公里")
         if !commentData.isEmpty {

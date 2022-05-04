@@ -6,13 +6,16 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+
 private struct StoryboardCategory {
 
-    static let waterfalls = "WaterfaillsViewController"
+    static let waterfalls = "CommentWallViewController"
 
     static let mapping = "MappingViewController"
 
-    static let report = "ReportViewController"
+//    static let report = "ReportViewController"
 
     static let comment = "CommentViewController"
 
@@ -25,7 +28,7 @@ private enum Tab {
 
     case mapping
 
-    case report
+//    case report
 
     case comment
     
@@ -41,7 +44,7 @@ private enum Tab {
 
         case .mapping: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.mapping)
 
-        case .report: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.report)
+//        case .report: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.report)
 
         case .comment: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.comment)
             
@@ -60,34 +63,34 @@ private enum Tab {
         case .waterfalls:
             return UITabBarItem(
                 title: nil,
-                image: UIImage.asset(.Icons_36px_Home_Normal),
-                selectedImage: UIImage.asset(.Icons_36px_Home_Selected)
+                image: UIImage.asset(.Icons_24px_Address),
+                selectedImage: UIImage.asset(.Icons_24px_Address)
             )
 
         case .mapping:
             return UITabBarItem(
                 title: nil,
-                image: UIImage.asset(.Icons_36px_Catalog_Normal),
-                selectedImage: UIImage.asset(.Icons_36px_Catalog_Selected)
+                image: UIImage.asset(.Icons_24px_CollectionView),
+                selectedImage: UIImage.asset(.Icons_24px_CollectionView)
             )
 
         case .comment:
             return UITabBarItem(
                 title: nil,
-                image: UIImage.asset(.Icons_36px_Cart_Normal),
-                selectedImage: UIImage.asset(.Icons_36px_Cart_Selected)
+                image: UIImage.asset(.Icons_24px_RegisterCellphone),
+                selectedImage: UIImage.asset(.Icons_24px_RegisterCellphone)
             )
 
-        case .report:
-            return UITabBarItem(
-                title: nil,
-                image: UIImage.asset(.Icons_36px_Profile_Normal),
-                selectedImage: UIImage.asset(.Icons_36px_Profile_Selected)
-            )
+//        case .report:
+//            return UITabBarItem(
+//                title: nil,
+//                image: UIImage.asset(.Icons_36px_Profile_Normal),
+//                selectedImage: UIImage.asset(.Icons_36px_Profile_Selected)
+//            )
         case .profile:
             return UITabBarItem(
                 title: nil,
-                image: UIImage.asset(.Icons_36px_Profile_Normal),
+                image: UIImage.asset(.Icons_36px_Profile_Selected),
                 selectedImage: UIImage.asset(.Icons_36px_Profile_Selected)
             )
         }
@@ -96,18 +99,31 @@ private enum Tab {
 
 
 class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
-    private let tabs: [Tab] = [.waterfalls, .mapping, .report, .comment, .profile]
+    private let tabs: [Tab] = [.mapping, .waterfalls, .comment, .profile]
+//    static let shared = SURUTabBarViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         viewControllers = tabs.map({ $0.controller() })
-
         delegate = self
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let userID = UserRequestProvider.shared.currentUserID {
+            print("Login success, id: \(userID)")
+        }else {
+            presentWelcomePage()
+        }
+    }
 
+    func presentWelcomePage() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+        self.present(controller, animated: true, completion: nil)
+    }
     // MARK: - UITabBarControllerDelegate
-
+    
     func tabBarController(
         _ tabBarController: UITabBarController,
         shouldSelect viewController: UIViewController

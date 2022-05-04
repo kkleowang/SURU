@@ -13,15 +13,15 @@ class QueueReportRequestProvider {
     
     private lazy var database = Firestore.firestore()
     
-    func fetchQueueReport(targetStoreID: String, completion: @escaping (Result<[StoreQueueReport], Error>) -> Void) {
+    func fetchQueueReport(targetStoreID: String, completion: @escaping (Result<[QueueReport], Error>) -> Void) {
         database.collection("stores").document(targetStoreID).collection("queueReport").getDocuments { querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                var reports = [StoreQueueReport]()
+                var reports = [QueueReport]()
                 for document in querySnapshot!.documents {
                     do {
-                        if let report = try document.data(as: StoreQueueReport.self, decoder: Firestore.Decoder()) {
+                        if let report = try document.data(as: QueueReport.self, decoder: Firestore.Decoder()) {
                             reports.append(report)
                         }
                     } catch {
@@ -33,7 +33,7 @@ class QueueReportRequestProvider {
         }
     }
     
-    func publishStoreQueueReport(targetStoreID: String, report: inout StoreQueueReport, completion: @escaping (Result<String, Error>) -> Void) {
+    func publishQueueReport(targetStoreID: String, report: inout QueueReport, completion: @escaping (Result<String, Error>) -> Void) {
         let docment = database.collection("stores").document(targetStoreID).collection("queueReport").document()
         report.reportID = docment.documentID
         report.createdTime = Date().timeIntervalSince1970
