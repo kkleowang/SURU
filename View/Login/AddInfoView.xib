@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AddInfoView" customModule="SURU_Leo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ty1-kX-brx">
+                    <rect key="frame" x="16" y="16" width="382" height="418"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="歡迎！ 讓我們完成你的個人檔案" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdS-4c-YVF">
+                            <rect key="frame" x="0.0" y="0.0" width="247" height="148.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="讓其他人更好的認識你， 之後可以在個人頁面進行編輯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrW-62-aJL">
+                            <rect key="frame" x="0.0" y="156.5" width="382" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增大頭貼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znu-wn-XM0">
+                            <rect key="frame" x="0.0" y="185" width="87" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDD" translatesAutoresizingMaskIntoConstraints="NO" id="kcg-Ug-CzH">
+                            <rect key="frame" x="0.0" y="213.5" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="886-vn-onC"/>
+                                <constraint firstAttribute="height" constant="80" id="GXm-BG-Azi"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="輸入你的暱稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGE-sM-AX5">
+                            <rect key="frame" x="0.0" y="301.5" width="104" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="請輸入你的暱稱" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MxY-8z-4l6">
+                            <rect key="frame" x="0.0" y="330" width="200" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="ITV-8V-iar"/>
+                                <constraint firstAttribute="width" constant="200" id="LOf-6y-d5b"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXu-uY-oir">
+                            <rect key="frame" x="0.0" y="378" width="382" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="oc4-yy-H2Z"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="vXu-uY-oir" secondAttribute="trailing" id="QKm-Fm-l99"/>
+                        <constraint firstItem="vXu-uY-oir" firstAttribute="leading" secondItem="ty1-kX-brx" secondAttribute="leading" id="aJT-5E-Q0x"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ty1-kX-brx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="2zb-ft-RfW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ty1-kX-brx" secondAttribute="bottom" constant="16" id="M1H-DJ-C98"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ty1-kX-brx" secondAttribute="trailing" constant="16" id="V3K-oq-D1V"/>
+                <constraint firstItem="ty1-kX-brx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="YZW-Tp-5vw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageNoteLabel" destination="Znu-wn-XM0" id="SFf-aQ-L0r"/>
+                <outlet property="mainImageImageView" destination="kcg-Ug-CzH" id="IgQ-L1-3Pd"/>
+                <outlet property="nickNameNoteLabel" destination="QGE-sM-AX5" id="098-sd-TGI"/>
+                <outlet property="nickNameTextField" destination="MxY-8z-4l6" id="mNe-SG-5qU"/>
+                <outlet property="sendButton" destination="vXu-uY-oir" id="zCz-4v-FHL"/>
+                <outlet property="subtitleLabel" destination="PrW-62-aJL" id="HiQ-ce-iQ0"/>
+                <outlet property="titleLabel" destination="vdS-4c-YVF" id="90F-a0-k61"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="71"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="DDD" width="480" height="479"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

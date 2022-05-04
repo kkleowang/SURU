@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StoreQueueReport: Codable {
+struct QueueReport: Codable {
     var storeID: String
     var reportID: String = ""
     var queueCount: Int

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-
- HEAD:SURU_Leo.xcodeproj/xcuserdata/leow.xcuserdatad/xcschemes/xcschememanagement.plist
 	<key>SchemeUserState</key>
 	<dict>
 		<key>SURU_Leo.xcscheme_^#shared#^_</key>
@@ -12,12 +10,9 @@
 			<integer>33</integer>
 		</dict>
 	</dict>
-
 	<key>com.apple.developer.applesignin</key>
 	<array>
 		<string>Default</string>
 	</array>
-
- feature_2_Mapping:SURU_Leo/SURU_LeoDebug.entitlements
 </dict>
 </plist>

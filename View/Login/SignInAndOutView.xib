@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SignInAndOutView" customModule="SURU_Leo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uS9-Ya-uUz">
+                    <rect key="frame" x="30" y="50" width="354" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="rHU-3z-2Ej"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="或" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsG-Ep-KWv">
+                    <rect key="frame" x="201" y="100" width="12.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FNt-dz-LV8">
+                    <rect key="frame" x="16" y="134.5" width="382" height="93"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="PfE-GQ-Kse">
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="93"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="輸入你的電子郵件地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G8B-Dr-3Ia">
+                                    <rect key="frame" x="0.0" y="0.0" width="183.5" height="23"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="輸入你的密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="shm-x2-cxe">
+                                    <rect key="frame" x="0.0" y="36" width="110.5" height="22"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次輸入你的密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yRs-Dy-wte">
+                                    <rect key="frame" x="0.0" y="71" width="147" height="22"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                </textField>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDv-Y9-8Kc">
+                    <rect key="frame" x="159.5" y="339" width="95.5" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="忘記密碼？"/>
+                    <connections>
+                        <action selector="tapForgotButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="8ad-XI-Fef"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHY-hC-Hdb">
+                    <rect key="frame" x="20" y="293" width="374" height="36"/>
+                    <color key="backgroundColor" name="C2"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="註冊"/>
+                    <connections>
+                        <action selector="tapSendButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="HqG-Om-ic1"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FNt-dz-LV8" secondAttribute="trailing" constant="16" id="4QO-qL-FIZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uS9-Ya-uUz" secondAttribute="trailing" constant="30" id="5Pg-sR-Uef"/>
+                <constraint firstItem="FNt-dz-LV8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="MYQ-jv-qDI"/>
+                <constraint firstItem="FNt-dz-LV8" firstAttribute="top" secondItem="OsG-Ep-KWv" secondAttribute="bottom" constant="20" id="WnH-NY-AY7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="cDv-Y9-8Kc" secondAttribute="bottom" constant="30" id="bbF-8t-ONC"/>
+                <constraint firstItem="OsG-Ep-KWv" firstAttribute="top" secondItem="uS9-Ya-uUz" secondAttribute="bottom" constant="10" id="fWp-YJ-u6g"/>
+                <constraint firstItem="sHY-hC-Hdb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="fx2-aq-HNg"/>
+                <constraint firstItem="cDv-Y9-8Kc" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="na4-Ud-Pd2"/>
+                <constraint firstItem="uS9-Ya-uUz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="ody-iz-Paf"/>
+                <constraint firstItem="cDv-Y9-8Kc" firstAttribute="top" secondItem="sHY-hC-Hdb" secondAttribute="bottom" constant="10" id="qAM-CU-NOs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sHY-hC-Hdb" secondAttribute="trailing" constant="20" id="tth-rx-Xi9"/>
+                <constraint firstItem="OsG-Ep-KWv" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="vbg-mE-IrK"/>
+                <constraint firstItem="uS9-Ya-uUz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="ykq-ay-jkw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="appleButtonView" destination="uS9-Ya-uUz" id="w9V-LC-M1B"/>
+                <outlet property="emailTextField" destination="G8B-Dr-3Ia" id="7bb-E7-hgF"/>
+                <outlet property="forgotPasswordButton" destination="cDv-Y9-8Kc" id="CG1-qQ-esI"/>
+                <outlet property="passwordCheckTextField" destination="yRs-Dy-wte" id="OLl-px-UGf"/>
+                <outlet property="passwordTextField" destination="shm-x2-cxe" id="p3N-h0-MpJ"/>
+                <outlet property="sendButton" destination="sHY-hC-Hdb" id="WvF-uu-eaT"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="22.767857142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="C2">
+            <color red="0.92199999094009399" green="0.88200002908706665" blue="0.81599998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WelcomeView" customModule="SURU_Leo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="S1Z-rd-1eO">
+                    <rect key="frame" x="150" y="476" width="114" height="114"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="S1Z-rd-1eO" secondAttribute="height" multiplier="1:1" id="w9t-yu-PMj"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSK-8K-MAE">
+                    <rect key="frame" x="16" y="683" width="382" height="36"/>
+                    <color key="backgroundColor" name="C2"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="tintColor" name="C1"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="註冊"/>
+                    <connections>
+                        <action selector="signUp:" destination="iN0-l3-epB" eventType="touchUpInside" id="v1A-1j-sFP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAH-LS-ywW">
+                    <rect key="frame" x="16" y="727" width="382" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="登入"/>
+                    <connections>
+                        <action selector="logIn:" destination="iN0-l3-epB" eventType="touchUpInside" id="1j7-9y-s0c"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="繼續使用代表你同意「服務條款」「隱私權政策」" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0g-LL-0Dg">
+                    <rect key="frame" x="4" y="814" width="406" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歡迎使用ＳＵＲＵ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEt-kg-1fK">
+                    <rect key="frame" x="93.5" y="634" width="227" height="34"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbS-fn-ioZ">
+                    <rect key="frame" x="166.5" y="773" width="81.5" height="31"/>
+                    <color key="tintColor" name="B4"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="想先逛逛"/>
+                    <connections>
+                        <action selector="visetAsGuest:" destination="iN0-l3-epB" eventType="touchUpInside" id="saP-VF-sl1"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="r0g-LL-0Dg" firstAttribute="top" secondItem="wbS-fn-ioZ" secondAttribute="bottom" constant="10" id="4R9-MA-9ic"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eSK-8K-MAE" secondAttribute="trailing" constant="16" id="CZn-Yz-WR7"/>
+                <constraint firstItem="eSK-8K-MAE" firstAttribute="top" secondItem="pEt-kg-1fK" secondAttribute="bottom" constant="15" id="HdA-qD-MZ1"/>
+                <constraint firstItem="UAH-LS-ywW" firstAttribute="top" secondItem="eSK-8K-MAE" secondAttribute="bottom" constant="8" id="KKd-Zh-yW8"/>
+                <constraint firstItem="wbS-fn-ioZ" firstAttribute="top" secondItem="UAH-LS-ywW" secondAttribute="bottom" constant="15" id="QqK-I5-mpp"/>
+                <constraint firstItem="S1Z-rd-1eO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="150" id="Ymo-yE-aPL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="r0g-LL-0Dg" secondAttribute="bottom" constant="30" id="aUM-1a-iv5"/>
+                <constraint firstItem="eSK-8K-MAE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="bqc-Dv-NQv"/>
+                <constraint firstAttribute="trailing" secondItem="r0g-LL-0Dg" secondAttribute="trailing" constant="4" id="c4h-51-TIV"/>
+                <constraint firstItem="wbS-fn-ioZ" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="eRm-Zj-S6p"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="S1Z-rd-1eO" secondAttribute="trailing" constant="150" id="fJb-HD-XhH"/>
+                <constraint firstItem="pEt-kg-1fK" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="k0g-x8-sf5"/>
+                <constraint firstItem="S1Z-rd-1eO" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="80" id="lzj-B4-tjN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UAH-LS-ywW" secondAttribute="trailing" constant="16" id="ngD-0T-hRa"/>
+                <constraint firstItem="UAH-LS-ywW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="pve-SB-1DI"/>
+                <constraint firstItem="r0g-LL-0Dg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="4" id="t3g-gb-nfO"/>
+                <constraint firstItem="r0g-LL-0Dg" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="tBW-GB-T2i"/>
+            </constraints>
+            <connections>
+                <outlet property="appLogoImage" destination="S1Z-rd-1eO" id="xYv-eD-Nff"/>
+                <outlet property="appWelcomeLabel" destination="pEt-kg-1fK" id="XxI-p5-C94"/>
+                <outlet property="descriptionLabel" destination="r0g-LL-0Dg" id="PwM-Tn-dHV"/>
+                <outlet property="loginButton" destination="UAH-LS-ywW" id="CZG-Ie-2uu"/>
+                <outlet property="signUpButton" destination="eSK-8K-MAE" id="MjE-18-rwZ"/>
+                <outlet property="visitAsGuestButton" destination="wbS-fn-ioZ" id="P5g-xH-BWN"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="102.45535714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="appstore" width="1024" height="1024"/>
+        <namedColor name="B4">
+            <color red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="C1">
+            <color red="0.20800000429153442" green="0.22699999809265137" blue="0.27799999713897705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="C2">
+            <color red="0.92199999094009399" green="0.88200002908706665" blue="0.81599998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
