@@ -51,6 +51,7 @@ struct Store: Codable {
     var mainImage: String
     var closeDay: [Int] = []
     var queueReport: [QueueReport]? = []
+    var collectedUser: [String]? = []
 }
 struct Coordinate: Codable {
     var long: Double

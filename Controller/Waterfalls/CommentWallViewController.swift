@@ -10,7 +10,6 @@ import XLPagerTabStrip
 
 
 class CommentWallViewController: ButtonBarPagerTabStripViewController {
-    //    var subVC: [String] = ["Discovery", "Collect", "Follow"]
     
     var accounts: [Account] = []
     var comments: [Comment] = []

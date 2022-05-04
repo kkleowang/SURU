@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class AccountRequestProvider {
@@ -72,5 +73,27 @@ class AccountRequestProvider {
             }
         }
     }
+    func followAccount(currentUserID: String, tagertUserID: String) {
+        let targetDocment = database.collection("accounts").document(tagertUserID)
+        let currentDocment = database.collection("accounts").document(currentUserID)
+        
+        targetDocment.updateData([
+            "follower": FieldValue.arrayUnion([currentUserID])
+        ])
+        currentDocment.updateData([
+            "followedUser": FieldValue.arrayUnion([targetDocment])
+        ])
+    }
     
+    func unfollowAccount(currentUserID: String, tagertUserID: String) {
+        let targetDocment = database.collection("accounts").document(tagertUserID)
+        let currentDocment = database.collection("accounts").document(currentUserID)
+        
+        targetDocment.updateData([
+            "follower": FieldValue.arrayRemove([currentUserID])
+        ])
+        currentDocment.updateData([
+            "followedUser": FieldValue.arrayRemove([targetDocment])
+        ])
+    }
 }

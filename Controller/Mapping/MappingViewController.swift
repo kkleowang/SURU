@@ -30,7 +30,6 @@ class MappingViewController: UIViewController {
     var selectedIndex = 0 {
         didSet {
             print(selectedIndex)
-            
             storeCardCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
             mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: storeData[selectedIndex].coordinate.lat-0.002, longitude: storeData[selectedIndex].coordinate.long), latitudinalMeters: 800, longitudinalMeters: 800), animated: true)
             
@@ -44,6 +43,7 @@ class MappingViewController: UIViewController {
         super.viewDidLoad()
         self.view.stickSubView(mapView)
         fetchData {
+            LKProgressHUD.showSuccess(text: "下載資料成功")
             self.setupMapView()
             self.setupHiddenCollectionView()
         }
@@ -112,9 +112,8 @@ class MappingViewController: UIViewController {
             }
         }
         group.notify(queue: DispatchQueue.main) {
-            competion()
             LKProgressHUD.dismiss()
-            LKProgressHUD.showSuccess(text: "下載資料成功")
+            competion()
         }
     }
     func setupDataForCollectionCell() {
@@ -336,8 +335,13 @@ extension MappingViewController {
     }
     private func pulishQueue(queue: Int) {
         let storeID = storeData[selectedIndex].storeID
+        guard let currentUserID = UserRequestProvider.shared.currentUserID else {
+            LKProgressHUD.showFailure(text: "回報失敗")
+            return
+            
+        }
         var queue = QueueReport(queueCount: queue)
-        QueueReportRequestProvider.shared.publishQueueReport(targetStoreID: storeID, report: &queue) { result in
+        QueueReportRequestProvider.shared.publishQueueReport(currentUserID: currentUserID, targetStoreID: storeID, report: &queue) { result in
             switch result {
             case .failure:
                 LKProgressHUD.showFailure(text: "回報失敗")

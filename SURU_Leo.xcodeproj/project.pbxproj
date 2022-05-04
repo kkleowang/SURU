@@ -261,13 +261,12 @@
 		B830608628015A9D002558BE /* SURU_Leo */ = {
 			isa = PBXGroup;
 			children = (
-				B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */,
-				B85B63C8280D2D3B00621E4A /* unUsedFile */,
-				B899FF26280D237200BD5715 /* GoogleService-Info.plist */,
 				B830608728015A9D002558BE /* AppDelegate.swift */,
 				B830608928015A9D002558BE /* SceneDelegate.swift */,
+				B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */,
+				B85B63C8280D2D3B00621E4A /* unUsedFile */,
 				B830609028015A9E002558BE /* Assets.xcassets */,
-				B830609228015A9E002558BE /* LaunchScreen.storyboard */,
+				B899FF26280D237200BD5715 /* GoogleService-Info.plist */,
 				B830609528015A9E002558BE /* Info.plist */,
 			);
 			path = SURU_Leo;
@@ -549,8 +548,9 @@
 		B8EC70062805290F00DA8B78 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B8EC7002280528F000DA8B78 /* LottieFile */,
 				B830608D28015A9D002558BE /* Main.storyboard */,
+				B830609228015A9E002558BE /* LaunchScreen.storyboard */,
+				B8EC7002280528F000DA8B78 /* LottieFile */,
 				B8CD437B2818E8D600D2BCCE /* Login */,
 				B8A00350280B043A00A64750 /* Mapping */,
 				B8A0034C280B041800A64750 /* Waterfalls */,
