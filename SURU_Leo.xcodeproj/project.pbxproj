@@ -66,6 +66,7 @@
 		B8A00352280B064200A64750 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00351280B064200A64750 /* MapView.swift */; };
 		B8A11AF02813E4100079A080 /* StoreCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A11AEF2813E4100079A080 /* StoreCardCell.xib */; };
 		B8A11AF22813E52D0079A080 /* StoreCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A11AF12813E52D0079A080 /* StoreCardCell.swift */; };
+		B8A4FFC9282134BC0023F0BA /* mappingViewBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4FFC8282134BC0023F0BA /* mappingViewBackup.swift */; };
 		B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */; };
 		B8BBBE7C281D328B001782F5 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */; };
 		B8BBBE7E281D32AE001782F5 /* CollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */; };
@@ -165,6 +166,7 @@
 		B8A00351280B064200A64750 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B8A11AEF2813E4100079A080 /* StoreCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCardCell.xib; sourceTree = "<group>"; };
 		B8A11AF12813E52D0079A080 /* StoreCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCardCell.swift; sourceTree = "<group>"; };
+		B8A4FFC8282134BC0023F0BA /* mappingViewBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mappingViewBackup.swift; sourceTree = "<group>"; };
 		B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWallViewController.swift; sourceTree = "<group>"; };
 		B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		B8F35183281794D9002E2A3C /* UserRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestProvider.swift; sourceTree = "<group>"; };
+		B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SURU_Leo.entitlements; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -267,6 +270,7 @@
 		B830608628015A9D002558BE /* SURU_Leo */ = {
 			isa = PBXGroup;
 			children = (
+				B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */,
 				B85B63C8280D2D3B00621E4A /* unUsedFile */,
 				B8EC7002280528F000DA8B78 /* LottieFile */,
 				B899FF26280D237200BD5715 /* GoogleService-Info.plist */,
@@ -393,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				B8A0033D280A92D300A64750 /* MappingViewController.swift */,
+				B8A4FFC8282134BC0023F0BA /* mappingViewBackup.swift */,
 			);
 			path = Mapping;
 			sourceTree = "<group>";
@@ -717,7 +722,7 @@
 		};
 		B8643B75280161E200A4E366 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -753,7 +758,7 @@
 		};
 		BE39D12141A18368668C13B9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -843,6 +848,7 @@
 				B8659C442806BB5B006C85F3 /* Date+.swift in Sources */,
 				B8CD43852818F13100D2BCCE /* SignInAndOutView.swift in Sources */,
 				B893379C281983BF000C75C3 /* AddInfoView.swift in Sources */,
+				B8A4FFC9282134BC0023F0BA /* mappingViewBackup.swift in Sources */,
 				B83E9590280EB475009DD17F /* QueueReportRequestProvider.swift in Sources */,
 				B83E9598280EB670009DD17F /* StoreDataModel.swift in Sources */,
 			);
@@ -993,10 +999,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SURU_Leo/SURU_LeoDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SURU_Leo/SURU_Leo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = WAYYQS9S9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SURU_Leo/Info.plist;
@@ -1030,8 +1036,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SURU_Leo/SURU_Leo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = WAYYQS9S9G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SURU_Leo/Info.plist;

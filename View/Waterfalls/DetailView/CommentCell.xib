@@ -88,6 +88,15 @@
                     <constraint firstItem="oxu-Ha-eY1" firstAttribute="top" secondItem="Klr-QA-is8" secondAttribute="bottom" constant="8" id="xCx-Q4-VGa"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="FyV-Jx-5vQ" id="3r0-1n-cDM"/>
+                <outlet property="happyValueView" destination="0ob-T7-eYI" id="XV3-kS-fx2"/>
+                <outlet property="mainImageView" destination="Tgo-oM-hFK" id="m9o-H3-mlO"/>
+                <outlet property="mealLabel" destination="oxu-Ha-eY1" id="ULp-a5-WAn"/>
+                <outlet property="noodleValueView" destination="Gu9-LG-MRr" id="Lb6-g4-9ur"/>
+                <outlet property="soupValueView" destination="snz-wW-eYH" id="jhR-h1-mlb"/>
+                <outlet property="storeNameLabel" destination="Klr-QA-is8" id="0TI-q2-FYN"/>
+            </connections>
             <point key="canvasLocation" x="93" y="140"/>
         </tableViewCell>
     </objects>

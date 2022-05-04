@@ -21,7 +21,7 @@ class CommentViewController: UIViewController {
     var stores: [Store] = []
     var comments: [Comment] = []
     var commentDrafts: [CommentDraft] = []
-    let userID = UserRequestProvider.shared.currentUserID!
+    let userID = UserRequestProvider.shared.currentUserID
     var commentData: Comment = Comment(
         userID: "",
         storeID: "",
@@ -37,7 +37,9 @@ class CommentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        commentData.userID = userID
+        if userID != nil {
+        commentData.userID = userID!
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -175,6 +177,11 @@ class CommentViewController: UIViewController {
             switch result {
             case .success(let message):
                 print("上傳評論成功", message)
+                LKProgressHUD.showSuccess(text: "上傳評論成功")
+                self.fetchCommentOfUser {
+                    self.setupStartingView()
+                    
+                }
             case .failure(let error):
                 print("上傳評論失敗", error)
             }
@@ -214,7 +221,7 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
         if indexPath.section == 1 {
             let name = stores.first(where: {$0.storeID == comments[indexPath.row].storeID})?.name
-            cell.layoutCommentCell(data: comments[indexPath.row], name: name!)
+            cell.layoutCommentCell(data: comments[indexPath.row], name: name ?? "未輸入店名")
             return cell
         } else {
             let name = stores.first(where: {$0.storeID == comments[indexPath.row].storeID})?.name

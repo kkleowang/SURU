@@ -28,6 +28,9 @@
                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="收藏"/>
+                        <connections>
+                            <action selector="tapCollectButton:" destination="sCA-n9-ccS" eventType="touchUpInside" id="wMr-Ca-0yu"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-Ri-4Rk">
                         <rect key="frame" x="180" y="61" width="224" height="150"/>
@@ -54,6 +57,11 @@
                     <constraint firstItem="cfe-Ri-4Rk" firstAttribute="top" secondItem="Imk-i5-jC0" secondAttribute="top" id="tPy-U3-e45"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="mapView" destination="cfe-Ri-4Rk" id="ZT2-51-Pzl"/>
+                <outlet property="storeImageView" destination="Imk-i5-jC0" id="LSZ-Vd-oFc"/>
+                <outlet property="storeNameLabel" destination="Wpo-lY-vS9" id="Sga-hm-dDi"/>
+            </connections>
             <point key="canvasLocation" x="260.86956521739131" y="148.66071428571428"/>
         </tableViewCell>
     </objects>

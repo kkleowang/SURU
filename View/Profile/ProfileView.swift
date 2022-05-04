@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol ProfileViewDelegate: AnyObject {
     func didTapLogoutButton(_ view: ProfileView)
@@ -21,6 +22,20 @@ class ProfileView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var logoutLabel: UIButton!
+    
+    
+    
+    func layoutView(account: Account) {
+        mainImageView.layer.cornerRadius = 40
+        mainImageView.clipsToBounds = true
+        mainImageView.kf.setImage(with: URL(string: account.mainImage))
+        follwersCountLabel.text = String(account.follower.count)
+        follwingCountLabel.text = String(account.followedUser.count)
+        nameLabel.text = account.name
+        bioLabel.text = "nothing here."
+        
+    }
+    
     
     @IBAction func logout(_ sender: UIButton) {
         self.delegate?.didTapLogoutButton(self)

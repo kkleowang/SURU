@@ -10,17 +10,33 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     let profileView: ProfileView = UIView.fromNib()
-    
-    
-    
-    
+    var currentUserData: Account?
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.stickSubView(profileView)
-        profileView.delegate = self
+        
+        
+        fetchUser {
+            self.view.stickSubView(self.profileView)
+            self.profileView.delegate = self
+            self.profileView.layoutView(account: self.currentUserData!)
+        }
+        
+        
         
     }
-    
+    func fetchUser(com: @escaping () -> () ) {
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        AccountRequestProvider.shared.fetchAccount(userID: userID) { result in
+            switch result {
+            case .success(let data):
+                self.currentUserData = data
+                com()
+            case .failure(let error):
+                print(error)
+                com()
+            }
+        }
+    }
 }
 extension ProfileViewController: ProfileViewDelegate {
     func didTapLogoutButton(_ view: ProfileView) {

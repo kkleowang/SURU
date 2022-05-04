@@ -16,9 +16,10 @@ class DiscoveryViewController: UIViewController {
     var commentData: [Comment] = []
     var currentAccount: Account?
     var storeData: [Store] = []
-    var accountData: [Account] = []
+    var accountData: [Account] = [] 
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     
     override func viewDidLoad() {
         setupCollectionView()
@@ -32,6 +33,7 @@ class DiscoveryViewController: UIViewController {
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         let layout = CHTCollectionViewWaterfallLayout()
         layout.columnCount = 2
         layout.minimumColumnSpacing = 10
@@ -85,13 +87,28 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
         let store = storeData.first(where: {$0.storeID == comment.storeID})
         let account = accountData.first(where: {$0.userID == comment.userID})
             if let currentAccount = currentAccount {
-        cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: store!)
+        cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: storeData[0])
         }
         }
         
         return cell
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if commentData.count != 0 {
+        let comment = commentData[indexPath.row]
+        let store = storeData.first(where: {$0.storeID == comment.storeID})
+        let account = accountData.first(where: {$0.userID == comment.userID})
+            if let currentAccount = currentAccount {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+                controller.modalPresentationStyle = .fullScreen
+                controller.comment = comment
+                controller.store = store
+                controller.account = account
+                self.present(controller, animated: true, completion: nil)
+        }
+        }
+    }
     
 }
 

@@ -42,11 +42,15 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let discoveryVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as! DiscoveryViewController
+//        let disVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as! DiscoveryViewController
+//        let triVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as! DiscoveryViewController
+//        discoveryVC.view.isHidden = true
         fetchData {
-            discoveryVC.commentData = self.comments
             discoveryVC.currentAccount = self.currentAccount
             discoveryVC.storeData = self.stores
             discoveryVC.accountData = self.accounts
+            discoveryVC.commentData = self.comments
+            
         }
         return[discoveryVC]
     }

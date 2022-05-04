@@ -9,8 +9,8 @@ import Foundation
 
 struct Account: Codable {
     var userID: String
-    var name: String = ""
-    var mainImage: String = ""
+    var name: String = "SURU遊民"
+    var mainImage: String = "https://firebasestorage.googleapis.com/v0/b/suru-4c219.appspot.com/o/SURU_App_Assets%2F%E4%B8%8B%E8%BC%89.jpeg?alt=media&token=d75677f1-686f-4683-a5ec-658f9a63c0fc"
     var provider: String
     var commentCount: Int = 0
     var createdTime: Double = 0
@@ -18,6 +18,7 @@ struct Account: Codable {
     var collectedStore: [String] = []
     var follower: [String] = []
     var followedUser: [String] = []
+//    var bio: String = "nothing here."
 }
 struct LikeComment: Codable {
     var likeComment: String
