@@ -108,7 +108,13 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         viewControllers = tabs.map({ $0.controller() })
         delegate = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        view.backgroundColor = .white
+        self.tabBar.backgroundColor = .white
+    }
     override func viewDidAppear(_ animated: Bool) {
+//        view.backgroundColor = .white
         super.viewDidAppear(animated)
         if let userID = UserRequestProvider.shared.currentUserID {
             print("Login success, id: \(userID)")

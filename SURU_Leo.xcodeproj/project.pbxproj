@@ -242,7 +242,6 @@
 			children = (
 				B8CD43802818EF0600D2BCCE /* WelcomeViewController.swift */,
 				B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */,
-				B893379728197F13000C75C3 /* AddInfoViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -353,6 +352,7 @@
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
 			isa = PBXGroup;
 			children = (
+				B893379728197F13000C75C3 /* AddInfoViewController.swift */,
 				B8A4FFC8282134BC0023F0BA /* mappingViewBackup.swift */,
 				B8BD5F99282078B500A1C138 /* DetailView.xib */,
 				B86AB7E528203B0300154B26 /* WrireCommentViewController.swift */,
@@ -392,7 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */,
-				B8BBBE7A281D3274001782F5 /* 標籤 */,
+				B8BBBE7A281D3274001782F5 /* ChildVC */,
 				B8BD5F96282072DF00A1C138 /* DetailViewController.swift */,
 			);
 			path = Waterfalls;
@@ -490,7 +490,7 @@
 			path = ReportView;
 			sourceTree = "<group>";
 		};
-		B8BBBE7A281D3274001782F5 /* 標籤 */ = {
+		B8BBBE7A281D3274001782F5 /* ChildVC */ = {
 			isa = PBXGroup;
 			children = (
 				B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */,
@@ -498,7 +498,7 @@
 				B8BBBE7F281D32C7001782F5 /* FollowViewController.swift */,
 				B8BBBE81281D35AD001782F5 /* Discovery */,
 			);
-			path = "標籤";
+			path = ChildVC;
 			sourceTree = "<group>";
 		};
 		B8BBBE81281D35AD001782F5 /* Discovery */ = {

@@ -22,8 +22,10 @@ class DiscoveryViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        fetchAllData()
         setupCollectionView()
-        listenDatabase()
+        
+//        listenDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,22 +45,22 @@ class DiscoveryViewController: UIViewController {
         collectionView.collectionViewLayout = layout
         collectionView.register(UINib(nibName: String(describing: DiscoveryCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: DiscoveryCell.self))
     }
-    func listenDatabase() {
-            Firestore.firestore().collection("comments").addSnapshotListener { querySnapshot, error in
-                guard let snapshot = querySnapshot else {
-                    print("Error fetching snapshots: \(error!)")
-                    return
-                }
-                snapshot.documentChanges.forEach { diff in
-                    if (diff.type == .added) {
-                        print("New Data ID: \(diff.document.documentID), post title: \(diff.document.data()["title"] ?? "") ")
-                        self.fetchCommentData() {
-                            self.collectionView.reloadData()
-                        }
-                    }
-                }
-            }
-        }
+//    func listenDatabase() {
+//            Firestore.firestore().collection("comments").addSnapshotListener { querySnapshot, error in
+//                guard let snapshot = querySnapshot else {
+//                    print("Error fetching snapshots: \(error!)")
+//                    return
+//                }
+//                snapshot.documentChanges.forEach { diff in
+//                    if (diff.type == .added) {
+//                        print("New Data ID: \(diff.document.documentID), post title: \(diff.document.data()["title"] ?? "") ")
+//                        self.fetchCommentData() {
+//                            self.collectionView.reloadData()
+//                        }
+//                    }
+//                }
+//            }
+//        }
     func fetchCommentData(com: @escaping () -> ()) {
     CommentRequestProvider.shared.fetchComments { result in
         switch result {
@@ -134,24 +136,25 @@ extension DiscoveryViewController: IndicatorInfoProvider {
     }
 }
 extension DiscoveryViewController {
-    func fetchDataAndPresentInSameTime() {
+    func fetchAllData() {
         let group: DispatchGroup = DispatchGroup()
         let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
         let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
         let concurrentQueue3 = DispatchQueue(label: "com.leowang.queue3", attributes: .concurrent)
         let concurrentQueue4 = DispatchQueue(label: "com.leowang.queue4", attributes: .concurrent)
-        
+        LKProgressHUD.show()
         group.enter()
         concurrentQueue1.async(group: group) {
             AccountRequestProvider.shared.fetchAccounts { result in
                 switch result {
                 case .success(let data) :
                     self.accountData = data
-                    group.leave()
                 case .failure(let error) :
-                    print("評論頁下載帳號失敗", error)
-                    group.leave()
+                    print("下載帳號失敗", error)
+                    LKProgressHUD.dismiss()
+                    LKProgressHUD.showFailure(text: "下載帳號失敗")
                 }
+                group.leave()
             }
         }
         group.enter()
@@ -161,11 +164,12 @@ extension DiscoveryViewController {
                 switch result {
                 case .success(let data) :
                     self.currentAccount = data
-                    group.leave()
                 case .failure(let error) :
-                    print("評論頁下載帳號失敗", error)
-                    group.leave()
+                    print("下載使用者失敗", error)
+                    LKProgressHUD.dismiss()
+                    LKProgressHUD.showFailure(text: "下載使用者失敗")
                 }
+                group.leave()
             }
             
         }
@@ -175,11 +179,12 @@ extension DiscoveryViewController {
                 switch result {
                 case .success(let data) :
                     self.storeData = data
-                    group.leave()
                 case .failure(let error) :
-                    print("評論頁下載帳號失敗", error)
-                    group.leave()
+                    print("下載商店資料失敗", error)
+                    LKProgressHUD.dismiss()
+                    LKProgressHUD.showFailure(text: "下載商店資料失敗")
                 }
+                group.leave()
             }
         }
         group.enter()
@@ -188,16 +193,18 @@ extension DiscoveryViewController {
                 switch result {
                 case .success(let data) :
                     self.commentData = data
-                    group.leave()
                 case .failure(let error) :
-                    print("評論頁下載帳號失敗", error)
-                    group.leave()
+                    print("下載評論失敗", error)
+                    LKProgressHUD.dismiss()
+                    LKProgressHUD.showFailure(text: "下載評論失敗")
                 }
+                group.leave()
             }
         }
         group.notify(queue: DispatchQueue.main) {
             self.collectionView.reloadData()
-            print("完成所有 Call 後端 API 的動作...")
+            LKProgressHUD.dismiss()
+            LKProgressHUD.showSuccess(text: "下載資料成功")
         }
     }
 }

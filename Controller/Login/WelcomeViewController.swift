@@ -15,7 +15,6 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         view.stickSubView(welcomeView)
         welcomeView.delegate = self
-        // Do any additional setup after loading the view.
     }
     
     func initSignView(state: SignPageState) {
