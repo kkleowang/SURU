@@ -14,6 +14,43 @@ class AccountRequestProvider {
     
     private lazy var database = Firestore.firestore()
     
+    func fetchAccount(currentUserID: String, completion: @escaping (Result<Account?, Error>) -> Void) {
+        database.collection("accounts").whereField("userID", isEqualTo: currentUserID as Any).getDocuments { querySnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let snapshot = querySnapshot else { return }
+                if snapshot.isEmpty {
+                    completion(.success(nil))
+                } else {
+                    for document in snapshot.documents {
+                        do {
+                            let account = try document.data(as: Account.self, decoder: Firestore.Decoder())
+                            completion(.success(account))
+                        } catch {
+                            completion(.failure(error))
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    //    func fetchAccount(userID: String, completion: @escaping (Result<Account, Error>) -> Void) {
+    //        let doc = database.collection("accounts").document(userID)
+    //        doc.getDocument { (document, error) in
+    //            if let document = document {
+    //                do {
+    //                    if let data = try document.data(as: Account.self, decoder: Firestore.Decoder()) {
+    //                        completion(.success(data))
+    //                    }
+    //                } catch {
+    //                    completion(.failure(error))
+    //                }
+    //            }
+    //        }
+    //    }
+    
     func fetchAccounts(completion: @escaping (Result<[Account], Error>) -> Void) {
         database.collection("accounts").getDocuments { querySnapshot, error in
             if let error = error {
@@ -31,20 +68,6 @@ class AccountRequestProvider {
                     }
                 }
                 completion(.success(accounts))
-            }
-        }
-    }
-    func fetchAccount(userID: String, completion: @escaping (Result<Account, Error>) -> Void) {
-        let doc = database.collection("accounts").document(userID)
-        doc.getDocument { (document, error) in
-            if let document = document {
-                do {
-                    if let data = try document.data(as: Account.self, decoder: Firestore.Decoder()) {
-                        completion(.success(data))
-                    }
-                } catch {
-                    completion(.failure(error))
-                }
             }
         }
     }
@@ -81,7 +104,7 @@ class AccountRequestProvider {
             "follower": FieldValue.arrayUnion([currentUserID])
         ])
         currentDocment.updateData([
-            "followedUser": FieldValue.arrayUnion([targetDocment])
+            "followedUser": FieldValue.arrayUnion([tagertUserID])
         ])
     }
     
@@ -93,7 +116,23 @@ class AccountRequestProvider {
             "follower": FieldValue.arrayRemove([currentUserID])
         ])
         currentDocment.updateData([
-            "followedUser": FieldValue.arrayRemove([targetDocment])
+            "followedUser": FieldValue.arrayRemove([tagertUserID])
+        ])
+    }
+    func blockAccount(currentUserID: String, tagertUserID: String) {
+        let currentDocment = database.collection("accounts").document(currentUserID)
+        
+        currentDocment.updateData([
+            "blockUserList": FieldValue.arrayUnion([tagertUserID])
+        ])
+    }
+    
+    func unblockAccount(currentUserID: String, tagertUserID: String) {
+        let currentDocment = database.collection("accounts").document(currentUserID)
+        
+        
+        currentDocment.updateData([
+            "blockUserList": FieldValue.arrayRemove([tagertUserID])
         ])
     }
 }

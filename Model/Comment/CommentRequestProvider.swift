@@ -68,7 +68,7 @@ class CommentRequestProvider {
         }
         completion(.success(docment.documentID))
     }
-    func likeComment(currentUserID: String, tagertComment: Comment) {
+    func    likeComment(currentUserID: String, tagertComment: Comment) {
         let commentID = tagertComment.commentID
         let authorID = tagertComment.userID
         
@@ -86,7 +86,7 @@ class CommentRequestProvider {
                 ])
     }
     
-    func unlikeComment(currentUserID: String, tagertComment: Comment) {
+    func unLikeComment(currentUserID: String, tagertComment: Comment) {
         let commentID = tagertComment.commentID
         let authorID = tagertComment.userID
         

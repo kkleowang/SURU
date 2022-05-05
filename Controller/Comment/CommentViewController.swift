@@ -29,7 +29,7 @@ class CommentViewController: UIViewController {
         contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0),
         contenText: "",
         mainImage: "")
-        
+    
     
     
     // 上傳前的照片
@@ -38,7 +38,7 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if userID != nil {
-        commentData.userID = userID!
+            commentData.userID = userID!
         }
     }
     
@@ -57,12 +57,11 @@ class CommentViewController: UIViewController {
     func settingKVO() {
         orderObserver = StorageManager.shared.observe(
             \StorageManager.comments,
-            options: .new,
-            changeHandler: { [weak self] _, change in
-          
-                self!.startingView.commentTableView.reloadSections([1], with: .none)
-               
-            }
+             options: .new,
+             changeHandler: { [weak self] _, change in
+                 self!.startingView.commentTableView.reloadSections([0], with: .none)
+                 
+             }
         )
     }
     
@@ -127,8 +126,8 @@ class CommentViewController: UIViewController {
         imageCardView.heightAnchor.constraint(equalTo: imageCardView.widthAnchor, multiplier: 5 / 4).isActive = true
         imageCardView.delegate = self
         imageCardView.layoutCommendCardView(image: image) { [weak self] in
-            guard let self = self else { return }
-            self.setupCommentSelectionView()
+            
+            self?.setupCommentSelectionView()
         }
     }
     
@@ -144,18 +143,6 @@ class CommentViewController: UIViewController {
         selectionView.layoutSelectView(dataSource: stores)
     }
     
-//    func setupDraggingView(_ type: SelectionType) {
-//        let draggingView = CommentDraggingView()
-//        view.addSubview(draggingView)
-//        draggingView.delegate = self
-//        draggingView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        draggingView.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.height)
-//        draggingView.layoutDraggingView(type: type)
-//        UIView.animate(withDuration: 0.5) {
-//            draggingView.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.height)
-//        }
-//    }
     func setupDraggingView(_ type: SelectionType) {
         let controller = DragingValueViewController()
         controller.liquilBarview.delegate = self
@@ -171,7 +158,7 @@ class CommentViewController: UIViewController {
             controller.view.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.main.bounds.height)
         }
     }
-
+    
     func publishComment() {
         CommentRequestProvider.shared.publishComment(comment: &commentData) { result in
             switch result {
@@ -191,44 +178,6 @@ class CommentViewController: UIViewController {
 
 // StartingView Delegate
 extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController?) {
-        guard let imagePicker = imagePicker else {
-            return
-        }
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage) {
-        setupImageCardView(image)
-        imageDataHolder = image.jpegData(compressionQuality: 0.1) ?? Data()
-        imagePicker.dismiss(animated: true) {
-            view.removeFromSuperview()
-        }
-    }
-    // TableView
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1 {
-            return comments.count
-        } else {
-            return commentDrafts.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
-        if indexPath.section == 1 {
-            let name = stores.first(where: {$0.storeID == comments[indexPath.row].storeID})?.name
-            cell.layoutCommentCell(data: comments[indexPath.row], name: name ?? "未輸入店名")
-            return cell
-        } else {
-            let name = stores.first(where: {$0.storeID == comments[indexPath.row].storeID})?.name
-            cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name ?? "未輸入店名")
-            return cell
-        }
-    }
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -239,11 +188,49 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
             return "你發表過的評論"
         }
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return commentDrafts.count
+        } else {
+            return comments.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
+        if indexPath.section == 0 {
+            let name = stores.first(where: {$0.storeID == commentDrafts[indexPath.row].storeID})?.name
+            cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name ?? "未輸入店名")
+            return cell
+        } else {
+            let name = stores.first(where: {$0.storeID == comments[indexPath.row].storeID})?.name
+            cell.layoutCommentCell(data: comments[indexPath.row], name: name ?? "未輸入店名")
+            return cell
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            setupImageCardView(UIImage(data: commentDrafts[indexPath.row].image!)!)
+            guard let imageData = commentDrafts[indexPath.row].image else { return }
+            guard let imageView = UIImage(data: imageData) else { return }
+            setupImageCardView(imageView)
             startingView.removeFromSuperview()
         }
+    }
+    func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage) {
+        setupImageCardView(image)
+        imageDataHolder = image.jpegData(compressionQuality: 0.1) ?? Data()
+        imagePicker.dismiss(animated: true) {
+            view.removeFromSuperview()
+        }
+    }
+    func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController?) {
+        guard let imagePicker = imagePicker else {
+            return
+        }
+        present(imagePicker, animated: true, completion: nil)
     }
 }
 
@@ -268,7 +255,7 @@ extension CommentViewController: CommentSelectionViewDelegate {
         commentData.meal = meal
     }
     
-
+    
     func didTapSelectValue(_ view: CommentSelectionView, type: SelectionType) {
         setupDraggingView(type)
     }
@@ -301,7 +288,7 @@ extension CommentViewController: CommentSelectionViewDelegate {
         StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
             switch result {
             case .success(let data):
-                    print("Coredata")
+                print("Coredata")
             case .failure(let error):
                 print(error)
             }
@@ -321,8 +308,6 @@ extension CommentViewController: CommentSelectionViewDelegate {
         print("didTapGoAllPage")
     }
 }
-
-
 extension CommentViewController: CommentDraggingViewDelegate {
     func didTapBackButton(vc: DragingValueViewController) {
         UIView.animate(withDuration: 0.5) {
@@ -394,43 +379,36 @@ extension CommentViewController {
         }
     }
     func initValueView(on view: UIView, value: Double, color: CGColor) {
-        // round view
-            let roundView = UIView(
-                frame: CGRect(
-                    x: view.bounds.origin.x,
-                    y: view.bounds.origin.y,
-                    width: view.bounds.size.width - 4,
-                    height: view.bounds.size.height - 4
-                )
+        let roundView = UIView(
+            frame: CGRect(
+                x: view.bounds.origin.x,
+                y: view.bounds.origin.y,
+                width: view.bounds.size.width - 4,
+                height: view.bounds.size.height - 4
             )
-        
-            roundView.backgroundColor = .B5
-            roundView.layer.cornerRadius = roundView.frame.size.width / 2
+        )
+        roundView.backgroundColor = .B5
+        roundView.layer.cornerRadius = roundView.frame.size.width / 2
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: roundView.bounds.width, height: roundView.bounds.height))
         label.center = CGPoint(x: roundView.center.x, y: roundView.center.y)
         label.textAlignment = .center
         label.text = "\(value)"
         roundView.addSubview(label)
-            // bezier path
-            let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
-                                          radius: roundView.frame.size.width / 2,
-                                          startAngle: CGFloat(-0.5 * .pi),
-                                          endAngle: CGFloat(1.5 * .pi),
-                                          clockwise: true)
-            // circle shape
-            let circleShape = CAShapeLayer()
-            circleShape.path = circlePath.cgPath
-            circleShape.strokeColor = color
-            circleShape.fillColor = UIColor.clear.cgColor
-            circleShape.lineWidth = 4
-            // set start and end values
-            circleShape.strokeStart = 0.0
+        let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
+                                      radius: roundView.frame.size.width / 2,
+                                      startAngle: CGFloat(-0.5 * .pi),
+                                      endAngle: CGFloat(1.5 * .pi),
+                                      clockwise: true)
+        let circleShape = CAShapeLayer()
+        circleShape.path = circlePath.cgPath
+        circleShape.strokeColor = color
+        circleShape.fillColor = UIColor.clear.cgColor
+        circleShape.lineWidth = 4
+        // set start and end values
+        circleShape.strokeStart = 0.0
         circleShape.strokeEnd = value*0.1
-            
-            // add sublayer
-            roundView.layer.addSublayer(circleShape)
-            // add subview
-            view.addSubview(roundView)
+        roundView.layer.addSublayer(circleShape)
+        view.addSubview(roundView)
         view.backgroundColor = .B6
     }
 }
@@ -438,6 +416,4 @@ extension CommentViewController: WrireCommentViewControllerDelegate {
     func didTapSaveComment(_ view: WriteCommentView, text: String) {
         commentData.contenText = text
     }
-    
-    
 }

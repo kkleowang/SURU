@@ -148,9 +148,10 @@ extension DiscoveryViewController {
             AccountRequestProvider.shared.fetchAccounts { result in
                 switch result {
                 case .success(let data) :
+                    print("下載1 全部帳號成功")
                     self.accountData = data
                 case .failure(let error) :
-                    print("下載帳號失敗", error)
+                    print("下載1 全部帳號失敗", error)
                     LKProgressHUD.dismiss()
                     LKProgressHUD.showFailure(text: "下載帳號失敗")
                 }
@@ -158,14 +159,30 @@ extension DiscoveryViewController {
             }
         }
         group.enter()
+        guard let currentUser = UserRequestProvider.shared.currentUser else {
+            group.leave()
+            return
+        }
         concurrentQueue2.async(group: group) {
-            guard let user = UserRequestProvider.shared.firebaseAuth.currentUser else { return }
-            AccountRequestProvider.shared.fetchAccount(userID: user.uid) { result in
+            AccountRequestProvider.shared.fetchAccount(currentUserID: currentUser.uid) { result in
                 switch result {
                 case .success(let data) :
-                    self.currentAccount = data
+                    if let data = data {
+                        print("下載2 使用者成功")
+                        self.currentAccount = data
+                    } else {
+                        UserRequestProvider.shared.nativePulishToClouldWithAuth(user: currentUser) { result in
+                            switch result {
+                            case .success:
+                                print("下載2 註冊成功")
+                            case .failure:
+                                LKProgressHUD.dismiss()
+                                LKProgressHUD.showFailure(text: "請聯繫客服")
+                            }
+                        }
+                    }
                 case .failure(let error) :
-                    print("下載使用者失敗", error)
+                    print("下載2 使用者失敗", error)
                     LKProgressHUD.dismiss()
                     LKProgressHUD.showFailure(text: "下載使用者失敗")
                 }
@@ -178,9 +195,10 @@ extension DiscoveryViewController {
             StoreRequestProvider.shared.fetchStores { result in
                 switch result {
                 case .success(let data) :
+                    print("下載3 商店資料成功")
                     self.storeData = data
                 case .failure(let error) :
-                    print("下載商店資料失敗", error)
+                    print("下載3 商店資料失敗", error)
                     LKProgressHUD.dismiss()
                     LKProgressHUD.showFailure(text: "下載商店資料失敗")
                 }
@@ -192,9 +210,10 @@ extension DiscoveryViewController {
             CommentRequestProvider.shared.fetchComments { result in
                 switch result {
                 case .success(let data) :
+                    print("下載4 評論成功")
                     self.commentData = data
                 case .failure(let error) :
-                    print("下載評論失敗", error)
+                    print("下載4 評論失敗", error)
                     LKProgressHUD.dismiss()
                     LKProgressHUD.showFailure(text: "下載評論失敗")
                 }
@@ -210,9 +229,23 @@ extension DiscoveryViewController {
 }
 
 extension DiscoveryViewController: DiscoveryCellDelegate {
-    func didTapLikeButton(_ view: DiscoveryCell) {
-        print("Like")
+    func didTapLikeButton(_ view: DiscoveryCell, comment: Comment) {
+        guard let currentUserID = UserRequestProvider.shared.currentUserID else {
+            LKProgressHUD.showFailure(text: "你沒有登入喔")
+            return
+        }
+        CommentRequestProvider.shared.likeComment(currentUserID: currentUserID, tagertComment: comment)
     }
+    
+    func didTapUnLikeButton(_ view: DiscoveryCell, comment: Comment) {
+        guard let currentUserID = UserRequestProvider.shared.currentUserID else {
+            LKProgressHUD.showFailure(text: "你沒有登入喔")
+            return
+        }
+        CommentRequestProvider.shared.unLikeComment(currentUserID: currentUserID, tagertComment: comment)
+    }
+    
+ 
     
     
 }

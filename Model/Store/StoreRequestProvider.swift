@@ -45,31 +45,29 @@ class StoreRequestProvider {
         completion(.success(docment.documentID))
     }
     
-    func collectStore(currentUserID: String, tagertStore: Store) {
-        let storeID = tagertStore.storeID
-        
-        let tagertStoreDocment = database.collection("comments").document(storeID)
+    func collectStore(currentUserID: String, tagertStoreID: String) {
+        let tagertStoreDocment = database.collection("stores").document(tagertStoreID)
         let currentUserDocment = database.collection("accounts").document(currentUserID)
         
         tagertStoreDocment.updateData([
             "collectedUser": FieldValue.arrayUnion([currentUserID])
         ])
         currentUserDocment.updateData([
-            "collectedStore": FieldValue.arrayUnion([storeID])
+            "collectedStore": FieldValue.arrayUnion([tagertStoreID])
         ])
     }
     
-    func unCollectStore(currentUserID: String, tagertStore: Store) {
-        let storeID = tagertStore.storeID
+    func unCollectStore(currentUserID: String, tagertStoreID: String) {
         
-        let tagertStoreDocment = database.collection("comments").document(storeID)
+        
+        let tagertStoreDocment = database.collection("stores").document(tagertStoreID)
         let currentUserDocment = database.collection("accounts").document(currentUserID)
         
         tagertStoreDocment.updateData([
             "collectedUser": FieldValue.arrayRemove([currentUserID])
         ])
         currentUserDocment.updateData([
-            "collectedStore": FieldValue.arrayRemove([storeID])
+            "collectedStore": FieldValue.arrayRemove([tagertStoreID])
         ])
     }
     

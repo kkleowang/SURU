@@ -181,7 +181,7 @@ extension MappingViewController: MKMapViewDelegate {
                 default:
                     break
                 }
-                imageView.kf.setImage(with: URL(string: store.mainImage))
+                imageView.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "AppIcon") )
                 annotionIndexOfStore.append(index)
                 annotationView?.subviews.forEach { $0.removeFromSuperview() }
                 annotationView?.addSubview(imageView)
@@ -225,7 +225,7 @@ extension MappingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(StoreCardCell.self)", for: indexPath) as? StoreCardCell else { return UICollectionViewCell() }
         
-        cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], areaName: "還沒做出來區", distance: distance[indexPath.row])
+        cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], areaName: "", distance: distance[indexPath.row])
         return cell
     }
 }
