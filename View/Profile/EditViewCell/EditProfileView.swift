@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 protocol EditProfileViewDelegate: AnyObject {
-    func didSelectImage(_ view: EditProfileView, image: UIImage)
+    func didSelectImage(_ view: EditProfileView, image: UIImage, imagePickView: UIImagePickerController)
     func didTapImagePicker(_ view: EditProfileView, imagePicker: UIImagePickerController?)
     func didEditNickName(_ view: EditProfileView, text: String)
     func didEditWebSide(_ view: EditProfileView, text: String)
@@ -43,7 +43,8 @@ class EditProfileView: UIView {
     
     func layoutView(currentUser: Account) {
         mainImageView.kf.setImage(with: URL(string: currentUser.mainImage))
-        mainImageView.layer.cornerRadius = 30
+        mainImageView.layer.cornerRadius = 40
+        mainImageView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapImage))
         mainImageView.addGestureRecognizer(tap)
         nickNameTextfield.text = currentUser.name
@@ -74,8 +75,9 @@ class EditProfileView: UIView {
     func showAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "移除目前的大頭貼照", style: .default , handler:{ (UIAlertAction)in
-            self.mainImageView.image = UIImage(named: "AppIcon")
             LKProgressHUD.showSuccess(text: "修改成功")
+            self.mainImageView.image = UIImage(named: "AppIcon")
+            
         }))
         alert.addAction(UIAlertAction(title: "從圖庫選擇", style: .default , handler:{ (UIAlertAction)in
             self.delegate?.didTapImagePicker(self, imagePicker: self.imagePicker)
@@ -91,7 +93,7 @@ extension EditProfileView: UIImagePickerControllerDelegate, UINavigationControll
     ) {
         guard let image = info[.editedImage] as? UIImage else { return }
         mainImageView.image = image
-        self.delegate?.didSelectImage(self, image: image)
+        self.delegate?.didSelectImage(self, image: image, imagePickView: picker)
     }
 }
 extension EditProfileView: UITextViewDelegate {
@@ -105,9 +107,11 @@ extension EditProfileView: UITextFieldDelegate {
         if textField == websideTextField {
             if !verifyUrl(urlString: textField.text) {
                 textField.textColor = .red
+                self.delegate?.didEditWebSide(self, text: "無效網址")
             } else {
                 if #available(iOS 15.0, *) {
                     textField.textColor = .tintColor
+                    self.delegate?.didEditWebSide(self, text: textField.text ?? "")
                 } else {
                     textField.textColor = .blue
                     self.delegate?.didEditWebSide(self, text: textField.text ?? "")

@@ -34,8 +34,13 @@ extension ProfileViewController: ProfileViewDelegate {
     func showEditingPage() {
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
         guard let userData = currentUserData else { return }
-        controller.editProfileView.layoutView(currentUser: userData)
-        present(controller, animated: true, completion: nil)
+        controller.userData = userData
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        
+        
+        
+        present(nav, animated: true, completion: nil)
     }
     func showAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

@@ -14,13 +14,33 @@ class EditProfileViewController: UIViewController {
     var webside = ""
     
     let editProfileView: EditProfileView = UIView.fromNib()
-    var userData: Account?
+    var userData: Account? {
+        didSet {
+            guard let userData = userData else { return }
+            editProfileView.layoutView(currentUser: userData)
+            self.view.stickSubView(editProfileView)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         editProfileView.delegate = self
+        settingNavBtn()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    func settingNavBtn() {
+        let leftItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancel))
+        leftItem.tintColor = .B2
+        let rightItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: #selector(save))
+        navigationItem.leftBarButtonItem = leftItem
+        navigationItem.rightBarButtonItem = rightItem
+    }
+    @objc func cancel() {
+        dismiss(animated: true, completion: nil)
+    }
+    @objc func save() {
+        
     }
     
 }
@@ -29,8 +49,11 @@ extension EditProfileViewController: EditProfileViewDelegate {
         present(alert, animated: true, completion: nil)
     }
     
-    func didSelectImage(_ view: EditProfileView, image: UIImage) {
+    func didSelectImage(_ view: EditProfileView, image: UIImage, imagePickView: UIImagePickerController) {
         mainImage = image
+        imagePickView.dismiss(animated: true) {
+            LKProgressHUD.showSuccess(text: "上傳成功")
+        }
     }
     
     func didTapImagePicker(_ view: EditProfileView, imagePicker: UIImagePickerController?) {

@@ -44,7 +44,7 @@ class ProfileView: UIView {
         follwersCountLabel.text = String(account.follower.count)
         follwingCountLabel.text = String(account.followedUser.count)
         nameLabel.text = account.name
-        bioLabel.text = "nothing here." //????
+        bioLabel.text = account.bio
         
     }
 }
