@@ -21,7 +21,8 @@ struct Account: Codable {
     var sendReportCount: Int? = 0
     var myCommentLike: Int? = 0
     var blockUserList: [String]? = []
-//    var bio: String = "nothing here."
+    var bio: String? = "nothing here."
+    var websideLink: String?
 }
 struct LikeComment: Codable {
     var likeComment: String

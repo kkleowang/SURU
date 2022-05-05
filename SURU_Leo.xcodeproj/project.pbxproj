@@ -81,10 +81,8 @@
 		B8CD43852818F13100D2BCCE /* SignInAndOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD43842818F13100D2BCCE /* SignInAndOutView.swift */; };
 		B8CD43872818F17400D2BCCE /* SignInAndOutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CD43862818F17400D2BCCE /* SignInAndOutView.xib */; };
 		B8DA6E722823747200868381 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA6E712823747200868381 /* EditProfileViewController.swift */; };
-		B8DA6E75282374F300868381 /* EditImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DA6E74282374F300868381 /* EditImageCell.xib */; };
-		B8DA6E782823752B00868381 /* EditNameNBioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA6E762823752B00868381 /* EditNameNBioCell.swift */; };
-		B8DA6E792823752B00868381 /* EditNameNBioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DA6E772823752B00868381 /* EditNameNBioCell.xib */; };
-		B8DA6E7B2823756000868381 /* EditImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA6E7A2823756000868381 /* EditImageCell.swift */; };
+		B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DA6E7C2823B6A100868381 /* EditProfileView.xib */; };
+		B8DA6E7F2823B7C700868381 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA6E7E2823B7C700868381 /* EditProfileView.swift */; };
 		B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */; };
 		B8EC70012805275300DA8B78 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70002805275300DA8B78 /* UIView+.swift */; };
 		B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */; };
@@ -180,10 +178,8 @@
 		B8CD43842818F13100D2BCCE /* SignInAndOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndOutView.swift; sourceTree = "<group>"; };
 		B8CD43862818F17400D2BCCE /* SignInAndOutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInAndOutView.xib; sourceTree = "<group>"; };
 		B8DA6E712823747200868381 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		B8DA6E74282374F300868381 /* EditImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditImageCell.xib; sourceTree = "<group>"; };
-		B8DA6E762823752B00868381 /* EditNameNBioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameNBioCell.swift; sourceTree = "<group>"; };
-		B8DA6E772823752B00868381 /* EditNameNBioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditNameNBioCell.xib; sourceTree = "<group>"; };
-		B8DA6E7A2823756000868381 /* EditImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageCell.swift; sourceTree = "<group>"; };
+		B8DA6E7C2823B6A100868381 /* EditProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
+		B8DA6E7E2823B7C700868381 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragingValueViewController.swift; sourceTree = "<group>"; };
 		B8EC70002805275300DA8B78 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = liquidBarViewController.swift; sourceTree = "<group>"; };
@@ -424,9 +420,9 @@
 		B8A0034D280B042000A64750 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				B8DA6E73282374D300868381 /* EditViewCell */,
 				B893379128190F08000C75C3 /* ProfileView.xib */,
 				B89337932819120D000C75C3 /* ProfileView.swift */,
+				B8DA6E73282374D300868381 /* EditViewCell */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -511,10 +507,8 @@
 		B8DA6E73282374D300868381 /* EditViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				B8DA6E7A2823756000868381 /* EditImageCell.swift */,
-				B8DA6E74282374F300868381 /* EditImageCell.xib */,
-				B8DA6E762823752B00868381 /* EditNameNBioCell.swift */,
-				B8DA6E772823752B00868381 /* EditNameNBioCell.xib */,
+				B8DA6E7C2823B6A100868381 /* EditProfileView.xib */,
+				B8DA6E7E2823B7C700868381 /* EditProfileView.swift */,
 			);
 			path = EditViewCell;
 			sourceTree = "<group>";
@@ -666,7 +660,6 @@
 				B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */,
 				B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */,
 				B8F351802815F225002E2A3C /* CommentTableViewCell.xib in Resources */,
-				B8DA6E792823752B00868381 /* EditNameNBioCell.xib in Resources */,
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
 				B86AB7EA28203D0700154B26 /* WriteCommentView.xib in Resources */,
 				B85B63C5280D2CDD00621E4A /* blue.json in Resources */,
@@ -678,9 +671,9 @@
 				B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */,
 				B8CD43872818F17400D2BCCE /* SignInAndOutView.xib in Resources */,
 				B8A4FFCC28224EA20023F0BA /* ReportView.xib in Resources */,
-				B8DA6E75282374F300868381 /* EditImageCell.xib in Resources */,
 				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,
 				B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */,
+				B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */,
 				B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -770,6 +763,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8DA6E7F2823B7C700868381 /* EditProfileView.swift in Sources */,
 				B8A0033E280A92D300A64750 /* MappingViewController.swift in Sources */,
 				B814DF3328108E4E00176C13 /* CommentDraggingView.swift in Sources */,
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
@@ -794,7 +788,6 @@
 				B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */,
 				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
 				B8BBBE7E281D32AE001782F5 /* CollectViewController.swift in Sources */,
-				B8DA6E782823752B00868381 /* EditNameNBioCell.swift in Sources */,
 				B83E9596280EB666009DD17F /* AccountDataModel.swift in Sources */,
 				B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */,
 				B83E9594280EB653009DD17F /* CommentDataModel.swift in Sources */,
@@ -808,7 +801,6 @@
 				B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */,
 				B89337942819120D000C75C3 /* ProfileView.swift in Sources */,
 				B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */,
-				B8DA6E7B2823756000868381 /* EditImageCell.swift in Sources */,
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
@@ -1002,6 +994,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1038,6 +1032,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

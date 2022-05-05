@@ -23,13 +23,13 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYK-zi-Wkm">
-                    <rect key="frame" x="80.5" y="156.5" width="51" height="15"/>
+                    <rect key="frame" x="80.5" y="156.5" width="51" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCj-Ip-hEk">
-                    <rect key="frame" x="280.5" y="156.5" width="51" height="15"/>
+                    <rect key="frame" x="280.5" y="156.5" width="51" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Of Appworks School iOS batch 15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="np4-Og-If8">
-                    <rect key="frame" x="88" y="228.5" width="238" height="15"/>
+                    <rect key="frame" x="88" y="228.5" width="238" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -70,19 +70,30 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q55-is-f87">
+                    <rect key="frame" x="16" y="283" width="382" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="編輯個人資料"/>
+                    <connections>
+                        <action selector="tapEditProfilebutton:" destination="iN0-l3-epB" eventType="touchUpInside" id="VkW-Dx-YBC"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="vKt-Up-aDA" firstAttribute="leading" secondItem="k0w-en-LO1" secondAttribute="trailing" constant="40" id="0lm-Zx-mrR"/>
+                <constraint firstItem="Q55-is-f87" firstAttribute="top" secondItem="np4-Og-If8" secondAttribute="bottom" constant="40" id="4SR-qZ-AOh"/>
                 <constraint firstItem="fCj-Ip-hEk" firstAttribute="top" secondItem="56w-ZK-bxw" secondAttribute="bottom" constant="4" id="4p3-H8-2cT"/>
                 <constraint firstItem="56w-ZK-bxw" firstAttribute="leading" secondItem="vKt-Up-aDA" secondAttribute="trailing" constant="40" id="JVb-pI-qse"/>
                 <constraint firstItem="56w-ZK-bxw" firstAttribute="centerY" secondItem="vKt-Up-aDA" secondAttribute="centerY" constant="-5" id="M7N-GX-8x4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Q55-is-f87" secondAttribute="trailing" constant="16" id="RhG-Bn-05x"/>
                 <constraint firstItem="wYK-zi-Wkm" firstAttribute="centerX" secondItem="k0w-en-LO1" secondAttribute="centerX" id="Ryw-4D-VDo"/>
                 <constraint firstAttribute="trailing" secondItem="OMd-Mq-0Yz" secondAttribute="trailing" id="VWi-IW-yZW"/>
                 <constraint firstItem="fCj-Ip-hEk" firstAttribute="centerX" secondItem="56w-ZK-bxw" secondAttribute="centerX" id="Wvp-A3-YiP"/>
                 <constraint firstItem="np4-Og-If8" firstAttribute="centerX" secondItem="vKt-Up-aDA" secondAttribute="centerX" id="XQQ-c9-Lgw"/>
                 <constraint firstItem="OMd-Mq-0Yz" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Yba-px-I46"/>
+                <constraint firstItem="Q55-is-f87" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="b7i-8J-Ci4"/>
                 <constraint firstItem="k0w-en-LO1" firstAttribute="centerY" secondItem="vKt-Up-aDA" secondAttribute="centerY" constant="-5" id="g2v-HO-d5o"/>
                 <constraint firstItem="SNO-OR-hYx" firstAttribute="top" secondItem="vKt-Up-aDA" secondAttribute="bottom" constant="15" id="gM7-y1-GrU"/>
                 <constraint firstItem="vKt-Up-aDA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="60" id="nMq-Mo-5be"/>
@@ -93,13 +104,14 @@
             </constraints>
             <connections>
                 <outlet property="bioLabel" destination="np4-Og-If8" id="ik2-Nx-Ajm"/>
+                <outlet property="editProfileButton" destination="Q55-is-f87" id="Gdj-ge-Zvw"/>
                 <outlet property="follwersCountLabel" destination="k0w-en-LO1" id="qoR-JP-SoP"/>
                 <outlet property="follwingCountLabel" destination="56w-ZK-bxw" id="FSV-9v-vqH"/>
                 <outlet property="mainImageView" destination="vKt-Up-aDA" id="CwG-QQ-f5l"/>
                 <outlet property="nameLabel" destination="SNO-OR-hYx" id="SI9-ui-pp5"/>
                 <outlet property="tapAccountButton" destination="OMd-Mq-0Yz" id="jcU-Bn-EvD"/>
             </connections>
-            <point key="canvasLocation" x="132" y="80"/>
+            <point key="canvasLocation" x="-93" y="72"/>
         </view>
     </objects>
     <resources>

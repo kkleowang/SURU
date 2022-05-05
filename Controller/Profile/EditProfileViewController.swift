@@ -8,23 +8,47 @@
 import UIKit
 
 class EditProfileViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
+    var mainImage = UIImage()
+    var nickName = ""
+    var bio = ""
+    var webside = ""
+    
+    let editProfileView: EditProfileView = UIView.fromNib()
+    var userData: Account?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        editProfileView.delegate = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+extension EditProfileViewController: EditProfileViewDelegate {
+    func didTapEditImage(_ view: EditProfileView, alert: UIAlertController) {
+        present(alert, animated: true, completion: nil)
     }
-    */
-
+    
+    func didSelectImage(_ view: EditProfileView, image: UIImage) {
+        mainImage = image
+    }
+    
+    func didTapImagePicker(_ view: EditProfileView, imagePicker: UIImagePickerController?) {
+        guard let imagePicker = imagePicker else { return }
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func didEditNickName(_ view: EditProfileView, text: String) {
+        nickName = text
+    }
+    
+    func didEditWebSide(_ view: EditProfileView, text: String) {
+        webside = text
+    }
+    
+    func didEditBio(_ view: EditProfileView, text: String) {
+        bio = text
+    }
+    
+    
 }

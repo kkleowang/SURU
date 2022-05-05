@@ -11,36 +11,34 @@ class ProfileViewController: UIViewController {
     
     let profileView: ProfileView = UIView.fromNib()
     var currentUserData: Account?
+    var currentUserComment: [Comment]?
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        fetchUser {
+        fetchData {
             self.view.stickSubView(self.profileView)
             self.profileView.delegate = self
-            //            self.profileView.layoutView(account: self.currentUserData!)
+            self.profileView.layoutView(account: self.currentUserData!)
         }
-    }
-    func fetchUser(com: @escaping () -> () ) {
-        guard let userID = UserRequestProvider.shared.currentUserID else { return }
-        AccountRequestProvider.shared.fetchAccount(currentUserID: userID) { result in
-            switch result {
-            case .success(let data):
-                self.currentUserData = data
-                com()
-            case .failure(let error):
-                print(error)
-                com()
-            }
-        }
+        
     }
 }
 extension ProfileViewController: ProfileViewDelegate {
+    func didTapEditProfilebutton(_ view: ProfileView) {
+        showEditingPage()
+    }
+    
     func didTapAccountButton(_ view: ProfileView) {
         showAlert()
     }
+    func showEditingPage() {
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
+        guard let userData = currentUserData else { return }
+        controller.editProfileView.layoutView(currentUser: userData)
+        present(controller, animated: true, completion: nil)
+    }
     func showAlert() {
-        let alert = UIAlertController(title: "Title", message: "Please Select an Option", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction)in
             UserRequestProvider.shared.logOut()
@@ -101,7 +99,6 @@ extension ProfileViewController: ProfileViewDelegate {
             case .success(let message):
                 self.deleteUserInfo(userID: userID)
                 LKProgressHUD.showSuccess(text: message)
-                
             }
         }
     }
@@ -116,3 +113,48 @@ extension ProfileViewController: ProfileViewDelegate {
         }
     }
 }
+extension ProfileViewController {
+    func fetchData(competion: @escaping () -> Void) {
+        let group: DispatchGroup = DispatchGroup()
+        let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
+        let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
+        LKProgressHUD.show(text: "讀取使用者資訊中")
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        group.enter()
+        concurrentQueue1.async(group: group) {
+            AccountRequestProvider.shared.fetchAccount(currentUserID: userID) { result in
+                switch result {
+                case .success(let data):
+                    print("下載用戶成功")
+                    self.currentUserData = data
+                case .failure(let error):
+                    print("下載用戶失敗", error)
+                    LKProgressHUD.dismiss()
+                    LKProgressHUD.showFailure(text: "下載用戶失敗")
+                }
+                group.leave()
+            }
+            
+        }
+        group.enter()
+        concurrentQueue2.async(group: group) {
+            CommentRequestProvider.shared.fetchCommentsOfUser(useID: userID) { result in
+                switch result {
+                case .success(let data) :
+                    print("下載用戶評論成功")
+                    self.currentUserComment = data
+                case .failure(let error) :
+                    print("下載用戶評論失敗", error)
+                    LKProgressHUD.dismiss()
+                    LKProgressHUD.showFailure(text: "下載評論失敗")
+                }
+                group.leave()
+            }
+        }
+        group.notify(queue: DispatchQueue.main) {
+            LKProgressHUD.dismiss()
+            competion()
+        }
+    }
+}
+
