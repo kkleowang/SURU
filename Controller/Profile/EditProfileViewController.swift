@@ -38,6 +38,7 @@ class EditProfileViewController: UIViewController {
     }
     @objc func cancel() {
         dismiss(animated: true, completion: nil)
+        LKProgressHUD.showSuccess(text: "取消編輯")
     }
     @objc func save() {
         
@@ -45,6 +46,11 @@ class EditProfileViewController: UIViewController {
     
 }
 extension EditProfileViewController: EditProfileViewDelegate {
+    func didSelectImage(_ view: EditProfileView, image: UIImage) {
+        mainImage = image
+        LKProgressHUD.showSuccess(text: "刪除成功")
+    }
+    
     func didTapEditImage(_ view: EditProfileView, alert: UIAlertController) {
         present(alert, animated: true, completion: nil)
     }

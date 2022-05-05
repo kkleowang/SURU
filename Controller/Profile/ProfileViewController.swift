@@ -54,7 +54,7 @@ extension ProfileViewController: ProfileViewDelegate {
             self.showDestructiveAlert()
         }))
         
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction)in
             print("User click Dismiss button")
         }))
         

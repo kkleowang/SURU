@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 protocol EditProfileViewDelegate: AnyObject {
+    func didSelectImage(_ view: EditProfileView, image: UIImage)
     func didSelectImage(_ view: EditProfileView, image: UIImage, imagePickView: UIImagePickerController)
     func didTapImagePicker(_ view: EditProfileView, imagePicker: UIImagePickerController?)
     func didEditNickName(_ view: EditProfileView, text: String)
@@ -76,11 +77,15 @@ class EditProfileView: UIView {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "移除目前的大頭貼照", style: .default , handler:{ (UIAlertAction)in
             LKProgressHUD.showSuccess(text: "修改成功")
-            self.mainImageView.image = UIImage(named: "AppIcon")
-            
+            guard let image = UIImage(named: "AppIcon") else { return }
+            self.mainImageView.image = image
+            self.delegate?.didSelectImage(self, image: image)
         }))
         alert.addAction(UIAlertAction(title: "從圖庫選擇", style: .default , handler:{ (UIAlertAction)in
             self.delegate?.didTapImagePicker(self, imagePicker: self.imagePicker)
+        }))
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
         }))
         self.delegate?.didTapEditImage(self, alert: alert)
     }
