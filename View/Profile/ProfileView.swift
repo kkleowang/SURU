@@ -9,22 +9,22 @@ import UIKit
 import Kingfisher
 
 protocol ProfileViewDelegate: AnyObject {
-    func didTapLogoutButton(_ view: ProfileView)
-    func didTapDeleteButton(_ view: ProfileView)
+    func didTapAccountButton(_ view: ProfileView)
 }
 
 class ProfileView: UIView {
 
+    @IBOutlet weak var tapAccountButton: UIButton!
+    @IBAction func tapAccountButton(_ sender: Any) {
+        self.delegate?.didTapAccountButton(self)
+    }
+    
     weak var delegate: ProfileViewDelegate?
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var follwersCountLabel: UILabel!
     @IBOutlet weak var follwingCountLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var logoutLabel: UIButton!
-    
-    
-    
     func layoutView(account: Account) {
         mainImageView.layer.cornerRadius = 40
         mainImageView.clipsToBounds = true
@@ -35,13 +35,4 @@ class ProfileView: UIView {
         bioLabel.text = "nothing here."
         
     }
-    
-    
-    @IBAction func logout(_ sender: UIButton) {
-        self.delegate?.didTapLogoutButton(self)
-    }
-    @IBAction func deleteAccount(_ sender: UIButton) {
-        self.delegate?.didTapDeleteButton(self)
-    }
-
 }

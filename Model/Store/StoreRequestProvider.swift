@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class StoreRequestProvider {
@@ -43,4 +44,31 @@ class StoreRequestProvider {
         }
         completion(.success(docment.documentID))
     }
+    
+    func collectStore(currentUserID: String, tagertStoreID: String) {
+        let tagertStoreDocment = database.collection("stores").document(tagertStoreID)
+        let currentUserDocment = database.collection("accounts").document(currentUserID)
+        
+        tagertStoreDocment.updateData([
+            "collectedUser": FieldValue.arrayUnion([currentUserID])
+        ])
+        currentUserDocment.updateData([
+            "collectedStore": FieldValue.arrayUnion([tagertStoreID])
+        ])
+    }
+    
+    func unCollectStore(currentUserID: String, tagertStoreID: String) {
+        
+        
+        let tagertStoreDocment = database.collection("stores").document(tagertStoreID)
+        let currentUserDocment = database.collection("accounts").document(currentUserID)
+        
+        tagertStoreDocment.updateData([
+            "collectedUser": FieldValue.arrayRemove([currentUserID])
+        ])
+        currentUserDocment.updateData([
+            "collectedStore": FieldValue.arrayRemove([tagertStoreID])
+        ])
+    }
+    
 }

@@ -18,6 +18,9 @@ struct Account: Codable {
     var collectedStore: [String] = []
     var follower: [String] = []
     var followedUser: [String] = []
+    var sendReportCount: Int? = 0
+    var myCommentLike: Int? = 0
+    var blockUserList: [String]? = []
 //    var bio: String = "nothing here."
 }
 struct LikeComment: Codable {
