@@ -17,6 +17,7 @@ class ProfileView: UIView {
     
     weak var delegate: ProfileViewDelegate?
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var editProfileButton: UIButton!
     
     @IBAction func tapEditProfilebutton(_ sender: UIButton) {

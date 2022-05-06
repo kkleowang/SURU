@@ -51,28 +51,28 @@ private enum Tab {
         switch self {
         case .waterfalls:
             return UITabBarItem(
-                title: nil,
+                title: "探索",
                 image: UIImage.asset(.Icons_24px_Address),
                 selectedImage: UIImage.asset(.Icons_24px_Address)
             )
 
         case .mapping:
             return UITabBarItem(
-                title: nil,
+                title: "地圖",
                 image: UIImage.asset(.Icons_24px_CollectionView),
                 selectedImage: UIImage.asset(.Icons_24px_CollectionView)
             )
 
         case .comment:
             return UITabBarItem(
-                title: nil,
+                title: "發表評論",
                 image: UIImage.asset(.Icons_24px_RegisterCellphone),
                 selectedImage: UIImage.asset(.Icons_24px_RegisterCellphone)
             )
 
         case .profile:
             return UITabBarItem(
-                title: nil,
+                title: "個人資料",
                 image: UIImage.asset(.Icons_36px_Profile_Selected),
                 selectedImage: UIImage.asset(.Icons_36px_Profile_Selected)
             )

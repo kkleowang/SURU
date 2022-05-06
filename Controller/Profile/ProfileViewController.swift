@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CHTCollectionViewWaterfallLayout
 
 class ProfileViewController: UIViewController {
     
@@ -17,11 +18,54 @@ class ProfileViewController: UIViewController {
         
         fetchData {
             self.view.stickSubView(self.profileView)
+            self.setupCollectionView()
+            
             self.profileView.delegate = self
             self.profileView.layoutView(account: self.currentUserData!)
         }
         
     }
+    
+    func setupCollectionView() {
+        profileView.collectionView.dataSource = self
+        profileView.collectionView.delegate = self
+        let layout = CHTCollectionViewWaterfallLayout()
+        layout.columnCount = 3
+        layout.minimumColumnSpacing = 3
+        layout.minimumInteritemSpacing = 3
+        let inset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = inset
+        profileView.collectionView.collectionViewLayout = layout
+        profileView.collectionView.register(UINib(nibName: String(describing: ProfileCommentCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProfileCommentCell.self))
+    }
+}
+
+extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let comment = currentUserComment else { return 0}
+        if comment.count == 0 {
+            collectionView.setEmptyMessage("你還沒有發表過評論喔！")
+        } else {
+            collectionView.restore()
+        }
+        return comment.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell else { return UICollectionViewCell() }
+        guard let comment = currentUserComment else { return cell}
+        cell.layoutCell(comment: comment[indexPath.item])
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = UIScreen.width - 3 * 2
+        
+        return CGSize(width: width, height: width)
+        
+    }
+    
 }
 extension ProfileViewController: ProfileViewDelegate {
     func didTapEditProfilebutton(_ view: ProfileView) {

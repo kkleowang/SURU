@@ -285,6 +285,7 @@ extension CommentViewController: CommentSelectionViewDelegate {
     }
     
     func didTapSaveComment(_ view: CommentSelectionView) {
+        // Bug
         StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
             switch result {
             case .success(let data):

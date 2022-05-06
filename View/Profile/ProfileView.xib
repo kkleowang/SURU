@@ -78,15 +78,27 @@
                         <action selector="tapEditProfilebutton:" destination="iN0-l3-epB" eventType="touchUpInside" id="VkW-Dx-YBC"/>
                     </connections>
                 </button>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-nG-iEI">
+                    <rect key="frame" x="0.0" y="354" width="414" height="508"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ndf-cU-OVi">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="vKt-Up-aDA" firstAttribute="leading" secondItem="k0w-en-LO1" secondAttribute="trailing" constant="40" id="0lm-Zx-mrR"/>
+                <constraint firstItem="3bh-nG-iEI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0uZ-3V-i6n"/>
                 <constraint firstItem="Q55-is-f87" firstAttribute="top" secondItem="np4-Og-If8" secondAttribute="bottom" constant="40" id="4SR-qZ-AOh"/>
                 <constraint firstItem="fCj-Ip-hEk" firstAttribute="top" secondItem="56w-ZK-bxw" secondAttribute="bottom" constant="4" id="4p3-H8-2cT"/>
                 <constraint firstItem="56w-ZK-bxw" firstAttribute="leading" secondItem="vKt-Up-aDA" secondAttribute="trailing" constant="40" id="JVb-pI-qse"/>
                 <constraint firstItem="56w-ZK-bxw" firstAttribute="centerY" secondItem="vKt-Up-aDA" secondAttribute="centerY" constant="-5" id="M7N-GX-8x4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="3bh-nG-iEI" secondAttribute="bottom" id="PmE-J1-YTQ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Q55-is-f87" secondAttribute="trailing" constant="16" id="RhG-Bn-05x"/>
                 <constraint firstItem="wYK-zi-Wkm" firstAttribute="centerX" secondItem="k0w-en-LO1" secondAttribute="centerX" id="Ryw-4D-VDo"/>
                 <constraint firstAttribute="trailing" secondItem="OMd-Mq-0Yz" secondAttribute="trailing" id="VWi-IW-yZW"/>
@@ -94,6 +106,8 @@
                 <constraint firstItem="np4-Og-If8" firstAttribute="centerX" secondItem="vKt-Up-aDA" secondAttribute="centerX" id="XQQ-c9-Lgw"/>
                 <constraint firstItem="OMd-Mq-0Yz" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Yba-px-I46"/>
                 <constraint firstItem="Q55-is-f87" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="b7i-8J-Ci4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3bh-nG-iEI" secondAttribute="trailing" id="d0E-D9-fpy"/>
+                <constraint firstItem="3bh-nG-iEI" firstAttribute="top" secondItem="Q55-is-f87" secondAttribute="bottom" constant="40" id="dBi-zh-YNn"/>
                 <constraint firstItem="k0w-en-LO1" firstAttribute="centerY" secondItem="vKt-Up-aDA" secondAttribute="centerY" constant="-5" id="g2v-HO-d5o"/>
                 <constraint firstItem="SNO-OR-hYx" firstAttribute="top" secondItem="vKt-Up-aDA" secondAttribute="bottom" constant="15" id="gM7-y1-GrU"/>
                 <constraint firstItem="vKt-Up-aDA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="60" id="nMq-Mo-5be"/>
@@ -104,6 +118,7 @@
             </constraints>
             <connections>
                 <outlet property="bioLabel" destination="np4-Og-If8" id="ik2-Nx-Ajm"/>
+                <outlet property="collectionView" destination="3bh-nG-iEI" id="wwG-xy-vXy"/>
                 <outlet property="editProfileButton" destination="Q55-is-f87" id="Gdj-ge-Zvw"/>
                 <outlet property="follwersCountLabel" destination="k0w-en-LO1" id="qoR-JP-SoP"/>
                 <outlet property="follwingCountLabel" destination="56w-ZK-bxw" id="FSV-9v-vqH"/>
