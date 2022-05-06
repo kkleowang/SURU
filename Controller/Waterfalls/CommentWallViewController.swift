@@ -10,7 +10,6 @@ import XLPagerTabStrip
 
 
 class CommentWallViewController: ButtonBarPagerTabStripViewController {
-    
     var accounts: [Account] = []
     var comments: [Comment] = []
     var stores: [Store] = []
@@ -34,25 +33,17 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
             oldCell?.label.textColor = .secondaryLabel
             newCell?.label.textColor = .label
         }
-        
-
     }
-    
-    
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let discoveryVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as! DiscoveryViewController
-        let disVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as! DiscoveryViewController
-        let triVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as! DiscoveryViewController
-        
-        
-        return[discoveryVC, disVC, triVC]
+        // 全部
+        guard let discoveryVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as? DiscoveryViewController else { return [] }
+        // 追隨的
+        guard let followedVC = storyboard.instantiateViewController(identifier: "CollectViewController") as? CollectViewController else { return [] }
+        // 收藏的
+        guard let collectedVC = storyboard.instantiateViewController(identifier: "FollowViewController") as? FollowViewController else { return [] }
+  
+        return [discoveryVC, followedVC, collectedVC]
     }
-    
-    
 }
-// firebase
-extension CommentWallViewController {
-    
-    
-}
+

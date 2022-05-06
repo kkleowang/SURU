@@ -307,7 +307,7 @@
         <!--Follow View Controller-->
         <scene sceneID="G64-f7-g07">
             <objects>
-                <viewController id="d9T-lp-YuL" customClass="FollowViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FollowViewController" id="d9T-lp-YuL" customClass="FollowViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Eor-K8-Jnl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -353,7 +353,7 @@
         <!--Collect View Controller-->
         <scene sceneID="IWw-yh-oE7">
             <objects>
-                <viewController id="ZAr-fM-vbs" customClass="CollectViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectViewController" id="ZAr-fM-vbs" customClass="CollectViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L3z-SA-xsM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

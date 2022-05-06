@@ -750,6 +750,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "
+
 ";
 		};
 		B8659C3928068262006C85F3 /* Multiple Simulators */ = {

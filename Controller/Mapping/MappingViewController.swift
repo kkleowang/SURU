@@ -26,13 +26,14 @@ class MappingViewController: UIViewController {
         didSet {
             print(selectedIndex)
             storeCardCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-            mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: storeData[selectedIndex].coordinate.lat-0.002, longitude: storeData[selectedIndex].coordinate.long), latitudinalMeters: 800, longitudinalMeters: 800), animated: true)
+            let locationPoint = CLLocationCoordinate2D(latitude: storeData[selectedIndex].coordinate.lat - 0.002, longitude: storeData[selectedIndex].coordinate.long)
+            mapView.setRegion(MKCoordinateRegion(center: locationPoint, latitudinalMeters: 800, longitudinalMeters: 800), animated: true)
         }
     }
     var storeCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLocationManager()
+//        setupLocationManager()
         self.view.stickSubView(mapView)
         fetchData {
             LKProgressHUD.showSuccess(text: "下載資料成功")
@@ -118,7 +119,9 @@ class MappingViewController: UIViewController {
             commentOfStore.insert(commentHolder, at: index)
         }
     }
-    
+    func setupSearchBar() {
+        
+    }
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

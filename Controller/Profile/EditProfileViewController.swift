@@ -96,7 +96,9 @@ extension EditProfileViewController: EditProfileViewDelegate {
 }
 extension EditProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: BadgeHeaderCell.self), for: indexPath) as? BadgeHeaderCell else { return UICollectionReusableView() }
+        guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: BadgeHeaderCell.self), for: indexPath) as? BadgeHeaderCell else {
+            return UICollectionReusableView()
+        }
         cell.titleLabel.text = "\(indexPath.section)"
         return cell
     }
@@ -107,8 +109,11 @@ extension EditProfileViewController: UICollectionViewDataSource, UICollectionVie
         5
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell else { return UICollectionViewCell()}
-        cell.mainImageView.kf.setImage(with: URL(string: ""), placeholder: UIImage(named: BadgeFile[indexPath.section][indexPath.item]))
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell else {
+            return UICollectionViewCell()
+            
+        }
+        cell.mainImageView.kf.setImage(with: URL(string: ""), placeholder: UIImage(named: badgeFile[indexPath.section][indexPath.item]))
         return cell
     }
 }

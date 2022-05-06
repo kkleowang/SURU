@@ -45,8 +45,8 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let comment = currentUserComment else { return 0}
-        if comment.count == 0 {
+        guard let comment = currentUserComment else { return 0 }
+        if comment.isEmpty {
             collectionView.setEmptyMessage("你還沒有發表過評論喔！")
         } else {
             collectionView.restore()
@@ -55,8 +55,10 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell else { return UICollectionViewCell() }
-        guard let comment = currentUserComment else { return cell}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell else {
+            return UICollectionViewCell()
+        }
+        guard let comment = currentUserComment else { return cell }
         cell.layoutCell(comment: comment[indexPath.item])
         return cell
     }
@@ -66,9 +68,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         let width = UIScreen.width - 3 * 2
         
         return CGSize(width: width, height: width)
-        
     }
-    
 }
 extension ProfileViewController: ProfileViewDelegate {
     func didTapEditProfilebutton(_ view: ProfileView) {
@@ -84,24 +84,21 @@ extension ProfileViewController: ProfileViewDelegate {
         controller.userData = userData
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
-        
-        
-        
         present(nav, animated: true, completion: nil)
     }
     func showAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction) in
             UserRequestProvider.shared.logOut()
             LKProgressHUD.showSuccess(text: "登出成功")
         }))
         
-        alert.addAction(UIAlertAction(title: "刪除帳號", style: .destructive , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "刪除帳號", style: .destructive , handler:{ (UIAlertAction) in
             self.showDestructiveAlert()
         }))
         
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
             print("User click Dismiss button")
         }))
         
@@ -227,7 +224,7 @@ extension ProfileViewController {
             ref[0] = [1, 1, 1, 0, 0]
         } else if loginCount >= 3 {
             ref[0] = [1, 1, 0, 0, 0]
-        }else if loginCount >= 1 {
+        } else if loginCount >= 1 {
             ref[0] = [1, 0, 0, 0, 0]
         } else {
             ref[0] = [0, 0, 0, 0, 0]
@@ -240,7 +237,7 @@ extension ProfileViewController {
             ref[1] = [1, 1, 1, 0, 0]
         } else if likeCount >= 30 {
             ref[1] = [1, 1, 0, 0, 0]
-        }else if likeCount >= 10 {
+        } else if likeCount >= 10 {
             ref[1] = [1, 0, 0, 0, 0]
         } else {
             ref[1] = [0, 0, 0, 0, 0]
@@ -253,7 +250,7 @@ extension ProfileViewController {
             ref[2] = [1, 1, 1, 0, 0]
         } else if publishCommentCount >= 5 {
             ref[2] = [1, 1, 0, 0, 0]
-        }else if publishCommentCount >= 1 {
+        } else if publishCommentCount >= 1 {
             ref[2] = [1, 0, 0, 0, 0]
         } else {
             ref[2] = [0, 0, 0, 0, 0]
@@ -266,7 +263,7 @@ extension ProfileViewController {
             ref[3] = [1, 1, 1, 0, 0]
         } else if followerCount >= 10 {
             ref[3] = [1, 1, 0, 0, 0]
-        }else if followerCount >= 5 {
+        } else if followerCount >= 5 {
             ref[3] = [1, 0, 0, 0, 0]
         } else {
             ref[3] = [0, 0, 0, 0, 0]
@@ -279,13 +276,11 @@ extension ProfileViewController {
             ref[4] = [1, 1, 1, 0, 0]
         } else if publishReportCount >= 5 {
             ref[4] = [1, 1, 0, 0, 0]
-        }else if publishReportCount >= 1 {
+        } else if publishReportCount >= 1 {
             ref[4] = [1, 0, 0, 0, 0]
         } else {
             ref[4] = [0, 0, 0, 0, 0]
         }
         badgeRef = ref
-        
-        
     }
 }

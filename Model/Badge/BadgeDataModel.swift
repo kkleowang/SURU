@@ -14,7 +14,7 @@ struct Badge {
     let level: Int
 }
 
-let BadgeFile = [
+let badgeFile = [
     ["login1", "login2", "login3", "login4", "login5"],
     ["like1", "like2", "like3", "like4", "like5"],
     ["comment1", "comment2", "comment3", "comment4", "comment5"],
@@ -83,7 +83,7 @@ enum BadgeName: String {
     case reportLevel4 = "report4"
     case reportLevel5 = "report5"
 }
-//enum BadgeValue: Int {
+// enum BadgeValue: Int {
 //    case loginLevel1 = 1
 //    case loginLevel2 = 3
 //    case loginLevel3 = 7
@@ -113,4 +113,4 @@ enum BadgeName: String {
 //    case reportLevel3 = 10
 //    case reportLevel4 = 15
 //    case reportLevel5 = 20
-//}
+// }
