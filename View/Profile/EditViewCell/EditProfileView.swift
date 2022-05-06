@@ -20,6 +20,7 @@ protocol EditProfileViewDelegate: AnyObject {
 class EditProfileView: UIView {
     weak var delegate: EditProfileViewDelegate?
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var websideLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!

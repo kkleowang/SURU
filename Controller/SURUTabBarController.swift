@@ -52,8 +52,8 @@ private enum Tab {
         case .waterfalls:
             return UITabBarItem(
                 title: "探索",
-                image: UIImage(systemName: "person.crop.circle"),
-                selectedImage: UIImage(systemName: "person.crop.circle")
+                image: UIImage(systemName: "mosaic"),
+                selectedImage: UIImage(systemName: "mosaic.fill")
             )
 
         case .mapping:
@@ -66,8 +66,8 @@ private enum Tab {
         case .comment:
             return UITabBarItem(
                 title: "發表評論",
-                image: UIImage(systemName: "person.crop.circle"),
-                selectedImage: UIImage(systemName: "person.crop.circle")
+                image: UIImage(systemName: "rectangle.stack.badge.plus"),
+                selectedImage: UIImage(systemName: "rectangle.stack.badge.plus")
             )
 
         case .profile:
@@ -85,6 +85,7 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBar.tintColor = .C1
         view.backgroundColor = .white
         viewControllers = tabs.map({ $0.controller() })
         delegate = self

@@ -13,10 +13,13 @@ class ProfileViewController: UIViewController {
     let profileView: ProfileView = UIView.fromNib()
     var currentUserData: Account?
     var currentUserComment: [Comment]?
+    var badgeRef: [[Int]]?
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchData {
+            
+            self.checkUserStatus()
             self.view.stickSubView(self.profileView)
             self.setupCollectionView()
             
@@ -209,13 +212,79 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     func checkUserStatus() {
+        var ref: [[Int]] = [[], [], [], [], []]
         guard let user = currentUserData else { return }
         let followerCount = user.follower.count
-        let loginCount = user.loginCount
+        let loginCount = user.loginCount ?? 0
         let publishCommentCount = user.commentCount
-        let publishReportCount = user.sendReportCount
-        let likeCount = user.myCommentLike
-        
+        let publishReportCount = user.sendReportCount ?? 0
+        let likeCount = user.myCommentLike ?? 0
+        if  loginCount >= 30 {
+            ref[0] = [1, 1, 1, 1, 1]
+        } else if loginCount >= 15 {
+            ref[0] = [1, 1, 1, 1, 0]
+        } else if loginCount >= 7 {
+            ref[0] = [1, 1, 1, 0, 0]
+        } else if loginCount >= 3 {
+            ref[0] = [1, 1, 0, 0, 0]
+        }else if loginCount >= 1 {
+            ref[0] = [1, 0, 0, 0, 0]
+        } else {
+            ref[0] = [0, 0, 0, 0, 0]
+        }
+        if  likeCount >= 200 {
+            ref[1] = [1, 1, 1, 1, 1]
+        } else if likeCount >= 100 {
+            ref[1] = [1, 1, 1, 1, 0]
+        } else if likeCount >= 50 {
+            ref[1] = [1, 1, 1, 0, 0]
+        } else if likeCount >= 30 {
+            ref[1] = [1, 1, 0, 0, 0]
+        }else if likeCount >= 10 {
+            ref[1] = [1, 0, 0, 0, 0]
+        } else {
+            ref[1] = [0, 0, 0, 0, 0]
+        }
+        if  publishCommentCount >= 30 {
+            ref[2] = [1, 1, 1, 1, 1]
+        } else if publishCommentCount >= 20 {
+            ref[2] = [1, 1, 1, 1, 0]
+        } else if publishCommentCount >= 10 {
+            ref[2] = [1, 1, 1, 0, 0]
+        } else if publishCommentCount >= 5 {
+            ref[2] = [1, 1, 0, 0, 0]
+        }else if publishCommentCount >= 1 {
+            ref[2] = [1, 0, 0, 0, 0]
+        } else {
+            ref[2] = [0, 0, 0, 0, 0]
+        }
+        if  followerCount >= 50 {
+            ref[3] = [1, 1, 1, 1, 1]
+        } else if followerCount >= 30 {
+            ref[3] = [1, 1, 1, 1, 0]
+        } else if followerCount >= 20 {
+            ref[3] = [1, 1, 1, 0, 0]
+        } else if followerCount >= 10 {
+            ref[3] = [1, 1, 0, 0, 0]
+        }else if followerCount >= 5 {
+            ref[3] = [1, 0, 0, 0, 0]
+        } else {
+            ref[3] = [0, 0, 0, 0, 0]
+        }
+        if  publishReportCount >= 20 {
+            ref[4] = [1, 1, 1, 1, 1]
+        } else if publishReportCount >= 15 {
+            ref[4] = [1, 1, 1, 1, 0]
+        } else if publishReportCount >= 10 {
+            ref[4] = [1, 1, 1, 0, 0]
+        } else if publishReportCount >= 5 {
+            ref[4] = [1, 1, 0, 0, 0]
+        }else if publishReportCount >= 1 {
+            ref[4] = [1, 0, 0, 0, 0]
+        } else {
+            ref[4] = [0, 0, 0, 0, 0]
+        }
+        badgeRef = ref
         
         
     }

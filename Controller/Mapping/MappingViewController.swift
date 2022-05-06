@@ -21,10 +21,6 @@ class MappingViewController: UIViewController {
     // 計算對應的function用
     var gestureHolder: [UITapGestureRecognizer] = []
     var storeHolder: [Store] = []
-    //    let view = UIImageView()
-    //    let pan = UIPanGestureRecognizer()
-    //    pan.addTarget(self, action: #s)
-    // 計算對應的datasource用
     var distance: [Double] = []
     var commentOfStore: [[Comment]] = []
     var selectedIndex = 0 {
@@ -37,11 +33,9 @@ class MappingViewController: UIViewController {
     }
     
     let mapView = MapView()
-    //    var locationManager = CLLocationManager()
     var storeCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationItem.title = "123123123"
         self.view.stickSubView(mapView)
         fetchData {
             LKProgressHUD.showSuccess(text: "下載資料成功")
