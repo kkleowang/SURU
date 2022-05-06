@@ -12,11 +12,10 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class DiscoveryViewController: UIViewController {
-    //    var subPage: [String] = ["All", "#2019名店", "#2020名店", "#2021名店"]
     var commentData: [Comment] = []
     var currentAccount: Account?
     var storeData: [Store] = []
-    var accountData: [Account] = [] 
+    var accountData: [Account] = []
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -24,8 +23,6 @@ class DiscoveryViewController: UIViewController {
     override func viewDidLoad() {
         fetchAllData()
         setupCollectionView()
-        
-//        listenDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,33 +42,17 @@ class DiscoveryViewController: UIViewController {
         collectionView.collectionViewLayout = layout
         collectionView.register(UINib(nibName: String(describing: DiscoveryCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: DiscoveryCell.self))
     }
-//    func listenDatabase() {
-//            Firestore.firestore().collection("comments").addSnapshotListener { querySnapshot, error in
-//                guard let snapshot = querySnapshot else {
-//                    print("Error fetching snapshots: \(error!)")
-//                    return
-//                }
-//                snapshot.documentChanges.forEach { diff in
-//                    if (diff.type == .added) {
-//                        print("New Data ID: \(diff.document.documentID), post title: \(diff.document.data()["title"] ?? "") ")
-//                        self.fetchCommentData() {
-//                            self.collectionView.reloadData()
-//                        }
-//                    }
-//                }
-//            }
-//        }
     func fetchCommentData(com: @escaping () -> ()) {
-    CommentRequestProvider.shared.fetchComments { result in
-        switch result {
-        case .success(let data) :
-            self.commentData = data
-            com()
-        case .failure(let error) :
-            print("評論頁下載帳號失敗", error)
-            com()
+        CommentRequestProvider.shared.fetchComments { result in
+            switch result {
+            case .success(let data) :
+                self.commentData = data
+                com()
+            case .failure(let error) :
+                print("評論頁下載帳號失敗", error)
+                com()
+            }
         }
-    }
     }
     
 }
@@ -84,22 +65,22 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return UICollectionViewCell() }
         cell.delegate = self
-        if commentData.count != 0 {
-        let comment = commentData[indexPath.row]
-        let store = storeData.first(where: {$0.storeID == comment.storeID})
-        let account = accountData.first(where: {$0.userID == comment.userID})
+        if !commentData.isEmpty {
+            let comment = commentData[indexPath.row]
+            let store = storeData.first(where: {$0.storeID == comment.storeID})
+            let account = accountData.first(where: {$0.userID == comment.userID})
             if let currentAccount = currentAccount {
-        cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: storeData[0])
-        }
+                cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: storeData[0])
+            }
         }
         
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if commentData.count != 0 {
-        let comment = commentData[indexPath.row]
-        let store = storeData.first(where: {$0.storeID == comment.storeID})
-        let account = accountData.first(where: {$0.userID == comment.userID})
+        if !commentData.isEmpty {
+            let comment = commentData[indexPath.row]
+            let store = storeData.first(where: {$0.storeID == comment.storeID})
+            let account = accountData.first(where: {$0.userID == comment.userID})
             if let currentAccount = currentAccount {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 guard let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
@@ -108,13 +89,11 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
                 controller.store = store
                 controller.account = account
                 self.present(controller, animated: true, completion: nil)
-        }
+            }
         }
     }
     
 }
-
-
 extension DiscoveryViewController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //        commentData[indexPath.row].contentValue.happiness > 80
@@ -137,6 +116,11 @@ extension DiscoveryViewController: IndicatorInfoProvider {
 }
 extension DiscoveryViewController {
     func fetchAllData() {
+        guard let currentUser = UserRequestProvider.shared.currentUser else {
+//            let alert = UIAlertController(title: "提示", message: "你還沒有登入喔！", preferredStyle: .alert)
+//            let
+            return
+        }
         let group: DispatchGroup = DispatchGroup()
         let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
         let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
@@ -159,10 +143,7 @@ extension DiscoveryViewController {
             }
         }
         group.enter()
-        guard let currentUser = UserRequestProvider.shared.currentUser else {
-            group.leave()
-            return
-        }
+        
         concurrentQueue2.async(group: group) {
             AccountRequestProvider.shared.fetchAccount(currentUserID: currentUser.uid) { result in
                 switch result {
@@ -244,8 +225,4 @@ extension DiscoveryViewController: DiscoveryCellDelegate {
         }
         CommentRequestProvider.shared.unLikeComment(currentUserID: currentUserID, tagertComment: comment)
     }
-    
- 
-    
-    
 }
