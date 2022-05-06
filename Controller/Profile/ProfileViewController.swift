@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     var badgeRef: [[Int]]?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.title = "SURU檔案"
         fetchData {
             
             self.checkUserStatus()
