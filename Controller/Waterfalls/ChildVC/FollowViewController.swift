@@ -24,7 +24,6 @@ class FollowViewController: UIViewController {
         fetchAllData()
         setupCollectionView()
         
-//        listenDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {

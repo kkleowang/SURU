@@ -70,5 +70,26 @@ class StoreRequestProvider {
             "collectedStore": FieldValue.arrayRemove([tagertStoreID])
         ])
     }
-    
+    func listenStore(completion: @escaping () -> Void) {
+        // [START listen_document]
+        database.collection("stores").addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error fetching snapshots: \(error!)")
+                return
+            }
+            snapshot.documentChanges.forEach { diff in
+                if (diff.type == .added) {
+                    print("New city: \(diff.document.data())")
+                }
+                if (diff.type == .modified) {
+                    print("Modified city: \(diff.document.data())")
+                    completion()
+                }
+                if (diff.type == .removed) {
+                    print("Removed city: \(diff.document.data())")
+                    completion()
+                }
+            }
+        }
+    }
 }

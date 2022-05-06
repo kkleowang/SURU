@@ -48,6 +48,9 @@
 		B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72552824D52B00289283 /* BadgeDataModel.swift */; };
 		B87D72592824FC6F00289283 /* BadgeHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */; };
 		B87D725A2824FC6F00289283 /* BadgeHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87D72582824FC6F00289283 /* BadgeHeaderCell.xib */; };
+		B87D726028255D9800289283 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D725E28255D9800289283 /* TagCell.swift */; };
+		B87D726128255D9800289283 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87D725F28255D9800289283 /* TagCell.xib */; };
+		B87D7263282560A400289283 /* Sequence+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D7262282560A400289283 /* Sequence+.swift */; };
 		B893379228190F08000C75C3 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379128190F08000C75C3 /* ProfileView.xib */; };
 		B89337942819120D000C75C3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89337932819120D000C75C3 /* ProfileView.swift */; };
 		B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379928197F24000C75C3 /* AddInfoView.xib */; };
@@ -152,6 +155,9 @@
 		B87D72552824D52B00289283 /* BadgeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeDataModel.swift; sourceTree = "<group>"; };
 		B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeHeaderCell.swift; sourceTree = "<group>"; };
 		B87D72582824FC6F00289283 /* BadgeHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeHeaderCell.xib; sourceTree = "<group>"; };
+		B87D725E28255D9800289283 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		B87D725F28255D9800289283 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
+		B87D7262282560A400289283 /* Sequence+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+.swift"; sourceTree = "<group>"; };
 		B893379128190F08000C75C3 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		B89337932819120D000C75C3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B893379928197F24000C75C3 /* AddInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddInfoView.xib; sourceTree = "<group>"; };
@@ -386,6 +392,15 @@
 			path = Badge;
 			sourceTree = "<group>";
 		};
+		B87D725D28255D5800289283 /* TagCell */ = {
+			isa = PBXGroup;
+			children = (
+				B87D725E28255D9800289283 /* TagCell.swift */,
+				B87D725F28255D9800289283 /* TagCell.xib */,
+			);
+			path = TagCell;
+			sourceTree = "<group>";
+		};
 		B893379D281A1D5D000C75C3 /* Third Party SDK Wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +485,7 @@
 		B8A00350280B043A00A64750 /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
+				B87D725D28255D5800289283 /* TagCell */,
 				B8A4FFCA28224E900023F0BA /* ReportView */,
 				B87AF25528128CC40058197F /* StoreCardView */,
 				B8A00351280B064200A64750 /* MapView.swift */,
@@ -534,8 +550,8 @@
 			children = (
 				B8DA6E7C2823B6A100868381 /* EditProfileView.xib */,
 				B8DA6E7E2823B7C700868381 /* EditProfileView.swift */,
-				B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */,
 				B87D72582824FC6F00289283 /* BadgeHeaderCell.xib */,
+				B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */,
 			);
 			path = EditViewCell;
 			sourceTree = "<group>";
@@ -557,6 +573,7 @@
 				B83E9583280EA071009DD17F /* Double+.swift */,
 				B83E959B280EC59D009DD17F /* UIImageView+.swift */,
 				B8DBDD4F28246D50008DC615 /* UICollectionView+.swift */,
+				B87D7262282560A400289283 /* Sequence+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -683,6 +700,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B87D726128255D9800289283 /* TagCell.xib in Resources */,
 				B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */,
 				B8BD5F9E28207F4B00A1C138 /* CommentStoreCell.xib in Resources */,
 				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
@@ -811,6 +829,7 @@
 				B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */,
 				B8659C462806C534006C85F3 /* TestingCenterViewController.swift in Sources */,
 				B83E958D280EAD24009DD17F /* CommentRequestProvider.swift in Sources */,
+				B87D726028255D9800289283 /* TagCell.swift in Sources */,
 				B8F22DED280CE2500096FB91 /* FirebaseStorageRequestProvider.swift in Sources */,
 				B86AB7E828203CFA00154B26 /* WriteCommentView.swift in Sources */,
 				B8EC70012805275300DA8B78 /* UIView+.swift in Sources */,
@@ -843,6 +862,7 @@
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
 				B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */,
 				B87D72542824D50A00289283 /* UserBadgesProvider.swift in Sources */,
+				B87D7263282560A400289283 /* Sequence+.swift in Sources */,
 				B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */,
 				B8A00352280B064200A64750 /* MapView.swift in Sources */,
 				B83E959C280EC59D009DD17F /* UIImageView+.swift in Sources */,

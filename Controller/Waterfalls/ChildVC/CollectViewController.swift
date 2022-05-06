@@ -24,8 +24,6 @@ class CollectViewController: UIViewController {
     override func viewDidLoad() {
         fetchAllData()
         setupCollectionView()
-        
-//        listenDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {
