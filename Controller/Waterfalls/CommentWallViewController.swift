@@ -25,7 +25,8 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarItemLeftRightMargin = 0
 
         super.viewDidLoad()
-        
+        self.navigationItem.title = "探索食記"
+         
         containerView.bounces = false
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }

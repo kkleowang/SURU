@@ -51,30 +51,30 @@ private enum Tab {
         switch self {
         case .waterfalls:
             return UITabBarItem(
-                title: nil,
-                image: UIImage.asset(.Icons_24px_Address),
-                selectedImage: UIImage.asset(.Icons_24px_Address)
+                title: "探索",
+                image: UIImage(systemName: "mosaic"),
+                selectedImage: UIImage(systemName: "mosaic.fill")
             )
 
         case .mapping:
             return UITabBarItem(
-                title: nil,
-                image: UIImage.asset(.Icons_24px_CollectionView),
-                selectedImage: UIImage.asset(.Icons_24px_CollectionView)
+                title: "地圖",
+                image: UIImage(systemName: "location.circle"),
+                selectedImage: UIImage(systemName: "location.circle.fill")
             )
 
         case .comment:
             return UITabBarItem(
-                title: nil,
-                image: UIImage.asset(.Icons_24px_RegisterCellphone),
-                selectedImage: UIImage.asset(.Icons_24px_RegisterCellphone)
+                title: "發表評論",
+                image: UIImage(systemName: "rectangle.stack.badge.plus"),
+                selectedImage: UIImage(systemName: "rectangle.stack.badge.plus")
             )
 
         case .profile:
             return UITabBarItem(
-                title: nil,
-                image: UIImage.asset(.Icons_36px_Profile_Selected),
-                selectedImage: UIImage.asset(.Icons_36px_Profile_Selected)
+                title: "個人資料",
+                image: UIImage(systemName: "person.crop.circle"),
+                selectedImage: UIImage(systemName: "person.crop.circle.fill")
             )
         }
     }
@@ -85,6 +85,7 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBar.tintColor = .C1
         view.backgroundColor = .white
         viewControllers = tabs.map({ $0.controller() })
         delegate = self

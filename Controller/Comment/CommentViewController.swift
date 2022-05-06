@@ -37,6 +37,7 @@ class CommentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "新增評論"
         if userID != nil {
             commentData.userID = userID!
         }
@@ -285,6 +286,7 @@ extension CommentViewController: CommentSelectionViewDelegate {
     }
     
     func didTapSaveComment(_ view: CommentSelectionView) {
+        // Bug
         StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
             switch result {
             case .success(let data):

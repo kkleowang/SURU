@@ -11,36 +11,28 @@ import CoreLocation
 import Kingfisher
 
 class MappingViewController: UIViewController {
-    var storeData: [Store] = []
-    var commentData: [Comment] = []
-    var originStoreData: [Store] = []
-    var btn = UIButton()
-    
-    // annotion對應的store index
-    var annotionIndexOfStore: [Int] = []
+    private var storeData: [Store] = []
+    private var commentData: [Comment] = []
+    private var originStoreData: [Store] = []
+    private var reportButton = UIButton()
+    private let locationManager = CLLocationManager()
+    private let mapView = MapView()
     // 計算對應的function用
-    var gestureHolder: [UITapGestureRecognizer] = []
-    var storeHolder: [Store] = []
-    //    let view = UIImageView()
-    //    let pan = UIPanGestureRecognizer()
-    //    pan.addTarget(self, action: #s)
-    // 計算對應的datasource用
-    var distance: [Double] = []
-    var commentOfStore: [[Comment]] = []
-    var selectedIndex = 0 {
+    private var gestureHolder: [UITapGestureRecognizer] = []
+    private var storeHolder: [Store] = []
+    private var distance: [Double] = []
+    private var commentOfStore: [[Comment]] = []
+    private var selectedIndex = 0 {
         didSet {
             print(selectedIndex)
             storeCardCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
             mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: storeData[selectedIndex].coordinate.lat-0.002, longitude: storeData[selectedIndex].coordinate.long), latitudinalMeters: 800, longitudinalMeters: 800), animated: true)
-            
         }
     }
-    
-    let mapView = MapView()
-    //    var locationManager = CLLocationManager()
     var storeCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLocationManager()
         self.view.stickSubView(mapView)
         fetchData {
             LKProgressHUD.showSuccess(text: "下載資料成功")
@@ -48,7 +40,6 @@ class MappingViewController: UIViewController {
             self.setupHiddenCollectionView()
         }
     }
-   
     
     func setupMapView() {
         mapView.delegate = self
@@ -128,15 +119,44 @@ class MappingViewController: UIViewController {
         }
     }
     
-    //    func setupLocationManager() {
-    //        locationManager.delegate = self
-    //        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    //        locationManager.requestAlwaysAuthorization()
-    //
-    //        if CLLocationManager.locationServicesEnabled() {
-    //            locationManager.startUpdatingLocation()
-    //        }
-    //    }
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        } else {
+            // 他沒打開
+            print("Map not open")
+            
+        }
+    }
+    func checkLocationAuthorization() {
+            switch CLLocationManager.authorizationStatus() {
+            case .authorizedWhenInUse:
+                mapView.showsUserLocation = true
+                followUserLocation()
+                locationManager.startUpdatingLocation()
+                break
+            case .denied:
+                // Show alert
+                break
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted:
+                // Show alert
+                break
+            case .authorizedAlways:
+                break
+            }
+        }
+    func followUserLocation() {
+            if let location = locationManager.location?.coordinate {
+                let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 4000, longitudinalMeters: 4000)
+                mapView.setRegion(region, animated: true)
+            }
+        }
 }
 
 extension MappingViewController: MKMapViewDelegate {
@@ -168,8 +188,8 @@ extension MappingViewController: MKMapViewDelegate {
         
         switch annotation.title {
         default:
-            for (index, store) in storeData.enumerated() where annotation.title == store.name {
-                switch cogfigRepore(store: store) {
+            for store in storeData where annotation.title == store.name {
+                switch cogfigReport(store: store) {
                 case 1:
                     annotationView?.doGlowAnimation(withColor: .blue, withEffect: .small)
                 case 2:
@@ -182,12 +202,11 @@ extension MappingViewController: MKMapViewDelegate {
                     break
                 }
                 imageView.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "AppIcon") )
-                annotionIndexOfStore.append(index)
                 annotationView?.subviews.forEach { $0.removeFromSuperview() }
                 annotationView?.addSubview(imageView)
                 let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAnnotationView(sender:)))
                 tap.name = store.storeID
-                                gestureHolder.append(tap)
+                gestureHolder.append(tap)
                 
                 annotationView?.addGestureRecognizer(tap)
             }
@@ -201,7 +220,7 @@ extension MappingViewController: MKMapViewDelegate {
             setupDescriptionCardView()
         }
     }
-    func cogfigRepore(store: Store) -> Int {
+    func cogfigReport(store: Store) -> Int {
         guard let reports = store.queueReport else { return 0 }
         let date = Double(Date().timeIntervalSince1970)
         if !reports.isEmpty {
@@ -269,55 +288,54 @@ extension MappingViewController: UICollectionViewDelegateFlowLayout {
 
 extension MappingViewController {
     func addDragFloatBtn() {
-        btn.frame = CGRect(x: UIScreen.width-70, y: 30, width: 60, height: 60)
+        reportButton.frame = CGRect(x: UIScreen.width-70, y: 30, width: 60, height: 60)
         
-        btn.layer.cornerRadius = 30.0
-        self.view .addSubview(btn)
-        btn.setImage( UIImage(named: "broadcast"), for: .normal)
+        reportButton.layer.cornerRadius = 30.0
+        self.view .addSubview(reportButton)
+        reportButton.setImage( UIImage(named: "broadcast"), for: .normal)
         
-        btn.backgroundColor = .black.withAlphaComponent(0.4)
-        btn.tintColor = .white
-        btn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        btn.addTarget(self, action: #selector(floatBtnAction(sender:)), for: .touchUpInside)
+        reportButton.backgroundColor = .black.withAlphaComponent(0.4)
+        reportButton.tintColor = .white
+        reportButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        reportButton.addTarget(self, action: #selector(floatBtnAction(sender:)), for: .touchUpInside)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragAction(gesture:)))
-        btn .addGestureRecognizer(panGesture)
+        reportButton .addGestureRecognizer(panGesture)
     }
-
-   @objc func dragAction(gesture: UIPanGestureRecognizer) {
-       // 移动状态
-       let moveState = gesture.state
-       switch moveState {
-           case .began:
-               break
-           case .changed:
-               let point = gesture.translation(in: self.view)
-               self.btn.center = CGPoint(x: self.btn.center.x + point.x, y: self.btn.center.y + point.y)
-               break
-           case .ended:
-               let point = gesture.translation(in: self.view)
-               var newPoint = CGPoint(x: self.btn.center.x + point.x, y: self.btn.center.y + point.y)
-               if newPoint.x < self.view.bounds.width / 2.0 {
-                   newPoint.x = 40.0
-               } else {
-                   newPoint.x = self.view.bounds.width - 40.0
-               }
-               if newPoint.y <= 40.0 {
-                   newPoint.y = 40.0
-               } else if newPoint.y >= self.view.bounds.height - 40.0 {
-                   newPoint.y = self.view.bounds.height - 40.0
-               }
-               UIView.animate(withDuration: 0.5) {
-                   self.btn.center = newPoint
-               }
-               break
-           default:
-               break
-       }
-       gesture.setTranslation(.zero, in: self.view)
-   }
-   @objc func floatBtnAction(sender: UIButton) {
-       initReportQueueView()
-   }
+    
+    @objc func dragAction(gesture: UIPanGestureRecognizer) {
+        let moveState = gesture.state
+        switch moveState {
+        case .began:
+            break
+        case .changed:
+            let point = gesture.translation(in: self.view)
+            self.reportButton.center = CGPoint(x: self.reportButton.center.x + point.x, y: self.reportButton.center.y + point.y)
+            break
+        case .ended:
+            let point = gesture.translation(in: self.view)
+            var newPoint = CGPoint(x: self.reportButton.center.x + point.x, y: self.reportButton.center.y + point.y)
+            if newPoint.x < self.view.bounds.width / 2.0 {
+                newPoint.x = 40.0
+            } else {
+                newPoint.x = self.view.bounds.width - 40.0
+            }
+            if newPoint.y <= 40.0 {
+                newPoint.y = 40.0
+            } else if newPoint.y >= self.view.bounds.height - 40.0 {
+                newPoint.y = self.view.bounds.height - 40.0
+            }
+            UIView.animate(withDuration: 0.5) {
+                self.reportButton.center = newPoint
+            }
+            break
+        default:
+            break
+        }
+        gesture.setTranslation(.zero, in: self.view)
+    }
+    @objc func floatBtnAction(sender: UIButton) {
+        initReportQueueView()
+    }
     private func initReportQueueView() {
         let storeName = storeData[selectedIndex].name
         let reportView: ReportView = UIView.fromNib()
@@ -371,7 +389,7 @@ extension MappingViewController: ReportViewDelegate {
     }
     
 }
-//extension MappingViewController: CLLocationManagerDelegate {
+extension MappingViewController: CLLocationManagerDelegate {
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        let userLocation: CLLocation = locations[0] as CLLocation
 //        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
@@ -379,7 +397,12 @@ extension MappingViewController: ReportViewDelegate {
 //
 //        mapView.setRegion(mRegion, animated: true)
 //    }
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        print("Error - locationManager: \(error.localizedDescription)")
-//    }
-//}
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            guard let location = locations.last else { return }
+            let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: 4000, longitudinalMeters: 4000)
+            mapView.setRegion(region, animated: true)
+        }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error - locationManager: \(error.localizedDescription)")
+    }
+}

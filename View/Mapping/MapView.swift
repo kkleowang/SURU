@@ -12,7 +12,6 @@ import Kingfisher
 class MapView: MKMapView {
     
     func layoutView(from stores: [Store]) {
-//        ㄈ
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.09108, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000)
         self.setRegion(region, animated: true)
         if !stores.isEmpty {
