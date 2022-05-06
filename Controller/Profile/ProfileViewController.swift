@@ -207,3 +207,16 @@ extension ProfileViewController {
     }
 }
 
+extension ProfileViewController {
+    func checkUserStatus() {
+        guard let user = currentUserData else { return }
+        let followerCount = user.follower.count
+        let loginCount = user.loginCount
+        let publishCommentCount = user.commentCount
+        let publishReportCount = user.sendReportCount
+        let likeCount = user.myCommentLike
+        
+        
+        
+    }
+}

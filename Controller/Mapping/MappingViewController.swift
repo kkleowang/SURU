@@ -41,6 +41,7 @@ class MappingViewController: UIViewController {
     var storeCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationItem.title = "123123123"
         self.view.stickSubView(mapView)
         fetchData {
             LKProgressHUD.showSuccess(text: "下載資料成功")

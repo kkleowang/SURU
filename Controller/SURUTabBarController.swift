@@ -52,29 +52,29 @@ private enum Tab {
         case .waterfalls:
             return UITabBarItem(
                 title: "探索",
-                image: UIImage.asset(.Icons_24px_Address),
-                selectedImage: UIImage.asset(.Icons_24px_Address)
+                image: UIImage(systemName: "person.crop.circle"),
+                selectedImage: UIImage(systemName: "person.crop.circle")
             )
 
         case .mapping:
             return UITabBarItem(
                 title: "地圖",
-                image: UIImage.asset(.Icons_24px_CollectionView),
-                selectedImage: UIImage.asset(.Icons_24px_CollectionView)
+                image: UIImage(systemName: "location.circle"),
+                selectedImage: UIImage(systemName: "location.circle.fill")
             )
 
         case .comment:
             return UITabBarItem(
                 title: "發表評論",
-                image: UIImage.asset(.Icons_24px_RegisterCellphone),
-                selectedImage: UIImage.asset(.Icons_24px_RegisterCellphone)
+                image: UIImage(systemName: "person.crop.circle"),
+                selectedImage: UIImage(systemName: "person.crop.circle")
             )
 
         case .profile:
             return UITabBarItem(
                 title: "個人資料",
-                image: UIImage.asset(.Icons_36px_Profile_Selected),
-                selectedImage: UIImage.asset(.Icons_36px_Profile_Selected)
+                image: UIImage(systemName: "person.crop.circle"),
+                selectedImage: UIImage(systemName: "person.crop.circle.fill")
             )
         }
     }

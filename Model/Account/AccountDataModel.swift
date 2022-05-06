@@ -23,6 +23,7 @@ struct Account: Codable {
     var blockUserList: [String]? = []
     var bio: String? = "nothing here."
     var websideLink: String?
+    var loginCount: Int? = 0
 }
 struct LikeComment: Codable {
     var likeComment: String

@@ -44,6 +44,8 @@
 		B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF623280C61E100FE885C /* CommentViewController.swift */; };
 		B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */; };
 		B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF627280CA5A500FE885C /* CommentStartingView.swift */; };
+		B87D72542824D50A00289283 /* UserBadgesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72532824D50A00289283 /* UserBadgesProvider.swift */; };
+		B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72552824D52B00289283 /* BadgeDataModel.swift */; };
 		B893379228190F08000C75C3 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379128190F08000C75C3 /* ProfileView.xib */; };
 		B89337942819120D000C75C3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89337932819120D000C75C3 /* ProfileView.swift */; };
 		B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379928197F24000C75C3 /* AddInfoView.xib */; };
@@ -144,6 +146,8 @@
 		B87BF623280C61E100FE885C /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentImageCardViewDelegate.swift; sourceTree = "<group>"; };
 		B87BF627280CA5A500FE885C /* CommentStartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStartingView.swift; sourceTree = "<group>"; };
+		B87D72532824D50A00289283 /* UserBadgesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBadgesProvider.swift; sourceTree = "<group>"; };
+		B87D72552824D52B00289283 /* BadgeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeDataModel.swift; sourceTree = "<group>"; };
 		B893379128190F08000C75C3 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		B89337932819120D000C75C3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B893379928197F24000C75C3 /* AddInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddInfoView.xib; sourceTree = "<group>"; };
@@ -369,6 +373,15 @@
 			path = StoreCardView;
 			sourceTree = "<group>";
 		};
+		B87D72522824D4F500289283 /* Badge */ = {
+			isa = PBXGroup;
+			children = (
+				B87D72532824D50A00289283 /* UserBadgesProvider.swift */,
+				B87D72552824D52B00289283 /* BadgeDataModel.swift */,
+			);
+			path = Badge;
+			sourceTree = "<group>";
+		};
 		B893379D281A1D5D000C75C3 /* Third Party SDK Wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,6 +568,7 @@
 		B8EC70052805290A00DA8B78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B87D72522824D4F500289283 /* Badge */,
 				B8F35182281794C4002E2A3C /* Login */,
 				B83E9592280EB52A009DD17F /* FirebaseStorage */,
 				B83E9587280EACFA009DD17F /* Store */,
@@ -818,6 +832,8 @@
 				B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */,
 				B814DF312810741900176C13 /* ref.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
+				B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */,
+				B87D72542824D50A00289283 /* UserBadgesProvider.swift in Sources */,
 				B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */,
 				B8A00352280B064200A64750 /* MapView.swift in Sources */,
 				B83E959C280EC59D009DD17F /* UIImageView+.swift in Sources */,
