@@ -13,7 +13,8 @@ class EditProfileViewController: UIViewController {
     var nickName = ""
     var bio = ""
     var webside = ""
-    
+    var badgeTitle = ["登入次數", "發布評論", "回報次數", "收到的喜歡", "追蹤人數"]
+    var badgeRef: [[Int]]?
     let editProfileView: EditProfileView = UIView.fromNib()
     var userData: Account? {
         didSet {
@@ -35,14 +36,16 @@ class EditProfileViewController: UIViewController {
         editProfileView.collectionView.dataSource = self
         editProfileView.collectionView.delegate = self
         let layout = CHTCollectionViewWaterfallLayout()
-        layout.columnCount = 5
+        layout.columnCount = 3
         layout.minimumColumnSpacing = 20
         layout.minimumInteritemSpacing = 10
+        layout.headerHeight = 100
         let inset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         layout.sectionInset = inset
         editProfileView.collectionView.collectionViewLayout = layout
         editProfileView.collectionView.register(UINib(nibName: String(describing: ProfileCommentCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProfileCommentCell.self))
-        editProfileView.collectionView.register(UINib(nibName: String(describing: BadgeHeaderCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: BadgeHeaderCell.self))
+    
+        editProfileView.collectionView.register(UINib(nibName: String(describing: BadgeHeaderCell.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: BadgeHeaderCell.self))
     }
     func settingNavBtn() {
         let leftItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancel))
@@ -99,7 +102,7 @@ extension EditProfileViewController: UICollectionViewDataSource, UICollectionVie
         guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: BadgeHeaderCell.self), for: indexPath) as? BadgeHeaderCell else {
             return UICollectionReusableView()
         }
-        cell.titleLabel.text = "\(indexPath.section)"
+        cell.titleLabel.text = badgeTitle[indexPath.section]
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -109,11 +112,17 @@ extension EditProfileViewController: UICollectionViewDataSource, UICollectionVie
         5
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell, let badgeRef = badgeRef else {
             return UICollectionViewCell()
             
         }
-        cell.mainImageView.kf.setImage(with: URL(string: ""), placeholder: UIImage(named: badgeFile[indexPath.section][indexPath.item]))
+        
+        if badgeRef[indexPath.section][indexPath.row] == 0 {
+            cell.mainImageView.kf.setImage(with: URL(string: ""), placeholder: UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0))
+        } else {
+            cell.mainImageView.kf.setImage(with: URL(string: ""), placeholder: UIImage(named: badgeFile[indexPath.section][indexPath.item]))
+        }
+        
         return cell
     }
 }

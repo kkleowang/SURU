@@ -51,6 +51,8 @@
 		B87D726028255D9800289283 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D725E28255D9800289283 /* TagCell.swift */; };
 		B87D726128255D9800289283 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87D725F28255D9800289283 /* TagCell.xib */; };
 		B87D7263282560A400289283 /* Sequence+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D7262282560A400289283 /* Sequence+.swift */; };
+		B87D72662826483100289283 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72642826483100289283 /* BadgeCell.swift */; };
+		B87D72672826483100289283 /* BadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87D72652826483100289283 /* BadgeCell.xib */; };
 		B893379228190F08000C75C3 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379128190F08000C75C3 /* ProfileView.xib */; };
 		B89337942819120D000C75C3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89337932819120D000C75C3 /* ProfileView.swift */; };
 		B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379928197F24000C75C3 /* AddInfoView.xib */; };
@@ -158,6 +160,8 @@
 		B87D725E28255D9800289283 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		B87D725F28255D9800289283 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 		B87D7262282560A400289283 /* Sequence+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+.swift"; sourceTree = "<group>"; };
+		B87D72642826483100289283 /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
+		B87D72652826483100289283 /* BadgeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeCell.xib; sourceTree = "<group>"; };
 		B893379128190F08000C75C3 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		B89337932819120D000C75C3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B893379928197F24000C75C3 /* AddInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddInfoView.xib; sourceTree = "<group>"; };
@@ -552,6 +556,8 @@
 				B8DA6E7E2823B7C700868381 /* EditProfileView.swift */,
 				B87D72582824FC6F00289283 /* BadgeHeaderCell.xib */,
 				B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */,
+				B87D72642826483100289283 /* BadgeCell.swift */,
+				B87D72652826483100289283 /* BadgeCell.xib */,
 			);
 			path = EditViewCell;
 			sourceTree = "<group>";
@@ -722,6 +728,7 @@
 				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,
 				B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */,
 				B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */,
+				B87D72672826483100289283 /* BadgeCell.xib in Resources */,
 				B87D725A2824FC6F00289283 /* BadgeHeaderCell.xib in Resources */,
 				B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */,
 			);
@@ -850,6 +857,7 @@
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
 				B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */,
 				B8DBDD4D28246A57008DC615 /* ProfileCommentCell.swift in Sources */,
+				B87D72662826483100289283 /* BadgeCell.swift in Sources */,
 				B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */,
 				B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */,
 				B89337942819120D000C75C3 /* ProfileView.swift in Sources */,

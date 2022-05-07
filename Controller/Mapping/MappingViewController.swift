@@ -579,7 +579,7 @@ extension MappingViewController: CLLocationManagerDelegate {
 extension MappingViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
-        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.00708, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000), animated: true)
+        setRegion()
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
@@ -593,6 +593,7 @@ extension MappingViewController: UISearchBarDelegate {
         searchBar.endEditing(true)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        setRegion()
         if searchText.isEmpty && isSearchResults {
             isSearchResults = false
             for annotation in mapView.annotations {
@@ -628,5 +629,8 @@ extension MappingViewController: UISearchBarDelegate {
         storeCardCollectionView.reloadData()
         mapView.layoutView(from: filteredStoreData)
          
+    }
+    private func setRegion() {
+        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.00708, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000), animated: true)
     }
 }
