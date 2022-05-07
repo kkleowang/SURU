@@ -87,6 +87,9 @@ extension EditProfileViewController: EditProfileViewDelegate {
     
     func didEditNickName(_ view: EditProfileView, text: String) {
         nickName = text
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
+        controller.badgeRef = badgeRef
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func didEditWebSide(_ view: EditProfileView, text: String) {
@@ -98,6 +101,7 @@ extension EditProfileViewController: EditProfileViewDelegate {
     }
 }
 extension EditProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: BadgeHeaderCell.self), for: indexPath) as? BadgeHeaderCell else {
             return UICollectionReusableView()

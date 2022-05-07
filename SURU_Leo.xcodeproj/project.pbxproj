@@ -44,7 +44,6 @@
 		B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF623280C61E100FE885C /* CommentViewController.swift */; };
 		B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */; };
 		B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF627280CA5A500FE885C /* CommentStartingView.swift */; };
-		B87D72542824D50A00289283 /* UserBadgesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72532824D50A00289283 /* UserBadgesProvider.swift */; };
 		B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72552824D52B00289283 /* BadgeDataModel.swift */; };
 		B87D72592824FC6F00289283 /* BadgeHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */; };
 		B87D725A2824FC6F00289283 /* BadgeHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87D72582824FC6F00289283 /* BadgeHeaderCell.xib */; };
@@ -53,6 +52,8 @@
 		B87D7263282560A400289283 /* Sequence+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D7262282560A400289283 /* Sequence+.swift */; };
 		B87D72662826483100289283 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72642826483100289283 /* BadgeCell.swift */; };
 		B87D72672826483100289283 /* BadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87D72652826483100289283 /* BadgeCell.xib */; };
+		B87D726928265E1200289283 /* BadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D726828265E1200289283 /* BadgeViewController.swift */; };
+		B87D726C28266C2900289283 /* CollectionViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D726B28266C2900289283 /* CollectionViewBackground.swift */; };
 		B893379228190F08000C75C3 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379128190F08000C75C3 /* ProfileView.xib */; };
 		B89337942819120D000C75C3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89337932819120D000C75C3 /* ProfileView.swift */; };
 		B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379928197F24000C75C3 /* AddInfoView.xib */; };
@@ -153,7 +154,6 @@
 		B87BF623280C61E100FE885C /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentImageCardViewDelegate.swift; sourceTree = "<group>"; };
 		B87BF627280CA5A500FE885C /* CommentStartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStartingView.swift; sourceTree = "<group>"; };
-		B87D72532824D50A00289283 /* UserBadgesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBadgesProvider.swift; sourceTree = "<group>"; };
 		B87D72552824D52B00289283 /* BadgeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeDataModel.swift; sourceTree = "<group>"; };
 		B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeHeaderCell.swift; sourceTree = "<group>"; };
 		B87D72582824FC6F00289283 /* BadgeHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeHeaderCell.xib; sourceTree = "<group>"; };
@@ -162,6 +162,8 @@
 		B87D7262282560A400289283 /* Sequence+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+.swift"; sourceTree = "<group>"; };
 		B87D72642826483100289283 /* BadgeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
 		B87D72652826483100289283 /* BadgeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeCell.xib; sourceTree = "<group>"; };
+		B87D726828265E1200289283 /* BadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewController.swift; sourceTree = "<group>"; };
+		B87D726B28266C2900289283 /* CollectionViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBackground.swift; sourceTree = "<group>"; };
 		B893379128190F08000C75C3 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		B89337932819120D000C75C3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B893379928197F24000C75C3 /* AddInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddInfoView.xib; sourceTree = "<group>"; };
@@ -390,7 +392,6 @@
 		B87D72522824D4F500289283 /* Badge */ = {
 			isa = PBXGroup;
 			children = (
-				B87D72532824D50A00289283 /* UserBadgesProvider.swift */,
 				B87D72552824D52B00289283 /* BadgeDataModel.swift */,
 			);
 			path = Badge;
@@ -403,6 +404,14 @@
 				B87D725F28255D9800289283 /* TagCell.xib */,
 			);
 			path = TagCell;
+			sourceTree = "<group>";
+		};
+		B87D726A28266C1300289283 /* CollectionViewBackGround */ = {
+			isa = PBXGroup;
+			children = (
+				B87D726B28266C2900289283 /* CollectionViewBackground.swift */,
+			);
+			path = CollectionViewBackGround;
 			sourceTree = "<group>";
 		};
 		B893379D281A1D5D000C75C3 /* Third Party SDK Wrapper */ = {
@@ -445,6 +454,7 @@
 			children = (
 				B8A00341280A931800A64750 /* ProfileViewController.swift */,
 				B8DA6E712823747200868381 /* EditProfileViewController.swift */,
+				B87D726828265E1200289283 /* BadgeViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -462,6 +472,7 @@
 		B8A0034D280B042000A64750 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				B87D726A28266C1300289283 /* CollectionViewBackGround */,
 				B893379128190F08000C75C3 /* ProfileView.xib */,
 				B89337932819120D000C75C3 /* ProfileView.swift */,
 				B8DBDD4C28246A57008DC615 /* ProfileCommentCell.xib */,
@@ -823,6 +834,7 @@
 				B8DA6E7F2823B7C700868381 /* EditProfileView.swift in Sources */,
 				B8A0033E280A92D300A64750 /* MappingViewController.swift in Sources */,
 				B814DF3328108E4E00176C13 /* CommentDraggingView.swift in Sources */,
+				B87D726928265E1200289283 /* BadgeViewController.swift in Sources */,
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
 				B8F35184281794D9002E2A3C /* UserRequestProvider.swift in Sources */,
@@ -869,7 +881,6 @@
 				B814DF312810741900176C13 /* ref.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
 				B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */,
-				B87D72542824D50A00289283 /* UserBadgesProvider.swift in Sources */,
 				B87D7263282560A400289283 /* Sequence+.swift in Sources */,
 				B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */,
 				B8A00352280B064200A64750 /* MapView.swift in Sources */,
@@ -885,6 +896,7 @@
 				B83E9586280EACF7009DD17F /* StoreRequestProvider.swift in Sources */,
 				B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */,
 				B8659C402806AB45006C85F3 /* FirebaseRequestProvider.swift in Sources */,
+				B87D726C28266C2900289283 /* CollectionViewBackground.swift in Sources */,
 				B8A00342280A931800A64750 /* ProfileViewController.swift in Sources */,
 				B8CD43812818EF0600D2BCCE /* WelcomeViewController.swift in Sources */,
 				B8A00346280A97A100A64750 /* UIStoryboard+.swift in Sources */,

@@ -8,11 +8,7 @@
 import Foundation
 import UIKit
 
-struct Badge {
-    let image: BadgePicture
-    let title: BadgeName
-    let level: Int
-}
+
 
 let badgeFile = [
     ["login1", "login2", "login3", "login4", "login5"],
@@ -53,37 +49,9 @@ enum BadgePicture: String {
     case reportLevel4 = "report4"
     case reportLevel5 = "report5"
 }
-enum BadgeName: String {
-    case loginLevel1 = "初來乍到"
-    case loginLevel2 = "尋找拉麵的訪客"
-    case loginLevel3 = "熟門熟路"
-    case loginLevel4 = "熱血拉麵迷"
-    case loginLevel5 = "拉麵人"
-    
-    case likeLevel1 = "like1"
-    case likeLevel2 = "like2"
-    case likeLevel3 = "like3"
-    case likeLevel4 = "like4"
-    case likeLevel5 = "like5"
-    
-    case commentLevel1 = "comment1"
-    case commentLevel2 = "comment2"
-    case commentLevel3 = "comment3"
-    case commentLevel4 = "comment4"
-    case commentLevel5 = "comment5"
-    
-    case followerLevel1 = "默默無名"
-    case followerLevel2 = "小有名氣"
-    case followerLevel3 = "街頭巷尾"
-    case followerLevel4 = "遠近馳名"
-    case followerLevel5 = "萬人迷"
-    
-    case reportLevel1 = "report1"
-    case reportLevel2 = "report2"
-    case reportLevel3 = "report3"
-    case reportLevel4 = "report4"
-    case reportLevel5 = "report5"
-}
+
+
+
 // enum BadgeValue: Int {
 //    case loginLevel1 = 1
 //    case loginLevel2 = 3
