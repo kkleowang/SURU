@@ -31,9 +31,22 @@ class StoreRatingCell: UITableViewCell {
         leftView.backgroundColor = .systemYellow
         midView.backgroundColor = .systemBlue
         rightView.backgroundColor = .systemPink
-        leftLabel.text = String(data[0])
-        midLabel.text = String(data[1])
-        rightLabel.text = String(data[2])
+        if data[0].isNaN {
+            leftLabel.text = "尚無評論"
+            leftLabel.textColor = .B1
+            leftLabel.font = .medium(size: 14)
+            midLabel.text = "尚無評論"
+            midLabel.textColor = .B1
+            midLabel.font = .medium(size: 14)
+            rightLabel.text = "尚無評論"
+            rightLabel.textColor = .B1
+            rightLabel.font = .medium(size: 14)
+        } else {
+            leftLabel.text = String(data[0])
+            midLabel.text = String(data[1])
+            rightLabel.text = String(data[2])
+        }
+        
         
     }
     

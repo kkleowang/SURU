@@ -188,6 +188,7 @@ extension StorePageViewController: StoreImageCellDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dissmiss))
         view.addGestureRecognizer(tap)
         self.view.stickSubView(view)
+        
         print("didTapPopularImage")
     }
     
@@ -220,7 +221,7 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
         cell.tagLabel.text = storeData.tags[indexPath.row]
         cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
         
-        cell.backgroundColor = .lightGray
+        cell.backgroundColor = .C4
         
         
         return cell

@@ -37,6 +37,8 @@
 		B83B1942282800E100686D16 /* TagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83B1940282800E100686D16 /* TagsCell.xib */; };
 		B83B1944282834D400686D16 /* fullScreenImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83B1943282834D400686D16 /* fullScreenImageView.xib */; };
 		B83B19462828353C00686D16 /* fullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B19452828353C00686D16 /* fullScreenImageView.swift */; };
+		B83B194928284CB600686D16 /* StoreCardsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B194728284CB600686D16 /* StoreCardsCell.swift */; };
+		B83B194A28284CB600686D16 /* StoreCardsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83B194828284CB600686D16 /* StoreCardsCell.xib */; };
 		B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E4535280E896A00B13B0C /* StorageManager.swift */; };
 		B83E4539280E8B7200B13B0C /* SURU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B83E4537280E8B7200B13B0C /* SURU.xcdatamodeld */; };
 		B83E9584280EA071009DD17F /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9583280EA071009DD17F /* Double+.swift */; };
@@ -167,6 +169,8 @@
 		B83B1940282800E100686D16 /* TagsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagsCell.xib; sourceTree = "<group>"; };
 		B83B1943282834D400686D16 /* fullScreenImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = fullScreenImageView.xib; sourceTree = "<group>"; };
 		B83B19452828353C00686D16 /* fullScreenImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fullScreenImageView.swift; sourceTree = "<group>"; };
+		B83B194728284CB600686D16 /* StoreCardsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCardsCell.swift; sourceTree = "<group>"; };
+		B83B194828284CB600686D16 /* StoreCardsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCardsCell.xib; sourceTree = "<group>"; };
 		B83E4535280E896A00B13B0C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B83E4538280E8B7200B13B0C /* SURU.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SURU.xcdatamodel; sourceTree = "<group>"; };
 		B83E9583280EA071009DD17F /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
@@ -476,6 +480,8 @@
 			children = (
 				B8A11AEF2813E4100079A080 /* StoreCardCell.xib */,
 				B8A11AF12813E52D0079A080 /* StoreCardCell.swift */,
+				B83B194728284CB600686D16 /* StoreCardsCell.swift */,
+				B83B194828284CB600686D16 /* StoreCardsCell.xib */,
 			);
 			path = StoreCardView;
 			sourceTree = "<group>";
@@ -830,6 +836,7 @@
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
 				B8A11AF02813E4100079A080 /* StoreCardCell.xib in Resources */,
 				B85B63C7280D2CDD00621E4A /* yellow.json in Resources */,
+				B83B194A28284CB600686D16 /* StoreCardsCell.xib in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
 				B893379228190F08000C75C3 /* ProfileView.xib in Resources */,
 				B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */,
@@ -1014,6 +1021,7 @@
 				B8EC700E2805468400DA8B78 /* UIColor+.swift in Sources */,
 				B8659C442806BB5B006C85F3 /* Date+.swift in Sources */,
 				B83B192D2827D98A00686D16 /* StoreLocaltionCell.swift in Sources */,
+				B83B194928284CB600686D16 /* StoreCardsCell.swift in Sources */,
 				B8CD43852818F13100D2BCCE /* SignInAndOutView.swift in Sources */,
 				B893379C281983BF000C75C3 /* AddInfoView.swift in Sources */,
 				B8A4FFC9282134BC0023F0BA /* mappingViewBackup.swift in Sources */,

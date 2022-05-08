@@ -9,7 +9,6 @@ import UIKit
 
 class StoreOpenTimeCell: UITableViewCell {
 
-    @IBOutlet weak var openTimeIcon: UIImageView!
     @IBOutlet weak var openInfoLabel: UILabel!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var openTimeStackView: UIStackView!
@@ -21,10 +20,11 @@ class StoreOpenTimeCell: UITableViewCell {
         guard let openTime = openTime else {
             return
         }
+        menuButton.imageView?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 22).isActive = true
         menuButton.setTitle("", for: .normal)
         if openTime.byPropertyName(weekDay: weekday).dinner == "close" && openTime.byPropertyName(weekDay: weekday).lunch == "close" {
             openInfoLabel.text = "本日公休"
-            openInfoLabel.textColor = .systemRed
+            openInfoLabel.textColor = .red
             openTimeStackView.isHidden = true
         } else {
             configTime(opentime: openTime)
@@ -67,25 +67,25 @@ class StoreOpenTimeCell: UITableViewCell {
         openInfoLabel.text = weekday.uppercased()
         switch weekday {
         case "sun" :
-            self.lunchTimeLabel.text = "本日營業時間 中午: \(opentime.sun.lunch)"
+            self.lunchTimeLabel.text = "中午: \(opentime.sun.lunch)"
             self.dinnerTimeLabel.text = "晚餐: \(opentime.sun.dinner)"
         case "mon" :
-            self.lunchTimeLabel.text = "本日營業時間 中午: \(opentime.mon.lunch)"
+            self.lunchTimeLabel.text = "中午: \(opentime.mon.lunch)"
             self.dinnerTimeLabel.text = "晚餐: \(opentime.mon.dinner)"
         case "tue" :
-            self.lunchTimeLabel.text = "本日營業時間 中午: \(opentime.tue.lunch)"
+            self.lunchTimeLabel.text = "中午: \(opentime.tue.lunch)"
             self.dinnerTimeLabel.text = "晚餐: \(opentime.tue.dinner)"
         case "wed" :
-            self.lunchTimeLabel.text = "本日營業時間 中午: \(opentime.wed.lunch)"
+            self.lunchTimeLabel.text = "中午: \(opentime.wed.lunch)"
             self.dinnerTimeLabel.text = "晚餐: \(opentime.wed.dinner)"
         case "thu" :
-            self.lunchTimeLabel.text = "本日營業時間 中午: \(opentime.thu.lunch)"
+            self.lunchTimeLabel.text = "中午: \(opentime.thu.lunch)"
             self.dinnerTimeLabel.text = "晚餐: \(opentime.thu.dinner)"
         case "fri" :
-            self.lunchTimeLabel.text = "本日營業時間 中午: \(opentime.fri.lunch)"
+            self.lunchTimeLabel.text = "中午: \(opentime.fri.lunch)"
             self.dinnerTimeLabel.text = "晚餐: \(opentime.fri.dinner)"
         case "sat" :
-            self.lunchTimeLabel.text = "本日營業時間 中午: \(opentime.sat.lunch)"
+            self.lunchTimeLabel.text = "中午: \(opentime.sat.lunch)"
             self.dinnerTimeLabel.text = "晚餐: \(opentime.sat.dinner)"
         default:
             return

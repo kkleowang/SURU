@@ -13,6 +13,7 @@ class EditProfileViewController: UIViewController {
     var nickName = ""
     var bio = ""
     var webside = ""
+    var image = ""
     var badgeTitle = ["登入次數", "發布評論", "回報次數", "收到的喜歡", "追蹤人數"]
     var badgeRef: [[Int]]?
     let editProfileView: EditProfileView = UIView.fromNib()
@@ -28,6 +29,7 @@ class EditProfileViewController: UIViewController {
         editProfileView.delegate = self
         setupCollectionView()
         settingNavBtn()
+        mappingUserData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -58,8 +60,55 @@ class EditProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
         LKProgressHUD.showSuccess(text: "取消編輯")
     }
+    func mappingUserData() {
+        guard let userData = userData else { return }
+        nickName = userData.name
+        bio = userData.bio ?? ""
+        webside = userData.websideLink ?? ""
+        image = userData.mainImage
+    }
     @objc func save() {
+        guard let userData = userData else { return }
+        if image == userData.mainImage {
+            let type = ["name", "bio", "websideLink", "mainImage"]
+            let content = [self.nickName, self.bio, self.webside, self.image]
+            AccountRequestProvider.shared.updateDataAccount(currentUserID: userData.userID, type: type, content: content)
+            
+            self.dismiss(animated: true) {
+                LKProgressHUD.showSuccess(text: "更新成功")
+            }
+        } else {
+            uploadImage {
+                let type = ["name", "bio", "websideLink", "mainImage"]
+                let content = [self.nickName, self.bio, self.webside, self.image]
+                AccountRequestProvider.shared.updateDataAccount(currentUserID: userData.userID, type: type, content: content)
+                
+                self.dismiss(animated: true) {
+                    LKProgressHUD.showSuccess(text: "更新成功")
+                }
+            }
+        }
         
+    }
+    private func uploadImage(com: @escaping () -> Void) {
+        guard let userData = userData else { return }
+        guard let image = mainImage.jpegData(compressionQuality: 0.1) else { return }
+        let fileName = "\(userData.userID)_\(Date())"
+        LKProgressHUD.show()
+        FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
+            switch result {
+            case .success(let url) :
+                LKProgressHUD.dismiss()
+                LKProgressHUD.showSuccess(text: "上傳圖片成功")
+                print("上傳圖片成功", url.description)
+                self.image = url.description
+            case .failure(let error) :
+                LKProgressHUD.dismiss()
+                LKProgressHUD.showFailure(text: "上傳圖片失敗")
+                print("上傳圖片失敗", error)
+            }
+            com()
+        }
     }
     
 }

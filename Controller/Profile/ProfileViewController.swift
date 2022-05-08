@@ -17,18 +17,24 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "SURU檔案"
+        addlistener()
         fetchData {
-            
+            guard let currentUserData = self.currentUserData else {return}
             self.checkUserStatus()
             self.view.stickSubView(self.profileView)
             self.setupCollectionView()
             
             self.profileView.delegate = self
-            self.profileView.layoutView(account: self.currentUserData!)
+            self.profileView.layoutView(account: currentUserData)
         }
         
     }
-    
+    func addlistener() {
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        AccountRequestProvider.shared.listenAccount(currentUserID: userID) {
+            self.fetchAccount(userID: userID)
+        }
+    }
     func setupCollectionView() {
         profileView.collectionView.dataSource = self
         profileView.collectionView.delegate = self
@@ -204,6 +210,20 @@ extension ProfileViewController {
         group.notify(queue: DispatchQueue.main) {
             LKProgressHUD.dismiss()
             competion()
+        }
+    }
+    func fetchAccount(userID: String) {
+        AccountRequestProvider.shared.fetchAccount(currentUserID: userID) { result in
+            switch result {
+            case .success(let data):
+                print("下載用戶成功")
+                
+                self.currentUserData = data
+                guard let currentUserData = self.currentUserData else { return }
+                self.profileView.layoutView(account: currentUserData)
+            case .failure(let error):
+                print("下載用戶失敗", error)
+            }
         }
     }
 }
