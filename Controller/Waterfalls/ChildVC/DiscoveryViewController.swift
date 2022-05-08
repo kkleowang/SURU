@@ -15,19 +15,55 @@ class DiscoveryViewController: UIViewController {
     var commentData: [Comment] = []
     var currentAccount: Account?
     var storeData: [Store] = []
+    
+    var filteredCommentData: [Comment] = []
+//    var dataSourceComment: [Comment] = []
     var accountData: [Account] = []
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     
     override func viewDidLoad() {
-        fetchAllData()
-        setupCollectionView()
+        StoreRequestProvider.shared.listenStore {
+            self.updataStore()
+        }
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
+        fetchAllData {
+            self.configData {
+                self.setupCollectionView()
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    private func configData(completion: @escaping () -> Void) {
+        guard let user = currentAccount else { return }
+        filteredCommentData = commentData.filter({comment in
+            guard let blockList = user.blockUserList else { return true }
+            if blockList.contains(comment.userID) {
+                return false
+            } else {
+                return true
+            }
+        })
+        
+        completion()
+    }
+    func updataStore() {
+        StoreRequestProvider.shared.fetchStores { result in
+            switch result {
+            case .success(let data) :
+                self.storeData = data
+                self.configData {
+                self.collectionView.reloadData()
+                }
+            case .failure(let error) :
+                print("下載商店資料失敗", error)
+            }
+        }
     }
     private func setupCollectionView() {
         collectionView.delegate = self
@@ -59,14 +95,14 @@ class DiscoveryViewController: UIViewController {
 
 extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return commentData.count
+        return filteredCommentData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return UICollectionViewCell() }
         cell.delegate = self
-        if !commentData.isEmpty {
-            let comment = commentData[indexPath.row]
+        if !filteredCommentData.isEmpty {
+            let comment = filteredCommentData[indexPath.row]
             let store = storeData.first(where: {$0.storeID == comment.storeID})
             let account = accountData.first(where: {$0.userID == comment.userID})
             if let currentAccount = currentAccount {
@@ -77,8 +113,8 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if !commentData.isEmpty {
-            let comment = commentData[indexPath.row]
+        if !filteredCommentData.isEmpty {
+            let comment = filteredCommentData[indexPath.row]
             let store = storeData.first(where: {$0.storeID == comment.storeID})
             let account = accountData.first(where: {$0.userID == comment.userID})
             if let currentAccount = currentAccount {
@@ -98,7 +134,7 @@ extension DiscoveryViewController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //        commentData[indexPath.row].contentValue.happiness > 80
         
-        let comment = commentData[indexPath.row]
+        let comment = filteredCommentData[indexPath.row]
         let store = storeData.first(where: {$0.storeID == comment.storeID})
         let text = "\(store?.name ?? "") - \(comment.meal ?? "")"
         
@@ -115,7 +151,7 @@ extension DiscoveryViewController: IndicatorInfoProvider {
     }
 }
 extension DiscoveryViewController {
-    func fetchAllData() {
+    func fetchAllData(com: @escaping () -> ()) {
         guard let currentUser = UserRequestProvider.shared.currentUser else {
 //            let alert = UIAlertController(title: "提示", message: "你還沒有登入喔！", preferredStyle: .alert)
 //            let
@@ -161,6 +197,7 @@ extension DiscoveryViewController {
                                 LKProgressHUD.showFailure(text: "請聯繫客服")
                             }
                         }
+                        group.leave()
                     }
                 case .failure(let error) :
                     print("下載2 使用者失敗", error)
@@ -202,7 +239,7 @@ extension DiscoveryViewController {
             }
         }
         group.notify(queue: DispatchQueue.main) {
-            self.collectionView.reloadData()
+            com()
             LKProgressHUD.dismiss()
             LKProgressHUD.showSuccess(text: "下載資料成功")
         }

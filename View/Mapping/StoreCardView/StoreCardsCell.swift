@@ -11,8 +11,8 @@ import Kingfisher
 
 
 protocol StoreCardsCellDelegate: AnyObject {
-    func didtapCollectionButton(view: StoreCardsCell)
-    func didtapUnCollectionButton(view: StoreCardsCell)
+    func didtapCollectionButton(view: StoreCardsCell, storeID: String)
+    func didtapUnCollectionButton(view: StoreCardsCell, storeID: String)
 }
 class StoreCardsCell: UICollectionViewCell {
     weak var delegate: StoreCardsCellDelegate?
@@ -39,24 +39,29 @@ class StoreCardsCell: UICollectionViewCell {
     @IBOutlet weak private var collectButton: UIButton!
     @IBAction func tapCollectButton(_ sender: UIButton) {
         guard let image = sender.image(for: .normal) else { return }
+        guard let storeData = storeData else { return }
+        guard let commentsData = commentsData else { return }
         if image == UIImage(named: "collect.fill") {
+            
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
-            followerLabel.text = "\(storedata?.collectedUser?.count ?? 1 - 1) 人收藏"
-            self.delegate?.didtapUnCollectionButton(view: self)
+            followerLabel.text = "\(storeData.collectedUser?.count ?? 1 - 1) 人收藏, 共\(commentsData.count) 則食記"
+            self.delegate?.didtapUnCollectionButton(view: self, storeID: storeData.storeID)
             
         } else {
             
             collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
-            followerLabel.text = "\(storedata?.collectedUser?.count ?? 0 + 1) 人收藏"
-            self.delegate?.didtapCollectionButton(view: self)
+            followerLabel.text = "\(storeData.collectedUser?.count ?? 0 + 1) 人收藏, 共\(commentsData.count) 則食記"
+            self.delegate?.didtapCollectionButton(view: self, storeID: storeData.storeID)
         }
     }
-    var storedata: Store?
+    var storeData: Store?
+    var commentsData: [Comment]?
     
     func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool) {
         self.contentView.makeShadow()
         self.contentView.clipsToBounds = true
-        storedata = dataSource
+        storeData = dataSource
+        commentsData = commentData
         self.clipsToBounds = true
         self.cornerForAll(radii: 10)
         reportView.clipsToBounds = true
@@ -78,7 +83,7 @@ class StoreCardsCell: UICollectionViewCell {
         storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "AppIcon"))
         storeImageView.layer.borderWidth = 1.0
         storeImageView.layer.borderColor = UIColor.black.cgColor
-        followerLabel.text = "\(dataSource.collectedUser?.count ?? 0) 人收藏"
+        followerLabel.text = "\(dataSource.collectedUser?.count ?? 0) 人收藏, 共\(commentData.count) 則食記"
         collectButton.setTitle("", for: .normal)
         if isCollect {
             collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
@@ -105,10 +110,26 @@ class StoreCardsCell: UICollectionViewCell {
                 happy += comment.contentValue.happiness
             }
             let count = Double(commentData.count)
-            let data = [soup/count, noodle/count, happy/count]
-            soupLabel.text = String(data[0].ceiling(toDecimal: 2))
-            noodleLabel.text = String(data[1].ceiling(toDecimal: 2))
-            overallLabel.text = String(data[2].ceiling(toDecimal: 2))
+            let data = [(soup/count).ceiling(toDecimal: 1),
+                        (noodle/count).ceiling(toDecimal: 1),
+                        (happy/count).ceiling(toDecimal: 1)
+            ]
+            if data[0] == 10.0 {
+                soupLabel.text = String(10)
+            } else {
+                soupLabel.text = String(data[0])
+            }
+            if data[1] == 10.0 {
+                noodleLabel.text = String(10)
+            } else {
+                noodleLabel.text = String(data[1])
+            }
+            if data[2] == 10.0 {
+                overallLabel.text = String(10)
+            } else {
+                overallLabel.text = String(data[2])
+            }
+            
         } else {
             mostCommentImageView.image = UIImage(named: "man\(Int.random(in: 1..<8))")
             
@@ -129,14 +150,15 @@ class StoreCardsCell: UICollectionViewCell {
         reportLabel.isHidden = false
         nonReportLabel.isHidden = true
         switch cogfigReport(store: dataSource) {
-        case 0:
-            reportLabel.text = "0~5"
         case 1:
-            reportLabel.text = "5~10"
+            reportLabel.text = "0~5"
         case 2:
-            reportLabel.text = "10~20"
+            reportLabel.text = "5~10"
         case 3:
+            reportLabel.text = "10~20"
+        case 4:
             reportLabel.text = "20+"
+        
         default :
             reportLabel.isHidden = true
             nonReportLabel.isHidden = false

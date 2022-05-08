@@ -11,6 +11,7 @@ import Kingfisher
 protocol ProfileViewDelegate: AnyObject {
     func didTapAccountButton(_ view: ProfileView)
     func didTapEditProfilebutton(_ view: ProfileView)
+    func didTapBadge(_ view: ProfileView)
 }
 
 class ProfileView: UIView {
@@ -19,6 +20,7 @@ class ProfileView: UIView {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var badgeImageView: UIImageView!
     
     @IBAction func tapEditProfilebutton(_ sender: UIButton) {
         self.delegate?.didTapEditProfilebutton(self)
@@ -46,6 +48,13 @@ class ProfileView: UIView {
         follwingCountLabel.text = String(account.followedUser.count)
         nameLabel.text = account.name
         bioLabel.text = account.bio
-        
+        guard let badge = account.badgeStatus else { return }
+        badgeImageView.image = UIImage(named: "long_\(badge)")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(initBadge))
+        badgeImageView.isUserInteractionEnabled = true
+        badgeImageView.addGestureRecognizer(tap)
+    }
+    @objc func initBadge() {
+        self.delegate?.didTapBadge(self)
     }
 }

@@ -337,7 +337,7 @@
         <!--Badge View Controller-->
         <scene sceneID="Ic4-Ee-hyc">
             <objects>
-                <viewController storyboardIdentifier="BadgeViewController" id="SJx-2U-Dz3" customClass="BadgeViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BadgeViewController" hidesBottomBarWhenPushed="YES" id="SJx-2U-Dz3" customClass="BadgeViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nTf-IM-ml2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

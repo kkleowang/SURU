@@ -19,14 +19,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBAction func tapFollowButton(_ sender: UIButton) {
-        if timer == 0 {
+        
             guard let userID = UserRequestProvider.shared.currentUserID else { return }
             guard let targetID = account?.userID else { return }
+        if timer == 0 {
             timer = 1
             AccountRequestProvider.shared.followAccount(currentUserID: userID, tagertUserID: targetID)
         } else {
-            guard let userID = UserRequestProvider.shared.currentUserID else { return }
-            guard let targetID = account?.userID else { return }
             timer = 0
             AccountRequestProvider.shared.unfollowAccount(currentUserID: userID, tagertUserID: targetID)
         }
@@ -95,12 +94,7 @@ extension DetailViewController: CommentStoreCellDelegate {
             LKProgressHUD.showFailure(text: "你沒有登入喔")
             return
         }
-//        StoreRequestProvider.shared.collectStore(currentUserID: currentUserID, tagertStoreID: storeID)
         LKProgressHUD.showSuccess(text: "已收藏")
         
     }
-    
-    
-    
-    
 }

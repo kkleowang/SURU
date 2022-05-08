@@ -30,7 +30,8 @@ class BadgeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .C4
+//        view.backgroundColor = .C4
+//        collectionView.backgroundColor = .C4
         getBadgeCount()
         layoutView()
     }
@@ -104,13 +105,15 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.badgeNameLabel.layer.shadowOpacity = 0
         cell.layer.borderColor = UIColor.clear.cgColor
         let name = seletedBadgeName ?? ""
-        if name == BadgeName[indexPath.section][indexPath.row] {
+        
+        if name == badgeFile[indexPath.section][indexPath.row] {
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 10
             cell.clipsToBounds = true
             cell.layer.borderColor = UIColor.systemYellow.cgColor
             cell.badgeNameLabel.makeShadow(shadowOpacity: 1, shadowRadius: 10, color: UIColor.yellow.cgColor)
         }
+        
         
         return cell
     }
@@ -120,7 +123,7 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let ref = badgeRef else { return }
         if ref[indexPath.section][indexPath.row] != 0 {
-            seletedBadgeName = BadgeName[indexPath.section][indexPath.row]
+            seletedBadgeName = badgeFile[indexPath.section][indexPath.row]
             guard let userID = UserRequestProvider.shared.currentUserID else { return }
             guard let cells = collectionView.visibleCells as? [BadgeCell] else { return }
             for cell in cells {

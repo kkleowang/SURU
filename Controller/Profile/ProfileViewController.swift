@@ -77,6 +77,14 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 }
 extension ProfileViewController: ProfileViewDelegate {
+    func didTapBadge(_ view: ProfileView) {
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
+        guard let currentUserData = currentUserData else { return }
+        controller.badgeRef = badgeRef
+        controller.seletedBadgeName = currentUserData.badgeStatus
+                navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func didTapEditProfilebutton(_ view: ProfileView) {
         showEditingPage()
     }
@@ -220,7 +228,9 @@ extension ProfileViewController {
                 
                 self.currentUserData = data
                 guard let currentUserData = self.currentUserData else { return }
+                
                 self.profileView.layoutView(account: currentUserData)
+                self.profileView.collectionView.reloadData()
             case .failure(let error):
                 print("下載用戶失敗", error)
             }

@@ -471,14 +471,14 @@ extension MappingViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == tagSelectionCollectionView {
             if isSearchResults {
                 let string = filteredStoreTags[indexPath.item]
-                    let font = UIFont.systemFont(ofSize: 16)
-                    let size = string.widthWithConstrainedHeight(30, font: font)
-                    return CGSize(width: size + 10, height: 30)
+                let font = UIFont.systemFont(ofSize: 16)
+                let size = string.widthWithConstrainedHeight(30, font: font)
+                return CGSize(width: size + 10, height: 30)
             } else {
                 let string = storeTag[indexPath.item]
-                    let font = UIFont.systemFont(ofSize: 16)
-                    let size = string.widthWithConstrainedHeight(30, font: font)
-                    return CGSize(width: size + 10, height: 30)
+                let font = UIFont.systemFont(ofSize: 16)
+                let size = string.widthWithConstrainedHeight(30, font: font)
+                return CGSize(width: size + 10, height: 30)
             }
         } else {
             let cellSize = CGSize(width: collectionViewSize.width - 2 * 16.0, height: collectionViewSize.height - 2 * 6.0)
@@ -578,20 +578,6 @@ extension MappingViewController {
                 LKProgressHUD.showFailure(text: "回報失敗")
             case .success(let count):
                 LKProgressHUD.showSuccess(text: "回報成功")
-                //                for gesture in self.gestureHolder where gesture.name == storeID {
-                //                    switch count {
-                //                    case 1:
-                //                        gesture.view?.doGlowAnimation(withColor: .blue, withEffect: .small)
-                //                    case 2:
-                //                        gesture.view?.doGlowAnimation(withColor: .green, withEffect: .normal)
-                //                    case 3:
-                //                        gesture.view?.doGlowAnimation(withColor: .orange, withEffect: .mid)
-                //                    case 4:
-                //                        gesture.view?.doGlowAnimation(withColor: .red, withEffect: .big)
-                //                    default:
-                //                        break
-                //                    }
-                //                }
             }
         }
     }
@@ -670,20 +656,40 @@ extension MappingViewController: UISearchBarDelegate {
         isSearchResults = true
         storeCardCollectionView.reloadData()
         mapView.layoutView(from: filteredStoreData)
-         
+        
     }
     private func setRegion() {
         mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.00708, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000), animated: true)
     }
 }
 extension MappingViewController: StoreCardsCellDelegate {
-    func didtapCollectionButton(view: StoreCardsCell) {
-        print("Collection")
+    func didtapCollectionButton(view: StoreCardsCell, storeID: String) {
+        guard let user = currentUser else { return }
+        StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
+            switch result {
+            case .success(let message):
+                LKProgressHUD.showSuccess(text: message)
+            case .failure:
+                LKProgressHUD.showFailure(text: "收藏失敗")
+                
+            }
+        }
     }
     
-    func didtapUnCollectionButton(view: StoreCardsCell) {
-        print("UnCollection")
+    func didtapUnCollectionButton(view: StoreCardsCell, storeID: String) {
+        guard let user = currentUser else { return }
+        StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
+            switch result {
+            case .success(let message):
+                LKProgressHUD.showSuccess(text: message)
+            case .failure:
+                LKProgressHUD.showFailure(text: "取消失敗")
+                
+            }
+        }
     }
+    
+    
     
     
 }

@@ -39,9 +39,9 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
         // 全部
         guard let discoveryVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as? DiscoveryViewController else { return [] }
         // 追隨的
-        guard let followedVC = storyboard.instantiateViewController(identifier: "CollectViewController") as? CollectViewController else { return [] }
+        guard let followedVC = storyboard.instantiateViewController(identifier: "FollowViewController") as? FollowViewController else { return [] }
         // 收藏的
-        guard let collectedVC = storyboard.instantiateViewController(identifier: "FollowViewController") as? FollowViewController else { return [] }
+        guard let collectedVC = storyboard.instantiateViewController(identifier: "CollectViewController") as? CollectViewController else { return [] }
   
         return [discoveryVC, followedVC, collectedVC]
     }

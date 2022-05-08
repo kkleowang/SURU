@@ -20,7 +20,7 @@ protocol EditProfileViewDelegate: AnyObject {
 class EditProfileView: UIView {
     weak var delegate: EditProfileViewDelegate?
     
-    @IBOutlet weak var collectionView: UICollectionView!
+//    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var websideLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
@@ -109,6 +109,9 @@ extension EditProfileView: UITextViewDelegate {
 }
 
 extension EditProfileView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.textColor = .black
+    }
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == websideTextField {
             if !verifyUrl(urlString: textField.text) {
