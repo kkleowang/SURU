@@ -135,4 +135,20 @@ class AccountRequestProvider {
             "blockUserList": FieldValue.arrayRemove([tagertUserID])
         ])
     }
+    func addLoginHistroy(date: Date, currentUserID: String) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY/MM/dd"
+        let weekDay = dateFormatter.string(from: date)
+        let currentDocment = database.collection("accounts").document(currentUserID)
+        currentDocment.updateData([
+            "loginHistory": FieldValue.arrayUnion([weekDay])
+        ])
+    }
+    func changeBadgeStatus(status: String, currentUserID: String) {
+       
+        let currentDocment = database.collection("accounts").document(currentUserID)
+        currentDocment.updateData([
+            "badgeStatus": status
+        ])
+    }
 }

@@ -12,7 +12,7 @@ class BadgeCell: UICollectionViewCell {
     @IBOutlet weak var badgeImageView: UIImageView!
     @IBOutlet weak var badgeNameLabel: UILabel! {
         didSet {
-            badgeNameLabel.font = .medium(size: 14)
+            badgeNameLabel.font = .medium(size: 12)
             
         }
     }

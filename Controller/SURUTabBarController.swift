@@ -97,6 +97,7 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let userID = UserRequestProvider.shared.currentUserID {
+            AccountRequestProvider.shared.addLoginHistroy(date: Date(), currentUserID: userID)
             print("Login success, id: \(userID)")
         }else {
             presentWelcomePage()

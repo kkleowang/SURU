@@ -22,7 +22,7 @@ extension UIView {
         maskLayer.path = maskPath.cgPath
         self.layer.mask = maskLayer
     }
-    func makeShadow(shadowOpacity: Float? = 0.6, shadowRadius: CGFloat? = 15) {
+    func makeShadow(shadowOpacity: Float? = 0.4, shadowRadius: CGFloat? = 15) {
         guard let shadowRadius = shadowRadius, let shadowOpacity = shadowOpacity else {
             return
         }

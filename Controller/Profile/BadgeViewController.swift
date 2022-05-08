@@ -27,11 +27,11 @@ class BadgeViewController: UIViewController {
     }
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewSectionColorFlowLayout()
-        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width - 80) / 3, height: 150)
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width - 140) / 3, height: 120)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
+        layout.sectionHeadersPinToVisibleBounds = true
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.delegate = self
@@ -39,7 +39,7 @@ class BadgeViewController: UIViewController {
         collectionView.register(UINib(nibName: String(describing: BadgeCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: BadgeCell.self))
         collectionView.register(UINib(nibName: String(describing: BadgeHeaderCell.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: BadgeHeaderCell.self))
         collectionView.showsVerticalScrollIndicator = false
-        layout.headerReferenceSize = CGSize(width: collectionView.bounds.width, height: 60)
+        layout.headerReferenceSize = CGSize(width: collectionView.bounds.width, height: 40)
         
         return collectionView
     }()
@@ -88,10 +88,10 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.badgeNameLabel.text = BadgeName[indexPath.section][indexPath.row]
         if badgeRef[indexPath.section][indexPath.row] == 0 {
             cell.badgeNameLabel.textColor = .gray
-            cell.badgeImageView.kf.setImage(with: URL(string: ""), placeholder: UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0))
+            cell.badgeImageView.image = UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0)
         } else {
             cell.badgeNameLabel.textColor = .systemBrown
-            cell.badgeImageView.kf.setImage(with: URL(string: ""), placeholder: UIImage(named: badgeFile[indexPath.section][indexPath.item]))
+            cell.badgeImageView.image = UIImage(named: badgeFile[indexPath.section][indexPath.item])
         }
         
         return cell
@@ -99,6 +99,9 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, backgroundColor section: Int) -> UIColor {
         .white
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let status = badgeFile[indexPath.section][indexPath.item]
+        AccountRequestProvider.shared.changeBadgeStatus(status: status, currentUserID: <#T##String#>)
+    }
     
 }

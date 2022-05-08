@@ -15,7 +15,7 @@ class UICollectionViewSectionColorReusableView: UICollectionReusableView {
         if let att = layoutAttributes as? UICollectionViewSectionColorLayoutAttributes {
             backgroundColor = att.sectionBgColor
             layer.cornerRadius = 10
-            self.makeShadow()
+            self.makeShadow(shadowOpacity: 0.3, shadowRadius: 10)
         }
     }
 }
@@ -60,13 +60,13 @@ class UICollectionViewSectionColorFlowLayout: UICollectionViewFlowLayout {
                 sectionInset = inset
             }
             var sectionFrame = firstItem.frame.union(lastItem.frame)
-            sectionFrame.origin.x = 0
+            sectionFrame.origin.x = 20
             sectionFrame.origin.y -= sectionInset.top
             if scrollDirection == .horizontal {
-                sectionFrame.size.width += sectionInset.left + sectionInset.right
+                sectionFrame.size.width += sectionInset.left + sectionInset.right - 40
                 sectionFrame.size.height = collectionView.frame.height
             } else {
-                sectionFrame.size.width = collectionView.frame.width
+                sectionFrame.size.width = collectionView.frame.width - 40
                 sectionFrame.size.height += sectionInset.top + sectionInset.bottom
             }
 

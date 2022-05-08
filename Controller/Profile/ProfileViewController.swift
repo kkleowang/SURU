@@ -213,7 +213,7 @@ extension ProfileViewController {
         var ref: [[Int]] = [[], [], [], [], []]
         guard let user = currentUserData else { return }
         let followerCount = user.follower.count
-        let loginCount = user.loginCount ?? 0
+        let loginCount = user.loginHistory?.count ?? 0
         let publishCommentCount = user.commentCount
         let publishReportCount = user.sendReportCount ?? 0
         let likeCount = user.myCommentLike ?? 0
