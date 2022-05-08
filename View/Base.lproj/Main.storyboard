@@ -256,6 +256,36 @@
             </objects>
             <point key="canvasLocation" x="667" y="-644"/>
         </scene>
+        <!--Store Page View Controller-->
+        <scene sceneID="dHH-uR-fjJ">
+            <objects>
+                <viewController storyboardIdentifier="StorePageViewController" hidesBottomBarWhenPushed="YES" id="EJm-f6-9FE" customClass="StorePageViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sSA-CV-CrO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Lqv-5a-fJU">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="e4b-Qq-brj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Lqv-5a-fJU" firstAttribute="leading" secondItem="e4b-Qq-brj" secondAttribute="leading" id="5d6-xC-EQG"/>
+                            <constraint firstItem="Lqv-5a-fJU" firstAttribute="top" secondItem="e4b-Qq-brj" secondAttribute="top" id="Tn5-1K-a4a"/>
+                            <constraint firstAttribute="bottom" secondItem="Lqv-5a-fJU" secondAttribute="bottom" id="Xmc-f0-9SL"/>
+                            <constraint firstItem="e4b-Qq-brj" firstAttribute="trailing" secondItem="Lqv-5a-fJU" secondAttribute="trailing" id="dJB-ph-NPN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Lqv-5a-fJU" id="oG6-3R-LXj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Swr-K7-HFi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1691" y="-631"/>
+        </scene>
         <!--Comment View Controller-->
         <scene sceneID="r7Y-0Z-es6">
             <objects>
@@ -303,6 +333,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jt-Un-xQn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1549" y="1365"/>
+        </scene>
+        <!--Badge View Controller-->
+        <scene sceneID="Ic4-Ee-hyc">
+            <objects>
+                <viewController storyboardIdentifier="BadgeViewController" id="SJx-2U-Dz3" customClass="BadgeViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nTf-IM-ml2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FEB-yx-mNd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zZp-AQ-Kat" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2353" y="1363"/>
         </scene>
         <!--Follow View Controller-->
         <scene sceneID="G64-f7-g07">
