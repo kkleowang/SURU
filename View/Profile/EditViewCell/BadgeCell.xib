@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment1" translatesAutoresizingMaskIntoConstraints="NO" id="ddY-dF-XGP">
-                        <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                        <rect key="frame" x="5" y="10" width="113" height="113"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="ddY-dF-XGP" secondAttribute="height" multiplier="1:1" id="kpA-oo-hc3"/>
                         </constraints>
@@ -33,9 +33,9 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="ddY-dF-XGP" secondAttribute="trailing" id="474-EH-ZW2"/>
-                <constraint firstItem="ddY-dF-XGP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="On0-82-qTc"/>
-                <constraint firstItem="ddY-dF-XGP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SOo-8Q-VXa"/>
+                <constraint firstAttribute="trailing" secondItem="ddY-dF-XGP" secondAttribute="trailing" constant="5" id="474-EH-ZW2"/>
+                <constraint firstItem="ddY-dF-XGP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="On0-82-qTc"/>
+                <constraint firstItem="ddY-dF-XGP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="SOo-8Q-VXa"/>
                 <constraint firstItem="doH-BD-ID2" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="Wsr-Lj-1iD"/>
                 <constraint firstItem="doH-BD-ID2" firstAttribute="top" secondItem="ddY-dF-XGP" secondAttribute="bottom" constant="10" id="lBn-75-Bki"/>
             </constraints>

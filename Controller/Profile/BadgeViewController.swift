@@ -27,11 +27,11 @@ class BadgeViewController: UIViewController {
     }
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewSectionColorFlowLayout()
-        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width - 140) / 3, height: 120)
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width - 120) / 3, height: 130)
         layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 20
+        layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
-        layout.sectionHeadersPinToVisibleBounds = true
+//        layout.sectionHeadersPinToVisibleBounds = true
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.delegate = self
@@ -100,8 +100,12 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         .white
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
         let status = badgeFile[indexPath.section][indexPath.item]
-        AccountRequestProvider.shared.changeBadgeStatus(status: status, currentUserID: <#T##String#>)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? BadgeCell else { return }
+        cell.badgeImageView.makeShadow(shadowOpacity: 1, shadowRadius: 10, color: UIColor.yellow.cgColor)
+        AccountRequestProvider.shared.changeBadgeStatus(status: status, currentUserID: userID)
+        LKProgressHUD.showSuccess(text: "已更新顯示勳章")
     }
     
 }
