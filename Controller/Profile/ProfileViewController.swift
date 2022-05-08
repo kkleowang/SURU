@@ -217,6 +217,7 @@ extension ProfileViewController {
         let publishCommentCount = user.commentCount
         let publishReportCount = user.sendReportCount ?? 0
         let likeCount = user.myCommentLike ?? 0
+       
         if  loginCount >= 30 {
             ref[0] = [1, 1, 1, 1, 1]
         } else if loginCount >= 15 {

@@ -45,7 +45,7 @@ class StoreRequestProvider {
         completion(.success(docment.documentID))
     }
     
-    func collectStore(currentUserID: String, tagertStoreID: String) {
+    func collectStore(currentUserID: String, tagertStoreID: String, completion: @escaping (Result<String, Error>) -> Void) {
         let tagertStoreDocment = database.collection("stores").document(tagertStoreID)
         let currentUserDocment = database.collection("accounts").document(currentUserID)
         
@@ -54,10 +54,16 @@ class StoreRequestProvider {
         ])
         currentUserDocment.updateData([
             "collectedStore": FieldValue.arrayUnion([tagertStoreID])
-        ])
+        ]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("已收藏"))
+            }
+        }
     }
     
-    func unCollectStore(currentUserID: String, tagertStoreID: String) {
+    func unCollectStore(currentUserID: String, tagertStoreID: String, completion: @escaping (Result<String, Error>) -> Void) {
         
         
         let tagertStoreDocment = database.collection("stores").document(tagertStoreID)
@@ -68,7 +74,13 @@ class StoreRequestProvider {
         ])
         currentUserDocment.updateData([
             "collectedStore": FieldValue.arrayRemove([tagertStoreID])
-        ])
+        ]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("已取消收藏"))
+            }
+        }
     }
     func listenStore(completion: @escaping () -> Void) {
         // [START listen_document]

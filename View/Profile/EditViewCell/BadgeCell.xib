@@ -24,7 +24,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doH-BD-ID2">
-                        <rect key="frame" x="40.5" y="133" width="42" height="21"/>
+                        <rect key="frame" x="40.5" y="133" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCM-po-ZRw">
+                        <rect key="frame" x="40.5" y="157.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,15 +40,19 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ddY-dF-XGP" secondAttribute="trailing" constant="5" id="474-EH-ZW2"/>
+                <constraint firstItem="wCM-po-ZRw" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="MKc-g5-ZzN"/>
                 <constraint firstItem="ddY-dF-XGP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="On0-82-qTc"/>
                 <constraint firstItem="ddY-dF-XGP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="SOo-8Q-VXa"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="doH-BD-ID2" secondAttribute="bottom" constant="10" id="W0N-cd-Eca"/>
                 <constraint firstItem="doH-BD-ID2" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="Wsr-Lj-1iD"/>
                 <constraint firstItem="doH-BD-ID2" firstAttribute="top" secondItem="ddY-dF-XGP" secondAttribute="bottom" constant="10" id="lBn-75-Bki"/>
+                <constraint firstItem="wCM-po-ZRw" firstAttribute="top" secondItem="doH-BD-ID2" secondAttribute="bottom" constant="4" id="uQY-I4-x30"/>
             </constraints>
             <size key="customSize" width="123" height="188"/>
             <connections>
                 <outlet property="badgeImageView" destination="ddY-dF-XGP" id="97E-Ku-e3n"/>
                 <outlet property="badgeNameLabel" destination="doH-BD-ID2" id="gCC-Bg-yeb"/>
+                <outlet property="waringLabel" destination="wCM-po-ZRw" id="PZw-uP-A4J"/>
             </connections>
             <point key="canvasLocation" x="184.78260869565219" y="137.27678571428569"/>
         </collectionViewCell>

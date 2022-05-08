@@ -11,6 +11,7 @@ class BadgeViewController: UIViewController {
     var badgeRef: [[Int]]?
     var totalBadge = 0
     var titleLabel = UILabel()
+    var seletedBadgeName: String?
     var badgeTitle = ["登入次數", "發布評論", "回報次數", "收到的喜歡", "追蹤人數"]
     let BadgeName: [[String]] = [
         ["初來乍到", "尋找拉麵的訪客", "熟門熟路", "下一碗在哪", "拉麵迷"],
@@ -19,19 +20,27 @@ class BadgeViewController: UIViewController {
         ["沒人點我讚", "拜託點我讚", "可憐我一點讚", "就差你的讚", "不缺讚"],
         ["默默無名", "小有名氣", "街頭巷尾", "遠近馳名", "萬人迷"]
     ]
+    let BadgeWarning: [[String]] = [
+        ["登入1次", "登入3次", "登入7次", "登入15次", "登入30次"],
+        ["發表1篇評論", "發表5篇評論", "發表10篇評論", "發表15篇評論", "發表30篇評論"],
+        ["回報1次", "回報5次", "回報10次", "回報15次", "回報20次"],
+        ["獲得10個讚", "獲得30個讚", "獲得50個讚", "獲得100個讚", "獲得200個讚"],
+        ["被5人追蹤", "被10人追蹤", "被20人追蹤", "被30人追蹤", "被50人追蹤"]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .C4
         getBadgeCount()
         layoutView()
     }
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewSectionColorFlowLayout()
-        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width - 120) / 3, height: 130)
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width - 120) / 3, height: 140)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
-//        layout.sectionHeadersPinToVisibleBounds = true
+        //        layout.sectionHeadersPinToVisibleBounds = true
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.delegate = self
@@ -87,11 +96,20 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: BadgeCell.self), for: indexPath) as? BadgeCell, let badgeRef = badgeRef else { return UICollectionViewCell() }
         cell.badgeNameLabel.text = BadgeName[indexPath.section][indexPath.row]
         if badgeRef[indexPath.section][indexPath.row] == 0 {
-            cell.badgeNameLabel.textColor = .gray
-            cell.badgeImageView.image = UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0)
+            cell.layoutCell(image: UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0), text: BadgeName[indexPath.section][indexPath.row], textColor: .gray, waringText: BadgeWarning[indexPath.section][indexPath.row])
+            
         } else {
-            cell.badgeNameLabel.textColor = .systemBrown
-            cell.badgeImageView.image = UIImage(named: badgeFile[indexPath.section][indexPath.item])
+            cell.layoutCell(image: UIImage(named: badgeFile[indexPath.section][indexPath.item]), text: BadgeName[indexPath.section][indexPath.row], textColor: .systemBrown, waringText: BadgeWarning[indexPath.section][indexPath.row])
+        }
+        cell.badgeNameLabel.layer.shadowOpacity = 0
+        cell.layer.borderColor = UIColor.clear.cgColor
+        let name = seletedBadgeName ?? ""
+        if name == BadgeName[indexPath.section][indexPath.row] {
+            cell.layer.borderWidth = 1
+            cell.layer.cornerRadius = 10
+            cell.clipsToBounds = true
+            cell.layer.borderColor = UIColor.systemYellow.cgColor
+            cell.badgeNameLabel.makeShadow(shadowOpacity: 1, shadowRadius: 10, color: UIColor.yellow.cgColor)
         }
         
         return cell
@@ -100,12 +118,28 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         .white
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let userID = UserRequestProvider.shared.currentUserID else { return }
-        let status = badgeFile[indexPath.section][indexPath.item]
-        guard let cell = collectionView.cellForItem(at: indexPath) as? BadgeCell else { return }
-        cell.badgeImageView.makeShadow(shadowOpacity: 1, shadowRadius: 10, color: UIColor.yellow.cgColor)
-        AccountRequestProvider.shared.changeBadgeStatus(status: status, currentUserID: userID)
-        LKProgressHUD.showSuccess(text: "已更新顯示勳章")
+        guard let ref = badgeRef else { return }
+        if ref[indexPath.section][indexPath.row] != 0 {
+            seletedBadgeName = BadgeName[indexPath.section][indexPath.row]
+            guard let userID = UserRequestProvider.shared.currentUserID else { return }
+            guard let cells = collectionView.visibleCells as? [BadgeCell] else { return }
+            for cell in cells {
+                cell.badgeNameLabel.layer.shadowOpacity = 0
+                cell.layer.borderColor = UIColor.clear.cgColor
+            }
+//            guard let cell = collectionView.cellForItem(at: indexPath) as? BadgeCell else { return }
+//            cell.layer.borderWidth = 1
+//            cell.layer.cornerRadius = 10
+//            cell.clipsToBounds = true
+//            cell.layer.borderColor = UIColor.systemYellow.cgColor
+//            cell.badgeNameLabel.makeShadow(shadowOpacity: 1, shadowRadius: 10, color: UIColor.yellow.cgColor)
+            let status = badgeFile[indexPath.section][indexPath.item]
+            collectionView.reloadData()
+            AccountRequestProvider.shared.changeBadgeStatus(status: status, currentUserID: userID)
+            LKProgressHUD.showSuccess(text: "已更新顯示勳章")
+        } else {
+            LKProgressHUD.showFailure(text: "尚未解鎖成就")
+        }
     }
     
 }

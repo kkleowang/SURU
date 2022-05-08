@@ -13,7 +13,7 @@ import Kingfisher
 class MappingViewController: UIViewController {
     
     private var commentData: [Comment] = []
-
+    private var currentUser: Account?
     private var reportButton = UIButton()
     private let locationManager = CLLocationManager()
     private let mapView = MapView()
@@ -144,6 +144,7 @@ class MappingViewController: UIViewController {
         let group: DispatchGroup = DispatchGroup()
         let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
         let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
+        let concurrentQueue3 = DispatchQueue(label: "com.leowang.queue3", attributes: .concurrent)
         LKProgressHUD.show(text: "下載店家資訊中")
         group.enter()
         concurrentQueue1.async(group: group) {
@@ -169,6 +170,27 @@ class MappingViewController: UIViewController {
                     print("下載評論失敗", error)
                     LKProgressHUD.dismiss()
                     LKProgressHUD.showFailure(text: "下載評論失敗")
+                }
+                group.leave()
+            }
+        }
+        group.enter()
+        concurrentQueue3.async(group: group) {
+            guard let currentUserID = UserRequestProvider.shared.currentUserID else {
+                group.leave()
+                LKProgressHUD.dismiss()
+                LKProgressHUD.showFailure(text: "載入使用者失敗")
+                return
+                
+            }
+            AccountRequestProvider.shared.fetchAccount(currentUserID: currentUserID) { result in
+                switch result {
+                case .success(let data) :
+                    self.currentUser = data
+                case .failure(let error) :
+                    print("載入使用者失敗", error)
+                    LKProgressHUD.dismiss()
+                    LKProgressHUD.showFailure(text: "載入使用者失敗")
                 }
                 group.leave()
             }
@@ -289,7 +311,7 @@ extension MappingViewController: MKMapViewDelegate {
         
         switch annotation.title {
         default:
-            for store in storeData where annotation.title == store.name {
+            for store in storeData.reversed() where annotation.title == store.name {
                 switch cogfigReport(store: store) {
                 case 1:
                     annotationView?.doGlowAnimation(withColor: .blue, withEffect: .small)
@@ -301,6 +323,12 @@ extension MappingViewController: MKMapViewDelegate {
                     annotationView?.doGlowAnimation(withColor: .red, withEffect: .big)
                 default:
                     break
+                }
+                let weekday = Date().weekDay()
+                if store.opentime.byPropertyName(weekDay: weekday).dinner == "close" && store.opentime.byPropertyName(weekDay: weekday).lunch == "close" {
+//                    imageView.alpha = 0.
+                    //店休？
+
                 }
                 imageView.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "AppIcon") )
                 annotationView?.subviews.forEach { $0.removeFromSuperview() }
@@ -405,7 +433,22 @@ extension MappingViewController: UICollectionViewDelegate {
                 filterAnnotation(text: storeTag[indexPath.row])
             }
         } else {
-            self.selectedIndex = indexPath.row
+            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "StorePageViewController") as? StorePageViewController else { return }
+            if isSearchResults {
+                controller.currentUser = currentUser
+                controller.storeData = filteredStoreData[indexPath.row]
+                controller.commentData = commentOfFilteredStore[indexPath.row]
+                self.addChild(controller)
+                navigationController?.pushViewController(controller, animated: true)
+                
+            } else {
+                controller.currentUser = currentUser
+                controller.storeData = storeData[indexPath.row]
+                controller.commentData = commentOfStore[indexPath.row]
+                self.addChild(controller)
+                navigationController?.pushViewController(controller, animated: true)
+            }
+            
         }
         
     }

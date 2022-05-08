@@ -89,6 +89,7 @@ extension EditProfileViewController: EditProfileViewDelegate {
         nickName = text
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
         controller.badgeRef = badgeRef
+        controller.seletedBadgeName = userData?.badgeStatus
         navigationController?.pushViewController(controller, animated: true)
     }
     

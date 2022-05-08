@@ -50,7 +50,7 @@ class StoreCardCell: UICollectionViewCell {
         self.cornerForAll(radii: 10)
         self.nameLabel.text = dataSource.name
         self.localtionAreaLabel.text = dataSource.area
-        let weekday = getTodayWeekDay()
+        let weekday = Date().weekDay()
         switch weekday {
         case "sun" :
             self.lunchLabel.text = "本日營業時間 中午: \(dataSource.opentime.sun.lunch)"
@@ -96,10 +96,10 @@ class StoreCardCell: UICollectionViewCell {
         }
         
     }
-    func getTodayWeekDay() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE"
-        let weekDay = dateFormatter.string(from: Date()).lowercased()
-        return weekDay
-    }
+//    func getTodayWeekDay() -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "EEE"
+//        let weekDay = dateFormatter.string(from: Date()).lowercased()
+//        return weekDay
+//    }
 }

@@ -95,7 +95,7 @@ extension DetailViewController: CommentStoreCellDelegate {
             LKProgressHUD.showFailure(text: "你沒有登入喔")
             return
         }
-        StoreRequestProvider.shared.collectStore(currentUserID: currentUserID, tagertStoreID: storeID)
+//        StoreRequestProvider.shared.collectStore(currentUserID: currentUserID, tagertStoreID: storeID)
         LKProgressHUD.showSuccess(text: "已收藏")
         
     }
