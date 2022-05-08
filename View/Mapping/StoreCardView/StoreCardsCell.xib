@@ -166,6 +166,14 @@
                                     <constraint firstItem="9UY-nB-TCE" firstAttribute="top" secondItem="BFV-NR-Vsf" secondAttribute="top" constant="5" id="rqz-cB-dws"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COQ-uP-9Zs">
+                                <rect key="frame" x="75" y="75" width="5" height="5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="LXf-sY-dhJ"/>
+                                    <constraint firstAttribute="width" constant="5" id="kR0-aV-3TA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -175,6 +183,7 @@
                             <constraint firstItem="ntG-MR-eKj" firstAttribute="centerY" secondItem="xZP-5w-tX3" secondAttribute="centerY" id="DpC-eI-Tfi"/>
                             <constraint firstItem="pKe-CK-H57" firstAttribute="leading" secondItem="A1v-Yy-I6t" secondAttribute="leading" constant="20" id="Isy-B4-np0"/>
                             <constraint firstItem="x4y-Jf-0fd" firstAttribute="centerX" secondItem="RxI-4z-XZk" secondAttribute="centerX" id="JiT-ir-2xU"/>
+                            <constraint firstItem="COQ-uP-9Zs" firstAttribute="trailing" secondItem="eIG-Zz-JPZ" secondAttribute="trailing" id="KTX-TM-BIv"/>
                             <constraint firstAttribute="trailing" secondItem="BFV-NR-Vsf" secondAttribute="trailing" constant="20" id="LZc-uw-KZ4"/>
                             <constraint firstItem="LA1-cx-kgA" firstAttribute="top" secondItem="V6n-Bx-9yg" secondAttribute="bottom" constant="2" id="MCU-dz-YfJ"/>
                             <constraint firstAttribute="trailing" secondItem="WQn-34-KEC" secondAttribute="trailing" id="Pg6-ok-oYm"/>
@@ -198,6 +207,7 @@
                             <constraint firstItem="eIG-Zz-JPZ" firstAttribute="leading" secondItem="A1v-Yy-I6t" secondAttribute="leading" constant="20" id="sVc-HG-v8C"/>
                             <constraint firstItem="V6n-Bx-9yg" firstAttribute="leading" secondItem="eIG-Zz-JPZ" secondAttribute="trailing" constant="16" id="seZ-D9-XVM"/>
                             <constraint firstAttribute="trailing" secondItem="ljW-PQ-oR5" secondAttribute="trailing" constant="30" id="w2F-Yd-bmq"/>
+                            <constraint firstItem="COQ-uP-9Zs" firstAttribute="bottom" secondItem="eIG-Zz-JPZ" secondAttribute="bottom" id="wSh-sS-gFR"/>
                             <constraint firstItem="BFV-NR-Vsf" firstAttribute="leading" secondItem="pKe-CK-H57" secondAttribute="trailing" constant="20" id="xFK-Dg-XXi"/>
                             <constraint firstItem="ntG-MR-eKj" firstAttribute="centerX" secondItem="xZP-5w-tX3" secondAttribute="centerX" id="zN9-t9-WyA"/>
                             <constraint firstItem="BFV-NR-Vsf" firstAttribute="bottom" secondItem="pKe-CK-H57" secondAttribute="bottom" id="zOM-cu-5jy"/>
@@ -215,6 +225,7 @@
             <size key="customSize" width="167" height="131"/>
             <connections>
                 <outlet property="collectButton" destination="WQn-34-KEC" id="hTi-HV-qnC"/>
+                <outlet property="dotView" destination="COQ-uP-9Zs" id="F90-ld-4rf"/>
                 <outlet property="followerLabel" destination="LA1-cx-kgA" id="OqD-oF-J7Q"/>
                 <outlet property="mostCommentImageView" destination="pKe-CK-H57" id="Uho-2I-i6t"/>
                 <outlet property="nameLabel" destination="V6n-Bx-9yg" id="yC5-uS-lgI"/>

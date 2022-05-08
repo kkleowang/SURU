@@ -32,6 +32,7 @@ class StoreCardsCell: UICollectionViewCell {
     @IBOutlet weak private var reportView: UIView!
     @IBOutlet weak private var reportLabel: UILabel!
     @IBOutlet weak private var reportPeopleLabel: UILabel!
+    @IBOutlet weak var dotView: UIView!
     
     @IBOutlet weak private var collectButton: UIButton!
     @IBAction func tapCollectButton(_ sender: UIButton) {
@@ -57,6 +58,8 @@ class StoreCardsCell: UICollectionViewCell {
         self.cornerForAll(radii: 10)
         reportView.clipsToBounds = true
         reportView.cornerForAll(radii: 10)
+        dotView.clipsToBounds = true
+        dotView.layer.cornerRadius = 2.5
         soupView.clipsToBounds = true
         noodleView.clipsToBounds = true
         overallView.clipsToBounds = true
@@ -71,7 +74,12 @@ class StoreCardsCell: UICollectionViewCell {
         } else {
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
         }
-        
+        let weekday = Date().weekDay()
+        if dataSource.opentime.byPropertyName(weekDay: weekday).dinner == "close" && dataSource.opentime.byPropertyName(weekDay: weekday).lunch == "close" {
+            dotView.backgroundColor = .red
+        } else {
+            dotView.backgroundColor = .systemGreen
+        }
         var soup: Double = 0
         var noodle: Double = 0
         var happy: Double = 0

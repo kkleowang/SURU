@@ -324,12 +324,7 @@ extension MappingViewController: MKMapViewDelegate {
                 default:
                     break
                 }
-                let weekday = Date().weekDay()
-                if store.opentime.byPropertyName(weekDay: weekday).dinner == "close" && store.opentime.byPropertyName(weekDay: weekday).lunch == "close" {
-//                    imageView.alpha = 0.
-                    //店休？
-
-                }
+                
                 imageView.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "AppIcon") )
                 annotationView?.subviews.forEach { $0.removeFromSuperview() }
                 annotationView?.addSubview(imageView)
