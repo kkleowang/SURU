@@ -462,6 +462,8 @@
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
 			isa = PBXGroup;
 			children = (
+				B8A11AEF2813E4100079A080 /* StoreCardCell.xib */,
+				B8A11AF12813E52D0079A080 /* StoreCardCell.swift */,
 				B8A4FFC8282134BC0023F0BA /* mappingViewBackup.swift */,
 				B87AF25628128CD10058197F /* StoreCardView.swift */,
 				B814DF3228108E4E00176C13 /* CommentDraggingView.swift */,
@@ -478,8 +480,6 @@
 		B87AF25528128CC40058197F /* StoreCardView */ = {
 			isa = PBXGroup;
 			children = (
-				B8A11AEF2813E4100079A080 /* StoreCardCell.xib */,
-				B8A11AF12813E52D0079A080 /* StoreCardCell.swift */,
 				B83B194728284CB600686D16 /* StoreCardsCell.swift */,
 				B83B194828284CB600686D16 /* StoreCardsCell.xib */,
 			);

@@ -29,22 +29,23 @@ class StoreCardsCell: UICollectionViewCell {
     @IBOutlet weak private var noodleView: UIView!
     @IBOutlet weak private var overallView: UIView!
     
+    @IBOutlet weak var nonReportLabel: UILabel!
     @IBOutlet weak private var reportView: UIView!
     @IBOutlet weak private var reportLabel: UILabel!
     @IBOutlet weak private var reportPeopleLabel: UILabel!
     @IBOutlet weak var dotView: UIView!
     
+    
     @IBOutlet weak private var collectButton: UIButton!
     @IBAction func tapCollectButton(_ sender: UIButton) {
         guard let image = sender.image(for: .normal) else { return }
         if image == UIImage(named: "collect.fill") {
-            collectButton.setTitle("收藏", for: .normal)
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
             followerLabel.text = "\(storedata?.collectedUser?.count ?? 1 - 1) 人收藏"
             self.delegate?.didtapUnCollectionButton(view: self)
             
         } else {
-            collectButton.setTitle("已收藏", for: .normal)
+            
             collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
             followerLabel.text = "\(storedata?.collectedUser?.count ?? 0 + 1) 人收藏"
             self.delegate?.didtapCollectionButton(view: self)
@@ -53,13 +54,15 @@ class StoreCardsCell: UICollectionViewCell {
     var storedata: Store?
     
     func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool) {
+        self.contentView.makeShadow()
+        self.contentView.clipsToBounds = true
         storedata = dataSource
         self.clipsToBounds = true
         self.cornerForAll(radii: 10)
         reportView.clipsToBounds = true
         reportView.cornerForAll(radii: 10)
         dotView.clipsToBounds = true
-        dotView.layer.cornerRadius = 2.5
+        dotView.layer.cornerRadius = 7.5
         soupView.clipsToBounds = true
         noodleView.clipsToBounds = true
         overallView.clipsToBounds = true
@@ -67,8 +70,16 @@ class StoreCardsCell: UICollectionViewCell {
         noodleView.layer.cornerRadius = 20
         overallView.layer.cornerRadius = 20
         nameLabel.text = dataSource.name
+        mostCommentImageView.clipsToBounds = true
+        mostCommentImageView.cornerForAll(radii: 10)
+        mostCommentImageView.makeShadow()
+        storeImageView.layer.cornerRadius = 25
+        storeImageView.clipsToBounds = true
         storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "AppIcon"))
+        storeImageView.layer.borderWidth = 1.0
+        storeImageView.layer.borderColor = UIColor.black.cgColor
         followerLabel.text = "\(dataSource.collectedUser?.count ?? 0) 人收藏"
+        collectButton.setTitle("", for: .normal)
         if isCollect {
             collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
         } else {
@@ -95,23 +106,28 @@ class StoreCardsCell: UICollectionViewCell {
             }
             let count = Double(commentData.count)
             let data = [soup/count, noodle/count, happy/count]
-            soupLabel.text = String(data[0])
-            noodleLabel.text = String(data[1])
-            overallLabel.text = String(data[2])
+            soupLabel.text = String(data[0].ceiling(toDecimal: 2))
+            noodleLabel.text = String(data[1].ceiling(toDecimal: 2))
+            overallLabel.text = String(data[2].ceiling(toDecimal: 2))
         } else {
             mostCommentImageView.image = UIImage(named: "man\(Int.random(in: 1..<8))")
             
-            soupLabel.text = "尚無評論"
+            soupLabel.text = "無"
             soupLabel.textColor = .B1
-            soupLabel.font = .medium(size: 6)
-            noodleLabel.text = "尚無評論"
+//            soupLabel.font = .medium(size: 6)
+            noodleLabel.text = "無"
             noodleLabel.textColor = .B1
-            noodleLabel.font = .medium(size: 6)
-            overallLabel.text = "尚無評論"
+//            noodleLabel.font = .medium(size: 6)
+            overallLabel.text = "無"
             overallLabel.textColor = .B1
-            overallLabel.font = .medium(size: 6)
+//            overallLabel.font = .medium(size: 6)
         }
         reportLabel.textColor = .red
+        
+        reportLabel.font = .medium(size: 18)
+        reportPeopleLabel.isHidden = false
+        reportLabel.isHidden = false
+        nonReportLabel.isHidden = true
         switch cogfigReport(store: dataSource) {
         case 0:
             reportLabel.text = "0~5"
@@ -122,8 +138,8 @@ class StoreCardsCell: UICollectionViewCell {
         case 3:
             reportLabel.text = "20+"
         default :
-            reportLabel.text = "目前無回報"
-            reportLabel.textColor = .B3
+            reportLabel.isHidden = true
+            nonReportLabel.isHidden = false
             reportPeopleLabel.isHidden = true
         }
         
@@ -141,4 +157,5 @@ class StoreCardsCell: UICollectionViewCell {
         }
         return 5
     }
+    
 }

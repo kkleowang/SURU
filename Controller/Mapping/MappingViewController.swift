@@ -66,6 +66,7 @@ class MappingViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        storeCardCollectionView.isHidden = true
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
@@ -95,10 +96,9 @@ class MappingViewController: UIViewController {
         if let flowLayout = storeCardCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
         }
-        storeCardCollectionView.register(UINib(nibName: String(describing: StoreCardCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: StoreCardCell.self))
+        storeCardCollectionView.register(UINib(nibName: String(describing: StoreCardsCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: StoreCardsCell.self))
         storeCardCollectionView.dataSource = self
         storeCardCollectionView.delegate = self
-        storeCardCollectionView.isHidden = true
         self.view.addSubview(storeCardCollectionView)
         storeCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
         storeCardCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
@@ -135,6 +135,7 @@ class MappingViewController: UIViewController {
             case .success(let data) :
                 self.storeData = data
                 self.reloadMapView()
+                self.storeCardCollectionView.reloadData()
             case .failure(let error) :
                 print("下載商店資料失敗", error)
             }
@@ -405,13 +406,16 @@ extension MappingViewController: UICollectionViewDataSource {
                 return cell
             }
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(StoreCardCell.self)", for: indexPath) as? StoreCardCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(StoreCardsCell.self)", for: indexPath) as? StoreCardsCell else { return UICollectionViewCell() }
+            guard let user = currentUser else { return StoreCardsCell() }
+            cell.delegate = self
             if isSearchResults {
-                
-                cell.layoutCardView(dataSource: filteredStoreData[indexPath.row], commentData: commentOfFilteredStore[indexPath.row], areaName: "", distance: filteredStoreDistance[indexPath.row])
+                let isCollect = filteredStoreData[indexPath.row].collectedUser?.contains(user.userID)
+                cell.layoutCardView(dataSource: filteredStoreData[indexPath.row], commentData: commentOfFilteredStore[indexPath.row], isCollect: isCollect ?? false)
                 return cell
             } else {
-                cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], areaName: "", distance: distance[indexPath.row])
+                let isCollect = storeData[indexPath.row].collectedUser?.contains(user.userID)
+                cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], isCollect: isCollect ?? false)
                 return cell
             }
         }
@@ -671,4 +675,15 @@ extension MappingViewController: UISearchBarDelegate {
     private func setRegion() {
         mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.00708, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000), animated: true)
     }
+}
+extension MappingViewController: StoreCardsCellDelegate {
+    func didtapCollectionButton(view: StoreCardsCell) {
+        print("Collection")
+    }
+    
+    func didtapUnCollectionButton(view: StoreCardsCell) {
+        print("UnCollection")
+    }
+    
+    
 }
