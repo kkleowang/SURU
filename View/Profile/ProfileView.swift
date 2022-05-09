@@ -36,7 +36,24 @@ class ProfileView: UIView {
     @IBOutlet weak var follwingCountLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
+    var webLink = URL(string: "")
+    @objc func linkWeb() {
+        guard let webLink = webLink else { return }
+        UIApplication.shared.open(webLink)
+    }
     func layoutView(account: Account) {
+        let web = account.websideLink ?? ""
+        
+        
+        if web != "" {
+            webLink = URL(string: web)
+            let tap = UITapGestureRecognizer(target: self, action: #selector(linkWeb))
+            webLikeImageView.addGestureRecognizer(tap)
+            webLikeImageView.isUserInteractionEnabled = true
+            webLikeImageView.isHidden = false
+        } else {
+            webLikeImageView.isHidden = true
+        }
         editProfileButton.layer.borderWidth = 1
         editProfileButton.layer.borderColor = UIColor.B6?.cgColor
         editProfileButton.layer.cornerRadius = 15
@@ -57,4 +74,5 @@ class ProfileView: UIView {
     @objc func initBadge() {
         self.delegate?.didTapBadge(self)
     }
+    @IBOutlet weak var webLikeImageView: UIImageView!
 }

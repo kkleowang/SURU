@@ -100,6 +100,7 @@
                     <connections>
                         <outlet property="buttonBarView" destination="Ihe-QC-qsY" id="a0y-mc-s3W"/>
                         <outlet property="containerView" destination="Hrh-O6-nIG" id="gd6-VA-70L"/>
+                        <outlet property="scrollerView" destination="Hrh-O6-nIG" id="tvF-0T-89I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smB-P5-cAJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

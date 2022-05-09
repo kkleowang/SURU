@@ -18,6 +18,7 @@ class DiscoveryCell: UICollectionViewCell {
     weak var delegate: DiscoveryCellDelegate?
     var commentHolder: Comment?
     @IBOutlet weak var mainImageView: UIImageView!
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
@@ -42,6 +43,8 @@ class DiscoveryCell: UICollectionViewCell {
     
     
     func layoutCell(author: Account, comment: Comment, currentUser: Account, store: Store) {
+        mainImageView.clipsToBounds = true
+        mainImageView.layer.cornerRadius = 15
         commentHolder = comment
         if currentUser.likedComment.contains(comment.commentID) {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)

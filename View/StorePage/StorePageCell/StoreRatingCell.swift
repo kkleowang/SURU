@@ -42,9 +42,9 @@ class StoreRatingCell: UITableViewCell {
             rightLabel.textColor = .B1
             rightLabel.font = .medium(size: 14)
         } else {
-            leftLabel.text = String(data[0])
-            midLabel.text = String(data[1])
-            rightLabel.text = String(data[2])
+            leftLabel.text = String(data[0].ceiling(toDecimal: 1))
+            midLabel.text = String(data[1].ceiling(toDecimal: 1))
+            rightLabel.text = String(data[2].ceiling(toDecimal: 1))
         }
         
         

@@ -24,6 +24,12 @@ class DiscoveryViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        fetchAllData {
+            self.configData {
+                self.setupCollectionView()
+                self.collectionView.reloadData()
+            }
+        }
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
@@ -32,12 +38,7 @@ class DiscoveryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchAllData {
-            self.configData {
-                self.setupCollectionView()
-                self.collectionView.reloadData()
-            }
-        }
+        
     }
     private func configData(completion: @escaping () -> Void) {
         guard let user = currentAccount else { return }
@@ -104,9 +105,11 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
         if !filteredCommentData.isEmpty {
             let comment = filteredCommentData[indexPath.row]
             let store = storeData.first(where: {$0.storeID == comment.storeID}) ?? storeData[0]
-            let account = accountData.first(where: {$0.userID == comment.userID})
+            guard let account = accountData.first(where: {$0.userID == comment.userID}) else {
+                print("崩潰拉")
+                return cell }
             if let currentAccount = currentAccount {
-                cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: store)
+                cell.layoutCell(author: account, comment: comment, currentUser: currentAccount, store: store)
             }
         }
         
