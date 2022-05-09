@@ -94,7 +94,7 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         5
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: BadgeCell.self), for: indexPath) as? BadgeCell, let badgeRef = badgeRef else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: BadgeCell.self), for: indexPath) as? BadgeCell, let badgeRef = badgeRef else { return BadgeCell() }
         cell.badgeNameLabel.text = BadgeName[indexPath.section][indexPath.row]
         if badgeRef[indexPath.section][indexPath.row] == 0 {
             cell.layoutCell(image: UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0), text: BadgeName[indexPath.section][indexPath.row], textColor: .gray, waringText: BadgeWarning[indexPath.section][indexPath.row])

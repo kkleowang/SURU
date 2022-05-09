@@ -16,6 +16,7 @@ protocol EditProfileViewDelegate: AnyObject {
     func didEditWebSide(_ view: EditProfileView, text: String)
     func didEditBio(_ view: EditProfileView, text: String)
     func didTapEditImage(_ view: EditProfileView, alert: UIAlertController)
+    
 }
 class EditProfileView: UIView {
     weak var delegate: EditProfileViewDelegate?
@@ -76,6 +77,7 @@ class EditProfileView: UIView {
     
     func showAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+       
         alert.addAction(UIAlertAction(title: "移除目前的大頭貼照", style: .default , handler:{ (UIAlertAction)in
             LKProgressHUD.showSuccess(text: "修改成功")
             guard let image = UIImage(named: "AppIcon") else { return }

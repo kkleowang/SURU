@@ -51,6 +51,7 @@
 		B83E9598280EB670009DD17F /* StoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9597280EB670009DD17F /* StoreDataModel.swift */; };
 		B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9599280EB6C9009DD17F /* QueueReportDataModel.swift */; };
 		B83E959C280EC59D009DD17F /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E959B280EC59D009DD17F /* UIImageView+.swift */; };
+		B85592B628291E2500B1A920 /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85592B528291E2500B1A920 /* UIAlertController+.swift */; };
 		B85B63C5280D2CDD00621E4A /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C2280D2CDD00621E4A /* blue.json */; };
 		B85B63C6280D2CDD00621E4A /* orange.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C3280D2CDD00621E4A /* orange.json */; };
 		B85B63C7280D2CDD00621E4A /* yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C4280D2CDD00621E4A /* yellow.json */; };
@@ -183,6 +184,7 @@
 		B83E9597280EB670009DD17F /* StoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDataModel.swift; sourceTree = "<group>"; };
 		B83E9599280EB6C9009DD17F /* QueueReportDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueReportDataModel.swift; sourceTree = "<group>"; };
 		B83E959B280EC59D009DD17F /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		B85592B528291E2500B1A920 /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
 		B85B63C2280D2CDD00621E4A /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
 		B85B63C3280D2CDD00621E4A /* orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orange.json; sourceTree = "<group>"; };
 		B85B63C4280D2CDD00621E4A /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = yellow.json; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 				B83E959B280EC59D009DD17F /* UIImageView+.swift */,
 				B8DBDD4F28246D50008DC615 /* UICollectionView+.swift */,
 				B87D7262282560A400289283 /* Sequence+.swift */,
+				B85592B528291E2500B1A920 /* UIAlertController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -970,6 +973,7 @@
 				B83B19312827D99900686D16 /* StoreOpenTimeCell.swift in Sources */,
 				B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */,
 				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
+				B85592B628291E2500B1A920 /* UIAlertController+.swift in Sources */,
 				B8BBBE7E281D32AE001782F5 /* CollectViewController.swift in Sources */,
 				B83E9596280EB666009DD17F /* AccountDataModel.swift in Sources */,
 				B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */,

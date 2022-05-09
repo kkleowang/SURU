@@ -103,4 +103,20 @@ class CommentRequestProvider {
                     "myCommentLike": FieldValue.increment(Int64(-1))
                 ])
     }
+    
+    func addMessage(message: inout Message, tagertCommentID: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let commentDocment = database.collection("comments").document(tagertCommentID)
+        message.createdTime = Date().timeIntervalSince1970
+        
+        commentDocment.updateData([
+            "userComment": FieldValue.arrayUnion([message])
+        ]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("留言成功"))
+            }
+        }
+    }
+    
 }

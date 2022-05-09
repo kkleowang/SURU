@@ -9,7 +9,7 @@ import UIKit
 import CHTCollectionViewWaterfallLayout
 
 class ProfileViewController: UIViewController {
-    
+    var isLogin = true
     let profileView: ProfileView = UIView.fromNib()
     var currentUserData: Account?
     var currentUserComment: [Comment]?
@@ -18,8 +18,11 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "SURU檔案"
         addlistener()
+        if UserRequestProvider.shared.currentUser == nil {
+            isLogin = false
+        }
         fetchData {
-            guard let currentUserData = self.currentUserData else {return}
+            guard let currentUserData = self.currentUserData else { return }
             self.checkUserStatus()
             self.view.stickSubView(self.profileView)
             self.setupCollectionView()
@@ -61,9 +64,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell else {
-            return UICollectionViewCell()
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell else { return ProfileCommentCell() }
         guard let comment = currentUserComment else { return cell }
         cell.layoutCell(comment: comment[indexPath.item])
         return cell
@@ -103,7 +104,15 @@ extension ProfileViewController: ProfileViewDelegate {
     }
     func showAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
+        alert.popoverPresentationController?.sourceView = self.view
+                
+                let xOrigin = self.view.bounds.width / 2
+                
+                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+                
+        alert.popoverPresentationController?.sourceRect = popoverRect
+                
+        alert.popoverPresentationController?.permittedArrowDirections = .up
         alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction) in
             UserRequestProvider.shared.logOut()
             LKProgressHUD.showSuccess(text: "登出成功")
@@ -123,6 +132,7 @@ extension ProfileViewController: ProfileViewDelegate {
     }
     func showDestructiveAlert() {
         let alert = UIAlertController(title: "提示", message: "刪除帳號後資料永久不可復原，你確定要刪除帳號嗎？", preferredStyle: .alert)
+        
         let okAction = UIAlertAction(title: "再想想", style: .default) { _ in
             
         }
@@ -136,6 +146,7 @@ extension ProfileViewController: ProfileViewDelegate {
     }
     func showAuthAlert() {
         let alert = UIAlertController(title: "輸入密碼", message: nil, preferredStyle: .alert)
+        foriPad(alert: alert)
         alert.addTextField()
         alert.textFields![0].isSecureTextEntry = true
         let submitAction = UIAlertAction(title: "刪除帳號", style: .destructive) { [unowned alert] _ in
@@ -149,6 +160,17 @@ extension ProfileViewController: ProfileViewDelegate {
         alert.addAction(okAction)
         
         present(alert, animated: true)
+    }
+    func foriPad(alert: UIAlertController) {
+        alert.popoverPresentationController?.sourceView = self.view
+                
+                let xOrigin = self.view.bounds.width / 2
+                
+                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+                
+        alert.popoverPresentationController?.sourceRect = popoverRect
+                
+        alert.popoverPresentationController?.permittedArrowDirections = .up
     }
     func deleteAccount(password: String) {
         guard let userID = UserRequestProvider.shared.currentUserID else {
@@ -183,7 +205,10 @@ extension ProfileViewController {
         let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
         let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
         LKProgressHUD.show(text: "讀取使用者資訊中")
-        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        guard let userID = UserRequestProvider.shared.currentUserID else {
+            LKProgressHUD.showFailure(text: "未登入")
+            return
+        }
         group.enter()
         concurrentQueue1.async(group: group) {
             AccountRequestProvider.shared.fetchAccount(currentUserID: userID) { result in

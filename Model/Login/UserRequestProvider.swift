@@ -16,6 +16,7 @@ class UserRequestProvider {
     lazy var currentUserID = firebaseAuth.currentUser?.uid
     lazy var firebaseAuth = Auth.auth()
     
+    
     func nativeSignIn(withEmail email: String, withPassword password: String, completion: @escaping (Result<String, Error>) -> Void) {
         firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
             if let error = error {

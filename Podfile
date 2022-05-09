@@ -18,6 +18,7 @@ target 'SURU_Leo' do
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'Firebase/Crashlytics'
   pod 'SwiftLint'
   pod 'Cosmos', '~> 23.0'
   pod 'XLPagerTabStrip', '~> 9.0'

@@ -100,7 +100,7 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return DiscoveryCell() }
         cell.delegate = self
         if !filteredCommentData.isEmpty {
             let comment = filteredCommentData[indexPath.row]

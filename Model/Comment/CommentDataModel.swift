@@ -18,9 +18,15 @@ struct Comment: Codable {
     var createdTime: Double = 0
     var likedUserList: [String] = []
     var collectedUserList: [String] = []
+    var userComment: Message?
 }
 struct CommentContent: Codable {
     var happiness: Double
     var noodle: Double
     var soup: Double
+}
+struct Message: Codable {
+    var userID: String
+    var message: String
+    var createdTime: Double = 0
 }
