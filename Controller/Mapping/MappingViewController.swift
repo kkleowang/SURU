@@ -115,6 +115,7 @@ class MappingViewController: UIViewController {
         tagSelectionCollectionView.register(UINib(nibName: String(describing: TagCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TagCell.self))
         tagSelectionCollectionView.dataSource = self
         tagSelectionCollectionView.delegate = self
+        tagSelectionCollectionView.isHidden = true
         self.view.addSubview(tagSelectionCollectionView)
         tagSelectionCollectionView.translatesAutoresizingMaskIntoConstraints = false
         tagSelectionCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true

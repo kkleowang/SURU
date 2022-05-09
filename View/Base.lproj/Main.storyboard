@@ -121,7 +121,7 @@
                                         <rect key="frame" x="20" y="0.0" width="374" height="44"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ojd-af-CaU">
-                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="211" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJw-HI-GBE">
                                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -144,7 +144,16 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="long_like3" translatesAutoresizingMaskIntoConstraints="NO" id="cEq-LM-uxg">
+                                                        <rect key="frame" x="148.5" y="11" width="62.5" height="22"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="cEq-LM-uxg" secondAttribute="height" multiplier="1701:601" id="mOJ-zd-6jF"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="cEq-LM-uxg" firstAttribute="height" secondItem="Ojd-af-CaU" secondAttribute="height" multiplier="0.5" id="BlG-x3-5kh"/>
+                                                </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TF9-Um-IUR">
                                                 <rect key="frame" x="321" y="0.0" width="53" height="44"/>
@@ -187,6 +196,7 @@
                     <connections>
                         <outlet property="authorImageView" destination="ygS-Sx-ajo" id="Fsr-Ho-rqC"/>
                         <outlet property="authorNameLabel" destination="g6y-sd-dNb" id="0VG-8W-G1q"/>
+                        <outlet property="badgeImageView" destination="cEq-LM-uxg" id="uoQ-iR-kbn"/>
                         <outlet property="tableView" destination="5Jg-wf-AYA" id="bV3-ei-dhK"/>
                     </connections>
                 </viewController>
@@ -517,6 +527,7 @@
     <resources>
         <image name="DDD" width="480" height="479"/>
         <image name="Icons_44px_Back01" width="44" height="44"/>
+        <image name="long_like3" width="1701" height="601"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

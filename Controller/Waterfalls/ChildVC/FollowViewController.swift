@@ -109,10 +109,10 @@ extension FollowViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.delegate = self
         if !dataSourceComment.isEmpty {
         let comment = dataSourceComment[indexPath.row]
-        let store = storeData.first(where: {$0.storeID == comment.storeID})
+        let store = storeData.first(where: {$0.storeID == comment.storeID}) ?? storeData[0]
         let account = accountData.first(where: {$0.userID == comment.userID})
             if let currentAccount = currentAccount {
-        cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: storeData[0])
+        cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: store)
         }
         }
         
@@ -143,13 +143,28 @@ extension FollowViewController: CHTCollectionViewDelegateWaterfallLayout {
         //        commentData[indexPath.row].contentValue.happiness > 80
         
         let comment = dataSourceComment[indexPath.row]
-        let store = storeData.first(where: {$0.storeID == comment.storeID})
-        let text = "\(store?.name ?? "") - \(comment.meal ?? "")"
         
+        let store = storeData.first(where: {$0.storeID == comment.storeID})
+        let text = "\(store?.name ?? "") - \(comment.meal)"
+//
+//        if text.count > 12 {
+//            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
+//        } else {
+//            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
+//        }
+        let account = accountData.first(where: {$0.userID == comment.userID})?.badgeStatus ?? ""
         if text.count > 12 {
-            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
+            if account != "" {
+                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 335)
+            } else {
+                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
+            }
         } else {
-            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
+            if account != "" {
+                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 305)
+            } else {
+                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
+            }
         }
     }
 }

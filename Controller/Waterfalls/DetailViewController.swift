@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     var store: Store?
 //    var name: String?
     var timer = 0
+    @IBOutlet weak var badgeImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
@@ -48,6 +49,8 @@ class DetailViewController: UIViewController {
         guard let account = account else {
             return
         }
+        let badge = account.badgeStatus ?? "long1"
+        badgeImageView.image = UIImage(named: "long_\(badge)")
         authorNameLabel.text = account.name
         authorImageView.kf.setImage(with: URL(string: account.mainImage))
     }
@@ -63,7 +66,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 600
+            return 670
         } else {
             return 250
         }
