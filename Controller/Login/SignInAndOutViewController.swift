@@ -128,10 +128,8 @@ extension SignInAndOutViewController: ASAuthorizationControllerDelegate, ASAutho
     }
   }
   func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-    // Handle error.
     print("Sign in with Apple errored: \(error)")
   }
-
 }
 extension SignInAndOutViewController: SignInAndOutViewDelegate {
     func didTapSendButton(_ view: UIView, email: String, password: String) {

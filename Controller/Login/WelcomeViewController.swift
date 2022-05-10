@@ -9,27 +9,27 @@ import UIKit
 
 
 class WelcomeViewController: UIViewController {
-    let welcomeView: WelcomeView = .fromNib()
+    private let welcomeView: WelcomeView = .fromNib()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.stickSubView(welcomeView)
-        welcomeView.delegate = self
+        setupWelcomView()
     }
-    
-    func initSignView(state: SignPageState) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "SignInAndOutViewController") as? SignInAndOutViewController else { return }
+    private func setupWelcomView() {
+        welcomeView.delegate = self
+        view.stickSubView(welcomeView)
+    }
+    private func initSignView(state: SignPageState) {
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "SignInAndOutViewController") as? SignInAndOutViewController else { return }
         controller.pageState = state
         controller.layoutSignView()
         if #available(iOS 15.0, *) {
             if let sheet = controller.sheetPresentationController {
                 sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 20
-                
             }
         }
-        self.present(controller, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
 }
 
@@ -37,11 +37,10 @@ extension WelcomeViewController: WelcomeViewDelegate {
     func didTapSignUp(_ view: WelcomeView) {
         initSignView(state: .sighUp)
     }
-    
     func didTapLogIn(_ view: WelcomeView) {
         initSignView(state: .signIn)
     }
     func didTapVisetAsGuest(_ view: WelcomeView) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

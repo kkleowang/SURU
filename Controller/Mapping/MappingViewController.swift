@@ -66,6 +66,7 @@ class MappingViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if UserRequestProvider.shared.currentUserID == nil {
             isLogin = false
         }

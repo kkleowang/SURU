@@ -91,15 +91,12 @@ class StoreRequestProvider {
             }
             snapshot.documentChanges.forEach { diff in
                 if (diff.type == .added) {
-                    print("New city: \(diff.document.data())")
                     completion()
                 }
                 if (diff.type == .modified) {
-                    print("Modified city: \(diff.document.data())")
                     completion()
                 }
                 if (diff.type == .removed) {
-                    print("Removed city: \(diff.document.data())")
                     completion()
                 }
             }
