@@ -50,6 +50,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="MU3-jT-Nam" id="USd-sU-6cv"/>
+                <outlet property="iconImageView" destination="uUF-Sg-thI" id="u48-ic-PDB"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="70.982142857142847"/>
         </tableViewCell>

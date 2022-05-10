@@ -14,11 +14,11 @@ class TagsCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        self.layer.borderColor = UIColor.black.cgColor
-//        self.layer.borderWidth = 1
         self.layer.cornerRadius = 20 / 2.0
-//        self.backgroundColor = .C4
         self.tagLabel.textColor = .B6
+    }
+    func layoutForMeal() {
+        tagLabel.textColor = .B1
     }
 
 }
@@ -50,7 +50,7 @@ class TagFlowLayout: UICollectionViewFlowLayout {
         guard let attributes = super.layoutAttributesForElements(in: rect) else {
             return nil
         }
-
+        
         var rows = [Row]()
         var currentRowY: CGFloat = -1
         self.scrollDirection = .horizontal

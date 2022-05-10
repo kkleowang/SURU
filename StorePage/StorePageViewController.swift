@@ -48,7 +48,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 7
+            return 8
         } else {
             return commentData.count
         }
@@ -82,29 +82,43 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.register(UINib(nibName: String(describing: TagsCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TagsCell.self))
                 cell.collectionView.dataSource = self
                 cell.collectionView.delegate = self
+                cell.collectionView.showsHorizontalScrollIndicator = false
+                cell.collectionView.showsVerticalScrollIndicator = false
+                cell.collectionView.tag = 80
                 let layout = TagFlowLayout()
-                layout.estimatedItemSize = CGSize(width: 140, height: 40)
+                layout.estimatedItemSize = CGSize(width: 0, height: 40)
                 cell.collectionView.collectionViewLayout = layout
-//                cell.collectionView.collectionViewLayout.
-                
                 
                 return cell
             case 3:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return UITableViewCell() }
+                cell.collectionView.register(UINib(nibName: String(describing: TagsCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TagsCell.self))
+                cell.collectionView.dataSource = self
+                cell.collectionView.delegate = self
+                cell.collectionView.showsHorizontalScrollIndicator = false
+                cell.collectionView.showsVerticalScrollIndicator = false
+                cell.collectionView.tag = 90
+                let layout = TagFlowLayout()
+                layout.estimatedItemSize = CGSize(width: 0, height: 40)
+                cell.collectionView.collectionViewLayout = layout
+                cell.layoutForMealCell()
+                return cell
+            case 4:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return UITableViewCell() }
                 cell.layoutCell(localtion: storeData.address)
                 
                 return cell
-            case 4:
+            case 5:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreOpenTimeCell.identifier, for: indexPath) as? StoreOpenTimeCell else { return UITableViewCell() }
                 cell.layoutCell(openTime: storeData.opentime)
                 
                 return cell
-            case 5:
+            case 6:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return UITableViewCell() }
                 cell.layoutCell(seat: storeData.seat)
                 
                 return cell
-            case 6:
+            case 7:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreRatingCell.identifier, for: indexPath) as? StoreRatingCell else { return UITableViewCell() }
                 var soup: Double = 0
                 var noodle: Double = 0
@@ -147,7 +161,9 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                
                 return 50
             case 6:
-                return 200
+                return 50
+            case 7:
+                return 150
             default:
                 return 200
             }
@@ -211,19 +227,31 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let storeData = storeData else { return 0 }
-        return storeData.tags.count
+        if collectionView.tag == 80 {
+            return storeData.tags.count
+        } else {
+            return storeData.meals.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TagsCell.self),
                                                             for: indexPath) as? TagsCell else { return TagsCell() }
         guard let storeData = storeData else { return TagsCell() }
-        cell.tagLabel.text = storeData.tags[indexPath.row]
-        cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
-        
-        cell.backgroundColor = .C4
         
         
-        return cell
+        if collectionView.tag == 80 {
+            cell.tagLabel.text = storeData.tags[indexPath.row]
+            cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
+            cell.backgroundColor = .C4
+            return cell
+        } else {
+            cell.layoutForMeal()
+            cell.tagLabel.text = storeData.meals[indexPath.row]
+            cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
+            cell.backgroundColor = .C2
+            return cell
+        }
+        
     }
 }

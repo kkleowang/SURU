@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TagsCell" customModule="SURU_Leo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="161" height="72"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="161" height="72"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zY-Pb-cRF">
-                        <rect key="frame" x="10" y="22" width="30" height="50"/>
+                        <rect key="frame" x="10" y="22" width="141" height="72"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -32,10 +32,11 @@
                 <constraint firstItem="2zY-Pb-cRF" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="gaP-va-ZDb"/>
                 <constraint firstAttribute="trailing" secondItem="2zY-Pb-cRF" secondAttribute="trailing" constant="10" id="jlW-y6-4Sc"/>
             </constraints>
+            <size key="customSize" width="161" height="72"/>
             <connections>
                 <outlet property="tagLabel" destination="2zY-Pb-cRF" id="ofS-tk-CGH"/>
             </connections>
-            <point key="canvasLocation" x="132" y="104"/>
+            <point key="canvasLocation" x="65.94202898550725" y="111.16071428571428"/>
         </collectionViewCell>
     </objects>
 </document>

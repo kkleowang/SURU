@@ -66,7 +66,7 @@ class MappingViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        listenLoginState()
+        
         if UserRequestProvider.shared.currentUserID == nil {
             isLogin = false
         }
@@ -78,6 +78,7 @@ class MappingViewController: UIViewController {
         self.view.stickSubView(mapView)
         
         fetchData(isLogin: isLogin) {
+            self.listenLoginState()
             LKProgressHUD.showSuccess(text: "下載資料成功")
             self.setupSearchBar()
             self.setupMapView()
@@ -107,7 +108,7 @@ class MappingViewController: UIViewController {
         self.view.addSubview(storeCardCollectionView)
         storeCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
         storeCardCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        storeCardCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+        storeCardCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
         storeCardCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         storeCardCollectionView.heightAnchor.constraint(equalTo: storeCardCollectionView.widthAnchor, multiplier: 230/390).isActive = true
         storeCardCollectionView.backgroundColor = .clear
