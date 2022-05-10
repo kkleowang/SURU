@@ -6,28 +6,50 @@
 //
 
 import UIKit
+import Kingfisher
 
 class StorePageViewController: UIViewController {
-
+    var isCollected = false
+    var isLogin = false
     var commentData: [Comment] = []
     var storeData: Store?
-    var currentUser: Account?
-    
+    var currentUser: Account? {
+        didSet {
+            setTopView()
+        }
+    }
+    weak var delegate: SignInAndOutViewControllerDelegate?
+    let topView: StoreTopView = UIView.fromNib()
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.hidesBottomBarWhenPushed = true
+        setTopView()
+        registeCell()
         tableView.dataSource = self
         tableView.delegate = self
-        registeCell()
-//        tableView.backgroundColor = .C4
-        
         navigationController?.navigationBar.tintColor = .B1
-//        view.backgroundColor = .C4
-        // Do any additional setup after loading the view.
+    }
+    
+    func setTopView() {
+        topView.isHidden = true
+        topView.delegate = self
+        guard let storeData = storeData else { return }
+        if currentUser != nil {
+            isLogin = true
+            isCollected = currentUser!.collectedStore.contains(storeData.storeID)
+        } else {
+            isLogin = false
+            isCollected = false
+        }
+        navigationController?.navigationBar.stickSubView(topView, inset: UIEdgeInsets(top: 4, left: 40, bottom: 4, right: 0))
+        topView.layOutView(store: storeData, isCollect: isCollected, isLogin: isLogin)
     }
     override func viewWillAppear(_ animated: Bool) {
-
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        topView.isHidden = true
     }
     func registeCell() {
         tableView.lk_registerCellWithNib(identifier: StoreTitleCell.identifier, bundle: nil)
@@ -38,8 +60,8 @@ class StorePageViewController: UIViewController {
         tableView.lk_registerCellWithNib(identifier: StoreSeatsCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
     }
-
-
+    
+    
 }
 extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -54,20 +76,20 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+        
         guard let storeData = storeData else { return UITableViewCell() }
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTitleCell.identifier, for: indexPath) as? StoreTitleCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTitleCell.identifier, for: indexPath) as? StoreTitleCell else { return StoreTitleCell() }
                 cell.delegate = self
-                guard let user = currentUser else { return cell}
-                let isCollect = user.collectedStore.contains(storeData.storeID)
-                cell.layoutCell(store: storeData, isCollect: isCollect)
+                
+                
+                cell.layoutCell(store: storeData, isCollect: isCollected)
                 
                 return cell
             case 1:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return StoreImageCell() }
                 let sortedComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
                 if sortedComment.count > 3 {
                     cell.layoutCell(popular: sortedComment[0].mainImage, menu: sortedComment[1].mainImage, more: sortedComment.randomElement()?.mainImage)
@@ -78,7 +100,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
             case 2:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
                 cell.collectionView.register(UINib(nibName: String(describing: TagsCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TagsCell.self))
                 cell.collectionView.dataSource = self
                 cell.collectionView.delegate = self
@@ -86,12 +108,12 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 80
                 let layout = TagFlowLayout()
-                layout.estimatedItemSize = CGSize(width: 0, height: 40)
+                layout.estimatedItemSize = CGSize(width: 30, height: 30)
                 cell.collectionView.collectionViewLayout = layout
                 
                 return cell
             case 3:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
                 cell.collectionView.register(UINib(nibName: String(describing: TagsCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TagsCell.self))
                 cell.collectionView.dataSource = self
                 cell.collectionView.delegate = self
@@ -99,27 +121,27 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 90
                 let layout = TagFlowLayout()
-                layout.estimatedItemSize = CGSize(width: 0, height: 40)
+                layout.estimatedItemSize = CGSize(width: 30, height: 30)
                 cell.collectionView.collectionViewLayout = layout
                 cell.layoutForMealCell()
                 return cell
             case 4:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
                 cell.layoutCell(localtion: storeData.address)
                 
                 return cell
             case 5:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreOpenTimeCell.identifier, for: indexPath) as? StoreOpenTimeCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreOpenTimeCell.identifier, for: indexPath) as? StoreOpenTimeCell else { return StoreOpenTimeCell() }
                 cell.layoutCell(openTime: storeData.opentime)
                 
                 return cell
             case 6:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
                 cell.layoutCell(seat: storeData.seat)
                 
                 return cell
             case 7:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreRatingCell.identifier, for: indexPath) as? StoreRatingCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreRatingCell.identifier, for: indexPath) as? StoreRatingCell else { return StoreRatingCell() }
                 var soup: Double = 0
                 var noodle: Double = 0
                 var happy: Double = 0
@@ -146,7 +168,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 return 80
             case 1:
-               
+                
                 return UIScreen.width/1.5 - 20
             case 2:
                 
@@ -158,7 +180,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 return 50
             case 5:
-               
+                
                 return 50
             case 6:
                 return 50
@@ -171,31 +193,95 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             return 200
         }
     }
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath == IndexPath(row: 0, section: 0) {
+            topView.isHidden = false
+            print("ENDENDE")
+        }
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath == IndexPath(row: 0, section: 0) {
+            topView.isHidden = true
+        }
+    }
 }
 extension StorePageViewController: StoreTitleCellDelegate {
     func didtapUnCollectionButton(view: StoreTitleCell) {
-        guard let user = currentUser, let store = storeData else { return }
-        StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
-            switch result {
-            case .success(let message):
-                LKProgressHUD.showSuccess(text: message)
-            case .failure:
-                LKProgressHUD.showFailure(text: "更新失敗")
+        if isLogin {
+            guard let user = currentUser, let store = storeData else { return }
+            StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
+                switch result {
+                case .success(let message):
+                    LKProgressHUD.showSuccess(text: message)
+                case .failure:
+                    LKProgressHUD.showFailure(text: "更新失敗")
+                }
             }
+        } else {
+            showAlert()
         }
     }
     
     func didtapCollectionButton(view: StoreTitleCell) {
+        if isLogin {
+            guard let user = currentUser, let store = storeData else { return }
+            StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
+                switch result {
+                case .success(let message):
+                    LKProgressHUD.showSuccess(text: message)
+                case .failure:
+                    LKProgressHUD.showFailure(text: "更新失敗")
+                }
+            }
+        } else {
+            showAlert()
+        }
+    }
+}
+extension StorePageViewController: StoreTopViewDelegate {
+    func didTapCollect(_ view: StoreTopView, storeID: String) {
         guard let user = currentUser, let store = storeData else { return }
-        StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
-            switch result {
-            case .success(let message):
-                LKProgressHUD.showSuccess(text: message)
-            case .failure:
-                LKProgressHUD.showFailure(text: "更新失敗")
+        if isCollected {
+            StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
+                switch result {
+                case .success(let message):
+                    LKProgressHUD.showSuccess(text: message)
+                case .failure:
+                    LKProgressHUD.showFailure(text: "更新失敗")
+                }
+            }
+        } else {
+            StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
+                switch result {
+                case .success(let message):
+                    LKProgressHUD.showSuccess(text: message)
+                case .failure:
+                    LKProgressHUD.showFailure(text: "更新失敗")
+                }
             }
         }
     }
+    
+    func didTapCollectWhenNotLogin(_ view: StoreTopView) {
+        showAlert()
+    }
+    func showAlert() {
+        let alert = UIAlertController(title: "提示", message: "登入後就能收藏店家囉！", preferredStyle: .alert)
+        let login = UIAlertAction(title: "登入", style: .cancel) { _ in
+            self.presentWelcomePage()
+        }
+        let notLogin = UIAlertAction(title: "下次一定", style: .default, handler: nil)
+        alert.addAction(login)
+        alert.addAction(notLogin)
+        present(alert, animated: true, completion: nil)
+    }
+    func presentWelcomePage() {
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
+        controller.delegate = delegate
+        self.present(controller, animated: true, completion: nil)
+    }
+    
+    
 }
 extension StorePageViewController: StoreImageCellDelegate {
     func didTapPopularImage(_ view: StoreImageCell, image: UIImage) {
@@ -218,6 +304,7 @@ extension StorePageViewController: StoreImageCellDelegate {
     @objc func dissmiss(sender: UITapGestureRecognizer) {
         sender.view?.removeFromSuperview()
     }
+    
     
 }
 extension StorePageViewController:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

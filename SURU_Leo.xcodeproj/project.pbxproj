@@ -114,6 +114,8 @@
 		B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CD43822818F0E900D2BCCE /* WelcomeView.xib */; };
 		B8CD43852818F13100D2BCCE /* SignInAndOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD43842818F13100D2BCCE /* SignInAndOutView.swift */; };
 		B8CD43872818F17400D2BCCE /* SignInAndOutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CD43862818F17400D2BCCE /* SignInAndOutView.xib */; };
+		B8D0671B282A74EC00BF74D2 /* StoreTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0671A282A74EC00BF74D2 /* StoreTopView.swift */; };
+		B8D0671D282A74FA00BF74D2 /* StoreTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8D0671C282A74FA00BF74D2 /* StoreTopView.xib */; };
 		B8DA6E722823747200868381 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA6E712823747200868381 /* EditProfileViewController.swift */; };
 		B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DA6E7C2823B6A100868381 /* EditProfileView.xib */; };
 		B8DA6E7F2823B7C700868381 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA6E7E2823B7C700868381 /* EditProfileView.swift */; };
@@ -248,6 +250,8 @@
 		B8CD43822818F0E900D2BCCE /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		B8CD43842818F13100D2BCCE /* SignInAndOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndOutView.swift; sourceTree = "<group>"; };
 		B8CD43862818F17400D2BCCE /* SignInAndOutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInAndOutView.xib; sourceTree = "<group>"; };
+		B8D0671A282A74EC00BF74D2 /* StoreTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTopView.swift; sourceTree = "<group>"; };
+		B8D0671C282A74FA00BF74D2 /* StoreTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreTopView.xib; sourceTree = "<group>"; };
 		B8DA6E712823747200868381 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B8DA6E7C2823B6A100868381 /* EditProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
 		B8DA6E7E2823B7C700868381 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 				B83B19172827D87E00686D16 /* StorePageViewController.xib */,
 				B83B1943282834D400686D16 /* fullScreenImageView.xib */,
 				B83B19452828353C00686D16 /* fullScreenImageView.swift */,
+				B8D0671A282A74EC00BF74D2 /* StoreTopView.swift */,
+				B8D0671C282A74FA00BF74D2 /* StoreTopView.xib */,
 			);
 			path = StorePage;
 			sourceTree = "<group>";
@@ -826,6 +832,7 @@
 				B8BD5F9E28207F4B00A1C138 /* CommentStoreCell.xib in Resources */,
 				B83B192E2827D98A00686D16 /* StoreLocaltionCell.xib in Resources */,
 				B83B191E2827D91500686D16 /* StoreTitleCell.xib in Resources */,
+				B8D0671D282A74FA00BF74D2 /* StoreTopView.xib in Resources */,
 				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
 				B83B1944282834D400686D16 /* fullScreenImageView.xib in Resources */,
 				B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */,
@@ -1000,6 +1007,7 @@
 				B85592B8282A370200B1A920 /* WebView.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */,
+				B8D0671B282A74EC00BF74D2 /* StoreTopView.swift in Sources */,
 				B814DF312810741900176C13 /* ref.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
 				B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */,

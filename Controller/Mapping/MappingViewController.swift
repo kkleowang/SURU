@@ -318,7 +318,7 @@ extension MappingViewController: MKMapViewDelegate {
         let viewSize = 50.0
         let imageView: UIImageView = {
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: viewSize, height: viewSize))
-            imageView.layer.cornerRadius = viewSize/2
+            imageView.layer.cornerRadius = viewSize / 2
             imageView.layer.borderWidth = 2.0
             imageView.layer.borderColor = UIColor.white.cgColor
             imageView.contentMode = .scaleAspectFill

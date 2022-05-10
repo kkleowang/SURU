@@ -261,7 +261,9 @@
                         <viewLayoutGuide key="safeArea" id="b82-EU-15Q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Y0g-eq-7W4"/>
+                    <navigationItem key="navigationItem" id="Y0g-eq-7W4">
+                        <barButtonItem key="backBarButtonItem" title=" " id="aAI-FA-8EV"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jDN-0j-ke6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
