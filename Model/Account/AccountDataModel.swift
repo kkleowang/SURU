@@ -24,13 +24,5 @@ struct Account: Codable {
     var bio: String? = "nothing here."
     var websideLink: String?
     var loginHistory: [String]? = []
-    var badgeStatus: String? = "login1"
+    var badgeStatus: String?
 }
-//struct LikeComment: Codable {
-//    var likeComment: String
-//    var createdTime: Double
-//}
-//struct CollectComment: Codable {
-//    var collectComment: String
-//    var createdTime: Double
-//}

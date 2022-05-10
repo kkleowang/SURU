@@ -66,7 +66,7 @@ class MappingViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        listenLoginState()
         if UserRequestProvider.shared.currentUserID == nil {
             isLogin = false
         }
@@ -144,6 +144,28 @@ class MappingViewController: UIViewController {
                 self.storeCardCollectionView.reloadData()
             case .failure(let error) :
                 print("下載商店資料失敗", error)
+            }
+        }
+    }
+    private func listenLoginState() {
+        UserRequestProvider.shared.listenFirebaseLogin { userID in
+            if let userID = userID {
+                self.isLogin = true
+                AccountRequestProvider.shared.fetchAccount(currentUserID: userID) { result in
+                    switch result {
+                    case .success(let data) :
+                        self.currentUser = data
+                        self.storeCardCollectionView.reloadData()
+                    case .failure(let error) :
+                        print("載入使用者失敗", error)
+                        LKProgressHUD.dismiss()
+                        LKProgressHUD.showFailure(text: "載入使用者失敗")
+                    }
+                }
+                
+            } else {
+                self.isLogin = false
+                self.storeCardCollectionView.reloadData()
             }
         }
     }
@@ -416,24 +438,28 @@ extension MappingViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: StoreCardsCell.self), for: indexPath) as? StoreCardsCell else { return StoreCardsCell() }
             
             cell.delegate = self
+            
             var isCollect: Bool? = false
             if isSearchResults {
-                if currentUser != nil {
-                    isCollect = filteredStoreData[indexPath.row].collectedUser?.contains(currentUser!.userID)
+                if isLogin {
+                    guard let currentUser = currentUser else { return cell }
+                    isCollect = filteredStoreData[indexPath.row].collectedUser?.contains(currentUser.userID)
                 } else {
                     isCollect = false
                 }
                 
-                cell.layoutCardView(dataSource: filteredStoreData[indexPath.row], commentData: commentOfFilteredStore[indexPath.row], isCollect: isCollect)
+                cell.layoutCardView(dataSource: filteredStoreData[indexPath.row], commentData: commentOfFilteredStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
                 return cell
             } else {
-                if currentUser != nil {
-                    isCollect = storeData[indexPath.row].collectedUser?.contains(currentUser!.userID)
+                if isLogin {
+                    guard let currentUser = currentUser else { return cell }
+                    isCollect = storeData[indexPath.row].collectedUser?.contains(currentUser.userID)
+                    isLogin = true
                 } else {
                     isCollect = false
                 }
                 
-                cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], isCollect: isCollect)
+                cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
                 return cell
             }
         }
@@ -535,6 +561,7 @@ extension MappingViewController {
     }
     
     @objc private func dragAction(gesture: UIPanGestureRecognizer) {
+        
         let moveState = gesture.state
         switch moveState {
         case .began:
@@ -682,6 +709,22 @@ extension MappingViewController: UISearchBarDelegate {
     }
 }
 extension MappingViewController: StoreCardsCellDelegate {
+    func didtapCollectionWhenNotLogin(view: StoreCardsCell) {
+        let alert = UIAlertController(title: "提示", message: "你還沒有登入喔！", preferredStyle: .alert)
+        let login = UIAlertAction(title: "登入", style: .cancel) { _ in
+            self.presentWelcomePage()
+        }
+        let notLogin = UIAlertAction(title: "下次一定", style: .default, handler: nil)
+        alert.addAction(login)
+        alert.addAction(notLogin)
+        present(alert, animated: true, completion: nil)
+
+    }
+    func presentWelcomePage() {
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
+        controller.delegate = self
+        self.present(controller, animated: true, completion: nil)
+    }
     func didtapCollectionButton(view: StoreCardsCell, storeID: String) {
         guard let user = currentUser else { return }
         StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
@@ -707,8 +750,12 @@ extension MappingViewController: StoreCardsCellDelegate {
             }
         }
     }
-    
-    
+}
+
+extension MappingViewController: SignInAndOutViewControllerDelegate {
+    func didSelectGoEditProfile(_ view: SignInAndOutViewController) {
+        self.tabBarController?.selectedIndex = 3
+    }
     
     
 }

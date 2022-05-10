@@ -13,6 +13,7 @@ import Kingfisher
 protocol StoreCardsCellDelegate: AnyObject {
     func didtapCollectionButton(view: StoreCardsCell, storeID: String)
     func didtapUnCollectionButton(view: StoreCardsCell, storeID: String)
+    func didtapCollectionWhenNotLogin(view: StoreCardsCell)
 }
 class StoreCardsCell: UICollectionViewCell {
     weak var delegate: StoreCardsCellDelegate?
@@ -38,11 +39,14 @@ class StoreCardsCell: UICollectionViewCell {
     
     @IBOutlet weak private var collectButton: UIButton!
     @IBAction func tapCollectButton(_ sender: UIButton) {
+        guard let userIsLogin = userIsLogin else { return }
+        if !userIsLogin {
+            self.delegate?.didtapCollectionWhenNotLogin(view: self)
+        } else {
         guard let image = sender.image(for: .normal) else { return }
         guard let storeData = storeData else { return }
         guard let commentsData = commentsData else { return }
         if image == UIImage(named: "collect.fill") {
-            
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
             followerLabel.text = "\(storeData.collectedUser?.count ?? 1 - 1) 人收藏, 共\(commentsData.count) 則食記"
             self.delegate?.didtapUnCollectionButton(view: self, storeID: storeData.storeID)
@@ -53,12 +57,14 @@ class StoreCardsCell: UICollectionViewCell {
             followerLabel.text = "\(storeData.collectedUser?.count ?? 0 + 1) 人收藏, 共\(commentsData.count) 則食記"
             self.delegate?.didtapCollectionButton(view: self, storeID: storeData.storeID)
         }
+        }
     }
     var storeData: Store?
     var commentsData: [Comment]?
-    
-    func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool?) {
+    var userIsLogin: Bool?
+    func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool?, isLogin: Bool) {
         guard let isCollect = isCollect else { return }
+        userIsLogin = isLogin
         self.contentView.makeShadow()
         self.contentView.clipsToBounds = true
         storeData = dataSource

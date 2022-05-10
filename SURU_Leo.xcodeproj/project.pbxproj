@@ -52,6 +52,7 @@
 		B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9599280EB6C9009DD17F /* QueueReportDataModel.swift */; };
 		B83E959C280EC59D009DD17F /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E959B280EC59D009DD17F /* UIImageView+.swift */; };
 		B85592B628291E2500B1A920 /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85592B528291E2500B1A920 /* UIAlertController+.swift */; };
+		B85592B8282A370200B1A920 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85592B7282A370200B1A920 /* WebView.swift */; };
 		B85B63C5280D2CDD00621E4A /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C2280D2CDD00621E4A /* blue.json */; };
 		B85B63C6280D2CDD00621E4A /* orange.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C3280D2CDD00621E4A /* orange.json */; };
 		B85B63C7280D2CDD00621E4A /* yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C4280D2CDD00621E4A /* yellow.json */; };
@@ -185,6 +186,7 @@
 		B83E9599280EB6C9009DD17F /* QueueReportDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueReportDataModel.swift; sourceTree = "<group>"; };
 		B83E959B280EC59D009DD17F /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		B85592B528291E2500B1A920 /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
+		B85592B7282A370200B1A920 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		B85B63C2280D2CDD00621E4A /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
 		B85B63C3280D2CDD00621E4A /* orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orange.json; sourceTree = "<group>"; };
 		B85B63C4280D2CDD00621E4A /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = yellow.json; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			children = (
 				B8CD43802818EF0600D2BCCE /* WelcomeViewController.swift */,
 				B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */,
+				B85592B7282A370200B1A920 /* WebView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -722,9 +725,9 @@
 		B8EC70062805290F00DA8B78 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B83B19152827D85600686D16 /* StorePage */,
 				B830608D28015A9D002558BE /* Main.storyboard */,
 				B830609228015A9E002558BE /* LaunchScreen.storyboard */,
+				B83B19152827D85600686D16 /* StorePage */,
 				B8EC7002280528F000DA8B78 /* LottieFile */,
 				B8CD437B2818E8D600D2BCCE /* Login */,
 				B8A00350280B043A00A64750 /* Mapping */,
@@ -994,6 +997,7 @@
 				B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */,
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
+				B85592B8282A370200B1A920 /* WebView.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */,
 				B814DF312810741900176C13 /* ref.swift in Sources */,

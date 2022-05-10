@@ -7,70 +7,94 @@
 
 import Foundation
 import UIKit
-import AuthenticationServices
 
 protocol SignInAndOutViewDelegate: AnyObject {
     func didTapSendButton(_ view: UIView, email: String, password: String)
-    func didTapAppleButton(_ view: UIView)
-    func didTapForgotPasswordButton(_ view: UIView)
+   
+    func didGotWrongInput(_ view: UIView, message: String)
+    
+    
 }
 
 class SignInAndOutView: UIView {
-    
     weak var delegate: SignInAndOutViewDelegate?
-    
-    @IBOutlet weak var appleButtonView: UIView!
+    var status: SignPageState?
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordCheckTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
     @IBAction func tapSendButton(_ sender: UIButton) {
-        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+        guard let status = status else { return }
+        
+        guard let email = emailTextField.text else {
+            self.delegate?.didGotWrongInput(self, message: "請輸入Email。")
+            return
+        }
+        guard let password = passwordTextField.text else {
+            self.delegate?.didGotWrongInput(self, message: "請輸入密碼。")
+            return
+        }
+        guard let passwordCheck = passwordCheckTextField.text else {
+            self.delegate?.didGotWrongInput(self, message: "請再次輸入你的密碼。")
+            return
+        }
+        
+        
+        if status == .sighUp {
+            if !isValidEmail(email) {
+                self.delegate?.didGotWrongInput(self, message: "請輸入正確的Email。")
+                emailTextField.textColor = .red
+                return
+            }
+            if password.count < 6 {
+                
+                self.delegate?.didGotWrongInput(self, message: "密碼最少需要六個字以上。")
+                passwordTextField.textColor = .red
+                return
+            }
+            if password != passwordCheck {
+                self.delegate?.didGotWrongInput(self, message: "密碼不一致。")
+                passwordCheckTextField.textColor = .red
+                return
+            } else {
+                if !isValidEmail(email) {
+                    self.delegate?.didGotWrongInput(self, message: "Email無效。")
+                    emailTextField.textColor = .red
+                    return
+                }
+                if password.count < 6 {
+                    self.delegate?.didGotWrongInput(self, message: "密碼最少需要六個字以上喔！")
+                    passwordTextField.textColor = .red
+                    return
+                }
+            }
+        }
         self.delegate?.didTapSendButton(self, email: email, password: password)
     }
     @IBAction func tapForgotButton(_ sender: UIButton) {
-        self.delegate?.didTapForgotPasswordButton(self)
     }
     func layoutSignInPage() {
+        status = .signIn
+        forgotPasswordButton.isHidden = true
         passwordCheckTextField.isHidden = true
         sendButton.setTitle("登入", for: .normal)
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        passwordTextField.isEnabled = false
-        let appleButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
-        appleButton.addTarget(self, action: #selector(tapAppleButton), for: .touchUpInside)
-        appleButtonView.stickSubView(appleButton)
-        
     }
     func layoutSignUpPage() {
+        status = .sighUp
+        forgotPasswordButton.isHidden = true
         forgotPasswordButton.isHidden = true
         sendButton.setTitle("註冊", for: .normal)
         emailTextField.delegate = self
         passwordTextField.delegate = self
         passwordCheckTextField.delegate = self
-        passwordTextField.isEnabled = false
         passwordCheckTextField.isEnabled = false
-        if #available(iOS 13.2, *) {
-            let appleButton = ASAuthorizationAppleIDButton(type: .signUp, style: .black)
-            appleButton.addTarget(self, action: #selector(tapAppleButton), for: .touchUpInside)
-            appleButtonView.stickSubView(appleButton)
-        } else {
-            let appleButton = ASAuthorizationAppleIDButton(type: .continue, style: .black)
-            appleButton.addTarget(self, action: #selector(tapAppleButton), for: .touchUpInside)
-            appleButtonView.stickSubView(appleButton)
-        }
-       
-        
-        
     }
     
-    
-    
-    @objc private func tapAppleButton() {
-        self.delegate?.didTapAppleButton(self)
-    }
     
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -81,37 +105,12 @@ class SignInAndOutView: UIView {
 }
 extension SignInAndOutView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == emailTextField {
-            guard let email = textField.text else { return }
-            if isValidEmail(email) {
-                passwordTextField.isEnabled = true
-                emailTextField.textColor = .black
-            } else {
-                emailTextField.textColor = .red
-            }
-        } else if textField == passwordTextField {
-            guard let password = textField.text else { return }
-            if password.count >= 6 {
-                passwordTextField.textColor = .black
-                if sendButton.currentTitle == "註冊" {
-                    passwordCheckTextField.isEnabled = true
-                } else {
-                    sendButton.isEnabled = true
-                }
-            } else {
-                sendButton.isEnabled = false
-                passwordTextField.textColor = .red
-            }
-        } else if textField == passwordCheckTextField {
-            guard let passwordCheck = textField.text else { return }
-            guard let password = passwordTextField.text else { return }
-            if password == passwordCheck {
-                passwordCheckTextField.textColor = .black
-                sendButton.isEnabled = true
-            } else {
-                passwordCheckTextField.textColor = .red
-                sendButton.isEnabled = false
-            }
+        
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == passwordTextField {
+            passwordCheckTextField.isEnabled = true
         }
+        textField.textColor = .B1
     }
 }

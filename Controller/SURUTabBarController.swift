@@ -86,7 +86,8 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserRequestProvider.shared.listenForAuthState()
+        UserRequestProvider.shared.listenFirebaseLogin { _ in
+        }
         
         self.tabBar.tintColor = .C1
         
@@ -121,17 +122,18 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         case .profile:
             message = "登入編輯你的SURU檔案！"
         }
-        let alert = UIAlertController(title: "登入提示", message: message, preferredStyle: .alert)
-        let login = UIAlertAction(title: "登入", style: .default) { _ in
+        let alert = UIAlertController(title: "提示", message: message, preferredStyle: .alert)
+        let login = UIAlertAction(title: "登入", style: .cancel) { _ in
             self.presentWelcomePage()
         }
-        let notLogin = UIAlertAction(title: "下次一定", style: .cancel, handler: nil)
+        let notLogin = UIAlertAction(title: "下次一定", style: .default, handler: nil)
         alert.addAction(login)
         alert.addAction(notLogin)
         present(alert, animated: true, completion: nil)
     }
     func presentWelcomePage() {
-        let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController")
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
+        controller.delegate = self
         self.present(controller, animated: true, completion: nil)
     }
     func tabBarController(
@@ -159,5 +161,11 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             }
             
         }
+    }
+    
+}
+extension SURUTabBarViewController: SignInAndOutViewControllerDelegate {
+    func didSelectGoEditProfile(_ view: SignInAndOutViewController) {
+        selectedIndex = 3
     }
 }
