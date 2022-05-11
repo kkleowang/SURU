@@ -80,7 +80,7 @@ class EditProfileView: UIView {
        
         alert.addAction(UIAlertAction(title: "移除目前的大頭貼照", style: .default , handler:{ (UIAlertAction)in
             LKProgressHUD.showSuccess(text: "修改成功")
-            guard let image = UIImage(named: "AppIcon") else { return }
+            guard let image = UIImage(named: "mainImage") else { return }
             self.mainImageView.image = image
             self.delegate?.didSelectImage(self, image: image)
         }))

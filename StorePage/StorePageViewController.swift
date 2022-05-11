@@ -25,6 +25,7 @@ class StorePageViewController: UIViewController {
     }
     var currentUser: Account? {
         didSet {
+            configLoginStatus()
             setTopView()
         }
     }
@@ -33,17 +34,32 @@ class StorePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUserData()
-        self.navigationController?.hidesBottomBarWhenPushed = true
+        configLoginStatus()
         setTopView()
-        registeCell()
-        tableView.dataSource = self
-        tableView.delegate = self
+        setupTableView()
+        
+        navigationController?.hidesBottomBarWhenPushed = true
         navigationController?.navigationBar.tintColor = .B1
     }
-
+    func listenAuth() {
+        UserRequestProvider.shared.listenFirebaseLoginSendAccount { result in
+            switch result {
+            case .success(let data):
+                self.currentUser = data
+            case .failure(let error):
+                LKProgressHUD.showFailure(text: error.localizedDescription)
+            }
+        }
+    }
     func setTopView() {
         topView.isHidden = true
         topView.delegate = self
+        guard let storeData = storeData else { return }
+        
+        navigationController?.navigationBar.stickSubView(topView, inset: UIEdgeInsets(top: 4, left: 40, bottom: 4, right: 0))
+        topView.layOutView(store: storeData, isCollect: isCollected, isLogin: isLogin)
+    }
+    func configLoginStatus() {
         guard let storeData = storeData else { return }
         if currentUser != nil {
             isLogin = true
@@ -52,8 +68,6 @@ class StorePageViewController: UIViewController {
             isLogin = false
             isCollected = false
         }
-        navigationController?.navigationBar.stickSubView(topView, inset: UIEdgeInsets(top: 4, left: 40, bottom: 4, right: 0))
-        topView.layOutView(store: storeData, isCollect: isCollected, isLogin: isLogin)
     }
     override func viewWillAppear(_ animated: Bool) {
 
@@ -62,17 +76,16 @@ class StorePageViewController: UIViewController {
         topView.isHidden = true
     }
 
-    func registeCell() {
+    func setupTableView() {
         tableView.backgroundColor = .B6
-//        tableView.layer.cornerRadius = 10
-//        tableView.clipsToBounds = true
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.lk_registerCellWithNib(identifier: StoreTitleCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreImageCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreTagsCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreLocaltionCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreOpenTimeCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreCommentCell.identifier, bundle: nil)
-//        tableView.lk_registerCellWithNib(identifier: StoreSeatsCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
     }
     func fetchUserData() {
@@ -80,7 +93,7 @@ class StorePageViewController: UIViewController {
             switch result {
             case .success(let data):
                 self.UserData = data
-            case .failure(let error):
+            case .failure:
                 LKProgressHUD.showFailure(text: "載入用戶資料失敗/n請退出重試")
             }
         }
@@ -113,7 +126,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return StoreImageCell() }
                 let sortedComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
-                var imageArray = ["AppIcon", "AppIcon", "AppIcon"]
+                var imageArray = ["noData", "noData", "noData"]
                 for i in 0..<sortedComment.count {
                         imageArray[i] = sortedComment[i].mainImage
                     if i == 2{
@@ -135,7 +148,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 80
                 let layout = TagFlowLayout()
-                layout.estimatedItemSize = CGSize(width: 30, height: 30)
+                layout.estimatedItemSize = CGSize(width: 140, height: 40)
                 cell.collectionView.collectionViewLayout = layout
 
                 return cell
@@ -148,7 +161,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 90
                 let layout = TagFlowLayout()
-                layout.estimatedItemSize = CGSize(width: 30, height: 30)
+                layout.estimatedItemSize = CGSize(width: 140, height: 40)
                 cell.collectionView.collectionViewLayout = layout
                 cell.layoutForMealCell()
                 return cell
@@ -240,6 +253,13 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
+            
+            if isCollected {
+                    topView.collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
+                } else {
+                    topView.collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
+                }
+            
             topView.isHidden = false
             print("ENDENDE")
         }
@@ -253,7 +273,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
 extension StorePageViewController: StoreTitleCellDelegate {
     func didtapCollectionButton(view: StoreTitleCell) {
         guard let user = currentUser, let store = storeData else { return }
-        
+        isCollected = true
         StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
             switch result {
             case .success(let message):
@@ -264,6 +284,7 @@ extension StorePageViewController: StoreTitleCellDelegate {
         }
     }
     func didtapUnCollectionButton(view: StoreTitleCell) {
+        isCollected = false
         guard let user = currentUser, let store = storeData else { return }
         StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
             switch result {
@@ -281,7 +302,7 @@ extension StorePageViewController: StoreTitleCellDelegate {
 extension StorePageViewController: StoreTopViewDelegate {
     func didtapCollectionButton(_ view: StoreTopView) {
         guard let user = currentUser, let store = storeData else { return }
-        
+        isCollected = true
         StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
             switch result {
             case .success(let message):
@@ -293,6 +314,7 @@ extension StorePageViewController: StoreTopViewDelegate {
     }
     
     func didtapUnCollectionButton(_ view: StoreTopView) {
+        isCollected = false
         guard let user = currentUser, let store = storeData else { return }
         StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
             switch result {
@@ -314,6 +336,7 @@ extension StorePageViewController: StoreTopViewDelegate {
         controller.delegate = self
         self.present(controller, animated: true, completion: nil)
     }
+    
 }
 extension StorePageViewController: StoreImageCellDelegate {
     func didTapPopularImage(_ view: StoreImageCell, image: UIImage) {
@@ -339,7 +362,7 @@ extension StorePageViewController: StoreImageCellDelegate {
 
 
 }
-extension StorePageViewController:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension StorePageViewController:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -373,31 +396,88 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
         }
 
     }
+    func showAlert(targetUser: String?) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = self.view
+                
+                let xOrigin = self.view.bounds.width / 2
+                
+                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+                
+        alert.popoverPresentationController?.sourceRect = popoverRect
+                
+        alert.popoverPresentationController?.permittedArrowDirections = .up
+        alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }
+            AccountRequestProvider.shared.blockAccount(currentUserID: userID, tagertUserID: targetUser)
+            LKProgressHUD.showFailure(text: "成功封鎖用戶")
+            self.commentData = self.commentData.filter({
+                if $0.userID != targetUser {
+                    return true
+                } else {
+                    return false
+                }
+            })
+        }))
+        tableView.reloadSections([1], with: .automatic)
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+    }
+    
 }
 extension StorePageViewController: StoreCommentCellDelegate {
     func didtapAuthor(_ view: StoreCommentCell, targetUserID: String?) {
-        print("didtapAuthor")
+        if UserRequestProvider.shared.currentUser != nil {
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
+            if targetUser != userID {
+            showAlert(targetUser: targetUserID)
+            } else {
+                navigationController?.tabBarController?.selectedIndex = 3
+            }
+        } else {
+            presentWelcomePage()
+        }
     }
     
     func didtapLike(_ view: StoreCommentCell, targetComment: Comment?, isLogin: Bool, isLike: Bool) {
-        if isLogin {
-            
+        if UserRequestProvider.shared.currentUser != nil {
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetComment = targetComment else { return }
+            if isLike {
+                CommentRequestProvider.shared.likeComment(currentUserID: userID, tagertComment: targetComment)
+            } else {
+                CommentRequestProvider.shared.unLikeComment(currentUserID: userID, tagertComment: targetComment)
+            }
         } else {
             presentWelcomePage()
         }
     }
     
     func didtapfollow(_ view: StoreCommentCell, targetUserID: String?, isLogin: Bool, isFollow: Bool) {
-        if isLogin {
-            
+        if UserRequestProvider.shared.currentUser != nil {
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUserID = targetUserID else { return }
+            if isFollow {
+                AccountRequestProvider.shared.followAccount(currentUserID: userID, tagertUserID: targetUserID)
+            } else {
+                AccountRequestProvider.shared.unfollowAccount(currentUserID: userID, tagertUserID: targetUserID)
+            }
         } else {
             presentWelcomePage()
         }
     }
     
     func didtapMore(_ view: StoreCommentCell, targetUserID: String?, isLogin: Bool) {
-        if isLogin {
-            
+        if UserRequestProvider.shared.currentUser != nil {
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
+            if targetUser != userID {
+            showAlert(targetUser: targetUserID)
+            } else {
+                navigationController?.tabBarController?.selectedIndex = 3
+            }
         } else {
             presentWelcomePage()
         }

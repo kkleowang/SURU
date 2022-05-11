@@ -43,8 +43,7 @@ class ProfileView: UIView {
     }
     func layoutView(account: Account) {
         let web = account.websideLink ?? ""
-        
-        
+        webLikeImageView.tintColor = .B1
         if web != "" {
             webLink = URL(string: web)
             let tap = UITapGestureRecognizer(target: self, action: #selector(linkWeb))
@@ -65,8 +64,12 @@ class ProfileView: UIView {
         follwingCountLabel.text = String(account.followedUser.count)
         nameLabel.text = account.name
         bioLabel.text = account.bio
-        guard let badge = account.badgeStatus else { return }
-        badgeImageView.image = UIImage(named: "long_\(badge)")
+        let badge = account.badgeStatus ?? ""
+        if badge == "" {
+            badgeImageView.isHidden = true
+        } else {
+            badgeImageView.image = UIImage(named: "long_\(badge)")
+        }
         let tap = UITapGestureRecognizer(target: self, action: #selector(initBadge))
         badgeImageView.isUserInteractionEnabled = true
         badgeImageView.addGestureRecognizer(tap)

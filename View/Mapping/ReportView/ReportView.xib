@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,7 +33,8 @@
                 </segmentedControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ozy-DE-CK7">
                     <rect key="frame" x="341" y="208" width="53" height="31"/>
-                    <color key="backgroundColor" red="0.92549019610000005" green="0.83529411760000005" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="C4"/>
+                    <color key="tintColor" name="B1"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="送出"/>
                     <connections>
@@ -45,12 +47,22 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyt-kT-rdg">
+                    <rect key="frame" x="374" y="76.5" width="24" height="24"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="Icons_24px_Close"/>
+                    <connections>
+                        <action selector="tapCloseButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="QUM-uU-mWP"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Yyt-kT-rdg" secondAttribute="trailing" constant="16" id="4PC-ug-nj7"/>
                 <constraint firstItem="RfU-1w-ccz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="4aB-5m-PJp"/>
                 <constraint firstItem="WwB-gG-c0V" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="4it-id-REy"/>
+                <constraint firstItem="Yyt-kT-rdg" firstAttribute="centerY" secondItem="WwB-gG-c0V" secondAttribute="centerY" id="CMV-gO-k37"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ozy-DE-CK7" secondAttribute="trailing" constant="20" id="R4c-8U-qux"/>
                 <constraint firstItem="WwB-gG-c0V" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="Yf7-Cc-7rX"/>
                 <constraint firstItem="Ozy-DE-CK7" firstAttribute="top" secondItem="RfU-1w-ccz" secondAttribute="bottom" constant="15" id="gAf-0f-wDN"/>
@@ -70,6 +82,13 @@
         </view>
     </objects>
     <resources>
+        <image name="Icons_24px_Close" width="24" height="24"/>
+        <namedColor name="B1">
+            <color red="0.24699999392032623" green="0.22699999809265137" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="C4">
+            <color red="0.98000001907348633" green="0.54100000858306885" blue="0.44699999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

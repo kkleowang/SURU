@@ -10,7 +10,7 @@ import Foundation
 struct Account: Codable {
     var userID: String
     var name: String = "新訪客"
-    var mainImage: String = "https://firebasestorage.googleapis.com/v0/b/suru-4c219.appspot.com/o/SURU_App_Assets%2F%E4%B8%8B%E8%BC%89.jpeg?alt=media&token=d75677f1-686f-4683-a5ec-658f9a63c0fc"
+    var mainImage: String = "https://firebasestorage.googleapis.com/v0/b/suru-4c219.appspot.com/o/SURU_App_Assets%2Flogo-02.png?alt=media&token=62595822-6b39-4522-a92b-f7f260145c49"
     var provider: String
     var commentCount: Int = 0
     var createdTime: Double = 0
@@ -21,7 +21,7 @@ struct Account: Codable {
     var sendReportCount: Int? = 0
     var myCommentLike: Int? = 0
     var blockUserList: [String]? = []
-    var bio: String? = "他還沒新增評論"
+    var bio: String? = "他還沒新增個人資料"
     var websideLink: String?
     var loginHistory: [String]? = []
     var badgeStatus: String?

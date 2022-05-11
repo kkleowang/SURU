@@ -7,9 +7,11 @@
 
 import UIKit
 import Kingfisher
-
+protocol DetailViewControllerDelegate: AnyObject {
+    func didtapAuthor(_ vc: DetailViewController, targetUserID: String?)
+}
 class DetailViewController: UIViewController {
-
+    weak var delegate: DetailViewControllerDelegate?
     var account: Account?
     var comment: Comment?
     var store: Store?
@@ -18,6 +20,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var badgeImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var authorImageView: UIImageView!
+    @IBOutlet weak var authorStackView: UIStackView!
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBAction func tapFollowButton(_ sender: UIButton) {
         
@@ -45,10 +48,18 @@ class DetailViewController: UIViewController {
         setupTopView()
         setuptableView()
     }
+    
+    @objc private func tapAuthorView() {
+        guard let userID = comment?.userID else { return }
+        self.delegate?.didtapAuthor(self, targetUserID: userID)
+    }
     func setupTopView() {
         guard let account = account else {
             return
         }
+        let tapAuthor = UITapGestureRecognizer(target: self, action: #selector(tapAuthorView))
+        authorStackView.isUserInteractionEnabled = true
+        authorStackView.addGestureRecognizer(tapAuthor)
         let badge = account.badgeStatus ?? "long1"
         badgeImageView.image = UIImage(named: "long_\(badge)")
         authorNameLabel.text = account.name

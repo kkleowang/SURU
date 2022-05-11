@@ -197,6 +197,7 @@
                     <connections>
                         <outlet property="authorImageView" destination="ygS-Sx-ajo" id="Fsr-Ho-rqC"/>
                         <outlet property="authorNameLabel" destination="g6y-sd-dNb" id="0VG-8W-G1q"/>
+                        <outlet property="authorStackView" destination="Ojd-af-CaU" id="Xo5-rM-rFI"/>
                         <outlet property="badgeImageView" destination="cEq-LM-uxg" id="uoQ-iR-kbn"/>
                         <outlet property="tableView" destination="5Jg-wf-AYA" id="bV3-ei-dhK"/>
                     </connections>

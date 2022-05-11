@@ -62,8 +62,8 @@ class StoreCardsCell: UICollectionViewCell {
     var storeData: Store?
     var commentsData: [Comment]?
     var userIsLogin: Bool?
-    func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool?, isLogin: Bool) {
-        guard let isCollect = isCollect else { return }
+    func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool, isLogin: Bool) {
+//        guard let isCollect = isCollect else { return }
         userIsLogin = isLogin
         self.contentView.makeShadow()
         self.contentView.clipsToBounds = true
@@ -84,10 +84,10 @@ class StoreCardsCell: UICollectionViewCell {
         nameLabel.text = dataSource.name
         mostCommentImageView.clipsToBounds = true
         mostCommentImageView.cornerForAll(radii: 10)
-        mostCommentImageView.makeShadow()
+        
         storeImageView.layer.cornerRadius = 25
         storeImageView.clipsToBounds = true
-        storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "AppIcon"))
+        storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "mainImage"))
         storeImageView.layer.borderWidth = 1.0
         storeImageView.layer.borderColor = UIColor.B6?.cgColor
         followerLabel.text = "\(dataSource.collectedUser?.count ?? 0) 人收藏, 共\(commentData.count) 則食記"
@@ -109,7 +109,10 @@ class StoreCardsCell: UICollectionViewCell {
 
         if !commentData.isEmpty {
             let mostComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
-            mostCommentImageView.kf.setImage(with: URL(string: mostComment[0].mainImage), placeholder: UIImage(named: "AppIcon"))
+            
+                mostCommentImageView.kf.setImage(with: URL(string: mostComment[0].mainImage), placeholder: UIImage(named: "noData"))
+            
+            
 
             for comment in commentData {
                 noodle += comment.contentValue.noodle
@@ -138,7 +141,7 @@ class StoreCardsCell: UICollectionViewCell {
             }
 
         } else {
-            mostCommentImageView.image = UIImage(named: "AppIcon")
+            mostCommentImageView.image = UIImage(named: "noData")
 
             soupLabel.text = "無"
             soupLabel.textColor = .B1
@@ -173,6 +176,7 @@ class StoreCardsCell: UICollectionViewCell {
         }
 
     }
+    
     private func cogfigReport(store: Store) -> Int {
         guard let reports = store.queueReport else { return 5 }
         let date = Double(Date().timeIntervalSince1970)
