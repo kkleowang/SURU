@@ -28,9 +28,9 @@ class StoreRatingCell: UITableViewCell {
         midView.clipsToBounds = true
         rightView.layer.cornerRadius = rightView.bounds.width/2
         rightView.clipsToBounds = true
-        leftView.backgroundColor = .systemYellow
-        midView.backgroundColor = .systemBlue
-        rightView.backgroundColor = .systemPink
+        leftView.backgroundColor = .main1
+        midView.backgroundColor = .main2
+        rightView.backgroundColor = .main3
         if data[0].isNaN {
             leftLabel.text = "尚無評論"
             leftLabel.textColor = .B1

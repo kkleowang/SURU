@@ -24,9 +24,9 @@ class StoreImageCell: UITableViewCell {
         guard let popular = popular, let more = more, let menu = menu else {
             return
         }
-        popularImageView.kf.setImage(with: URL(string: popular), placeholder: UIImage(named: "man\(Int.random(in: 1..<8))"))
-        menuImageView.kf.setImage(with: URL(string: menu), placeholder: UIImage(named: "man\(Int.random(in: 1..<8))"))
-        moreImageView.kf.setImage(with: URL(string: more), placeholder: UIImage(named: "man\(Int.random(in: 1..<8))"))
+        popularImageView.kf.setImage(with: URL(string: popular), placeholder: UIImage(named: popular))
+        menuImageView.kf.setImage(with: URL(string: menu), placeholder: UIImage(named: menu))
+        moreImageView.kf.setImage(with: URL(string: more), placeholder: UIImage(named: more))
         let tapPopular = UITapGestureRecognizer(target: self, action: #selector(didTapPopularImage))
         let tapMenu = UITapGestureRecognizer(target: self, action: #selector(didTapmenuImage))
         let tapMore = UITapGestureRecognizer(target: self, action: #selector(didTapmoreImage))

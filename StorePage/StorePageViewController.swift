@@ -18,7 +18,11 @@ class StorePageViewController: UIViewController {
     }
     var commentData: [Comment] = []
     var storeData: Store?
-    var UserData: [Account] = []
+    var UserData: [Account] = [] {
+        didSet {
+            tableView.reloadSections([1], with: .automatic)
+        }
+    }
     var currentUser: Account? {
         didSet {
             setTopView()
@@ -29,6 +33,7 @@ class StorePageViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchUserData()
         self.navigationController?.hidesBottomBarWhenPushed = true
         setTopView()
         registeCell()
@@ -57,7 +62,11 @@ class StorePageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         topView.isHidden = true
     }
+
     func registeCell() {
+        tableView.backgroundColor = .B6
+//        tableView.layer.cornerRadius = 10
+//        tableView.clipsToBounds = true
         tableView.lk_registerCellWithNib(identifier: StoreTitleCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreImageCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreTagsCell.identifier, bundle: nil)
@@ -67,7 +76,16 @@ class StorePageViewController: UIViewController {
 //        tableView.lk_registerCellWithNib(identifier: StoreSeatsCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
     }
-
+    func fetchUserData() {
+        AccountRequestProvider.shared.fetchAccounts { result in
+            switch result {
+            case .success(let data):
+                self.UserData = data
+            case .failure(let error):
+                LKProgressHUD.showFailure(text: "載入用戶資料失敗/n請退出重試")
+            }
+        }
+    }
 
 }
 extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
@@ -96,13 +114,18 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return StoreImageCell() }
                 let sortedComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
-                if sortedComment.count > 3 {
-                    cell.layoutCell(popular: sortedComment[0].mainImage, menu: sortedComment[1].mainImage, more: sortedComment.randomElement()?.mainImage)
-                } else {
-                    cell.layoutCell(popular: "AppIcon", menu: "AppIcon", more: "AppIcon")
+                var imageArray = ["AppIcon", "AppIcon", "AppIcon"]
+                for i in 0..<sortedComment.count {
+                        imageArray[i] = sortedComment[i].mainImage
+                    if i == 2{
+                        break
+                    }
                 }
+                
+                cell.layoutCell(popular: imageArray[0], menu: imageArray[1], more: imageArray[2])
+                
                 cell.delegate = self
-
+                
                 return cell
             case 2:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
@@ -147,16 +170,16 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             case 7:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreRatingCell.identifier, for: indexPath) as? StoreRatingCell else { return StoreRatingCell() }
-                var soup: Double = 0
                 var noodle: Double = 0
+                var soup: Double = 0
                 var happy: Double = 0
                 for comment in commentData {
-                    soup += comment.contentValue.soup
                     noodle += comment.contentValue.noodle
+                    soup += comment.contentValue.soup
                     happy += comment.contentValue.happiness
                 }
                 let count = Double(commentData.count)
-                let data = [soup/count, noodle/count, happy/count]
+                let data = [noodle/count, soup/count, happy/count]
                 cell.layoutCell(data: data)
                 return cell
             default:
@@ -164,19 +187,30 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreCommentCell.identifier, for: indexPath) as? StoreCommentCell else { return StoreCommentCell() }
+            cell.delegate = self
+            if UserData.isEmpty {
+                return cell
+            }
+            let comment = commentData[indexPath.row]
+            guard let author = UserData.first(where: {$0.userID == comment.userID}) else { return cell }
+            var isfollow = false
+            var isLike = false
             if isLogin {
-//                cell.layoutView(author: <#T##Account#>, comment: <#T##Comment#>, isLogin: <#T##Bool#>, isFollow: <#T##Bool#>, isLike: <#T##Bool#>)
+                guard let user = currentUser else { return cell }
+                isLike =  comment.likedUserList.contains(user.userID)
+                isfollow = user.followedUser.contains(comment.userID)
+                cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
             } else {
-
+                cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
             }
             return cell
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0:
-
                 return 80
             case 1:
 
@@ -198,12 +232,13 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 7:
                 return 150
             default:
-                return 200
+                return 10
             }
         } else {
-            return 200
+            return UITableView.automaticDimension
         }
     }
+    
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
             topView.isHidden = false
@@ -346,4 +381,23 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
         }
 
     }
+}
+extension StorePageViewController: StoreCommentCellDelegate {
+    func didtapLike(_ view: StoreCommentCell, targetComment: Comment?) {
+        print("didtapLike",targetComment)
+    }
+    
+    func didtapfollow(_ view: StoreCommentCell, targetUserID: String?) {
+        print("didtapfollow", targetUserID)
+    }
+    
+    func didtapMore(_ view: StoreCommentCell, targetUserID: String?) {
+        print("didtapMore", targetUserID)
+    }
+    
+    func didtapAuthor(_ view: StoreCommentCell, targetUserID: String?) {
+        print("didtapAuthor", targetUserID)
+    }
+    
+    
 }

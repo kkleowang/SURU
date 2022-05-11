@@ -38,6 +38,12 @@ private enum SURUColor: String {
     
     case G7
     
+    case main1
+    
+    case main2
+    
+    case main3
+    
 }
 
 extension UIColor {
@@ -69,6 +75,14 @@ extension UIColor {
     static let B6 = toUIColor(.B6)
     
     static let G7 = toUIColor(.G7)
+    
+    static let main1 = toUIColor(.main1)
+    
+    static let main2 = toUIColor(.main2)
+    
+    static let main3 = toUIColor(.main3)
+    
+    
 
     private static func toUIColor(_ color: SURUColor) -> UIColor? {
         return UIColor (named: color.rawValue)

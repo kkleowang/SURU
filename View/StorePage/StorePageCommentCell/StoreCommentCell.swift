@@ -47,11 +47,16 @@ class StoreCommentCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
     
-    
+ 
     func layoutView(author: Account, comment: Comment, isLogin: Bool, isFollow: Bool, isLike: Bool) {
+        
+        contentView.layer.cornerRadius = 15
+        contentView.clipsToBounds = true
         loginStatus = isLogin
         likeStatus = isLike
         followStatus = isFollow
+        commentData = comment
+        targetUserID = comment.userID
         
         authorImageView.layer.cornerRadius = authorImageView.bounds.width / 2
         authorImageView.layer.borderWidth = 1.0
@@ -64,10 +69,20 @@ class StoreCommentCell: UITableViewCell {
         authorFollowerLabel.text = "\(author.follower.count) 人追蹤中"
         
         commentImageView.kf.setImage(with: URL(string: comment.mainImage), placeholder: UIImage(named: "AppIcon"))
+        let tapAuthor = UITapGestureRecognizer(target: self, action: #selector(tapAuthorView))
+        let doubleTapImage = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
         commentImageView.addGestureRecognizer(doubleTapImage)
+        doubleTapImage.numberOfTapsRequired = 2
         commentImageView.isUserInteractionEnabled = true
         let likeCount = comment.likedUserList.count
-        likeLabel.text = "\(likeCount) 個喜歡"
+        
+        authorStackView.isUserInteractionEnabled = true
+        authorStackView.addGestureRecognizer(tapAuthor)
+        if likeCount == 0 {
+            likeLabel.text = "還沒有人點讚"
+        } else {
+        likeLabel.text = "\(likeCount) 個讚"
+        }
         if likeCount == 0 {
             commentsLabel.text = "目前沒有留言"
         } else {
@@ -75,9 +90,9 @@ class StoreCommentCell: UITableViewCell {
         }
         if isLogin {
             if isLike {
-                likeButton.setImage(UIImage(named: "heart.fill"), for: .normal)
+                likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             } else {
-                likeButton.setImage(UIImage(named: "heart"), for: .normal)
+                likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             }
             if isFollow {
                 followButton.setTitle("已追蹤", for: .normal)
@@ -89,11 +104,11 @@ class StoreCommentCell: UITableViewCell {
             likeButton.setImage(UIImage(named: "heart"), for: .normal)
         }
     }
-    let doubleTapImage = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
+    
     @objc private func doubleTap() {
         self.delegate?.didtapLike(self, targetComment: commentData)
     }
-    let tapAuthor = UITapGestureRecognizer(target: self, action: #selector(tapAuthorView))
+    
     @objc private func tapAuthorView() {
         self.delegate?.didtapAuthor(self, targetUserID: targetUserID)
     }
