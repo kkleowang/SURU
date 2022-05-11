@@ -41,13 +41,20 @@ class UserRequestProvider {
                 completion(.failure(error))
             }
             guard let user = authResult?.user else { return }
-            var account = self.mappingAppleLoginUser(user: user)
-            AccountRequestProvider.shared.publishRegistedAccount(account: &account) { result in
-                switch result {
-                case .success(let string):
-                    completion(.success(string))
-                case .failure(let error):
-                    completion(.failure(error))
+            AccountRequestProvider.shared.checkUserDocExists(userID: user.uid) { isExist in
+                if isExist {
+                    print("已經註冊過了", user.uid)
+                    completion(.success("登入成功"))
+                } else {
+                    var account = self.mappingAppleLoginUser(user: user, credential: credential)
+                    AccountRequestProvider.shared.publishRegistedAccount(account: &account) { result in
+                        switch result {
+                        case .success(let string):
+                            completion(.success(string))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
                 }
             }
         }
@@ -67,7 +74,6 @@ class UserRequestProvider {
                     completion(.failure(error))
                 }
             }
-            
         }
     }
     func nativePulishToClouldWithAuth(user: User, completion: @escaping (Result<String, Error>) -> Void) {
@@ -87,9 +93,9 @@ class UserRequestProvider {
         let account = Account(userID: user.uid, provider: user.providerID)
         return account
     }
-    func mappingAppleLoginUser(user: User) -> Account {
-        let userName = user.displayName ?? "SURU遊民"
-        let account = Account(userID: user.uid, name: userName, provider: user.providerID)
+    func mappingAppleLoginUser(user: User, credential: AuthCredential) -> Account {
+        let userName = "新訪客"
+        let account = Account(userID: user.uid, name: userName, provider: credential.provider)
         return account
     }
     

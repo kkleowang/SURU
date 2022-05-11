@@ -109,27 +109,27 @@ class StoreCardsCell: UICollectionViewCell {
 
         if !commentData.isEmpty {
             let mostComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
-            mostCommentImageView.kf.setImage(with: URL(string: mostComment[0].mainImage), placeholder: UIImage(named: "man\(Int.random(in: 1..<8))"))
+            mostCommentImageView.kf.setImage(with: URL(string: mostComment[0].mainImage), placeholder: UIImage(named: "AppIcon"))
 
             for comment in commentData {
-                soup += comment.contentValue.soup
                 noodle += comment.contentValue.noodle
+                soup += comment.contentValue.soup
                 happy += comment.contentValue.happiness
             }
             let count = Double(commentData.count)
-            let data = [(soup/count).ceiling(toDecimal: 1),
-                        (noodle/count).ceiling(toDecimal: 1),
+            let data = [(noodle/count).ceiling(toDecimal: 1),
+                        (soup/count).ceiling(toDecimal: 1),
                         (happy/count).ceiling(toDecimal: 1)
             ]
             if data[0] == 10.0 {
-                soupLabel.text = String(10)
-            } else {
-                soupLabel.text = String(data[0])
-            }
-            if data[1] == 10.0 {
                 noodleLabel.text = String(10)
             } else {
-                noodleLabel.text = String(data[1])
+                noodleLabel.text = String(data[0])
+            }
+            if data[1] == 10.0 {
+                soupLabel.text = String(10)
+            } else {
+                soupLabel.text = String(data[1])
             }
             if data[2] == 10.0 {
                 overallLabel.text = String(10)
@@ -138,7 +138,7 @@ class StoreCardsCell: UICollectionViewCell {
             }
 
         } else {
-            mostCommentImageView.image = UIImage(named: "man\(Int.random(in: 1..<8))")
+            mostCommentImageView.image = UIImage(named: "AppIcon")
 
             soupLabel.text = "無"
             soupLabel.textColor = .B1

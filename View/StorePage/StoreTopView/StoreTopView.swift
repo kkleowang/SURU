@@ -8,8 +8,9 @@
 import UIKit
 import Kingfisher
 protocol StoreTopViewDelegate: AnyObject {
-    func didTapCollect(_ view: StoreTopView, storeID: String)
-    func didTapCollectWhenNotLogin(_ view: StoreTopView)
+    func didtapCollectionButton(_ view: StoreTopView)
+    func didtapUnCollectionButton(_ view: StoreTopView)
+    func didtapWhenNotLogin(_ view: StoreTopView)
 }
 class StoreTopView: UIView {
     weak var delegate: StoreTopViewDelegate?
@@ -39,17 +40,18 @@ class StoreTopView: UIView {
         
     }
     @IBAction func tapCollectButton(_ sender: UIButton) {
-        guard let storeID = storeID, let isLogin = isUserLogin, let isCollect = isUserCollected else { return }
+        guard let isLogin = isUserLogin else { return }
+        
         if isLogin {
-            self.delegate?.didTapCollect(self, storeID: storeID)
-            if isCollect {
+            if collectButton.currentImage == UIImage(named: "collect.fill") {
+                self.delegate?.didtapCollectionButton(self)
                 collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
             } else {
+                self.delegate?.didtapUnCollectionButton(self)
                 collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
             }
         } else {
-            self.delegate?.didTapCollectWhenNotLogin(self)
+            self.delegate?.didtapWhenNotLogin(self)
         }
-        
     }
 }

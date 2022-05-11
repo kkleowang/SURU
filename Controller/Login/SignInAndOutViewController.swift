@@ -10,6 +10,7 @@ import UIKit
 
 protocol SignInAndOutViewControllerDelegate: AnyObject {
     func didSelectGoEditProfile(_ view: SignInAndOutViewController)
+    func didSelectLookAround(_ view: SignInAndOutViewController)
 }
 enum SignPageState {
     case sighUp
@@ -89,6 +90,7 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
         }
         let cancelAction = UIAlertAction(title: "先去逛逛", style: .cancel) { _ in
             self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+            self.delegate?.didSelectLookAround(self)
         }
         alert.addAction(cancelAction)
         alert.addAction(okAction)
@@ -106,7 +108,6 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
                 
             }
         }
-            // Below iOS 15, change frame here
             self.present(controller, animated: true, completion: nil)
     }
     

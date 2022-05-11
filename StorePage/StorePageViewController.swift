@@ -18,17 +18,21 @@ class StorePageViewController: UIViewController {
     }
     var commentData: [Comment] = []
     var storeData: Store?
-    var UserData: [Account] = []
+    var UserData: [Account] = [] {
+        didSet {
+            tableView.reloadSections([1], with: .automatic)
+        }
+    }
     var currentUser: Account? {
         didSet {
             setTopView()
         }
     }
-    weak var delegate: SignInAndOutViewControllerDelegate?
     let topView: StoreTopView = UIView.fromNib()
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchUserData()
         self.navigationController?.hidesBottomBarWhenPushed = true
         setTopView()
         registeCell()
@@ -57,7 +61,11 @@ class StorePageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         topView.isHidden = true
     }
+
     func registeCell() {
+        tableView.backgroundColor = .B6
+//        tableView.layer.cornerRadius = 10
+//        tableView.clipsToBounds = true
         tableView.lk_registerCellWithNib(identifier: StoreTitleCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreImageCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreTagsCell.identifier, bundle: nil)
@@ -67,7 +75,16 @@ class StorePageViewController: UIViewController {
 //        tableView.lk_registerCellWithNib(identifier: StoreSeatsCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
     }
-
+    func fetchUserData() {
+        AccountRequestProvider.shared.fetchAccounts { result in
+            switch result {
+            case .success(let data):
+                self.UserData = data
+            case .failure(let error):
+                LKProgressHUD.showFailure(text: "載入用戶資料失敗/n請退出重試")
+            }
+        }
+    }
 
 }
 extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
@@ -96,13 +113,18 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return StoreImageCell() }
                 let sortedComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
-                if sortedComment.count > 3 {
-                    cell.layoutCell(popular: sortedComment[0].mainImage, menu: sortedComment[1].mainImage, more: sortedComment.randomElement()?.mainImage)
-                } else {
-                    cell.layoutCell(popular: "AppIcon", menu: "AppIcon", more: "AppIcon")
+                var imageArray = ["AppIcon", "AppIcon", "AppIcon"]
+                for i in 0..<sortedComment.count {
+                        imageArray[i] = sortedComment[i].mainImage
+                    if i == 2{
+                        break
+                    }
                 }
+                
+                cell.layoutCell(popular: imageArray[0], menu: imageArray[1], more: imageArray[2])
+                
                 cell.delegate = self
-
+                
                 return cell
             case 2:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
@@ -147,16 +169,16 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             case 7:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreRatingCell.identifier, for: indexPath) as? StoreRatingCell else { return StoreRatingCell() }
-                var soup: Double = 0
                 var noodle: Double = 0
+                var soup: Double = 0
                 var happy: Double = 0
                 for comment in commentData {
-                    soup += comment.contentValue.soup
                     noodle += comment.contentValue.noodle
+                    soup += comment.contentValue.soup
                     happy += comment.contentValue.happiness
                 }
                 let count = Double(commentData.count)
-                let data = [soup/count, noodle/count, happy/count]
+                let data = [noodle/count, soup/count, happy/count]
                 cell.layoutCell(data: data)
                 return cell
             default:
@@ -164,19 +186,30 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreCommentCell.identifier, for: indexPath) as? StoreCommentCell else { return StoreCommentCell() }
+            cell.delegate = self
+            if UserData.isEmpty {
+                return cell
+            }
+            let comment = commentData[indexPath.row]
+            guard let author = UserData.first(where: {$0.userID == comment.userID}) else { return cell }
+            var isfollow = false
+            var isLike = false
             if isLogin {
-//                cell.layoutView(author: <#T##Account#>, comment: <#T##Comment#>, isLogin: <#T##Bool#>, isFollow: <#T##Bool#>, isLike: <#T##Bool#>)
+                guard let user = currentUser else { return cell }
+                isLike =  comment.likedUserList.contains(user.userID)
+                isfollow = user.followedUser.contains(comment.userID)
+                cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
             } else {
-
+                cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
             }
             return cell
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0:
-
                 return 80
             case 1:
 
@@ -198,12 +231,13 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 7:
                 return 150
             default:
-                return 200
+                return 10
             }
         } else {
-            return 200
+            return UITableView.automaticDimension
         }
     }
+    
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
             topView.isHidden = false
@@ -217,76 +251,69 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 extension StorePageViewController: StoreTitleCellDelegate {
-    func didtapCollectionWhenNotLogin(view: StoreTitleCell) {
-        showAlert()
-    }
     func didtapCollectionButton(view: StoreTitleCell) {
         guard let user = currentUser, let store = storeData else { return }
-        if isCollected {
-            StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
-                switch result {
-                case .success(let message):
-                    LKProgressHUD.showSuccess(text: message)
-                case .failure:
-                    LKProgressHUD.showFailure(text: "更新失敗")
-                }
-            }
-        } else {
-            StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
-                switch result {
-                case .success(let message):
-                    LKProgressHUD.showSuccess(text: message)
-                case .failure:
-                    LKProgressHUD.showFailure(text: "更新失敗")
-                }
+        
+        StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
+            switch result {
+            case .success(let message):
+                LKProgressHUD.showSuccess(text: message)
+            case .failure:
+                LKProgressHUD.showFailure(text: "更新失敗")
             }
         }
+    }
+    func didtapUnCollectionButton(view: StoreTitleCell) {
+        guard let user = currentUser, let store = storeData else { return }
+        StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
+            switch result {
+            case .success(let message):
+                LKProgressHUD.showSuccess(text: message)
+            case .failure:
+                LKProgressHUD.showFailure(text: "更新失敗")
+            }
+        }
+    }
+    func didtapWhenNotLogin(view: StoreTitleCell) {
+        presentWelcomePage()
     }
 }
 extension StorePageViewController: StoreTopViewDelegate {
-    func didTapCollect(_ view: StoreTopView, storeID: String) {
+    func didtapCollectionButton(_ view: StoreTopView) {
         guard let user = currentUser, let store = storeData else { return }
-        if isCollected {
-            StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
-                switch result {
-                case .success(let message):
-                    LKProgressHUD.showSuccess(text: message)
-                case .failure:
-                    LKProgressHUD.showFailure(text: "更新失敗")
-                }
-            }
-        } else {
-            StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
-                switch result {
-                case .success(let message):
-                    LKProgressHUD.showSuccess(text: message)
-                case .failure:
-                    LKProgressHUD.showFailure(text: "更新失敗")
-                }
+        
+        StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
+            switch result {
+            case .success(let message):
+                LKProgressHUD.showSuccess(text: message)
+            case .failure:
+                LKProgressHUD.showFailure(text: "更新失敗")
             }
         }
     }
+    
+    func didtapUnCollectionButton(_ view: StoreTopView) {
+        guard let user = currentUser, let store = storeData else { return }
+        StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
+            switch result {
+            case .success(let message):
+                LKProgressHUD.showSuccess(text: message)
+            case .failure:
+                LKProgressHUD.showFailure(text: "更新失敗")
+            }
+        }
+    }
+    
+    func didtapWhenNotLogin(_ view: StoreTopView) {
+        presentWelcomePage()
+    }
+    
 
-    func didTapCollectWhenNotLogin(_ view: StoreTopView) {
-        showAlert()
-    }
-    func showAlert() {
-        let alert = UIAlertController(title: "提示", message: "登入後就能收藏店家囉！", preferredStyle: .alert)
-        let login = UIAlertAction(title: "登入", style: .cancel) { _ in
-            self.presentWelcomePage()
-        }
-        let notLogin = UIAlertAction(title: "下次一定", style: .default, handler: nil)
-        alert.addAction(login)
-        alert.addAction(notLogin)
-        present(alert, animated: true, completion: nil)
-    }
     func presentWelcomePage() {
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
-        controller.delegate = delegate
+        controller.delegate = self
         self.present(controller, animated: true, completion: nil)
     }
-
-
 }
 extension StorePageViewController: StoreImageCellDelegate {
     func didTapPopularImage(_ view: StoreImageCell, image: UIImage) {
@@ -346,4 +373,48 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
         }
 
     }
+}
+extension StorePageViewController: StoreCommentCellDelegate {
+    func didtapAuthor(_ view: StoreCommentCell, targetUserID: String?) {
+        print("didtapAuthor")
+    }
+    
+    func didtapLike(_ view: StoreCommentCell, targetComment: Comment?, isLogin: Bool, isLike: Bool) {
+        if isLogin {
+            
+        } else {
+            presentWelcomePage()
+        }
+    }
+    
+    func didtapfollow(_ view: StoreCommentCell, targetUserID: String?, isLogin: Bool, isFollow: Bool) {
+        if isLogin {
+            
+        } else {
+            presentWelcomePage()
+        }
+    }
+    
+    func didtapMore(_ view: StoreCommentCell, targetUserID: String?, isLogin: Bool) {
+        if isLogin {
+            
+        } else {
+            presentWelcomePage()
+        }
+    }
+    
+    
+}
+extension StorePageViewController: SignInAndOutViewControllerDelegate {
+    func didSelectLookAround(_ view: SignInAndOutViewController) {
+        navigationController?.popViewController(animated: true)
+        self.tabBarController?.selectedIndex = 0
+    }
+    
+    func didSelectGoEditProfile(_ view: SignInAndOutViewController) {
+        navigationController?.popViewController(animated: true)
+        self.tabBarController?.selectedIndex = 3
+    }
+    
+    
 }
