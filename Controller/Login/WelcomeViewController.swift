@@ -132,6 +132,7 @@ extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizat
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         view.window!
     }
+    
   func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
     if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
       guard let nonce = currentNonce else {
@@ -145,7 +146,9 @@ extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizat
         print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
         return
       }
+    
       // Initialize a Firebase credential.
+        
       let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                 idToken: idTokenString,
                                                 rawNonce: nonce)
@@ -157,6 +160,7 @@ extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizat
             case .success(let message):
                 LKProgressHUD.showSuccess(text: message)
                 print("apple登入成功", message)
+                self.dismiss(animated: true)
             }
         }
     }

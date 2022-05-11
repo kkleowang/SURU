@@ -115,10 +115,12 @@ extension ProfileViewController: ProfileViewDelegate {
         alert.popoverPresentationController?.permittedArrowDirections = .up
         alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction) in
             UserRequestProvider.shared.logOut()
+            self.tabBarController?.selectedIndex = 0
             LKProgressHUD.showSuccess(text: "登出成功")
         }))
         
         alert.addAction(UIAlertAction(title: "刪除帳號", style: .destructive , handler:{ (UIAlertAction) in
+            
             self.showDestructiveAlert()
         }))
         
@@ -152,6 +154,7 @@ extension ProfileViewController: ProfileViewDelegate {
         let submitAction = UIAlertAction(title: "刪除帳號", style: .destructive) { [unowned alert] _ in
             guard let password = alert.textFields![0].text else { return }
             self.deleteAccount(password: password)
+            self.tabBarController?.selectedIndex = 0
         }
         let okAction = UIAlertAction(title: "再想想", style: .cancel) { _ in
         }

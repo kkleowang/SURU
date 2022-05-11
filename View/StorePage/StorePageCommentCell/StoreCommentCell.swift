@@ -9,28 +9,60 @@ import UIKit
 import Kingfisher
 
 protocol StoreCommentCellDelegate: AnyObject {
-    func didtapLike(_ view: StoreCommentCell, targetComment: Comment?)
-    func didtapfollow(_ view: StoreCommentCell, targetUserID: String?)
-    func didtapMore(_ view: StoreCommentCell, targetUserID: String?)
+    func didtapLike(_ view: StoreCommentCell, targetComment: Comment?, isLogin: Bool, isLike: Bool)
+    func didtapfollow(_ view: StoreCommentCell, targetUserID: String?, isLogin: Bool, isFollow: Bool)
+    func didtapMore(_ view: StoreCommentCell, targetUserID: String?, isLogin: Bool)
     func didtapAuthor(_ view: StoreCommentCell, targetUserID: String?)
 }
 
 class StoreCommentCell: UITableViewCell {
     
+    weak var delegate: StoreCommentCellDelegate?
     var targetUserID: String?
     var commentData: Comment?
-    var loginStatus = false
-    var likeStatus = false
-    var followStatus = false
-    weak var delegate: StoreCommentCellDelegate?
+    
+    var isloginStatus = false
+    var islikeStatus = false
+    var isfollowStatus = false
+    
     @IBAction func tapLike(_ sender: Any) {
-        self.delegate?.didtapLike(self, targetComment: commentData)
+        self.delegate?.didtapLike(self, targetComment: commentData, isLogin: isloginStatus, isLike: islikeStatus)
+        if isloginStatus {
+            if islikeStatus {
+                likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            } else {
+                likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            }
+        }
     }
     @IBAction func tapFollow(_ sender: Any) {
-        self.delegate?.didtapfollow(self, targetUserID: targetUserID)
+        
+        self.delegate?.didtapfollow(self, targetUserID: targetUserID, isLogin: isloginStatus, isFollow: isfollowStatus)
+        
+        if isloginStatus {
+            if isfollowStatus {
+                followButton.setTitle("追蹤", for: .normal)
+            } else {
+                followButton.setTitle("已追蹤", for: .normal)
+            }
+        }
     }
     @IBAction func tapMore(_ sender: Any) {
-        self.delegate?.didtapMore(self, targetUserID: targetUserID)
+        self.delegate?.didtapMore(self, targetUserID: targetUserID, isLogin: isloginStatus)
+    }
+    @objc private func doubleTap() {
+        self.delegate?.didtapLike(self, targetComment: commentData, isLogin: isloginStatus, isLike: islikeStatus)
+        if isloginStatus {
+            if islikeStatus {
+                likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            } else {
+                likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            }
+        }
+    }
+    
+    @objc private func tapAuthorView() {
+        self.delegate?.didtapAuthor(self, targetUserID: targetUserID)
     }
     
     @IBOutlet weak var authorImageView: UIImageView!
@@ -49,12 +81,16 @@ class StoreCommentCell: UITableViewCell {
     
  
     func layoutView(author: Account, comment: Comment, isLogin: Bool, isFollow: Bool, isLike: Bool) {
+        followButton.layer.cornerRadius = 10
+        followButton.clipsToBounds = true
+        followButton.layer.borderWidth = 1
+        followButton.layer.borderColor = UIColor.B1?.cgColor
         
         contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
-        loginStatus = isLogin
-        likeStatus = isLike
-        followStatus = isFollow
+        isloginStatus = isLogin
+        islikeStatus = isLike
+        isfollowStatus = isFollow
         commentData = comment
         targetUserID = comment.userID
         
@@ -103,13 +139,5 @@ class StoreCommentCell: UITableViewCell {
             followButton.setTitle("追蹤", for: .normal)
             likeButton.setImage(UIImage(named: "heart"), for: .normal)
         }
-    }
-    
-    @objc private func doubleTap() {
-        self.delegate?.didtapLike(self, targetComment: commentData)
-    }
-    
-    @objc private func tapAuthorView() {
-        self.delegate?.didtapAuthor(self, targetUserID: targetUserID)
     }
 }

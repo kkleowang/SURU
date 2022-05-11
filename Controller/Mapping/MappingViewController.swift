@@ -479,7 +479,6 @@ extension MappingViewController: UICollectionViewDelegate {
         } else {
             guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "StorePageViewController") as? StorePageViewController else { return }
             if isSearchResults {
-//                controller.UserData =
                 controller.currentUser = currentUser
                 controller.storeData = filteredStoreData[indexPath.row]
                 controller.commentData = commentOfFilteredStore[indexPath.row]
@@ -712,14 +711,7 @@ extension MappingViewController: UISearchBarDelegate {
 }
 extension MappingViewController: StoreCardsCellDelegate {
     func didtapCollectionWhenNotLogin(view: StoreCardsCell) {
-        let alert = UIAlertController(title: "提示", message: "你還沒有登入喔！", preferredStyle: .alert)
-        let login = UIAlertAction(title: "登入", style: .cancel) { _ in
-            self.presentWelcomePage()
-        }
-        let notLogin = UIAlertAction(title: "下次一定", style: .default, handler: nil)
-        alert.addAction(login)
-        alert.addAction(notLogin)
-        present(alert, animated: true, completion: nil)
+        presentWelcomePage()
 
     }
     func presentWelcomePage() {
@@ -755,6 +747,10 @@ extension MappingViewController: StoreCardsCellDelegate {
 }
 
 extension MappingViewController: SignInAndOutViewControllerDelegate {
+    func didSelectLookAround(_ view: SignInAndOutViewController) {
+        self.tabBarController?.selectedIndex = 0
+    }
+    
     func didSelectGoEditProfile(_ view: SignInAndOutViewController) {
         self.tabBarController?.selectedIndex = 3
     }

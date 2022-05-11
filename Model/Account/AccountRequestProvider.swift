@@ -145,7 +145,7 @@ class AccountRequestProvider {
         ])
     }
     func changeBadgeStatus(status: String, currentUserID: String) {
-       
+        
         let currentDocment = database.collection("accounts").document(currentUserID)
         currentDocment.updateData([
             "badgeStatus": status
@@ -163,20 +163,35 @@ class AccountRequestProvider {
         }
     }
     func listenAccount(currentUserID: String, completion: @escaping () -> Void) {
-            // [START listen_document]
+        // [START listen_document]
         database.collection("accounts").document(currentUserID)
-                .addSnapshotListener { documentSnapshot, error in
-                    guard let document = documentSnapshot else {
-                      print("Error fetching document: \(error!)")
-                      return
-                    }
-                    guard let data = document.data() else {
-                      print("Document data was empty.")
-                      return
-                    }
-                    completion()
-                  }
-            // [END listen_document]
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                guard let data = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                completion()
+            }
+        // [END listen_document]
+    }
+    func checkUserDocExists(userID: String, completion: @escaping (Bool) -> Void) {
+        // [START get_document]
+        let docRef = database.collection("accounts").document(userID)
+        
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+                completion(true)
+            } else {
+                print("Document does not exist")
+                completion(false)
+            }
         }
-    
+        // [END get_document]
+    }
 }

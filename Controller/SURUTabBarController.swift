@@ -111,25 +111,26 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
     }
     private func showLoginAlert(type: Tab) {
-        var message: String?
-        switch type {
-        case .waterfalls:
-            message = "登入查看更多社群貼文！"
-        case .mapping:
-            return
-        case .comment:
-            message = "登入發表你的食記！"
-        case .profile:
-            message = "登入編輯你的SURU檔案！"
-        }
-        let alert = UIAlertController(title: "提示", message: message, preferredStyle: .alert)
-        let login = UIAlertAction(title: "登入", style: .cancel) { _ in
-            self.presentWelcomePage()
-        }
-        let notLogin = UIAlertAction(title: "下次一定", style: .default, handler: nil)
-        alert.addAction(login)
-        alert.addAction(notLogin)
-        present(alert, animated: true, completion: nil)
+//        var message: String?
+//        switch type {
+//        case .waterfalls:
+//            message = "登入查看更多社群貼文！"
+//        case .mapping:
+//            return
+//        case .comment:
+//            message = "登入發表你的食記！"
+//        case .profile:
+//            message = "登入編輯你的SURU檔案！"
+//        }
+//        let alert = UIAlertController(title: "提示", message: message, preferredStyle: .alert)
+//        let login = UIAlertAction(title: "登入", style: .cancel) { _ in
+//            self.presentWelcomePage()
+//        }
+//        let notLogin = UIAlertAction(title: "下次一定", style: .default, handler: nil)
+//        alert.addAction(login)
+//        alert.addAction(notLogin)
+//        present(alert, animated: true, completion: nil)
+        presentWelcomePage()
     }
     func presentWelcomePage() {
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
@@ -147,13 +148,16 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             case viewControllers?[0]:
                 return true
             case viewControllers?[1]:
-                showLoginAlert(type: .waterfalls)
+                presentWelcomePage()
+//                showLoginAlert(type: .waterfalls)
                 return false
             case viewControllers?[2]:
-                showLoginAlert(type: .comment)
+                presentWelcomePage()
+//                showLoginAlert(type: .comment)
                 return false
             case viewControllers?[3]:
-                showLoginAlert(type: .profile)
+                presentWelcomePage()
+//                showLoginAlert(type: .profile)
                 return false
             default:
                 print("WrongInTarbar")
@@ -165,6 +169,10 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
 }
 extension SURUTabBarViewController: SignInAndOutViewControllerDelegate {
+    func didSelectLookAround(_ view: SignInAndOutViewController) {
+        selectedIndex = 0
+    }
+    
     func didSelectGoEditProfile(_ view: SignInAndOutViewController) {
         selectedIndex = 3
     }

@@ -10,27 +10,30 @@ import Kingfisher
 
 protocol StoreTitleCellDelegate: AnyObject {
     func didtapCollectionButton(view: StoreTitleCell)
-    func didtapCollectionWhenNotLogin(view: StoreTitleCell)
+    func didtapUnCollectionButton(view: StoreTitleCell)
+    func didtapWhenNotLogin(view: StoreTitleCell)
 }
 class StoreTitleCell: UITableViewCell {
     weak var delegate: StoreTitleCellDelegate?
     var storedata: Store?
     @IBAction func tapCollectButton(_ sender: UIButton) {
-        guard let isLogin = isUserLogin, let isCollect = isUserCollect else { return }
+        guard let isLogin = isUserLogin else { return }
+        
         if isLogin {
-            self.delegate?.didtapCollectionButton(view: self)
-        if !isCollect {
-            collectButton.setTitle("收藏", for: .normal)
-            collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
-            collectLabel.text = "\(storedata?.collectedUser?.count ?? 1 - 1) 人收藏"
+            if collectButton.currentTitle == "已收藏" {
+                self.delegate?.didtapCollectionButton(view: self)
+                collectButton.setTitle("收藏", for: .normal)
+                collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
+                collectLabel.text = "\(storedata?.collectedUser?.count ?? 1 - 1) 人收藏"
+            } else {
+                self.delegate?.didtapUnCollectionButton(view: self)
+                collectButton.setTitle("已收藏", for: .normal)
+                collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
+                collectLabel.text = "\(storedata?.collectedUser?.count ?? 0 + 1) 人收藏"
+                
+            }
         } else {
-            collectButton.setTitle("已收藏", for: .normal)
-            collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
-            collectLabel.text = "\(storedata?.collectedUser?.count ?? 0 + 1) 人收藏"
-
-        }
-        } else {
-            self.delegate?.didtapCollectionWhenNotLogin(view: self)
+            self.delegate?.didtapWhenNotLogin(view: self)
         }
     }
 
