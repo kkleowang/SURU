@@ -28,6 +28,7 @@ class StorePageViewController: UIViewController {
             configLoginStatus()
             setTopView()
         }
+        
     }
     let topView: StoreTopView = UIView.fromNib()
     @IBOutlet weak var tableView: UITableView!
@@ -35,17 +36,39 @@ class StorePageViewController: UIViewController {
         super.viewDidLoad()
         fetchUserData()
         configLoginStatus()
+        filterBlockedUser()
         setTopView()
         setupTableView()
         
         navigationController?.hidesBottomBarWhenPushed = true
         navigationController?.navigationBar.tintColor = .B1
     }
+    
+    func filterBlockedUser() {
+        if isLogin {
+            guard let currentUser = currentUser else {
+                return
+            }
+            guard let list = currentUser.blockUserList else {
+                return
+            }
+            commentData = commentData.filter({
+                if !list.contains($0.userID) {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            tableView.reloadSections([1], with: .automatic)
+        }
+        
+    }
     func listenAuth() {
         UserRequestProvider.shared.listenFirebaseLoginSendAccount { result in
             switch result {
             case .success(let data):
                 self.currentUser = data
+                self.filterBlockedUser()
             case .failure(let error):
                 LKProgressHUD.showFailure(text: error.localizedDescription)
             }
@@ -418,8 +441,9 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
                     return false
                 }
             })
+            self.tableView.reloadSections([1], with: .automatic)
         }))
-        tableView.reloadSections([1], with: .automatic)
+       
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
             print("User click Dismiss button")
         }))
@@ -428,6 +452,16 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
             print("completion block")
         })
     }
+//    func blockUser(completion: @escaping () -> Void) {
+//        self.commentData = self.commentData.filter({
+//            if $0.userID != targetUser {
+//                return true
+//            } else {
+//                return false
+//            }
+//        })
+//       completion()
+//    }
     
 }
 extension StorePageViewController: StoreCommentCellDelegate {
