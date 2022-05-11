@@ -165,7 +165,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreCommentCell.identifier, for: indexPath) as? StoreCommentCell else { return StoreCommentCell() }
             if isLogin {
-                cell.layoutView(author: <#T##Account#>, comment: <#T##Comment#>, isLogin: <#T##Bool#>, isFollow: <#T##Bool#>, isLike: <#T##Bool#>)
+//                cell.layoutView(author: <#T##Account#>, comment: <#T##Comment#>, isLogin: <#T##Bool#>, isFollow: <#T##Bool#>, isLike: <#T##Bool#>)
             } else {
                 
             }

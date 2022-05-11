@@ -479,7 +479,7 @@ extension MappingViewController: UICollectionViewDelegate {
         } else {
             guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "StorePageViewController") as? StorePageViewController else { return }
             if isSearchResults {
-                controller.UserData =
+//                controller.UserData =
                 controller.currentUser = currentUser
                 controller.storeData = filteredStoreData[indexPath.row]
                 controller.commentData = commentOfFilteredStore[indexPath.row]
