@@ -27,7 +27,7 @@ class BadgeViewController: UIViewController {
         ["獲得10個讚", "獲得30個讚", "獲得50個讚", "獲得100個讚", "獲得200個讚"],
         ["被5人追蹤", "被10人追蹤", "被20人追蹤", "被30人追蹤", "被50人追蹤"]
     ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 //        view.backgroundColor = .C4
@@ -50,13 +50,13 @@ class BadgeViewController: UIViewController {
         collectionView.register(UINib(nibName: String(describing: BadgeHeaderCell.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: BadgeHeaderCell.self))
         collectionView.showsVerticalScrollIndicator = false
         layout.headerReferenceSize = CGSize(width: collectionView.bounds.width, height: 40)
-        
+
         return collectionView
     }()
-    
+
     func layoutView() {
         navigationItem.title = "我的勳章"
-        
+
         view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
@@ -98,14 +98,14 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.badgeNameLabel.text = BadgeName[indexPath.section][indexPath.row]
         if badgeRef[indexPath.section][indexPath.row] == 0 {
             cell.layoutCell(image: UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0), text: BadgeName[indexPath.section][indexPath.row], textColor: .gray, waringText: BadgeWarning[indexPath.section][indexPath.row])
-            
+
         } else {
             cell.layoutCell(image: UIImage(named: badgeFile[indexPath.section][indexPath.item]), text: BadgeName[indexPath.section][indexPath.row], textColor: .systemBrown, waringText: BadgeWarning[indexPath.section][indexPath.row])
         }
         cell.badgeNameLabel.layer.shadowOpacity = 0
         cell.layer.borderColor = UIColor.clear.cgColor
         let name = seletedBadgeName ?? ""
-        
+
         if name == badgeFile[indexPath.section][indexPath.row] {
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 10
@@ -113,8 +113,8 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
             cell.layer.borderColor = UIColor.systemYellow.cgColor
             cell.badgeNameLabel.makeShadow(shadowOpacity: 1, shadowRadius: 10, color: UIColor.yellow.cgColor)
         }
-        
-        
+
+
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, backgroundColor section: Int) -> UIColor {
@@ -144,5 +144,5 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
             LKProgressHUD.showFailure(text: "尚未解鎖成就")
         }
     }
-    
+
 }

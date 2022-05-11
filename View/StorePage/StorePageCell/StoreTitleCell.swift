@@ -27,21 +27,21 @@ class StoreTitleCell: UITableViewCell {
             collectButton.setTitle("已收藏", for: .normal)
             collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
             collectLabel.text = "\(storedata?.collectedUser?.count ?? 0 + 1) 人收藏"
-           
+
         }
         } else {
             self.delegate?.didtapCollectionWhenNotLogin(view: self)
         }
     }
-    
+
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var collectLabel: UILabel!
-    
+
     @IBOutlet weak var collectButton: UIButton!
     var isUserLogin: Bool?
     var isUserCollect: Bool?
-    
+
     func layoutCell(store: Store?, isCollect: Bool, isLogin: Bool) {
         guard let store = store else {
             return
@@ -64,5 +64,5 @@ class StoreTitleCell: UITableViewCell {
         nameLabel.text = store.name
         collectLabel.text = "\(store.collectedUser?.count ?? 0) 人收藏"
     }
-    
+
 }

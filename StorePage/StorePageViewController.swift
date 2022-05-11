@@ -36,7 +36,7 @@ class StorePageViewController: UIViewController {
         tableView.delegate = self
         navigationController?.navigationBar.tintColor = .B1
     }
-    
+
     func setTopView() {
         topView.isHidden = true
         topView.delegate = self
@@ -52,7 +52,7 @@ class StorePageViewController: UIViewController {
         topView.layOutView(store: storeData, isCollect: isCollected, isLogin: isLogin)
     }
     override func viewWillAppear(_ animated: Bool) {
-        
+
     }
     override func viewWillDisappear(_ animated: Bool) {
         topView.isHidden = true
@@ -67,11 +67,11 @@ class StorePageViewController: UIViewController {
 //        tableView.lk_registerCellWithNib(identifier: StoreSeatsCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
     }
-    
-    
+
+
 }
 extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -83,7 +83,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         guard let storeData = storeData else { return UITableViewCell() }
         if indexPath.section == 0 {
             switch indexPath.row {
@@ -91,7 +91,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTitleCell.identifier, for: indexPath) as? StoreTitleCell else { return StoreTitleCell() }
                 cell.delegate = self
                 cell.layoutCell(store: storeData, isCollect: isCollected, isLogin: isLogin)
-                
+
                 return cell
             case 1:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return StoreImageCell() }
@@ -102,7 +102,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.layoutCell(popular: "AppIcon", menu: "AppIcon", more: "AppIcon")
                 }
                 cell.delegate = self
-                
+
                 return cell
             case 2:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
@@ -115,7 +115,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 let layout = TagFlowLayout()
                 layout.estimatedItemSize = CGSize(width: 30, height: 30)
                 cell.collectionView.collectionViewLayout = layout
-                
+
                 return cell
             case 3:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
@@ -133,17 +133,17 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 4:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
                 cell.layoutCell(localtion: storeData.address)
-                
+
                 return cell
             case 5:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreOpenTimeCell.identifier, for: indexPath) as? StoreOpenTimeCell else { return StoreOpenTimeCell() }
                 cell.layoutCell(openTime: storeData.opentime)
-                
+
                 return cell
             case 6:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
                 cell.layoutCell(seat: storeData.seat)
-                
+
                 return cell
             case 7:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreRatingCell.identifier, for: indexPath) as? StoreRatingCell else { return StoreRatingCell() }
@@ -167,7 +167,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             if isLogin {
 //                cell.layoutView(author: <#T##Account#>, comment: <#T##Comment#>, isLogin: <#T##Bool#>, isFollow: <#T##Bool#>, isLike: <#T##Bool#>)
             } else {
-                
+
             }
             return cell
         }
@@ -176,22 +176,22 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0:
-                
+
                 return 80
             case 1:
-                
+
                 return UIScreen.width/1.5 - 20
             case 2:
-                
+
                 return 50
             case 3:
-                
+
                 return 50
             case 4:
-                
+
                 return 50
             case 5:
-                
+
                 return 50
             case 6:
                 return 50
@@ -266,7 +266,7 @@ extension StorePageViewController: StoreTopViewDelegate {
             }
         }
     }
-    
+
     func didTapCollectWhenNotLogin(_ view: StoreTopView) {
         showAlert()
     }
@@ -285,8 +285,8 @@ extension StorePageViewController: StoreTopViewDelegate {
         controller.delegate = delegate
         self.present(controller, animated: true, completion: nil)
     }
-    
-    
+
+
 }
 extension StorePageViewController: StoreImageCellDelegate {
     func didTapPopularImage(_ view: StoreImageCell, image: UIImage) {
@@ -295,25 +295,25 @@ extension StorePageViewController: StoreImageCellDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dissmiss))
         view.addGestureRecognizer(tap)
         self.view.stickSubView(view)
-        
+
         print("didTapPopularImage")
     }
-    
+
     func didTapmenuImage(_ view: StoreImageCell, image: UIImage) {
         print("didTapmenuImage")
     }
-    
+
     func didTapmoreImage(_ view: StoreImageCell, image: UIImage) {
         print("didTapmoreImage")
     }
     @objc func dissmiss(sender: UITapGestureRecognizer) {
         sender.view?.removeFromSuperview()
     }
-    
-    
+
+
 }
 extension StorePageViewController:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -325,13 +325,13 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
             return storeData.meals.count
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TagsCell.self),
                                                             for: indexPath) as? TagsCell else { return TagsCell() }
         guard let storeData = storeData else { return TagsCell() }
-        
-        
+
+
         if collectionView.tag == 80 {
             cell.tagLabel.text = storeData.tags[indexPath.row]
             cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
@@ -344,6 +344,6 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
             cell.backgroundColor = .C2
             return cell
         }
-        
+
     }
 }

@@ -10,8 +10,8 @@ import UIKit
 class TagsCell: UICollectionViewCell {
 
     @IBOutlet var tagLabel: UILabel!
-   
-    
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 20 / 2.0
@@ -38,7 +38,7 @@ class Row {
         let padding = 10
         var offset = padding
         for attribute in attributes {
-            
+
             attribute.frame.origin.x = CGFloat(offset)
             offset += Int(attribute.frame.width + spacing)
         }
@@ -50,7 +50,7 @@ class TagFlowLayout: UICollectionViewFlowLayout {
         guard let attributes = super.layoutAttributesForElements(in: rect) else {
             return nil
         }
-        
+
         var rows = [Row]()
         var currentRowY: CGFloat = -1
         self.scrollDirection = .horizontal
