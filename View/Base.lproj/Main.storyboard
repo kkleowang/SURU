@@ -100,6 +100,7 @@
                     <connections>
                         <outlet property="buttonBarView" destination="Ihe-QC-qsY" id="a0y-mc-s3W"/>
                         <outlet property="containerView" destination="Hrh-O6-nIG" id="gd6-VA-70L"/>
+                        <outlet property="scrollerView" destination="Hrh-O6-nIG" id="tvF-0T-89I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smB-P5-cAJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -121,7 +122,7 @@
                                         <rect key="frame" x="20" y="0.0" width="374" height="44"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ojd-af-CaU">
-                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="211" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJw-HI-GBE">
                                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -144,7 +145,16 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="long_like3" translatesAutoresizingMaskIntoConstraints="NO" id="cEq-LM-uxg">
+                                                        <rect key="frame" x="148.5" y="11" width="62.5" height="22"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="cEq-LM-uxg" secondAttribute="height" multiplier="1701:601" id="mOJ-zd-6jF"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="cEq-LM-uxg" firstAttribute="height" secondItem="Ojd-af-CaU" secondAttribute="height" multiplier="0.5" id="BlG-x3-5kh"/>
+                                                </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TF9-Um-IUR">
                                                 <rect key="frame" x="321" y="0.0" width="53" height="44"/>
@@ -187,6 +197,7 @@
                     <connections>
                         <outlet property="authorImageView" destination="ygS-Sx-ajo" id="Fsr-Ho-rqC"/>
                         <outlet property="authorNameLabel" destination="g6y-sd-dNb" id="0VG-8W-G1q"/>
+                        <outlet property="badgeImageView" destination="cEq-LM-uxg" id="uoQ-iR-kbn"/>
                         <outlet property="tableView" destination="5Jg-wf-AYA" id="bV3-ei-dhK"/>
                     </connections>
                 </viewController>
@@ -250,11 +261,43 @@
                         <viewLayoutGuide key="safeArea" id="b82-EU-15Q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Y0g-eq-7W4"/>
+                    <navigationItem key="navigationItem" id="Y0g-eq-7W4">
+                        <barButtonItem key="backBarButtonItem" title=" " id="aAI-FA-8EV"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jDN-0j-ke6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="667" y="-644"/>
+        </scene>
+        <!--Store Page View Controller-->
+        <scene sceneID="dHH-uR-fjJ">
+            <objects>
+                <viewController storyboardIdentifier="StorePageViewController" hidesBottomBarWhenPushed="YES" id="EJm-f6-9FE" customClass="StorePageViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sSA-CV-CrO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Lqv-5a-fJU">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="e4b-Qq-brj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Lqv-5a-fJU" firstAttribute="leading" secondItem="e4b-Qq-brj" secondAttribute="leading" id="5d6-xC-EQG"/>
+                            <constraint firstItem="Lqv-5a-fJU" firstAttribute="top" secondItem="e4b-Qq-brj" secondAttribute="top" id="Tn5-1K-a4a"/>
+                            <constraint firstAttribute="bottom" secondItem="Lqv-5a-fJU" secondAttribute="bottom" id="Xmc-f0-9SL"/>
+                            <constraint firstItem="e4b-Qq-brj" firstAttribute="trailing" secondItem="Lqv-5a-fJU" secondAttribute="trailing" id="dJB-ph-NPN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Lqv-5a-fJU" id="oG6-3R-LXj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Swr-K7-HFi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1691" y="-631"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="r7Y-0Z-es6">
@@ -303,6 +346,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jt-Un-xQn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1549" y="1365"/>
+        </scene>
+        <!--Badge View Controller-->
+        <scene sceneID="Ic4-Ee-hyc">
+            <objects>
+                <viewController storyboardIdentifier="BadgeViewController" hidesBottomBarWhenPushed="YES" id="SJx-2U-Dz3" customClass="BadgeViewController" customModule="SURU_Leo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nTf-IM-ml2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FEB-yx-mNd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zZp-AQ-Kat" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2353" y="1363"/>
         </scene>
         <!--Follow View Controller-->
         <scene sceneID="G64-f7-g07">
@@ -472,6 +530,7 @@
     <resources>
         <image name="DDD" width="480" height="479"/>
         <image name="Icons_44px_Back01" width="44" height="44"/>
+        <image name="long_like3" width="1701" height="601"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

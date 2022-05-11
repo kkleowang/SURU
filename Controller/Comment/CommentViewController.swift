@@ -10,11 +10,11 @@ import UIKit
 
 class CommentViewController: UIViewController {
     // View
-    let startingView = CommentStartingView()
+    var startingView = CommentStartingView()
+    let sendButton = UIButton()
+    var imageCardView = CommentImageCardView()
     
-    let imageCardView = CommentImageCardView()
-    
-    let selectionView = CommentSelectionView()
+    var selectionView = CommentSelectionView()
     
     // datasource放置
     var orderObserver: NSKeyValueObservation!
@@ -23,6 +23,13 @@ class CommentViewController: UIViewController {
     var commentDrafts: [CommentDraft] = []
     let userID = UserRequestProvider.shared.currentUserID
     var commentData: Comment = Comment(
+        userID: "",
+        storeID: "",
+        meal: "",
+        contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0),
+        contenText: "",
+        mainImage: "")
+    var originData: Comment = Comment(
         userID: "",
         storeID: "",
         meal: "",
@@ -45,7 +52,7 @@ class CommentViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        settingKVO()
+//        settingKVO()
         fetchStoreData()
         fetchCoreData {
         }
@@ -103,6 +110,7 @@ class CommentViewController: UIViewController {
     }
     
     func setupStartingView() {
+        startingView = CommentStartingView()
         self.view.addSubview(startingView)
         startingView.translatesAutoresizingMaskIntoConstraints = false
         startingView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
@@ -119,6 +127,7 @@ class CommentViewController: UIViewController {
     }
     
     func setupImageCardView(_ image: UIImage) {
+        imageCardView = CommentImageCardView()
         self.view.addSubview(imageCardView)
         imageCardView.translatesAutoresizingMaskIntoConstraints = false
         imageCardView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
@@ -133,6 +142,7 @@ class CommentViewController: UIViewController {
     }
     
     func setupCommentSelectionView() {
+        selectionView = CommentSelectionView()
         self.view.insertSubview(selectionView, belowSubview: imageCardView)
         selectionView.translatesAutoresizingMaskIntoConstraints = false
         selectionView.delegate = self
@@ -165,10 +175,12 @@ class CommentViewController: UIViewController {
             switch result {
             case .success(let message):
                 print("上傳評論成功", message)
+                LKProgressHUD.dismiss()
                 LKProgressHUD.showSuccess(text: "上傳評論成功")
+                self.sendButton.removeFromSuperview()
                 self.fetchCommentOfUser {
                     self.setupStartingView()
-                    
+                    self.commentData = self.originData
                 }
             case .failure(let error):
                 print("上傳評論失敗", error)
@@ -231,7 +243,10 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
         guard let imagePicker = imagePicker else {
             return
         }
-        present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true) {
+            
+            self.startingView.commentTableView.removeFromSuperview()
+        }
     }
 }
 
@@ -335,8 +350,10 @@ extension CommentViewController: LiquidViewDelegate {
             initValueView(on: selectionView.selectHappyValueButton, value: value,color: UIColor.systemPink.cgColor)
             
         }
-        if  commentData.contentValue.noodle != 0 &&  commentData.contentValue.soup != 0 &&  commentData.contentValue.happiness != 0 {
+        if  commentData.contentValue.noodle != 0 &&  commentData.contentValue.soup != 0 &&  commentData.contentValue.happiness != 0 && commentData.contentValue.noodle != 50 &&  commentData.contentValue.soup != 50 &&  commentData.contentValue.happiness != 50 &&
+                commentData.storeID != "" && commentData.meal != "" {
             initSendButton()
+            sendButton.isHidden = false
         }
     }
 }
@@ -351,29 +368,42 @@ extension CommentViewController {
         writeCommentView.layoutView(comment: commentData, name: name ?? "")
         self.present(controller, animated: true, completion: nil)
     }
+//    let sendButton = UIButton()
     func initSendButton() {
-        let button = UIButton()
-        view.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
-        button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
-        button.layer.cornerRadius = 25
-        button.setImage( UIImage(named: "plus"), for: .normal)
-        button.addTarget(self, action: #selector(sendComment), for: .touchUpInside)
-        button.backgroundColor = .black.withAlphaComponent(0.4)
-        button.tintColor = .white
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//        let button = UIButton()
+        sendButton.isHidden = true
+        view.addSubview(sendButton)
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        sendButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
+        sendButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        sendButton.layer.cornerRadius = 20
+        sendButton.setImage( UIImage(named: "plus"), for: .normal)
+        sendButton.addTarget(self, action: #selector(sendComment), for: .touchUpInside)
+        sendButton.backgroundColor = .C4
+        sendButton.tintColor = .white
+        sendButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
     @objc func sendComment() {
+//        for view in selectionView.selectNoodelValueButton.subviews {
+//            view.removeFromSuperview()
+//        }
+//        for view in selectionView.selectSouplValueButton.subviews {
+//            view.removeFromSuperview()
+//        }
+//        for view in selectionView.selectHappyValueButton.subviews {
+//            view.removeFromSuperview()
+//        }
         guard let image = imageDataHolder else { return }
+        LKProgressHUD.show()
         let fileName = "\(commentData.userID)_\(Date())"
         FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
             switch result {
             case .success(let url) :
                 print("上傳圖片成功", url.description)
                 self.commentData.mainImage = url.description
+                
                 self.publishComment()
             case .failure(let error) :
                 print("上傳圖片失敗", error)

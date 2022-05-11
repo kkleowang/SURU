@@ -17,18 +17,59 @@ class FollowViewController: UIViewController {
     var storeData: [Store] = []
     var accountData: [Account] = []
     
+    var filteredCommentData: [Comment] = []
+    var dataSourceComment: [Comment] = []
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     
     override func viewDidLoad() {
-        fetchAllData()
-        setupCollectionView()
-        
+        StoreRequestProvider.shared.listenStore {
+            self.updataStore()
+        }
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
+        fetchAllData {
+            self.configData {
+                self.setupCollectionView()
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    private func configData(completion: @escaping () -> Void) {
+        guard let user = currentAccount else { return }
+        filteredCommentData = commentData.filter({comment in
+            guard let blockList = user.blockUserList else { return true }
+            if blockList.contains(comment.userID) {
+                return false
+            } else {
+                return true
+            }
+        })
+        dataSourceComment = filteredCommentData.filter({ comment in
+            if user.followedUser.contains(comment.userID) {
+                return true
+            } else {
+                return false
+            }
+        })
+        completion()
+    }
+    func updataStore() {
+        StoreRequestProvider.shared.fetchStores { result in
+            switch result {
+            case .success(let data) :
+                self.storeData = data
+                self.configData {
+                self.collectionView.reloadData()
+                }
+            case .failure(let error) :
+                print("下載商店資料失敗", error)
+            }
+        }
     }
     private func setupCollectionView() {
         collectionView.delegate = self
@@ -60,26 +101,26 @@ class FollowViewController: UIViewController {
 
 extension FollowViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return commentData.count
+        return dataSourceComment.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return DiscoveryCell() }
         cell.delegate = self
-        if !commentData.isEmpty {
-        let comment = commentData[indexPath.row]
-        let store = storeData.first(where: {$0.storeID == comment.storeID})
+        if !dataSourceComment.isEmpty {
+        let comment = dataSourceComment[indexPath.row]
+        let store = storeData.first(where: {$0.storeID == comment.storeID}) ?? storeData[0]
         let account = accountData.first(where: {$0.userID == comment.userID})
             if let currentAccount = currentAccount {
-        cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: storeData[0])
+        cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: store)
         }
         }
         
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if !commentData.isEmpty {
-        let comment = commentData[indexPath.row]
+        if !dataSourceComment.isEmpty {
+        let comment = dataSourceComment[indexPath.row]
         let store = storeData.first(where: {$0.storeID == comment.storeID})
         let account = accountData.first(where: {$0.userID == comment.userID})
             if let currentAccount = currentAccount {
@@ -101,20 +142,35 @@ extension FollowViewController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //        commentData[indexPath.row].contentValue.happiness > 80
         
-        let comment = commentData[indexPath.row]
-        let store = storeData.first(where: {$0.storeID == comment.storeID})
-        let text = "\(store?.name ?? "") - \(comment.meal ?? "")"
+        let comment = dataSourceComment[indexPath.row]
         
+        let store = storeData.first(where: {$0.storeID == comment.storeID})
+        let text = "\(store?.name ?? "") - \(comment.meal)"
+//
+//        if text.count > 12 {
+//            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
+//        } else {
+//            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
+//        }
+        let account = accountData.first(where: {$0.userID == comment.userID})?.badgeStatus ?? ""
         if text.count > 12 {
-            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
+            if account != "" {
+                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 335)
+            } else {
+                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
+            }
         } else {
-            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
+            if account != "" {
+                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 305)
+            } else {
+                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
+            }
         }
     }
 }
 
 extension FollowViewController {
-    func fetchAllData() {
+    func fetchAllData(com: @escaping () -> ()) {
         let group: DispatchGroup = DispatchGroup()
         let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
         let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
@@ -199,7 +255,7 @@ extension FollowViewController {
             }
         }
         group.notify(queue: DispatchQueue.main) {
-            self.collectionView.reloadData()
+            com()
             LKProgressHUD.dismiss()
             LKProgressHUD.showSuccess(text: "下載資料成功")
         }

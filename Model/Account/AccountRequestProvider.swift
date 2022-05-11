@@ -135,4 +135,48 @@ class AccountRequestProvider {
             "blockUserList": FieldValue.arrayRemove([tagertUserID])
         ])
     }
+    func addLoginHistroy(date: Date, currentUserID: String) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY/MM/dd"
+        let weekDay = dateFormatter.string(from: date)
+        let currentDocment = database.collection("accounts").document(currentUserID)
+        currentDocment.updateData([
+            "loginHistory": FieldValue.arrayUnion([weekDay])
+        ])
+    }
+    func changeBadgeStatus(status: String, currentUserID: String) {
+       
+        let currentDocment = database.collection("accounts").document(currentUserID)
+        currentDocment.updateData([
+            "badgeStatus": status
+        ])
+    }
+    func updateDataAccount(currentUserID: String, type: [String], content: [String]) {
+        let currentDocment = database.collection("accounts").document(currentUserID)
+        if type.count == content.count {
+            
+            for i in 0..<type.count {
+                currentDocment.updateData([
+                    type[i]: content[i]
+                ])
+            }
+        }
+    }
+    func listenAccount(currentUserID: String, completion: @escaping () -> Void) {
+            // [START listen_document]
+        database.collection("accounts").document(currentUserID)
+                .addSnapshotListener { documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                      print("Error fetching document: \(error!)")
+                      return
+                    }
+                    guard let data = document.data() else {
+                      print("Document data was empty.")
+                      return
+                    }
+                    completion()
+                  }
+            // [END listen_document]
+        }
+    
 }

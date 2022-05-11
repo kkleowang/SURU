@@ -15,6 +15,7 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
     var stores: [Store] = []
     var currentAccount: Account?
     
+    @IBOutlet weak var scrollerView: UIScrollView!
     override func viewDidLoad() {
 
         settings.style.selectedBarBackgroundColor = .white
@@ -22,10 +23,10 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarItemBackgroundColor = .clear
         settings.style.buttonBarItemFont = .systemFont(ofSize: 16)
         settings.style.buttonBarItemLeftRightMargin = 0
-
+        
         super.viewDidLoad()
         self.navigationItem.title = "探索食記"
-         
+//        navigationController?.navigationBar.isHidden = true
         containerView.bounces = false
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
@@ -39,9 +40,9 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
         // 全部
         guard let discoveryVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as? DiscoveryViewController else { return [] }
         // 追隨的
-        guard let followedVC = storyboard.instantiateViewController(identifier: "CollectViewController") as? CollectViewController else { return [] }
+        guard let followedVC = storyboard.instantiateViewController(identifier: "FollowViewController") as? FollowViewController else { return [] }
         // 收藏的
-        guard let collectedVC = storyboard.instantiateViewController(identifier: "FollowViewController") as? FollowViewController else { return [] }
+        guard let collectedVC = storyboard.instantiateViewController(identifier: "CollectViewController") as? CollectViewController else { return [] }
   
         return [discoveryVC, followedVC, collectedVC]
     }

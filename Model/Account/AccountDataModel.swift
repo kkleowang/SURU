@@ -14,7 +14,7 @@ struct Account: Codable {
     var provider: String
     var commentCount: Int = 0
     var createdTime: Double = 0
-    var likedComment: [LikeComment] = []
+    var likedComment: [String] = []
     var collectedStore: [String] = []
     var follower: [String] = []
     var followedUser: [String] = []
@@ -23,13 +23,6 @@ struct Account: Codable {
     var blockUserList: [String]? = []
     var bio: String? = "nothing here."
     var websideLink: String?
-    var loginCount: Int? = 0
-}
-struct LikeComment: Codable {
-    var likeComment: String
-    var createdTime: Double
-}
-struct CollectComment: Codable {
-    var collectComment: String
-    var createdTime: Double
+    var loginHistory: [String]? = []
+    var badgeStatus: String?
 }

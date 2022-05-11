@@ -15,18 +15,18 @@ class DetailViewController: UIViewController {
     var store: Store?
 //    var name: String?
     var timer = 0
+    @IBOutlet weak var badgeImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBAction func tapFollowButton(_ sender: UIButton) {
-        if timer == 0 {
+        
             guard let userID = UserRequestProvider.shared.currentUserID else { return }
             guard let targetID = account?.userID else { return }
+        if timer == 0 {
             timer = 1
             AccountRequestProvider.shared.followAccount(currentUserID: userID, tagertUserID: targetID)
         } else {
-            guard let userID = UserRequestProvider.shared.currentUserID else { return }
-            guard let targetID = account?.userID else { return }
             timer = 0
             AccountRequestProvider.shared.unfollowAccount(currentUserID: userID, tagertUserID: targetID)
         }
@@ -49,6 +49,8 @@ class DetailViewController: UIViewController {
         guard let account = account else {
             return
         }
+        let badge = account.badgeStatus ?? "long1"
+        badgeImageView.image = UIImage(named: "long_\(badge)")
         authorNameLabel.text = account.name
         authorImageView.kf.setImage(with: URL(string: account.mainImage))
     }
@@ -64,7 +66,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 600
+            return 670
         } else {
             return 250
         }
@@ -95,12 +97,7 @@ extension DetailViewController: CommentStoreCellDelegate {
             LKProgressHUD.showFailure(text: "你沒有登入喔")
             return
         }
-        StoreRequestProvider.shared.collectStore(currentUserID: currentUserID, tagertStoreID: storeID)
         LKProgressHUD.showSuccess(text: "已收藏")
         
     }
-    
-    
-    
-    
 }
