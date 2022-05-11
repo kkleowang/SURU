@@ -44,7 +44,7 @@ class MappingViewController: UIViewController {
     
     // collectionView
     private var storeCardCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-//    private var tagSelectionCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    //    private var tagSelectionCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private var selectedIndex = 0 {
         didSet {
             if isSearchResults {
@@ -67,7 +67,7 @@ class MappingViewController: UIViewController {
             isLogin = false
         }
         
-            self.listenLoginState()
+        self.listenLoginState()
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
@@ -121,6 +121,7 @@ class MappingViewController: UIViewController {
             case .success(let data) :
                 print("監聽商店成功 地圖頁面", data.count)
                 self.storeData = data
+                self.storeCardCollectionView.reloadData()
                 self.reloadMapView()
             case .failure(let error) :
                 print("下載商店資料失敗", error)
@@ -225,8 +226,12 @@ class MappingViewController: UIViewController {
         }
     }
     func setupSearchBar() {
+        searchBar.tintColor = .B1
+        searchBar.searchTextField.autocorrectionType = .no
+        searchBar.returnKeyType = .search
         searchBar.placeholder = " Search..."
         searchBar.isTranslucent = false
+        searchBar.enablesReturnKeyAutomatically = false
         
         if let textField = searchBar.value(forKey: "searchField") as? UITextField {
             textField.backgroundColor = .white
@@ -378,92 +383,93 @@ extension MappingViewController: MKMapViewDelegate {
 }
 extension MappingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//
-            if isSearchResults {
-                return filteredStoreData.count
-            } else {
-                return storeData.count
-            }
-
+        //
+        if isSearchResults {
+            return filteredStoreData.count
+        } else {
+            return storeData.count
+        }
+        
         
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: StoreCardsCell.self), for: indexPath) as? StoreCardsCell else { return StoreCardsCell() }
-            
-            cell.delegate = self
-            
-            var isCollect = false
-            if isSearchResults {
-                if UserRequestProvider.shared.currentUser != nil {
-//                    guard let currentUser = currentUser else { return cell }
-                    isLogin = true
-                    let currentUser = currentUser!
-                    isCollect = ((filteredStoreData[indexPath.row].collectedUser?.contains(currentUser.userID)) != nil)
-                } else {
-                    isLogin = false
-                }
-                cell.layoutCardView(dataSource: filteredStoreData[indexPath.row], commentData: commentOfFilteredStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
-                print("搜尋dqCell", filteredStoreData[indexPath.row].name , storeData[indexPath.row].name)
-                return cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: StoreCardsCell.self), for: indexPath) as? StoreCardsCell else { return StoreCardsCell() }
+        
+        cell.delegate = self
+        
+        var isCollect = false
+        if isSearchResults {
+            if UserRequestProvider.shared.currentUser != nil {
+                guard let currentUser = currentUser else { return cell }
+                isLogin = true
+                let data = filteredStoreData[indexPath.row].collectedUser ?? []
+                
+                isCollect = data.contains(currentUser.userID)
             } else {
-                if UserRequestProvider.shared.currentUser != nil {
-//                    guard let currentUser = currentUser else { return cell }
-                    let currentUser = currentUser!
-                    isCollect = ((storeData[indexPath.row].collectedUser?.contains(currentUser.userID)) != nil)
-                    
-                } else {
-                    isLogin = false
-                }
-                
-                cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
-                
-                print("dqCell" , storeData[indexPath.row].name)
-                return cell
+                isLogin = false
             }
+            cell.layoutCardView(dataSource: filteredStoreData[indexPath.row], commentData: commentOfFilteredStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
+            print("搜尋dqCell", filteredStoreData[indexPath.row].name , storeData[indexPath.row].name)
+            return cell
+        } else {
+            if UserRequestProvider.shared.currentUser != nil {
+                guard let currentUser = currentUser else { return cell }
+                let data = storeData[indexPath.row].collectedUser ?? []
+                
+                isCollect = data.contains(currentUser.userID)
+            } else {
+                isLogin = false
+            }
+            
+            cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
+            
+            print("dqCell" , storeData[indexPath.row].name)
+            return cell
+        }
     }
 }
 
 extension MappingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      print("didSeletedCollectionView", indexPath)
-            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "StorePageViewController") as? StorePageViewController else { return }
-            
+        print("didSeletedCollectionView", indexPath)
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "StorePageViewController") as? StorePageViewController else { return }
+        
         if isSearchResults {
-                controller.currentUser = currentUser
-                controller.storeData = filteredStoreData[indexPath.row]
-                controller.commentData = commentOfFilteredStore[indexPath.row]
-                self.addChild(controller)
-                navigationController?.pushViewController(controller, animated: true)
-                
-            } else {
-                controller.currentUser = currentUser
-                controller.storeData = storeData[indexPath.row]
-                controller.commentData = commentOfStore[indexPath.row]
-                self.addChild(controller)
-                navigationController?.pushViewController(controller, animated: true)
-            }
+            controller.currentUser = currentUser
+            controller.storeData = filteredStoreData[indexPath.row]
+            controller.commentData = commentOfFilteredStore[indexPath.row]
+            self.addChild(controller)
+            navigationController?.pushViewController(controller, animated: true)
+            
+        } else {
+            controller.currentUser = currentUser
+            controller.storeData = storeData[indexPath.row]
+            controller.commentData = commentOfStore[indexPath.row]
+            self.addChild(controller)
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-       
-            let itemSize = CGSize(width: self.storeCardCollectionView.frame.size.width - 2 * 16, height: self.storeCardCollectionView.frame.size.height - 2 * 6)
-            let xCenterOffset = targetContentOffset.pointee.x + (itemSize.width / 2.0)
-            let indexPath = IndexPath(item: Int(xCenterOffset / (itemSize.width + 16 / 2.0)), section: 0)
+        
+        let itemSize = CGSize(width: self.storeCardCollectionView.frame.size.width - 2 * 16, height: self.storeCardCollectionView.frame.size.height - 2 * 6)
+        let xCenterOffset = targetContentOffset.pointee.x + (itemSize.width / 2.0)
+        let indexPath = IndexPath(item: Int(xCenterOffset / (itemSize.width + 16 / 2.0)), section: 0)
         print("滑動", indexPath)
-            self.selectedIndex = indexPath.row
-            let offset = CGPoint(x: (itemSize.width + 16.0 / 2.0) * CGFloat(indexPath.item), y: 0)
-            scrollView.decelerationRate = UIScrollView.DecelerationRate.fast
-            targetContentOffset.pointee = offset
+        self.selectedIndex = indexPath.row
+        let offset = CGPoint(x: (itemSize.width + 16.0 / 2.0) * CGFloat(indexPath.item), y: 0)
+        scrollView.decelerationRate = UIScrollView.DecelerationRate.fast
+        targetContentOffset.pointee = offset
         
     }
 }
 extension MappingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionViewSize = collectionView.frame.size
-     
-            let cellSize = CGSize(width: collectionViewSize.width - 2 * 16.0, height: collectionViewSize.height - 2 * 6.0)
-            return cellSize
+        
+        let cellSize = CGSize(width: collectionViewSize.width - 2 * 16.0, height: collectionViewSize.height - 2 * 6.0)
+        return cellSize
         
     }
     
@@ -530,6 +536,8 @@ extension MappingViewController {
         gesture.setTranslation(.zero, in: self.view)
     }
     @objc private func floatBtnAction(sender: UIButton) {
+        reportButton.isHidden = true
+        storeCardCollectionView.isHidden = true
         initReportQueueView()
     }
     private func initReportQueueView() {
@@ -540,36 +548,41 @@ extension MappingViewController {
         reportView.layoutView(name: storeName)
         reportView.translatesAutoresizingMaskIntoConstraints = false
         reportView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        reportView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        reportView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         reportView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        reportView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        UIView.animate(withDuration: 0.6) {
-            self.view.layoutIfNeeded()
-        }
+        
+        reportView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,constant: -200).isActive = true
+        
     }
     private func pulishQueue(queue: Int) {
         if UserRequestProvider.shared.currentUser != nil {
-        let storeID = storeData[selectedIndex].storeID
-        guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
-        var queue = QueueReport(queueCount: queue)
-        QueueReportRequestProvider.shared.publishQueueReport(currentUserID: currentUserID, targetStoreID: storeID, report: &queue) { result in
-            switch result {
-            case .failure:
-                LKProgressHUD.showFailure(text: "回報失敗")
-            case .success:
-                LKProgressHUD.showSuccess(text: "回報成功")
+            let storeID = storeData[selectedIndex].storeID
+            guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
+            var queue = QueueReport(queueCount: queue)
+            QueueReportRequestProvider.shared.publishQueueReport(currentUserID: currentUserID, targetStoreID: storeID, report: &queue) { result in
+                switch result {
+                case .failure:
+                    LKProgressHUD.showFailure(text: "回報失敗")
+                case .success:
+                    LKProgressHUD.showSuccess(text: "回報成功")
+                }
             }
-        }
         }
     }
 }
 extension MappingViewController: ReportViewDelegate {
     func didTapSendButton(_ view: ReportView, queue: Int) {
         if UserRequestProvider.shared.currentUser != nil {
-        pulishQueue(queue: queue)
+            pulishQueue(queue: queue)
+            
+            view.removeFromSuperview()
         } else {
+            view.removeFromSuperview()
             presentWelcomePage()
         }
+    }
+    func didTapCloseButton(_ view: ReportView) {
+        view.removeFromSuperview()
     }
 }
 extension MappingViewController: CLLocationManagerDelegate {
@@ -592,6 +605,8 @@ extension MappingViewController: CLLocationManagerDelegate {
 extension MappingViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
+        storeCardCollectionView.isHidden = true
+        reportButton.isHidden = true
         setRegion()
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -603,6 +618,7 @@ extension MappingViewController: UISearchBarDelegate {
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // mapView.layoutView(from: storeData)
+        //        searchBar.resignFirstResponder()
         searchBar.endEditing(true)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -618,6 +634,7 @@ extension MappingViewController: UISearchBarDelegate {
             filterAnnotation(text: searchText)
         }
     }
+    
     private func filterAnnotation(text: String) {
         filteredStoreData = storeData.filter({ store in
             let tag = store.tags.joined()
@@ -648,7 +665,7 @@ extension MappingViewController: UISearchBarDelegate {
 extension MappingViewController: StoreCardsCellDelegate {
     func didtapCollectionWhenNotLogin(view: StoreCardsCell) {
         presentWelcomePage()
-
+        
     }
     func presentWelcomePage() {
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }

@@ -123,6 +123,7 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
             if let currentAccount = currentAccount {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 guard let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+                controller.delegate = self
                 controller.modalPresentationStyle = .fullScreen
                 controller.comment = comment
                 controller.store = store
@@ -259,19 +260,62 @@ extension DiscoveryViewController {
 }
 
 extension DiscoveryViewController: DiscoveryCellDelegate {
+    
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment) {
-        guard let currentUserID = UserRequestProvider.shared.currentUserID else {
-            LKProgressHUD.showFailure(text: "你沒有登入喔")
-            return
-        }
+        guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
         CommentRequestProvider.shared.likeComment(currentUserID: currentUserID, tagertComment: comment)
     }
     
     func didTapUnLikeButton(_ view: DiscoveryCell, comment: Comment) {
-        guard let currentUserID = UserRequestProvider.shared.currentUserID else {
-            LKProgressHUD.showFailure(text: "你沒有登入喔")
-            return
-        }
+        guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
         CommentRequestProvider.shared.unLikeComment(currentUserID: currentUserID, tagertComment: comment)
     }
+    
+    
+}
+extension DiscoveryViewController: DetailViewControllerDelegate {
+    func didtapAuthor(_ vc: DetailViewController, targetUserID: String?) {
+        guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
+        if targetUser != userID {
+            showAlert(targetUser: targetUserID, vc: vc)
+        } else {
+            navigationController?.tabBarController?.selectedIndex = 3
+        }
+    
+    }
+    func showAlert(targetUser: String?, vc: UIViewController) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = self.view
+                
+                let xOrigin = self.view.bounds.width / 2
+                
+                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+                
+        alert.popoverPresentationController?.sourceRect = popoverRect
+                
+        alert.popoverPresentationController?.permittedArrowDirections = .up
+        alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }
+            AccountRequestProvider.shared.blockAccount(currentUserID: userID, tagertUserID: targetUser)
+            LKProgressHUD.showFailure(text: "成功封鎖用戶")
+            self.filteredCommentData = self.filteredCommentData.filter({
+                if $0.userID != targetUser {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            self.collectionView.reloadData()
+            vc.view.removeFromSuperview()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+    }
+    
 }

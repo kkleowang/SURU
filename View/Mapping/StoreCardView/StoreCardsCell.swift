@@ -84,7 +84,7 @@ class StoreCardsCell: UICollectionViewCell {
         nameLabel.text = dataSource.name
         mostCommentImageView.clipsToBounds = true
         mostCommentImageView.cornerForAll(radii: 10)
-        mostCommentImageView.makeShadow()
+        
         storeImageView.layer.cornerRadius = 25
         storeImageView.clipsToBounds = true
         storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "mainImage"))
@@ -109,7 +109,10 @@ class StoreCardsCell: UICollectionViewCell {
 
         if !commentData.isEmpty {
             let mostComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
-            mostCommentImageView.kf.setImage(with: URL(string: mostComment[0].mainImage), placeholder: UIImage(named: "mainImage"))
+            
+                mostCommentImageView.kf.setImage(with: URL(string: mostComment[0].mainImage), placeholder: UIImage(named: "noData"))
+            
+            
 
             for comment in commentData {
                 noodle += comment.contentValue.noodle
@@ -138,7 +141,7 @@ class StoreCardsCell: UICollectionViewCell {
             }
 
         } else {
-            mostCommentImageView.image = UIImage(named: "mainImage")
+            mostCommentImageView.image = UIImage(named: "noData")
 
             soupLabel.text = "無"
             soupLabel.textColor = .B1
@@ -173,6 +176,7 @@ class StoreCardsCell: UICollectionViewCell {
         }
 
     }
+    
     private func cogfigReport(store: Store) -> Int {
         guard let reports = store.queueReport else { return 5 }
         let date = Double(Date().timeIntervalSince1970)

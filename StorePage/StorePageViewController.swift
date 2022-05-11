@@ -126,7 +126,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return StoreImageCell() }
                 let sortedComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
-                var imageArray = ["mainImage", "mainImage", "mainImage"]
+                var imageArray = ["noData", "noData", "noData"]
                 for i in 0..<sortedComment.count {
                         imageArray[i] = sortedComment[i].mainImage
                     if i == 2{
@@ -148,7 +148,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 80
                 let layout = TagFlowLayout()
-                layout.estimatedItemSize = CGSize(width: 30, height: 30)
+                layout.estimatedItemSize = CGSize(width: 140, height: 40)
                 cell.collectionView.collectionViewLayout = layout
 
                 return cell
@@ -161,7 +161,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 90
                 let layout = TagFlowLayout()
-                layout.estimatedItemSize = CGSize(width: 30, height: 30)
+                layout.estimatedItemSize = CGSize(width: 140, height: 40)
                 cell.collectionView.collectionViewLayout = layout
                 cell.layoutForMealCell()
                 return cell
@@ -336,6 +336,7 @@ extension StorePageViewController: StoreTopViewDelegate {
         controller.delegate = self
         self.present(controller, animated: true, completion: nil)
     }
+    
 }
 extension StorePageViewController: StoreImageCellDelegate {
     func didTapPopularImage(_ view: StoreImageCell, image: UIImage) {
@@ -361,7 +362,7 @@ extension StorePageViewController: StoreImageCellDelegate {
 
 
 }
-extension StorePageViewController:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension StorePageViewController:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -395,31 +396,88 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
         }
 
     }
+    func showAlert(targetUser: String?) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = self.view
+                
+                let xOrigin = self.view.bounds.width / 2
+                
+                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+                
+        alert.popoverPresentationController?.sourceRect = popoverRect
+                
+        alert.popoverPresentationController?.permittedArrowDirections = .up
+        alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }
+            AccountRequestProvider.shared.blockAccount(currentUserID: userID, tagertUserID: targetUser)
+            LKProgressHUD.showFailure(text: "成功封鎖用戶")
+            self.commentData = self.commentData.filter({
+                if $0.userID != targetUser {
+                    return true
+                } else {
+                    return false
+                }
+            })
+        }))
+        tableView.reloadSections([1], with: .automatic)
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+    }
+    
 }
 extension StorePageViewController: StoreCommentCellDelegate {
     func didtapAuthor(_ view: StoreCommentCell, targetUserID: String?) {
-        print("didtapAuthor")
+        if UserRequestProvider.shared.currentUser != nil {
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
+            if targetUser != userID {
+            showAlert(targetUser: targetUserID)
+            } else {
+                navigationController?.tabBarController?.selectedIndex = 3
+            }
+        } else {
+            presentWelcomePage()
+        }
     }
     
     func didtapLike(_ view: StoreCommentCell, targetComment: Comment?, isLogin: Bool, isLike: Bool) {
-        if UserRequestProvider.shared.currentUser == nil {
-            
+        if UserRequestProvider.shared.currentUser != nil {
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetComment = targetComment else { return }
+            if isLike {
+                CommentRequestProvider.shared.likeComment(currentUserID: userID, tagertComment: targetComment)
+            } else {
+                CommentRequestProvider.shared.unLikeComment(currentUserID: userID, tagertComment: targetComment)
+            }
         } else {
             presentWelcomePage()
         }
     }
     
     func didtapfollow(_ view: StoreCommentCell, targetUserID: String?, isLogin: Bool, isFollow: Bool) {
-        if UserRequestProvider.shared.currentUser == nil {
-            
+        if UserRequestProvider.shared.currentUser != nil {
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUserID = targetUserID else { return }
+            if isFollow {
+                AccountRequestProvider.shared.followAccount(currentUserID: userID, tagertUserID: targetUserID)
+            } else {
+                AccountRequestProvider.shared.unfollowAccount(currentUserID: userID, tagertUserID: targetUserID)
+            }
         } else {
             presentWelcomePage()
         }
     }
     
     func didtapMore(_ view: StoreCommentCell, targetUserID: String?, isLogin: Bool) {
-        if UserRequestProvider.shared.currentUser == nil {
-            
+        if UserRequestProvider.shared.currentUser != nil {
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
+            if targetUser != userID {
+            showAlert(targetUser: targetUserID)
+            } else {
+                navigationController?.tabBarController?.selectedIndex = 3
+            }
         } else {
             presentWelcomePage()
         }

@@ -79,11 +79,11 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
 }
 extension ProfileViewController: ProfileViewDelegate {
     func didTapBadge(_ view: ProfileView) {
-        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
-        guard let currentUserData = currentUserData else { return }
-        controller.badgeRef = badgeRef
-        controller.seletedBadgeName = currentUserData.badgeStatus
-                navigationController?.pushViewController(controller, animated: true)
+//        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
+//        guard let currentUserData = currentUserData else { return }
+//        controller.badgeRef = badgeRef
+//        controller.seletedBadgeName = currentUserData.badgeStatus
+//                navigationController?.pushViewController(controller, animated: true)
     }
     
     func didTapEditProfilebutton(_ view: ProfileView) {
@@ -113,6 +113,13 @@ extension ProfileViewController: ProfileViewDelegate {
         alert.popoverPresentationController?.sourceRect = popoverRect
                 
         alert.popoverPresentationController?.permittedArrowDirections = .up
+        alert.addAction(UIAlertAction(title: "編輯勳章", style: .default , handler:{ (UIAlertAction) in
+            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
+            guard let currentUserData = self.currentUserData else { return }
+            controller.badgeRef = self.badgeRef
+            controller.seletedBadgeName = currentUserData.badgeStatus
+            self.navigationController?.pushViewController(controller, animated: true)
+        }))
         alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction) in
             UserRequestProvider.shared.logOut()
             self.tabBarController?.selectedIndex = 0
@@ -253,10 +260,8 @@ extension ProfileViewController {
             switch result {
             case .success(let data):
                 print("下載用戶成功")
-                
                 self.currentUserData = data
                 guard let currentUserData = self.currentUserData else { return }
-                
                 self.profileView.layoutView(account: currentUserData)
                 self.profileView.collectionView.reloadData()
             case .failure(let error):
