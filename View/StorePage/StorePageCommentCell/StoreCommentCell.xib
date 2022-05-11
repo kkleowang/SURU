@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="505" id="KGk-i7-Jjw" customClass="StoreCommentCell" customModule="SURU_Leo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="505"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="505"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="V9u-oG-WBU">
+                        <rect key="frame" x="16" y="8" width="343" height="40"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AIY-43-oXn">
+                                <rect key="frame" x="0.0" y="0.0" width="144.5" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="001" translatesAutoresizingMaskIntoConstraints="NO" id="hkA-8F-sgh">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hkA-8F-sgh" secondAttribute="height" multiplier="1:1" id="ML4-Pr-FPA"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="NP6-vI-KJw">
+                                        <rect key="frame" x="48" y="3.5" width="96.5" height="33"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LeoWang008" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16F-2u-9LG">
+                                                <rect key="frame" x="0.0" y="0.0" width="96.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" name="B1"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,000人中追蹤中" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41e-Xj-PSV">
+                                                <rect key="frame" x="0.0" y="19.5" width="87" height="13.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <color key="textColor" name="B2"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ViN-YF-fpd">
+                                <rect key="frame" x="243" y="0.0" width="100" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBU-bq-qea">
+                                        <rect key="frame" x="0.0" y="9" width="20.5" height="22"/>
+                                        <color key="tintColor" name="B1"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="heart" catalog="system"/>
+                                        <connections>
+                                            <action selector="tapLike:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ciS-s3-y5f"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfE-FM-owH">
+                                        <rect key="frame" x="28.5" y="10" width="53" height="20"/>
+                                        <color key="tintColor" name="B1"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="追蹤"/>
+                                        <connections>
+                                            <action selector="tapFollow:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bKM-WV-LFL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f31-QJ-gpM">
+                                        <rect key="frame" x="89.5" y="10" width="10.5" height="20"/>
+                                        <color key="tintColor" name="B1"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="more" symbolScale="large"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapMore:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JWW-LX-qss"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="f31-QJ-gpM" firstAttribute="height" secondItem="ViN-YF-fpd" secondAttribute="height" multiplier="0.5" id="Tgp-qz-zkx"/>
+                                    <constraint firstItem="tfE-FM-owH" firstAttribute="height" secondItem="ViN-YF-fpd" secondAttribute="height" multiplier="0.5" id="gvT-E1-cMx"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="KFs-ed-3PL"/>
+                        </constraints>
+                    </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AvZ-v0-E1F">
+                        <rect key="frame" x="16" y="56" width="343" height="343"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="AvZ-v0-E1F" secondAttribute="height" multiplier="1:1" id="P8j-dL-ViW"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hHw-Wb-smF">
+                        <rect key="frame" x="16" y="407" width="202" height="34"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,433 個喜歡" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3M-GQ-4f7">
+                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="B1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="目前沒有留言查看全部27則留言" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpR-Kk-Nda">
+                                <rect key="frame" x="0.0" y="17" width="202" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="B1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="V9u-oG-WBU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="8SQ-HY-xqo"/>
+                    <constraint firstItem="V9u-oG-WBU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="GEy-Tq-ySJ"/>
+                    <constraint firstAttribute="trailing" secondItem="AvZ-v0-E1F" secondAttribute="trailing" constant="16" id="Jw8-oI-xTC"/>
+                    <constraint firstItem="AvZ-v0-E1F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Viv-HD-QN6"/>
+                    <constraint firstItem="AvZ-v0-E1F" firstAttribute="top" secondItem="V9u-oG-WBU" secondAttribute="bottom" constant="8" id="YYt-gu-8bx"/>
+                    <constraint firstAttribute="trailing" secondItem="V9u-oG-WBU" secondAttribute="trailing" constant="16" id="enD-Tw-rus"/>
+                    <constraint firstItem="hHw-Wb-smF" firstAttribute="top" secondItem="AvZ-v0-E1F" secondAttribute="bottom" constant="8" id="tJS-nt-7dy"/>
+                    <constraint firstItem="hHw-Wb-smF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="uGq-ie-biV"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hHw-Wb-smF" secondAttribute="bottom" constant="8" id="wLt-sr-GJm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="authorFollowerLabel" destination="41e-Xj-PSV" id="DgU-uz-qAy"/>
+                <outlet property="authorImageView" destination="hkA-8F-sgh" id="6Rv-gG-2G1"/>
+                <outlet property="authorNameLabel" destination="16F-2u-9LG" id="v2E-aU-gyp"/>
+                <outlet property="authorStackView" destination="AIY-43-oXn" id="0XB-xb-CZD"/>
+                <outlet property="commentImageView" destination="AvZ-v0-E1F" id="q5d-FL-7c9"/>
+                <outlet property="commentsLabel" destination="BpR-Kk-Nda" id="eI9-xB-oOV"/>
+                <outlet property="followButton" destination="tfE-FM-owH" id="EGw-Fa-Nnh"/>
+                <outlet property="likeButton" destination="mBU-bq-qea" id="BDP-ZN-SmS"/>
+                <outlet property="likeLabel" destination="F3M-GQ-4f7" id="N92-dE-TIO"/>
+                <outlet property="moreButton" destination="f31-QJ-gpM" id="DuV-01-fpE"/>
+            </connections>
+            <point key="canvasLocation" x="171.73913043478262" y="278.90625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="001" width="940" height="650"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="more" width="11" height="3"/>
+        <namedColor name="B1">
+            <color red="0.24699999392032623" green="0.22699999809265137" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="B2">
+            <color red="0.3919999897480011" green="0.3919999897480011" blue="0.3919999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -6,128 +6,174 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Alamofire
 
 
 private struct StoryboardCategory {
-
     static let waterfalls = "CommentWallViewController"
-
+    
     static let mapping = "MappingViewController"
-
-//    static let report = "ReportViewController"
-
+    
     static let comment = "CommentViewController"
-
+    
     static let profile = "ProfileViewController"
-
-//    static let auth = "Auth"
 }
+
 private enum Tab {
+    
     case waterfalls
-
+    
     case mapping
-
-//    case report
-
+    
     case comment
     
     case profile
-
+    
     func controller() -> UIViewController {
         var controller: UIViewController
+        let storyboard = UIStoryboard.main
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
         switch self {
         case .waterfalls: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.waterfalls)
-
+            
         case .mapping: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.mapping)
-
-//        case .report: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.report)
-
+            
         case .comment: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.comment)
             
         case .profile: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.profile)
         }
-
+        
         controller.tabBarItem = tabBarItem()
-
-        controller.tabBarItem.imageInsets = UIEdgeInsets(top: 6.0, left: 0.0, bottom: -6.0, right: 0.0)
-
+        controller.tabBarItem.imageInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         return controller
     }
-
+    
     func tabBarItem() -> UITabBarItem {
         switch self {
         case .waterfalls:
             return UITabBarItem(
-                title: nil,
-                image: UIImage.asset(.Icons_24px_Address),
-                selectedImage: UIImage.asset(.Icons_24px_Address)
+                title: "探索",
+                image: UIImage(systemName: "mosaic"),
+                selectedImage: UIImage(systemName: "mosaic.fill")
             )
-
+            
         case .mapping:
             return UITabBarItem(
-                title: nil,
-                image: UIImage.asset(.Icons_24px_CollectionView),
-                selectedImage: UIImage.asset(.Icons_24px_CollectionView)
+                title: "地圖",
+                image: UIImage(systemName: "location.circle"),
+                selectedImage: UIImage(systemName: "location.circle.fill")
             )
-
+            
         case .comment:
             return UITabBarItem(
-                title: nil,
-                image: UIImage.asset(.Icons_24px_RegisterCellphone),
-                selectedImage: UIImage.asset(.Icons_24px_RegisterCellphone)
+                title: "發表評論",
+                image: UIImage(systemName: "rectangle.stack.badge.plus"),
+                selectedImage: UIImage(systemName: "rectangle.stack.badge.plus")
             )
-
-//        case .report:
-//            return UITabBarItem(
-//                title: nil,
-//                image: UIImage.asset(.Icons_36px_Profile_Normal),
-//                selectedImage: UIImage.asset(.Icons_36px_Profile_Selected)
-//            )
+            
         case .profile:
             return UITabBarItem(
-                title: nil,
-                image: UIImage.asset(.Icons_36px_Profile_Selected),
-                selectedImage: UIImage.asset(.Icons_36px_Profile_Selected)
+                title: "個人資料",
+                image: UIImage(systemName: "person.crop.circle"),
+                selectedImage: UIImage(systemName: "person.crop.circle.fill")
             )
         }
     }
 }
 
-
 class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private let tabs: [Tab] = [.mapping, .waterfalls, .comment, .profile]
-//    static let shared = SURUTabBarViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserRequestProvider.shared.listenFirebaseLogin { _ in
+        }
+        
+        self.tabBar.tintColor = .C1
+        
         view.backgroundColor = .white
         viewControllers = tabs.map({ $0.controller() })
         delegate = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBar.backgroundColor = .white
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let userID = UserRequestProvider.shared.currentUserID {
-            print("Login success, id: \(userID)")
-        }else {
+        if let user = UserRequestProvider.shared.currentUser {
+            AccountRequestProvider.shared.addLoginHistroy(date: Date(), currentUserID: user.uid)
+            print("Logined , id: \(user.uid)")
+        } else {
+            print("Not login, presentWelcomPage")
             presentWelcomePage()
+            
         }
     }
-
+    private func showLoginAlert(type: Tab) {
+//        var message: String?
+//        switch type {
+//        case .waterfalls:
+//            message = "登入查看更多社群貼文！"
+//        case .mapping:
+//            return
+//        case .comment:
+//            message = "登入發表你的食記！"
+//        case .profile:
+//            message = "登入編輯你的SURU檔案！"
+//        }
+//        let alert = UIAlertController(title: "提示", message: message, preferredStyle: .alert)
+//        let login = UIAlertAction(title: "登入", style: .cancel) { _ in
+//            self.presentWelcomePage()
+//        }
+//        let notLogin = UIAlertAction(title: "下次一定", style: .default, handler: nil)
+//        alert.addAction(login)
+//        alert.addAction(notLogin)
+//        present(alert, animated: true, completion: nil)
+        presentWelcomePage()
+    }
     func presentWelcomePage() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
+        controller.delegate = self
         self.present(controller, animated: true, completion: nil)
     }
-    // MARK: - UITabBarControllerDelegate
-    
     func tabBarController(
         _ tabBarController: UITabBarController,
         shouldSelect viewController: UIViewController
     ) -> Bool {
-        true
+        if UserRequestProvider.shared.currentUser != nil {
+            return true
+        } else {
+            switch viewController {
+            case viewControllers?[0]:
+                return true
+            case viewControllers?[1]:
+                presentWelcomePage()
+//                showLoginAlert(type: .waterfalls)
+                return false
+            case viewControllers?[2]:
+                presentWelcomePage()
+//                showLoginAlert(type: .comment)
+                return false
+            case viewControllers?[3]:
+                presentWelcomePage()
+//                showLoginAlert(type: .profile)
+                return false
+            default:
+                print("WrongInTarbar")
+                return false
+            }
+            
+        }
+    }
+    
+}
+extension SURUTabBarViewController: SignInAndOutViewControllerDelegate {
+    func didSelectLookAround(_ view: SignInAndOutViewController) {
+        selectedIndex = 0
+    }
+    
+    func didSelectGoEditProfile(_ view: SignInAndOutViewController) {
+        selectedIndex = 3
     }
 }
