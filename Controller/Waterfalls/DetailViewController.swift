@@ -50,8 +50,11 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func tapAuthorView() {
-        guard let userID = comment?.userID else { return }
-        self.delegate?.didtapAuthor(self, targetUserID: userID)
+        dismiss(animated: true) {
+            guard let userID = self.comment?.userID else { return }
+            self.delegate?.didtapAuthor(self, targetUserID: userID)
+        }
+        
     }
     func setupTopView() {
         guard let account = account else {
