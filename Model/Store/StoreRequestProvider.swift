@@ -90,13 +90,7 @@ class StoreRequestProvider {
                 return
             }
             snapshot.documentChanges.forEach { diff in
-                if (diff.type == .added) {
-                    completion()
-                }
                 if (diff.type == .modified) {
-                    completion()
-                }
-                if (diff.type == .removed) {
                     completion()
                 }
             }

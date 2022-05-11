@@ -24,19 +24,11 @@ class MappingViewController: UIViewController {
     
     private var isSearchResults = false
     
-    private var storeData: [Store] = [] {
-        didSet {
-            storeTag = storeData.flatMap {$0.tags}.uniqued()
-        }
-    }
-    private var filteredStoreData: [Store] = [] {
-        didSet {
-            filteredStoreTags = filteredStoreData.flatMap {$0.tags}.uniqued()
-        }
-    }
+    private var storeData: [Store] = []
+    private var filteredStoreData: [Store] = []
+    
     
     private var storeTag: [String] = []
-    private var filteredStoreTags: [String] = []
     
     private var commentOfStore: [[Comment]] = []
     private var commentOfFilteredStore: [[Comment]] = []
@@ -70,19 +62,19 @@ class MappingViewController: UIViewController {
         if UserRequestProvider.shared.currentUserID == nil {
             isLogin = false
         }
-        storeCardCollectionView.isHidden = true
+        
+            self.listenLoginState()
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
         //        setupLocationManager()
         self.view.stickSubView(mapView)
+        storeCardCollectionView.isHidden = true
         
         fetchData(isLogin: isLogin) {
-            self.listenLoginState()
             LKProgressHUD.showSuccess(text: "下載資料成功")
             self.setupSearchBar()
             self.setupMapView()
-            self.setupTagCollectionView()
             self.setupHiddenCollectionView()
         }
     }
@@ -113,23 +105,6 @@ class MappingViewController: UIViewController {
         storeCardCollectionView.heightAnchor.constraint(equalTo: storeCardCollectionView.widthAnchor, multiplier: 230/390).isActive = true
         storeCardCollectionView.backgroundColor = .clear
     }
-//    private func setupTagCollectionView() {
-//
-//        if let flowLayout = tagSelectionCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//            flowLayout.scrollDirection = .horizontal
-//        }
-//        tagSelectionCollectionView.register(UINib(nibName: String(describing: TagCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TagCell.self))
-//        tagSelectionCollectionView.dataSource = self
-//        tagSelectionCollectionView.delegate = self
-//        tagSelectionCollectionView.isHidden = true
-//        self.view.addSubview(tagSelectionCollectionView)
-//        tagSelectionCollectionView.translatesAutoresizingMaskIntoConstraints = false
-//        tagSelectionCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-//        tagSelectionCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-//        tagSelectionCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-//        tagSelectionCollectionView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//        tagSelectionCollectionView.backgroundColor = .clear
-//    }
     private func setupDescriptionCardView() {
         if storeCardCollectionView.isHidden {
             storeCardCollectionView.isHidden = false
@@ -140,9 +115,9 @@ class MappingViewController: UIViewController {
         StoreRequestProvider.shared.fetchStores { result in
             switch result {
             case .success(let data) :
+                print("監聽商店成功 地圖頁面", data.count)
                 self.storeData = data
                 self.reloadMapView()
-                self.storeCardCollectionView.reloadData()
             case .failure(let error) :
                 print("下載商店資料失敗", error)
             }
@@ -152,7 +127,7 @@ class MappingViewController: UIViewController {
         UserRequestProvider.shared.listenFirebaseLoginSendAccount { result in
             switch result {
             case .success(let data) :
-                print("監聽成功 地圖頁面", data?.userID)
+                print("監聽使用者成功 地圖頁面", data?.userID)
                 self.isLogin = true
                 self.currentUser = data
                 self.storeCardCollectionView.reloadData()
@@ -201,15 +176,10 @@ class MappingViewController: UIViewController {
                 group.leave()
             }
         }
-        if isLogin {
+        if UserRequestProvider.shared.currentUserID != nil {
             group.enter()
             concurrentQueue3.async(group: group) {
-                guard let currentUserID = UserRequestProvider.shared.currentUserID else {
-                    group.leave()
-                    LKProgressHUD.dismiss()
-                    LKProgressHUD.showFailure(text: "載入使用者失敗")
-                    return
-                }
+                guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
                 AccountRequestProvider.shared.fetchAccount(currentUserID: currentUserID) { result in
                     switch result {
                     case .success(let data) :
@@ -339,7 +309,7 @@ extension MappingViewController: MKMapViewDelegate {
         
         switch annotation.title {
         default:
-            for store in storeData.reversed() where annotation.title == store.name {
+            for store in storeData where annotation.title == store.name {
                 switch cogfigReport(store: store) {
                 case 1:
                     annotationView?.doGlowAnimation(withColor: .blue, withEffect: .small)
@@ -369,11 +339,13 @@ extension MappingViewController: MKMapViewDelegate {
         if isSearchResults {
             for (index, store) in filteredStoreData.enumerated() where store.storeID == name {
                 selectedIndex = index
+                print("搜尋地圖手勢", index)
                 setupDescriptionCardView()
             }
         } else {
             for (index, store) in storeData.enumerated() where store.storeID == name {
                 selectedIndex = index
+                print("地圖手勢", index)
                 setupDescriptionCardView()
             }
         }
@@ -402,80 +374,59 @@ extension MappingViewController: MKMapViewDelegate {
 }
 extension MappingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if collectionView == tagSelectionCollectionView {
-//            if isSearchResults {
-//                return filteredStoreTags.count
-//            } else {
-//                return storeTag.count
-//            }
-//        } else {
+//
             if isSearchResults {
                 return filteredStoreData.count
             } else {
                 return storeData.count
             }
-//        }
+
         
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if collectionView == tagSelectionCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TagCell.self), for: indexPath) as? TagCell else { return TagCell() }
-            if isSearchResults {
-                
-                cell.tagButton.setTitle(filteredStoreTags[indexPath.row], for: .normal)
-                return cell
-            } else {
-                
-                cell.tagButton.setTitle(storeTag[indexPath.row], for: .normal)
-                return cell
-            }
-        } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: StoreCardsCell.self), for: indexPath) as? StoreCardsCell else { return StoreCardsCell() }
             
             cell.delegate = self
             
-            var isCollect: Bool? = false
+            var isCollect = false
             if isSearchResults {
-                if isLogin {
-                    guard let currentUser = currentUser else { return cell }
-                    isCollect = filteredStoreData[indexPath.row].collectedUser?.contains(currentUser.userID)
+                if UserRequestProvider.shared.currentUser != nil {
+//                    guard let currentUser = currentUser else { return cell }
+                    isLogin = true
+                    let currentUser = currentUser!
+                    isCollect = ((filteredStoreData[indexPath.row].collectedUser?.contains(currentUser.userID)) != nil)
                 } else {
-                    isCollect = false
+                    isLogin = false
                 }
-                
                 cell.layoutCardView(dataSource: filteredStoreData[indexPath.row], commentData: commentOfFilteredStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
+                print("搜尋dqCell", filteredStoreData[indexPath.row].name , storeData[indexPath.row].name)
                 return cell
             } else {
                 if UserRequestProvider.shared.currentUser != nil {
+//                    guard let currentUser = currentUser else { return cell }
                     let currentUser = currentUser!
-                    isCollect = storeData[indexPath.row].collectedUser?.contains(currentUser.userID)
-                    isLogin = true
+                    isCollect = ((storeData[indexPath.row].collectedUser?.contains(currentUser.userID)) != nil)
+                    
                 } else {
-                    isCollect = false
+                    isLogin = false
                 }
                 
                 cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
+                
+                print("dqCell" , storeData[indexPath.row].name)
                 return cell
             }
-        }
-        
     }
 }
 
 extension MappingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == tagSelectionCollectionView {
-            if isSearchResults {
-                filterAnnotation(text: filteredStoreTags[indexPath.row])
-            } else {
-                filterAnnotation(text: storeTag[indexPath.row])
-            }
-        } else {
+      print("didSeletedCollectionView", indexPath)
             guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "StorePageViewController") as? StorePageViewController else { return }
-            if isSearchResults {
+            
+        if isSearchResults {
                 controller.currentUser = currentUser
                 controller.storeData = filteredStoreData[indexPath.row]
                 controller.commentData = commentOfFilteredStore[indexPath.row]
@@ -489,43 +440,27 @@ extension MappingViewController: UICollectionViewDelegate {
                 self.addChild(controller)
                 navigationController?.pushViewController(controller, animated: true)
             }
-            
-        }
-        
     }
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if scrollView == tagSelectionCollectionView {
-            
-        } else {
+       
             let itemSize = CGSize(width: self.storeCardCollectionView.frame.size.width - 2 * 16, height: self.storeCardCollectionView.frame.size.height - 2 * 6)
             let xCenterOffset = targetContentOffset.pointee.x + (itemSize.width / 2.0)
             let indexPath = IndexPath(item: Int(xCenterOffset / (itemSize.width + 16 / 2.0)), section: 0)
+        print("滑動", indexPath)
             self.selectedIndex = indexPath.row
             let offset = CGPoint(x: (itemSize.width + 16.0 / 2.0) * CGFloat(indexPath.item), y: 0)
             scrollView.decelerationRate = UIScrollView.DecelerationRate.fast
             targetContentOffset.pointee = offset
-        }
+        
     }
 }
 extension MappingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionViewSize = collectionView.frame.size
-        if collectionView == tagSelectionCollectionView {
-            if isSearchResults {
-                let string = filteredStoreTags[indexPath.item]
-                let font = UIFont.systemFont(ofSize: 16)
-                let size = string.widthWithConstrainedHeight(30, font: font)
-                return CGSize(width: size + 10, height: 30)
-            } else {
-                let string = storeTag[indexPath.item]
-                let font = UIFont.systemFont(ofSize: 16)
-                let size = string.widthWithConstrainedHeight(30, font: font)
-                return CGSize(width: size + 10, height: 30)
-            }
-        } else {
+     
             let cellSize = CGSize(width: collectionViewSize.width - 2 * 16.0, height: collectionViewSize.height - 2 * 6.0)
             return cellSize
-        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -609,9 +544,7 @@ extension MappingViewController {
         }
     }
     private func pulishQueue(queue: Int) {
-        if isLogin {
-            
-        } else {
+        if UserRequestProvider.shared.currentUser != nil {
         let storeID = storeData[selectedIndex].storeID
         guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
         var queue = QueueReport(queueCount: queue)
@@ -623,12 +556,16 @@ extension MappingViewController {
                 LKProgressHUD.showSuccess(text: "回報成功")
             }
         }
-    }
+        }
     }
 }
 extension MappingViewController: ReportViewDelegate {
     func didTapSendButton(_ view: ReportView, queue: Int) {
+        if UserRequestProvider.shared.currentUser != nil {
         pulishQueue(queue: queue)
+        } else {
+            presentWelcomePage()
+        }
     }
 }
 extension MappingViewController: CLLocationManagerDelegate {
@@ -696,11 +633,9 @@ extension MappingViewController: UISearchBarDelegate {
         for annotation in mapView.annotations {
             mapView.removeAnnotation(annotation)
         }
-        
         isSearchResults = true
         storeCardCollectionView.reloadData()
         mapView.layoutView(from: filteredStoreData)
-        
     }
     private func setRegion() {
         mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.00708, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000), animated: true)
