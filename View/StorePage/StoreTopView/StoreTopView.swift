@@ -32,22 +32,27 @@ class StoreTopView: UIView {
         
         mainImage.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "AppIcon"))
         name.text = store.name
-        if isCollect {
-            collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
+        if isLogin {
+            if isCollect {
+                collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
+            } else {
+                collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
+            }
         } else {
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
         }
         
+        
     }
     @IBAction func tapCollectButton(_ sender: UIButton) {
-        guard let isLogin = isUserLogin else { return }
         
-        if isLogin {
+        
+        if UserRequestProvider.shared.currentUser != nil {
             if collectButton.currentImage == UIImage(named: "collect.fill") {
-                self.delegate?.didtapCollectionButton(self)
+                self.delegate?.didtapUnCollectionButton(self)
                 collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
             } else {
-                self.delegate?.didtapUnCollectionButton(self)
+                self.delegate?.didtapCollectionButton(self)
                 collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
             }
         } else {

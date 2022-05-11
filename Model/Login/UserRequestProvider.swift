@@ -24,6 +24,21 @@ class UserRequestProvider {
             completion(user?.uid)
         }
     }
+    func listenFirebaseLoginSendAccount(completion: @escaping (Result<Account?, Error>) -> Void) {
+        firebaseAuth.addStateDidChangeListener { _, user in
+            self.currentUser = user
+            self.currentUserID = user?.uid
+            guard let id = user?.uid else { return }
+            AccountRequestProvider.shared.fetchAccount(currentUserID: id) { result in
+                switch result {
+                case.success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
     func nativeSignIn(withEmail email: String, withPassword password: String, completion: @escaping (Result<String, Error>) -> Void) {
         firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
             if let error = error {

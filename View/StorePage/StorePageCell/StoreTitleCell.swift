@@ -21,12 +21,12 @@ class StoreTitleCell: UITableViewCell {
         
         if isLogin {
             if collectButton.currentTitle == "已收藏" {
-                self.delegate?.didtapCollectionButton(view: self)
+                self.delegate?.didtapUnCollectionButton(view: self)
                 collectButton.setTitle("收藏", for: .normal)
                 collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
                 collectLabel.text = "\(storedata?.collectedUser?.count ?? 1 - 1) 人收藏"
             } else {
-                self.delegate?.didtapUnCollectionButton(view: self)
+                self.delegate?.didtapCollectionButton(view: self)
                 collectButton.setTitle("已收藏", for: .normal)
                 collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
                 collectLabel.text = "\(storedata?.collectedUser?.count ?? 0 + 1) 人收藏"
@@ -52,13 +52,19 @@ class StoreTitleCell: UITableViewCell {
         isUserCollect = isCollect
         isUserLogin = isLogin
         storedata = store
-        if isCollect {
-            collectButton.setTitle("已收藏", for: .normal)
-            collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
+        if isLogin {
+            if isCollect {
+                collectButton.setTitle("已收藏", for: .normal)
+                collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
+            } else {
+                collectButton.setTitle("收藏", for: .normal)
+                collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
+            }
         } else {
             collectButton.setTitle("收藏", for: .normal)
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
         }
+       
         collectButton.layer.cornerRadius = 10
         collectButton.clipsToBounds = true
         collectButton.layer.borderWidth = 1
