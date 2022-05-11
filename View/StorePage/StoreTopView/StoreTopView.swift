@@ -30,7 +30,7 @@ class StoreTopView: UIView {
         mainImage.contentMode = .scaleAspectFill
         mainImage.clipsToBounds = true
         
-        mainImage.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "AppIcon"))
+        mainImage.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "mainImage"))
         name.text = store.name
         if isLogin {
             if isCollect {

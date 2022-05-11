@@ -24,7 +24,11 @@ class MappingViewController: UIViewController {
     
     private var isSearchResults = false
     
-    private var storeData: [Store] = []
+    private var storeData: [Store] = [] {
+        didSet {
+            storeData = storeData.sorted(by: { $0.coordinate.long < $1.coordinate.long})
+        }
+    }
     private var filteredStoreData: [Store] = []
     
     
@@ -323,7 +327,7 @@ extension MappingViewController: MKMapViewDelegate {
                     break
                 }
                 
-                imageView.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "AppIcon") )
+                imageView.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "mainImage") )
                 annotationView?.subviews.forEach { $0.removeFromSuperview() }
                 annotationView?.addSubview(imageView)
                 let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAnnotationView(sender:)))

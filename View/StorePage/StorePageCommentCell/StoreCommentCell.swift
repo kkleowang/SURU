@@ -99,12 +99,12 @@ class StoreCommentCell: UITableViewCell {
         authorImageView.layer.borderColor = UIColor.white.cgColor
         authorImageView.contentMode = .scaleAspectFill
         authorImageView.clipsToBounds = true
-        authorImageView.kf.setImage(with: URL(string: author.mainImage), placeholder: UIImage(named: "AppIcon"))
+        authorImageView.kf.setImage(with: URL(string: author.mainImage), placeholder: UIImage(named: "mainImage"))
         
         authorNameLabel.text = author.name
         authorFollowerLabel.text = "\(author.follower.count) 人追蹤中"
         
-        commentImageView.kf.setImage(with: URL(string: comment.mainImage), placeholder: UIImage(named: "AppIcon"))
+        commentImageView.kf.setImage(with: URL(string: comment.mainImage), placeholder: UIImage(named: "mainImage"))
         let tapAuthor = UITapGestureRecognizer(target: self, action: #selector(tapAuthorView))
         let doubleTapImage = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
         commentImageView.addGestureRecognizer(doubleTapImage)

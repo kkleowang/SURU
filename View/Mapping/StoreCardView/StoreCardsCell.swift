@@ -87,7 +87,7 @@ class StoreCardsCell: UICollectionViewCell {
         mostCommentImageView.makeShadow()
         storeImageView.layer.cornerRadius = 25
         storeImageView.clipsToBounds = true
-        storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "AppIcon"))
+        storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "mainImage"))
         storeImageView.layer.borderWidth = 1.0
         storeImageView.layer.borderColor = UIColor.B6?.cgColor
         followerLabel.text = "\(dataSource.collectedUser?.count ?? 0) 人收藏, 共\(commentData.count) 則食記"
@@ -109,7 +109,7 @@ class StoreCardsCell: UICollectionViewCell {
 
         if !commentData.isEmpty {
             let mostComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
-            mostCommentImageView.kf.setImage(with: URL(string: mostComment[0].mainImage), placeholder: UIImage(named: "AppIcon"))
+            mostCommentImageView.kf.setImage(with: URL(string: mostComment[0].mainImage), placeholder: UIImage(named: "mainImage"))
 
             for comment in commentData {
                 noodle += comment.contentValue.noodle
@@ -138,7 +138,7 @@ class StoreCardsCell: UICollectionViewCell {
             }
 
         } else {
-            mostCommentImageView.image = UIImage(named: "AppIcon")
+            mostCommentImageView.image = UIImage(named: "mainImage")
 
             soupLabel.text = "無"
             soupLabel.textColor = .B1

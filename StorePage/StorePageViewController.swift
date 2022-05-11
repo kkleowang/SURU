@@ -126,7 +126,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return StoreImageCell() }
                 let sortedComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
-                var imageArray = ["AppIcon", "AppIcon", "AppIcon"]
+                var imageArray = ["mainImage", "mainImage", "mainImage"]
                 for i in 0..<sortedComment.count {
                         imageArray[i] = sortedComment[i].mainImage
                     if i == 2{
