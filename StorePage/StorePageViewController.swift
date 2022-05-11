@@ -10,9 +10,15 @@ import Kingfisher
 
 class StorePageViewController: UIViewController {
     var isCollected = false
-    var isLogin = false
+    var isLogin = false {
+        didSet {
+            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            tableView.reloadSections([1], with: .automatic)
+        }
+    }
     var commentData: [Comment] = []
     var storeData: Store?
+    var UserData: [Account] = []
     var currentUser: Account? {
         didSet {
             setTopView()
@@ -57,7 +63,8 @@ class StorePageViewController: UIViewController {
         tableView.lk_registerCellWithNib(identifier: StoreTagsCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreLocaltionCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreOpenTimeCell.identifier, bundle: nil)
-        tableView.lk_registerCellWithNib(identifier: StoreSeatsCell.identifier, bundle: nil)
+        tableView.lk_registerCellWithNib(identifier: StoreCommentCell.identifier, bundle: nil)
+//        tableView.lk_registerCellWithNib(identifier: StoreSeatsCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
     }
     
@@ -83,9 +90,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 0:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTitleCell.identifier, for: indexPath) as? StoreTitleCell else { return StoreTitleCell() }
                 cell.delegate = self
-                
-                
-                cell.layoutCell(store: storeData, isCollect: isCollected)
+                cell.layoutCell(store: storeData, isCollect: isCollected, isLogin: isLogin)
                 
                 return cell
             case 1:
@@ -158,7 +163,13 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
         } else {
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreCommentCell.identifier, for: indexPath) as? StoreCommentCell else { return StoreCommentCell() }
+            if isLogin {
+                cell.layoutView(author: <#T##Account#>, comment: <#T##Comment#>, isLogin: <#T##Bool#>, isFollow: <#T##Bool#>, isLike: <#T##Bool#>)
+            } else {
+                
+            }
+            return cell
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -206,25 +217,12 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 extension StorePageViewController: StoreTitleCellDelegate {
-    func didtapUnCollectionButton(view: StoreTitleCell) {
-        if isLogin {
-            guard let user = currentUser, let store = storeData else { return }
-            StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
-                switch result {
-                case .success(let message):
-                    LKProgressHUD.showSuccess(text: message)
-                case .failure:
-                    LKProgressHUD.showFailure(text: "更新失敗")
-                }
-            }
-        } else {
-            showAlert()
-        }
+    func didtapCollectionWhenNotLogin(view: StoreTitleCell) {
+        showAlert()
     }
-    
     func didtapCollectionButton(view: StoreTitleCell) {
-        if isLogin {
-            guard let user = currentUser, let store = storeData else { return }
+        guard let user = currentUser, let store = storeData else { return }
+        if isCollected {
             StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
                 switch result {
                 case .success(let message):
@@ -234,7 +232,14 @@ extension StorePageViewController: StoreTitleCellDelegate {
                 }
             }
         } else {
-            showAlert()
+            StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: store.storeID) { result in
+                switch result {
+                case .success(let message):
+                    LKProgressHUD.showSuccess(text: message)
+                case .failure:
+                    LKProgressHUD.showFailure(text: "更新失敗")
+                }
+            }
         }
     }
 }

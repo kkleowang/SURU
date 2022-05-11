@@ -89,7 +89,7 @@ class StoreCardsCell: UICollectionViewCell {
         storeImageView.clipsToBounds = true
         storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "AppIcon"))
         storeImageView.layer.borderWidth = 1.0
-        storeImageView.layer.borderColor = UIColor.black.cgColor
+        storeImageView.layer.borderColor = UIColor.B6?.cgColor
         followerLabel.text = "\(dataSource.collectedUser?.count ?? 0) 人收藏, 共\(commentData.count) 則食記"
         collectButton.setTitle("", for: .normal)
         if isCollect {
