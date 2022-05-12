@@ -12,6 +12,9 @@ protocol DiscoveryCellDelegate: AnyObject {
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment)
     
     func didTapUnLikeButton(_ view: DiscoveryCell, comment: Comment)
+    
+    func didTapCommentBtn(_ view: DiscoveryCell, comment: Comment)
+    
 }
 
 class DiscoveryCell: UICollectionViewCell {
@@ -20,14 +23,23 @@ class DiscoveryCell: UICollectionViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var mealLabel: UILabel!
+    
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
+    
     @IBOutlet weak var badgeImageView: UIImageView!
+    
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    
+    @IBAction func tapCommentBtn(_ sender: Any) {
+        guard let commentHolder = commentHolder else { return }
+        self.delegate?.didTapCommentBtn(self, comment: commentHolder)
+    }
     @IBAction func tapLikeButton(_ sender: UIButton) {
-        guard let commentHolder = commentHolder else {
-            return
-        }
+        guard let commentHolder = commentHolder else { return }
         guard let image = sender.imageView?.image else { return }
         if image == UIImage(systemName: "heart.fill") {
             self.delegate?.didTapUnLikeButton(self, comment: commentHolder)
@@ -45,27 +57,41 @@ class DiscoveryCell: UICollectionViewCell {
     func layoutCell(author: Account, comment: Comment, currentUser: Account, store: Store) {
         mainImageView.clipsToBounds = true
         mainImageView.layer.cornerRadius = 15
+        authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
         commentHolder = comment
-        if currentUser.likedComment.contains(comment.commentID) {
-            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        } else {
-            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        }
-        likeButton.setTitle("\(comment.likedUserList.count)", for: .normal)
         mainImageView.kf.setImage(with: URL(string: comment.mainImage))
-            nameLabel.text = "\(store.name) -\n\(comment.meal)"
+            
+        nameLabel.text = "\(store.name)"
+        mealLabel.text = comment.meal
             authorImageView.kf.setImage(with: URL(string: author.mainImage))
             authorNameLabel.text = author.name
         
-        likeButton.titleLabel?.text = String(comment.likedUserList.count)
-        let badge = author.badgeStatus ?? "login1"
-        badgeImageView.image = UIImage(named: "long_\(badge)")
-//        if currentUser.likedComment.contains(where: { $0.likeComment == comment.commentID}) {
-//            likeButton.isSelected = true
-//        } else {
-//            likeButton.isSelected = false
-//        }
-                                  
+//        commentButton.alignTextBelow()
+//        likeButton.alignTextBelow()
+        if comment.likedUserList.count != 0 {
+            likeButton.titleLabel?.text = String(comment.likedUserList.count)
+        } else {
+            likeButton.titleLabel?.text = ""
+        }
+        
+        
+        let count = comment.userComment?.count ?? 0
+        
+        if count != 0 {
+            commentButton.titleLabel?.text = String(count)
+        } else {
+            commentButton.titleLabel?.text = ""
+        }
+      
+        if author.badgeStatus != nil {
+            
+            badgeImageView.image = UIImage(named: "\(author.badgeStatus!)")
+        }
+     if currentUser.likedComment.contains(comment.commentID) {
+        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+    } else {
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+    }
     }
     override func awakeFromNib() {
         super.awakeFromNib()

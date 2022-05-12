@@ -150,6 +150,7 @@
 		B8F80151282CDA2000040AA3 /* BottomCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F80150282CDA2000040AA3 /* BottomCommentView.xib */; };
 		B8F80153282CDA8C00040AA3 /* ButtomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F80152282CDA8C00040AA3 /* ButtomHeaderView.xib */; };
 		B8F80155282CDA9600040AA3 /* TopHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F80154282CDA9600040AA3 /* TopHeaderView.xib */; };
+		B8F80157282D0D6F00040AA3 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F80156282D0D6F00040AA3 /* UIButton+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -300,6 +301,7 @@
 		B8F80150282CDA2000040AA3 /* BottomCommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomCommentView.xib; sourceTree = "<group>"; };
 		B8F80152282CDA8C00040AA3 /* ButtomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtomHeaderView.xib; sourceTree = "<group>"; };
 		B8F80154282CDA9600040AA3 /* TopHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopHeaderView.xib; sourceTree = "<group>"; };
+		B8F80156282D0D6F00040AA3 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SURU_Leo.entitlements; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -746,6 +748,7 @@
 				B8DBDD4F28246D50008DC615 /* UICollectionView+.swift */,
 				B87D7262282560A400289283 /* Sequence+.swift */,
 				B85592B528291E2500B1A920 /* UIAlertController+.swift */,
+				B8F80156282D0D6F00040AA3 /* UIButton+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1066,6 +1069,7 @@
 				B83E9594280EB653009DD17F /* CommentDataModel.swift in Sources */,
 				B8CD2D7728205EA800D047B9 /* String+.swift in Sources */,
 				B83B191D2827D91500686D16 /* StoreTitleCell.swift in Sources */,
+				B8F80157282D0D6F00040AA3 /* UIButton+.swift in Sources */,
 				B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */,
 				B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */,
 				B893379F281A1D9A000C75C3 /* JGProgressHUD+.swift in Sources */,

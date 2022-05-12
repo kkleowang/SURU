@@ -172,8 +172,10 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsHorizontalScrollIndicator = false
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 80
-                let layout = TagFlowLayout()
-                layout.estimatedItemSize = CGSize(width: 140, height: 40)
+                let layout = UICollectionViewFlowLayout()
+                
+                layout.scrollDirection = .horizontal
+                layout.estimatedItemSize = CGSize(width: 60, height: 40)
                 cell.collectionView.collectionViewLayout = layout
                 
                 return cell
@@ -185,8 +187,9 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsHorizontalScrollIndicator = false
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 90
-                let layout = TagFlowLayout()
-                layout.estimatedItemSize = CGSize(width: 140, height: 40)
+                let layout = UICollectionViewFlowLayout()
+                layout.scrollDirection = .horizontal
+                layout.estimatedItemSize = CGSize(width: 60, height: 40)
                 cell.collectionView.collectionViewLayout = layout
                 cell.layoutForMealCell()
                 return cell

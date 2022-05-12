@@ -11,10 +11,10 @@ import FirebaseAuth
 class UserRequestProvider {
     
     static let shared = UserRequestProvider()
-    // Native
+    lazy var firebaseAuth = Auth.auth()
     lazy var currentUser = firebaseAuth.currentUser
     lazy var currentUserID = firebaseAuth.currentUser?.uid
-    lazy var firebaseAuth = Auth.auth()
+    
     
     
     func listenFirebaseLogin(completion: @escaping (String?) -> Void) {

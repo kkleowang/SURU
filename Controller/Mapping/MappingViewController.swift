@@ -580,6 +580,8 @@ extension MappingViewController: ReportViewDelegate {
         if UserRequestProvider.shared.currentUser != nil {
             pulishQueue(queue: queue)
             
+            storeCardCollectionView.isHidden = false
+            reportButton.isHidden = false
             view.removeFromSuperview()
         } else {
             view.removeFromSuperview()
@@ -587,6 +589,8 @@ extension MappingViewController: ReportViewDelegate {
         }
     }
     func didTapCloseButton(_ view: ReportView) {
+        storeCardCollectionView.isHidden = false
+        reportButton.isHidden = false
         view.removeFromSuperview()
     }
 }

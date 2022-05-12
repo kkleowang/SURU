@@ -264,6 +264,10 @@ extension FollowViewController {
 }
 
 extension FollowViewController: DiscoveryCellDelegate {
+    func didTapCommentBtn(_ view: DiscoveryCell) {
+        //
+    }
+    
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment) {
         guard let currentUserID = UserRequestProvider.shared.currentUserID else {
             LKProgressHUD.showFailure(text: "你沒有登入喔")
