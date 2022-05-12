@@ -138,6 +138,18 @@
 		B8F3517E2815E8EE002E2A3C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */; };
 		B8F351802815F225002E2A3C /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */; };
 		B8F35184281794D9002E2A3C /* UserRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F35183281794D9002E2A3C /* UserRequestProvider.swift */; };
+		B8F80140282CD81400040AA3 /* CommentTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8013E282CD81400040AA3 /* CommentTitleCell.swift */; };
+		B8F80141282CD81400040AA3 /* CommentTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F8013F282CD81400040AA3 /* CommentTitleCell.xib */; };
+		B8F80144282CD82B00040AA3 /* CommentImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F80142282CD82B00040AA3 /* CommentImageCell.swift */; };
+		B8F80145282CD82B00040AA3 /* CommentImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F80143282CD82B00040AA3 /* CommentImageCell.xib */; };
+		B8F80148282CD87F00040AA3 /* CommentTagsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F80146282CD87F00040AA3 /* CommentTagsCell.swift */; };
+		B8F80149282CD87F00040AA3 /* CommentTagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F80147282CD87F00040AA3 /* CommentTagsCell.xib */; };
+		B8F8014B282CD92D00040AA3 /* TopHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8014A282CD92D00040AA3 /* TopHeaderView.swift */; };
+		B8F8014D282CD94700040AA3 /* ButtomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8014C282CD94700040AA3 /* ButtomHeaderView.swift */; };
+		B8F8014F282CD9E100040AA3 /* BottomCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8014E282CD9E100040AA3 /* BottomCommentView.swift */; };
+		B8F80151282CDA2000040AA3 /* BottomCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F80150282CDA2000040AA3 /* BottomCommentView.xib */; };
+		B8F80153282CDA8C00040AA3 /* ButtomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F80152282CDA8C00040AA3 /* ButtomHeaderView.xib */; };
+		B8F80155282CDA9600040AA3 /* TopHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F80154282CDA9600040AA3 /* TopHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -276,6 +288,18 @@
 		B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		B8F35183281794D9002E2A3C /* UserRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestProvider.swift; sourceTree = "<group>"; };
+		B8F8013E282CD81400040AA3 /* CommentTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTitleCell.swift; sourceTree = "<group>"; };
+		B8F8013F282CD81400040AA3 /* CommentTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTitleCell.xib; sourceTree = "<group>"; };
+		B8F80142282CD82B00040AA3 /* CommentImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentImageCell.swift; sourceTree = "<group>"; };
+		B8F80143282CD82B00040AA3 /* CommentImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentImageCell.xib; sourceTree = "<group>"; };
+		B8F80146282CD87F00040AA3 /* CommentTagsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTagsCell.swift; sourceTree = "<group>"; };
+		B8F80147282CD87F00040AA3 /* CommentTagsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTagsCell.xib; sourceTree = "<group>"; };
+		B8F8014A282CD92D00040AA3 /* TopHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderView.swift; sourceTree = "<group>"; };
+		B8F8014C282CD94700040AA3 /* ButtomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtomHeaderView.swift; sourceTree = "<group>"; };
+		B8F8014E282CD9E100040AA3 /* BottomCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCommentView.swift; sourceTree = "<group>"; };
+		B8F80150282CDA2000040AA3 /* BottomCommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomCommentView.xib; sourceTree = "<group>"; };
+		B8F80152282CDA8C00040AA3 /* ButtomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtomHeaderView.xib; sourceTree = "<group>"; };
+		B8F80154282CDA9600040AA3 /* TopHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopHeaderView.xib; sourceTree = "<group>"; };
 		B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SURU_Leo.entitlements; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -753,6 +777,7 @@
 		B8EC70062805290F00DA8B78 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B8F8013D282CD7F200040AA3 /* CommentPage */,
 				B830608D28015A9D002558BE /* Main.storyboard */,
 				B830609228015A9E002558BE /* LaunchScreen.storyboard */,
 				B83B19152827D85600686D16 /* StorePage */,
@@ -785,6 +810,25 @@
 				B8F35183281794D9002E2A3C /* UserRequestProvider.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		B8F8013D282CD7F200040AA3 /* CommentPage */ = {
+			isa = PBXGroup;
+			children = (
+				B8F8014A282CD92D00040AA3 /* TopHeaderView.swift */,
+				B8F80154282CDA9600040AA3 /* TopHeaderView.xib */,
+				B8F8014C282CD94700040AA3 /* ButtomHeaderView.swift */,
+				B8F80152282CDA8C00040AA3 /* ButtomHeaderView.xib */,
+				B8F8014E282CD9E100040AA3 /* BottomCommentView.swift */,
+				B8F80150282CDA2000040AA3 /* BottomCommentView.xib */,
+				B8F8013E282CD81400040AA3 /* CommentTitleCell.swift */,
+				B8F8013F282CD81400040AA3 /* CommentTitleCell.xib */,
+				B8F80142282CD82B00040AA3 /* CommentImageCell.swift */,
+				B8F80143282CD82B00040AA3 /* CommentImageCell.xib */,
+				B8F80146282CD87F00040AA3 /* CommentTagsCell.swift */,
+				B8F80147282CD87F00040AA3 /* CommentTagsCell.xib */,
+			);
+			path = CommentPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -854,12 +898,16 @@
 				B8BD5F9E28207F4B00A1C138 /* CommentStoreCell.xib in Resources */,
 				B83B192E2827D98A00686D16 /* StoreLocaltionCell.xib in Resources */,
 				B83B191E2827D91500686D16 /* StoreTitleCell.xib in Resources */,
+				B8F80155282CDA9600040AA3 /* TopHeaderView.xib in Resources */,
+				B8F80153282CDA8C00040AA3 /* ButtomHeaderView.xib in Resources */,
 				B8D0671D282A74FA00BF74D2 /* StoreTopView.xib in Resources */,
 				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
 				B83B1944282834D400686D16 /* fullScreenImageView.xib in Resources */,
 				B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */,
 				B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */,
 				B83B19322827D99900686D16 /* StoreOpenTimeCell.xib in Resources */,
+				B8F80151282CDA2000040AA3 /* BottomCommentView.xib in Resources */,
+				B8F80141282CD81400040AA3 /* CommentTitleCell.xib in Resources */,
 				B8F351802815F225002E2A3C /* CommentTableViewCell.xib in Resources */,
 				B83B19192827D87E00686D16 /* StorePageViewController.xib in Resources */,
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
@@ -870,11 +918,13 @@
 				B83B19362827D9B000686D16 /* StoreSeatsCell.xib in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
 				B8A11AF02813E4100079A080 /* StoreCardCell.xib in Resources */,
+				B8F80149282CD87F00040AA3 /* CommentTagsCell.xib in Resources */,
 				B85B63C7280D2CDD00621E4A /* yellow.json in Resources */,
 				B83B194A28284CB600686D16 /* StoreCardsCell.xib in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
 				B893379228190F08000C75C3 /* ProfileView.xib in Resources */,
 				B8D06723282B534700BF74D2 /* StoreCommentCell.xib in Resources */,
+				B8F80145282CD82B00040AA3 /* CommentImageCell.xib in Resources */,
 				B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */,
 				B8CD43872818F17400D2BCCE /* SignInAndOutView.xib in Resources */,
 				B83B1942282800E100686D16 /* TagsCell.xib in Resources */,
@@ -979,6 +1029,7 @@
 				B8DA6E7F2823B7C700868381 /* EditProfileView.swift in Sources */,
 				B8A0033E280A92D300A64750 /* MappingViewController.swift in Sources */,
 				B814DF3328108E4E00176C13 /* CommentDraggingView.swift in Sources */,
+				B8F8014F282CD9E100040AA3 /* BottomCommentView.swift in Sources */,
 				B87D726928265E1200289283 /* BadgeViewController.swift in Sources */,
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
@@ -988,6 +1039,7 @@
 				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
 				B8BD5FA02820818E00A1C138 /* CommentStoreCell.swift in Sources */,
 				B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */,
+				B8F80140282CD81400040AA3 /* CommentTitleCell.swift in Sources */,
 				B87D72592824FC6F00289283 /* BadgeHeaderCell.swift in Sources */,
 				B87AF25728128CD10058197F /* StoreCardView.swift in Sources */,
 				B8659C422806ABA3006C85F3 /* SURUDataModel.swift in Sources */,
@@ -998,6 +1050,7 @@
 				B86AB7E828203CFA00154B26 /* WriteCommentView.swift in Sources */,
 				B8EC70012805275300DA8B78 /* UIView+.swift in Sources */,
 				B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */,
+				B8F80144282CD82B00040AA3 /* CommentImageCell.swift in Sources */,
 				B8EC7010280546A800DA8B78 /* UISreen+.swift in Sources */,
 				B8DA6E722823747200868381 /* EditProfileViewController.swift in Sources */,
 				B83B19272827D95300686D16 /* StoreTagsCell.swift in Sources */,
@@ -1022,12 +1075,15 @@
 				B8DBDD4D28246A57008DC615 /* ProfileCommentCell.swift in Sources */,
 				B87D72662826483100289283 /* BadgeCell.swift in Sources */,
 				B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */,
+				B8F8014B282CD92D00040AA3 /* TopHeaderView.swift in Sources */,
 				B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */,
 				B89337942819120D000C75C3 /* ProfileView.swift in Sources */,
 				B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */,
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B85592B8282A370200B1A920 /* WebView.swift in Sources */,
+				B8F8014D282CD94700040AA3 /* ButtomHeaderView.swift in Sources */,
+				B8F80148282CD87F00040AA3 /* CommentTagsCell.swift in Sources */,
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */,
 				B8D0671B282A74EC00BF74D2 /* StoreTopView.swift in Sources */,

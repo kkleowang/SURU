@@ -114,6 +114,9 @@ class MappingViewController: UIViewController {
             storeCardCollectionView.isHidden = false
             addDragFloatBtn()
         }
+        if reportButton.isHidden {
+            reportButton.isHidden = false
+        }
     }
     private func updataStore() {
         StoreRequestProvider.shared.fetchStores { result in
