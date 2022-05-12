@@ -17,6 +17,13 @@ protocol StoreCommentCellDelegate: AnyObject {
 
 class StoreCommentCell: UITableViewCell {
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        contentView.layer.cornerRadius = 15
+        contentView.clipsToBounds = true
+        contentView.backgroundColor = .blue
+    }
     weak var delegate: StoreCommentCellDelegate?
     var targetUserID: String?
     var commentData: Comment?

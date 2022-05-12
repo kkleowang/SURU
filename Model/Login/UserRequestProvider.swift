@@ -49,7 +49,7 @@ class UserRequestProvider {
             
         }
     }
-    func appleLogin(credential: AuthCredential, completion: @escaping (Result<String, Error>) -> Void) {
+    func appleLogin(credential: AuthCredential,name: String?, completion: @escaping (Result<String, Error>) -> Void) {
         
         firebaseAuth.signIn(with: credential) { authResult, error in
             if let error = error {
@@ -61,7 +61,7 @@ class UserRequestProvider {
                     print("已經註冊過了", user.uid)
                     completion(.success("登入成功"))
                 } else {
-                    var account = self.mappingAppleLoginUser(user: user, credential: credential)
+                    var account = self.mappingAppleLoginUser(user: user, credential: credential, name: name)
                     AccountRequestProvider.shared.publishRegistedAccount(account: &account) { result in
                         switch result {
                         case .success(let string):
@@ -108,8 +108,8 @@ class UserRequestProvider {
         let account = Account(userID: user.uid, provider: user.providerID)
         return account
     }
-    func mappingAppleLoginUser(user: User, credential: AuthCredential) -> Account {
-        let userName = "新訪客"
+    func mappingAppleLoginUser(user: User, credential: AuthCredential, name: String?) -> Account {
+        let userName = name ?? "新訪客"
         let account = Account(userID: user.uid, name: userName, provider: credential.provider)
         return account
     }

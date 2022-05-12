@@ -65,7 +65,7 @@ class StoreCardsCell: UICollectionViewCell {
     func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool, isLogin: Bool) {
 //        guard let isCollect = isCollect else { return }
         userIsLogin = isLogin
-        self.contentView.makeShadow()
+//        self.contentView.makeShadow()
         self.contentView.clipsToBounds = true
         storeData = dataSource
         commentsData = commentData

@@ -59,7 +59,7 @@ class CollectViewController: UIViewController {
         })
         completion()
     }
-    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
     func updataStore() {
         StoreRequestProvider.shared.fetchStores { result in
             switch result {

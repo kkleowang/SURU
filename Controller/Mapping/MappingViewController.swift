@@ -402,7 +402,8 @@ extension MappingViewController: UICollectionViewDataSource {
         var isCollect = false
         if isSearchResults {
             if UserRequestProvider.shared.currentUser != nil {
-                guard let currentUser = currentUser else { return cell }
+//                guard let currentUser = currentUser else { return cell }
+                let currentUser = currentUser!
                 isLogin = true
                 let data = filteredStoreData[indexPath.row].collectedUser ?? []
                 
@@ -415,7 +416,8 @@ extension MappingViewController: UICollectionViewDataSource {
             return cell
         } else {
             if UserRequestProvider.shared.currentUser != nil {
-                guard let currentUser = currentUser else { return cell }
+//                guard let currentUser = currentUser else { return cell }
+                let currentUser = currentUser!
                 let data = storeData[indexPath.row].collectedUser ?? []
                 
                 isCollect = data.contains(currentUser.userID)

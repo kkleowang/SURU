@@ -93,12 +93,12 @@ class StorePageViewController: UIViewController {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         topView.isHidden = true
     }
-
+    
     func setupTableView() {
         tableView.backgroundColor = .B6
         tableView.dataSource = self
@@ -110,6 +110,7 @@ class StorePageViewController: UIViewController {
         tableView.lk_registerCellWithNib(identifier: StoreOpenTimeCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreCommentCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
+        
     }
     func fetchUserData() {
         AccountRequestProvider.shared.fetchAccounts { result in
@@ -121,10 +122,10 @@ class StorePageViewController: UIViewController {
             }
         }
     }
-
+    
 }
 extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -135,8 +136,9 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             return commentData.count
         }
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let storeData = storeData else { return UITableViewCell() }
         if indexPath.section == 0 {
             switch indexPath.row {
@@ -144,14 +146,14 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTitleCell.identifier, for: indexPath) as? StoreTitleCell else { return StoreTitleCell() }
                 cell.delegate = self
                 cell.layoutCell(store: storeData, isCollect: isCollected, isLogin: isLogin)
-
+                
                 return cell
             case 1:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return StoreImageCell() }
                 let sortedComment = commentData.sorted(by: {$0.likedUserList.count > $1.likedUserList.count})
                 var imageArray = ["noData", "noData", "noData"]
                 for i in 0..<sortedComment.count {
-                        imageArray[i] = sortedComment[i].mainImage
+                    imageArray[i] = sortedComment[i].mainImage
                     if i == 2{
                         break
                     }
@@ -173,7 +175,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 let layout = TagFlowLayout()
                 layout.estimatedItemSize = CGSize(width: 140, height: 40)
                 cell.collectionView.collectionViewLayout = layout
-
+                
                 return cell
             case 3:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
@@ -191,17 +193,17 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 4:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
                 cell.layoutCell(localtion: storeData.address)
-
+                
                 return cell
             case 5:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreOpenTimeCell.identifier, for: indexPath) as? StoreOpenTimeCell else { return StoreOpenTimeCell() }
                 cell.layoutCell(openTime: storeData.opentime)
-
+                
                 return cell
             case 6:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
                 cell.layoutCell(seat: storeData.seat)
-
+                
                 return cell
             case 7:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreRatingCell.identifier, for: indexPath) as? StoreRatingCell else { return StoreRatingCell() }
@@ -238,6 +240,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
             }
+            
             return cell
         }
     }
@@ -248,19 +251,19 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 0:
                 return 80
             case 1:
-
+                
                 return UIScreen.width/1.5 - 20
             case 2:
-
+                
                 return 50
             case 3:
-
+                
                 return 50
             case 4:
-
+                
                 return 50
             case 5:
-
+                
                 return 50
             case 6:
                 return 50
@@ -273,15 +276,33 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableView.automaticDimension
         }
     }
-    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0 {
+//            return 0
+//        }else {
+//            return 20
+//        }
+//    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//        if section == 0 {
+//            let headerView = UIView()
+//            headerView.backgroundColor = UIColor.red
+//            return headerView
+//        }else {
+//            let headerView = UIView()
+//            headerView.backgroundColor = UIColor.clear
+//            return headerView
+//        }
+//    }
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
             
             if isCollected {
-                    topView.collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
-                } else {
-                    topView.collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
-                }
+                topView.collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
+            } else {
+                topView.collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
+            }
             
             topView.isHidden = false
             print("ENDENDE")
@@ -353,7 +374,7 @@ extension StorePageViewController: StoreTopViewDelegate {
         presentWelcomePage()
     }
     
-
+    
     func presentWelcomePage() {
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
         controller.delegate = self
@@ -368,25 +389,25 @@ extension StorePageViewController: StoreImageCellDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dissmiss))
         view.addGestureRecognizer(tap)
         self.view.stickSubView(view)
-
+        
         print("didTapPopularImage")
     }
-
+    
     func didTapmenuImage(_ view: StoreImageCell, image: UIImage) {
         print("didTapmenuImage")
     }
-
+    
     func didTapmoreImage(_ view: StoreImageCell, image: UIImage) {
         print("didTapmoreImage")
     }
     @objc func dissmiss(sender: UITapGestureRecognizer) {
         sender.view?.removeFromSuperview()
     }
-
-
+    
+    
 }
 extension StorePageViewController:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
-
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -398,13 +419,13 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
             return storeData.meals.count
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TagsCell.self),
                                                             for: indexPath) as? TagsCell else { return TagsCell() }
         guard let storeData = storeData else { return TagsCell() }
-
-
+        
+        
         if collectionView.tag == 80 {
             cell.tagLabel.text = storeData.tags[indexPath.row]
             cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
@@ -417,18 +438,18 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
             cell.backgroundColor = .C2
             return cell
         }
-
+        
     }
     func showAlert(targetUser: String?) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = self.view
-                
-                let xOrigin = self.view.bounds.width / 2
-                
-                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-                
+        
+        let xOrigin = self.view.bounds.width / 2
+        
+        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+        
         alert.popoverPresentationController?.sourceRect = popoverRect
-                
+        
         alert.popoverPresentationController?.permittedArrowDirections = .up
         alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
             guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }
@@ -443,7 +464,7 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
             })
             self.tableView.reloadSections([1], with: .automatic)
         }))
-       
+        
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
             print("User click Dismiss button")
         }))
@@ -452,16 +473,16 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
             print("completion block")
         })
     }
-//    func blockUser(completion: @escaping () -> Void) {
-//        self.commentData = self.commentData.filter({
-//            if $0.userID != targetUser {
-//                return true
-//            } else {
-//                return false
-//            }
-//        })
-//       completion()
-//    }
+    //    func blockUser(completion: @escaping () -> Void) {
+    //        self.commentData = self.commentData.filter({
+    //            if $0.userID != targetUser {
+    //                return true
+    //            } else {
+    //                return false
+    //            }
+    //        })
+    //       completion()
+    //    }
     
 }
 extension StorePageViewController: StoreCommentCellDelegate {
@@ -469,7 +490,7 @@ extension StorePageViewController: StoreCommentCellDelegate {
         if UserRequestProvider.shared.currentUser != nil {
             guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
             if targetUser != userID {
-            showAlert(targetUser: targetUserID)
+                showAlert(targetUser: targetUserID)
             } else {
                 navigationController?.tabBarController?.selectedIndex = 3
             }
@@ -508,7 +529,7 @@ extension StorePageViewController: StoreCommentCellDelegate {
         if UserRequestProvider.shared.currentUser != nil {
             guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
             if targetUser != userID {
-            showAlert(targetUser: targetUserID)
+                showAlert(targetUser: targetUserID)
             } else {
                 navigationController?.tabBarController?.selectedIndex = 3
             }
