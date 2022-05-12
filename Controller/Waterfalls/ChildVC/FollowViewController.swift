@@ -24,6 +24,8 @@ class FollowViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
+            collectionView.backgroundColor = .clear
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
@@ -264,9 +266,11 @@ extension FollowViewController {
 }
 
 extension FollowViewController: DiscoveryCellDelegate {
-    func didTapCommentBtn(_ view: DiscoveryCell) {
+    func didTapCommentBtn(_ view: DiscoveryCell, comment: Comment) {
         //
     }
+    
+    
     
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment) {
         guard let currentUserID = UserRequestProvider.shared.currentUserID else {

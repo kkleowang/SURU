@@ -25,6 +25,8 @@ class CollectViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
+            collectionView.backgroundColor = .clear
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
@@ -255,9 +257,10 @@ extension CollectViewController {
 }
 
 extension CollectViewController: DiscoveryCellDelegate {
-    func didTapCommentBtn(_ view: DiscoveryCell) {
-        // go nextpage
+    func didTapCommentBtn(_ view: DiscoveryCell, comment: Comment) {
+        //
     }
+    
     
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment) {
         guard let currentUserID = UserRequestProvider.shared.currentUserID else {

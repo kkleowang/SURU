@@ -24,6 +24,7 @@ class DiscoveryViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        collectionView.backgroundColor = .clear
         fetchAllData {
             self.configData {
                 self.setupCollectionView()
@@ -72,9 +73,9 @@ class DiscoveryViewController: UIViewController {
         
         let layout = CHTCollectionViewWaterfallLayout()
         layout.columnCount = 2
-        layout.minimumColumnSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        let inset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.minimumColumnSpacing = 4
+        layout.minimumInteritemSpacing = 4
+        let inset = UIEdgeInsets(top: 0, left: 4, bottom: 4, right: 4)
         layout.sectionInset = inset
         collectionView.collectionViewLayout = layout
         collectionView.register(UINib(nibName: String(describing: DiscoveryCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: DiscoveryCell.self))
@@ -94,7 +95,7 @@ class DiscoveryViewController: UIViewController {
     
 }
 
-extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDelegate {
+extension DiscoveryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredCommentData.count
     }
