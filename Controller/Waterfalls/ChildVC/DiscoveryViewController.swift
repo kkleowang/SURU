@@ -24,7 +24,9 @@ class DiscoveryViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .B6
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         fetchAllData {
             self.configData {
                 self.setupCollectionView()
@@ -135,8 +137,11 @@ extension DiscoveryViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
 }
+
 extension DiscoveryViewController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DiscoveryCell.self), for: indexPath)
+            
         let comment = filteredCommentData[indexPath.row]
         let store = storeData.first(where: {$0.storeID == comment.storeID})
         
@@ -150,6 +155,8 @@ extension DiscoveryViewController: CHTCollectionViewDelegateWaterfallLayout {
             return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 330)
         }
     }
+    
+    
 }
 extension DiscoveryViewController: IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

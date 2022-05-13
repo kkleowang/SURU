@@ -24,8 +24,9 @@ class FollowViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
-            collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+            collectionView.backgroundColor = .B6
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }

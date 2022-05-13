@@ -20,13 +20,15 @@ protocol DiscoveryCellDelegate: AnyObject {
 class DiscoveryCell: UICollectionViewCell {
     weak var delegate: DiscoveryCellDelegate?
     var commentHolder: Comment?
+    
+    
     @IBOutlet weak var mainImageView: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var mealLabel: UILabel!
     
-    @IBOutlet weak var authorImageView: UIImageView!
+//    @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
     
     @IBOutlet weak var badgeImageView: UIImageView!
@@ -57,17 +59,18 @@ class DiscoveryCell: UICollectionViewCell {
     func layoutCell(author: Account, comment: Comment, currentUser: Account, store: Store) {
         mainImageView.clipsToBounds = true
         mainImageView.layer.cornerRadius = 15
-        authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
+//        authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
         commentHolder = comment
         mainImageView.kf.setImage(with: URL(string: comment.mainImage))
             
         nameLabel.text = "\(store.name)"
         mealLabel.text = comment.meal
-            authorImageView.kf.setImage(with: URL(string: author.mainImage))
+        nameLabel.adjustsFontSizeToFitWidth = true
+        mealLabel.adjustsFontSizeToFitWidth = true
+        authorNameLabel.adjustsFontSizeToFitWidth = true
+//            authorImageView.kf.setImage(with: URL(string: author.mainImage))
             authorNameLabel.text = author.name
         
-//        commentButton.alignTextBelow()
-//        likeButton.alignTextBelow()
         if comment.likedUserList.count != 0 {
             likeButton.titleLabel?.text = String(comment.likedUserList.count)
         } else {
@@ -92,15 +95,26 @@ class DiscoveryCell: UICollectionViewCell {
     } else {
         likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
     }
+//        self.layer.borderWidth = 3
+//        guard let badgeColor = author.badgeStatus else {
+//            self.layer.borderColor = UIColor.B5?.cgColor
+//            return
+//        }
+//        switch badgeColor.last?.wholeNumberValue! {
+//        case 1:
+//            self.layer.borderColor = UIColor.brown.cgColor
+//        case 2:
+//            self.layer.borderColor = UIColor.purple.cgColor
+//        case 3:
+//            self.layer.borderColor = UIColor.systemBlue.cgColor
+//        case 4:
+//            self.layer.borderColor = UIColor.systemPurple.cgColor
+//        case 5:
+//            self.layer.borderColor = UIColor.systemOrange.cgColor
+//        default:
+//            self.layer.borderColor = UIColor.B5?.cgColor
+//        }
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        //配置点赞按钮被选中时的样式
-        self.layer.borderColor = UIColor.B5?.cgColor
-        self.layer.borderWidth = 0.5
-//        let icon = UIImage(systemName: "heart.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
-//        likeButton.setImage(icon, for: .selected)
-        
-    }
+    
     
 }
