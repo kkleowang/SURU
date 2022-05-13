@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y94-kI-YNF">
-                        <rect key="frame" x="41.5" y="415.5" width="60" height="60"/>
+                        <rect key="frame" x="39" y="415.5" width="60" height="60"/>
                         <color key="backgroundColor" name="main1"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="VHy-gW-5j5"/>
@@ -27,7 +27,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JzT-is-ACP">
-                        <rect key="frame" x="41.5" y="512" width="60" height="60"/>
+                        <rect key="frame" x="39" y="512" width="60" height="60"/>
                         <color key="backgroundColor" name="main2"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="4If-Hy-wpR"/>
@@ -35,7 +35,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hf9-Re-OoF">
-                        <rect key="frame" x="41.5" y="608.5" width="60" height="60"/>
+                        <rect key="frame" x="39" y="608.5" width="60" height="60"/>
                         <color key="backgroundColor" name="main3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="tSL-Xu-lov"/>
@@ -49,28 +49,28 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="湯頭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DO7-uN-H9p">
-                        <rect key="frame" x="60.5" y="574" width="22.5" height="13.5"/>
+                        <rect key="frame" x="57.5" y="574" width="22.5" height="13.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="K08-jl-4Fp">
-                        <rect key="frame" x="52" y="432" width="39" height="219.5"/>
+                        <rect key="frame" x="52" y="432" width="33.5" height="219.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9,5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOt-jd-NUk">
-                                <rect key="frame" x="0.0" y="0.0" width="39" height="26.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="33.5" height="26.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46l-9Z-bFs">
-                                <rect key="frame" x="0.0" y="96.5" width="39" height="26.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46l-9Z-bFs">
+                                <rect key="frame" x="0.0" y="96.5" width="33.5" height="26.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWS-aC-fbB">
-                                <rect key="frame" x="0.0" y="193" width="39" height="26.5"/>
+                                <rect key="frame" x="0.0" y="193" width="33.5" height="26.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -78,25 +78,25 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="麵條" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aee-yg-2N7">
-                        <rect key="frame" x="60.5" y="477.5" width="22.5" height="13.5"/>
+                        <rect key="frame" x="57.5" y="477.5" width="22.5" height="13.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="綜合評分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86G-Ks-Fvf">
-                        <rect key="frame" x="49" y="670.5" width="45" height="13.5"/>
+                        <rect key="frame" x="46.5" y="670.5" width="45" height="13.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好拉麵超級無敵好" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXi-WT-Ali">
-                        <rect key="frame" x="177.5" y="419.5" width="220.5" height="21.5"/>
+                        <rect key="frame" x="175" y="419.5" width="220.5" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flag" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YhG-Jo-veh">
-                        <rect key="frame" x="131.5" y="416" width="30" height="28.5"/>
+                        <rect key="frame" x="129" y="416" width="30" height="28.5"/>
                         <color key="tintColor" name="B1"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="YhG-Jo-veh" secondAttribute="height" multiplier="1:1" id="2nq-y8-Lao"/>
@@ -104,61 +104,61 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15s-T0-2Eg">
-                        <rect key="frame" x="123.5" y="453.5" width="270.5" height="1"/>
+                        <rect key="frame" x="121" y="453.5" width="273" height="1"/>
                         <color key="backgroundColor" name="C4"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="jJ2-4B-M0o"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好拉麵超級無敵好" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNf-3B-UAT">
-                        <rect key="frame" x="177.5" y="466.5" width="220.5" height="21.5"/>
+                        <rect key="frame" x="175" y="466.5" width="220.5" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noodle" translatesAutoresizingMaskIntoConstraints="NO" id="u5H-Ul-JpW">
-                        <rect key="frame" x="131.5" y="462.5" width="30" height="30"/>
+                        <rect key="frame" x="129" y="462.5" width="30" height="30"/>
                         <color key="tintColor" name="B1"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="u5H-Ul-JpW" secondAttribute="height" multiplier="1:1" id="UYj-Cf-YK8"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ia6-RC-y8u">
-                        <rect key="frame" x="123.5" y="500.5" width="270.5" height="1"/>
+                        <rect key="frame" x="121" y="500.5" width="273" height="1"/>
                         <color key="backgroundColor" name="C4"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="WDY-0R-QtT"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好拉麵超級無敵好" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddM-ny-cJb">
-                        <rect key="frame" x="177.5" y="513.5" width="220.5" height="21.5"/>
+                        <rect key="frame" x="175" y="513.5" width="220.5" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rhombus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="EL7-jZ-Onf">
-                        <rect key="frame" x="131.5" y="510" width="30" height="29"/>
+                        <rect key="frame" x="129" y="510" width="30" height="29"/>
                         <color key="tintColor" name="B1"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="EL7-jZ-Onf" secondAttribute="height" multiplier="1:1" id="Ca8-pO-6w2"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stK-Qe-5Ad">
-                        <rect key="frame" x="123.5" y="547.5" width="270.5" height="1"/>
+                        <rect key="frame" x="121" y="547.5" width="273" height="1"/>
                         <color key="backgroundColor" name="C4"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="0yy-65-guu"/>
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.bubble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4D3-zJ-lRN">
-                        <rect key="frame" x="131.5" y="557" width="30" height="29.5"/>
+                        <rect key="frame" x="129" y="557" width="30" height="29.5"/>
                         <color key="tintColor" name="B1"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="4D3-zJ-lRN" secondAttribute="height" multiplier="1:1" id="VPB-CH-Tvs"/>
                         </constraints>
                     </imageView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9An-Ra-9W3">
-                        <rect key="frame" x="177.5" y="556.5" width="220.5" height="143.5"/>
+                        <rect key="frame" x="175" y="556.5" width="223" height="143.5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <mutableString key="text">位於台北捷運雙連站附近的特濃屋是家主打家系拉麵的店家，日籍店主也是台灣女婿之一，身為家系拉麵店當然有飯類的餐點。炸雞更是因為廣受社團麵友的好評，還戲稱特濃屋為「炸雞屋」。
 這次來吃沒吃過的「九州豚骨拉麵」還有很常點的炸雞。特濃屋的拉麵有些項目可以客製，例如湯頭的鹹度還有叉燒可選擇五花或梅花等。我選了自己習慣的配置以及炸雞之外就等餐點上桌。
@@ -241,7 +241,16 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="mainImageView" destination="Tgo-oM-hFK" id="m9o-H3-mlO"/>
+                <outlet property="contentTextView" destination="9An-Ra-9W3" id="e11-78-RXN"/>
+                <outlet property="happyValueView" destination="Hf9-Re-OoF" id="LAw-Sm-Qwv"/>
+                <outlet property="mainImageView" destination="Tgo-oM-hFK" id="ixe-Eb-woh"/>
+                <outlet property="mealLabel" destination="LNf-3B-UAT" id="ueo-dk-KSR"/>
+                <outlet property="noodleLabel" destination="QOt-jd-NUk" id="7BZ-mY-RLO"/>
+                <outlet property="noodleValueView" destination="y94-kI-YNF" id="75g-Gq-5LD"/>
+                <outlet property="oveallLabel" destination="UWS-aC-fbB" id="PAQ-2x-8gf"/>
+                <outlet property="soupLabel" destination="46l-9Z-bFs" id="s9M-wn-DSS"/>
+                <outlet property="soupValueView" destination="JzT-is-ACP" id="Auu-Ye-fyW"/>
+                <outlet property="storeNameLabel" destination="LXi-WT-Ali" id="6aU-Qc-YoU"/>
             </connections>
             <point key="canvasLocation" x="92.753623188405811" y="139.95535714285714"/>
         </tableViewCell>
