@@ -140,20 +140,36 @@ extension DiscoveryViewController: UICollectionViewDataSource, UICollectionViewD
 
 extension DiscoveryViewController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DiscoveryCell.self), for: indexPath)
-            
         let comment = filteredCommentData[indexPath.row]
         let store = storeData.first(where: {$0.storeID == comment.storeID})
         
-        let text = store?.name ?? ""
-        if text.count > 12 {
-            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 340)
-        }
-        if text.count < 8 {
-            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 320)
-        }else {
-            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 330)
-        }
+        let storeName = store?.name ?? ""
+        let mealName = comment.meal
+        
+        let width = (UIScreen.width - 4 * 3) / 2
+        let labelWidth = width - 16
+        
+        let storeLabelSize = labelSize(for: storeName, font: .medium(size: 18), maxWidth: labelWidth, maxHeight: 60)
+        
+        let mealLabelSize = labelSize(for: mealName, font: .medium(size: 15), maxWidth: labelWidth, maxHeight: 60)
+        
+        
+        let height = width + storeLabelSize.height + mealLabelSize.height + 8 + 8 + 40 + 8 + 16.5
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func labelSize(for text: String,font: UIFont?, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font as Any
+        ]
+
+        let attributedText = NSAttributedString(string: text, attributes: attributes)
+
+        let constraintBox = CGSize(width: maxWidth, height: maxHeight)
+        let rect = attributedText.boundingRect(with: constraintBox, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).integral
+
+        return rect.size
     }
     
     

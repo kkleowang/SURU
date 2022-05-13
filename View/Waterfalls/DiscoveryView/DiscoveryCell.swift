@@ -28,10 +28,10 @@ class DiscoveryCell: UICollectionViewCell {
     
     @IBOutlet weak var mealLabel: UILabel!
     
-//    @IBOutlet weak var authorImageView: UIImageView!
+    @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
     
-    @IBOutlet weak var badgeImageView: UIImageView!
+//    @IBOutlet weak var badgeImageView: UIImageView!
     
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
@@ -59,25 +59,32 @@ class DiscoveryCell: UICollectionViewCell {
     func layoutCell(author: Account, comment: Comment, currentUser: Account, store: Store) {
         mainImageView.clipsToBounds = true
         mainImageView.layer.cornerRadius = 15
-//        authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
+        authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
         commentHolder = comment
         mainImageView.kf.setImage(with: URL(string: comment.mainImage))
             
         nameLabel.text = "\(store.name)"
+        nameLabel.font = .medium(size: 18)
+        mealLabel.font = .medium(size: 15)
         mealLabel.text = comment.meal
         nameLabel.adjustsFontSizeToFitWidth = true
         mealLabel.adjustsFontSizeToFitWidth = true
         authorNameLabel.adjustsFontSizeToFitWidth = true
-//            authorImageView.kf.setImage(with: URL(string: author.mainImage))
+            authorImageView.loadImage(author.mainImage , placeHolder: UIImage(named: "mainImage"))
             authorNameLabel.text = author.name
+        
+        if currentUser.likedComment.contains(comment.commentID) {
+           likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+       } else {
+           likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+       }
         
         if comment.likedUserList.count != 0 {
             likeButton.titleLabel?.text = String(comment.likedUserList.count)
         } else {
             likeButton.titleLabel?.text = ""
         }
-        
-        
+
         let count = comment.userComment?.count ?? 0
         
         if count != 0 {
@@ -88,13 +95,9 @@ class DiscoveryCell: UICollectionViewCell {
       
         if author.badgeStatus != nil {
             
-            badgeImageView.image = UIImage(named: "\(author.badgeStatus!)")
+//            badgeImageView.image = UIImage(named: "\(author.badgeStatus!)")
         }
-     if currentUser.likedComment.contains(comment.commentID) {
-        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-    } else {
-        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-    }
+     
 //        self.layer.borderWidth = 3
 //        guard let badgeColor = author.badgeStatus else {
 //            self.layer.borderColor = UIColor.B5?.cgColor

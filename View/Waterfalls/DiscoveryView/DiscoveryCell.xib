@@ -26,24 +26,37 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="z0D-ZI-096">
-                        <rect key="frame" x="8" y="212" width="196" height="82"/>
+                        <rect key="frame" x="8" y="212" width="196" height="65"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好吃超級無敵好吃拉麵好吃拉麵拉麵" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5L-FZ-lcJ">
-                                <rect key="frame" x="0.0" y="0.0" width="196" height="55"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好吃超級超級無敵好吃超級" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5L-FZ-lcJ">
+                                <rect key="frame" x="0.0" y="0.0" width="196" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" name="B1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好吃地獄拉麵加大" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kj-rc-uso">
-                                <rect key="frame" x="0.0" y="59" width="196" height="23"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="0.0" y="47" width="196" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" name="B1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我叫XXXXXXX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORy-6r-m3x">
+                        <rect key="frame" x="52" y="295.5" width="106.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" name="B1"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mnU-Sx-WeW">
+                        <rect key="frame" x="8" y="285" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="45D-AD-M6w"/>
+                            <constraint firstAttribute="width" constant="40" id="jfr-S3-vBJ"/>
+                        </constraints>
+                    </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZNd-89-pkI">
-                        <rect key="frame" x="160.5" y="350" width="43.5" height="16.5"/>
+                        <rect key="frame" x="160.5" y="325" width="43.5" height="16.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciO-Nu-Caq">
                                 <rect key="frame" x="0.0" y="0.0" width="18.5" height="16.5"/>
@@ -72,41 +85,27 @@
                             </button>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我叫XXXXXXX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORy-6r-m3x">
-                        <rect key="frame" x="57" y="312.5" width="106.5" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login5" translatesAutoresizingMaskIntoConstraints="NO" id="jdq-za-kpW">
-                        <rect key="frame" x="16" y="302" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="GIS-4Z-1H9"/>
-                            <constraint firstAttribute="width" secondItem="jdq-za-kpW" secondAttribute="height" multiplier="1:1" id="Wrq-Yj-xot"/>
-                            <constraint firstAttribute="height" constant="40" id="r7p-Ob-ZWZ"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="jdq-za-kpW" firstAttribute="top" secondItem="z0D-ZI-096" secondAttribute="bottom" constant="8" id="1lV-pj-ij4"/>
                     <constraint firstItem="dQx-vz-3NO" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" constant="8" id="7a5-fP-wRx"/>
                     <constraint firstItem="z0D-ZI-096" firstAttribute="top" secondItem="dQx-vz-3NO" secondAttribute="bottom" constant="8" id="8yf-AM-jzf"/>
                     <constraint firstItem="dQx-vz-3NO" firstAttribute="top" secondItem="ZsX-uH-617" secondAttribute="top" constant="8" id="BCh-qk-8mW"/>
-                    <constraint firstItem="jdq-za-kpW" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" constant="16" id="KjK-TL-qRs"/>
-                    <constraint firstItem="ORy-6r-m3x" firstAttribute="leading" secondItem="jdq-za-kpW" secondAttribute="trailing" constant="1" id="LAf-Gz-gk4"/>
-                    <constraint firstItem="ORy-6r-m3x" firstAttribute="centerY" secondItem="jdq-za-kpW" secondAttribute="centerY" id="YrZ-Sw-exP"/>
+                    <constraint firstItem="ORy-6r-m3x" firstAttribute="leading" secondItem="mnU-Sx-WeW" secondAttribute="trailing" constant="4" id="ExK-H3-GH7"/>
+                    <constraint firstItem="mnU-Sx-WeW" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" constant="8" id="UF4-R4-k7a"/>
                     <constraint firstAttribute="trailing" secondItem="z0D-ZI-096" secondAttribute="trailing" constant="8" id="ZQv-eB-e0E"/>
                     <constraint firstAttribute="trailing" secondItem="ZNd-89-pkI" secondAttribute="trailing" constant="8" id="hwR-tR-lkQ"/>
+                    <constraint firstItem="mnU-Sx-WeW" firstAttribute="top" secondItem="z0D-ZI-096" secondAttribute="bottom" constant="8" id="igP-82-gUy"/>
                     <constraint firstAttribute="trailing" secondItem="dQx-vz-3NO" secondAttribute="trailing" constant="8" id="j3I-l5-ujH"/>
-                    <constraint firstItem="ZNd-89-pkI" firstAttribute="top" secondItem="jdq-za-kpW" secondAttribute="bottom" constant="8" id="ktY-7K-Ahz"/>
+                    <constraint firstItem="ORy-6r-m3x" firstAttribute="centerY" secondItem="mnU-Sx-WeW" secondAttribute="centerY" id="lsP-n5-Vdq"/>
+                    <constraint firstItem="ZNd-89-pkI" firstAttribute="top" secondItem="mnU-Sx-WeW" secondAttribute="bottom" id="xn2-ha-bGs"/>
                     <constraint firstItem="z0D-ZI-096" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" constant="8" id="ztW-b2-wf1"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="212" height="407"/>
             <connections>
+                <outlet property="authorImageView" destination="mnU-Sx-WeW" id="DUI-Xj-RQP"/>
                 <outlet property="authorNameLabel" destination="ORy-6r-m3x" id="liN-Fp-c4t"/>
-                <outlet property="badgeImageView" destination="jdq-za-kpW" id="q3O-aZ-GAB"/>
                 <outlet property="commentButton" destination="ciO-Nu-Caq" id="MlG-ey-OvQ"/>
                 <outlet property="likeButton" destination="CHh-j2-Rqf" id="1H5-tk-6cc"/>
                 <outlet property="mainImageView" destination="dQx-vz-3NO" id="niL-0l-TnH"/>
@@ -119,7 +118,6 @@
     <resources>
         <image name="D2256435-CD95-44BA-B841-2EC26739FF3D_1_105_c" width="1024" height="768"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
-        <image name="login5" width="600" height="600"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
         <namedColor name="B1">
             <color red="0.24699999392032623" green="0.22699999809265137" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
