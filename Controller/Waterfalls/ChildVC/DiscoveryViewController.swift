@@ -152,9 +152,21 @@ extension DiscoveryViewController: CHTCollectionViewDelegateWaterfallLayout {
         let storeLabelSize = labelSize(for: storeName, font: .medium(size: 18), maxWidth: labelWidth, maxHeight: 60)
         
         let mealLabelSize = labelSize(for: mealName, font: .medium(size: 15), maxWidth: labelWidth, maxHeight: 60)
+        var height = width + storeLabelSize.height + mealLabelSize.height + 24 + 40 + 21
         
+        var random: Int {
+            return Int.random(in: 0...10)
+        }
         
-        let height = width + storeLabelSize.height + mealLabelSize.height + 8 + 8 + 40 + 8 + 16.5
+        let randomExtraHeight = Double(random)
+        
+        if storeLabelSize.height > 30 {
+            height += randomExtraHeight
+        } else {
+            height -= randomExtraHeight
+        }
+        print(height)
+        
         
         return CGSize(width: width, height: height)
     }

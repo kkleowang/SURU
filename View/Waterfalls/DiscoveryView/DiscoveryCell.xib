@@ -56,15 +56,15 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZNd-89-pkI">
-                        <rect key="frame" x="160.5" y="325" width="43.5" height="16.5"/>
+                        <rect key="frame" x="150" y="323" width="54" height="21"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciO-Nu-Caq">
-                                <rect key="frame" x="0.0" y="0.0" width="18.5" height="16.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="24.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="tintColor" name="B1"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal">
-                                    <imageReference key="image" image="text.bubble" catalog="system" symbolScale="medium"/>
+                                    <imageReference key="image" image="text.bubble" catalog="system" symbolScale="large"/>
                                 </state>
                                 <connections>
                                     <action selector="tapCommentBtn:" destination="BJV-fz-jei" eventType="touchUpInside" id="zHB-an-m8f"/>
@@ -72,12 +72,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHh-j2-Rqf">
-                                <rect key="frame" x="26.5" y="0.0" width="17" height="16.5"/>
+                                <rect key="frame" x="32.5" y="0.0" width="21.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="tintColor" name="B1"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal">
-                                    <imageReference key="image" image="heart.fill" catalog="system" symbolScale="medium"/>
+                                    <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
                                 </state>
                                 <connections>
                                     <action selector="tapLikeButton:" destination="BJV-fz-jei" eventType="touchUpInside" id="BHD-aZ-Ipo"/>
@@ -92,13 +92,13 @@
                     <constraint firstItem="z0D-ZI-096" firstAttribute="top" secondItem="dQx-vz-3NO" secondAttribute="bottom" constant="8" id="8yf-AM-jzf"/>
                     <constraint firstItem="dQx-vz-3NO" firstAttribute="top" secondItem="ZsX-uH-617" secondAttribute="top" constant="8" id="BCh-qk-8mW"/>
                     <constraint firstItem="ORy-6r-m3x" firstAttribute="leading" secondItem="mnU-Sx-WeW" secondAttribute="trailing" constant="4" id="ExK-H3-GH7"/>
+                    <constraint firstItem="ZNd-89-pkI" firstAttribute="top" secondItem="ORy-6r-m3x" secondAttribute="bottom" constant="8" id="GPb-wR-pdL"/>
                     <constraint firstItem="mnU-Sx-WeW" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" constant="8" id="UF4-R4-k7a"/>
                     <constraint firstAttribute="trailing" secondItem="z0D-ZI-096" secondAttribute="trailing" constant="8" id="ZQv-eB-e0E"/>
                     <constraint firstAttribute="trailing" secondItem="ZNd-89-pkI" secondAttribute="trailing" constant="8" id="hwR-tR-lkQ"/>
                     <constraint firstItem="mnU-Sx-WeW" firstAttribute="top" secondItem="z0D-ZI-096" secondAttribute="bottom" constant="8" id="igP-82-gUy"/>
                     <constraint firstAttribute="trailing" secondItem="dQx-vz-3NO" secondAttribute="trailing" constant="8" id="j3I-l5-ujH"/>
                     <constraint firstItem="ORy-6r-m3x" firstAttribute="centerY" secondItem="mnU-Sx-WeW" secondAttribute="centerY" id="lsP-n5-Vdq"/>
-                    <constraint firstItem="ZNd-89-pkI" firstAttribute="top" secondItem="mnU-Sx-WeW" secondAttribute="bottom" id="xn2-ha-bGs"/>
                     <constraint firstItem="z0D-ZI-096" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" constant="8" id="ztW-b2-wf1"/>
                 </constraints>
             </collectionViewCellContentView>

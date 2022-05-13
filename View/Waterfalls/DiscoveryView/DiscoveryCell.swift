@@ -46,10 +46,10 @@ class DiscoveryCell: UICollectionViewCell {
         if image == UIImage(systemName: "heart.fill") {
             self.delegate?.didTapUnLikeButton(self, comment: commentHolder)
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            likeButton.setTitle("\(commentHolder.likedUserList.count - 1 )", for: .normal)
+            likeButton.setTitle("\((Int(likeButton.currentTitle ?? "1") ?? 1 ) - 1)", for: .normal)
         } else {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            likeButton.setTitle("\(commentHolder.likedUserList.count + 1 )", for: .normal)
+            likeButton.setTitle("\((Int(likeButton.currentTitle ?? "0") ?? 0 ) + 1 )", for: .normal)
             self.delegate?.didTapLikeButton(self, comment: commentHolder)
         }
         
@@ -80,17 +80,18 @@ class DiscoveryCell: UICollectionViewCell {
        }
         
         if comment.likedUserList.count != 0 {
-            likeButton.titleLabel?.text = String(comment.likedUserList.count)
+            likeButton.setTitle(String(comment.likedUserList.count), for: .normal)
+           
         } else {
-            likeButton.titleLabel?.text = ""
+            likeButton.setTitle("", for: .normal)
         }
 
         let count = comment.userComment?.count ?? 0
         
         if count != 0 {
-            commentButton.titleLabel?.text = String(count)
+            commentButton.setTitle(String(count), for: .normal)
         } else {
-            commentButton.titleLabel?.text = ""
+            commentButton.setTitle("", for: .normal)
         }
       
         if author.badgeStatus != nil {
