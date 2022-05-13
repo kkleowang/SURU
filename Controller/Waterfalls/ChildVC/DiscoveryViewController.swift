@@ -126,9 +126,11 @@ extension DiscoveryViewController: UICollectionViewDataSource, UICollectionViewD
             if let currentAccount = currentAccount {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 guard let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+                
                 controller.delegate = self
                 controller.modalPresentationStyle = .fullScreen
                 controller.comment = comment
+                controller.accountData = accountData
                 controller.store = store
                 controller.account = account
                 self.present(controller, animated: true, completion: nil)

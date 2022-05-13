@@ -16,6 +16,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
     
     @IBOutlet weak var storeNameLabel: UILabel!
+    @IBOutlet weak var sideDishesLabel: UILabel!
     
     @IBOutlet weak var mealLabel: UILabel!
     
@@ -32,17 +33,22 @@ class CommentCell: UITableViewCell {
             view?.clipsToBounds = true
             view?.layer.cornerRadius = 60 / 2
         }
+        storeNameLabel.adjustsFontSizeToFitWidth
         storeNameLabel.setDefultFort()
         mealLabel.setDefultFort()
+        sideDishesLabel.setDefultFort()
         contentTextView.isEditable = false
         contentTextView.text = data.contenText.replacingOccurrences(of: "\\n", with: "\n")
         mainImageView.loadImage(data.mainImage, placeHolder: UIImage(named: "mainImage"))
         
         storeNameLabel.text = store.name
         mealLabel.text = data.meal
-        initValueView(on: noodleValueView, value: data.contentValue.noodle, color: UIColor.B6?.cgColor ?? UIColor.black.cgColor)
-        initValueView(on: soupValueView, value: data.contentValue.soup, color: UIColor.B6?.cgColor ?? UIColor.black.cgColor)
-        initValueView(on: happyValueView, value: data.contentValue.happiness, color: UIColor.B6?.cgColor ?? UIColor.black.cgColor)
+        sideDishesLabel.text = data.sideDishes ?? "無"
+        
+        
+        initValueView(on: noodleValueView, value: data.contentValue.noodle, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        initValueView(on: soupValueView, value: data.contentValue.soup, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        initValueView(on: happyValueView, value: data.contentValue.happiness, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
         if data.contentValue.noodle == 10.0 {
             soupLabel.text = "10"
         } else {

@@ -51,6 +51,8 @@
 		B83E9598280EB670009DD17F /* StoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9597280EB670009DD17F /* StoreDataModel.swift */; };
 		B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E9599280EB6C9009DD17F /* QueueReportDataModel.swift */; };
 		B83E959C280EC59D009DD17F /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E959B280EC59D009DD17F /* UIImageView+.swift */; };
+		B8532A23282E3FB400FA4D60 /* CommentMessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8532A21282E3FB400FA4D60 /* CommentMessagesCell.swift */; };
+		B8532A24282E3FB400FA4D60 /* CommentMessagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8532A22282E3FB400FA4D60 /* CommentMessagesCell.xib */; };
 		B85592B628291E2500B1A920 /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85592B528291E2500B1A920 /* UIAlertController+.swift */; };
 		B85592B8282A370200B1A920 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85592B7282A370200B1A920 /* WebView.swift */; };
 		B85B63C5280D2CDD00621E4A /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C2280D2CDD00621E4A /* blue.json */; };
@@ -202,6 +204,8 @@
 		B83E9597280EB670009DD17F /* StoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDataModel.swift; sourceTree = "<group>"; };
 		B83E9599280EB6C9009DD17F /* QueueReportDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueReportDataModel.swift; sourceTree = "<group>"; };
 		B83E959B280EC59D009DD17F /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		B8532A21282E3FB400FA4D60 /* CommentMessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMessagesCell.swift; sourceTree = "<group>"; };
+		B8532A22282E3FB400FA4D60 /* CommentMessagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentMessagesCell.xib; sourceTree = "<group>"; };
 		B85592B528291E2500B1A920 /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
 		B85592B7282A370200B1A920 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		B85B63C2280D2CDD00621E4A /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
@@ -600,8 +604,8 @@
 		B8A0034C280B041800A64750 /* Waterfalls */ = {
 			isa = PBXGroup;
 			children = (
-				B8BD5F98282078A800A1C138 /* DetailView */,
 				B8BBBE82281E9AA0001782F5 /* DiscoveryView */,
+				B8BD5F98282078A800A1C138 /* DetailView */,
 				B899FF22280CF68000BD5715 /* SampleCommentCellTableViewCell.swift */,
 			);
 			path = Waterfalls;
@@ -681,6 +685,8 @@
 				B8BD5FA12820819D00A1C138 /* CommentCell.swift */,
 				B8BD5F9D28207F4B00A1C138 /* CommentStoreCell.xib */,
 				B8BD5F9F2820818E00A1C138 /* CommentStoreCell.swift */,
+				B8532A21282E3FB400FA4D60 /* CommentMessagesCell.swift */,
+				B8532A22282E3FB400FA4D60 /* CommentMessagesCell.xib */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -935,6 +941,7 @@
 				B8A4FFCC28224EA20023F0BA /* ReportView.xib in Resources */,
 				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,
 				B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */,
+				B8532A24282E3FB400FA4D60 /* CommentMessagesCell.xib in Resources */,
 				B83B19242827D94100686D16 /* StoreImageCell.xib in Resources */,
 				B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */,
 				B87D72672826483100289283 /* BadgeCell.xib in Resources */,
@@ -1040,6 +1047,7 @@
 				B8BBBE7C281D328B001782F5 /* DiscoveryViewController.swift in Sources */,
 				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
 				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
+				B8532A23282E3FB400FA4D60 /* CommentMessagesCell.swift in Sources */,
 				B8BD5FA02820818E00A1C138 /* CommentStoreCell.swift in Sources */,
 				B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */,
 				B8F80140282CD81400040AA3 /* CommentTitleCell.swift in Sources */,

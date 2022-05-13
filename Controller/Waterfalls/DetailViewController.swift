@@ -7,21 +7,26 @@
 
 import UIKit
 import Kingfisher
+import IQKeyboardManagerSwift
 protocol DetailViewControllerDelegate: AnyObject {
     func didtapAuthor(_ vc: DetailViewController, targetUserID: String?)
 }
 class DetailViewController: UIViewController {
     weak var delegate: DetailViewControllerDelegate?
     var account: Account?
+    var accountData: [Account] = []
     var comment: Comment?
     var store: Store?
 //    var name: String?
     var timer = 0
+    
+    //上方
     @IBOutlet weak var badgeImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorStackView: UIStackView!
     @IBOutlet weak var authorNameLabel: UILabel!
+
     @IBAction func tapFollowButton(_ sender: UIButton) {
         
             guard let userID = UserRequestProvider.shared.currentUserID else { return }
@@ -37,14 +42,74 @@ class DetailViewController: UIViewController {
     @IBAction func tapBackButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    
+    //下方
+    func postComment() {
+        
+        overlayView.removeFromSuperview()
+        textViewBarView.isHidden = true
     }
     
+    @IBAction func showTextView() {
+        inputTextField.becomeFirstResponder()
+        textViewBarView.isHidden = false
+    }
+    
+    @IBAction func postComment(_ sender: Any) {
+        if let text = inputTextField.text {
+            if !text.isEmpty {
+                postComment()
+                inputTextField.resignFirstResponder()
+            } else {
+                
+            }
+            inputTextField.text = ""
+        }
+       
+        
+    }
+    @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var commentCountBtn: UIButton!
+    
+    @IBOutlet weak var likeVIew: UIView!
+    @IBOutlet weak var textViewBarView: UIView!
+    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var textViewBarBottomConstraint: NSLayoutConstraint!
+    
+    //黑色的view
+    lazy var overlayView: UIView = {
+        let overlayView = UIView(frame: view.frame)
+        overlayView.backgroundColor = UIColor(white: 0, alpha: 0.1)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        overlayView.addGestureRecognizer(tap)
+        return overlayView
+    }()
+    func hideKeyboardWhenTappedAround(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    func listenToKeyStatus() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        listenToKeyStatus()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.shared.enableAutoToolbar = true
+        IQKeyboardManager.shared.enable = true
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.enable = false
         setupTopView()
         setuptableView()
     }
@@ -63,7 +128,7 @@ class DetailViewController: UIViewController {
         let tapAuthor = UITapGestureRecognizer(target: self, action: #selector(tapAuthorView))
         authorStackView.isUserInteractionEnabled = true
         authorStackView.addGestureRecognizer(tapAuthor)
-        let badge = account.badgeStatus ?? "long1"
+        let badge = account.badgeStatus ?? ""
         badgeImageView.image = UIImage(named: "long_\(badge)")
         authorNameLabel.text = account.name
         authorImageView.kf.setImage(with: URL(string: account.mainImage))
@@ -71,47 +136,70 @@ class DetailViewController: UIViewController {
     
     func setuptableView() {
         tableView.register(UINib(nibName: String(describing: CommentCell.self), bundle: nil), forCellReuseIdentifier: String(describing: CommentCell.self))
-        
-        tableView.register(UINib(nibName: String(describing: CommentStoreCell.self), bundle: nil), forCellReuseIdentifier: String(describing: CommentStoreCell.self))
+        tableView.register(UINib(nibName: String(describing: CommentMessagesCell.self), bundle: nil), forCellReuseIdentifier: String(describing: CommentMessagesCell.self))
         tableView.dataSource = self
         tableView.delegate = self
     }
 }
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 670
-        } else {
-            return 250
-        }
+       
+            return UITableView.automaticDimension
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        if section == 0 {
+            return 1
+        } else {
+            guard let messages = comment?.userComment else { return 0 }
+            return messages.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let storeData = store, let commentData = comment else { return UITableViewCell() }
-        if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self), for: indexPath) as? CommentCell else { return UITableViewCell() }
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self), for: indexPath) as? CommentCell else { return CommentCell() }
             cell.layoutCell(data: commentData, store: storeData)
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentStoreCell.self), for: indexPath) as? CommentStoreCell else { return UITableViewCell() }
-            cell.layoutCell(store: storeData)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentMessagesCell.self), for: indexPath) as? CommentMessagesCell else { return CommentMessagesCell() }
+            
+            guard let messages = comment?.userComment else { return cell }
             cell.delegate = self
+            let message = messages[indexPath.row]
+            let author = accountData.first(where: {$0.userID == message.userID}) ?? Account(userID: "123", provider: "")
+            cell.layoutCell(commentMessage: messages[indexPath.row], author: author)
+            
             return cell
         }
     }
     
     
 }
-extension DetailViewController: CommentStoreCellDelegate {
-    func didTapCollectStore(_ view: CommentStoreCell, storeID: String) {
-        guard let currentUserID = UserRequestProvider.shared.currentUserID else {
-            LKProgressHUD.showFailure(text: "你沒有登入喔")
-            return
+extension DetailViewController: CommentMessagesCellDelegate {
+    func didTapMoreButton(_ view: CommentMessagesCell, targetUserID: String?) {
+        // 封鎖
+    }
+    
+    
+}
+extension DetailViewController {
+    @objc private func keyboardWillChangeFrame(_ notification: Notification){
+        if let endFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
+            //键盘的当前高度(弹起时大于0,收起时为0)
+            let keyboardH = UIScreen.height - endFrame.origin.y
+            
+            if keyboardH > 0{
+                view.insertSubview(overlayView, belowSubview: textViewBarView)//给背景加黑色透明遮罩
+            } else {
+                overlayView.removeFromSuperview()
+                //移除黑色透明遮罩
+                textViewBarView.isHidden = true
+            }
+            textViewBarBottomConstraint.constant = keyboardH 
+            view.layoutIfNeeded()
         }
-        LKProgressHUD.showSuccess(text: "已收藏")
-        
     }
 }

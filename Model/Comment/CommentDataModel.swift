@@ -19,6 +19,7 @@ struct Comment: Codable {
     var likedUserList: [String] = []
     var collectedUserList: [String] = []
     var userComment: [Message]?
+    var sideDishes: String?
 }
 struct CommentContent: Codable {
     var happiness: Double
