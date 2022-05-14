@@ -34,8 +34,17 @@ class ProfileViewController: UIViewController {
     }
     func addlistener() {
         guard let userID = UserRequestProvider.shared.currentUserID else { return }
-        AccountRequestProvider.shared.listenAccount(currentUserID: userID) {
-            self.fetchAccount(userID: userID)
+        AccountRequestProvider.shared.listenAccount(currentUserID: userID) { result in
+            switch result {
+            case .success(let data):
+                print("更新用戶成功")
+                self.currentUserData = data
+                guard let currentUserData = self.currentUserData else { return }
+                self.profileView.layoutView(account: currentUserData)
+                self.profileView.collectionView.reloadData()
+            case .failure(let error):
+                print("更新用戶失敗", error)
+            }
         }
     }
     func setupCollectionView() {
@@ -253,20 +262,6 @@ extension ProfileViewController {
         group.notify(queue: DispatchQueue.main) {
             LKProgressHUD.dismiss()
             competion()
-        }
-    }
-    func fetchAccount(userID: String) {
-        AccountRequestProvider.shared.fetchAccount(currentUserID: userID) { result in
-            switch result {
-            case .success(let data):
-                print("下載用戶成功")
-                self.currentUserData = data
-                guard let currentUserData = self.currentUserData else { return }
-                self.profileView.layoutView(account: currentUserData)
-                self.profileView.collectionView.reloadData()
-            case .failure(let error):
-                print("下載用戶失敗", error)
-            }
         }
     }
 }

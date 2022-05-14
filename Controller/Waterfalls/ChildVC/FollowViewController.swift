@@ -133,7 +133,7 @@ extension FollowViewController: UICollectionViewDataSource, UICollectionViewDele
                 controller.modalPresentationStyle = .fullScreen
                 controller.comment = comment
                 controller.store = store
-                controller.account = account
+                controller.author = account
                 self.present(controller, animated: true, completion: nil)
         }
         }

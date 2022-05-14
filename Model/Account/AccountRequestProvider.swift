@@ -148,20 +148,37 @@ class AccountRequestProvider {
             }
         }
     }
-    func listenAccount(currentUserID: String, completion: @escaping () -> Void) {
-        database.collection("accounts").document(currentUserID)
-            .addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
-                    return
+    func listenAccount(currentUserID: String, completion: @escaping (Result<Account, Error>) -> Void) {
+            database.collection("accounts").document(currentUserID)
+                .addSnapshotListener { documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                        print("Error fetching document: \(error!)")
+                        return
+                    }
+                    do {
+                        if let data = try document.data(as: Account.self, decoder: Firestore.Decoder()) {
+                            completion(.success(data))
+                        }
+                    } catch {
+                        completion(.failure(error))
+                    }
+                    
                 }
-                guard let data = document.data() else {
-                    print("Document data was empty.")
-                    return
-                }
-                completion()
-            }
-    }
+        }
+//    func listenAccount(currentUserID: String, completion: @escaping () -> Void) {
+//        database.collection("accounts").document(currentUserID)
+//            .addSnapshotListener { documentSnapshot, error in
+//                guard let document = documentSnapshot else {
+//                    print("Error fetching document: \(error!)")
+//                    return
+//                }
+//                guard let data = document.data() else {
+//                    print("Document data was empty.")
+//                    return
+//                }
+//                completion()
+//            }
+//    }
     func checkUserDocExists(userID: String, completion: @escaping (Bool) -> Void) {
         // [START get_document]
         let docRef = database.collection("accounts").document(userID)

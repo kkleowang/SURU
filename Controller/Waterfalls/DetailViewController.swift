@@ -13,10 +13,12 @@ protocol DetailViewControllerDelegate: AnyObject {
 }
 class DetailViewController: UIViewController {
     weak var delegate: DetailViewControllerDelegate?
-    var account: Account?
+    var currentUser: Account?
+    var author: Account?
     var accountData: [Account] = []
     var comment: Comment?
     var store: Store?
+    
     var newCommet: Comment? {
         didSet {
             guard let data = newCommet?.userComment else { return }
@@ -30,6 +32,16 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    func configMessage() {
+        guard let blockList = currentUser?.blockUserList, let messages = comment?.userComment else { return }
+        
+        self.comment?.userComment = messages.filter({ if blockList.contains($0.userID) {
+            return false
+        } else {
+            return true
+        }
+        })
+    }
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -42,7 +54,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func tapFollowButton(_ sender: UIButton) {
         
-        guard let userID = UserRequestProvider.shared.currentUserID, let account = account else { return }
+        guard let userID = UserRequestProvider.shared.currentUserID, let account = author else { return }
         
         if sender.currentTitle == "追蹤" {
             followButton.setTitle("已追蹤", for: .normal)
@@ -103,7 +115,7 @@ class DetailViewController: UIViewController {
     }
     func publishMessage() {
         guard let currentUserId = UserRequestProvider.shared.currentUserID,
-              let _ = account,
+              let _ = author,
               let comment = comment,
               let content = inputTextField.text else { return }
         var message = Message(userID: currentUserId, message: content)
@@ -140,7 +152,7 @@ class DetailViewController: UIViewController {
     }
     func setupTopView() {
         guard let currentUserId = UserRequestProvider.shared.currentUserID,
-              let account = account,
+              let account = author,
               let comment = comment else { return }
         let message = comment.userComment ?? []
         CommentRequestProvider.shared.listenComment(for: comment.commentID) { result in
@@ -183,7 +195,7 @@ class DetailViewController: UIViewController {
     func setupButtonView() {
         
         guard let currentUserId = UserRequestProvider.shared.currentUserID,
-              let _ = account,
+              let _ = author,
               let comment = comment else { return }
         
         if comment.likedUserList.contains(currentUserId) {
@@ -302,9 +314,44 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
 }
 extension DetailViewController: CommentMessagesCellDelegate {
     func didTapMoreButton(_ view: CommentMessagesCell, targetUserID: String?) {
-        // 封鎖
+        showAlert(targetUser: targetUserID)
     }
-    
+    func showAlert(targetUser: String?) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = self.view
+                
+                let xOrigin = self.view.bounds.width / 2
+                
+                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+                
+        alert.popoverPresentationController?.sourceRect = popoverRect
+                
+        alert.popoverPresentationController?.permittedArrowDirections = .up
+        alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
+            guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }
+            AccountRequestProvider.shared.blockAccount(currentUserID: userID, tagertUserID: targetUser)
+            LKProgressHUD.showFailure(text: "成功封鎖用戶")
+            
+            guard let messages = self.comment?.userComment else { return }
+            
+            self.comment?.userComment = messages.filter({ if $0.userID == targetUser {
+                return false
+            } else {
+                return true
+            }
+            })
+            
+            self.tableView.reloadSections([1], with: .automatic)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+    }
     
 }
 extension DetailViewController {

@@ -138,5 +138,29 @@ class CommentRequestProvider {
                 }
             }
     }
+    func listenAllComment(completion: @escaping (Result<[Comment], Error>) -> Void) {
+        database.collection("comments").addSnapshotListener { documentSnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+            guard let documents = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                
+                return
+            }
+            var comments = [Comment]()
+            
+            for document in documents.documents {
+                do {
+                    if let comment = try document.data(as: Comment.self, decoder: Firestore.Decoder()) {
+                        comments.append(comment)
+                    }
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+            completion(.success(comments))
+        }
+    }
     
 }

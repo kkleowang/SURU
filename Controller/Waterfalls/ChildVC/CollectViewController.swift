@@ -134,7 +134,7 @@ extension CollectViewController: UICollectionViewDataSource, UICollectionViewDel
                 controller.modalPresentationStyle = .fullScreen
                 controller.comment = comment
                 controller.store = store
-                controller.account = account
+                controller.author = account
                 self.present(controller, animated: true, completion: nil)
             }
         }

@@ -172,8 +172,8 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsHorizontalScrollIndicator = false
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 80
-                let layout = UICollectionViewFlowLayout()
                 
+                let layout = UICollectionViewFlowLayout()
                 layout.scrollDirection = .horizontal
                 layout.estimatedItemSize = CGSize(width: 60, height: 40)
                 cell.collectionView.collectionViewLayout = layout
@@ -189,9 +189,10 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.tag = 90
                 let layout = UICollectionViewFlowLayout()
                 layout.scrollDirection = .horizontal
-                layout.estimatedItemSize = CGSize(width: 60, height: 40)
+                layout.estimatedItemSize = CGSize(width: 50, height: 40)
                 cell.collectionView.collectionViewLayout = layout
                 cell.layoutForMealCell()
+                
                 return cell
             case 4:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
@@ -235,7 +236,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             guard let author = UserData.first(where: {$0.userID == comment.userID}) else { return cell }
             var isfollow = false
             var isLike = false
-            if isLogin {
+            if UserRequestProvider.shared.currentUserID != nil {
                 guard let user = currentUser else { return cell }
                 isLike =  comment.likedUserList.contains(user.userID)
                 isfollow = user.followedUser.contains(comment.userID)
@@ -414,6 +415,7 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let storeData = storeData else { return 0 }
         if collectionView.tag == 80 {
@@ -424,24 +426,22 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TagsCell.self),
-                                                            for: indexPath) as? TagsCell else { return TagsCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TagsCell.self), for: indexPath) as? TagsCell else { return TagsCell() }
         guard let storeData = storeData else { return TagsCell() }
         
         
         if collectionView.tag == 80 {
             cell.tagLabel.text = storeData.tags[indexPath.row]
-            cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
+//            cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
             cell.backgroundColor = .C4
             return cell
         } else {
             cell.layoutForMeal()
             cell.tagLabel.text = storeData.meals[indexPath.row]
-            cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
+//            cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
             cell.backgroundColor = .C2
             return cell
         }
-        
     }
     func showAlert(targetUser: String?) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

@@ -34,8 +34,8 @@ class MappingViewController: UIViewController {
     
     private var storeTag: [String] = []
     
-    private var commentOfStore: [[Comment]] = []
-    private var commentOfFilteredStore: [[Comment]] = []
+//    private var commentOfStore: [[Comment]] = []
+//    private var commentOfFilteredStore: [[Comment]] = []
     
     
     private var distance: [Double] = []
@@ -66,7 +66,7 @@ class MappingViewController: UIViewController {
         if UserRequestProvider.shared.currentUserID == nil {
             isLogin = false
         }
-        
+        listenAllComment()
         self.listenLoginState()
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
@@ -94,7 +94,7 @@ class MappingViewController: UIViewController {
         mapView.layoutView(from: storeData)
     }
     private func setupHiddenCollectionView() {
-        setupDataForCollectionCell()
+//        setupDataForCollectionCell()
         if let flowLayout = storeCardCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
         }
@@ -128,6 +128,18 @@ class MappingViewController: UIViewController {
                 self.reloadMapView()
             case .failure(let error) :
                 print("下載商店資料失敗", error)
+            }
+        }
+    }
+    private func listenAllComment() {
+        CommentRequestProvider.shared.listenAllComment { result in
+            switch result {
+            case .success(let data) :
+                print("監聽評論成功 地圖頁面", data.count)
+                self.commentData = data
+            case .failure(let error) :
+                print("載入監聽評論失敗 地圖頁面失敗", error)
+                
             }
         }
     }
@@ -206,28 +218,29 @@ class MappingViewController: UIViewController {
             competion()
         }
     }
-    func setupDataForCollectionCell() {
-        let fakeLocationAkaTaipei101 = CLLocation(latitude: 25.038685278051556, longitude: 121.5323763590289)
-        for (index, data) in storeData.enumerated() {
-            var commentHolder: [Comment] = []
-            distance.append(fakeLocationAkaTaipei101.distance(from: CLLocation(latitude: data.coordinate.lat, longitude: data.coordinate.long)))
-            for comment in commentData where comment.storeID == data.storeID {
-                commentHolder.append(comment)
-            }
-            commentOfStore.insert(commentHolder, at: index)
-        }
-    }
-    func setupDataForFilteredCell() {
-        let fakeLocationAkaTaipei101 = CLLocation(latitude: 25.038685278051556, longitude: 121.5323763590289)
-        for (index, data) in filteredStoreData.enumerated() {
-            var commentHolder: [Comment] = []
-            filteredStoreDistance.append(fakeLocationAkaTaipei101.distance(from: CLLocation(latitude: data.coordinate.lat, longitude: data.coordinate.long)))
-            for comment in commentData where comment.storeID == data.storeID {
-                commentHolder.append(comment)
-            }
-            commentOfFilteredStore.insert(commentHolder, at: index)
-        }
-    }
+    
+//    func setupDataForCollectionCell() {
+//        let fakeLocationAkaTaipei101 = CLLocation(latitude: 25.038685278051556, longitude: 121.5323763590289)
+//        for (index, data) in storeData.enumerated() {
+//            var commentHolder: [Comment] = []
+//            distance.append(fakeLocationAkaTaipei101.distance(from: CLLocation(latitude: data.coordinate.lat, longitude: data.coordinate.long)))
+//            for comment in commentData where comment.storeID == data.storeID {
+//                commentHolder.append(comment)
+//            }
+//            commentOfStore.insert(commentHolder, at: index)
+//        }
+//    }
+//    func setupDataForFilteredCell() {
+//        let fakeLocationAkaTaipei101 = CLLocation(latitude: 25.038685278051556, longitude: 121.5323763590289)
+//        for (index, data) in filteredStoreData.enumerated() {
+//            var commentHolder: [Comment] = []
+//            filteredStoreDistance.append(fakeLocationAkaTaipei101.distance(from: CLLocation(latitude: data.coordinate.lat, longitude: data.coordinate.long)))
+//            for comment in commentData where comment.storeID == data.storeID {
+//                commentHolder.append(comment)
+//            }
+//            commentOfFilteredStore.insert(commentHolder, at: index)
+//        }
+//    }
     func setupSearchBar() {
         searchBar.tintColor = .B1
         searchBar.searchTextField.autocorrectionType = .no
@@ -414,7 +427,16 @@ extension MappingViewController: UICollectionViewDataSource {
             } else {
                 isLogin = false
             }
-            cell.layoutCardView(dataSource: filteredStoreData[indexPath.row], commentData: commentOfFilteredStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
+            let store = filteredStoreData[indexPath.row]
+            
+            let commentOfStore = commentData.filter({
+                if $0.storeID == store.storeID {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            cell.layoutCardView(dataSource: store, commentData: commentOfStore, isCollect: isCollect, isLogin: isLogin)
             print("搜尋dqCell", filteredStoreData[indexPath.row].name , storeData[indexPath.row].name)
             return cell
         } else {
@@ -428,7 +450,16 @@ extension MappingViewController: UICollectionViewDataSource {
                 isLogin = false
             }
             
-            cell.layoutCardView(dataSource: storeData[indexPath.row], commentData: commentOfStore[indexPath.row], isCollect: isCollect, isLogin: isLogin)
+            let store = storeData[indexPath.row]
+            
+            let commentOfStore = commentData.filter({
+                if $0.storeID == store.storeID {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            cell.layoutCardView(dataSource: store, commentData: commentOfStore, isCollect: isCollect, isLogin: isLogin)
             
             print("dqCell" , storeData[indexPath.row].name)
             return cell
@@ -442,16 +473,35 @@ extension MappingViewController: UICollectionViewDelegate {
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "StorePageViewController") as? StorePageViewController else { return }
         
         if isSearchResults {
+            let store = filteredStoreData[indexPath.row]
+            
+            let commentOfStore = commentData.filter({
+                if $0.storeID == store.storeID {
+                    return true
+                } else {
+                    return false
+                }
+            })
             controller.currentUser = currentUser
-            controller.storeData = filteredStoreData[indexPath.row]
-            controller.commentData = commentOfFilteredStore[indexPath.row]
+            controller.storeData = store
+            controller.commentData = commentOfStore
             self.addChild(controller)
             navigationController?.pushViewController(controller, animated: true)
             
         } else {
+            let store = storeData[indexPath.row]
+            
+            let commentOfStore = commentData.filter({
+                if $0.storeID == store.storeID {
+                    return true
+                } else {
+                    return false
+                }
+            })
             controller.currentUser = currentUser
-            controller.storeData = storeData[indexPath.row]
-            controller.commentData = commentOfStore[indexPath.row]
+            controller.storeData = store
+            
+            controller.commentData = commentOfStore
             self.addChild(controller)
             navigationController?.pushViewController(controller, animated: true)
         }
@@ -659,7 +709,7 @@ extension MappingViewController: UISearchBarDelegate {
                 return false
             }
         })
-        setupDataForFilteredCell()
+//        setupDataForFilteredCell()
         for annotation in mapView.annotations {
             mapView.removeAnnotation(annotation)
         }

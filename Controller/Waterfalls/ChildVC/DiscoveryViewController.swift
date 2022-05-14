@@ -27,6 +27,7 @@ class DiscoveryViewController: UIViewController {
         collectionView.backgroundColor = .B6
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        addlistener()
         fetchAllData {
             self.configData {
                 self.setupCollectionView()
@@ -132,7 +133,8 @@ extension DiscoveryViewController: UICollectionViewDataSource, UICollectionViewD
                 controller.comment = comment
                 controller.accountData = accountData
                 controller.store = store
-                controller.account = account
+                controller.currentUser = currentAccount
+                controller.author = account
                 self.present(controller, animated: true, completion: nil)
             }
         }
@@ -281,6 +283,18 @@ extension DiscoveryViewController {
             com()
             LKProgressHUD.dismiss()
             LKProgressHUD.showSuccess(text: "下載資料成功")
+        }
+    }
+    func addlistener() {
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        AccountRequestProvider.shared.listenAccount(currentUserID: userID) { result in
+            switch result {
+            case .success(let data):
+                print("更新用戶成功")
+                self.currentAccount = data
+            case .failure(let error):
+                print("更新用戶失敗", error)
+            }
         }
     }
 }

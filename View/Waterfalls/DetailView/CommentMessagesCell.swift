@@ -12,6 +12,7 @@ protocol CommentMessagesCellDelegate: AnyObject {
 class CommentMessagesCell: UITableViewCell {
     weak var delegate: CommentMessagesCellDelegate?
     var targetUserID: String?
+    
     @IBOutlet weak var authorImage: UIImageView!
     @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var commentDate: UILabel!
@@ -23,6 +24,10 @@ class CommentMessagesCell: UITableViewCell {
     }
     
     func layoutCell(commentMessage: Message, author: Account) {
+        if commentMessage.userID == author.userID {
+            moreButton.isHidden = true
+        }
+        targetUserID = commentMessage.userID
         authorImage.loadImage(author.mainImage, placeHolder: UIImage(named: "mainImage"))
         authorImage.clipsToBounds = true
         authorImage.layer.cornerRadius = authorImage.frame.width / 2
@@ -36,6 +41,7 @@ class CommentMessagesCell: UITableViewCell {
 //        commentDate.setDefultFort()
         
         commentContent.setDefultFort()
+//        commentContent.adjustsFontSizeToFitWidth = true
         commentContent.text = commentMessage.message
         
         
