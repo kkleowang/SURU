@@ -64,10 +64,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s1m-nk-zz1" userLabel="containerView">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="0yn-Pp-noD"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Jbl-i4-rjZ"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1m-nk-zz1" userLabel="containerView">
+                                <rect key="frame" x="0.0" y="132" width="414" height="730"/>
                             </scrollView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ihe-QC-qsY" customClass="ButtonBarView" customModule="XLPagerTabStrip">
                                 <rect key="frame" x="0.0" y="88" width="414" height="44"/>
@@ -203,6 +201,9 @@
                                                 <color key="tintColor" name="B1"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="123" image="text.bubble.fill" catalog="system"/>
+                                                <connections>
+                                                    <action selector="tapCommentButton:" destination="mhE-EX-8s0" eventType="touchUpInside" id="gCi-PE-Pf2"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haE-sJ-hQj">
                                                 <rect key="frame" x="331.5" y="19" width="50.5" height="22"/>
@@ -211,6 +212,9 @@
                                                 <state key="normal" title="123" image="heart" catalog="system">
                                                     <color key="titleColor" name="B1"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="tapLikeButton:" destination="mhE-EX-8s0" eventType="touchUpInside" id="1fo-a4-XFe"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -282,6 +286,7 @@
                         <outlet property="authorStackView" destination="Ojd-af-CaU" id="Xo5-rM-rFI"/>
                         <outlet property="badgeImageView" destination="cEq-LM-uxg" id="uoQ-iR-kbn"/>
                         <outlet property="commentCountBtn" destination="Bv0-UD-Jmm" id="VtW-Mr-mDX"/>
+                        <outlet property="followButton" destination="TF9-Um-IUR" id="Tuj-Oq-aVj"/>
                         <outlet property="inputTextField" destination="56w-Y9-cCS" id="sRE-9B-pAm"/>
                         <outlet property="likeBtn" destination="haE-sJ-hQj" id="bgq-QF-QTH"/>
                         <outlet property="likeVIew" destination="7Vc-Gk-kNK" id="E8U-jz-QCb"/>

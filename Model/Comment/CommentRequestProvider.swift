@@ -14,7 +14,7 @@ class CommentRequestProvider {
     
     private lazy var database = Firestore.firestore()
     
-   
+    
     func fetchComments(completion: @escaping (Result<[Comment], Error>) -> Void) {
         database.collection("comments").order(by: "createdTime", descending: true).getDocuments { querySnapshot, error in
             if let error = error {
@@ -68,7 +68,7 @@ class CommentRequestProvider {
         }
         completion(.success(docment.documentID))
     }
-    func    likeComment(currentUserID: String, tagertComment: Comment) {
+    func likeComment(currentUserID: String, tagertComment: Comment) {
         let commentID = tagertComment.commentID
         let authorID = tagertComment.userID
         
@@ -82,8 +82,8 @@ class CommentRequestProvider {
             "likedComment": FieldValue.arrayUnion([commentID])
         ])
         authorDocment.updateData([
-                    "myCommentLike": FieldValue.increment(Int64(1))
-                ])
+            "myCommentLike": FieldValue.increment(Int64(1))
+        ])
     }
     
     func unLikeComment(currentUserID: String, tagertComment: Comment) {
@@ -100,16 +100,18 @@ class CommentRequestProvider {
             "likedComment": FieldValue.arrayRemove([commentID])
         ])
         authorDocment.updateData([
-                    "myCommentLike": FieldValue.increment(Int64(-1))
-                ])
+            "myCommentLike": FieldValue.increment(Int64(-1))
+        ])
     }
     
     func addMessage(message: inout Message, tagertCommentID: String, completion: @escaping (Result<String, Error>) -> Void) {
         let commentDocment = database.collection("comments").document(tagertCommentID)
         message.createdTime = Date().timeIntervalSince1970
         
+        let data = ["userID": message.userID, "message": message.message, "createdTime": message.createdTime] as [String : Any]
+        
         commentDocment.updateData([
-            "userComment": FieldValue.arrayUnion([message])
+            "userComment": FieldValue.arrayUnion([data])
         ]) { error in
             if let error = error {
                 completion(.failure(error))
@@ -117,6 +119,23 @@ class CommentRequestProvider {
                 completion(.success("留言成功"))
             }
         }
+    }
+    
+    func listenComment(for comment: String, completion: @escaping (Result<Comment, Error>) -> Void) {
+        database.collection("comments").document(comment)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                do {
+                    if let data = try document.data(as: Comment.self, decoder: Firestore.Decoder()) {
+                        completion(.success(data))
+                    }
+                } catch {
+                    completion(.failure(error))
+                }
+            }
     }
     
 }
