@@ -25,14 +25,15 @@ class CommentMessagesCell: UITableViewCell {
     func layoutCell(commentMessage: Message, author: Account) {
         authorImage.loadImage(author.mainImage, placeHolder: UIImage(named: "mainImage"))
         authorImage.clipsToBounds = true
-        authorImage.layer.cornerRadius = authorImage.frame.width
+        authorImage.layer.cornerRadius = authorImage.frame.width / 2
         
         authorName.text = author.name
-        authorName.setDefultFort()
+//        authorName.setDefultFort()
+        
         
         let date = Date(timeIntervalSince1970: commentMessage.createdTime)
         commentDate.text = date.timeAgoDisplay()
-        commentDate.setDefultFort()
+//        commentDate.setDefultFort()
         
         commentContent.setDefultFort()
         commentContent.text = commentMessage.message

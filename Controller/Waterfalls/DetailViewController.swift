@@ -65,9 +65,29 @@ class DetailViewController: UIViewController {
         textViewBarView.isHidden = false
     }
     @IBAction func tapCommentButton(_ sender: UIButton) {
-        // scroller to seaction 1
+        let messages = comment?.userComment ?? []
+        if !messages.isEmpty {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
+        } else {
+            let sectionRect = tableView.rectForHeader(inSection: 1)
+            tableView.scrollRectToVisible(sectionRect, animated: true)
+        }
+       
+        
     }
     @IBAction func tapLikeButton(_ sender: UIButton) {
+        guard let currentUserID = UserRequestProvider.shared.currentUserID, let tagertComment = comment else { return }
+        guard let image = sender.imageView?.image else { return }
+        if image == UIImage(systemName: "heart.fill") {
+            sender.setImage(UIImage(systemName: "heart"), for: .normal)
+            sender.setTitle("\((Int(sender.currentTitle ?? "1") ?? 1 ) - 1)", for: .normal)
+            CommentRequestProvider.shared.likeComment(currentUserID: currentUserID, tagertComment: tagertComment)
+        } else {
+            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            sender.setTitle("\((Int(sender.currentTitle ?? "0") ?? 0 ) + 1 )", for: .normal)
+            CommentRequestProvider.shared.unLikeComment(currentUserID: currentUserID, tagertComment: tagertComment)
+        }
+        
     }
     
     @IBAction func postComment(_ sender: Any) {
@@ -130,12 +150,16 @@ class DetailViewController: UIViewController {
             case .failure(let error):
                 LKProgressHUD.showFailure(text: "下載評論失敗")
             }
+            
         }
         let tapAuthor = UITapGestureRecognizer(target: self, action: #selector(tapAuthorView))
         authorStackView.isUserInteractionEnabled = true
         authorStackView.addGestureRecognizer(tapAuthor)
         authorImageView.loadImage(account.mainImage, placeHolder: UIImage(named: "mainImage"))
+        authorImageView.clipsToBounds = true
+        authorImageView.layer.cornerRadius = authorImageView.bounds.width / 2
         
+        followButton.titleLabel?.adjustsFontSizeToFitWidth = true
         authorNameLabel.text = account.name
         authorNameLabel.adjustsFontSizeToFitWidth = true
         authorNameLabel.setDefultFort()
@@ -163,20 +187,20 @@ class DetailViewController: UIViewController {
               let comment = comment else { return }
         
         if comment.likedUserList.contains(currentUserId) {
-            likeBtn.setImage(UIImage(named: "heart.fill"), for: .normal)
+            likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
-            likeBtn.setImage(UIImage(named: "heart.empty"), for: .normal)
+            likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
         }
         if comment.likedUserList.count != 0 {
             likeBtn.setTitle("\(comment.likedUserList.count)", for: .normal)
         } else {
-            likeBtn.setTitle("", for: .normal)
+            likeBtn.setTitle("0", for: .normal)
         }
         if let userComment = comment.userComment {
             if !userComment.isEmpty {
                 commentCountBtn.setTitle("\(userComment.count)", for: .normal)
             } else {
-                commentCountBtn.setTitle("", for: .normal)
+                commentCountBtn.setTitle("0", for: .normal)
             }
         }
     }
@@ -214,17 +238,26 @@ class DetailViewController: UIViewController {
         overlayView.addGestureRecognizer(tap)
         return overlayView
     }()
+    
+    func listenToKeyStatus() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
     //    func hideKeyboardWhenTappedAround(){
     //        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     //        tap.cancelsTouchesInView = false
     //        view.addGestureRecognizer(tap)
     //    }
-    func listenToKeyStatus() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    }
     
 }
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "用戶留言"
+        } else {
+            return nil
+        }
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -237,8 +270,11 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 1
         } else {
+            
             guard let messages = comment?.userComment else { return 0 }
+            
             return messages.count
+           
         }
     }
     

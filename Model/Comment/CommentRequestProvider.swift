@@ -75,6 +75,7 @@ class CommentRequestProvider {
         let targetCommentDocment = database.collection("comments").document(commentID)
         let currentUserDocment = database.collection("accounts").document(currentUserID)
         let authorDocment = database.collection("accounts").document(authorID)
+        
         targetCommentDocment.updateData([
             "likedUserList": FieldValue.arrayUnion([currentUserID])
         ])

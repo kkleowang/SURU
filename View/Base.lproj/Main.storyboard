@@ -115,11 +115,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdc-fb-EOu">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hUR-9Q-lqi">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hUR-9Q-lqi">
                                         <rect key="frame" x="20" y="0.0" width="374" height="44"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ojd-af-CaU">
-                                                <rect key="frame" x="0.0" y="0.0" width="273" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="250.5" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJw-HI-GBE">
                                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -129,7 +129,7 @@
                                                             <action selector="tapBackButton:" destination="mhE-EX-8s0" eventType="touchUpInside" id="txT-7r-igb"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDD" translatesAutoresizingMaskIntoConstraints="NO" id="ygS-Sx-ajo">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DDD" translatesAutoresizingMaskIntoConstraints="NO" id="ygS-Sx-ajo">
                                                         <rect key="frame" x="55" y="7" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="1KL-o8-CxA"/>
@@ -143,18 +143,19 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="long_like3" translatesAutoresizingMaskIntoConstraints="NO" id="cEq-LM-uxg">
-                                                        <rect key="frame" x="148.5" y="0.0" width="124.5" height="44"/>
+                                                        <rect key="frame" x="148.5" y="4" width="102" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="cEq-LM-uxg" secondAttribute="height" multiplier="1701:601" id="mOJ-zd-6jF"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="cEq-LM-uxg" firstAttribute="height" secondItem="Ojd-af-CaU" secondAttribute="height" id="BlG-x3-5kh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="cEq-LM-uxg" secondAttribute="bottom" constant="4" id="gdN-rV-4AB"/>
+                                                    <constraint firstItem="cEq-LM-uxg" firstAttribute="top" secondItem="Ojd-af-CaU" secondAttribute="top" constant="4" id="tjp-2R-v09"/>
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TF9-Um-IUR">
-                                                <rect key="frame" x="321" y="0.0" width="53" height="44"/>
+                                                <rect key="frame" x="321" y="4" width="53" height="36"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="追隨"/>
@@ -163,6 +164,10 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="TF9-Um-IUR" firstAttribute="top" secondItem="hUR-9Q-lqi" secondAttribute="top" constant="4" id="7Zl-4q-pUW"/>
+                                            <constraint firstAttribute="bottom" secondItem="TF9-Um-IUR" secondAttribute="bottom" constant="4" id="JwZ-2c-Omu"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -185,7 +190,7 @@
                                         <rect key="frame" x="16" y="0.0" width="382" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myG-4g-EFV">
-                                                <rect key="frame" x="0.0" y="12" width="280" height="36"/>
+                                                <rect key="frame" x="0.0" y="12" width="315" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="tintColor" name="C4"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -197,19 +202,20 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bv0-UD-Jmm">
-                                                <rect key="frame" x="281" y="19.5" width="49.5" height="21.5"/>
+                                                <rect key="frame" x="316" y="19.5" width="34.5" height="21"/>
                                                 <color key="tintColor" name="B1"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="123" image="text.bubble.fill" catalog="system"/>
+                                                <state key="normal" title="0" image="text.bubble" catalog="system"/>
                                                 <connections>
                                                     <action selector="tapCommentButton:" destination="mhE-EX-8s0" eventType="touchUpInside" id="gCi-PE-Pf2"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haE-sJ-hQj">
-                                                <rect key="frame" x="331.5" y="19" width="50.5" height="22"/>
+                                                <rect key="frame" x="351.5" y="21" width="30.5" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="tintColor" name="B1"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="123" image="heart" catalog="system">
+                                                <state key="normal" title="0" image="heart" catalog="system">
                                                     <color key="titleColor" name="B1"/>
                                                 </state>
                                                 <connections>
@@ -624,7 +630,7 @@
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="long_like3" width="1701" height="601"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="text.bubble.fill" catalog="system" width="128" height="110"/>
+        <image name="text.bubble" catalog="system" width="128" height="110"/>
         <namedColor name="B1">
             <color red="0.24699999392032623" green="0.22699999809265137" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
