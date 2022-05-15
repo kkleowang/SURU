@@ -87,7 +87,7 @@ extension LiquidBarViewController {
         var liqid = ""
         switch selectionType {
         case .noodle :
-            liqid = "orange"
+            liqid = "yellow"
         case .soup :
             liqid = "blue"
         case .happy :

@@ -4,7 +4,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,11 +17,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="GjY-UI-vJl">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="GjY-UI-vJl">
                     <rect key="frame" x="16" y="74" width="382" height="718"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="輸入評論" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwn-9M-fh8">
-                            <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -31,22 +33,35 @@
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="130" translatesAutoresizingMaskIntoConstraints="NO" id="xHN-hN-6wb">
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xHN-hN-6wb">
                             <rect key="frame" x="0.0" y="687" width="382" height="31"/>
                             <subviews>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0E2-lZ-gn7">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="31"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0E2-lZ-gn7">
+                                    <rect key="frame" x="0.0" y="0.0" width="82" height="31"/>
+                                    <color key="backgroundColor" name="B1"/>
+                                    <color key="tintColor" name="B6"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="匯入模版"/>
                                     <connections>
                                         <action selector="tapImportTemp:" destination="iN0-l3-epB" eventType="touchUpInside" id="I3w-Af-AWO"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V99-h2-fRL">
-                                    <rect key="frame" x="0.0" y="0.0" width="382" height="31"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="eka-7N-eli">
+                                    <rect key="frame" x="150.5" y="0.0" width="81.5" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" name="B1"/>
+                                    <color key="tintColor" name="B6"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="送出評論"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="儲存草稿"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V99-h2-fRL">
+                                    <rect key="frame" x="300.5" y="0.0" width="81.5" height="31"/>
+                                    <color key="backgroundColor" name="B1"/>
+                                    <color key="tintColor" name="B6"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="發送評論"/>
                                     <connections>
+                                        <action selector="sendComment:" destination="iN0-l3-epB" eventType="touchUpInside" id="1cA-yB-Z9c"/>
                                         <action selector="tapSendComment:" destination="iN0-l3-epB" eventType="touchUpInside" id="8HE-ka-2xk"/>
                                     </connections>
                                 </button>
@@ -72,12 +87,19 @@
             <connections>
                 <outlet property="contentTextView" destination="ncP-Nh-Zi4" id="Rfe-zz-aPT"/>
                 <outlet property="importTempButton" destination="0E2-lZ-gn7" id="wDa-fr-3Iw"/>
+                <outlet property="saveButton" destination="eka-7N-eli" id="bHV-VY-H09"/>
                 <outlet property="sendButton" destination="V99-h2-fRL" id="ECV-f2-XyS"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="69.642857142857139"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="B1">
+            <color red="0.24699999392032623" green="0.22699999809265137" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="B6">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

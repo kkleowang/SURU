@@ -72,7 +72,7 @@ class CommentSelectionView: UIView {
     let writeCommentButton = UIButton()
     let notWriteCommentButton = UIButton()
     let stackView = UIStackView()
-    let saveDraftButton = UIButton()
+//    let saveDraftButton = UIButton()
     
     func initTextField() {
         self.addSubview(selectedStoreTextField)
@@ -164,24 +164,25 @@ class CommentSelectionView: UIView {
         notWriteCommentButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         notWriteCommentButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         notWriteCommentButton.layer.cornerRadius = 15
-        notWriteCommentButton.setImage( UIImage(named: SelectionButton.notWriteComment.rawValue), for: .normal)
+        notWriteCommentButton.setImage( UIImage(named: SelectionButton.writeComment.rawValue), for: .normal)
         notWriteCommentButton.addTarget(self, action: #selector(notWriteComment), for: .touchUpInside)
         notWriteCommentButton.backgroundColor = .black.withAlphaComponent(0.4)
         notWriteCommentButton.tintColor = .white
         notWriteCommentButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         
-        self.addSubview(saveDraftButton)
-        saveDraftButton.translatesAutoresizingMaskIntoConstraints = false
-        saveDraftButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        saveDraftButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        saveDraftButton.layer.cornerRadius = 20
-        saveDraftButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        saveDraftButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-        saveDraftButton.setImage( UIImage(named: "draftmark"), for: .normal)
-        saveDraftButton.addTarget(self, action: #selector(saveCommentDraft), for: .touchUpInside)
-        saveDraftButton.backgroundColor = .black.withAlphaComponent(0.4)
-        saveDraftButton.tintColor = .white
-        saveDraftButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        
+//        self.addSubview(saveDraftButton)
+//        saveDraftButton.translatesAutoresizingMaskIntoConstraints = false
+//        saveDraftButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+//        saveDraftButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+//        saveDraftButton.layer.cornerRadius = 20
+//        saveDraftButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+//        saveDraftButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+//        saveDraftButton.setImage( UIImage(named: "draftmark"), for: .normal)
+//        saveDraftButton.addTarget(self, action: #selector(saveCommentDraft), for: .touchUpInside)
+//        saveDraftButton.backgroundColor = .black.withAlphaComponent(0.4)
+//        saveDraftButton.tintColor = .white
+//        saveDraftButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
     func initValueView(on view: UIView, value: Double) {
         // round view
@@ -231,7 +232,7 @@ extension CommentSelectionView {
             case selectHappyValueButton:
                 return SelectionType.happy
             default:
-                return SelectionType.happy
+                return SelectionType.noodle
             }
         }()
         self.delegate?.didTapSelectValue(self, type: type)

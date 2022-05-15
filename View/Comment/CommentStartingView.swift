@@ -54,7 +54,7 @@ class CommentStartingView: UIView {
     }
     
     @objc func startComment(_ sender: UIButton) {
-        sender.isHidden = true
+//        sender.isHidden = true
         self.delegate?.didTapImageView(self, imagePicker: imagePicker)
     }
 }

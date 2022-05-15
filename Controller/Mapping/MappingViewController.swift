@@ -581,7 +581,7 @@ extension MappingViewController: UICollectionViewDelegateFlowLayout {
 
 extension MappingViewController {
     private func addDragFloatBtn() {
-        reportButton.frame = CGRect(x: UIScreen.width-70, y: 200, width: 60, height: 60)
+        reportButton.frame = CGRect(x: UIScreen.width-70, y: 400, width: 60, height: 60)
         
         reportButton.layer.cornerRadius = 30.0
         self.view .addSubview(reportButton)
@@ -593,6 +593,7 @@ extension MappingViewController {
         reportButton.addTarget(self, action: #selector(floatBtnAction(sender:)), for: .touchUpInside)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragAction(gesture:)))
         reportButton .addGestureRecognizer(panGesture)
+        
     }
     
     @objc private func dragAction(gesture: UIPanGestureRecognizer) {
@@ -638,12 +639,15 @@ extension MappingViewController {
         reportView.delegate = self
         self.view.addSubview(reportView)
         reportView.layoutView(name: storeName)
-        reportView.translatesAutoresizingMaskIntoConstraints = false
-        reportView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        reportView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        reportView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        
-        reportView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,constant: -200).isActive = true
+//        reportView.translatesAutoresizingMaskIntoConstraints = false
+        reportView.frame = CGRect(x: 0, y: UIScreen.height, width: UIScreen.width, height: 400)
+//        reportView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+//        reportView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+//        reportView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        UIView.animate(withDuration: 0.5) {
+            reportView.frame = CGRect(x: 0, y: UIScreen.height-300, width: UIScreen.width, height: 400)
+        }
+//        reportView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,constant: -200).isActive = true
         
     }
     private func pulishQueue(queue: Int) {

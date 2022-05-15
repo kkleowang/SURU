@@ -171,7 +171,7 @@ extension ProfileViewController: ProfileHeaderCellDelegate {
     }
     
     func didtapSettingBtn(_ view: ProfileHeaderCell, targetUserID: String?) {
-        
+        showAlert() 
     }
     
     func didtapPost(_ view: ProfileHeaderCell) {
@@ -330,75 +330,106 @@ extension ProfileViewController {
         }
         badgeRef = ref
     }
-    //    func showAlert() {
-    //        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    //        alert.popoverPresentationController?.sourceView = self.view
-    //
-    //        let xOrigin = self.view.bounds.width / 2
-    //
-    //        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-    //
-    //        alert.popoverPresentationController?.sourceRect = popoverRect
-    //
-    //        alert.popoverPresentationController?.permittedArrowDirections = .up
-    //        alert.addAction(UIAlertAction(title: "編輯勳章", style: .default , handler:{ (UIAlertAction) in
-    //            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
-    //            guard let currentUserData = self.currentUserData else { return }
-    //            controller.badgeRef = self.badgeRef
-    //            controller.seletedBadgeName = currentUserData.badgeStatus
-    //            self.navigationController?.pushViewController(controller, animated: true)
-    //        }))
-    //        alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction) in
-    //            UserRequestProvider.shared.logOut()
-    //            self.tabBarController?.selectedIndex = 0
-    //            LKProgressHUD.showSuccess(text: "登出成功")
-    //        }))
-    //
-    //        alert.addAction(UIAlertAction(title: "刪除帳號", style: .destructive , handler:{ (UIAlertAction) in
-    //
-    //            self.showDestructiveAlert()
-    //        }))
-    //
-    //        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
-    //            print("User click Dismiss button")
-    //        }))
-    //
-    //        self.present(alert, animated: true, completion: {
-    //            print("completion block")
-    //        })
-    //    }
-    //    func showDestructiveAlert() {
-    //        let alert = UIAlertController(title: "提示", message: "刪除帳號後資料永久不可復原，你確定要刪除帳號嗎？", preferredStyle: .alert)
-    //
-    //        let okAction = UIAlertAction(title: "再想想", style: .default) { _ in
-    //
-    //        }
-    //        let cancelAction = UIAlertAction(title: "刪除帳號", style: .destructive) { _ in
-    //            self.showAuthAlert()
-    //        }
-    //
-    //        alert.addAction(cancelAction)
-    //        alert.addAction(okAction)
-    //        present(alert, animated: true, completion: nil)
-    //    }
-    //    func showAuthAlert() {
-    //        let alert = UIAlertController(title: "輸入密碼", message: nil, preferredStyle: .alert)
-    //        foriPad(alert: alert)
-    //        alert.addTextField()
-    //        alert.textFields![0].isSecureTextEntry = true
-    //        let submitAction = UIAlertAction(title: "刪除帳號", style: .destructive) { [unowned alert] _ in
-    //            guard let password = alert.textFields![0].text else { return }
-    //            self.deleteAccount(password: password)
-    //            self.tabBarController?.selectedIndex = 0
-    //        }
-    //        let okAction = UIAlertAction(title: "再想想", style: .cancel) { _ in
-    //        }
-    //
-    //        alert.addAction(submitAction)
-    //        alert.addAction(okAction)
-    //
-    //        present(alert, animated: true)
-    //    }
+        func showAlert() {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            alert.popoverPresentationController?.sourceView = self.view
+    
+            let xOrigin = self.view.bounds.width / 2
+    
+            let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+    
+            alert.popoverPresentationController?.sourceRect = popoverRect
+    
+            alert.popoverPresentationController?.permittedArrowDirections = .up
+            
+            alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction) in
+                UserRequestProvider.shared.logOut()
+                self.tabBarController?.selectedIndex = 0
+                LKProgressHUD.showSuccess(text: "登出成功")
+            }))
+    
+            alert.addAction(UIAlertAction(title: "刪除帳號", style: .destructive , handler:{ (UIAlertAction) in
+    
+                self.showDestructiveAlert()
+            }))
+    
+            alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
+                print("User click Dismiss button")
+            }))
+    
+            self.present(alert, animated: true, completion: {
+                print("completion block")
+            })
+        }
+        func showDestructiveAlert() {
+            let alert = UIAlertController(title: "提示", message: "刪除帳號後資料永久不可復原，你確定要刪除帳號嗎？", preferredStyle: .alert)
+    
+            let okAction = UIAlertAction(title: "再想想", style: .default) { _ in
+    
+            }
+            let cancelAction = UIAlertAction(title: "刪除帳號", style: .destructive) { _ in
+                self.showAuthAlert()
+            }
+    
+            alert.addAction(cancelAction)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
+        func showAuthAlert() {
+            let alert = UIAlertController(title: "輸入密碼", message: nil, preferredStyle: .alert)
+            foriPad(alert: alert)
+            alert.addTextField()
+            alert.textFields![0].isSecureTextEntry = true
+            let submitAction = UIAlertAction(title: "刪除帳號", style: .destructive) { [unowned alert] _ in
+                guard let password = alert.textFields![0].text else { return }
+                self.deleteAccount(password: password)
+                self.tabBarController?.selectedIndex = 0
+            }
+            let okAction = UIAlertAction(title: "再想想", style: .cancel) { _ in
+            }
+    
+            alert.addAction(submitAction)
+            alert.addAction(okAction)
+    
+            present(alert, animated: true)
+        }
+    func foriPad(alert: UIAlertController) {
+        alert.popoverPresentationController?.sourceView = self.view
+
+        let xOrigin = self.view.bounds.width / 2
+
+        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+
+        alert.popoverPresentationController?.sourceRect = popoverRect
+
+        alert.popoverPresentationController?.permittedArrowDirections = .up
+    }
+    func deleteAccount(password: String) {
+        guard let userID = UserRequestProvider.shared.currentUserID else {
+            LKProgressHUD.showFailure(text: "刪除失敗 稍後再試")
+            return
+        }
+        UserRequestProvider.shared.nativeDeleteAccount(password: password) { result in
+            switch result {
+            case .failure(let error):
+                print("刪除失敗 稍後再試",error)
+                LKProgressHUD.showFailure(text: error.localizedDescription)
+            case .success(let message):
+                self.deleteUserInfo(userID: userID)
+                LKProgressHUD.showSuccess(text: message)
+            }
+        }
+    }
+    func deleteUserInfo(userID: String) {
+        AccountRequestProvider.shared.deleteAccountInfo(userID: userID) { result in
+            switch result {
+            case .failure(let error):
+                print("個人頁面刪除帳號資料庫失敗", error)
+            case .success(let message):
+                print("個人頁面刪除帳號資料庫成功", message)
+            }
+        }
+    }
 }
 //extension ProfileViewController: ProfileViewDelegate {
 //    func didTapBadge(_ view: ProfileView) {
@@ -426,41 +457,7 @@ extension ProfileViewController {
 //        present(nav, animated: true, completion: nil)
 //    }
 //
-//    func foriPad(alert: UIAlertController) {
-//        alert.popoverPresentationController?.sourceView = self.view
-//
-//        let xOrigin = self.view.bounds.width / 2
-//
-//        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-//
-//        alert.popoverPresentationController?.sourceRect = popoverRect
-//
-//        alert.popoverPresentationController?.permittedArrowDirections = .up
-//    }
-//    func deleteAccount(password: String) {
-//        guard let userID = UserRequestProvider.shared.currentUserID else {
-//            LKProgressHUD.showFailure(text: "刪除失敗 稍後再試")
-//            return
-//        }
-//        UserRequestProvider.shared.nativeDeleteAccount(password: password) { result in
-//            switch result {
-//            case .failure(let error):
-//                print("刪除失敗 稍後再試",error)
-//                LKProgressHUD.showFailure(text: error.localizedDescription)
-//            case .success(let message):
-//                self.deleteUserInfo(userID: userID)
-//                LKProgressHUD.showSuccess(text: message)
-//            }
-//        }
-//    }
-//    func deleteUserInfo(userID: String) {
-//        AccountRequestProvider.shared.deleteAccountInfo(userID: userID) { result in
-//            switch result {
-//            case .failure(let error):
-//                print("個人頁面刪除帳號資料庫失敗", error)
-//            case .success(let message):
-//                print("個人頁面刪除帳號資料庫成功", message)
-//            }
-//        }
-//    }
+    
+    
+   
 //}

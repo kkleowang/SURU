@@ -110,6 +110,7 @@ extension DiscoveryViewController: UICollectionViewDataSource, UICollectionViewD
             let comment = filteredCommentData[indexPath.row]
             let store = storeData.first(where: {$0.storeID == comment.storeID}) ?? storeData[0]
             guard let account = accountData.first(where: {$0.userID == comment.userID}) else {
+                print(comment.userID)
                 print("崩潰拉")
                 return cell }
             if let currentAccount = currentAccount {
