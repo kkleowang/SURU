@@ -125,6 +125,7 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         if ref[indexPath.section][indexPath.row] != 0 {
             seletedBadgeName = badgeFile[indexPath.section][indexPath.row]
             guard let userID = UserRequestProvider.shared.currentUserID else { return }
+            
             guard let cells = collectionView.visibleCells as? [BadgeCell] else { return }
             for cell in cells {
                 cell.badgeNameLabel.layer.shadowOpacity = 0

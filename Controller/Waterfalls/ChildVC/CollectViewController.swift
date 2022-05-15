@@ -25,6 +25,9 @@ class CollectViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+            collectionView.backgroundColor = .B6
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
@@ -59,7 +62,6 @@ class CollectViewController: UIViewController {
         })
         completion()
     }
-    
     func updataStore() {
         StoreRequestProvider.shared.fetchStores { result in
             switch result {
@@ -132,7 +134,7 @@ extension CollectViewController: UICollectionViewDataSource, UICollectionViewDel
                 controller.modalPresentationStyle = .fullScreen
                 controller.comment = comment
                 controller.store = store
-                controller.account = account
+                controller.author = account
                 self.present(controller, animated: true, completion: nil)
             }
         }
@@ -149,19 +151,14 @@ extension CollectViewController: CHTCollectionViewDelegateWaterfallLayout {
         let store = storeData.first(where: {$0.storeID == comment.storeID})
         let text = "\(store?.name ?? "") - \(comment.meal )"
         
-        let account = accountData.first(where: {$0.userID == comment.userID})?.badgeStatus ?? ""
-        if text.count > 12 {
-            if account != "" {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 335)
-            } else {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
-            }
+        if text.count > 9 {
+            
+                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 330)
+          
         } else {
-            if account != "" {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 305)
-            } else {
+          
                 return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
-            }
+           
         }
     }
 }
@@ -261,6 +258,11 @@ extension CollectViewController {
 }
 
 extension CollectViewController: DiscoveryCellDelegate {
+    func didTapCommentBtn(_ view: DiscoveryCell, comment: Comment) {
+        //
+    }
+    
+    
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment) {
         guard let currentUserID = UserRequestProvider.shared.currentUserID else {
             LKProgressHUD.showFailure(text: "你沒有登入喔")

@@ -62,29 +62,31 @@ class StoreCardsCell: UICollectionViewCell {
     var storeData: Store?
     var commentsData: [Comment]?
     var userIsLogin: Bool?
+    
     func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool, isLogin: Bool) {
-//        guard let isCollect = isCollect else { return }
         userIsLogin = isLogin
-        self.contentView.makeShadow()
         self.contentView.clipsToBounds = true
         storeData = dataSource
         commentsData = commentData
         self.clipsToBounds = true
         self.cornerForAll(radii: 10)
-        reportView.clipsToBounds = true
-        reportView.cornerForAll(radii: 10)
+//        reportView.clipsToBounds = true
+//        reportView.cornerForAll(radii: 10)
         dotView.clipsToBounds = true
         dotView.layer.cornerRadius = 7.5
         soupView.clipsToBounds = true
         noodleView.clipsToBounds = true
         overallView.clipsToBounds = true
-        soupView.layer.cornerRadius = 20
-        noodleView.layer.cornerRadius = 20
-        overallView.layer.cornerRadius = 20
+        soupView.layer.cornerRadius = 25
+        noodleView.layer.cornerRadius = 25
+        overallView.layer.cornerRadius = 25
         nameLabel.text = dataSource.name
+        nameLabel.adjustsFontSizeToFitWidth = true
         mostCommentImageView.clipsToBounds = true
         mostCommentImageView.cornerForAll(radii: 10)
-        
+//        noodleLabel.adjustsFontSizeToFitWidth = true
+//        soupLabel.adjustsFontSizeToFitWidth = true
+//        overallLabel.adjustsFontSizeToFitWidth = true
         storeImageView.layer.cornerRadius = 25
         storeImageView.clipsToBounds = true
         storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "mainImage"))
@@ -156,6 +158,7 @@ class StoreCardsCell: UICollectionViewCell {
         reportLabel.textColor = .red
 
         reportLabel.font = .medium(size: 18)
+        reportLabel.adjustsFontSizeToFitWidth = true
         reportPeopleLabel.isHidden = false
         reportLabel.isHidden = false
         nonReportLabel.isHidden = true

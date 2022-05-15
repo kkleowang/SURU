@@ -17,13 +17,17 @@ class DiscoveryViewController: UIViewController {
     var storeData: [Store] = []
     
     var filteredCommentData: [Comment] = []
-//    var dataSourceComment: [Comment] = []
+    //    var dataSourceComment: [Comment] = []
     var accountData: [Account] = []
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     
     override func viewDidLoad() {
+        collectionView.backgroundColor = .B6
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        addlistener()
         fetchAllData {
             self.configData {
                 self.setupCollectionView()
@@ -33,7 +37,7 @@ class DiscoveryViewController: UIViewController {
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
-       
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +63,7 @@ class DiscoveryViewController: UIViewController {
             case .success(let data) :
                 self.storeData = data
                 self.configData {
-                self.collectionView.reloadData()
+                    self.collectionView.reloadData()
                 }
             case .failure(let error) :
                 print("下載商店資料失敗", error)
@@ -72,9 +76,9 @@ class DiscoveryViewController: UIViewController {
         
         let layout = CHTCollectionViewWaterfallLayout()
         layout.columnCount = 2
-        layout.minimumColumnSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        let inset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.minimumColumnSpacing = 4
+        layout.minimumInteritemSpacing = 4
+        let inset = UIEdgeInsets(top: 0, left: 4, bottom: 4, right: 4)
         layout.sectionInset = inset
         collectionView.collectionViewLayout = layout
         collectionView.register(UINib(nibName: String(describing: DiscoveryCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: DiscoveryCell.self))
@@ -94,7 +98,7 @@ class DiscoveryViewController: UIViewController {
     
 }
 
-extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDelegate {
+extension DiscoveryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredCommentData.count
     }
@@ -123,40 +127,68 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
             if let currentAccount = currentAccount {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 guard let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+                
                 controller.delegate = self
                 controller.modalPresentationStyle = .fullScreen
                 controller.comment = comment
+                controller.accountData = accountData
                 controller.store = store
-                controller.account = account
+                controller.currentUser = currentAccount
+                controller.author = account
                 self.present(controller, animated: true, completion: nil)
             }
         }
     }
     
 }
+
 extension DiscoveryViewController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //        commentData[indexPath.row].contentValue.happiness > 80
-        
         let comment = filteredCommentData[indexPath.row]
         let store = storeData.first(where: {$0.storeID == comment.storeID})
-        let text = "\(store?.name ?? "") - \(comment.meal ?? "")"
         
-        let account = accountData.first(where: {$0.userID == comment.userID})?.badgeStatus ?? ""
-        if text.count > 12 {
-            if account != "" {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 335)
-            } else {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
-            }
-        } else {
-            if account != "" {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 305)
-            } else {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
-            }
+        let storeName = store?.name ?? ""
+        let mealName = comment.meal
+        
+        let width = (UIScreen.width - 4 * 3) / 2
+        let labelWidth = width - 16
+        
+        let storeLabelSize = labelSize(for: storeName, font: .medium(size: 18), maxWidth: labelWidth, maxHeight: 60)
+        
+        let mealLabelSize = labelSize(for: mealName, font: .medium(size: 15), maxWidth: labelWidth, maxHeight: 60)
+        var height = width + storeLabelSize.height + mealLabelSize.height + 24 + 40 + 21
+        
+        var random: Int {
+            return Int.random(in: 0...10)
         }
+        
+        let randomExtraHeight = Double(random)
+        
+        if storeLabelSize.height > 30 {
+            height += randomExtraHeight
+        } else {
+            height -= randomExtraHeight
+        }
+        print(height)
+        
+        
+        return CGSize(width: width, height: height)
     }
+    
+    func labelSize(for text: String,font: UIFont?, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font as Any
+        ]
+
+        let attributedText = NSAttributedString(string: text, attributes: attributes)
+
+        let constraintBox = CGSize(width: maxWidth, height: maxHeight)
+        let rect = attributedText.boundingRect(with: constraintBox, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).integral
+
+        return rect.size
+    }
+    
+    
 }
 extension DiscoveryViewController: IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
@@ -165,11 +197,7 @@ extension DiscoveryViewController: IndicatorInfoProvider {
 }
 extension DiscoveryViewController {
     func fetchAllData(com: @escaping () -> ()) {
-        guard let currentUser = UserRequestProvider.shared.currentUser else {
-//            let alert = UIAlertController(title: "提示", message: "你還沒有登入喔！", preferredStyle: .alert)
-//            let
-            return
-        }
+        guard let currentUser = UserRequestProvider.shared.currentUser else { return }
         let group: DispatchGroup = DispatchGroup()
         let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
         let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
@@ -257,10 +285,24 @@ extension DiscoveryViewController {
             LKProgressHUD.showSuccess(text: "下載資料成功")
         }
     }
+    func addlistener() {
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        AccountRequestProvider.shared.listenAccount(currentUserID: userID) { result in
+            switch result {
+            case .success(let data):
+                print("更新用戶成功")
+                self.currentAccount = data
+            case .failure(let error):
+                print("更新用戶失敗", error)
+            }
+        }
+    }
 }
 
 extension DiscoveryViewController: DiscoveryCellDelegate {
-    
+    func didTapCommentBtn(_ view: DiscoveryCell, comment: Comment) {
+        //
+    }
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment) {
         guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
         CommentRequestProvider.shared.likeComment(currentUserID: currentUserID, tagertComment: comment)
@@ -281,18 +323,18 @@ extension DiscoveryViewController: DetailViewControllerDelegate {
         } else {
             navigationController?.tabBarController?.selectedIndex = 3
         }
-    
+        
     }
     func showAlert(targetUser: String?, vc: UIViewController) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = self.view
-                
-                let xOrigin = self.view.bounds.width / 2
-                
-                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-                
+        
+        let xOrigin = self.view.bounds.width / 2
+        
+        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+        
         alert.popoverPresentationController?.sourceRect = popoverRect
-                
+        
         alert.popoverPresentationController?.permittedArrowDirections = .up
         alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
             guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }

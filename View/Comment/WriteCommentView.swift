@@ -24,7 +24,8 @@ class WriteCommentView: UIView {
     }
     @IBAction func tapSendComment(_ sender: Any) {
         self.delegate?.didTapSaveComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
-        self.topMostController()?.dismiss(animated: true, completion: nil)
+        
+//        self.topMostController()?.dismiss(animated: true, completion: nil)
     }
     func layoutView(comment: Comment,name: String) {
         commentData = comment

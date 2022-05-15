@@ -56,7 +56,7 @@ extension CommentImageCardView: UIImagePickerControllerDelegate, UINavigationCon
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
-        guard let image = info[.originalImage] as? UIImage else { return }
+        guard let image = info[.editedImage] as? UIImage else { return }
         commentImageView?.image = image
         self.delegate?.didFinishPickImage(self, imagePicker: picker)
     }

@@ -17,6 +17,13 @@ protocol StoreCommentCellDelegate: AnyObject {
 
 class StoreCommentCell: UITableViewCell {
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//
+//        contentView.layer.cornerRadius = 15
+//        contentView.clipsToBounds = true
+//        contentView.backgroundColor = .blue
+    }
     weak var delegate: StoreCommentCellDelegate?
     var targetUserID: String?
     var commentData: Comment?
@@ -111,7 +118,7 @@ class StoreCommentCell: UITableViewCell {
         doubleTapImage.numberOfTapsRequired = 2
         commentImageView.isUserInteractionEnabled = true
         let likeCount = comment.likedUserList.count
-        
+        let message = comment.userComment ?? []
         authorStackView.isUserInteractionEnabled = true
         authorStackView.addGestureRecognizer(tapAuthor)
         if likeCount == 0 {
@@ -119,10 +126,11 @@ class StoreCommentCell: UITableViewCell {
         } else {
         likeLabel.text = "\(likeCount) 個讚"
         }
-        if likeCount == 0 {
+        
+        if message.isEmpty {
             commentsLabel.text = "目前沒有留言"
         } else {
-            commentsLabel.text = "查看全部\(likeCount) 則留言"
+            commentsLabel.text = "查看全部\(message.count) 則留言"
         }
         if isLogin {
             if isLike {

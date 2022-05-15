@@ -89,7 +89,7 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         UserRequestProvider.shared.listenFirebaseLogin { _ in
         }
         
-        self.tabBar.tintColor = .C1
+        self.tabBar.tintColor = .C4
         
         view.backgroundColor = .white
         viewControllers = tabs.map({ $0.controller() })
@@ -111,25 +111,6 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
     }
     private func showLoginAlert(type: Tab) {
-//        var message: String?
-//        switch type {
-//        case .waterfalls:
-//            message = "登入查看更多社群貼文！"
-//        case .mapping:
-//            return
-//        case .comment:
-//            message = "登入發表你的食記！"
-//        case .profile:
-//            message = "登入編輯你的SURU檔案！"
-//        }
-//        let alert = UIAlertController(title: "提示", message: message, preferredStyle: .alert)
-//        let login = UIAlertAction(title: "登入", style: .cancel) { _ in
-//            self.presentWelcomePage()
-//        }
-//        let notLogin = UIAlertAction(title: "下次一定", style: .default, handler: nil)
-//        alert.addAction(login)
-//        alert.addAction(notLogin)
-//        present(alert, animated: true, completion: nil)
         presentWelcomePage()
     }
     func presentWelcomePage() {
