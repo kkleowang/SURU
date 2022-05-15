@@ -47,6 +47,7 @@ class StoreCardsCell: UICollectionViewCell {
         guard let image = sender.image(for: .normal) else { return }
         guard let storeData = storeData else { return }
         guard let commentsData = commentsData else { return }
+            
         if image == UIImage(named: "collect.fill") {
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
             followerLabel.text = "\(storeData.collectedUser?.count ?? 1 - 1) 人收藏, 共\(commentsData.count) 則食記"

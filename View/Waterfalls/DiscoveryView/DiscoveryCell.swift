@@ -58,17 +58,18 @@ class DiscoveryCell: UICollectionViewCell {
     
     func layoutCell(author: Account, comment: Comment, currentUser: Account, store: Store) {
         mainImageView.clipsToBounds = true
-        mainImageView.layer.cornerRadius = 15
+        mainImageView.layer.cornerRadius = 10
         authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
         commentHolder = comment
         mainImageView.kf.setImage(with: URL(string: comment.mainImage))
             
         nameLabel.text = "\(store.name)"
-        nameLabel.font = .medium(size: 18)
-        mealLabel.font = .medium(size: 15)
+//        nameLabel.font = .medium(size: 16)
+        mealLabel.font = .medium(size: 14)
+        authorNameLabel.font = .medium(size: 14)
         mealLabel.text = comment.meal
-        nameLabel.adjustsFontSizeToFitWidth = true
-        mealLabel.adjustsFontSizeToFitWidth = true
+//        nameLabel.adjustsFontSizeToFitWidth = true
+//        mealLabel.adjustsFontSizeToFitWidth = true
         authorNameLabel.adjustsFontSizeToFitWidth = true
             authorImageView.loadImage(author.mainImage , placeHolder: UIImage(named: "mainImage"))
             authorNameLabel.text = author.name

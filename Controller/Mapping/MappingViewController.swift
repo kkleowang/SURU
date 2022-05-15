@@ -126,6 +126,23 @@ class MappingViewController: UIViewController {
             case .success(let data) :
                 print("監聽商店成功 地圖頁面", data.count)
                 self.storeData = data
+                if self.isSearchResults {
+                    let text = self.searchBar.text ?? ""
+                    self.filteredStoreData = self.storeData.filter({ store in
+                        let tag = store.tags.joined()
+                        let title = store.name
+                        let address = store.address
+                        
+                        let isMatchTags = tag.localizedStandardContains(text)
+                        let isMatchName = title.localizedStandardContains(text)
+                        let isMatchAddress = address.localizedStandardContains(text)
+                        if isMatchTags || isMatchName || isMatchAddress == true {
+                            return true
+                        } else {
+                            return false
+                        }
+                    })
+                }
                 self.storeCardCollectionView.reloadData()
                 self.reloadMapView()
             case .failure(let error) :

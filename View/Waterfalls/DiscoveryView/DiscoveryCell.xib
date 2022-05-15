@@ -26,37 +26,37 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="z0D-ZI-096">
-                        <rect key="frame" x="8" y="212" width="196" height="65"/>
+                        <rect key="frame" x="8" y="212" width="196" height="59.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好吃超級超級無敵好吃超級" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5L-FZ-lcJ">
-                                <rect key="frame" x="0.0" y="0.0" width="196" height="43"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好吃超級超級無敵好吃超級" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5L-FZ-lcJ">
+                                <rect key="frame" x="0.0" y="0.0" width="196" height="38.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" name="B1"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好吃地獄拉麵加大" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kj-rc-uso">
-                                <rect key="frame" x="0.0" y="47" width="196" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超級無敵好吃地獄拉麵加大" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kj-rc-uso">
+                                <rect key="frame" x="0.0" y="42.5" width="196" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" name="B1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我叫XXXXXXX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORy-6r-m3x">
-                        <rect key="frame" x="52" y="295.5" width="106.5" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <rect key="frame" x="42" y="286" width="94.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" name="B1"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mnU-Sx-WeW">
-                        <rect key="frame" x="8" y="285" width="40" height="40"/>
+                        <rect key="frame" x="8" y="279.5" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="45D-AD-M6w"/>
-                            <constraint firstAttribute="width" constant="40" id="jfr-S3-vBJ"/>
+                            <constraint firstAttribute="height" constant="30" id="45D-AD-M6w"/>
+                            <constraint firstAttribute="width" constant="30" id="jfr-S3-vBJ"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZNd-89-pkI">
-                        <rect key="frame" x="150" y="323" width="54" height="21"/>
+                        <rect key="frame" x="150" y="311" width="54" height="21"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciO-Nu-Caq">
                                 <rect key="frame" x="0.0" y="0.0" width="24.5" height="21"/>
@@ -92,13 +92,14 @@
                     <constraint firstItem="z0D-ZI-096" firstAttribute="top" secondItem="dQx-vz-3NO" secondAttribute="bottom" constant="8" id="8yf-AM-jzf"/>
                     <constraint firstItem="dQx-vz-3NO" firstAttribute="top" secondItem="ZsX-uH-617" secondAttribute="top" constant="8" id="BCh-qk-8mW"/>
                     <constraint firstItem="ORy-6r-m3x" firstAttribute="leading" secondItem="mnU-Sx-WeW" secondAttribute="trailing" constant="4" id="ExK-H3-GH7"/>
-                    <constraint firstItem="ZNd-89-pkI" firstAttribute="top" secondItem="ORy-6r-m3x" secondAttribute="bottom" constant="8" id="GPb-wR-pdL"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZNd-89-pkI" secondAttribute="bottom" constant="8" id="KVZ-Ai-tQV"/>
                     <constraint firstItem="mnU-Sx-WeW" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" constant="8" id="UF4-R4-k7a"/>
                     <constraint firstAttribute="trailing" secondItem="z0D-ZI-096" secondAttribute="trailing" constant="8" id="ZQv-eB-e0E"/>
                     <constraint firstAttribute="trailing" secondItem="ZNd-89-pkI" secondAttribute="trailing" constant="8" id="hwR-tR-lkQ"/>
                     <constraint firstItem="mnU-Sx-WeW" firstAttribute="top" secondItem="z0D-ZI-096" secondAttribute="bottom" constant="8" id="igP-82-gUy"/>
                     <constraint firstAttribute="trailing" secondItem="dQx-vz-3NO" secondAttribute="trailing" constant="8" id="j3I-l5-ujH"/>
                     <constraint firstItem="ORy-6r-m3x" firstAttribute="centerY" secondItem="mnU-Sx-WeW" secondAttribute="centerY" id="lsP-n5-Vdq"/>
+                    <constraint firstItem="ZNd-89-pkI" firstAttribute="top" secondItem="ORy-6r-m3x" secondAttribute="bottom" constant="8" id="q2h-Mr-ZIe"/>
                     <constraint firstItem="z0D-ZI-096" firstAttribute="leading" secondItem="ZsX-uH-617" secondAttribute="leading" constant="8" id="ztW-b2-wf1"/>
                 </constraints>
             </collectionViewCellContentView>

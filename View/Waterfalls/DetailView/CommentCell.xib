@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -90,79 +89,76 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北一家拉麵內湖總本" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXi-WT-Ali">
-                        <rect key="frame" x="147.5" y="358" width="138" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="152.5" y="359.5" width="156" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" name="B1"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flag" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YhG-Jo-veh">
-                        <rect key="frame" x="111.5" y="357.5" width="20" height="18.5"/>
+                        <rect key="frame" x="111.5" y="357.5" width="25" height="23.5"/>
                         <color key="tintColor" name="B1"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="YhG-Jo-veh" secondAttribute="height" multiplier="1:1" id="2nq-y8-Lao"/>
-                            <constraint firstAttribute="height" constant="20" id="w5u-NV-hhO"/>
+                            <constraint firstAttribute="height" constant="25" id="w5u-NV-hhO"/>
                         </constraints>
                     </imageView>
                     <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15s-T0-2Eg">
-                        <rect key="frame" x="103.5" y="380" width="231.5" height="1"/>
+                        <rect key="frame" x="103.5" y="384" width="231.5" height="1"/>
                         <color key="backgroundColor" name="C4"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="jJ2-4B-M0o"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="敵好拉麵超級無敵好" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNf-3B-UAT">
-                        <rect key="frame" x="147.5" y="386" width="138" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="152.5" y="391" width="156" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" name="B1"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noodle" translatesAutoresizingMaskIntoConstraints="NO" id="u5H-Ul-JpW">
-                        <rect key="frame" x="111.5" y="385" width="20" height="20"/>
+                        <rect key="frame" x="111.5" y="389" width="25" height="25"/>
                         <color key="tintColor" name="B1"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="u5H-Ul-JpW" secondAttribute="height" multiplier="1:1" id="UYj-Cf-YK8"/>
                         </constraints>
                     </imageView>
                     <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ia6-RC-y8u">
-                        <rect key="frame" x="103.5" y="408" width="231.5" height="1"/>
+                        <rect key="frame" x="103.5" y="415.5" width="231.5" height="1"/>
                         <color key="backgroundColor" name="C4"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="WDY-0R-QtT"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="敵好拉麵超級無敵好" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddM-ny-cJb">
-                        <rect key="frame" x="147.5" y="414" width="138" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="152.5" y="423" width="156" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" name="B1"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rhombus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="EL7-jZ-Onf">
-                        <rect key="frame" x="111.5" y="413.5" width="20" height="19"/>
+                        <rect key="frame" x="111.5" y="421" width="25" height="24"/>
                         <color key="tintColor" name="B1"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="EL7-jZ-Onf" secondAttribute="height" multiplier="1:1" id="Ca8-pO-6w2"/>
                         </constraints>
                     </imageView>
                     <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stK-Qe-5Ad">
-                        <rect key="frame" x="103.5" y="436" width="231.5" height="1"/>
+                        <rect key="frame" x="103.5" y="447.5" width="231.5" height="1"/>
                         <color key="backgroundColor" name="C4"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="0yy-65-guu"/>
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.bubble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4D3-zJ-lRN">
-                        <rect key="frame" x="111.5" y="441.5" width="20" height="19.5"/>
+                        <rect key="frame" x="111.5" y="453" width="25" height="24.5"/>
                         <color key="tintColor" name="B1"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="4D3-zJ-lRN" secondAttribute="height" multiplier="1:1" id="VPB-CH-Tvs"/>
                         </constraints>
                     </imageView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9An-Ra-9W3">
-                        <rect key="frame" x="142.5" y="437" width="216.5" height="140"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="140" id="lmq-CY-rgg"/>
-                        </constraints>
+                        <rect key="frame" x="147.5" y="448.5" width="211.5" height="172"/>
+                        <color key="backgroundColor" white="0.96920174319999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <string key="text">位於台北捷運雙連站附近的特濃屋是家主打家系拉麵的店家，日籍店主也是台灣女婿之一，身為家系拉麵店當然有飯類的餐點。炸雞更是因為廣受社團麵友的好評，還戲稱特濃屋為「炸雞屋」。
 這次來吃沒吃過的「九州豚骨拉麵」還有很常點的炸雞。特濃屋的拉麵有些項目可以客製，例如湯頭的鹹度還有叉燒可選擇五花或梅花等。我選了自己習慣的配置以及炸雞之外就等餐點上桌。
 感受完湯頭的香氣，喝了幾口湯再把肉上面的辣醬拌進湯裡，慶幸自己這次還記得不要點最鹹，不然會破壞拉麵味覺的平衡感。雖然九州豚骨少了家系豚骨醬油的豆香味，但是加了那一點辣醬提味讓我覺得身子暖了起來。這辣醬的辣度即使像我不常吃辣也能接受。
@@ -171,7 +167,7 @@
 由於特濃屋就是白湯的湯底，喜歡清湯的麵友這就比較可惜。特濃屋也有販售叉燒飯，叉燒飯的蔥絲堆得像座山，喜歡吃蔥的必點。
 其他就是可以依個人口味選擇「濃厚豚骨」、「九州豚骨」、「辛旨豚骨」等拉麵口味。
 現在就來回顧這篇食記的三個重點。台北「特濃屋」是家以家系拉麵為主打的店家，這次點的「九州豚骨拉麵」有特製辣醬提味。特濃屋的餐點我都很喜歡，炸雞不僅是我，也是眾多麵友推薦的餐點。當然，我會再去吃。</string>
-                        <color key="textColor" systemColor="labelColor"/>
+                        <color key="textColor" name="B1"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
@@ -207,7 +203,6 @@
                     <constraint firstItem="Tgo-oM-hFK" firstAttribute="top" secondItem="7r2-vi-6aY" secondAttribute="top" constant="16" id="Woo-zS-Il9"/>
                     <constraint firstItem="9An-Ra-9W3" firstAttribute="top" secondItem="stK-Qe-5Ad" secondAttribute="bottom" id="Y2i-lR-HOg"/>
                     <constraint firstItem="K08-jl-4Fp" firstAttribute="leading" secondItem="7r2-vi-6aY" secondAttribute="leadingMargin" constant="30" id="YrI-sc-0Ga"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9An-Ra-9W3" secondAttribute="bottom" id="aLf-J0-4Uf"/>
                     <constraint firstItem="aee-yg-2N7" firstAttribute="centerX" secondItem="y94-kI-YNF" secondAttribute="centerX" id="e97-v9-yfO"/>
                     <constraint firstItem="JzT-is-ACP" firstAttribute="centerY" secondItem="46l-9Z-bFs" secondAttribute="centerY" id="elG-lP-yrp"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LXi-WT-Ali" secondAttribute="trailing" constant="16" id="f03-Vz-IWf"/>
@@ -219,6 +214,7 @@
                     <constraint firstItem="JzT-is-ACP" firstAttribute="width" secondItem="JzT-is-ACP" secondAttribute="height" multiplier="1:1" id="itI-ey-aFq"/>
                     <constraint firstItem="y94-kI-YNF" firstAttribute="centerX" secondItem="QOt-jd-NUk" secondAttribute="centerX" id="iwd-Xs-XqH"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LNf-3B-UAT" secondAttribute="trailing" constant="16" id="jOe-O3-Qym"/>
+                    <constraint firstItem="9An-Ra-9W3" firstAttribute="bottom" secondItem="86G-Ks-Fvf" secondAttribute="bottom" id="je1-bd-VEg"/>
                     <constraint firstItem="ia6-RC-y8u" firstAttribute="leading" secondItem="u5H-Ul-JpW" secondAttribute="leading" constant="-8" id="lyz-nH-UGR"/>
                     <constraint firstItem="Tgo-oM-hFK" firstAttribute="leading" secondItem="7r2-vi-6aY" secondAttribute="leading" constant="23" id="mjh-o8-sSc"/>
                     <constraint firstItem="EL7-jZ-Onf" firstAttribute="height" secondItem="YhG-Jo-veh" secondAttribute="height" id="nmy-eN-GWq"/>
@@ -282,11 +278,5 @@
         <namedColor name="main3">
             <color red="0.94099998474121094" green="0.66299998760223389" blue="0.48199999332427979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
