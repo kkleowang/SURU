@@ -123,8 +123,8 @@
 		B8DA6E722823747200868381 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA6E712823747200868381 /* EditProfileViewController.swift */; };
 		B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DA6E7C2823B6A100868381 /* EditProfileView.xib */; };
 		B8DA6E7F2823B7C700868381 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA6E7E2823B7C700868381 /* EditProfileView.swift */; };
-		B8DBDD4D28246A57008DC615 /* ProfileCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DBDD4B28246A57008DC615 /* ProfileCommentCell.swift */; };
-		B8DBDD4E28246A57008DC615 /* ProfileCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DBDD4C28246A57008DC615 /* ProfileCommentCell.xib */; };
+		B8DBDD4D28246A57008DC615 /* ProfileCommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DBDD4B28246A57008DC615 /* ProfileCommentCollectionViewCell.swift */; };
+		B8DBDD4E28246A57008DC615 /* ProfileCommentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DBDD4C28246A57008DC615 /* ProfileCommentCollectionViewCell.xib */; };
 		B8DBDD5028246D50008DC615 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DBDD4F28246D50008DC615 /* UICollectionView+.swift */; };
 		B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */; };
 		B8EC70012805275300DA8B78 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70002805275300DA8B78 /* UIView+.swift */; };
@@ -157,6 +157,8 @@
 		B8F92C812830C4260002B252 /* ProfileHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F92C802830C4260002B252 /* ProfileHeaderCell.xib */; };
 		B8F92C842830CE550002B252 /* ProfileBioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F92C822830CE550002B252 /* ProfileBioCell.swift */; };
 		B8F92C852830CE550002B252 /* ProfileBioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F92C832830CE550002B252 /* ProfileBioCell.xib */; };
+		B8F92C882830ED060002B252 /* ProfileCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F92C862830ED060002B252 /* ProfileCommentCell.swift */; };
+		B8F92C892830ED060002B252 /* ProfileCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F92C872830ED060002B252 /* ProfileCommentCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -280,8 +282,8 @@
 		B8DA6E712823747200868381 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B8DA6E7C2823B6A100868381 /* EditProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
 		B8DA6E7E2823B7C700868381 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
-		B8DBDD4B28246A57008DC615 /* ProfileCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentCell.swift; sourceTree = "<group>"; };
-		B8DBDD4C28246A57008DC615 /* ProfileCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCell.xib; sourceTree = "<group>"; };
+		B8DBDD4B28246A57008DC615 /* ProfileCommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentCollectionViewCell.swift; sourceTree = "<group>"; };
+		B8DBDD4C28246A57008DC615 /* ProfileCommentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCollectionViewCell.xib; sourceTree = "<group>"; };
 		B8DBDD4F28246D50008DC615 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragingValueViewController.swift; sourceTree = "<group>"; };
 		B8EC70002805275300DA8B78 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -314,6 +316,8 @@
 		B8F92C802830C4260002B252 /* ProfileHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderCell.xib; sourceTree = "<group>"; };
 		B8F92C822830CE550002B252 /* ProfileBioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBioCell.swift; sourceTree = "<group>"; };
 		B8F92C832830CE550002B252 /* ProfileBioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileBioCell.xib; sourceTree = "<group>"; };
+		B8F92C862830ED060002B252 /* ProfileCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentCell.swift; sourceTree = "<group>"; };
+		B8F92C872830ED060002B252 /* ProfileCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCell.xib; sourceTree = "<group>"; };
 		B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SURU_Leo.entitlements; sourceTree = "<group>"; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -627,8 +631,6 @@
 				B87D726A28266C1300289283 /* CollectionViewBackGround */,
 				B893379128190F08000C75C3 /* ProfileView.xib */,
 				B89337932819120D000C75C3 /* ProfileView.swift */,
-				B8DBDD4C28246A57008DC615 /* ProfileCommentCell.xib */,
-				B8DBDD4B28246A57008DC615 /* ProfileCommentCell.swift */,
 				B8DA6E73282374D300868381 /* EditViewCell */,
 			);
 			path = Profile;
@@ -860,12 +862,24 @@
 		B8F92C7D2830C3F80002B252 /* new */ = {
 			isa = PBXGroup;
 			children = (
+				B8F92C8A2830ED750002B252 /* collectionView */,
 				B8F92C7E2830C41D0002B252 /* ProfileHeaderCell.swift */,
 				B8F92C802830C4260002B252 /* ProfileHeaderCell.xib */,
 				B8F92C822830CE550002B252 /* ProfileBioCell.swift */,
 				B8F92C832830CE550002B252 /* ProfileBioCell.xib */,
+				B8F92C862830ED060002B252 /* ProfileCommentCell.swift */,
+				B8F92C872830ED060002B252 /* ProfileCommentCell.xib */,
 			);
 			path = new;
+			sourceTree = "<group>";
+		};
+		B8F92C8A2830ED750002B252 /* collectionView */ = {
+			isa = PBXGroup;
+			children = (
+				B8DBDD4C28246A57008DC615 /* ProfileCommentCollectionViewCell.xib */,
+				B8DBDD4B28246A57008DC615 /* ProfileCommentCollectionViewCell.swift */,
+			);
+			path = collectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -952,7 +966,7 @@
 				B83B19282827D95300686D16 /* StoreTagsCell.xib in Resources */,
 				B86AB7EA28203D0700154B26 /* WriteCommentView.xib in Resources */,
 				B85B63C5280D2CDD00621E4A /* blue.json in Resources */,
-				B8DBDD4E28246A57008DC615 /* ProfileCommentCell.xib in Resources */,
+				B8DBDD4E28246A57008DC615 /* ProfileCommentCollectionViewCell.xib in Resources */,
 				B83B19362827D9B000686D16 /* StoreSeatsCell.xib in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
 				B8A11AF02813E4100079A080 /* StoreCardCell.xib in Resources */,
@@ -973,6 +987,7 @@
 				B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */,
 				B8532A24282E3FB400FA4D60 /* CommentMessagesCell.xib in Resources */,
 				B83B19242827D94100686D16 /* StoreImageCell.xib in Resources */,
+				B8F92C892830ED060002B252 /* ProfileCommentCell.xib in Resources */,
 				B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */,
 				B87D72672826483100289283 /* BadgeCell.xib in Resources */,
 				B87D725A2824FC6F00289283 /* BadgeHeaderCell.xib in Resources */,
@@ -1115,7 +1130,7 @@
 				B83B1941282800E100686D16 /* TagsCell.swift in Sources */,
 				B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */,
 				B830608C28015A9D002558BE /* OLDCommentView.swift in Sources */,
-				B8DBDD4D28246A57008DC615 /* ProfileCommentCell.swift in Sources */,
+				B8DBDD4D28246A57008DC615 /* ProfileCommentCollectionViewCell.swift in Sources */,
 				B87D72662826483100289283 /* BadgeCell.swift in Sources */,
 				B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */,
 				B8F8014B282CD92D00040AA3 /* TopHeaderView.swift in Sources */,
@@ -1147,6 +1162,7 @@
 				B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */,
 				B8BBBE80281D32C7001782F5 /* FollowViewController.swift in Sources */,
 				B8DBDD5028246D50008DC615 /* UICollectionView+.swift in Sources */,
+				B8F92C882830ED060002B252 /* ProfileCommentCell.swift in Sources */,
 				B8BD5FA22820819D00A1C138 /* CommentCell.swift in Sources */,
 				B83E9586280EACF7009DD17F /* StoreRequestProvider.swift in Sources */,
 				B83B193D2827E60A00686D16 /* StorePageViewController.swift in Sources */,

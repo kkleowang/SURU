@@ -58,6 +58,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="badgeCollectionView" destination="3CP-4T-Vdg" id="xi5-af-D3i"/>
+                <outlet property="bioLabel" destination="RKU-c2-MHO" id="xXt-kB-Bcf"/>
+            </connections>
             <point key="canvasLocation" x="171.01449275362319" y="144.64285714285714"/>
         </tableViewCell>
     </objects>
