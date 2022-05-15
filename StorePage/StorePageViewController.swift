@@ -229,10 +229,8 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreCommentCell.identifier, for: indexPath) as? StoreCommentCell else { return StoreCommentCell() }
             cell.delegate = self
-            if UserData.isEmpty {
-                return cell
-            }
-            let comment = commentData[indexPath.row]
+            let comment = commentData.sorted(by: {$0.createdTime > $1.createdTime})[indexPath.row]
+            
             guard let author = UserData.first(where: {$0.userID == comment.userID}) else { return cell }
             var isfollow = false
             var isLike = false
@@ -240,11 +238,8 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let user = currentUser else { return cell }
                 isLike =  comment.likedUserList.contains(user.userID)
                 isfollow = user.followedUser.contains(comment.userID)
-                cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
-            } else {
-                cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
             }
-            
+            cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
             return cell
         }
     }
