@@ -66,6 +66,7 @@ class MappingViewController: UIViewController {
         if UserRequestProvider.shared.currentUserID == nil {
             isLogin = false
         }
+        listenAccount()
         listenAllComment()
         self.listenLoginState()
         StoreRequestProvider.shared.listenStore {
@@ -84,6 +85,7 @@ class MappingViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        storeCardCollectionView.reloadData()
         reloadMapView()
     }
     
@@ -131,6 +133,19 @@ class MappingViewController: UIViewController {
             }
         }
     }
+    private func listenAccount() {
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        AccountRequestProvider.shared.listenAccount(currentUserID: userID) { result in
+            switch result {
+            case .success(let data) :
+                print("監聽登入使用者成功", data.userID)
+                self.currentUser = data
+            case .failure(let error) :
+                print("載入監聽評論失敗 地圖頁面失敗", error)
+                
+            }
+        }
+    }
     private func listenAllComment() {
         CommentRequestProvider.shared.listenAllComment { result in
             switch result {
@@ -150,12 +165,12 @@ class MappingViewController: UIViewController {
                 print("監聽使用者成功 地圖頁面", data?.userID)
                 self.isLogin = true
                 self.currentUser = data
-                self.storeCardCollectionView.reloadData()
+//                self.storeCardCollectionView.reloadData()
             case .failure(let error) :
                 print("載入使用者失敗", error)
                 self.isLogin = false
                 self.currentUser = nil
-                self.storeCardCollectionView.reloadData()
+//                self.storeCardCollectionView.reloadData()
                 LKProgressHUD.dismiss()
                 LKProgressHUD.showFailure(text: "載入使用者失敗")
             }
@@ -482,10 +497,11 @@ extension MappingViewController: UICollectionViewDelegate {
                     return false
                 }
             })
+//            storeCardCollectionView.isHidden = true
             controller.currentUser = currentUser
             controller.storeData = store
             controller.commentData = commentOfStore
-            self.addChild(controller)
+//            self.addChild(controller)
             navigationController?.pushViewController(controller, animated: true)
             
         } else {
@@ -498,11 +514,12 @@ extension MappingViewController: UICollectionViewDelegate {
                     return false
                 }
             })
+//            storeCardCollectionView.isHidden = retrue
             controller.currentUser = currentUser
             controller.storeData = store
             
             controller.commentData = commentOfStore
-            self.addChild(controller)
+//            self.addChild(controller)
             navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -611,6 +628,7 @@ extension MappingViewController {
     }
     private func pulishQueue(queue: Int) {
         if UserRequestProvider.shared.currentUser != nil {
+            if !isSearchResults {
             let storeID = storeData[selectedIndex].storeID
             guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
             var queue = QueueReport(queueCount: queue)
@@ -622,6 +640,20 @@ extension MappingViewController {
                     LKProgressHUD.showSuccess(text: "回報成功")
                 }
             }
+            } else {
+                let storeID = filteredStoreData[selectedIndex].storeID
+                guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
+                var queue = QueueReport(queueCount: queue)
+                QueueReportRequestProvider.shared.publishQueueReport(currentUserID: currentUserID, targetStoreID: storeID, report: &queue) { result in
+                    switch result {
+                    case .failure:
+                        LKProgressHUD.showFailure(text: "回報失敗")
+                    case .success:
+                        LKProgressHUD.showSuccess(text: "回報成功")
+                    }
+                }
+            }
+            
         }
     }
 }
@@ -629,7 +661,6 @@ extension MappingViewController: ReportViewDelegate {
     func didTapSendButton(_ view: ReportView, queue: Int) {
         if UserRequestProvider.shared.currentUser != nil {
             pulishQueue(queue: queue)
-            
             storeCardCollectionView.isHidden = false
             reportButton.isHidden = false
             view.removeFromSuperview()

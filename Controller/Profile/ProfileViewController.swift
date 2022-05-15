@@ -44,13 +44,16 @@ class ProfileViewController: UIViewController {
         }
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     func setupTableView() {
         tableView.lk_registerCellWithNib(identifier: ProfileBioCell.identifier, bundle: nil)
         tableView.lk_registerHeaderWithNib(identifier: ProfileHeaderCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: ProfileCommentCell.identifier, bundle: nil)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.reloadData()
+//        tableView.reloadData()
         //        tableView.sectionHeaderTopPadding = 0
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -70,71 +73,25 @@ class ProfileViewController: UIViewController {
         }
     }
 }
-//extension ProfileViewController: ProfileViewDelegate {
-//    func didTapBadge(_ view: ProfileView) {
-//        //        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
-//        //        guard let currentUserData = currentUserData else { return }
-//        //        controller.badgeRef = badgeRef
-//        //        controller.seletedBadgeName = currentUserData.badgeStatus
-//        //                navigationController?.pushViewController(controller, animated: true)
-//    }
-//
-//    func didTapEditProfilebutton(_ view: ProfileView) {
-//        showEditingPage()
-//    }
-//
-//    func didTapAccountButton(_ view: ProfileView) {
-//        showAlert()
-//    }
-//    func showEditingPage() {
-//        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
-//        guard let userData = currentUserData else { return }
-//        controller.userData = userData
-//        controller.badgeRef = badgeRef
-//        let nav = UINavigationController(rootViewController: controller)
-//        nav.modalPresentationStyle = .fullScreen
-//        present(nav, animated: true, completion: nil)
-//    }
-//
-//    func foriPad(alert: UIAlertController) {
-//        alert.popoverPresentationController?.sourceView = self.view
-//
-//        let xOrigin = self.view.bounds.width / 2
-//
-//        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-//
-//        alert.popoverPresentationController?.sourceRect = popoverRect
-//
-//        alert.popoverPresentationController?.permittedArrowDirections = .up
-//    }
-//    func deleteAccount(password: String) {
-//        guard let userID = UserRequestProvider.shared.currentUserID else {
-//            LKProgressHUD.showFailure(text: "刪除失敗 稍後再試")
-//            return
-//        }
-//        UserRequestProvider.shared.nativeDeleteAccount(password: password) { result in
-//            switch result {
-//            case .failure(let error):
-//                print("刪除失敗 稍後再試",error)
-//                LKProgressHUD.showFailure(text: error.localizedDescription)
-//            case .success(let message):
-//                self.deleteUserInfo(userID: userID)
-//                LKProgressHUD.showSuccess(text: message)
-//            }
-//        }
-//    }
-//    func deleteUserInfo(userID: String) {
-//        AccountRequestProvider.shared.deleteAccountInfo(userID: userID) { result in
-//            switch result {
-//            case .failure(let error):
-//                print("個人頁面刪除帳號資料庫失敗", error)
-//            case .success(let message):
-//                print("個人頁面刪除帳號資料庫成功", message)
-//            }
-//        }
-//    }
-//}
+
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 1 {
+            guard let comment = commentData, let pageAccountId = pageAccountId else { return 0 }
+            let data = comment.filter({
+                if $0.userID == pageAccountId {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            let lineNumber = ceil(Double(data.count) / 3.0)
+            let height = (UIScreen.width - 3*2) / 3 * lineNumber
+            return height
+        } else {
+            return UITableView.automaticDimension
+        }
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
@@ -148,13 +105,23 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileBioCell.identifier, for: indexPath) as? ProfileBioCell else { return ProfileBioCell() }
-            
+            guard let accountData = accountData?.first(where: {$0.userID == pageAccountId}) else { return  ProfileBioCell() }
+            let bio = accountData.bio ?? "哈囉我是LEO"
+//            let badge = badgeRef ?? []
+            cell.layoutCell(bio: bio)
             
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCommentCell.identifier, for: indexPath) as? ProfileCommentCell else { return ProfileCommentCell() }
-            
-            
+            guard let comment = commentData, let pageAccountId = pageAccountId else { return ProfileCommentCell() }
+            let data = comment.filter({
+                if $0.userID == pageAccountId {
+                    return true
+                } else {
+                    return false
+                }
+            }).sorted(by: {$0.createdTime > $1.createdTime})
+            cell.layoutCell(commentData: data)
             return cell
             
         default :
@@ -165,6 +132,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         if section == 0 {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderCell.identifier) as? ProfileHeaderCell else { return ProfileHeaderCell() }
             guard let userId = UserRequestProvider.shared.currentUserID, let pageAccountId = pageAccountId else { return ProfileHeaderCell() }
+            header.delegate = self
             var isCurrent = true
             if  userId != pageAccountId {
                 isCurrent = false
@@ -181,6 +149,38 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     
 }
+extension ProfileViewController: ProfileHeaderCellDelegate {
+    func didtapBackBtn(_ view: ProfileHeaderCell) {
+        
+    }
+    
+    func didtapBadgeBtn(_ view: ProfileHeaderCell) {
+        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
+                    guard let currentUserData = self.currentAccount else { return }
+                    controller.badgeRef = self.badgeRef
+                    controller.seletedBadgeName = currentUserData.badgeStatus
+                    self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func didtapSettingBtn(_ view: ProfileHeaderCell, targetUserID: String?) {
+        
+    }
+    
+    func didtapPost(_ view: ProfileHeaderCell) {
+        
+    }
+    
+    func didtapFans(_ view: ProfileHeaderCell) {
+        
+    }
+    
+    func didtapFollower(_ view: ProfileHeaderCell) {
+        
+    }
+    
+    
+}
+
 extension ProfileViewController {
     
     private func fetchData(competion: @escaping () -> Void) {
@@ -207,7 +207,7 @@ extension ProfileViewController {
         
         group.enter()
         concurrentQueue2.async(group: group) {
-            CommentRequestProvider.shared.listenAllComment { result in
+            CommentRequestProvider.shared.fetchComments { result in
                 switch result {
                 case .success(let data) :
                     self.commentData = data
@@ -392,3 +392,67 @@ extension ProfileViewController {
     //        present(alert, animated: true)
     //    }
 }
+//extension ProfileViewController: ProfileViewDelegate {
+//    func didTapBadge(_ view: ProfileView) {
+//        //        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
+//        //        guard let currentUserData = currentUserData else { return }
+//        //        controller.badgeRef = badgeRef
+//        //        controller.seletedBadgeName = currentUserData.badgeStatus
+//        //                navigationController?.pushViewController(controller, animated: true)
+//    }
+//
+//    func didTapEditProfilebutton(_ view: ProfileView) {
+//        showEditingPage()
+//    }
+//
+//    func didTapAccountButton(_ view: ProfileView) {
+//        showAlert()
+//    }
+//    func showEditingPage() {
+//        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
+//        guard let userData = currentUserData else { return }
+//        controller.userData = userData
+//        controller.badgeRef = badgeRef
+//        let nav = UINavigationController(rootViewController: controller)
+//        nav.modalPresentationStyle = .fullScreen
+//        present(nav, animated: true, completion: nil)
+//    }
+//
+//    func foriPad(alert: UIAlertController) {
+//        alert.popoverPresentationController?.sourceView = self.view
+//
+//        let xOrigin = self.view.bounds.width / 2
+//
+//        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+//
+//        alert.popoverPresentationController?.sourceRect = popoverRect
+//
+//        alert.popoverPresentationController?.permittedArrowDirections = .up
+//    }
+//    func deleteAccount(password: String) {
+//        guard let userID = UserRequestProvider.shared.currentUserID else {
+//            LKProgressHUD.showFailure(text: "刪除失敗 稍後再試")
+//            return
+//        }
+//        UserRequestProvider.shared.nativeDeleteAccount(password: password) { result in
+//            switch result {
+//            case .failure(let error):
+//                print("刪除失敗 稍後再試",error)
+//                LKProgressHUD.showFailure(text: error.localizedDescription)
+//            case .success(let message):
+//                self.deleteUserInfo(userID: userID)
+//                LKProgressHUD.showSuccess(text: message)
+//            }
+//        }
+//    }
+//    func deleteUserInfo(userID: String) {
+//        AccountRequestProvider.shared.deleteAccountInfo(userID: userID) { result in
+//            switch result {
+//            case .failure(let error):
+//                print("個人頁面刪除帳號資料庫失敗", error)
+//            case .success(let message):
+//                print("個人頁面刪除帳號資料庫成功", message)
+//            }
+//        }
+//    }
+//}

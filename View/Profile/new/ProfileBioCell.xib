@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,46 +19,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKU-c2-MHO">
-                        <rect key="frame" x="8" y="8" width="360" height="18"/>
+                        <rect key="frame" x="8" y="8" width="360" height="180"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" name="B3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SURU成就" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3h-Ze-def">
-                        <rect key="frame" x="148" y="34" width="80" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" name="C3"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3CP-4T-Vdg">
-                        <rect key="frame" x="8" y="62.5" width="360" height="80"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="80" id="hhq-nS-hFv"/>
-                        </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oYa-VY-T22">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                    </collectionView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="RKU-c2-MHO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="6Ia-7D-UVO"/>
-                    <constraint firstItem="3CP-4T-Vdg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ClG-l0-BNo"/>
-                    <constraint firstItem="3CP-4T-Vdg" firstAttribute="top" secondItem="i3h-Ze-def" secondAttribute="bottom" constant="8" id="Ice-oS-OVz"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3CP-4T-Vdg" secondAttribute="bottom" constant="8" id="Mg7-tj-MF3"/>
-                    <constraint firstItem="i3h-Ze-def" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="N1h-iR-QtR"/>
+                    <constraint firstAttribute="bottom" secondItem="RKU-c2-MHO" secondAttribute="bottom" constant="8" id="NXA-dE-4YS"/>
                     <constraint firstAttribute="trailing" secondItem="RKU-c2-MHO" secondAttribute="trailing" constant="8" id="Tzh-fP-10i"/>
-                    <constraint firstAttribute="trailing" secondItem="3CP-4T-Vdg" secondAttribute="trailing" constant="8" id="dIa-MI-p36"/>
                     <constraint firstItem="RKU-c2-MHO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="h6Z-N5-oAM"/>
-                    <constraint firstItem="i3h-Ze-def" firstAttribute="top" secondItem="RKU-c2-MHO" secondAttribute="bottom" constant="8" id="ogS-bp-ep4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="badgeCollectionView" destination="3CP-4T-Vdg" id="xi5-af-D3i"/>
                 <outlet property="bioLabel" destination="RKU-c2-MHO" id="xXt-kB-Bcf"/>
             </connections>
             <point key="canvasLocation" x="171.01449275362319" y="144.64285714285714"/>
@@ -69,11 +43,5 @@
         <namedColor name="B3">
             <color red="0.53299999237060547" green="0.53299999237060547" blue="0.53299999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="C3">
-            <color red="0.77300000190734863" green="0.63499999046325684" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

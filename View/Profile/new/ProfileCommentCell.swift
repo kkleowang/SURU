@@ -16,6 +16,7 @@ class ProfileCommentCell: UITableViewCell {
     func layoutCell(commentData: [Comment]) {
         collectionView.dataSource = self
         collectionView.delegate = self
+        dataSource = commentData
         let layout = CHTCollectionViewWaterfallLayout()
         layout.columnCount = 3
         layout.minimumColumnSpacing = 3
@@ -47,7 +48,7 @@ extension ProfileCommentCell: UICollectionViewDataSource, UICollectionViewDelega
     
     
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let width = UIScreen.width - 3 * 2
+            let width = (UIScreen.width - 3 * 2) / 3
     
             return CGSize(width: width, height: width)
         }
