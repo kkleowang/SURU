@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Lottie
 
 protocol StoreCommentCellDelegate: AnyObject {
     func didtapLike(_ view: StoreCommentCell, targetComment: Comment?, isLogin: Bool, isLike: Bool)
@@ -58,11 +59,26 @@ class StoreCommentCell: UITableViewCell {
         self.delegate?.didtapMore(self, targetUserID: targetUserID, isLogin: isloginStatus)
     }
     @objc private func doubleTap() {
+        
         self.delegate?.didtapLike(self, targetComment: commentData, isLogin: isloginStatus, isLike: islikeStatus)
         if isloginStatus {
             if islikeStatus {
+                let animationView = AnimationView(name: "like")
+                animationView.frame = commentImageView.frame
+                animationView.contentMode = .scaleAspectFit
+                
+                animationView.loopMode = .playOnce
+                animationView.animationSpeed = 1
+                animationView.play()
                 likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             } else {
+                let animationView = AnimationView(name: "unlike")
+                animationView.frame = commentImageView.frame
+                animationView.contentMode = .scaleAspectFit
+                
+                animationView.loopMode = .playOnce
+                animationView.animationSpeed = 1
+                animationView.play()
                 likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             }
         }
@@ -88,7 +104,7 @@ class StoreCommentCell: UITableViewCell {
     
  
     func layoutView(author: Account, comment: Comment, isLogin: Bool, isFollow: Bool, isLike: Bool) {
-        followButton.layer.cornerRadius = 10
+        followButton.layer.cornerRadius = 5
         followButton.clipsToBounds = true
         followButton.layer.borderWidth = 1
         followButton.layer.borderColor = UIColor.B1?.cgColor
@@ -110,7 +126,7 @@ class StoreCommentCell: UITableViewCell {
         
         authorNameLabel.text = author.name
         authorFollowerLabel.text = "\(author.follower.count) 人追蹤中"
-        
+        commentImageView.cornerForAll(radii: 10)
         commentImageView.kf.setImage(with: URL(string: comment.mainImage), placeholder: UIImage(named: "mainImage"))
         let tapAuthor = UITapGestureRecognizer(target: self, action: #selector(tapAuthorView))
         let doubleTapImage = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
@@ -124,7 +140,7 @@ class StoreCommentCell: UITableViewCell {
         if likeCount == 0 {
             likeLabel.text = "還沒有人點讚"
         } else {
-        likeLabel.text = "\(likeCount) 個讚"
+        likeLabel.text = "\(likeCount) 個喜歡"
         }
         
         if message.isEmpty {

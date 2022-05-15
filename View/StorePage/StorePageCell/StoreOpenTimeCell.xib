@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -36,18 +35,6 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NW7-Bn-JLl">
-                        <rect key="frame" x="20" y="12" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="TAd-BY-nuR"/>
-                            <constraint firstAttribute="height" constant="20" id="r0d-aw-zwn"/>
-                        </constraints>
-                        <color key="tintColor" name="B1"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal">
-                            <imageReference key="image" image="googleClock" symbolScale="large"/>
-                        </state>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSZ-Il-tMp">
                         <rect key="frame" x="56" y="12.5" width="39.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -64,28 +51,35 @@
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="chevron.down.circle" catalog="system"/>
                     </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googleClock" translatesAutoresizingMaskIntoConstraints="NO" id="Ebc-Se-DdY">
+                        <rect key="frame" x="20" y="12" width="20" height="20"/>
+                        <color key="tintColor" name="B1"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="FD5-RY-cF0"/>
+                            <constraint firstAttribute="height" constant="20" id="e25-jj-mfc"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="MSZ-Il-tMp" firstAttribute="leading" secondItem="NW7-Bn-JLl" secondAttribute="trailing" constant="16" id="6EQ-Vt-ona"/>
-                    <constraint firstItem="NW7-Bn-JLl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ICK-ci-ube"/>
+                    <constraint firstItem="Ebc-Se-DdY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="1Ai-yO-cFo"/>
+                    <constraint firstItem="lOo-8a-Upi" firstAttribute="centerY" secondItem="Ebc-Se-DdY" secondAttribute="centerY" id="4qs-4O-4IA"/>
                     <constraint firstAttribute="trailing" secondItem="oCC-fJ-Inc" secondAttribute="trailing" constant="16" id="JJv-7Q-BWU"/>
-                    <constraint firstItem="lOo-8a-Upi" firstAttribute="centerY" secondItem="NW7-Bn-JLl" secondAttribute="centerY" id="Jzc-2p-ut7"/>
                     <constraint firstItem="lOo-8a-Upi" firstAttribute="leading" secondItem="MSZ-Il-tMp" secondAttribute="trailing" constant="8" id="Mgz-En-DOY"/>
+                    <constraint firstItem="MSZ-Il-tMp" firstAttribute="leading" secondItem="Ebc-Se-DdY" secondAttribute="trailing" constant="16" id="UnV-On-VPN"/>
                     <constraint firstItem="oCC-fJ-Inc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cKL-JI-NRq"/>
-                    <constraint firstItem="NW7-Bn-JLl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tqS-Ns-LpN"/>
                     <constraint firstItem="MSZ-Il-tMp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vRu-TG-ydc"/>
+                    <constraint firstItem="Ebc-Se-DdY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ypc-3y-EBS"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dinnerTimeLabel" destination="Ezw-pI-8Og" id="tB3-m0-LmC"/>
                 <outlet property="lunchTimeLabel" destination="hbh-cb-bXp" id="B0W-Xn-C09"/>
-                <outlet property="menuButton" destination="NW7-Bn-JLl" id="v4k-IA-noR"/>
                 <outlet property="openInfoLabel" destination="MSZ-Il-tMp" id="xcH-oM-cPw"/>
                 <outlet property="openTimeStackView" destination="lOo-8a-Upi" id="i79-sg-RR1"/>
                 <outlet property="uiMenuBtn" destination="oCC-fJ-Inc" id="K8c-G3-SgH"/>
             </connections>
-            <point key="canvasLocation" x="132" y="71"/>
+            <point key="canvasLocation" x="131.8840579710145" y="70.982142857142847"/>
         </tableViewCell>
     </objects>
     <resources>

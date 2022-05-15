@@ -21,8 +21,8 @@ class StoreOpenTimeCell: UITableViewCell {
         guard let openTime = openTime else {
             return
         }
-        menuButton.imageView?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 22).isActive = true
-        menuButton.setTitle("", for: .normal)
+//        menuButton.imageView?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 22).isActive = true
+//        menuButton.setTitle("", for: .normal)
         if openTime.byPropertyName(weekDay: weekday).dinner == "close" && openTime.byPropertyName(weekDay: weekday).lunch == "close" {
             openInfoLabel.text = "本日公休"
             openInfoLabel.textColor = .red

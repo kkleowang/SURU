@@ -240,6 +240,11 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 isfollow = user.followedUser.contains(comment.userID)
             }
             cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
+            if indexPath.row % 2 == 0 {
+                cell.backgroundColor = UIColor.hexStringToUIColor(hex: "#fafafa")
+            } else {
+                cell.backgroundColor = UIColor.white
+            }
             return cell
         }
     }
@@ -397,7 +402,9 @@ extension StorePageViewController: StoreImageCellDelegate {
     }
     
     func didTapmoreImage(_ view: StoreImageCell, image: UIImage) {
-        print("didTapmoreImage")
+        if !commentData.isEmpty {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
+        }
     }
     @objc func dissmiss(sender: UITapGestureRecognizer) {
         sender.view?.removeFromSuperview()
