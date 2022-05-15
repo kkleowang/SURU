@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CHTCollectionViewWaterfallLayout
 
 class ProfileViewController: UIViewController {
     
@@ -14,7 +13,7 @@ class ProfileViewController: UIViewController {
     
     var pageAccountId: String?
     
-//    var account: Account?
+    //    var account: Account?
     
     var commentData: [Comment]?
     var storeData: [Store]?
@@ -31,12 +30,14 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         if pageAccountId == nil {
             isOnPush = false
             pageAccountId = UserRequestProvider.shared.currentUserID
             addlistener()
+        } else {
+            isOnPush = true
         }
-        
         fetchData {
             self.checkUserBadgeStatus()
             self.setupTableView()
@@ -49,6 +50,11 @@ class ProfileViewController: UIViewController {
         tableView.lk_registerCellWithNib(identifier: ProfileCommentCell.identifier, bundle: nil)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.reloadData()
+        //        tableView.sectionHeaderTopPadding = 0
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
     func addlistener() {
         guard let userID = UserRequestProvider.shared.currentUserID else { return }
@@ -63,45 +69,7 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-//    func setupCollectionView() {
-//        profileView.collectionView.dataSource = self
-//        profileView.collectionView.delegate = self
-//        let layout = CHTCollectionViewWaterfallLayout()
-//        layout.columnCount = 3
-//        layout.minimumColumnSpacing = 3
-//        layout.minimumInteritemSpacing = 3
-//        let inset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        layout.sectionInset = inset
-//        profileView.collectionView.collectionViewLayout = layout
-//        profileView.collectionView.register(UINib(nibName: String(describing: ProfileCommentCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProfileCommentCell.self))
-//    }
 }
-
-//extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        guard let comment = currentUserComment else { return 0 }
-//        if comment.isEmpty {
-//            collectionView.setEmptyMessage("你還沒有發表過評論喔！")
-//        } else {
-//            collectionView.restore()
-//        }
-//        return comment.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell else { return ProfileCommentCell() }
-//        guard let comment = currentUserComment else { return cell }
-//        cell.layoutCell(comment: comment[indexPath.item])
-//        return cell
-//    }
-//
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = UIScreen.width - 3 * 2
-//
-//        return CGSize(width: width, height: width)
-//    }
-//}
 //extension ProfileViewController: ProfileViewDelegate {
 //    func didTapBadge(_ view: ProfileView) {
 //        //        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
@@ -173,7 +141,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         2
     }
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UIScreen.width / 375 * 230
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
@@ -186,7 +156,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             
             
             return cell
-        
+            
         default :
             return UITableViewCell()
         }
@@ -194,7 +164,14 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderCell.identifier) as? ProfileHeaderCell else { return ProfileHeaderCell() }
-            
+            guard let userId = UserRequestProvider.shared.currentUserID, let pageAccountId = pageAccountId else { return ProfileHeaderCell() }
+            var isCurrent = true
+            if  userId != pageAccountId {
+                isCurrent = false
+            }
+            let data = accountData ?? []
+            let accountData = data.first(where: {$0.userID == pageAccountId}) ?? Account(userID: "", provider: "")
+            header.layoutHeaderCell(isOnPush: isOnPush, isCurrenAccount: isCurrent, account: accountData)
             return header
         } else {
             return nil
@@ -205,6 +182,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 extension ProfileViewController {
+    
     private func fetchData(competion: @escaping () -> Void) {
         let group: DispatchGroup = DispatchGroup()
         let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
@@ -236,6 +214,7 @@ extension ProfileViewController {
                 case .failure(let error) :
                     print("下載評論失敗", error)
                     LKProgressHUD.dismiss()
+                    //EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0)
                     LKProgressHUD.showFailure(text: "下載評論失敗")
                 }
                 group.leave()
@@ -343,73 +322,73 @@ extension ProfileViewController {
         }
         badgeRef = ref
     }
-//    func showAlert() {
-//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//        alert.popoverPresentationController?.sourceView = self.view
-//
-//        let xOrigin = self.view.bounds.width / 2
-//
-//        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-//
-//        alert.popoverPresentationController?.sourceRect = popoverRect
-//
-//        alert.popoverPresentationController?.permittedArrowDirections = .up
-//        alert.addAction(UIAlertAction(title: "編輯勳章", style: .default , handler:{ (UIAlertAction) in
-//            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
-//            guard let currentUserData = self.currentUserData else { return }
-//            controller.badgeRef = self.badgeRef
-//            controller.seletedBadgeName = currentUserData.badgeStatus
-//            self.navigationController?.pushViewController(controller, animated: true)
-//        }))
-//        alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction) in
-//            UserRequestProvider.shared.logOut()
-//            self.tabBarController?.selectedIndex = 0
-//            LKProgressHUD.showSuccess(text: "登出成功")
-//        }))
-//
-//        alert.addAction(UIAlertAction(title: "刪除帳號", style: .destructive , handler:{ (UIAlertAction) in
-//
-//            self.showDestructiveAlert()
-//        }))
-//
-//        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
-//            print("User click Dismiss button")
-//        }))
-//
-//        self.present(alert, animated: true, completion: {
-//            print("completion block")
-//        })
-//    }
-//    func showDestructiveAlert() {
-//        let alert = UIAlertController(title: "提示", message: "刪除帳號後資料永久不可復原，你確定要刪除帳號嗎？", preferredStyle: .alert)
-//
-//        let okAction = UIAlertAction(title: "再想想", style: .default) { _ in
-//
-//        }
-//        let cancelAction = UIAlertAction(title: "刪除帳號", style: .destructive) { _ in
-//            self.showAuthAlert()
-//        }
-//
-//        alert.addAction(cancelAction)
-//        alert.addAction(okAction)
-//        present(alert, animated: true, completion: nil)
-//    }
-//    func showAuthAlert() {
-//        let alert = UIAlertController(title: "輸入密碼", message: nil, preferredStyle: .alert)
-//        foriPad(alert: alert)
-//        alert.addTextField()
-//        alert.textFields![0].isSecureTextEntry = true
-//        let submitAction = UIAlertAction(title: "刪除帳號", style: .destructive) { [unowned alert] _ in
-//            guard let password = alert.textFields![0].text else { return }
-//            self.deleteAccount(password: password)
-//            self.tabBarController?.selectedIndex = 0
-//        }
-//        let okAction = UIAlertAction(title: "再想想", style: .cancel) { _ in
-//        }
-//
-//        alert.addAction(submitAction)
-//        alert.addAction(okAction)
-//
-//        present(alert, animated: true)
-//    }
+    //    func showAlert() {
+    //        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    //        alert.popoverPresentationController?.sourceView = self.view
+    //
+    //        let xOrigin = self.view.bounds.width / 2
+    //
+    //        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+    //
+    //        alert.popoverPresentationController?.sourceRect = popoverRect
+    //
+    //        alert.popoverPresentationController?.permittedArrowDirections = .up
+    //        alert.addAction(UIAlertAction(title: "編輯勳章", style: .default , handler:{ (UIAlertAction) in
+    //            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
+    //            guard let currentUserData = self.currentUserData else { return }
+    //            controller.badgeRef = self.badgeRef
+    //            controller.seletedBadgeName = currentUserData.badgeStatus
+    //            self.navigationController?.pushViewController(controller, animated: true)
+    //        }))
+    //        alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction) in
+    //            UserRequestProvider.shared.logOut()
+    //            self.tabBarController?.selectedIndex = 0
+    //            LKProgressHUD.showSuccess(text: "登出成功")
+    //        }))
+    //
+    //        alert.addAction(UIAlertAction(title: "刪除帳號", style: .destructive , handler:{ (UIAlertAction) in
+    //
+    //            self.showDestructiveAlert()
+    //        }))
+    //
+    //        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
+    //            print("User click Dismiss button")
+    //        }))
+    //
+    //        self.present(alert, animated: true, completion: {
+    //            print("completion block")
+    //        })
+    //    }
+    //    func showDestructiveAlert() {
+    //        let alert = UIAlertController(title: "提示", message: "刪除帳號後資料永久不可復原，你確定要刪除帳號嗎？", preferredStyle: .alert)
+    //
+    //        let okAction = UIAlertAction(title: "再想想", style: .default) { _ in
+    //
+    //        }
+    //        let cancelAction = UIAlertAction(title: "刪除帳號", style: .destructive) { _ in
+    //            self.showAuthAlert()
+    //        }
+    //
+    //        alert.addAction(cancelAction)
+    //        alert.addAction(okAction)
+    //        present(alert, animated: true, completion: nil)
+    //    }
+    //    func showAuthAlert() {
+    //        let alert = UIAlertController(title: "輸入密碼", message: nil, preferredStyle: .alert)
+    //        foriPad(alert: alert)
+    //        alert.addTextField()
+    //        alert.textFields![0].isSecureTextEntry = true
+    //        let submitAction = UIAlertAction(title: "刪除帳號", style: .destructive) { [unowned alert] _ in
+    //            guard let password = alert.textFields![0].text else { return }
+    //            self.deleteAccount(password: password)
+    //            self.tabBarController?.selectedIndex = 0
+    //        }
+    //        let okAction = UIAlertAction(title: "再想想", style: .cancel) { _ in
+    //        }
+    //
+    //        alert.addAction(submitAction)
+    //        alert.addAction(okAction)
+    //
+    //        present(alert, animated: true)
+    //    }
 }

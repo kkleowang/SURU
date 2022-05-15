@@ -84,7 +84,8 @@ class ProfileHeaderCell: UITableViewHeaderFooterView {
         accountImageView.contentMode = .scaleAspectFill
         accountImageView.clipsToBounds = true
         
-        nameLabel.text = account.userID
+        nameLabel.text = account.name
+        
         
         postLabel.text = "\(account.commentCount)"
         followerLabel.text = "\(account.follower.count)"
