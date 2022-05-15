@@ -375,6 +375,7 @@ extension MappingViewController: MKMapViewDelegate {
         return annotationView
     }
     @objc func didTapAnnotationView(sender: UITapGestureRecognizer) {
+        searchBar.endEditing(true)
         guard let name = sender.name else { return }
         if isSearchResults {
             for (index, store) in filteredStoreData.enumerated() where store.storeID == name {
@@ -436,9 +437,11 @@ extension MappingViewController: UICollectionViewDataSource {
 //                guard let currentUser = currentUser else { return cell }
                 let currentUser = currentUser!
                 isLogin = true
-                let data = filteredStoreData[indexPath.row].collectedUser ?? []
+                let storeRef = storeData.first(where: {$0.storeID == filteredStoreData[indexPath.row].storeID})
                 
-                isCollect = data.contains(currentUser.userID)
+//                let data = storeRef.collectedUser ?? []
+                
+                isCollect = storeRef?.collectedUser?.contains(currentUser.userID) ?? false
             } else {
                 isLogin = false
             }

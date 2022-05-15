@@ -69,8 +69,10 @@ class StoreTitleCell: UITableViewCell {
         collectButton.clipsToBounds = true
         collectButton.layer.borderWidth = 1
         collectButton.layer.borderColor = UIColor.B1?.cgColor
+        mainImageView.addCircle(color: UIColor.white.cgColor)
         mainImageView.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "mainImage"))
         nameLabel.text = store.name
+        nameLabel.adjustsFontSizeToFitWidth = true
         collectLabel.text = "\(store.collectedUser?.count ?? 0) 人收藏"
     }
 
