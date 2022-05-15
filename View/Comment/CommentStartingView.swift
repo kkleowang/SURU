@@ -43,8 +43,6 @@ class CommentStartingView: UIView {
     }
     
     func layoutStartingView() {
-        
-        
         self.addSubview(commentTableView)
         commentTableView.register(UINib(nibName: String(describing: CommentTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: CommentTableViewCell.self))
         commentTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +53,8 @@ class CommentStartingView: UIView {
         startCommentButton?.isHidden = false
     }
     
-    @objc func startComment() {
+    @objc func startComment(_ sender: UIButton) {
+        sender.isHidden = true
         self.delegate?.didTapImageView(self, imagePicker: imagePicker)
     }
 }

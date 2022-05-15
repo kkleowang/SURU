@@ -53,7 +53,7 @@ class CommentSelectionView: UIView {
     
     func layoutSelectView(dataSource: [Store]) {
         stores = dataSource
-        self.layer.cornerRadius = 40
+        self.layer.cornerRadius = 10
         self.clipsToBounds = true
         initPickerView()
         initTextField()

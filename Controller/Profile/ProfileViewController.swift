@@ -17,7 +17,11 @@ class ProfileViewController: UIViewController {
     
     var commentData: [Comment]?
     var storeData: [Store]?
-    var accountData: [Account]?
+    var accountData: [Account]? {
+        didSet {
+            checkUserBadgeStatus()
+        }
+    }
     
     
     var isOnPush = false
@@ -65,6 +69,10 @@ class ProfileViewController: UIViewController {
             switch result {
             case .success(let data):
                 print("更新用戶成功")
+                if let index = self.accountData?.firstIndex(where: {$0.userID == data.userID}) {
+                    self.accountData?[index] = data
+                }
+                
                 self.currentAccount = data
                 self.tableView.reloadData()
             case .failure(let error):

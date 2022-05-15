@@ -53,6 +53,7 @@ class CommentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        settingKVO()
+        self.navigationItem.title = "新增評論"
         fetchStoreData()
         fetchCoreData {
         }
@@ -130,11 +131,13 @@ class CommentViewController: UIViewController {
         imageCardView = CommentImageCardView()
         self.view.addSubview(imageCardView)
         imageCardView.translatesAutoresizingMaskIntoConstraints = false
-        imageCardView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
+        imageCardView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
         imageCardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
         imageCardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
-        imageCardView.heightAnchor.constraint(equalTo: imageCardView.widthAnchor, multiplier: 5 / 4).isActive = true
+        imageCardView.heightAnchor.constraint(equalTo: imageCardView.widthAnchor, multiplier: 1).isActive = true
         imageCardView.delegate = self
+//        imageCardView.clipsToBounds = true
+//        imageCardView.makeShadow()
         imageCardView.layoutCommendCardView(image: image) { [weak self] in
             
             self?.setupCommentSelectionView()
@@ -147,7 +150,7 @@ class CommentViewController: UIViewController {
         selectionView.translatesAutoresizingMaskIntoConstraints = false
         selectionView.delegate = self
         selectionView.backgroundColor = .B6
-        selectionView.topAnchor.constraint(equalTo: self.imageCardView.bottomAnchor, constant: 10).isActive = true
+        selectionView.topAnchor.constraint(equalTo: self.imageCardView.bottomAnchor, constant: 8).isActive = true
         selectionView.leadingAnchor.constraint(equalTo: self.imageCardView.leadingAnchor).isActive = true
         selectionView.trailingAnchor.constraint(equalTo: self.imageCardView.trailingAnchor).isActive = true
         selectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
@@ -192,7 +195,7 @@ class CommentViewController: UIViewController {
 // StartingView Delegate
 extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        1
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
