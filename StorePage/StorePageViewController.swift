@@ -111,6 +111,7 @@ class StorePageViewController: UIViewController {
         tableView.lk_registerCellWithNib(identifier: StoreCommentCell.identifier, bundle: nil)
         tableView.lk_registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
         
+        
     }
     func fetchUserData() {
         AccountRequestProvider.shared.fetchAccounts { result in
@@ -125,7 +126,21 @@ class StorePageViewController: UIViewController {
     
 }
 extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            guard let userID = UserRequestProvider.shared.currentUserID else { return }
+            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+            let comment = commentData.sorted(by: {$0.createdTime > $1.createdTime})[indexPath.row]
+            controller.modalPresentationStyle = .fullScreen
+            
+            controller.comment = comment
+            controller.accountData = UserData
+            controller.store = storeData
+            controller.currentUser = currentUser
+            controller.author = UserData.first(where: {$0.userID == comment.userID})
+            present(controller, animated: true, completion: nil)
+        }
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -146,7 +161,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTitleCell.identifier, for: indexPath) as? StoreTitleCell else { return StoreTitleCell() }
                 cell.delegate = self
                 cell.layoutCell(store: storeData, isCollect: isCollected, isLogin: isLogin)
-                
+                cell.selectionStyle = .none
                 return cell
             case 1:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreImageCell.identifier, for: indexPath) as? StoreImageCell else { return StoreImageCell() }
@@ -160,7 +175,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 cell.layoutCell(popular: imageArray[0], menu: imageArray[1], more: imageArray[2])
-                
+                cell.selectionStyle = .none
                 cell.delegate = self
                 
                 return cell
@@ -172,7 +187,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.collectionView.showsHorizontalScrollIndicator = false
                 cell.collectionView.showsVerticalScrollIndicator = false
                 cell.collectionView.tag = 80
-                
+                cell.selectionStyle = .none
                 let layout = UICollectionViewFlowLayout()
                 layout.scrollDirection = .horizontal
                 layout.estimatedItemSize = CGSize(width: 60, height: 40)
@@ -192,22 +207,22 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 layout.estimatedItemSize = CGSize(width: 50, height: 40)
                 cell.collectionView.collectionViewLayout = layout
                 cell.layoutForMealCell()
-                
+                cell.selectionStyle = .none
                 return cell
             case 4:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
                 cell.layoutCell(localtion: storeData.address)
-                
+                cell.selectionStyle = .none
                 return cell
             case 5:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreOpenTimeCell.identifier, for: indexPath) as? StoreOpenTimeCell else { return StoreOpenTimeCell() }
                 cell.layoutCell(openTime: storeData.opentime)
-                
+                cell.selectionStyle = .none
                 return cell
             case 6:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
                 cell.layoutCell(seat: storeData.seat)
-                
+                cell.selectionStyle = .none
                 return cell
             case 7:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreRatingCell.identifier, for: indexPath) as? StoreRatingCell else { return StoreRatingCell() }
@@ -222,6 +237,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 let count = Double(commentData.count)
                 let data = [noodle/count, soup/count, happy/count]
                 cell.layoutCell(data: data)
+                cell.selectionStyle = .none
                 return cell
             default:
                 return UITableViewCell()
@@ -230,7 +246,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreCommentCell.identifier, for: indexPath) as? StoreCommentCell else { return StoreCommentCell() }
             cell.delegate = self
             let comment = commentData.sorted(by: {$0.createdTime > $1.createdTime})[indexPath.row]
-            
+            cell.selectionStyle = .none
             guard let author = UserData.first(where: {$0.userID == comment.userID}) else { return cell }
             var isfollow = false
             var isLike = false
@@ -279,6 +295,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return UITableView.automaticDimension
         }
+        
     }
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        if section == 0 {

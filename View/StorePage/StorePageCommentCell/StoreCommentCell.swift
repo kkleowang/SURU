@@ -63,22 +63,22 @@ class StoreCommentCell: UITableViewCell {
         self.delegate?.didtapLike(self, targetComment: commentData, isLogin: isloginStatus, isLike: islikeStatus)
         if isloginStatus {
             if islikeStatus {
-                let animationView = AnimationView(name: "like")
-                animationView.frame = commentImageView.frame
-                animationView.contentMode = .scaleAspectFit
-                
-                animationView.loopMode = .playOnce
-                animationView.animationSpeed = 1
-                animationView.play()
+//                let animationView = AnimationView(name: "like")
+//                animationView.frame = commentImageView.frame
+//                animationView.contentMode = .scaleAspectFit
+//
+//                animationView.loopMode = .playOnce
+//                animationView.animationSpeed = 1
+//                animationView.play()
                 likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             } else {
-                let animationView = AnimationView(name: "unlike")
-                animationView.frame = commentImageView.frame
-                animationView.contentMode = .scaleAspectFit
-                
-                animationView.loopMode = .playOnce
-                animationView.animationSpeed = 1
-                animationView.play()
+//                let animationView = AnimationView(name: "unlike")
+//                animationView.frame = commentImageView.frame
+//                animationView.contentMode = .scaleAspectFit
+//                
+//                animationView.loopMode = .playOnce
+//                animationView.animationSpeed = 1
+//                animationView.play()
                 likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             }
         }
