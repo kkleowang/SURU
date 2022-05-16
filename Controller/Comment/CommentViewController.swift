@@ -21,7 +21,7 @@ class CommentViewController: UIViewController {
     var stores: [Store] = []
     var comments: [Comment] = []
     var commentDrafts: [CommentDraft] = []
-    let userID = UserRequestProvider.shared.currentUserID
+    
     var commentData: Comment = Comment(
         userID: "",
         storeID: "",
@@ -45,9 +45,7 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "新增評論"
-        if userID != nil {
-            commentData.userID = userID!
-        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
