@@ -42,6 +42,11 @@ class DiscoveryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchCommentData {
+            self.configData {
+            self.collectionView.reloadData()
+            }
+        }
         
     }
     private func configData(completion: @escaping () -> Void) {
@@ -109,6 +114,8 @@ extension DiscoveryViewController: UICollectionViewDataSource, UICollectionViewD
         if !filteredCommentData.isEmpty {
             let comment = filteredCommentData[indexPath.row]
             let store = storeData.first(where: {$0.storeID == comment.storeID}) ?? storeData[0]
+//            let id = comment.userID
+            
             guard let account = accountData.first(where: {$0.userID == comment.userID}) else {
                 print(comment.userID)
                 print("崩潰拉")

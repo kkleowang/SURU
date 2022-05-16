@@ -42,13 +42,14 @@ class ProfileViewController: UIViewController {
         } else {
             isOnPush = true
         }
+        
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         fetchData {
             self.checkUserBadgeStatus()
             self.setupTableView()
         }
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     func setupTableView() {

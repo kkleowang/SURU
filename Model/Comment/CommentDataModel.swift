@@ -8,7 +8,7 @@
 import Foundation
 
 struct Comment: Codable {
-    var commentID: String = ""
+    var commentID: String = "k0JhtWKQdNT7berVKWyGnYfTBKM2"
     var userID: String
     var storeID: String
     var meal: String
