@@ -36,7 +36,8 @@ class StoreCardsCell: UICollectionViewCell {
     @IBOutlet weak private var reportPeopleLabel: UILabel!
     @IBOutlet weak var dotView: UIView!
 
-
+    @IBOutlet weak var reportWaitLabel: UILabel!
+    
     @IBOutlet weak private var collectButton: UIButton!
     @IBAction func tapCollectButton(_ sender: UIButton) {
         guard let userIsLogin = userIsLogin else { return }
@@ -46,6 +47,7 @@ class StoreCardsCell: UICollectionViewCell {
         guard let image = sender.image(for: .normal) else { return }
         guard let storeData = storeData else { return }
         guard let commentsData = commentsData else { return }
+            
         if image == UIImage(named: "collect.fill") {
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
             followerLabel.text = "\(storeData.collectedUser?.count ?? 1 - 1) 人收藏, 共\(commentsData.count) 則食記"
@@ -94,11 +96,13 @@ class StoreCardsCell: UICollectionViewCell {
         storeImageView.layer.borderColor = UIColor.B6?.cgColor
         followerLabel.text = "\(dataSource.collectedUser?.count ?? 0) 人收藏, 共\(commentData.count) 則食記"
         collectButton.setTitle("", for: .normal)
+        
         if isCollect {
             collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
         } else {
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
         }
+        
         let weekday = Date().weekDay()
         if dataSource.opentime.byPropertyName(weekDay: weekday).dinner == "close" && dataSource.opentime.byPropertyName(weekDay: weekday).lunch == "close" {
             dotView.backgroundColor = .red
@@ -160,6 +164,8 @@ class StoreCardsCell: UICollectionViewCell {
         reportLabel.font = .medium(size: 18)
         reportLabel.adjustsFontSizeToFitWidth = true
         reportPeopleLabel.isHidden = false
+        reportWaitLabel.isHidden = false
+        
         reportLabel.isHidden = false
         nonReportLabel.isHidden = true
         switch cogfigReport(store: dataSource) {
@@ -173,9 +179,11 @@ class StoreCardsCell: UICollectionViewCell {
             reportLabel.text = "20+"
 
         default :
-            reportLabel.isHidden = true
+            
             nonReportLabel.isHidden = false
+            reportLabel.isHidden = true
             reportPeopleLabel.isHidden = true
+            reportWaitLabel.isHidden = true
         }
 
     }

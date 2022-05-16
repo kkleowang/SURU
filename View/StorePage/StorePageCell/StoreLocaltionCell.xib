@@ -19,40 +19,60 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fTk-JO-21Q">
-                        <rect key="frame" x="20" y="10.5" width="24" height="23"/>
+                        <rect key="frame" x="20" y="12.5" width="20" height="19"/>
                         <color key="tintColor" name="B1"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="fTk-JO-21Q" secondAttribute="height" multiplier="1:1" id="2JK-kD-Gp4"/>
+                            <constraint firstAttribute="width" constant="20" id="hj0-yr-5km"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9H-Gj-cha">
-                        <rect key="frame" x="54" y="1.5" width="248" height="41"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="50" y="4" width="223.5" height="36"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nx5-q0-MvQ">
+                        <rect key="frame" x="279" y="9.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="2Qe-tW-dCN"/>
+                            <constraint firstAttribute="width" constant="25" id="UZu-I5-pRx"/>
+                        </constraints>
+                        <color key="tintColor" name="C4"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="map" catalog="system"/>
+                        <connections>
+                            <action selector="tapMap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GTJ-4p-LCL"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="A9H-Gj-cha" secondAttribute="trailing" constant="10" id="KTA-Pg-0oD"/>
-                    <constraint firstAttribute="bottom" secondItem="fTk-JO-21Q" secondAttribute="bottom" constant="10" id="L52-vP-bgU"/>
+                    <constraint firstItem="nx5-q0-MvQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A9H-Gj-cha" secondAttribute="trailing" constant="4" id="9tj-Ta-bIY"/>
+                    <constraint firstItem="fTk-JO-21Q" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="M5i-yA-3e4"/>
+                    <constraint firstItem="nx5-q0-MvQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QLp-Qx-Tjw"/>
+                    <constraint firstAttribute="trailing" secondItem="nx5-q0-MvQ" secondAttribute="trailing" constant="16" id="Ryl-1C-Jab"/>
                     <constraint firstItem="A9H-Gj-cha" firstAttribute="leading" secondItem="fTk-JO-21Q" secondAttribute="trailing" constant="10" id="c5c-BO-NxH"/>
                     <constraint firstItem="fTk-JO-21Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gqd-oM-5jj"/>
                     <constraint firstItem="A9H-Gj-cha" firstAttribute="centerY" secondItem="fTk-JO-21Q" secondAttribute="centerY" id="vfC-ze-cw5"/>
-                    <constraint firstItem="fTk-JO-21Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="zjx-aX-MXj"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="iconImageView" destination="fTk-JO-21Q" id="3BX-Gn-496"/>
                 <outlet property="label" destination="A9H-Gj-cha" id="Jml-N3-4VF"/>
+                <outlet property="mapButton" destination="nx5-q0-MvQ" id="mEZ-Pu-TvZ"/>
             </connections>
-            <point key="canvasLocation" x="132" y="71"/>
+            <point key="canvasLocation" x="131.8840579710145" y="70.982142857142847"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="location.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="map" catalog="system" width="128" height="110"/>
         <namedColor name="B1">
             <color red="0.24699999392032623" green="0.22699999809265137" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="C4">
+            <color red="0.98000001907348633" green="0.54100000858306885" blue="0.44699999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

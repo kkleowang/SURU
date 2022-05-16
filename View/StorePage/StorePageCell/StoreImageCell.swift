@@ -37,6 +37,16 @@ class StoreImageCell: UITableViewCell {
         popularImageView.isUserInteractionEnabled = true
         menuImageView.isUserInteractionEnabled = true
         moreImageView.isUserInteractionEnabled = true
+        
+        popularImageView.clipsToBounds = true
+        menuImageView.clipsToBounds = true
+        moreImageView.clipsToBounds = true
+        moreBlurView.layer.cornerRadius = 10
+        moreBlurView.clipsToBounds = true
+        popularImageView.layer.cornerRadius = 10
+        menuImageView.layer.cornerRadius = 10
+        moreImageView.layer.cornerRadius = 10
+        
     }
     
     

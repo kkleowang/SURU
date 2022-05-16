@@ -48,6 +48,7 @@ class ProfileHeaderCell: UITableViewHeaderFooterView {
     
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var badgeImageView: UIImageView!
     
     @IBOutlet weak var postLabel: UILabel!
     @IBOutlet weak var followerLabel: UILabel!
@@ -67,6 +68,11 @@ class ProfileHeaderCell: UITableViewHeaderFooterView {
         } else {
             settingBtn.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
         }
+        if let badge = account.badgeStatus {
+            badgeImageView.image = UIImage(named: badge)
+        } else {
+            badgeImageView.isHidden = true
+        }
         postLabelView.isUserInteractionEnabled = true
         followerLabelView.isUserInteractionEnabled = true
         followedLabelView.isUserInteractionEnabled = true
@@ -84,7 +90,8 @@ class ProfileHeaderCell: UITableViewHeaderFooterView {
         accountImageView.contentMode = .scaleAspectFill
         accountImageView.clipsToBounds = true
         
-        nameLabel.text = account.userID
+        nameLabel.text = account.name
+        
         
         postLabel.text = "\(account.commentCount)"
         followerLabel.text = "\(account.follower.count)"

@@ -66,7 +66,18 @@ class CommentRequestProvider {
         } catch {
             completion(.failure(error))
         }
+        addCommentCount()
         completion(.success(docment.documentID))
+        
+        
+    }
+    func addCommentCount() {
+        guard let userId = UserRequestProvider.shared.currentUserID else { return }
+        let authorDocment = database.collection("accounts").document(userId)
+        authorDocment.updateData([
+            "commentCount": FieldValue.increment(Int64(1))
+        ])
+        
     }
     func likeComment(currentUserID: String, tagertComment: Comment) {
         let commentID = tagertComment.commentID

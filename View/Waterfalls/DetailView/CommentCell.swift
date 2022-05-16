@@ -33,7 +33,10 @@ class CommentCell: UITableViewCell {
             view?.clipsToBounds = true
             view?.layer.cornerRadius = 60 / 2
         }
-        storeNameLabel.adjustsFontSizeToFitWidth
+        mainImageView.cornerForAll(radii: 1-0)
+        storeNameLabel.adjustsFontSizeToFitWidth = true
+        mealLabel.adjustsFontSizeToFitWidth = true
+        sideDishesLabel.adjustsFontSizeToFitWidth = true
         storeNameLabel.setDefultFort()
         mealLabel.setDefultFort()
         sideDishesLabel.setDefultFort()
@@ -49,17 +52,21 @@ class CommentCell: UITableViewCell {
         initValueView(on: noodleValueView, value: data.contentValue.noodle, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
         initValueView(on: soupValueView, value: data.contentValue.soup, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
         initValueView(on: happyValueView, value: data.contentValue.happiness, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
-        if data.contentValue.noodle == 10.0 {
+        
+        soupLabel.adjustsFontSizeToFitWidth = true
+        noodleLabel.adjustsFontSizeToFitWidth = true
+        oveallLabel.adjustsFontSizeToFitWidth = true
+        if data.contentValue.soup == 10.0 {
             soupLabel.text = "10"
         } else {
-            soupLabel.text = "\(data.contentValue.noodle)"
+            soupLabel.text = "\(data.contentValue.soup)"
         }
-        if data.contentValue.soup == 10.0 {
+        if data.contentValue.noodle == 10.0 {
             noodleLabel.text = "10"
         } else {
-            noodleLabel.text = "\(data.contentValue.soup)"
+            noodleLabel.text = "\(data.contentValue.noodle)"
         }
-        if data.contentValue.soup == 10.0 {
+        if data.contentValue.happiness == 10.0 {
             oveallLabel.text = "10"
         } else {
             oveallLabel.text = "\(data.contentValue.happiness)"

@@ -287,12 +287,12 @@ extension CollectViewController: IndicatorInfoProvider {
 }
 extension CollectViewController: DetailViewControllerDelegate {
     func didtapAuthor(_ vc: DetailViewController, targetUserID: String?) {
-        guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
-        if targetUser != userID {
-            showAlert(targetUser: targetUserID, vc: vc)
-        } else {
-            navigationController?.tabBarController?.selectedIndex = 3
-        }
+//        guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
+//        if targetUser != userID {
+//            showAlert(targetUser: targetUserID, vc: vc)
+//        } else {
+//            navigationController?.tabBarController?.selectedIndex = 3
+//        }
     
     }
     func showAlert(targetUser: String?, vc: UIViewController) {

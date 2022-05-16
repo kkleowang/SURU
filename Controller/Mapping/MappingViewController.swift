@@ -66,6 +66,7 @@ class MappingViewController: UIViewController {
         if UserRequestProvider.shared.currentUserID == nil {
             isLogin = false
         }
+        listenAccount()
         listenAllComment()
         self.listenLoginState()
         StoreRequestProvider.shared.listenStore {
@@ -84,6 +85,7 @@ class MappingViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        storeCardCollectionView.reloadData()
         reloadMapView()
     }
     
@@ -124,10 +126,40 @@ class MappingViewController: UIViewController {
             case .success(let data) :
                 print("監聽商店成功 地圖頁面", data.count)
                 self.storeData = data
+                if self.isSearchResults {
+                    let text = self.searchBar.text ?? ""
+                    self.filteredStoreData = self.storeData.filter({ store in
+                        let tag = store.tags.joined()
+                        let title = store.name
+                        let address = store.address
+                        
+                        let isMatchTags = tag.localizedStandardContains(text)
+                        let isMatchName = title.localizedStandardContains(text)
+                        let isMatchAddress = address.localizedStandardContains(text)
+                        if isMatchTags || isMatchName || isMatchAddress == true {
+                            return true
+                        } else {
+                            return false
+                        }
+                    })
+                }
                 self.storeCardCollectionView.reloadData()
                 self.reloadMapView()
             case .failure(let error) :
                 print("下載商店資料失敗", error)
+            }
+        }
+    }
+    private func listenAccount() {
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        AccountRequestProvider.shared.listenAccount(currentUserID: userID) { result in
+            switch result {
+            case .success(let data) :
+                print("監聽登入使用者成功", data.userID)
+                self.currentUser = data
+            case .failure(let error) :
+                print("載入監聽評論失敗 地圖頁面失敗", error)
+                
             }
         }
     }
@@ -150,12 +182,12 @@ class MappingViewController: UIViewController {
                 print("監聽使用者成功 地圖頁面", data?.userID)
                 self.isLogin = true
                 self.currentUser = data
-                self.storeCardCollectionView.reloadData()
+//                self.storeCardCollectionView.reloadData()
             case .failure(let error) :
                 print("載入使用者失敗", error)
                 self.isLogin = false
                 self.currentUser = nil
-                self.storeCardCollectionView.reloadData()
+//                self.storeCardCollectionView.reloadData()
                 LKProgressHUD.dismiss()
                 LKProgressHUD.showFailure(text: "載入使用者失敗")
             }
@@ -360,6 +392,7 @@ extension MappingViewController: MKMapViewDelegate {
         return annotationView
     }
     @objc func didTapAnnotationView(sender: UITapGestureRecognizer) {
+        searchBar.endEditing(true)
         guard let name = sender.name else { return }
         if isSearchResults {
             for (index, store) in filteredStoreData.enumerated() where store.storeID == name {
@@ -421,9 +454,11 @@ extension MappingViewController: UICollectionViewDataSource {
 //                guard let currentUser = currentUser else { return cell }
                 let currentUser = currentUser!
                 isLogin = true
-                let data = filteredStoreData[indexPath.row].collectedUser ?? []
+                let storeRef = storeData.first(where: {$0.storeID == filteredStoreData[indexPath.row].storeID})
                 
-                isCollect = data.contains(currentUser.userID)
+//                let data = storeRef.collectedUser ?? []
+                
+                isCollect = storeRef?.collectedUser?.contains(currentUser.userID) ?? false
             } else {
                 isLogin = false
             }
@@ -482,10 +517,11 @@ extension MappingViewController: UICollectionViewDelegate {
                     return false
                 }
             })
+//            storeCardCollectionView.isHidden = true
             controller.currentUser = currentUser
             controller.storeData = store
             controller.commentData = commentOfStore
-            self.addChild(controller)
+//            self.addChild(controller)
             navigationController?.pushViewController(controller, animated: true)
             
         } else {
@@ -498,11 +534,12 @@ extension MappingViewController: UICollectionViewDelegate {
                     return false
                 }
             })
+//            storeCardCollectionView.isHidden = retrue
             controller.currentUser = currentUser
             controller.storeData = store
             
             controller.commentData = commentOfStore
-            self.addChild(controller)
+//            self.addChild(controller)
             navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -544,7 +581,7 @@ extension MappingViewController: UICollectionViewDelegateFlowLayout {
 
 extension MappingViewController {
     private func addDragFloatBtn() {
-        reportButton.frame = CGRect(x: UIScreen.width-70, y: 200, width: 60, height: 60)
+        reportButton.frame = CGRect(x: UIScreen.width-70, y: 400, width: 60, height: 60)
         
         reportButton.layer.cornerRadius = 30.0
         self.view .addSubview(reportButton)
@@ -556,6 +593,7 @@ extension MappingViewController {
         reportButton.addTarget(self, action: #selector(floatBtnAction(sender:)), for: .touchUpInside)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragAction(gesture:)))
         reportButton .addGestureRecognizer(panGesture)
+        
     }
     
     @objc private func dragAction(gesture: UIPanGestureRecognizer) {
@@ -601,16 +639,20 @@ extension MappingViewController {
         reportView.delegate = self
         self.view.addSubview(reportView)
         reportView.layoutView(name: storeName)
-        reportView.translatesAutoresizingMaskIntoConstraints = false
-        reportView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        reportView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        reportView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        
-        reportView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,constant: -200).isActive = true
+//        reportView.translatesAutoresizingMaskIntoConstraints = false
+        reportView.frame = CGRect(x: 0, y: UIScreen.height, width: UIScreen.width, height: 400)
+//        reportView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+//        reportView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+//        reportView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        UIView.animate(withDuration: 0.5) {
+            reportView.frame = CGRect(x: 0, y: UIScreen.height-300, width: UIScreen.width, height: 400)
+        }
+//        reportView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,constant: -200).isActive = true
         
     }
     private func pulishQueue(queue: Int) {
         if UserRequestProvider.shared.currentUser != nil {
+            if !isSearchResults {
             let storeID = storeData[selectedIndex].storeID
             guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
             var queue = QueueReport(queueCount: queue)
@@ -622,6 +664,20 @@ extension MappingViewController {
                     LKProgressHUD.showSuccess(text: "回報成功")
                 }
             }
+            } else {
+                let storeID = filteredStoreData[selectedIndex].storeID
+                guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
+                var queue = QueueReport(queueCount: queue)
+                QueueReportRequestProvider.shared.publishQueueReport(currentUserID: currentUserID, targetStoreID: storeID, report: &queue) { result in
+                    switch result {
+                    case .failure:
+                        LKProgressHUD.showFailure(text: "回報失敗")
+                    case .success:
+                        LKProgressHUD.showSuccess(text: "回報成功")
+                    }
+                }
+            }
+            
         }
     }
 }
@@ -629,7 +685,6 @@ extension MappingViewController: ReportViewDelegate {
     func didTapSendButton(_ view: ReportView, queue: Int) {
         if UserRequestProvider.shared.currentUser != nil {
             pulishQueue(queue: queue)
-            
             storeCardCollectionView.isHidden = false
             reportButton.isHidden = false
             view.removeFromSuperview()

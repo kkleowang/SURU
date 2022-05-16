@@ -14,14 +14,15 @@ class StoreOpenTimeCell: UITableViewCell {
     @IBOutlet weak var openTimeStackView: UIStackView!
     @IBOutlet weak var lunchTimeLabel: UILabel!
     @IBOutlet weak var dinnerTimeLabel: UILabel!
+    @IBOutlet weak var uiMenuBtn: UIButton!
     let weekday = Date().weekDay()
     
     func layoutCell(openTime: Opentime?) {
         guard let openTime = openTime else {
             return
         }
-        menuButton.imageView?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 22).isActive = true
-        menuButton.setTitle("", for: .normal)
+//        menuButton.imageView?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 22).isActive = true
+//        menuButton.setTitle("", for: .normal)
         if openTime.byPropertyName(weekDay: weekday).dinner == "close" && openTime.byPropertyName(weekDay: weekday).lunch == "close" {
             openInfoLabel.text = "本日公休"
             openInfoLabel.textColor = .red
@@ -34,8 +35,8 @@ class StoreOpenTimeCell: UITableViewCell {
     
     private func configButton(opentime: Opentime) {
         if #available(iOS 14.0, *) {
-            menuButton.showsMenuAsPrimaryAction = true
-            menuButton.menu = UIMenu(children: [
+            uiMenuBtn.showsMenuAsPrimaryAction = true
+            uiMenuBtn.menu = UIMenu(children: [
                         UIAction(title: "週日:  午:\(opentime.sun.lunch) 晚:\(opentime.sun.dinner)", handler: { action in
                             print("Select Messages")
                         }),
@@ -64,7 +65,7 @@ class StoreOpenTimeCell: UITableViewCell {
     }
     private func configTime(opentime: Opentime) {
        
-        openInfoLabel.text = weekday.uppercased()
+        openInfoLabel.text = "\(weekday.uppercased()) :"
         switch weekday {
         case "sun" :
             self.lunchTimeLabel.text = "中午: \(opentime.sun.lunch)"

@@ -42,6 +42,11 @@ class DiscoveryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchCommentData {
+            self.configData {
+            self.collectionView.reloadData()
+            }
+        }
         
     }
     private func configData(completion: @escaping () -> Void) {
@@ -109,7 +114,10 @@ extension DiscoveryViewController: UICollectionViewDataSource, UICollectionViewD
         if !filteredCommentData.isEmpty {
             let comment = filteredCommentData[indexPath.row]
             let store = storeData.first(where: {$0.storeID == comment.storeID}) ?? storeData[0]
+//            let id = comment.userID
+            
             guard let account = accountData.first(where: {$0.userID == comment.userID}) else {
+                print(comment.userID)
                 print("崩潰拉")
                 return cell }
             if let currentAccount = currentAccount {
@@ -150,13 +158,13 @@ extension DiscoveryViewController: CHTCollectionViewDelegateWaterfallLayout {
         let storeName = store?.name ?? ""
         let mealName = comment.meal
         
-        let width = (UIScreen.width - 4 * 3) / 2
-        let labelWidth = width - 16
+        let imageWidth = (UIScreen.width - 4 * 3) / 2
+        let labelWidth = imageWidth - 16
         
-        let storeLabelSize = labelSize(for: storeName, font: .medium(size: 18), maxWidth: labelWidth, maxHeight: 60)
+        let storeLabelSize = labelSize(for: storeName, font: .medium(size: 16), maxWidth: labelWidth, maxHeight: 60)
         
-        let mealLabelSize = labelSize(for: mealName, font: .medium(size: 15), maxWidth: labelWidth, maxHeight: 60)
-        var height = width + storeLabelSize.height + mealLabelSize.height + 24 + 40 + 21
+        let mealLabelSize = labelSize(for: mealName, font: .medium(size: 14), maxWidth: labelWidth, maxHeight: 60)
+        var height = imageWidth + storeLabelSize.height + mealLabelSize.height + 4 + 8 + 20 + 8 + 20 + 8
         
         var random: Int {
             return Int.random(in: 0...10)
@@ -164,15 +172,10 @@ extension DiscoveryViewController: CHTCollectionViewDelegateWaterfallLayout {
         
         let randomExtraHeight = Double(random)
         
-        if storeLabelSize.height > 30 {
-            height += randomExtraHeight
-        } else {
-            height -= randomExtraHeight
-        }
-        print(height)
+        height += randomExtraHeight
         
         
-        return CGSize(width: width, height: height)
+        return CGSize(width: imageWidth, height: height)
     }
     
     func labelSize(for text: String,font: UIFont?, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
@@ -317,12 +320,12 @@ extension DiscoveryViewController: DiscoveryCellDelegate {
 }
 extension DiscoveryViewController: DetailViewControllerDelegate {
     func didtapAuthor(_ vc: DetailViewController, targetUserID: String?) {
-        guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
-        if targetUser != userID {
-            showAlert(targetUser: targetUserID, vc: vc)
-        } else {
-            navigationController?.tabBarController?.selectedIndex = 3
-        }
+//        guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
+//        if targetUser != userID {
+//            showAlert(targetUser: targetUserID, vc: vc)
+//        } else {
+//            navigationController?.tabBarController?.selectedIndex = 3
+//        }
         
     }
     func showAlert(targetUser: String?, vc: UIViewController) {
