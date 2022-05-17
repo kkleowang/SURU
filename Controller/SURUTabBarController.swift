@@ -83,17 +83,38 @@ private enum Tab {
 
 class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private let tabs: [Tab] = [.mapping, .waterfalls, .comment, .profile]
-    
+    var orderObserver: NSKeyValueObservation!
+    var trolleyTabBarItem: UITabBarItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserRequestProvider.shared.listenFirebaseLogin { _ in
-        }
+//        UserRequestProvider.shared.listenFirebaseLogin { _ in
+//        }
         
         self.tabBar.tintColor = .C4
         
         view.backgroundColor = .white
         viewControllers = tabs.map({ $0.controller() })
         delegate = self
+        trolleyTabBarItem = viewControllers?[2].tabBarItem
+        
+        trolleyTabBarItem.badgeColor = .C4
+        orderObserver = StorageManager.shared.observe(
+            \StorageManager.comments,
+            options: .new,
+            changeHandler: { [weak self] _, change in
+            
+                guard let newValue = change.newValue else { return }
+                
+                if newValue.count > 0 {
+                    
+                    self?.trolleyTabBarItem.badgeValue = String(newValue.count)
+                
+                } else {
+                
+                    self?.trolleyTabBarItem.badgeValue = nil
+                }
+            }
+        )
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

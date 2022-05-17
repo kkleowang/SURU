@@ -53,6 +53,9 @@
                                     <color key="tintColor" name="B6"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="儲存草稿"/>
+                                    <connections>
+                                        <action selector="tapSaveToDraft:" destination="iN0-l3-epB" eventType="touchUpInside" id="Uik-mM-aRa"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V99-h2-fRL">
                                     <rect key="frame" x="300.5" y="0.0" width="81.5" height="31"/>
@@ -61,7 +64,6 @@
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="發送評論"/>
                                     <connections>
-                                        <action selector="sendComment:" destination="iN0-l3-epB" eventType="touchUpInside" id="1cA-yB-Z9c"/>
                                         <action selector="tapSendComment:" destination="iN0-l3-epB" eventType="touchUpInside" id="8HE-ka-2xk"/>
                                     </connections>
                                 </button>

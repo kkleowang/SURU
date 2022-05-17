@@ -33,7 +33,9 @@ class CommentCell: UITableViewCell {
             view?.clipsToBounds = true
             view?.layer.cornerRadius = 60 / 2
         }
-        mainImageView.cornerForAll(radii: 1-0)
+        mainImageView.clipsToBounds = true
+        mainImageView.layer.cornerRadius = 10
+//        mainImageView.cornerForAll(radii: 10)
         storeNameLabel.adjustsFontSizeToFitWidth = true
         mealLabel.adjustsFontSizeToFitWidth = true
         sideDishesLabel.adjustsFontSizeToFitWidth = true

@@ -8,8 +8,8 @@
 import UIKit
 
 protocol WrireCommentViewControllerDelegate: AnyObject {
-    func didTapSaveComment(_ view: WriteCommentView, text: String)
     func didTapSendComment(_ view: WriteCommentView, text: String)
+    func didTapSaveDraft(_ view: WriteCommentView, text: String)
 }
 
 class WriteCommentView: UIView {
@@ -17,22 +17,22 @@ class WriteCommentView: UIView {
     var commentData: Comment?
     var storename: String?
     @IBOutlet weak var contentTextView: UITextView!
-    @IBAction func sendComment(_ sender: Any) {
-        self.delegate?.didTapSendComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
-        self.topMostController()?.dismiss(animated: true, completion: nil)
-    }
+    
     
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var importTempButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
     @IBAction func tapImportTemp(_ sender: Any) {
-        contentTextView.text = "| 店家： \(storename!)\n| 時間 ：2022/5/16\n| 品項 ：\(commentData!.meal)\n| 配置 ：\n| 評論：\n"
+        contentTextView.text = "| 店家： \(storename ?? "")\n| 時間 ：\(Date.dateFormatter.string(from: Date()).toYYYYMMDDHHMM)\n| 品項 ：\(commentData?.meal ?? "")\n| 配置 ：\n| 評論：\n"
         
     }
     @IBAction func tapSendComment(_ sender: Any) {
-        self.delegate?.didTapSaveComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
+        self.delegate?.didTapSendComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
         
         self.topMostController()?.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func tapSaveToDraft(_ sender: Any) {
+        self.delegate?.didTapSaveDraft(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
     }
     func layoutView(comment: Comment,name: String) {
         commentData = comment
