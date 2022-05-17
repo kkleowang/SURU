@@ -634,16 +634,25 @@ extension MappingViewController {
         initReportQueueView()
     }
     private func initReportQueueView() {
-        let storeName = storeData[selectedIndex].name
+//        let storeName = storeData[selectedIndex].name
         let reportView: ReportView = UIView.fromNib()
         reportView.delegate = self
         self.view.addSubview(reportView)
-        reportView.layoutView(name: storeName)
+//        reportView.layoutView(name: storeName)
 //        reportView.translatesAutoresizingMaskIntoConstraints = false
         reportView.frame = CGRect(x: 0, y: UIScreen.height, width: UIScreen.width, height: 400)
 //        reportView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
 //        reportView.heightAnchor.constraint(equalToConstant: 200).isActive = true
 //        reportView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        if !isSearchResults {
+            let storeName = storeData[selectedIndex].name
+            reportView.layoutView(name: storeName)
+        } else {
+            let storeName = filteredStoreData[selectedIndex].name
+            reportView.layoutView(name: storeName)
+        }
+        
+        
         UIView.animate(withDuration: 0.5) {
             reportView.frame = CGRect(x: 0, y: UIScreen.height-300, width: UIScreen.width, height: 400)
         }

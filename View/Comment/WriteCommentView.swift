@@ -23,7 +23,7 @@ class WriteCommentView: UIView {
     @IBOutlet weak var importTempButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
     @IBAction func tapImportTemp(_ sender: Any) {
-        contentTextView.text = "| 店家： \(storename ?? "")\n| 時間 ：\(Date.dateFormatter.string(from: Date()).toYYYYMMDDHHMM)\n| 品項 ：\(commentData?.meal ?? "")\n| 配置 ：\n| 評論：\n"
+        contentTextView.text = "| 店家： \(storename ?? "")\n| 時間 ：5/17\n| 品項 ：\(commentData?.meal ?? "")\n| 配置 ：\n| 評論：\n"
         
     }
     @IBAction func tapSendComment(_ sender: Any) {
