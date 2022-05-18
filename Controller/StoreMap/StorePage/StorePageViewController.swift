@@ -10,12 +10,12 @@ import Kingfisher
 
 class StorePageViewController: UIViewController {
     var isCollected = false
-    var isLogin = false {
-        didSet {
-            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-            tableView.reloadSections([1], with: .automatic)
-        }
-    }
+    //    var isLogin = false {
+    //        didSet {
+    //            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+    //            tableView.reloadSections([1], with: .automatic)
+    //        }
+    //    }
     var commentData: [Comment] = []
     var storeData: Store?
     var userData: [Account] = [] {
@@ -45,23 +45,20 @@ class StorePageViewController: UIViewController {
     }
     
     func filterBlockedUser() {
-        if isLogin {
-            guard let currentUser = currentUser else {
-                return
-            }
-            guard let list = currentUser.blockUserList else {
-                return
-            }
-            commentData = commentData.filter({
-                if !list.contains($0.userID) {
-                    return true
-                } else {
-                    return false
-                }
-            })
-            tableView.reloadSections([1], with: .automatic)
+        guard let currentUser = currentUser else {
+            return
         }
-        
+        guard let list = currentUser.blockUserList else {
+            return
+        }
+        commentData = commentData.filter({
+            if !list.contains($0.userID) {
+                return true
+            } else {
+                return false
+            }
+        })
+        tableView.reloadSections([1], with: .automatic)
     }
     func listenAuth() {
         UserRequestProvider.shared.listenFirebaseLoginSendAccount { result in
@@ -84,15 +81,7 @@ class StorePageViewController: UIViewController {
     }
     func configLoginStatus() {
         guard let storeData = storeData else { return }
-        if currentUser != nil {
-            isLogin = true
-            isCollected = currentUser!.collectedStore.contains(storeData.storeID)
-        } else {
-            isLogin = false
-            isCollected = false
-        }
-    }
-    override func viewWillAppear(_ animated: Bool) {
+        isCollected = currentUser!.collectedStore.contains(storeData.storeID)
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -295,26 +284,6 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableView.automaticDimension
         }
     }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        if section == 0 {
-//            return 0
-//        }else {
-//            return 20
-//        }
-//    }
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//
-//        if section == 0 {
-//            let headerView = UIView()
-//            headerView.backgroundColor = UIColor.red
-//            return headerView
-//        }else {
-//            let headerView = UIView()
-//            headerView.backgroundColor = UIColor.clear
-//            return headerView
-//        }
-//    }
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
             
@@ -400,7 +369,6 @@ extension StorePageViewController: StoreTopViewDelegate {
         controller.delegate = self
         self.present(controller, animated: true, completion: nil)
     }
-    
 }
 extension StorePageViewController: StoreImageCellDelegate {
     func didTapPopularImage(_ view: StoreImageCell, image: UIImage) {
@@ -425,11 +393,8 @@ extension StorePageViewController: StoreImageCellDelegate {
     @objc func dissmiss(sender: UITapGestureRecognizer) {
         sender.view?.removeFromSuperview()
     }
-    
-    
 }
-extension StorePageViewController:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
-    
+extension StorePageViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -450,13 +415,11 @@ extension StorePageViewController:  UICollectionViewDataSource, UICollectionView
         
         if collectionView.tag == 80 {
             cell.tagLabel.text = storeData.tags[indexPath.row]
-//            cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
             cell.backgroundColor = .C4
             return cell
         } else {
             cell.layoutForMeal()
             cell.tagLabel.text = storeData.meals[indexPath.row]
-//            cell.tagLabel.preferredMaxLayoutWidth = collectionView.frame.width
             cell.backgroundColor = .C2
             return cell
         }
@@ -558,8 +521,6 @@ extension StorePageViewController: StoreCommentCellDelegate {
             presentWelcomePage()
         }
     }
-    
-    
 }
 extension StorePageViewController: SignInAndOutViewControllerDelegate {
     func didSelectLookAround(_ view: SignInAndOutViewController) {
@@ -571,6 +532,4 @@ extension StorePageViewController: SignInAndOutViewControllerDelegate {
         navigationController?.popViewController(animated: true)
         self.tabBarController?.selectedIndex = 3
     }
-    
-    
 }

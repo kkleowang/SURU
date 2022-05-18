@@ -283,7 +283,8 @@ extension StoreMapViewController: UICollectionViewDataSource {
                 return false
             }
         }
-        cell.layoutCell(storeData: store, commentData: comments, isCollect: isCollect, isLogin: isLogin)
+        let report = cogfigReport(store: store)
+        cell.layoutCell(storeData: store, commentData: comments,report: report, isCollect: isCollect, isLogin: isLogin)
         return cell
     }
 }

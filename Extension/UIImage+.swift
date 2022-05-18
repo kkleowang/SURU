@@ -11,7 +11,7 @@ import UIKit
 enum ImageAsset: String {
     
     case mainImage
-    
+    case noData
 }
 
 
