@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum ImageAsset: String {
-    
+    // swiftlint:disable identifier_name
     case Icons_36px_Home_Normal
     case Icons_36px_Home_Selected
     case Icons_36px_Profile_Normal
@@ -59,7 +59,6 @@ enum ImageAsset: String {
 
 extension UIImage {
     static func asset(_ asset: ImageAsset) -> UIImage? {
-        
         return UIImage(named: asset.rawValue)
     }
     
@@ -72,6 +71,4 @@ extension UIImage {
         guard let newCgImage = CIContext(options: nil).createCGImage(result, from: result.extent) else { return self }
         return UIImage(cgImage: newCgImage, scale: UIScreen.main.scale, orientation: imageOrientation)
     }
-    
-    
 }

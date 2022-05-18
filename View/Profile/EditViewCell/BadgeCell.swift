@@ -12,6 +12,7 @@ class BadgeCell: UICollectionViewCell {
     @IBOutlet weak var badgeImageView: UIImageView!
     @IBOutlet weak var badgeNameLabel: UILabel!
     @IBOutlet weak var waringLabel: UILabel!
+    
     func layoutCell(image: UIImage?, text: String ,textColor: UIColor,waringText: String ) {
         badgeNameLabel.font = .medium(size: 12)
         badgeNameLabel.textColor = textColor

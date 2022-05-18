@@ -65,7 +65,7 @@ class StoreCardsCell: UICollectionViewCell {
     var commentsData: [Comment]?
     var userIsLogin: Bool?
     
-    func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool, isLogin: Bool) {
+    func layoutCell(dataSource: Store, commentData: [Comment], isCollect: Bool, isLogin: Bool) {
         userIsLogin = isLogin
         self.contentView.clipsToBounds = true
         storeData = dataSource

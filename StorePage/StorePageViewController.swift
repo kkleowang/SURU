@@ -18,7 +18,7 @@ class StorePageViewController: UIViewController {
     }
     var commentData: [Comment] = []
     var storeData: Store?
-    var UserData: [Account] = [] {
+    var userData: [Account] = [] {
         didSet {
             tableView.reloadSections([1], with: .automatic)
         }
@@ -103,13 +103,13 @@ class StorePageViewController: UIViewController {
         tableView.backgroundColor = .B6
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.lk_registerCellWithNib(identifier: StoreTitleCell.identifier, bundle: nil)
-        tableView.lk_registerCellWithNib(identifier: StoreImageCell.identifier, bundle: nil)
-        tableView.lk_registerCellWithNib(identifier: StoreTagsCell.identifier, bundle: nil)
-        tableView.lk_registerCellWithNib(identifier: StoreLocaltionCell.identifier, bundle: nil)
-        tableView.lk_registerCellWithNib(identifier: StoreOpenTimeCell.identifier, bundle: nil)
-        tableView.lk_registerCellWithNib(identifier: StoreCommentCell.identifier, bundle: nil)
-        tableView.lk_registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: StoreTitleCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: StoreImageCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: StoreTagsCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: StoreLocaltionCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: StoreOpenTimeCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: StoreCommentCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
         
         
     }
@@ -117,7 +117,7 @@ class StorePageViewController: UIViewController {
         AccountRequestProvider.shared.fetchAccounts { result in
             switch result {
             case .success(let data):
-                self.UserData = data
+                self.userData = data
             case .failure:
                 LKProgressHUD.showFailure(text: "載入用戶資料失敗/n請退出重試")
             }
@@ -134,10 +134,10 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             controller.modalPresentationStyle = .fullScreen
             
             controller.comment = comment
-            controller.accountData = UserData
+            controller.accountData = userData
             controller.store = storeData
             controller.currentUser = currentUser
-            controller.author = UserData.first(where: {$0.userID == comment.userID})
+            controller.author = userData.first(where: {$0.userID == comment.userID})
             present(controller, animated: true, completion: nil)
         }
     }
@@ -151,7 +151,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             return commentData.count
         }
     }
-
+    // swiftlint:disable cyclomatic_complexity
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let storeData = storeData else { return UITableViewCell() }
@@ -247,7 +247,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             let comment = commentData.sorted(by: {$0.createdTime > $1.createdTime})[indexPath.row]
             cell.selectionStyle = .none
-            guard let author = UserData.first(where: {$0.userID == comment.userID}) else { return cell }
+            guard let author = userData.first(where: {$0.userID == comment.userID}) else { return cell }
             var isfollow = false
             var isLike = false
             if UserRequestProvider.shared.currentUserID != nil {
@@ -297,6 +297,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+//
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        if section == 0 {
 //            return 0
@@ -405,7 +406,7 @@ extension StorePageViewController: StoreTopViewDelegate {
 }
 extension StorePageViewController: StoreImageCellDelegate {
     func didTapPopularImage(_ view: StoreImageCell, image: UIImage) {
-        let view: fullScreenImageView = UIView.fromNib()
+        let view: FullScreenImageView = UIView.fromNib()
         view.imageView.image = image
         let tap = UITapGestureRecognizer(target: self, action: #selector(dissmiss))
         view.addGestureRecognizer(tap)

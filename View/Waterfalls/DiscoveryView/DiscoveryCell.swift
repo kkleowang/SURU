@@ -80,17 +80,17 @@ class DiscoveryCell: UICollectionViewCell {
            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
        }
         
-        if comment.likedUserList.count != 0 {
+        if !comment.likedUserList.isEmpty {
             likeButton.setTitle(String(comment.likedUserList.count), for: .normal)
            
         } else {
             likeButton.setTitle("", for: .normal)
         }
 
-        let count = comment.userComment?.count ?? 0
+        let messages = comment.userComment ?? []
         
-        if count != 0 {
-            commentButton.setTitle(String(count), for: .normal)
+        if !messages.isEmpty {
+            commentButton.setTitle(String(messages.count), for: .normal)
         } else {
             commentButton.setTitle("", for: .normal)
         }

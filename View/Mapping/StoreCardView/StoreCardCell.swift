@@ -81,7 +81,7 @@ class StoreCardCell: UICollectionViewCell {
 //            let value = (data.contentValue.happiness + data.contentValue.soup + data.contentValue.noodle)/3
 //            total += value
 //        }
-        if commentData.count > 0 {
+        if !commentData.isEmpty {
             var total: Double = 0
             for data in commentData {
                 let value = (data.contentValue.happiness + data.contentValue.soup + data.contentValue.noodle)/3

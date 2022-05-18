@@ -8,15 +8,15 @@
 import Foundation
 
 struct Excel: Codable {
-    let Page1: [ExcelData]
+    let page1: [ExcelData]
 }
 struct ExcelData: Codable {
     let name: String
     var engName: String? = ""
     let address: String
     let area: String
-    let coordinate_lat: String
-    let coordinate_long: String
+    let coordinateLong: String
+    let coordinateLat: String
     let mainImage: String
     let menuImage: String
     let phone: String
@@ -33,6 +33,30 @@ struct ExcelData: Codable {
     let sat: String
     var note: String? = ""
     var closeDay: String? = ""
+    enum CodingKeys: String, CodingKey {
+        case name
+        case engName
+        case address
+        case area
+        case coordinateLong = "coordinate_long"
+        case coordinateLat = "coordinate_lat"
+        case mainImage
+        case menuImage
+        case phone
+        case facebookLink
+        case tags
+        case meals
+        case seat
+        case sun
+        case mon
+        case tue
+        case wed
+        case thu
+        case fri
+        case sat
+        case note
+        case closeDay
+    }
 }
 
 class AppDataProvider {
@@ -41,7 +65,7 @@ class AppDataProvider {
     
     func allInOne() {
         callGet { data in
-            self.mapDataFromExcelToFirebase(datas: data.Page1) { datas in
+            self.mapDataFromExcelToFirebase(datas: data.page1) { datas in
                 var datacopy = datas
                 for i in 0..<datacopy.count {
                     StoreRequestProvider.shared.adminPublishNewStore(store: &datacopy[i]) { result in
@@ -62,11 +86,11 @@ class AppDataProvider {
         
         guard let data = try? Data(contentsOf: url) else {
             print("123 Fail.")
-            return com(Excel(Page1: []))
+            return com(Excel(page1: []))
         }
         
         guard let decodedData = try? PropertyListDecoder().decode(Excel.self, from: data) else { print("345")
-            return com(Excel(Page1: [])) }
+            return com(Excel(page1: [])) }
         
         com(decodedData)
         
@@ -84,7 +108,7 @@ class AppDataProvider {
             }
             catch {
                 print(error)
-                com(Excel(Page1: []))
+                com(Excel(page1: []))
             }
         }.resume()
     }
@@ -104,7 +128,7 @@ class AppDataProvider {
                               facebookLink: data.facebookLink,
                               note: data.note ?? "",
                               address: data.address,
-                              coordinate: Coordinate(long: Double(data.coordinate_long)!, lat: Double(data.coordinate_lat)!),
+                              coordinate: Coordinate(long: Double(data.coordinateLong)!, lat: Double(data.coordinateLat)!),
                               phone: data.phone,
                               tags: data.tags.components(separatedBy: [" "]),
                               meals: data.meals.components(separatedBy: [" "]),

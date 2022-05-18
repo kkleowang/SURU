@@ -203,7 +203,7 @@ class DetailViewController: UIViewController {
         } else {
             likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
         }
-        if comment.likedUserList.count != 0 {
+        if !comment.likedUserList.isEmpty {
             likeBtn.setTitle("\(comment.likedUserList.count)", for: .normal)
         } else {
             likeBtn.setTitle("0", for: .normal)

@@ -257,3 +257,26 @@
 //        print("Error - locationManager: \(error.localizedDescription)")
 //    }
 //}
+
+//    func setupDataForCollectionCell() {
+//        let fakeLocationAkaTaipei101 = CLLocation(latitude: 25.038685278051556, longitude: 121.5323763590289)
+//        for (index, data) in storeData.enumerated() {
+//            var commentHolder: [Comment] = []
+//            distance.append(fakeLocationAkaTaipei101.distance(from: CLLocation(latitude: data.coordinate.lat, longitude: data.coordinate.long)))
+//            for comment in commentData where comment.storeID == data.storeID {
+//                commentHolder.append(comment)
+//            }
+//            commentOfStore.insert(commentHolder, at: index)
+//        }
+//    }
+//    func setupDataForFilteredCell() {
+//        let fakeLocationAkaTaipei101 = CLLocation(latitude: 25.038685278051556, longitude: 121.5323763590289)
+//        for (index, data) in filteredStoreData.enumerated() {
+//            var commentHolder: [Comment] = []
+//            filteredStoreDistance.append(fakeLocationAkaTaipei101.distance(from: CLLocation(latitude: data.coordinate.lat, longitude: data.coordinate.long)))
+//            for comment in commentData where comment.storeID == data.storeID {
+//                commentHolder.append(comment)
+//            }
+//            commentOfFilteredStore.insert(commentHolder, at: index)
+//        }
+//    }

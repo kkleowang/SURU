@@ -53,9 +53,9 @@ class ProfileViewController: UIViewController {
         tableView.reloadData()
     }
     func setupTableView() {
-        tableView.lk_registerCellWithNib(identifier: ProfileBioCell.identifier, bundle: nil)
-        tableView.lk_registerHeaderWithNib(identifier: ProfileHeaderCell.identifier, bundle: nil)
-        tableView.lk_registerCellWithNib(identifier: ProfileCommentCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: ProfileBioCell.identifier, bundle: nil)
+        tableView.registerHeaderWithNib(identifier: ProfileHeaderCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: ProfileCommentCell.identifier, bundle: nil)
         tableView.delegate = self
         tableView.dataSource = self
 //        tableView.reloadData()
@@ -252,7 +252,7 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController {
-    
+    // swiftlint:disable cyclomatic_complexity
     func checkUserBadgeStatus() {
         var ref: [[Int]] = [[], [], [], [], []]
         
@@ -264,6 +264,7 @@ extension ProfileViewController {
         let publishReportCount = user.sendReportCount ?? 0
         let likeCount = user.myCommentLike ?? 0
         
+        // 如果需求變成10個level;
         if  loginCount >= 30 {
             ref[0] = [1, 1, 1, 1, 1]
         } else if loginCount >= 15 {
@@ -277,6 +278,7 @@ extension ProfileViewController {
         } else {
             ref[0] = [0, 0, 0, 0, 0]
         }
+        
         if  likeCount >= 200 {
             ref[3] = [1, 1, 1, 1, 1]
         } else if likeCount >= 100 {

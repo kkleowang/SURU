@@ -24,7 +24,7 @@ class ProfileCommentCell: UITableViewCell {
         let inset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.sectionInset = inset
         collectionView.collectionViewLayout = layout
-        collectionView.register(UINib(nibName: String(describing: ProfileCommentCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProfileCommentCollectionViewCell.self))
+        collectionView.registerCellWithNib(identifier: ProfileCommentsCell.identifier, bundle: nil)
     }
 }
 extension ProfileCommentCell: UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout {
@@ -40,7 +40,7 @@ extension ProfileCommentCell: UICollectionViewDataSource, UICollectionViewDelega
         }
     
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCollectionViewCell.self), for: indexPath) as? ProfileCommentCollectionViewCell else { return ProfileCommentCollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCommentsCell.identifier, for: indexPath) as? ProfileCommentsCell else { return ProfileCommentsCell() }
             guard let comment = dataSource else { return cell }
             cell.layoutCell(comment: comment[indexPath.item])
             return cell

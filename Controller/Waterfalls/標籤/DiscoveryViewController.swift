@@ -82,7 +82,7 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return UICollectionViewCell() }
         cell.delegate = self
-        if commentData.count != 0 {
+        if !commentData.count.isEmpty {
         let comment = commentData[indexPath.row]
         let store = storeData.first(where: {$0.storeID == comment.storeID})
         let account = accountData.first(where: {$0.userID == comment.userID})
@@ -94,7 +94,7 @@ extension DiscoveryViewController: UICollectionViewDataSource,UICollectionViewDe
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if commentData.count != 0 {
+        if !commentData.count.isEmpty {
         let comment = commentData[indexPath.row]
         let store = storeData.first(where: {$0.storeID == comment.storeID})
         let account = accountData.first(where: {$0.userID == comment.userID})

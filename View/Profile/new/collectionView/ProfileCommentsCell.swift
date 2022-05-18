@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ProfileCommentCollectionViewCell: UICollectionViewCell {
+class ProfileCommentsCell: UICollectionViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -336,7 +336,12 @@ extension CommentViewController: CommentDraggingViewDelegate {
             self.tabBarController?.tabBar.isHidden = false
             self.imageCardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
         }
-        if  commentData.contentValue.noodle != 0 &&  commentData.contentValue.soup != 0 &&  commentData.contentValue.happiness != 0 && commentData.contentValue.noodle != 50 &&  commentData.contentValue.soup != 50 &&  commentData.contentValue.happiness != 50 &&
+        if  commentData.contentValue.noodle != 0 &&
+                commentData.contentValue.soup != 0 &&
+                commentData.contentValue.happiness != 0 &&
+                commentData.contentValue.noodle != 50 &&
+                commentData.contentValue.soup != 50 &&
+                commentData.contentValue.happiness != 50 &&
                 commentData.storeID != "" && commentData.meal != "" {
 //            initSendButton()
 //            sendButton.isHidden = false
