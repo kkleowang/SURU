@@ -277,6 +277,7 @@ extension ProfileViewController {
         } else {
             ref[0] = [0, 0, 0, 0, 0]
         }
+        
         if  likeCount >= 200 {
             ref[3] = [1, 1, 1, 1, 1]
         } else if likeCount >= 100 {
@@ -331,6 +332,7 @@ extension ProfileViewController {
         }
         badgeRef = ref
     }
+    
         func showAlert() {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alert.popoverPresentationController?.sourceView = self.view

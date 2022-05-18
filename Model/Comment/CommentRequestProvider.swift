@@ -59,6 +59,8 @@ class CommentRequestProvider {
     
     func publishComment(comment: inout Comment, completion: @escaping (Result<String, Error>) -> Void) {
         let docment = database.collection("comments").document()
+        let useID = UserRequestProvider.shared.currentUserID ?? ""
+        comment.userID = useID
         comment.commentID = docment.documentID
         comment.createdTime = Date().timeIntervalSince1970
         do {

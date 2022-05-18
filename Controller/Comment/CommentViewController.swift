@@ -21,7 +21,7 @@ class CommentViewController: UIViewController {
     var stores: [Store] = []
     var comments: [Comment] = []
     var commentDrafts: [CommentDraft] = []
-    let userID = UserRequestProvider.shared.currentUserID
+    
     var commentData: Comment = Comment(
         userID: "",
         storeID: "",
@@ -45,9 +45,7 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "新增評論"
-        if userID != nil {
-            commentData.userID = userID!
-        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,6 +155,23 @@ class CommentViewController: UIViewController {
         selectionView.layoutSelectView(dataSource: stores)
     }
     
+//    func setupCommentDraftView(_ image: UIImage) {
+//        imageCardView = CommentImageCardView()
+//        self.view.addSubview(imageCardView)
+//        imageCardView.translatesAutoresizingMaskIntoConstraints = false
+//        imageCardView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 84).isActive = true
+//        imageCardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
+//        imageCardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
+//        imageCardView.heightAnchor.constraint(equalTo: imageCardView.widthAnchor, multiplier: 1).isActive = true
+//        imageCardView.delegate = self
+////        imageCardView.clipsToBounds = true
+////        imageCardView.makeShadow()
+//        imageCardView.layoutCommendCardView(image: image) { [weak self] in
+//            self?.setupCommentSelectionView()
+//        }
+//
+//    }
+    
     func setupDraggingView(_ type: SelectionType) {
         let controller = DragingValueViewController()
         controller.liquilBarview.delegate = self
@@ -181,15 +196,35 @@ class CommentViewController: UIViewController {
                 LKProgressHUD.dismiss()
                 LKProgressHUD.showSuccess(text: "上傳評論成功")
 //                self.sendButton.removeFromSuperview()
-                self.fetchCommentOfUser {
+//                self.resetCurrentVC()
+//                self.fetchCommentOfUser {
+//                self.commentData = Comment(
+//                    userID: "",
+//                    storeID: "",
+//                    meal: "",
+//                    contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0),
+//                    contenText: "",
+//                    mainImage: "")
                     self.setupStartingView()
-                    self.commentData = self.originData
-                }
+                    
+//                }
+                
             case .failure(let error):
+                LKProgressHUD.dismiss()
+                LKProgressHUD.showFailure(text: "稍候再試")
                 print("上傳評論失敗", error)
             }
         }
     }
+//    func resetCurrentVC() {
+//
+//        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "CommentViewController")
+//        if let navigationController = self.navigationController {
+//            navigationController.viewControllers.removeLast()
+//            navigationController.viewControllers.append(vc)
+//            navigationController.setViewControllers(navigationController.viewControllers, animated: true)
+//        }
+//    }
 }
 
 // StartingView Delegate
@@ -204,9 +239,9 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
             return "你發表過的評論"
         }
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100
+//    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return commentDrafts.count
@@ -217,15 +252,11 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
-        if indexPath.section == 0 {
+       
             let name = stores.first(where: {$0.storeID == commentDrafts[indexPath.row].storeID})?.name
             cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name ?? "未輸入店名")
             return cell
-        } else {
-            let name = stores.first(where: {$0.storeID == comments[indexPath.row].storeID})?.name
-            cell.layoutCommentCell(data: comments[indexPath.row], name: name ?? "未輸入店名")
-            return cell
-        }
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
@@ -304,14 +335,20 @@ extension CommentViewController: CommentSelectionViewDelegate {
     }
     
     func didTapSaveComment(_ view: CommentSelectionView) {
-        StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
-            switch result {
-            case .success(let data):
-                print("Coredata")
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
+//            switch result {
+//            case .success(let data):
+////                self.resetCurrentVC()
+//                LKProgressHUD.showSuccess(text: "儲存成功")
+//                self.setupStartingView()
+//                self.commentData = self.originData
+//                print("Coredata")
+//            case .failure(let error):
+//                LKProgressHUD.showSuccess(text: "儲存失敗")
+//
+//                print(error)
+//            }
+//        }
         print("didTapSaveComment")
     }
     
@@ -455,9 +492,27 @@ extension CommentViewController {
     }
 }
 extension CommentViewController: WrireCommentViewControllerDelegate {
+    func didTapSaveDraft(_ view: WriteCommentView, text: String) {
+        commentData.contenText = text
+        let image = imageDataHolder ?? Data()
+        StorageManager.shared.addDraftComment(comment: commentData, image: image) { result in
+            switch result {
+            case .success(let data):
+                LKProgressHUD.showSuccess(text: "儲存草稿成功")
+                self.setupStartingView()
+                self.commentData = self.originData
+                print("Coredata")
+            case .failure(let error):
+                LKProgressHUD.showFailure(text: "儲存草稿失敗")
+                print(error)
+            }
+        }
+        
+    }
+    
     func didTapSendComment(_ view: WriteCommentView, text: String) {
         commentData.contenText = text
-//        view.naviga
+        LKProgressHUD.show()
         guard let image = imageDataHolder else { return }
         let fileName = "\(commentData.userID)_\(Date())"
         FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
@@ -472,7 +527,4 @@ extension CommentViewController: WrireCommentViewControllerDelegate {
         }
     }
     
-    func didTapSaveComment(_ view: WriteCommentView, text: String) {
-        commentData.contenText = text
-    }
 }
