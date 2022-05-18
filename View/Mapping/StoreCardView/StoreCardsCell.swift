@@ -36,7 +36,8 @@ class StoreCardsCell: UICollectionViewCell {
     @IBOutlet weak private var reportPeopleLabel: UILabel!
     @IBOutlet weak var dotView: UIView!
 
-
+    @IBOutlet weak var reportWaitLabel: UILabel!
+    
     @IBOutlet weak private var collectButton: UIButton!
     @IBAction func tapCollectButton(_ sender: UIButton) {
         guard let userIsLogin = userIsLogin else { return }
@@ -46,6 +47,7 @@ class StoreCardsCell: UICollectionViewCell {
         guard let image = sender.image(for: .normal) else { return }
         guard let storeData = storeData else { return }
         guard let commentsData = commentsData else { return }
+            
         if image == UIImage(named: "collect.fill") {
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
             followerLabel.text = "\(storeData.collectedUser?.count ?? 1 - 1) 人收藏, 共\(commentsData.count) 則食記"
@@ -62,29 +64,31 @@ class StoreCardsCell: UICollectionViewCell {
     var storeData: Store?
     var commentsData: [Comment]?
     var userIsLogin: Bool?
+    
     func layoutCardView(dataSource: Store, commentData: [Comment], isCollect: Bool, isLogin: Bool) {
-//        guard let isCollect = isCollect else { return }
         userIsLogin = isLogin
-        self.contentView.makeShadow()
         self.contentView.clipsToBounds = true
         storeData = dataSource
         commentsData = commentData
         self.clipsToBounds = true
         self.cornerForAll(radii: 10)
-        reportView.clipsToBounds = true
-        reportView.cornerForAll(radii: 10)
+//        reportView.clipsToBounds = true
+//        reportView.cornerForAll(radii: 10)
         dotView.clipsToBounds = true
         dotView.layer.cornerRadius = 7.5
         soupView.clipsToBounds = true
         noodleView.clipsToBounds = true
         overallView.clipsToBounds = true
-        soupView.layer.cornerRadius = 20
-        noodleView.layer.cornerRadius = 20
-        overallView.layer.cornerRadius = 20
+        soupView.layer.cornerRadius = 25
+        noodleView.layer.cornerRadius = 25
+        overallView.layer.cornerRadius = 25
         nameLabel.text = dataSource.name
+        nameLabel.adjustsFontSizeToFitWidth = true
         mostCommentImageView.clipsToBounds = true
         mostCommentImageView.cornerForAll(radii: 10)
-        
+//        noodleLabel.adjustsFontSizeToFitWidth = true
+//        soupLabel.adjustsFontSizeToFitWidth = true
+//        overallLabel.adjustsFontSizeToFitWidth = true
         storeImageView.layer.cornerRadius = 25
         storeImageView.clipsToBounds = true
         storeImageView.kf.setImage(with: URL(string: dataSource.mainImage), placeholder:  UIImage(named: "mainImage"))
@@ -92,11 +96,13 @@ class StoreCardsCell: UICollectionViewCell {
         storeImageView.layer.borderColor = UIColor.B6?.cgColor
         followerLabel.text = "\(dataSource.collectedUser?.count ?? 0) 人收藏, 共\(commentData.count) 則食記"
         collectButton.setTitle("", for: .normal)
+        
         if isCollect {
             collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
         } else {
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
         }
+        
         let weekday = Date().weekDay()
         if dataSource.opentime.byPropertyName(weekDay: weekday).dinner == "close" && dataSource.opentime.byPropertyName(weekDay: weekday).lunch == "close" {
             dotView.backgroundColor = .red
@@ -156,7 +162,10 @@ class StoreCardsCell: UICollectionViewCell {
         reportLabel.textColor = .red
 
         reportLabel.font = .medium(size: 18)
+        reportLabel.adjustsFontSizeToFitWidth = true
         reportPeopleLabel.isHidden = false
+        reportWaitLabel.isHidden = false
+        
         reportLabel.isHidden = false
         nonReportLabel.isHidden = true
         switch cogfigReport(store: dataSource) {
@@ -170,9 +179,11 @@ class StoreCardsCell: UICollectionViewCell {
             reportLabel.text = "20+"
 
         default :
-            reportLabel.isHidden = true
+            
             nonReportLabel.isHidden = false
+            reportLabel.isHidden = true
             reportPeopleLabel.isHidden = true
+            reportWaitLabel.isHidden = true
         }
 
     }

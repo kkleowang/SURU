@@ -29,7 +29,10 @@ class ReportView: UIView {
     }
     
     func layoutView(name: String) {
+        sendBuuton.clipsToBounds = true
+        sendBuuton.layer.cornerRadius = 10
         titleLabel.text = name
+        titleLabel.adjustsFontSizeToFitWidth = true
     }
 
 }

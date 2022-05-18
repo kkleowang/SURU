@@ -12,6 +12,7 @@ class StoreTagsCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
 
     @IBOutlet weak var iconImageView: UIImageView!
+    
     func layoutForMealCell() {
         iconImageView.image = UIImage(named: "noodle")
     }

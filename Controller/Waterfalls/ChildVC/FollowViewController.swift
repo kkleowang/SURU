@@ -24,6 +24,9 @@ class FollowViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+            collectionView.backgroundColor = .B6
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
@@ -130,7 +133,7 @@ extension FollowViewController: UICollectionViewDataSource, UICollectionViewDele
                 controller.modalPresentationStyle = .fullScreen
                 controller.comment = comment
                 controller.store = store
-                controller.account = account
+                controller.author = account
                 self.present(controller, animated: true, completion: nil)
         }
         }
@@ -264,6 +267,12 @@ extension FollowViewController {
 }
 
 extension FollowViewController: DiscoveryCellDelegate {
+    func didTapCommentBtn(_ view: DiscoveryCell, comment: Comment) {
+        //
+    }
+    
+    
+    
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment) {
         guard let currentUserID = UserRequestProvider.shared.currentUserID else {
             LKProgressHUD.showFailure(text: "你沒有登入喔")
@@ -290,12 +299,12 @@ extension FollowViewController: IndicatorInfoProvider {
 }
 extension FollowViewController: DetailViewControllerDelegate {
     func didtapAuthor(_ vc: DetailViewController, targetUserID: String?) {
-        guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
-        if targetUser != userID {
-            showAlert(targetUser: targetUserID, vc: vc)
-        } else {
-            navigationController?.tabBarController?.selectedIndex = 3
-        }
+//        guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
+//        if targetUser != userID {
+//            showAlert(targetUser: targetUserID, vc: vc)
+//        } else {
+//            navigationController?.tabBarController?.selectedIndex = 3
+//        }
     
     }
     func showAlert(targetUser: String?, vc: UIViewController) {

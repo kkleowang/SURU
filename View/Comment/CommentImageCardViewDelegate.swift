@@ -20,7 +20,7 @@ class CommentImageCardView: UIView {
         self.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 5/4).isActive = true
+        imageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
         imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         imageView.contentMode = .scaleAspectFill
@@ -40,7 +40,7 @@ class CommentImageCardView: UIView {
     }
     
     func layoutCommendCardView(image: UIImage, completion: @escaping () -> Void) {
-        self.layer.cornerRadius = 40
+        self.layer.cornerRadius = 10
         self.clipsToBounds = true
         commentImageView?.image = image
         completion()
@@ -56,7 +56,7 @@ extension CommentImageCardView: UIImagePickerControllerDelegate, UINavigationCon
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
-        guard let image = info[.originalImage] as? UIImage else { return }
+        guard let image = info[.editedImage] as? UIImage else { return }
         commentImageView?.image = image
         self.delegate?.didFinishPickImage(self, imagePicker: picker)
     }

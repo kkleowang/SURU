@@ -12,60 +12,87 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var noodleValueView: UIView!
     @IBOutlet weak var soupValueView: UIView!
     @IBOutlet weak var happyValueView: UIView!
-    @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var mealLabel: UILabel!
-    @IBOutlet weak var storeNameLabel: UILabel!
+    
     @IBOutlet weak var mainImageView: UIImageView!
-    @IBOutlet weak var soupLabel: UILabel!
+    
+    @IBOutlet weak var storeNameLabel: UILabel!
+    @IBOutlet weak var sideDishesLabel: UILabel!
+    
+    @IBOutlet weak var mealLabel: UILabel!
+    
     @IBOutlet weak var noodleLabel: UILabel!
+    @IBOutlet weak var soupLabel: UILabel!
     @IBOutlet weak var oveallLabel: UILabel!
+    
+    @IBOutlet weak var contentTextView: UITextView!
+    
     
     
     func layoutCell(data: Comment, store: Store) {
-        initValueView(on: noodleValueView, value: data.contentValue.noodle, color: UIColor.systemYellow.cgColor)
-        initValueView(on: soupValueView, value: data.contentValue.soup, color: UIColor.systemBlue.cgColor)
-        initValueView(on: happyValueView, value: data.contentValue.happiness, color: UIColor.systemPink.cgColor)
-        contentLabel.text = data.contenText.replacingOccurrences(of: "\\n", with: "\n")
-        mealLabel.text = data.meal
+        for view in [noodleValueView, soupValueView, happyValueView] {
+            view?.clipsToBounds = true
+            view?.layer.cornerRadius = 60 / 2
+        }
+        mainImageView.clipsToBounds = true
+        mainImageView.layer.cornerRadius = 10
+//        mainImageView.cornerForAll(radii: 10)
+        storeNameLabel.adjustsFontSizeToFitWidth = true
+        mealLabel.adjustsFontSizeToFitWidth = true
+        sideDishesLabel.adjustsFontSizeToFitWidth = true
+        storeNameLabel.setDefultFort()
+        mealLabel.setDefultFort()
+        sideDishesLabel.setDefultFort()
+        contentTextView.isEditable = false
+        contentTextView.text = data.contenText.replacingOccurrences(of: "\\n", with: "\n")
+        mainImageView.loadImage(data.mainImage, placeHolder: UIImage(named: "mainImage"))
+        
         storeNameLabel.text = store.name
-        mainImageView.kf.setImage(with: URL(string: data.mainImage))
-        soupLabel.text = "\(data.contentValue.noodle)"
-     noodleLabel.text = "\(data.contentValue.soup)"
-     oveallLabel.text = "\(data.contentValue.happiness)"
+        mealLabel.text = data.meal
+        sideDishesLabel.text = data.sideDishes ?? "無"
+        
+        
+        initValueView(on: noodleValueView, value: data.contentValue.noodle, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        initValueView(on: soupValueView, value: data.contentValue.soup, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        initValueView(on: happyValueView, value: data.contentValue.happiness, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        
+        soupLabel.adjustsFontSizeToFitWidth = true
+        noodleLabel.adjustsFontSizeToFitWidth = true
+        oveallLabel.adjustsFontSizeToFitWidth = true
+        if data.contentValue.soup == 10.0 {
+            soupLabel.text = "10"
+        } else {
+            soupLabel.text = "\(data.contentValue.soup)"
+        }
+        if data.contentValue.noodle == 10.0 {
+            noodleLabel.text = "10"
+        } else {
+            noodleLabel.text = "\(data.contentValue.noodle)"
+        }
+        if data.contentValue.happiness == 10.0 {
+            oveallLabel.text = "10"
+        } else {
+            oveallLabel.text = "\(data.contentValue.happiness)"
+        }
+        
     }
     private func initValueView(on view: UIView, value: Double, color: CGColor) {
-        // round view
-            let roundView = UIView(
-                frame: CGRect(
-                    x: view.bounds.origin.x,
-                    y: view.bounds.origin.y,
-                    width: view.bounds.size.width - 4,
-                    height: view.bounds.size.height - 4
-                )
-            )
-            roundView.backgroundColor = .B5
-            roundView.layer.cornerRadius = roundView.frame.size.width / 2
-            
-            // bezier path
-            let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
-                                          radius: roundView.frame.size.width / 2,
-                                          startAngle: CGFloat(-0.5 * .pi),
-                                          endAngle: CGFloat(1.5 * .pi),
-                                          clockwise: true)
-            // circle shape
-            let circleShape = CAShapeLayer()
-            circleShape.path = circlePath.cgPath
-            circleShape.strokeColor = color
-            circleShape.fillColor = UIColor.clear.cgColor
-            circleShape.lineWidth = 4
-            // set start and end values
-            circleShape.strokeStart = 0.0
-        circleShape.strokeEnd = value*0.1
-            
-            // add sublayer
-            roundView.layer.addSublayer(circleShape)
-            // add subview
-            view.addSubview(roundView)
-        view.backgroundColor = .clear
+        let circlePath = UIBezierPath(
+            arcCenter: CGPoint (x: view.frame.size.width / 2,y: view.frame.size.height / 2),
+            radius: view.frame.size.width / 2,
+            startAngle: CGFloat(-0.5 * .pi),
+            endAngle: CGFloat(1.5 * .pi),
+            clockwise: true
+        )
+        // circle shape
+        let circleShape = CAShapeLayer()
+        circleShape.path = circlePath.cgPath
+        circleShape.strokeColor = color
+        circleShape.fillColor = UIColor.clear.cgColor
+        circleShape.lineWidth = 2
+        // set start and end values
+        circleShape.strokeStart = 0.0
+        circleShape.strokeEnd = value * 0.1
+        // add sublayer
+        view.layer.addSublayer(circleShape)
     }
 }

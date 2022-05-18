@@ -13,7 +13,7 @@ protocol CommentDraggingViewDelegate: AnyObject {
 enum SelectionType: String {
     case noodle = "麵條喜好度："
     case soup = "湯頭喜好度："
-    case happy = "整體好感："
+    case happy = "綜合評價："
 }
 enum SelectionSubTitle: String {
     case text = "拖曳後記得按下儲存"
@@ -40,11 +40,13 @@ class DragingValueViewController: UIViewController {
         setBackButton()
         setLiquidView()
         let spacing = (UIScreen.height * 0.9 - 480) / 2
-        titleLabel.font = UIFont.regular(size: 30)
+        titleLabel.font = UIFont.regular(size: 20)
+        titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.characterSpacing = 2.5
         titleLabel.textColor = UIColor.B1
         
         subTitleLabel.font = UIFont.regular(size: 18)
+        
         subTitleLabel.characterSpacing = 2.5
         subTitleLabel.textColor = UIColor.B2
         self.view.addSubview(titleLabel)
@@ -120,15 +122,15 @@ class DragingValueViewController: UIViewController {
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
         backButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        backButton.layer.cornerRadius = 15
+        backButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        backButton.layer.cornerRadius = 30
         
         backButton.setImage( UIImage(named: "plus"), for: .normal)
         
-        backButton.backgroundColor = .black.withAlphaComponent(0.4)
+        backButton.backgroundColor = .B6
         backButton.tintColor = .white
-        backButton.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        backButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         backButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
     }
@@ -141,8 +143,6 @@ extension DragingValueViewController: LiquidBarViewControllerTOValue {
     func didChangeValue(view: LiquidBarViewController, value: Double) {
         valueLabel.text = String(value)
     }
-    
-    
     
 }
 

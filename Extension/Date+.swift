@@ -29,5 +29,10 @@ extension Date {
         let weekDay = dateFormatter.string(from: self).lowercased()
         return weekDay
     }
-    
+    func timeAgoDisplay() -> String {
+          let formatter = RelativeDateTimeFormatter()
+          formatter.unitsStyle = .full
+
+          return formatter.localizedString(for: self, relativeTo: Date())
+      }
 }

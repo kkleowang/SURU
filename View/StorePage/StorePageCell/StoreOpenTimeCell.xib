@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,60 +19,75 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lOo-8a-Upi">
-                        <rect key="frame" x="258.5" y="1.5" width="41.5" height="41"/>
+                        <rect key="frame" x="103.5" y="5" width="35.5" height="34"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbh-cb-bXp">
-                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="0.0" y="0.0" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezw-pI-8Og">
-                                <rect key="frame" x="0.0" y="20.5" width="41.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="0.0" y="17" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NW7-Bn-JLl">
-                        <rect key="frame" x="20" y="10" width="35.5" height="24"/>
-                        <color key="tintColor" name="C4"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain">
-                            <imageReference key="image" image="calendar" symbolScale="large"/>
-                        </buttonConfiguration>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSZ-Il-tMp">
-                        <rect key="frame" x="63.5" y="12" width="41.5" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="56" y="12.5" width="39.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCC-fJ-Inc">
+                        <rect key="frame" x="279" y="9.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="8GY-AC-qfs"/>
+                            <constraint firstAttribute="height" constant="25" id="tdd-bW-5AX"/>
+                        </constraints>
+                        <color key="tintColor" name="C4"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="chevron.down.circle" catalog="system"/>
+                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googleClock" translatesAutoresizingMaskIntoConstraints="NO" id="Ebc-Se-DdY">
+                        <rect key="frame" x="20" y="12" width="20" height="20"/>
+                        <color key="tintColor" name="B1"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="FD5-RY-cF0"/>
+                            <constraint firstAttribute="height" constant="20" id="e25-jj-mfc"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="MSZ-Il-tMp" firstAttribute="leading" secondItem="NW7-Bn-JLl" secondAttribute="trailing" constant="8" id="6EQ-Vt-ona"/>
-                    <constraint firstItem="NW7-Bn-JLl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ICK-ci-ube"/>
-                    <constraint firstAttribute="trailing" secondItem="lOo-8a-Upi" secondAttribute="trailing" constant="20" id="Jh1-Tp-SHk"/>
-                    <constraint firstItem="NW7-Bn-JLl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Vts-rv-hQ0"/>
-                    <constraint firstItem="lOo-8a-Upi" firstAttribute="centerY" secondItem="MSZ-Il-tMp" secondAttribute="centerY" id="hht-H4-MHm"/>
-                    <constraint firstAttribute="bottom" secondItem="NW7-Bn-JLl" secondAttribute="bottom" constant="10" id="ih5-L5-Ryi"/>
-                    <constraint firstItem="MSZ-Il-tMp" firstAttribute="centerY" secondItem="NW7-Bn-JLl" secondAttribute="centerY" id="jT7-63-tCG"/>
+                    <constraint firstItem="Ebc-Se-DdY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="1Ai-yO-cFo"/>
+                    <constraint firstItem="lOo-8a-Upi" firstAttribute="centerY" secondItem="Ebc-Se-DdY" secondAttribute="centerY" id="4qs-4O-4IA"/>
+                    <constraint firstAttribute="trailing" secondItem="oCC-fJ-Inc" secondAttribute="trailing" constant="16" id="JJv-7Q-BWU"/>
+                    <constraint firstItem="lOo-8a-Upi" firstAttribute="leading" secondItem="MSZ-Il-tMp" secondAttribute="trailing" constant="8" id="Mgz-En-DOY"/>
+                    <constraint firstItem="MSZ-Il-tMp" firstAttribute="leading" secondItem="Ebc-Se-DdY" secondAttribute="trailing" constant="16" id="UnV-On-VPN"/>
+                    <constraint firstItem="oCC-fJ-Inc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cKL-JI-NRq"/>
+                    <constraint firstItem="MSZ-Il-tMp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vRu-TG-ydc"/>
+                    <constraint firstItem="Ebc-Se-DdY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ypc-3y-EBS"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dinnerTimeLabel" destination="Ezw-pI-8Og" id="tB3-m0-LmC"/>
                 <outlet property="lunchTimeLabel" destination="hbh-cb-bXp" id="B0W-Xn-C09"/>
-                <outlet property="menuButton" destination="NW7-Bn-JLl" id="v4k-IA-noR"/>
                 <outlet property="openInfoLabel" destination="MSZ-Il-tMp" id="xcH-oM-cPw"/>
                 <outlet property="openTimeStackView" destination="lOo-8a-Upi" id="i79-sg-RR1"/>
+                <outlet property="uiMenuBtn" destination="oCC-fJ-Inc" id="K8c-G3-SgH"/>
             </connections>
-            <point key="canvasLocation" x="132" y="71"/>
+            <point key="canvasLocation" x="131.8840579710145" y="70.982142857142847"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="calendar" width="12" height="13"/>
+        <image name="chevron.down.circle" catalog="system" width="128" height="121"/>
+        <image name="googleClock" width="13" height="13"/>
+        <namedColor name="B1">
+            <color red="0.24699999392032623" green="0.22699999809265137" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="C4">
             <color red="0.98000001907348633" green="0.54100000858306885" blue="0.44699999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

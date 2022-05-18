@@ -11,23 +11,27 @@ import FirebaseAuth
 class UserRequestProvider {
     
     static let shared = UserRequestProvider()
-    // Native
-    lazy var currentUser = firebaseAuth.currentUser
-    lazy var currentUserID = firebaseAuth.currentUser?.uid
-    lazy var firebaseAuth = Auth.auth()
-    
-    
-    func listenFirebaseLogin(completion: @escaping (String?) -> Void) {
-        firebaseAuth.addStateDidChangeListener { _, user in
-            self.currentUser = user
-            self.currentUserID = user?.uid
-            completion(user?.uid)
-        }
+    var currentUser: User? {
+        firebaseAuth.currentUser
     }
+    lazy var firebaseAuth = Auth.auth()
+    var currentUserID: String? {
+        firebaseAuth.currentUser?.uid
+    }
+    
+    
+    
+//    func listenFirebaseLogin(completion: @escaping (String?) -> Void) {
+//        firebaseAuth.addStateDidChangeListener { _, user in
+//            self.currentUser = user
+//            self.currentUserID = user?.uid
+//            completion(user?.uid)
+//        }
+//    }
     func listenFirebaseLoginSendAccount(completion: @escaping (Result<Account?, Error>) -> Void) {
         firebaseAuth.addStateDidChangeListener { _, user in
-            self.currentUser = user
-            self.currentUserID = user?.uid
+//            self.currentUser = user
+//            self.currentUserID = user?.uid
             guard let id = user?.uid else { return }
             AccountRequestProvider.shared.fetchAccount(currentUserID: id) { result in
                 switch result {
@@ -49,7 +53,7 @@ class UserRequestProvider {
             
         }
     }
-    func appleLogin(credential: AuthCredential, completion: @escaping (Result<String, Error>) -> Void) {
+    func appleLogin(credential: AuthCredential,name: String?, completion: @escaping (Result<String, Error>) -> Void) {
         
         firebaseAuth.signIn(with: credential) { authResult, error in
             if let error = error {
@@ -61,7 +65,7 @@ class UserRequestProvider {
                     print("已經註冊過了", user.uid)
                     completion(.success("登入成功"))
                 } else {
-                    var account = self.mappingAppleLoginUser(user: user, credential: credential)
+                    var account = self.mappingAppleLoginUser(user: user, credential: credential, name: name)
                     AccountRequestProvider.shared.publishRegistedAccount(account: &account) { result in
                         switch result {
                         case .success(let string):
@@ -108,8 +112,8 @@ class UserRequestProvider {
         let account = Account(userID: user.uid, provider: user.providerID)
         return account
     }
-    func mappingAppleLoginUser(user: User, credential: AuthCredential) -> Account {
-        let userName = "新訪客"
+    func mappingAppleLoginUser(user: User, credential: AuthCredential, name: String?) -> Account {
+        let userName = name ?? "新訪客"
         let account = Account(userID: user.uid, name: userName, provider: credential.provider)
         return account
     }

@@ -47,9 +47,10 @@ class WelcomeView: UIView {
         self.delegate?.didTapPrivacyLabel(self)
     }
     
+    @available(iOS 13.2, *)
     func setAppleButton() {
-        let appleButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
-        appleButton.addTarget(self, action: #selector(tapAppleButton), for: .touchUpInside)
+        let appleButton = ASAuthorizationAppleIDButton(type: .signUp, style: .black)
+        appleButton.addTarget(self, action: #selector(tapAppleButton), for:  .touchUpInside)
         appleButtonView.stickSubView(appleButton)
     }
     

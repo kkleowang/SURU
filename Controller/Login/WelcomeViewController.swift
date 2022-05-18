@@ -25,7 +25,11 @@ class WelcomeViewController: UIViewController {
         setupWelcomView()
     }
     private func setupWelcomView() {
-        welcomeView.setAppleButton()
+        if #available(iOS 13.2, *) {
+            welcomeView.setAppleButton()
+        } else {
+            // Fallback on earlier versions
+        }
         welcomeView.delegate = self
         view.stickSubView(welcomeView)
     }
@@ -146,13 +150,18 @@ extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizat
         print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
         return
       }
-    
+        var name = "新訪客"
+        if let fullName = appleIDCredential.fullName {
+        if let givenName = fullName.givenName, let familyName = fullName.familyName {
+            name = "\(givenName) \(familyName)"
+        }
+        }
       // Initialize a Firebase credential.
         
       let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                 idToken: idTokenString,
                                                 rawNonce: nonce)
-        UserRequestProvider.shared.appleLogin(credential: credential) { result in
+        UserRequestProvider.shared.appleLogin(credential: credential,name: name) { result in
             switch result {
             case .failure(let error):
                 print("apple登入失敗", error)

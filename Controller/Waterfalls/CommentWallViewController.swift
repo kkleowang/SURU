@@ -10,23 +10,24 @@ import XLPagerTabStrip
 
 
 class CommentWallViewController: ButtonBarPagerTabStripViewController {
+    
     var accounts: [Account] = []
     var comments: [Comment] = []
     var stores: [Store] = []
     var currentAccount: Account?
     
-    @IBOutlet weak var scrollerView: UIScrollView!
+//    @IBOutlet weak var scrollerView: UIScrollView!
     override func viewDidLoad() {
-
-        settings.style.selectedBarBackgroundColor = .white
+        
+        settings.style.selectedBarBackgroundColor = UIColor.C4!
         settings.style.selectedBarHeight = 3
+        
         settings.style.buttonBarItemBackgroundColor = .clear
         settings.style.buttonBarItemFont = .systemFont(ofSize: 16)
         settings.style.buttonBarItemLeftRightMargin = 0
         
         super.viewDidLoad()
         self.navigationItem.title = "探索食記"
-//        navigationController?.navigationBar.isHidden = true
         containerView.bounces = false
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }

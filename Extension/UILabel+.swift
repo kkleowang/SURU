@@ -30,4 +30,7 @@ extension UILabel {
             // swiftlint:enable force_cast
         }
     }
+    func setDefultFort() {
+        self.font = UIFont.medium(size: self.font.pointSize)
+    }
 }

@@ -4,8 +4,6 @@
 <dict>
 	<key>Privacy — Photo Library Usage Description</key>
 	<string>是否允許SURU取用你的相機以便選取照片新增您的評論？</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -1,5 +1,5 @@
 //
-//  ProfileCommentCell.swift
+//  ProfileCommentCollectionViewCell.swift
 //  SURU_Leo
 //
 //  Created by LEO W on 2022/5/6.
@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ProfileCommentCell: UICollectionViewCell {
+class ProfileCommentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
