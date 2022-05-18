@@ -265,14 +265,13 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0:
                 return 80
             case 1:
                 
-                return UIScreen.width/1.5 - 20
+                return UIScreen.width / 1.5 - 20
             case 2:
                 
                 return 50
@@ -295,7 +294,6 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return UITableView.automaticDimension
         }
-        
     }
 //
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

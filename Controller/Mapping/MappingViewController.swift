@@ -9,16 +9,11 @@ import UIKit
 import MapKit
 
 class MappingViewController: UIViewController {
-    
-    //    private var isLogin = true
     private var commentData: [Comment] = []
     private var currentUser: Account?
     private var reportButton = UIButton()
     private let mapView = MapView()
     private var searchBar = UISearchBar()
-    
-    // 計算對應的function用
-    private var gestureHolder: [UITapGestureRecognizer] = []
     
     private var isSearchResults = false
     
@@ -31,20 +26,18 @@ class MappingViewController: UIViewController {
     }
     private var filteredStoreData: [Store] = []
     
-    
-    private var storeTag: [String] = []
-    
-    
     private var storeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private var selectedIndex = 0
     
     func setRegionToAnnotation() {
         var store: Store?
         if isSearchResults {
-            let selectedLocation = CLLocationCoordinate2D(latitude: filteredStoreData[selectedIndex].coordinate.lat - 0.002, longitude: filteredStoreData[selectedIndex].coordinate.long)
-            mapView.setRegion(MKCoordinateRegion(center: selectedLocation, latitudinalMeters: 800, longitudinalMeters: 800), animated: true)
+            store = filteredStoreData[selectedIndex]
         } else {
-            let selectedLocation = CLLocationCoordinate2D(latitude: storeData[selectedIndex].coordinate.lat - 0.002, longitude: storeData[selectedIndex].coordinate.long)
+            store = storeData[selectedIndex]
+        }
+        if let store = store {
+            let selectedLocation = CLLocationCoordinate2D(latitude: store.coordinate.lat - 0.002, longitude: store.coordinate.long)
             mapView.setRegion(MKCoordinateRegion(center: selectedLocation, latitudinalMeters: 800, longitudinalMeters: 800), animated: true)
         }
     }
@@ -84,7 +77,6 @@ class MappingViewController: UIViewController {
         mapView.layoutView(from: storeData)
     }
     private func setupHiddenCollectionView() {
-        //        setupDataForCollectionCell()
         if let flowLayout = storeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
         }
@@ -157,7 +149,6 @@ class MappingViewController: UIViewController {
                 self.commentData = data
             case .failure(let error) :
                 print("載入監聽評論失敗 地圖頁面失敗", error)
-                
             }
         }
     }
@@ -170,10 +161,9 @@ class MappingViewController: UIViewController {
                 self.currentUser = nil
             }
         }
-        
     }
     private func fetchData(competion: @escaping () -> Void) {
-        let group: DispatchGroup = DispatchGroup()
+        let group = DispatchGroup()
         let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
         let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
         let concurrentQueue3 = DispatchQueue(label: "com.leowang.queue3", attributes: .concurrent)
@@ -238,13 +228,10 @@ class MappingViewController: UIViewController {
         
         if let textField = searchBar.value(forKey: "searchField") as? UITextField {
             textField.backgroundColor = .white
-            //textField.font = myFont
-            //textField.textColor = myTextColor
-            //textField.tintColor = myTintColor
             let backgroundView = textField.subviews.first
             if #available(iOS 11.0, *) {
                 backgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-                backgroundView?.subviews.forEach({ $0.removeFromSuperview() })
+                backgroundView?.subviews.forEach { $0.removeFromSuperview() }
             }
             backgroundView?.layer.cornerRadius = 10.5
             backgroundView?.layer.masksToBounds = true
@@ -257,7 +244,7 @@ class MappingViewController: UIViewController {
 extension MappingViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let viewSize = 50.0
-        let imageView: UIImageView = {
+        let iconView: UIImageView = {
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: viewSize, height: viewSize))
             imageView.layer.cornerRadius = viewSize / 2
             imageView.layer.borderWidth = 2.0
@@ -266,45 +253,35 @@ extension MappingViewController: MKMapViewDelegate {
             imageView.clipsToBounds = true
             return imageView
         }()
-        if annotation is MKUserLocation {
-            return nil
-        }
+        if annotation is MKUserLocation { return nil }
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
         
         if annotationView == nil {
-            // create View
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
         } else {
-            // assign annotation
             annotationView?.annotation = annotation
         }
-        // set Image
         annotationView?.frame = CGRect(x: 0, y: 0, width: viewSize, height: viewSize)
         
-        switch annotation.title {
-        default:
-            for store in storeData where annotation.title == store.name {
-                switch cogfigReport(store: store) {
-                case 1:
-                    annotationView?.doGlowAnimation(withColor: .blue, withEffect: .small)
-                case 2:
-                    annotationView?.doGlowAnimation(withColor: .green, withEffect: .normal)
-                case 3:
-                    annotationView?.doGlowAnimation(withColor: .orange, withEffect: .mid)
-                case 4:
-                    annotationView?.doGlowAnimation(withColor: .red, withEffect: .big)
-                default:
-                    break
-                }
-                
-                imageView.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "mainImage") )
-                annotationView?.subviews.forEach { $0.removeFromSuperview() }
-                annotationView?.addSubview(imageView)
-                let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAnnotationView(sender:)))
-                tap.name = store.storeID
-                gestureHolder.append(tap)
-                annotationView?.addGestureRecognizer(tap)
+        if let store = storeData.first(where: { $0.name == annotation.title }) {
+            switch cogfigReport(store: store) {
+            case 1:
+                annotationView?.doGlowAnimation(withColor: .blue, withEffect: .small)
+            case 2:
+                annotationView?.doGlowAnimation(withColor: .green, withEffect: .normal)
+            case 3:
+                annotationView?.doGlowAnimation(withColor: .orange, withEffect: .mid)
+            case 4:
+                annotationView?.doGlowAnimation(withColor: .red, withEffect: .big)
+            default:
+                break
             }
+            iconView.loadImage(store.mainImage, placeHolder: UIImage(named: "mainImage") )
+            annotationView?.subviews.forEach { $0.removeFromSuperview() }
+            annotationView?.addSubview(iconView)
+            let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAnnotationView(sender:)))
+            tap.name = store.storeID
+            annotationView?.addGestureRecognizer(tap)
         }
         return annotationView
     }
@@ -313,9 +290,9 @@ extension MappingViewController: MKMapViewDelegate {
         guard let name = sender.name else { return }
         var index: Int?
         if isSearchResults {
-            index = filteredStoreData.firstIndex(where: { $0.storeID == name })
+            index = filteredStoreData.firstIndex { $0.storeID == name }
         } else {
-            index = storeData.firstIndex(where: { $0.storeID == name })
+            index = storeData.firstIndex { $0.storeID == name }
         }
         if let index = index {
             selectedIndex = index
@@ -324,12 +301,13 @@ extension MappingViewController: MKMapViewDelegate {
             configStoreView()
         }
     }
+    
     func cogfigReport(store: Store) -> Int {
         guard let reports = store.queueReport else { return 0 }
         let date = Double(Date().timeIntervalSince1970)
         if !reports.isEmpty {
-            guard let report = reports.sorted(by: {$0.createdTime > $1.createdTime}).first else { return 0 }
-            if (report.createdTime + 60*60) > date {
+            guard let report = reports.sorted(by: { $0.createdTime > $1.createdTime }).first else { return 0 }
+            if (report.createdTime + 60 * 60) > date {
                 return report.queueCount
             } else {
                 return 0
@@ -343,8 +321,6 @@ extension MappingViewController: MKMapViewDelegate {
             mapView.addAnnotation(annotation)
         }
     }
-    
-    
 }
 
 extension MappingViewController: UICollectionViewDataSource {
@@ -444,7 +420,7 @@ extension MappingViewController: UICollectionViewDelegateFlowLayout {
 extension MappingViewController {
     private func setupReportButton() {
         reportButton.isHidden = true
-        reportButton.frame = CGRect(x: UIScreen.width-70, y: 400, width: 60, height: 60)
+        reportButton.frame = CGRect(x: UIScreen.width - 70, y: 400, width: 60, height: 60)
         reportButton.layer.cornerRadius = 30.0
         self.view .addSubview(reportButton)
         reportButton.setImage( UIImage(named: "broadcast"), for: .normal)
@@ -454,11 +430,9 @@ extension MappingViewController {
         reportButton.addTarget(self, action: #selector(floatBtnAction(sender:)), for: .touchUpInside)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragAction(gesture:)))
         reportButton .addGestureRecognizer(panGesture)
-        
     }
     
     @objc private func dragAction(gesture: UIPanGestureRecognizer) {
-        
         let moveState = gesture.state
         switch moveState {
         case .began:
@@ -466,7 +440,6 @@ extension MappingViewController {
         case .changed:
             let point = gesture.translation(in: self.view)
             self.reportButton.center = CGPoint(x: self.reportButton.center.x + point.x, y: self.reportButton.center.y + point.y)
-            break
         case .ended:
             let point = gesture.translation(in: self.view)
             var newPoint = CGPoint(x: self.reportButton.center.x + point.x, y: self.reportButton.center.y + point.y)
@@ -483,7 +456,6 @@ extension MappingViewController {
             UIView.animate(withDuration: 0.5) {
                 self.reportButton.center = newPoint
             }
-            break
         default:
             break
         }
@@ -579,11 +551,10 @@ extension MappingViewController: UISearchBarDelegate {
     }
     
     private func filterAnnotation(text: String) {
-        
-        filteredStoreData = storeData.filter({ store in
-            let tag = store.tags.joined()
-            let title = store.name
-            let address = store.address
+        filteredStoreData = storeData.filter {
+            let tag = $0.tags.joined()
+            let title = $0.name
+            let address = $0.address
             
             let isMatchTags = tag.localizedStandardContains(text)
             let isMatchName = title.localizedStandardContains(text)
@@ -593,8 +564,7 @@ extension MappingViewController: UISearchBarDelegate {
             } else {
                 return false
             }
-        })
-        //        setupDataForFilteredCell()
+        }
         for annotation in mapView.annotations {
             mapView.removeAnnotation(annotation)
         }

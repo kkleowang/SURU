@@ -9,9 +9,6 @@ import Foundation
 import UIKit
 
 extension UIView {
-    /// 部分圓角
-    ///   - corners: 需要實現爲圓角的角，可傳入多個
-    ///   - radii: 圓角半徑
     func corner(byRoundingCorners corners: UIRectCorner, radii: CGFloat) {
         let maskPath = UIBezierPath(
             roundedRect: self.bounds,
@@ -22,7 +19,9 @@ extension UIView {
         maskLayer.path = maskPath.cgPath
         self.layer.mask = maskLayer
     }
-    
+    func cornerForAll(radii: CGFloat) {
+        corner(byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radii: radii)
+    }
     func makeShadow(shadowOpacity: Float? = 0.4, shadowRadius: CGFloat? = 15, color: CGColor? = UIColor.black.cgColor) {
         guard let shadowRadius = shadowRadius, let shadowOpacity = shadowOpacity else {
             return
@@ -33,12 +32,9 @@ extension UIView {
         self.layer.shadowRadius = shadowRadius
         self.layer.rasterizationScale = UIScreen.main.scale
     }
-    func cornerForAll(radii: CGFloat) {
-        corner(byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radii: radii)
-    }
-    // 註冊用
     class func fromNib<T: UIView>() -> T {
-        return Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
+        guard let output = Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)?[0] as? T else { return T() }
+        return output
     }
     
     func stickSubView(_ objectView: UIView) {
@@ -73,27 +69,26 @@ extension UIView {
         objectView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset.bottom).isActive = true
     }
     
-        enum GlowEffect: Float {
-            case small = 15, normal = 20, mid = 25, big = 30
-        }
-
-        func doGlowAnimation(withColor color: UIColor, withEffect effect: GlowEffect = .normal) {
-            layer.masksToBounds = false
-            layer.shadowColor = color.cgColor
-            layer.shadowRadius = 0
-            layer.shadowOpacity = 0.8
-            layer.shadowOffset = .zero
-
-            let glowAnimation = CABasicAnimation(keyPath: "shadowRadius")
-            glowAnimation.fromValue = 0
-            glowAnimation.toValue = effect.rawValue
-            glowAnimation.fillMode = .removed
-            glowAnimation.repeatCount = .infinity
-            glowAnimation.duration = 2
-            glowAnimation.autoreverses = true
-            layer.removeAllAnimations()
-            
-            layer.add(glowAnimation, forKey: "shadowGlowingAnimation")
-        }
+    enum GlowEffect: Float {
+        case small = 15, normal = 20, mid = 25, big = 30
+    }
     
+    func doGlowAnimation(withColor color: UIColor, withEffect effect: GlowEffect = .normal) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowRadius = 0
+        layer.shadowOpacity = 0.8
+        layer.shadowOffset = .zero
+        
+        let glowAnimation = CABasicAnimation(keyPath: "shadowRadius")
+        glowAnimation.fromValue = 0
+        glowAnimation.toValue = effect.rawValue
+        glowAnimation.fillMode = .removed
+        glowAnimation.repeatCount = .infinity
+        glowAnimation.duration = 2
+        glowAnimation.autoreverses = true
+        layer.removeAllAnimations()
+        
+        layer.add(glowAnimation, forKey: "shadowGlowingAnimation")
+    }
 }

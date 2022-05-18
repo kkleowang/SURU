@@ -20,7 +20,7 @@ extension Date {
         let formatter = DateFormatter()
         
         formatter.dateFormat = "yyyy.MM.dd HH:mm"
-                
+        
         return formatter
     }
     func weekDay() -> String {
@@ -30,9 +30,9 @@ extension Date {
         return weekDay
     }
     func timeAgoDisplay() -> String {
-          let formatter = RelativeDateTimeFormatter()
-          formatter.unitsStyle = .full
-
-          return formatter.localizedString(for: self, relativeTo: Date())
-      }
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        
+        return formatter.localizedString(for: self, relativeTo: Date())
+    }
 }

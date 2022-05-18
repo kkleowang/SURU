@@ -8,7 +8,6 @@
 import UIKit
 
 private enum SURUColor: String {
-
     // swiftlint:disable identifier_name
     case C1
 
@@ -43,11 +42,9 @@ private enum SURUColor: String {
     case main2
     
     case main3
-    
 }
 
 extension UIColor {
-
     static let C1 = toUIColor(.C1)
     
     static let C2 = toUIColor(.C2)
@@ -82,8 +79,6 @@ extension UIColor {
     
     static let main3 = toUIColor(.main3)
     
-    
-
     private static func toUIColor(_ color: SURUColor) -> UIColor? {
         return UIColor (named: color.rawValue)
     }

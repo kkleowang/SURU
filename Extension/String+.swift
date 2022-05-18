@@ -24,5 +24,4 @@ extension String {
         
         return boundingBox.width
     }
-    
 }

@@ -37,12 +37,6 @@ extension UICollectionView {
         self.backgroundView = nil
     }
 }
-//extension UICollectionViewCell {
-//    static var identifier: String {
-//        return String(describing: self)
-//    }
-////    open override var reuseIdentifier: String?
-//}
 extension UICollectionReusableView {
     static var identifier: String {
         return String(describing: self)
