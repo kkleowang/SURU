@@ -27,10 +27,10 @@ class FollowViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
             collectionView.backgroundColor = .B6
-        StoreRequestProvider.shared.listenStore {
-            self.updataStore()
-        }
-       
+//        StoreRequestProvider.shared.listenStore {
+//            self.updataStore()
+//        }
+//       
     }
     
     override func viewWillAppear(_ animated: Bool) {

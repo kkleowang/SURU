@@ -82,17 +82,26 @@ class StoreRequestProvider {
             }
         }
     }
-    func listenStore(completion: @escaping () -> Void) {
+    func listenStore(completion: @escaping (Result<Store, Error>) -> Void) {
         // [START listen_document]
         database.collection("stores").addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            }
             guard let snapshot = querySnapshot else {
-                print("Error fetching snapshots: \(error!)")
                 return
             }
             snapshot.documentChanges.forEach { diff in
-                if (diff.type == .modified) {
-                    completion()
+                if diff.type == .modified {
+                    do {
+                        if let data = try diff.document.data(as: Store.self, decoder: Firestore.Decoder()){
+                            completion(.success(data))
+                        }
+                    } catch {
+                        completion(.failure(error))
+                    }
                 }
+                
             }
         }
     }

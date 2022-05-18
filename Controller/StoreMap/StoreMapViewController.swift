@@ -1,5 +1,5 @@
 //
-//  MappingViewController.swift
+//  StoreMapViewController.swift
 //  SURU_Leo
 //
 //  Created by LEO W on 2022/4/16.
@@ -8,28 +8,118 @@
 import UIKit
 import MapKit
 
-class MappingViewController: UIViewController {
-    private var commentData: [Comment] = []
-    private var currentUser: Account?
-    private var reportButton = UIButton()
-    private let mapView = MapView()
-    private var searchBar = UISearchBar()
-    
+class StoreMapViewController: UIViewController {
+    // MARK: - Property
     private var isSearchResults = false
     
-    private var storeData: [Store] = [] {
-        didSet {
-            storeData = storeData.sorted {
-                $0.coordinate.long < $1.coordinate.long
-            }
-        }
-    }
-    private var filteredStoreData: [Store] = []
+    private let mapView = MapView()
     
+    private var searchBar = UISearchBar()
+    private var reportButton = UIButton()
     private var storeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    private var currentUser: Account?
+    private var storeData: [Store] = [] { didSet { storeData = storeData.sorted { $0.coordinate.long < $1.coordinate.long } } }
+    private var filteredStoreData: [Store] = []
+    private var commentData: [Comment] = []
     private var selectedIndex = 0
     
-    func setRegionToAnnotation() {
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        observeCurrentAccount()
+        observeCommentData()
+        observeLoginStatus()
+        observeStore()
+        setupSearchBar()
+        view.stickSubView(mapView)
+        setupReportButton()
+        fetchData { [weak self] in
+            self?.setupMapView()
+            self?.setupCollectionView()
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        storeCollectionView.reloadData()
+        reloadMapView()
+    }
+    // MARK: - Method
+    private func setupSearchBar() {
+        navigationItem.titleView = searchBar
+        searchBar.delegate = self
+        searchBar.tintColor = .B1
+        searchBar.searchTextField.autocorrectionType = .no
+        searchBar.returnKeyType = .search
+        searchBar.placeholder = " Search..."
+        searchBar.isTranslucent = false
+        searchBar.enablesReturnKeyAutomatically = false
+        
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = .white
+            let backgroundView = textField.subviews.first
+            if #available(iOS 11.0, *) {
+                backgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+                backgroundView?.subviews.forEach { $0.removeFromSuperview() }
+            }
+            backgroundView?.layer.cornerRadius = 10.5
+            backgroundView?.layer.masksToBounds = true
+        }
+    }
+    
+    private func setupReportButton() {
+        reportButton.isHidden = true
+        reportButton.frame = CGRect(x: UIScreen.width - 70, y: 400, width: 60, height: 60)
+        reportButton.layer.cornerRadius = 30.0
+        self.view .addSubview(reportButton)
+        reportButton.setImage( UIImage(named: "broadcast"), for: .normal)
+        reportButton.backgroundColor = .black.withAlphaComponent(0.4)
+        reportButton.tintColor = .white
+        reportButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        reportButton.addTarget(self, action: #selector(floatBtnAction(sender:)), for: .touchUpInside)
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragAction(gesture:)))
+        reportButton .addGestureRecognizer(panGesture)
+    }
+    
+    private func setupMapView() {
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.09108, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000)
+        mapView.delegate = self
+        mapView.setRegion(region, animated: true)
+        mapView.layoutView(from: storeData)
+    }
+    
+    private func configStore(text: String) {
+        setOriginRegion()
+        if text.isEmpty && isSearchResults {
+            isSearchResults = false
+            filteredStoreData = storeData
+        } else {
+            isSearchResults = true
+            filteredStoreData = storeData.filter {
+                let tag = $0.tags.joined()
+                let title = $0.name
+                let address = $0.address
+                
+                let isMatchTags = tag.localizedStandardContains(text)
+                let isMatchName = title.localizedStandardContains(text)
+                let isMatchAddress = address.localizedStandardContains(text)
+                if isMatchTags || isMatchName || isMatchAddress == true {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+        storeCollectionView.reloadData()
+        mapView.layoutView(from: filteredStoreData)
+    }
+    
+    private func setOriginRegion() {
+        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.00708, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000), animated: true)
+    }
+    
+    private func setRegionToAnnotation() {
         var store: Store?
         if isSearchResults {
             store = filteredStoreData[selectedIndex]
@@ -41,42 +131,13 @@ class MappingViewController: UIViewController {
             mapView.setRegion(MKCoordinateRegion(center: selectedLocation, latitudinalMeters: 800, longitudinalMeters: 800), animated: true)
         }
     }
-    func scrollToAnnotation() {
+    
+    private func scrollCardToAnnotation() {
         storeCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        observeCurrentAccount()
-        observeCommentData()
-        self.observeLoginStatus()
-        StoreRequestProvider.shared.listenStore {
-            self.updataStore()
-        }
-        self.view.stickSubView(mapView)
+
+    private func setupCollectionView() {
         storeCollectionView.isHidden = true
-        setupReportButton()
-        fetchData {
-            LKProgressHUD.showSuccess(text: "下載資料成功")
-            
-            self.setupSearchBar()
-            self.setupMapView()
-            self.setupHiddenCollectionView()
-        }
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        storeCollectionView.reloadData()
-        reloadMapView()
-    }
-    
-    private func setupMapView() {
-        mapView.delegate = self
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.09108, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000)
-        mapView.setRegion(region, animated: true)
-        mapView.layoutView(from: storeData)
-    }
-    private func setupHiddenCollectionView() {
         if let flowLayout = storeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
         }
@@ -99,153 +160,20 @@ class MappingViewController: UIViewController {
             reportButton.isHidden = false
         }
     }
+    private func reloadMapView() {
+        for annotation in mapView.annotations {
+            mapView.removeAnnotation(annotation)
+            mapView.addAnnotation(annotation)
+        }
+    }
     private func showLoginPage() {
         guard let tabbarController = tabBarController as? TabBarViewController else { return }
         tabbarController.presentWelcomePage()
     }
-    private func updataStore() {
-        StoreRequestProvider.shared.fetchStores { result in
-            switch result {
-            case .success(let data) :
-                print("監聽商店成功 地圖頁面", data.count)
-                self.storeData = data
-                if self.isSearchResults {
-                    let text = self.searchBar.text ?? ""
-                    self.filteredStoreData = self.storeData.filter({ store in
-                        let tag = store.tags.joined()
-                        let title = store.name
-                        let address = store.address
-                        
-                        let isMatchTags = tag.localizedStandardContains(text)
-                        let isMatchName = title.localizedStandardContains(text)
-                        let isMatchAddress = address.localizedStandardContains(text)
-                        if isMatchTags || isMatchName || isMatchAddress == true {
-                            return true
-                        } else {
-                            return false
-                        }
-                    })
-                }
-                self.storeCollectionView.reloadData()
-                self.reloadMapView()
-            case .failure(let error) :
-                print("下載商店資料失敗", error)
-            }
-        }
-    }
-    private func observeCurrentAccount() {
-        guard let userID = UserRequestProvider.shared.currentUserID else { return }
-        AccountRequestProvider.shared.listenAccount(currentUserID: userID) { result in
-            switch result {
-            case .success(let data) :
-                print("監聽登入使用者成功", data.userID)
-                self.currentUser = data
-            case .failure(let error) :
-                print("載入監聽評論失敗 地圖頁面失敗", error)
-            }
-        }
-    }
-    private func                 observeCommentData() {
-        CommentRequestProvider.shared.listenAllComment { result in
-            switch result {
-            case .success(let data) :
-                print("監聽評論成功 地圖頁面", data.count)
-                self.commentData = data
-            case .failure(let error) :
-                print("載入監聽評論失敗 地圖頁面失敗", error)
-            }
-        }
-    }
-    private func observeLoginStatus() {
-        UserRequestProvider.shared.listenFirebaseLoginSendAccount { result in
-            switch result {
-            case .success(let data) :
-                self.currentUser = data
-            case .failure :
-                self.currentUser = nil
-            }
-        }
-    }
-    private func fetchData(competion: @escaping () -> Void) {
-        let group = DispatchGroup()
-        let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
-        let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
-        let concurrentQueue3 = DispatchQueue(label: "com.leowang.queue3", attributes: .concurrent)
-        LKProgressHUD.show(text: "下載店家資訊中")
-        group.enter()
-        concurrentQueue1.async(group: group) {
-            StoreRequestProvider.shared.fetchStores { result in
-                switch result {
-                case .success(let data) :
-                    self.storeData = data
-                case .failure(let error) :
-                    print("下載商店資料失敗", error)
-                    LKProgressHUD.dismiss()
-                    LKProgressHUD.showFailure(text: "下載商店資料失敗")
-                }
-                group.leave()
-            }
-        }
-        group.enter()
-        concurrentQueue2.async(group: group) {
-            CommentRequestProvider.shared.fetchComments { result in
-                switch result {
-                case .success(let data) :
-                    self.commentData = data
-                case .failure(let error) :
-                    print("下載評論失敗", error)
-                    LKProgressHUD.dismiss()
-                    LKProgressHUD.showFailure(text: "下載評論失敗")
-                }
-                group.leave()
-            }
-        }
-        if UserRequestProvider.shared.currentUserID != nil {
-            group.enter()
-            concurrentQueue3.async(group: group) {
-                guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
-                AccountRequestProvider.shared.fetchAccount(currentUserID: currentUserID) { result in
-                    switch result {
-                    case .success(let data) :
-                        self.currentUser = data
-                    case .failure(let error) :
-                        print("載入使用者失敗", error)
-                        LKProgressHUD.dismiss()
-                        LKProgressHUD.showFailure(text: "載入使用者失敗")
-                    }
-                    group.leave()
-                }
-            }
-        }
-        group.notify(queue: DispatchQueue.main) {
-            LKProgressHUD.dismiss()
-            competion()
-        }
-    }
-    func setupSearchBar() {
-        searchBar.tintColor = .B1
-        searchBar.searchTextField.autocorrectionType = .no
-        searchBar.returnKeyType = .search
-        searchBar.placeholder = " Search..."
-        searchBar.isTranslucent = false
-        searchBar.enablesReturnKeyAutomatically = false
-        
-        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
-            textField.backgroundColor = .white
-            let backgroundView = textField.subviews.first
-            if #available(iOS 11.0, *) {
-                backgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-                backgroundView?.subviews.forEach { $0.removeFromSuperview() }
-            }
-            backgroundView?.layer.cornerRadius = 10.5
-            backgroundView?.layer.masksToBounds = true
-        }
-        searchBar.delegate = self
-        navigationItem.titleView = searchBar
-    }
+    
 }
-
-extension MappingViewController: MKMapViewDelegate {
+// MARK: - MapViewDelegate
+extension StoreMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let viewSize = 50.0
         let iconView: UIImageView = {
@@ -289,22 +217,6 @@ extension MappingViewController: MKMapViewDelegate {
         }
         return annotationView
     }
-    @objc func didTapAnnotationView(sender: UITapGestureRecognizer) {
-        searchBar.endEditing(true)
-        guard let name = sender.name else { return }
-        var index: Int?
-        if isSearchResults {
-            index = filteredStoreData.firstIndex { $0.storeID == name }
-        } else {
-            index = storeData.firstIndex { $0.storeID == name }
-        }
-        if let index = index {
-            selectedIndex = index
-            setRegionToAnnotation()
-            scrollToAnnotation()
-            configStoreView()
-        }
-    }
     
     func cogfigReport(store: Store) -> Int {
         guard let reports = store.queueReport else { return 0 }
@@ -319,15 +231,25 @@ extension MappingViewController: MKMapViewDelegate {
         }
         return 0
     }
-    func reloadMapView() {
-        for annotation in mapView.annotations {
-            mapView.removeAnnotation(annotation)
-            mapView.addAnnotation(annotation)
+    @objc func didTapAnnotationView(sender: UITapGestureRecognizer) {
+        searchBar.endEditing(true)
+        guard let name = sender.name else { return }
+        var index: Int?
+        if isSearchResults {
+            index = filteredStoreData.firstIndex { $0.storeID == name }
+        } else {
+            index = storeData.firstIndex { $0.storeID == name }
+        }
+        if let index = index {
+            selectedIndex = index
+            setRegionToAnnotation()
+            scrollCardToAnnotation()
+            configStoreView()
         }
     }
 }
-
-extension MappingViewController: UICollectionViewDataSource {
+// MARK: - CollectionViewDataSource
+extension StoreMapViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isSearchResults {
             return filteredStoreData.count
@@ -361,12 +283,12 @@ extension MappingViewController: UICollectionViewDataSource {
                 return false
             }
         }
-        cell.layoutCell(dataSource: store, commentData: comments, isCollect: isCollect, isLogin: isLogin)
+        cell.layoutCell(storeData: store, commentData: comments, isCollect: isCollect, isLogin: isLogin)
         return cell
     }
 }
-
-extension MappingViewController: UICollectionViewDelegate {
+// MARK: - CollectionViewDelegate
+extension StoreMapViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let currentUser = currentUser else {
             showLoginPage()
@@ -393,6 +315,7 @@ extension MappingViewController: UICollectionViewDelegate {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let itemSize = CGSize(width: storeCollectionView.frame.size.width - 2 * 16, height: storeCollectionView.frame.size.height - 2 * 6)
         let xCenterOffset = targetContentOffset.pointee.x + (itemSize.width / 2.0)
@@ -404,7 +327,8 @@ extension MappingViewController: UICollectionViewDelegate {
         setRegionToAnnotation()
     }
 }
-extension MappingViewController: UICollectionViewDelegateFlowLayout {
+// MARK: - FlowLayout
+extension StoreMapViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.frame.size
         let cellSize = CGSize(width: size.width - 2 * 16.0, height: size.height - 2 * 6.0)
@@ -423,21 +347,44 @@ extension MappingViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 6.0, left: 16.0, bottom: 6.0, right: 16.0)
     }
 }
-
-extension MappingViewController {
-    private func setupReportButton() {
-        reportButton.isHidden = true
-        reportButton.frame = CGRect(x: UIScreen.width - 70, y: 400, width: 60, height: 60)
-        reportButton.layer.cornerRadius = 30.0
-        self.view .addSubview(reportButton)
-        reportButton.setImage( UIImage(named: "broadcast"), for: .normal)
-        reportButton.backgroundColor = .black.withAlphaComponent(0.4)
-        reportButton.tintColor = .white
-        reportButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        reportButton.addTarget(self, action: #selector(floatBtnAction(sender:)), for: .touchUpInside)
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragAction(gesture:)))
-        reportButton .addGestureRecognizer(panGesture)
+// MARK: - StoreCardsCellDelegate
+extension StoreMapViewController: StoreCardsCellDelegate {
+    func didtapCollectionWhenNotLogin(view: StoreCardsCell) {
+        showLoginPage()
     }
+    func didtapCollectionButton(view: StoreCardsCell, storeID: String) {
+        if let user = currentUser {
+            StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
+                switch result {
+                case .success(let message):
+                    LKProgressHUD.showSuccess(text: message)
+                case .failure:
+                    LKProgressHUD.showFailure(text: "收藏失敗")
+                }
+            }
+        } else {
+            showLoginPage()
+        }
+    }
+    
+    func didtapUnCollectionButton(view: StoreCardsCell, storeID: String) {
+        if let user = currentUser {
+            StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
+                switch result {
+                case .success(let message):
+                    LKProgressHUD.showSuccess(text: message)
+                case .failure:
+                    LKProgressHUD.showFailure(text: "取消失敗")
+                }
+            }
+        } else {
+            showLoginPage()
+        }
+    }
+}
+// MARK: - ReportView
+extension StoreMapViewController {
+    
     
     @objc private func dragAction(gesture: UIPanGestureRecognizer) {
         let moveState = gesture.state
@@ -503,7 +450,7 @@ extension MappingViewController {
         }
     }
 }
-extension MappingViewController: ReportViewDelegate {
+extension StoreMapViewController: ReportViewDelegate {
     func didTapSendButton(_ view: ReportView, queue: Int) {
         if UserRequestProvider.shared.currentUser != nil {
             pulishQueue(queue: queue)
@@ -520,7 +467,7 @@ extension MappingViewController: ReportViewDelegate {
         view.removeFromSuperview()
     }
 }
-extension MappingViewController: UISearchBarDelegate {
+extension StoreMapViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
         setOriginRegion()
@@ -542,67 +489,116 @@ extension MappingViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         configStore(text: searchText)
     }
-    private func configStore(text: String) {
-        setOriginRegion()
-        if text.isEmpty && isSearchResults {
-            isSearchResults = false
-            filteredStoreData = storeData
-        } else {
-            isSearchResults = true
-            filteredStoreData = storeData.filter {
-                let tag = $0.tags.joined()
-                let title = $0.name
-                let address = $0.address
-                
-                let isMatchTags = tag.localizedStandardContains(text)
-                let isMatchName = title.localizedStandardContains(text)
-                let isMatchAddress = address.localizedStandardContains(text)
-                if isMatchTags || isMatchName || isMatchAddress == true {
-                    return true
-                } else {
-                    return false
-                }
-            }
-        }
-        storeCollectionView.reloadData()
-        mapView.layoutView(from: filteredStoreData)
-    }
-    
-    private func setOriginRegion() {
-        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.00708, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000), animated: true)
-    }
 }
-extension MappingViewController: StoreCardsCellDelegate {
-    func didtapCollectionWhenNotLogin(view: StoreCardsCell) {
-        showLoginPage()
-    }
-    func didtapCollectionButton(view: StoreCardsCell, storeID: String) {
-        if let user = currentUser {
-            StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
-                switch result {
-                case .success(let message):
-                    LKProgressHUD.showSuccess(text: message)
-                case .failure:
-                    LKProgressHUD.showFailure(text: "收藏失敗")
+
+// MARK: - Call Model
+extension StoreMapViewController {
+    private func observeStore() {
+        StoreRequestProvider.shared.listenStore { result in
+            switch result {
+            case .success(let data):
+                if let index = self.storeData.firstIndex(where: { $0.storeID == data.storeID }) {
+                    self.storeData[index] = data
                 }
+                if let index = self.filteredStoreData.firstIndex(where: { $0.storeID == data.storeID }) {
+                    self.storeData[index] = data
+                }
+                if self.isSearchResults {
+                    let text = self.searchBar.text ?? ""
+                    self.configStore(text: text)
+                }
+                self.storeCollectionView.reloadData()
+                self.reloadMapView()
+            case .failure:
+                LKProgressHUD.showFailure(text: "更新店家回報失敗")
             }
-        } else {
-            showLoginPage()
         }
     }
-    
-    func didtapUnCollectionButton(view: StoreCardsCell, storeID: String) {
-        if let user = currentUser {
-            StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
+    private func observeCurrentAccount() {
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        AccountRequestProvider.shared.listenAccount(currentUserID: userID) { result in
+            switch result {
+            case .success(let data) :
+                print("監聽登入使用者成功", data.userID)
+                self.currentUser = data
+            case .failure(let error) :
+                print("載入監聽評論失敗 地圖頁面失敗", error)
+            }
+        }
+    }
+    private func observeCommentData() {
+        CommentRequestProvider.shared.listenAllComment { result in
+            switch result {
+            case .success(let data) :
+                print("監聽評論成功 地圖頁面", data.count)
+                self.commentData = data
+            case .failure(let error) :
+                print("載入監聽評論失敗 地圖頁面失敗", error)
+            }
+        }
+    }
+    private func observeLoginStatus() {
+        UserRequestProvider.shared.listenFirebaseLoginSendAccount { result in
+            switch result {
+            case .success(let data) :
+                self.currentUser = data
+            case .failure :
+                self.currentUser = nil
+            }
+        }
+    }
+    private func fetchData(competion: @escaping () -> Void) {
+        let group = DispatchGroup()
+        let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
+        let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
+        let concurrentQueue3 = DispatchQueue(label: "com.leowang.queue3", attributes: .concurrent)
+        LKProgressHUD.show(text: "下載店家資訊中")
+        group.enter()
+        concurrentQueue1.async(group: group) {
+            StoreRequestProvider.shared.fetchStores { result in
                 switch result {
-                case .success(let message):
-                    LKProgressHUD.showSuccess(text: message)
+                case .success(let data) :
+                    self.storeData = data
                 case .failure:
-                    LKProgressHUD.showFailure(text: "取消失敗")
+                    LKProgressHUD.dismiss()
+                    LKProgressHUD.showFailure(text: "下載商店資料失敗")
+                }
+                group.leave()
+            }
+        }
+        group.enter()
+        concurrentQueue2.async(group: group) {
+            CommentRequestProvider.shared.fetchComments { result in
+                switch result {
+                case .success(let data) :
+                    self.commentData = data
+                case .failure:
+                    LKProgressHUD.dismiss()
+                    LKProgressHUD.showFailure(text: "下載評論失敗")
+                }
+                group.leave()
+            }
+        }
+        if UserRequestProvider.shared.currentUserID != nil {
+            group.enter()
+            concurrentQueue3.async(group: group) {
+                guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
+                AccountRequestProvider.shared.fetchAccount(currentUserID: currentUserID) { result in
+                    switch result {
+                    case .success(let data) :
+                        self.currentUser = data
+                    case .failure:
+                        LKProgressHUD.dismiss()
+                        LKProgressHUD.showFailure(text: "載入使用者失敗")
+                    }
+                    group.leave()
                 }
             }
-        } else {
-            showLoginPage()
+        }
+        group.notify(queue: DispatchQueue.main) {
+            LKProgressHUD.dismiss()
+            LKProgressHUD.showSuccess(text: "下載資料成功")
+            competion()
         }
     }
 }

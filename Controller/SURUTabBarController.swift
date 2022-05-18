@@ -12,7 +12,7 @@ import Alamofire
 private struct StoryboardCategory {
     static let waterfalls = "CommentWallViewController"
     
-    static let mapping = "MappingViewController"
+    static let storeMap = "StoreMapViewController"
     
     static let comment = "CommentViewController"
     
@@ -22,7 +22,7 @@ private struct StoryboardCategory {
 private enum Tab {
     case commentWall
     
-    case mapPage
+    case storeMap
     
     case publishComment
     
@@ -35,7 +35,7 @@ private enum Tab {
         switch self {
         case .commentWall: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.waterfalls)
             
-        case .mapPage: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.mapping)
+        case .storeMap: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.storeMap)
             
         case .publishComment: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.comment)
             
@@ -49,7 +49,7 @@ private enum Tab {
     
     func tabBarItem() -> UITabBarItem {
         switch self {
-        case .mapPage:
+        case .storeMap:
             return UITabBarItem(
                 title: "地圖",
                 image: UIImage(systemName: "location.circle"),
@@ -65,14 +65,14 @@ private enum Tab {
             
         case .publishComment:
             return UITabBarItem(
-                title: "發表評論",
+                title: "發表食記",
                 image: UIImage(systemName: "rectangle.stack.badge.plus"),
                 selectedImage: UIImage(systemName: "rectangle.stack.badge.plus")
             )
             
         case .profile:
             return UITabBarItem(
-                title: "個人資料",
+                title: "我的",
                 image: UIImage(systemName: "person.crop.circle"),
                 selectedImage: UIImage(systemName: "person.crop.circle.fill")
             )
@@ -81,27 +81,21 @@ private enum Tab {
 }
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
-    private let tabs: [Tab] = [.mapPage, .commentWall, .publishComment, .profile]
+    private let tabs: [Tab] = [.storeMap, .commentWall, .publishComment, .profile]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        UserRequestProvider.shared.listenFirebaseLogin
         tabBar.tintColor = .C4
-        view.backgroundColor = .white
+        tabBar.backgroundColor = .white
         viewControllers = tabs.map { $0.controller() }
         delegate = self
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-                self.tabBar.backgroundColor = .white
-    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let currentUserID = UserRequestProvider.shared.currentUserID {
             AccountRequestProvider.shared.addLoginHistroy(date: Date(), currentUserID: currentUserID)
-            print("Logined , id: \(currentUserID)")
         } else {
-            print("Not login, presentWelcomPage")
             presentWelcomePage()
         }
     }

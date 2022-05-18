@@ -34,9 +34,9 @@ class DiscoveryViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
-        StoreRequestProvider.shared.listenStore {
-            self.updataStore()
-        }
+//        StoreRequestProvider.shared.listenStore {
+//            self.updataStore()
+//        }
         
     }
     

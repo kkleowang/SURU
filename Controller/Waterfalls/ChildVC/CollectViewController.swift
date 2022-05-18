@@ -28,9 +28,9 @@ class CollectViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
             collectionView.backgroundColor = .B6
-        StoreRequestProvider.shared.listenStore {
-            self.updataStore()
-        }
+//        StoreRequestProvider.shared.listenStore {
+//            self.updataStore()
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

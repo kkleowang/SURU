@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -23,7 +23,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1v-Yy-I6t" userLabel="contentView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-Zz-JPZ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainImage" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-Zz-JPZ">
                                 <rect key="frame" x="16" y="16" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eIG-Zz-JPZ" secondAttribute="height" multiplier="1:1" id="K5H-Pm-oSC"/>
@@ -56,7 +56,7 @@
                                     <action selector="tapCollectButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="PoC-Lg-FIO"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="002" translatesAutoresizingMaskIntoConstraints="NO" id="pKe-CK-H57">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noData" translatesAutoresizingMaskIntoConstraints="NO" id="pKe-CK-H57">
                                 <rect key="frame" x="16" y="82" width="185" height="132"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pKe-CK-H57" secondAttribute="height" multiplier="7:5" id="cR2-hc-YBU"/>
@@ -235,30 +235,30 @@
             <size key="customSize" width="167" height="131"/>
             <connections>
                 <outlet property="collectButton" destination="WQn-34-KEC" id="hTi-HV-qnC"/>
-                <outlet property="dotView" destination="COQ-uP-9Zs" id="F90-ld-4rf"/>
                 <outlet property="followerLabel" destination="LA1-cx-kgA" id="OqD-oF-J7Q"/>
                 <outlet property="mostCommentImageView" destination="pKe-CK-H57" id="Uho-2I-i6t"/>
-                <outlet property="nameLabel" destination="V6n-Bx-9yg" id="yC5-uS-lgI"/>
                 <outlet property="nonReportLabel" destination="3hR-5Z-jG9" id="vlc-KA-Fby"/>
-                <outlet property="noodleLabel" destination="xZP-5w-tX3" id="9CC-ep-VWg"/>
+                <outlet property="noodleValueLabel" destination="xZP-5w-tX3" id="9CC-ep-VWg"/>
                 <outlet property="noodleView" destination="ntG-MR-eKj" id="h5Q-VH-e3r"/>
-                <outlet property="overallLabel" destination="q03-7t-Brk" id="cSw-cT-NTZ"/>
+                <outlet property="openDayView" destination="COQ-uP-9Zs" id="AAP-Lv-2Xm"/>
+                <outlet property="overallValueLabel" destination="q03-7t-Brk" id="cSw-cT-NTZ"/>
                 <outlet property="overallView" destination="Yae-yh-FMc" id="JKz-qA-ai6"/>
                 <outlet property="reportLabel" destination="yQ9-Sv-NVl" id="htT-WO-Jvn"/>
                 <outlet property="reportPeopleLabel" destination="EJ7-si-3Vz" id="IJE-Y1-Ywv"/>
                 <outlet property="reportView" destination="BFV-NR-Vsf" id="CRr-yd-E0M"/>
                 <outlet property="reportWaitLabel" destination="HA5-Ci-dD0" id="3mV-g4-ndO"/>
-                <outlet property="soupLabel" destination="RxI-4z-XZk" id="nQq-4w-rGj"/>
+                <outlet property="soupValueLabel" destination="RxI-4z-XZk" id="nQq-4w-rGj"/>
                 <outlet property="soupView" destination="v0D-fU-tot" id="CSx-8B-rgU"/>
                 <outlet property="storeImageView" destination="eIG-Zz-JPZ" id="1s8-vS-1RL"/>
+                <outlet property="storeNameLabel" destination="V6n-Bx-9yg" id="yC5-uS-lgI"/>
             </connections>
             <point key="canvasLocation" x="215.94202898550725" y="130.58035714285714"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="002" width="940" height="650"/>
-        <image name="appstore" width="1024" height="1024"/>
         <image name="collect.empty" width="10" height="13"/>
+        <image name="mainImage" width="1024" height="1024"/>
+        <image name="noData" width="1080" height="1080"/>
         <image name="reportBG" width="750" height="300"/>
         <namedColor name="B1">
             <color red="0.24699999392032623" green="0.22699999809265137" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

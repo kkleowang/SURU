@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import Kingfisher
 
-class MapView: MKMapView {
+class MapView: MKMapView{
     
     func layoutView(from stores: [Store]) {
         if !stores.isEmpty {

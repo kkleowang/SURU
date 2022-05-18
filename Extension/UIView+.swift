@@ -22,6 +22,10 @@ extension UIView {
     func cornerForAll(radii: CGFloat) {
         corner(byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radii: radii)
     }
+    func cornerRadii(radii: CGFloat) {
+        self.clipsToBounds = true
+        self.layer.cornerRadius = radii
+    }
     func makeShadow(shadowOpacity: Float? = 0.4, shadowRadius: CGFloat? = 15, color: CGColor? = UIColor.black.cgColor) {
         guard let shadowRadius = shadowRadius, let shadowOpacity = shadowOpacity else {
             return

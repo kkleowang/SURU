@@ -404,7 +404,7 @@ extension StorePageViewController: StoreTopViewDelegate {
 }
 extension StorePageViewController: StoreImageCellDelegate {
     func didTapPopularImage(_ view: StoreImageCell, image: UIImage) {
-        let view: FullScreenImageView = UIView.fromNib()
+        let view: FullScreenView = UIView.fromNib()
         view.imageView.image = image
         let tap = UITapGestureRecognizer(target: self, action: #selector(dissmiss))
         view.addGestureRecognizer(tap)
