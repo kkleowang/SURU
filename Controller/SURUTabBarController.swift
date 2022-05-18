@@ -80,7 +80,7 @@ private enum Tab {
     }
 }
 
-class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
+class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private let tabs: [Tab] = [.mapPage, .commentWall, .publishComment, .profile]
     
     override func viewDidLoad() {
@@ -115,7 +115,6 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             switch viewController {
             case viewControllers?[0]:
                 return true
-                
             default:
                 presentWelcomePage()
                 return false
@@ -125,7 +124,7 @@ class SURUTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
     }
 }
-extension SURUTabBarViewController: SignInAndOutViewControllerDelegate {
+extension TabBarViewController: SignInAndOutViewControllerDelegate {
     func didSelectLookAround(_ view: SignInAndOutViewController) {
         selectedIndex = 0
     }

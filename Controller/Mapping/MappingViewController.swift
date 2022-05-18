@@ -47,9 +47,9 @@ class MappingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        listenAccount()
-        listenAllComment()
-        self.listenLoginState()
+        observeCurrentAccount()
+        observeCommentData()
+        self.observeLoginStatus()
         StoreRequestProvider.shared.listenStore {
             self.updataStore()
         }
@@ -99,6 +99,10 @@ class MappingViewController: UIViewController {
             reportButton.isHidden = false
         }
     }
+    private func showLoginPage() {
+        guard let tabbarController = tabBarController as? TabBarViewController else { return }
+        tabbarController.presentWelcomePage()
+    }
     private func updataStore() {
         StoreRequestProvider.shared.fetchStores { result in
             switch result {
@@ -129,7 +133,7 @@ class MappingViewController: UIViewController {
             }
         }
     }
-    private func listenAccount() {
+    private func observeCurrentAccount() {
         guard let userID = UserRequestProvider.shared.currentUserID else { return }
         AccountRequestProvider.shared.listenAccount(currentUserID: userID) { result in
             switch result {
@@ -141,7 +145,7 @@ class MappingViewController: UIViewController {
             }
         }
     }
-    private func listenAllComment() {
+    private func                 observeCommentData() {
         CommentRequestProvider.shared.listenAllComment { result in
             switch result {
             case .success(let data) :
@@ -152,7 +156,7 @@ class MappingViewController: UIViewController {
             }
         }
     }
-    private func listenLoginState() {
+    private func observeLoginStatus() {
         UserRequestProvider.shared.listenFirebaseLoginSendAccount { result in
             switch result {
             case .success(let data) :
@@ -364,8 +368,11 @@ extension MappingViewController: UICollectionViewDataSource {
 
 extension MappingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let currentUser = currentUser else {
+            showLoginPage()
+            return
+        }
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "StorePageViewController") as? StorePageViewController else { return }
-        
         var store: Store?
         if isSearchResults {
             store = filteredStoreData[indexPath.row]
@@ -504,10 +511,7 @@ extension MappingViewController: ReportViewDelegate {
             reportButton.isHidden = false
             view.removeFromSuperview()
         } else {
-            reportButton.isHidden = false
-            view.removeFromSuperview()
-            
-            presentWelcomePage()
+            showLoginPage()
         }
     }
     func didTapCloseButton(_ view: ReportView) {
@@ -519,9 +523,9 @@ extension MappingViewController: ReportViewDelegate {
 extension MappingViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
+        setOriginRegion()
         storeCollectionView.isHidden = true
         reportButton.isHidden = true
-        setOriginRegion()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -536,85 +540,69 @@ extension MappingViewController: UISearchBarDelegate {
         searchBar.endEditing(true)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        setOriginRegion()
-        
-        if searchText.isEmpty && isSearchResults {
-            isSearchResults = false
-            for annotation in mapView.annotations {
-                mapView.removeAnnotation(annotation)
-            }
-            storeCollectionView.reloadData()
-            mapView.layoutView(from: storeData)
-        } else {
-            filterAnnotation(text: searchText)
-        }
+        configStore(text: searchText)
     }
-    
-    private func filterAnnotation(text: String) {
-        filteredStoreData = storeData.filter {
-            let tag = $0.tags.joined()
-            let title = $0.name
-            let address = $0.address
-            
-            let isMatchTags = tag.localizedStandardContains(text)
-            let isMatchName = title.localizedStandardContains(text)
-            let isMatchAddress = address.localizedStandardContains(text)
-            if isMatchTags || isMatchName || isMatchAddress == true {
-                return true
-            } else {
-                return false
+    private func configStore(text: String) {
+        setOriginRegion()
+        if text.isEmpty && isSearchResults {
+            isSearchResults = false
+            filteredStoreData = storeData
+        } else {
+            isSearchResults = true
+            filteredStoreData = storeData.filter {
+                let tag = $0.tags.joined()
+                let title = $0.name
+                let address = $0.address
+                
+                let isMatchTags = tag.localizedStandardContains(text)
+                let isMatchName = title.localizedStandardContains(text)
+                let isMatchAddress = address.localizedStandardContains(text)
+                if isMatchTags || isMatchName || isMatchAddress == true {
+                    return true
+                } else {
+                    return false
+                }
             }
         }
-        for annotation in mapView.annotations {
-            mapView.removeAnnotation(annotation)
-        }
-        isSearchResults = true
         storeCollectionView.reloadData()
         mapView.layoutView(from: filteredStoreData)
     }
+    
     private func setOriginRegion() {
         mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 25.00708, longitude: 121.5598), latitudinalMeters: 20000, longitudinalMeters: 20000), animated: true)
     }
 }
 extension MappingViewController: StoreCardsCellDelegate {
     func didtapCollectionWhenNotLogin(view: StoreCardsCell) {
-        presentWelcomePage()
-    }
-    func presentWelcomePage() {
-        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
-        controller.delegate = self
-        self.present(controller, animated: true, completion: nil)
+        showLoginPage()
     }
     func didtapCollectionButton(view: StoreCardsCell, storeID: String) {
-        guard let user = currentUser else { return }
-        StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
-            switch result {
-            case .success(let message):
-                LKProgressHUD.showSuccess(text: message)
-            case .failure:
-                LKProgressHUD.showFailure(text: "收藏失敗")
+        if let user = currentUser {
+            StoreRequestProvider.shared.collectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
+                switch result {
+                case .success(let message):
+                    LKProgressHUD.showSuccess(text: message)
+                case .failure:
+                    LKProgressHUD.showFailure(text: "收藏失敗")
+                }
             }
+        } else {
+            showLoginPage()
         }
     }
     
     func didtapUnCollectionButton(view: StoreCardsCell, storeID: String) {
-        guard let user = currentUser else { return }
-        StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
-            switch result {
-            case .success(let message):
-                LKProgressHUD.showSuccess(text: message)
-            case .failure:
-                LKProgressHUD.showFailure(text: "取消失敗")
+        if let user = currentUser {
+            StoreRequestProvider.shared.unCollectStore(currentUserID: user.userID, tagertStoreID: storeID) { result in
+                switch result {
+                case .success(let message):
+                    LKProgressHUD.showSuccess(text: message)
+                case .failure:
+                    LKProgressHUD.showFailure(text: "取消失敗")
+                }
             }
+        } else {
+            showLoginPage()
         }
-    }
-}
-
-extension MappingViewController: SignInAndOutViewControllerDelegate {
-    func didSelectLookAround(_ view: SignInAndOutViewController) {
-        self.tabBarController?.selectedIndex = 0
-    }
-    func didSelectGoEditProfile(_ view: SignInAndOutViewController) {
-        self.tabBarController?.selectedIndex = 3
     }
 }

@@ -125,7 +125,7 @@
 		B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DA6E7C2823B6A100868381 /* EditProfileView.xib */; };
 		B8DA6E7F2823B7C700868381 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA6E7E2823B7C700868381 /* EditProfileView.swift */; };
 		B8DBDD4D28246A57008DC615 /* ProfileCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DBDD4B28246A57008DC615 /* ProfileCommentsCell.swift */; };
-		B8DBDD4E28246A57008DC615 /* ProfileCommentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DBDD4C28246A57008DC615 /* ProfileCommentCollectionViewCell.xib */; };
+		B8DBDD4E28246A57008DC615 /* ProfileCommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DBDD4C28246A57008DC615 /* ProfileCommentsCell.xib */; };
 		B8DBDD5028246D50008DC615 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DBDD4F28246D50008DC615 /* UICollectionView+.swift */; };
 		B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */; };
 		B8EC70012805275300DA8B78 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70002805275300DA8B78 /* UIView+.swift */; };
@@ -284,7 +284,7 @@
 		B8DA6E7C2823B6A100868381 /* EditProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
 		B8DA6E7E2823B7C700868381 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		B8DBDD4B28246A57008DC615 /* ProfileCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentsCell.swift; sourceTree = "<group>"; };
-		B8DBDD4C28246A57008DC615 /* ProfileCommentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCollectionViewCell.xib; sourceTree = "<group>"; };
+		B8DBDD4C28246A57008DC615 /* ProfileCommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentsCell.xib; sourceTree = "<group>"; };
 		B8DBDD4F28246D50008DC615 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragingValueViewController.swift; sourceTree = "<group>"; };
 		B8EC70002805275300DA8B78 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -876,7 +876,7 @@
 		B8F92C8A2830ED750002B252 /* collectionView */ = {
 			isa = PBXGroup;
 			children = (
-				B8DBDD4C28246A57008DC615 /* ProfileCommentCollectionViewCell.xib */,
+				B8DBDD4C28246A57008DC615 /* ProfileCommentsCell.xib */,
 				B8DBDD4B28246A57008DC615 /* ProfileCommentsCell.swift */,
 			);
 			path = collectionView;
@@ -968,7 +968,7 @@
 				B83B19282827D95300686D16 /* StoreTagsCell.xib in Resources */,
 				B86AB7EA28203D0700154B26 /* WriteCommentView.xib in Resources */,
 				B85B63C5280D2CDD00621E4A /* blue.json in Resources */,
-				B8DBDD4E28246A57008DC615 /* ProfileCommentCollectionViewCell.xib in Resources */,
+				B8DBDD4E28246A57008DC615 /* ProfileCommentsCell.xib in Resources */,
 				B83B19362827D9B000686D16 /* StoreSeatsCell.xib in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
 				B8A11AF02813E4100079A080 /* StoreCardCell.xib in Resources */,

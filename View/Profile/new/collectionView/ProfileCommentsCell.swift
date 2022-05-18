@@ -10,10 +10,6 @@ import Kingfisher
 
 class ProfileCommentsCell: UICollectionViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     func layoutCell (comment: Comment) {
         mainImageView.loadImage(comment.mainImage, placeHolder: nil)
     }
