@@ -58,7 +58,7 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
         UserRequestProvider.shared.nativeSignUp(withEmail: email, withPassword: password) { result in
             switch result {
             case .failure(let error):
-//                LKProgressHUD.showFailure(text: error.localizedDescription)
+                //                LKProgressHUD.showFailure(text: error.localizedDescription)
                 LKProgressHUD.showFailure(text: "登入失敗請再試一次")
             case .success(let message):
                 self.showAddInfoAlert()
@@ -103,15 +103,15 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
         controller.layoutSignView()
         if #available(iOS 15.0, *) {
             if let sheet = controller.sheetPresentationController {
-                       sheet.detents = [.medium()]
+                sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 20
                 
             }
         }
-            self.present(controller, animated: true, completion: nil)
+        self.present(controller, animated: true, completion: nil)
     }
     
     
-   
+    
     
 }

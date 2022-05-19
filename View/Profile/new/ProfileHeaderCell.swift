@@ -10,7 +10,7 @@ protocol ProfileHeaderCellDelegate: AnyObject {
     func didtapBackBtn(_ view:  ProfileHeaderCell)
     func didtapBadgeBtn(_ view:  ProfileHeaderCell)
     func didtapSettingBtn(_ view:  ProfileHeaderCell, targetUserID: String?)
-//    func didtapBlockBtn(_ view:  ProfileHeaderCell)
+    //    func didtapBlockBtn(_ view:  ProfileHeaderCell)
     
     func didtapPost(_ view:  ProfileHeaderCell)
     func didtapFans(_ view:  ProfileHeaderCell)

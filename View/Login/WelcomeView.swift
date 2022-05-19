@@ -23,7 +23,7 @@ class WelcomeView: UIView {
     @IBOutlet weak var appLogoImage: UIImageView!
     @IBOutlet weak var appWelcomeLabel: UILabel!
     
-     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     
     

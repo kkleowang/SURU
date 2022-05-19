@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class CommentTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var mainImage: UIImageView!
     
     @IBOutlet weak var storeNameLabel: UILabel!
@@ -40,35 +40,35 @@ class CommentTableViewCell: UITableViewCell {
     }
     private func initValueView(on view: UIView, value: Double, color: CGColor) {
         // round view
-            let roundView = UIView(
-                frame: CGRect(
-                    x: view.bounds.origin.x,
-                    y: view.bounds.origin.y,
-                    width: view.bounds.size.width - 4,
-                    height: view.bounds.size.height - 4
-                )
+        let roundView = UIView(
+            frame: CGRect(
+                x: view.bounds.origin.x,
+                y: view.bounds.origin.y,
+                width: view.bounds.size.width - 4,
+                height: view.bounds.size.height - 4
             )
-            roundView.backgroundColor = .B5
-            roundView.layer.cornerRadius = roundView.frame.size.width / 2
-     
-            let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
-                                          radius: roundView.frame.size.width / 2,
-                                          startAngle: CGFloat(-0.5 * .pi),
-                                          endAngle: CGFloat(1.5 * .pi),
-                                          clockwise: true)
-            let circleShape = CAShapeLayer()
-            circleShape.path = circlePath.cgPath
-            circleShape.strokeColor = color
-            circleShape.fillColor = UIColor.clear.cgColor
-            circleShape.lineWidth = 4
-            // set start and end values
-            circleShape.strokeStart = 0.0
+        )
+        roundView.backgroundColor = .B5
+        roundView.layer.cornerRadius = roundView.frame.size.width / 2
+        
+        let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
+                                      radius: roundView.frame.size.width / 2,
+                                      startAngle: CGFloat(-0.5 * .pi),
+                                      endAngle: CGFloat(1.5 * .pi),
+                                      clockwise: true)
+        let circleShape = CAShapeLayer()
+        circleShape.path = circlePath.cgPath
+        circleShape.strokeColor = color
+        circleShape.fillColor = UIColor.clear.cgColor
+        circleShape.lineWidth = 4
+        // set start and end values
+        circleShape.strokeStart = 0.0
         circleShape.strokeEnd = value*0.1
-            
-            // add sublayer
-            roundView.layer.addSublayer(circleShape)
-            // add subview
-            view.addSubview(roundView)
+        
+        // add sublayer
+        roundView.layer.addSublayer(circleShape)
+        // add subview
+        view.addSubview(roundView)
         view.backgroundColor = .clear
     }
 }

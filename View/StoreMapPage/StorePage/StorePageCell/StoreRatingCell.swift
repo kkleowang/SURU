@@ -8,46 +8,57 @@
 import UIKit
 
 class StoreRatingCell: UITableViewCell {
-
     
-    @IBOutlet weak var leftView: UIView!
-    @IBOutlet weak var midView: UIView!
-    @IBOutlet weak var rightView: UIView!
     
-    @IBOutlet weak var leftLabel: UILabel!
-    @IBOutlet weak var midLabel: UILabel!
-    @IBOutlet weak var rightLabel: UILabel!
+    @IBOutlet weak var soupView: UIView!
+    @IBOutlet weak var noodleView: UIView!
+    @IBOutlet weak var overallView: UIView!
     
-    func layoutCell(data: [Double]? = [0,0,0]) {
-        guard let data = data else {
-            return
-        }
-        leftView.layer.cornerRadius = leftView.bounds.width/2
-        leftView.clipsToBounds = true
-        midView.layer.cornerRadius = midView.bounds.width/2
-        midView.clipsToBounds = true
-        rightView.layer.cornerRadius = rightView.bounds.width/2
-        rightView.clipsToBounds = true
-        leftView.backgroundColor = .main1
-        midView.backgroundColor = .main2
-        rightView.backgroundColor = .main3
-        if data[0].isNaN {
-            leftLabel.text = "尚無評論"
-            leftLabel.textColor = .B1
-            leftLabel.font = .medium(size: 14)
-            midLabel.text = "尚無評論"
-            midLabel.textColor = .B1
-            midLabel.font = .medium(size: 14)
-            rightLabel.text = "尚無評論"
-            rightLabel.textColor = .B1
-            rightLabel.font = .medium(size: 14)
-        } else {
-            leftLabel.text = String(data[0].ceiling(toDecimal: 1))
-            midLabel.text = String(data[1].ceiling(toDecimal: 1))
-            rightLabel.text = String(data[2].ceiling(toDecimal: 1))
-        }
+    @IBOutlet weak var soupValueLabel: UILabel!
+    @IBOutlet weak var noodleValueLabel: UILabel!
+    @IBOutlet weak var overallValueLabel: UILabel!
+    
+    func layoutCell(comments: [Comment]) {
+        selectionStyle = .none
+        soupView.cornerRadii(radii: soupView.bounds.width / 2)
+        noodleView.cornerRadii(radii: noodleView.bounds.width / 2)
+        overallView.cornerRadii(radii: overallView.bounds.width / 2)
+        soupView.backgroundColor = .main1
+        noodleView.backgroundColor = .main2
+        overallView.backgroundColor = .main3
         
-        
+        configAvgRating(comments)
     }
-    
+    private func configAvgRating(_ comments: [Comment]) {
+        if !comments.isEmpty {
+            let count = Double(comments.count)
+            let noodle: Double = comments.map { $0.contentValue.noodle }.reduce(0, +)
+            let soup: Double = comments.map { $0.contentValue.soup }.reduce(0, +)
+            let overall: Double = comments.map { $0.contentValue.happiness }.reduce(0, +)
+            
+            let noodleAvg = (noodle / count).ceiling(toDecimal: 1)
+            let soupAvg = (soup / count).ceiling(toDecimal: 1)
+            let overallAvg = (overall / count).ceiling(toDecimal: 1)
+            
+            if noodleAvg >= 10.0 {
+                noodleValueLabel.text = String(10)
+            } else {
+                noodleValueLabel.text = String(noodleAvg)
+            }
+            if soupAvg >= 10.0 {
+                soupValueLabel.text = String(10)
+            } else {
+                soupValueLabel.text = String(soupAvg)
+            }
+            if overallAvg >= 10.0 {
+                overallValueLabel.text = String(10)
+            } else {
+                overallValueLabel.text = String(overallAvg)
+            }
+        } else {
+            soupValueLabel.text = "無"
+            noodleValueLabel.text = "無"
+            overallValueLabel.text = "無"
+        }
+    }
 }

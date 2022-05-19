@@ -19,7 +19,7 @@ class StorageManager: NSObject {
     }
     
     private enum Draft: String {
-        case createTime 
+        case createTime
     }
     
     private override init() {
@@ -92,7 +92,6 @@ class StorageManager: NSObject {
         save()
     }
     func deleteAllComment(completion: (Result<Void, Error>) -> Void) {
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Entity.commentDraft.rawValue)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {

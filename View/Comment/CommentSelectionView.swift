@@ -72,7 +72,7 @@ class CommentSelectionView: UIView {
     let writeCommentButton = UIButton()
     let notWriteCommentButton = UIButton()
     let stackView = UIStackView()
-//    let saveDraftButton = UIButton()
+    //    let saveDraftButton = UIButton()
     
     func initTextField() {
         self.addSubview(selectedStoreTextField)
@@ -171,52 +171,52 @@ class CommentSelectionView: UIView {
         notWriteCommentButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         
         
-//        self.addSubview(saveDraftButton)
-//        saveDraftButton.translatesAutoresizingMaskIntoConstraints = false
-//        saveDraftButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-//        saveDraftButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//        saveDraftButton.layer.cornerRadius = 20
-//        saveDraftButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-//        saveDraftButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-//        saveDraftButton.setImage( UIImage(named: "draftmark"), for: .normal)
-//        saveDraftButton.addTarget(self, action: #selector(saveCommentDraft), for: .touchUpInside)
-//        saveDraftButton.backgroundColor = .black.withAlphaComponent(0.4)
-//        saveDraftButton.tintColor = .white
-//        saveDraftButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        //        self.addSubview(saveDraftButton)
+        //        saveDraftButton.translatesAutoresizingMaskIntoConstraints = false
+        //        saveDraftButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        //        saveDraftButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        //        saveDraftButton.layer.cornerRadius = 20
+        //        saveDraftButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        //        saveDraftButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+        //        saveDraftButton.setImage( UIImage(named: "draftmark"), for: .normal)
+        //        saveDraftButton.addTarget(self, action: #selector(saveCommentDraft), for: .touchUpInside)
+        //        saveDraftButton.backgroundColor = .black.withAlphaComponent(0.4)
+        //        saveDraftButton.tintColor = .white
+        //        saveDraftButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
     func initValueView(on view: UIView, value: Double) {
         // round view
-            let roundView = UIView(
-                frame: CGRect(
-                    x: view.bounds.origin.x,
-                    y: view.bounds.origin.y,
-                    width: view.bounds.size.width - 4,
-                    height: view.bounds.size.height - 4
-                )
+        let roundView = UIView(
+            frame: CGRect(
+                x: view.bounds.origin.x,
+                y: view.bounds.origin.y,
+                width: view.bounds.size.width - 4,
+                height: view.bounds.size.height - 4
             )
-            roundView.backgroundColor = .B5
-            roundView.layer.cornerRadius = roundView.frame.size.width / 2
-            
-            // bezier path
-            let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
-                                          radius: roundView.frame.size.width / 2,
-                                          startAngle: CGFloat(-0.5 * .pi),
-                                          endAngle: CGFloat(1.5 * .pi),
-                                          clockwise: true)
-            // circle shape
-            let circleShape = CAShapeLayer()
-            circleShape.path = circlePath.cgPath
-            circleShape.strokeColor = UIColor.red.cgColor
-            circleShape.fillColor = UIColor.clear.cgColor
-            circleShape.lineWidth = 4
-            // set start and end values
-            circleShape.strokeStart = 0.0
+        )
+        roundView.backgroundColor = .B5
+        roundView.layer.cornerRadius = roundView.frame.size.width / 2
+        
+        // bezier path
+        let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
+                                      radius: roundView.frame.size.width / 2,
+                                      startAngle: CGFloat(-0.5 * .pi),
+                                      endAngle: CGFloat(1.5 * .pi),
+                                      clockwise: true)
+        // circle shape
+        let circleShape = CAShapeLayer()
+        circleShape.path = circlePath.cgPath
+        circleShape.strokeColor = UIColor.red.cgColor
+        circleShape.fillColor = UIColor.clear.cgColor
+        circleShape.lineWidth = 4
+        // set start and end values
+        circleShape.strokeStart = 0.0
         circleShape.strokeEnd = value*0.1
-            
-            // add sublayer
-            roundView.layer.addSublayer(circleShape)
-            // add subview
-            view.addSubview(roundView)
+        
+        // add sublayer
+        roundView.layer.addSublayer(circleShape)
+        // add subview
+        view.addSubview(roundView)
         view.removeFromSuperview()
     }
 }

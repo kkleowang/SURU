@@ -44,7 +44,7 @@ class WriteCommentView: UIView {
         saveButton.layer.cornerRadius = 10
         importTempButton.layer.cornerRadius = 10
         sendButton.layer.cornerRadius = 10
-//        contentTextView.text = "| 店家： \(storename!)\n| 時間 ：2022/5/16\n| 品項 ：\(commentData!.meal)\n| 配置 ：\n| 評論：\n"
+        //        contentTextView.text = "| 店家： \(storename!)\n| 時間 ：2022/5/16\n| 品項 ：\(commentData!.meal)\n| 配置 ：\n| 評論：\n"
     }
     
     private func setTextView(textBox: UITextView) {

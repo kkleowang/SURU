@@ -14,9 +14,6 @@ enum ImageAsset: String {
     case noData
 }
 
-
-// swiftlint:enable identifier_name
-
 extension UIImage {
     static func asset(_ asset: ImageAsset) -> UIImage? {
         return UIImage(named: asset.rawValue)

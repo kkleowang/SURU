@@ -23,8 +23,8 @@ class DetailViewController: UIViewController {
         didSet {
             guard let data = newCommet?.userComment else { return }
             if data.count != tableView.numberOfRows(inSection: 1) {
-            comment = newCommet
-            guard let message = comment?.userComment, let currentUserID = UserRequestProvider.shared.currentUserID else { return }
+                comment = newCommet
+                guard let message = comment?.userComment, let currentUserID = UserRequestProvider.shared.currentUserID else { return }
                 self.tableView.reloadSections([1], with: .automatic)
                 if message.sorted(by: {$0.createdTime > $1.createdTime}).last!.userID == currentUserID  {
                     self.tableView.scrollToRow(at: IndexPath(row: message.count - 1, section: 1), at: .top, animated: true)
@@ -84,7 +84,7 @@ class DetailViewController: UIViewController {
             let sectionRect = tableView.rectForHeader(inSection: 1)
             tableView.scrollRectToVisible(sectionRect, animated: true)
         }
-       
+        
         
     }
     @IBAction func tapLikeButton(_ sender: UIButton) {
@@ -119,14 +119,14 @@ class DetailViewController: UIViewController {
               let comment = comment,
               let content = inputTextField.text else { return }
         var message = Message(userID: currentUserId, message: content)
-//        LKProgressHUD.show()
+        //        LKProgressHUD.show()
         CommentRequestProvider.shared.addMessage(message: &message, tagertCommentID: comment.commentID) { result in
             switch result {
             case .success(let message):
-//                LKProgressHUD.dismiss()
+                //                LKProgressHUD.dismiss()
                 LKProgressHUD.showSuccess(text: message)
             case .failure:
-//                LKProgressHUD.dismiss()
+                //                LKProgressHUD.dismiss()
                 LKProgressHUD.showFailure(text: "新增評論失敗\n稍候再試")
                 
             }
@@ -286,7 +286,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             guard let messages = comment?.userComment else { return 0 }
             
             return messages.count
-           
+            
         }
     }
     
@@ -319,13 +319,13 @@ extension DetailViewController: CommentMessagesCellDelegate {
     func showAlert(targetUser: String?) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = self.view
-                
-                let xOrigin = self.view.bounds.width / 2
-                
-                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-                
+        
+        let xOrigin = self.view.bounds.width / 2
+        
+        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+        
         alert.popoverPresentationController?.sourceRect = popoverRect
-                
+        
         alert.popoverPresentationController?.permittedArrowDirections = .up
         alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
             guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }

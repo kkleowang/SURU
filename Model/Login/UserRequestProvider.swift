@@ -8,14 +8,13 @@
 import Foundation
 import FirebaseAuth
 
+// auth
 class UserRequestProvider {
     
     static let shared = UserRequestProvider()
     lazy var firebaseAuth = Auth.auth()
     lazy var currentUser = firebaseAuth.currentUser
     lazy var currentUserID = firebaseAuth.currentUser?.uid
-    
-    
     
     func listenFirebaseLogin(completion: @escaping (String?) -> Void) {
         firebaseAuth.addStateDidChangeListener { _, user in
@@ -40,7 +39,7 @@ class UserRequestProvider {
         }
     }
     func nativeSignIn(withEmail email: String, withPassword password: String, completion: @escaping (Result<String, Error>) -> Void) {
-        firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
+        firebaseAuth.signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -50,7 +49,6 @@ class UserRequestProvider {
         }
     }
     func appleLogin(credential: AuthCredential,name: String?, completion: @escaping (Result<String, Error>) -> Void) {
-        
         firebaseAuth.signIn(with: credential) { authResult, error in
             if let error = error {
                 completion(.failure(error))
@@ -101,7 +99,6 @@ class UserRequestProvider {
                 completion(.failure(error))
             }
         }
-        
     }
     
     func mappingNativeUser(user: User) -> Account {
@@ -140,7 +137,4 @@ class UserRequestProvider {
         }
         
     }
-    
-    
-    
 }

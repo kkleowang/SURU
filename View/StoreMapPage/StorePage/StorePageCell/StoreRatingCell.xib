@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -48,19 +49,19 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4m-Mt-HK5">
                                 <rect key="frame" x="0.0" y="0.0" width="66.5" height="31.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="B1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIP-Cg-xTL">
                                 <rect key="frame" x="136.5" y="0.0" width="66.5" height="31.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="B1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcz-OV-rw4">
                                 <rect key="frame" x="273" y="0.0" width="66.5" height="31.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="B1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -68,19 +69,19 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="麵條" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tq-j9-xEW">
                         <rect key="frame" x="79.5" y="146.5" width="35" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" name="B1"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="湯頭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwC-uy-01x">
                         <rect key="frame" x="216" y="146.5" width="35" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" name="B1"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="綜合評分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYc-TT-afg">
                         <rect key="frame" x="335.5" y="146.5" width="69.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" name="B1"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -105,17 +106,20 @@
                 <constraint firstItem="r0e-S3-Px2" firstAttribute="centerX" secondItem="njF-e1-oar" secondAttribute="centerX" id="ys2-7r-uaf"/>
             </constraints>
             <connections>
-                <outlet property="leftLabel" destination="j4m-Mt-HK5" id="fPl-g8-GM6"/>
-                <outlet property="leftView" destination="mgp-tC-VQy" id="czp-qm-7GT"/>
-                <outlet property="midLabel" destination="YIP-Cg-xTL" id="nik-pJ-TGD"/>
-                <outlet property="midView" destination="5qx-ge-8tY" id="bN2-Y1-Ao6"/>
-                <outlet property="rightLabel" destination="qcz-OV-rw4" id="WDo-s8-Sp1"/>
-                <outlet property="rightView" destination="TA1-8E-Adh" id="aJD-SZ-7Sf"/>
+                <outlet property="noodleValueLabel" destination="YIP-Cg-xTL" id="xDw-x8-qSI"/>
+                <outlet property="noodleView" destination="5qx-ge-8tY" id="43g-wP-gAh"/>
+                <outlet property="overallValueLabel" destination="qcz-OV-rw4" id="z19-g2-9FN"/>
+                <outlet property="overallView" destination="TA1-8E-Adh" id="GXG-I1-qa4"/>
+                <outlet property="soupValueLabel" destination="j4m-Mt-HK5" id="BHf-iy-LtK"/>
+                <outlet property="soupView" destination="mgp-tC-VQy" id="3ej-iZ-5xh"/>
             </connections>
             <point key="canvasLocation" x="219.56521739130437" y="112.83482142857142"/>
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="B1">
+            <color red="0.24699999392032623" green="0.22699999809265137" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

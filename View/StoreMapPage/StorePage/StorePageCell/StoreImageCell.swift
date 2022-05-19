@@ -20,13 +20,12 @@ class StoreImageCell: UITableViewCell {
     @IBOutlet weak var moreImageView: UIImageView!
     @IBOutlet weak var moreBlurView: UIView!
     
-    func layoutCell(popular: String?, menu: String?, more: String?) {
-        guard let popular = popular, let more = more, let menu = menu else {
-            return
-        }
-        popularImageView.kf.setImage(with: URL(string: popular), placeholder: UIImage(named: popular))
-        menuImageView.kf.setImage(with: URL(string: menu), placeholder: UIImage(named: menu))
-        moreImageView.kf.setImage(with: URL(string: more), placeholder: UIImage(named: more))
+    func layoutCell(mostLikeImage: [String]) {
+        selectionStyle = .none
+        
+        popularImageView.loadImage(mostLikeImage[0], placeHolder: UIImage.asset(.noData))
+        menuImageView.loadImage(mostLikeImage[1], placeHolder: UIImage.asset(.noData))
+        moreImageView.loadImage(mostLikeImage[2], placeHolder: UIImage.asset(.noData))
         let tapPopular = UITapGestureRecognizer(target: self, action: #selector(didTapPopularImage))
         let tapMenu = UITapGestureRecognizer(target: self, action: #selector(didTapmenuImage))
         let tapMore = UITapGestureRecognizer(target: self, action: #selector(didTapmoreImage))
@@ -34,19 +33,14 @@ class StoreImageCell: UITableViewCell {
         popularImageView.addGestureRecognizer(tapPopular)
         menuImageView.addGestureRecognizer(tapMenu)
         moreBlurView.addGestureRecognizer(tapMore)
+        
         popularImageView.isUserInteractionEnabled = true
         menuImageView.isUserInteractionEnabled = true
         moreImageView.isUserInteractionEnabled = true
         
-        popularImageView.clipsToBounds = true
-        menuImageView.clipsToBounds = true
-        moreImageView.clipsToBounds = true
-        moreBlurView.layer.cornerRadius = 10
-        moreBlurView.clipsToBounds = true
-        popularImageView.layer.cornerRadius = 10
-        menuImageView.layer.cornerRadius = 10
-        moreImageView.layer.cornerRadius = 10
-        
+        popularImageView.cornerRadii(radii: 10)
+        menuImageView.cornerRadii(radii: 10)
+        moreImageView.cornerRadii(radii: 10)
     }
     
     

@@ -77,7 +77,7 @@ class DragingValueViewController: UIViewController {
             dashBar.centerYAnchor.constraint(equalTo: liquilBarview.view.topAnchor, constant: positionOfDashBar).isActive = true
             dashBar.heightAnchor.constraint(equalToConstant: 1).isActive = true
             dashBar.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-
+            
             if valueOfDashBar % 20 == 0 {
                 dashBar.widthAnchor.constraint(equalToConstant: 70).isActive = true
                 let valueLabel = UILabel()
@@ -115,7 +115,7 @@ class DragingValueViewController: UIViewController {
         liquilBarview.view.heightAnchor.constraint(equalToConstant: 480).isActive = true
         liquilBarview.view.backgroundColor = UIColor.white
     }
-   
+    
     func setBackButton() {
         let backButton = UIButton()
         self.view.addSubview(backButton)

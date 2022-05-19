@@ -19,7 +19,7 @@ class StoreRequestProvider {
             if let error = error {
                 completion(.failure(error))
             } else {
-                var stores = [Store]()
+                var stores: [Store] = []
                 guard let snapshot = querySnapshot else { return }
                 for document in snapshot.documents {
                     do {
@@ -64,8 +64,6 @@ class StoreRequestProvider {
     }
     
     func unCollectStore(currentUserID: String, tagertStoreID: String, completion: @escaping (Result<String, Error>) -> Void) {
-        
-        
         let tagertStoreDocment = database.collection("stores").document(tagertStoreID)
         let currentUserDocment = database.collection("accounts").document(currentUserID)
         
@@ -94,14 +92,13 @@ class StoreRequestProvider {
             snapshot.documentChanges.forEach { diff in
                 if diff.type == .modified {
                     do {
-                        if let data = try diff.document.data(as: Store.self, decoder: Firestore.Decoder()){
+                        if let data = try diff.document.data(as: Store.self, decoder: Firestore.Decoder()) {
                             completion(.success(data))
                         }
                     } catch {
                         completion(.failure(error))
                     }
                 }
-                
             }
         }
     }

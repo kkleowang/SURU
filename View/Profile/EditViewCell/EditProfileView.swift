@@ -21,7 +21,7 @@ protocol EditProfileViewDelegate: AnyObject {
 class EditProfileView: UIView {
     weak var delegate: EditProfileViewDelegate?
     
-//    @IBOutlet weak var collectionView: UICollectionView!
+    //    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var websideLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
@@ -77,7 +77,7 @@ class EditProfileView: UIView {
     
     func showAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-       
+        
         alert.addAction(UIAlertAction(title: "移除目前的大頭貼照", style: .default , handler:{ (UIAlertAction)in
             LKProgressHUD.showSuccess(text: "修改成功")
             guard let image = UIImage(named: "mainImage") else { return }

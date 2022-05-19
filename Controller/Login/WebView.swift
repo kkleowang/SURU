@@ -34,7 +34,7 @@ extension WebView {
         reportButton.backgroundColor = .black.withAlphaComponent(0.4)
         reportButton.tintColor = .white
         reportButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        reportButton.addTarget(self, action: #selector(floatBtnAction(sender:)), for: .touchUpInside)
+        reportButton.addTarget(self, action: #selector(floatButtonAction(sender:)), for: .touchUpInside)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragAction(gesture:)))
         reportButton .addGestureRecognizer(panGesture)
     }
@@ -70,7 +70,7 @@ extension WebView {
         }
         gesture.setTranslation(.zero, in: self.view)
     }
-    @objc private func floatBtnAction(sender: UIButton) {
+    @objc private func floatButtonAction(sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
 }

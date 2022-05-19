@@ -20,10 +20,10 @@ class StoreCommentCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//
-//        contentView.layer.cornerRadius = 15
-//        contentView.clipsToBounds = true
-//        contentView.backgroundColor = .blue
+        //
+        //        contentView.layer.cornerRadius = 15
+        //        contentView.clipsToBounds = true
+        //        contentView.backgroundColor = .blue
     }
     weak var delegate: StoreCommentCellDelegate?
     var targetUserID: String?
@@ -36,22 +36,22 @@ class StoreCommentCell: UITableViewCell {
     @IBAction func tapLike(_ sender: Any) {
         self.delegate?.didtapLike(self, targetComment: commentData, isLogin: isloginStatus, isLike: islikeStatus)
         
-            if islikeStatus {
-                likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            } else {
-                likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            }
+        if islikeStatus {
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
         
     }
     @IBAction func tapFollow(_ sender: Any) {
         
         self.delegate?.didtapfollow(self, targetUserID: targetUserID, isLogin: isloginStatus, isFollow: isfollowStatus)
         
-            if isfollowStatus {
-                followButton.setTitle("追蹤", for: .normal)
-            } else {
-                followButton.setTitle("已追蹤", for: .normal)
-            }
+        if isfollowStatus {
+            followButton.setTitle("追蹤", for: .normal)
+        } else {
+            followButton.setTitle("已追蹤", for: .normal)
+        }
         
     }
     @IBAction func tapMore(_ sender: Any) {
@@ -61,25 +61,25 @@ class StoreCommentCell: UITableViewCell {
         
         self.delegate?.didtapLike(self, targetComment: commentData, isLogin: isloginStatus, isLike: islikeStatus)
         
-            if islikeStatus {
-//                let animationView = AnimationView(name: "like")
-//                animationView.frame = commentImageView.frame
-//                animationView.contentMode = .scaleAspectFit
-//
-//                animationView.loopMode = .playOnce
-//                animationView.animationSpeed = 1
-//                animationView.play()
-                likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            } else {
-//                let animationView = AnimationView(name: "unlike")
-//                animationView.frame = commentImageView.frame
-//                animationView.contentMode = .scaleAspectFit
-//                
-//                animationView.loopMode = .playOnce
-//                animationView.animationSpeed = 1
-//                animationView.play()
-                likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            }
+        if islikeStatus {
+            //                let animationView = AnimationView(name: "like")
+            //                animationView.frame = commentImageView.frame
+            //                animationView.contentMode = .scaleAspectFit
+            //
+            //                animationView.loopMode = .playOnce
+            //                animationView.animationSpeed = 1
+            //                animationView.play()
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        } else {
+            //                let animationView = AnimationView(name: "unlike")
+            //                animationView.frame = commentImageView.frame
+            //                animationView.contentMode = .scaleAspectFit
+            //                
+            //                animationView.loopMode = .playOnce
+            //                animationView.animationSpeed = 1
+            //                animationView.play()
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
         
     }
     
@@ -101,8 +101,9 @@ class StoreCommentCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
     
- 
+    
     func layoutView(author: Account, comment: Comment, isFollow: Bool, isLike: Bool) {
+        selectionStyle = .none
         followButton.layer.cornerRadius = 5
         followButton.clipsToBounds = true
         followButton.layer.borderWidth = 1
@@ -138,7 +139,7 @@ class StoreCommentCell: UITableViewCell {
         if likeCount == 0 {
             likeLabel.text = "還沒有人點讚"
         } else {
-        likeLabel.text = "\(likeCount) 個喜歡"
+            likeLabel.text = "\(likeCount) 個喜歡"
         }
         
         if message.isEmpty {
@@ -146,16 +147,16 @@ class StoreCommentCell: UITableViewCell {
         } else {
             commentsLabel.text = "查看全部\(message.count) 則留言"
         }
-            if isLike {
-                likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            } else {
-                likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            }
-            if isFollow {
-                followButton.setTitle("已追蹤", for: .normal)
-            } else {
-                followButton.setTitle("追蹤", for: .normal)
-            }
-      
+        if isLike {
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        if isFollow {
+            followButton.setTitle("已追蹤", for: .normal)
+        } else {
+            followButton.setTitle("追蹤", for: .normal)
+        }
+        
     }
 }

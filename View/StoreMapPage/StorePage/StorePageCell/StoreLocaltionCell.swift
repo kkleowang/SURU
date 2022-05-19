@@ -11,18 +11,18 @@ import MapKit
 class StoreLocaltionCell: UITableViewCell {
     var localtionText: String = ""
     @IBOutlet weak var iconImageView: UIImageView!
-
+    
     @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var label: UILabel!
     
     @IBAction func tapMap(_ sender: Any) {
         UIPasteboard.general.string = localtionText
         LKProgressHUD.showSuccess(text: "已複製地址")
-
+        
         
     }
     func layoutCell(localtion: String? = "",seat: String? = "") {
-        
+        selectionStyle = .none
         guard let localtion = localtion, let seat = seat else {
             return
         }

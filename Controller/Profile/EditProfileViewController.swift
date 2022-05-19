@@ -27,28 +27,28 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         editProfileView.delegate = self
-//        setupCollectionView()
+        //        setupCollectionView()
         settingNavBtn()
         mappingUserData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-//    func setupCollectionView() {
-//        editProfileView.collectionView.dataSource = self
-//        editProfileView.collectionView.delegate = self
-//        let layout = CHTCollectionViewWaterfallLayout()
-//        layout.columnCount = 3
-//        layout.minimumColumnSpacing = 20
-//        layout.minimumInteritemSpacing = 10
-//        layout.headerHeight = 100
-//        let inset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-//        layout.sectionInset = inset
-//        editProfileView.collectionView.collectionViewLayout = layout
-//        editProfileView.collectionView.register(UINib(nibName: String(describing: ProfileCommentCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProfileCommentCell.self))
-//
-//        editProfileView.collectionView.register(UINib(nibName: String(describing: BadgeHeaderCell.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: BadgeHeaderCell.self))
-//    }
+    //    func setupCollectionView() {
+    //        editProfileView.collectionView.dataSource = self
+    //        editProfileView.collectionView.delegate = self
+    //        let layout = CHTCollectionViewWaterfallLayout()
+    //        layout.columnCount = 3
+    //        layout.minimumColumnSpacing = 20
+    //        layout.minimumInteritemSpacing = 10
+    //        layout.headerHeight = 100
+    //        let inset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+    //        layout.sectionInset = inset
+    //        editProfileView.collectionView.collectionViewLayout = layout
+    //        editProfileView.collectionView.register(UINib(nibName: String(describing: ProfileCommentCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProfileCommentCell.self))
+    //
+    //        editProfileView.collectionView.register(UINib(nibName: String(describing: BadgeHeaderCell.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: BadgeHeaderCell.self))
+    //    }
     func settingNavBtn() {
         let leftItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancel))
         leftItem.tintColor = .B2
@@ -120,13 +120,13 @@ extension EditProfileViewController: EditProfileViewDelegate {
     
     func didTapEditImage(_ view: EditProfileView, alert: UIAlertController) {
         alert.popoverPresentationController?.sourceView = self.view
-                
-                let xOrigin = self.view.bounds.width / 2
-                
-                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-                
+        
+        let xOrigin = self.view.bounds.width / 2
+        
+        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+        
         alert.popoverPresentationController?.sourceRect = popoverRect
-                
+        
         alert.popoverPresentationController?.permittedArrowDirections = .up
         present(alert, animated: true, completion: nil)
     }
@@ -145,10 +145,10 @@ extension EditProfileViewController: EditProfileViewDelegate {
     
     func didEditNickName(_ view: EditProfileView, text: String) {
         nickName = text
-//        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
-//        controller.badgeRef = badgeRef
-//        controller.seletedBadgeName = userData?.badgeStatus
-//        navigationController?.pushViewController(controller, animated: true)
+        //        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
+        //        controller.badgeRef = badgeRef
+        //        controller.seletedBadgeName = userData?.badgeStatus
+        //        navigationController?.pushViewController(controller, animated: true)
     }
     
     func didEditWebSide(_ view: EditProfileView, text: String) {
@@ -195,6 +195,6 @@ extension EditProfileViewController: EditProfileViewDelegate {
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        CGSize(width: 200, height: 200)
 //    }
-    
-    
+
+
 //}

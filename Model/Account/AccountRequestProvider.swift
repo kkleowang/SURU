@@ -9,6 +9,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+// user
 class AccountRequestProvider {
     static let shared = AccountRequestProvider()
     
@@ -36,7 +37,7 @@ class AccountRequestProvider {
         }
         
     }
-   
+    
     func fetchAccounts(completion: @escaping (Result<[Account], Error>) -> Void) {
         database.collection("accounts").getDocuments { querySnapshot, error in
             if let error = error {
@@ -131,7 +132,6 @@ class AccountRequestProvider {
         ])
     }
     func changeBadgeStatus(status: String, currentUserID: String) {
-        
         let currentDocment = database.collection("accounts").document(currentUserID)
         currentDocment.updateData([
             "badgeStatus": status
@@ -149,36 +149,22 @@ class AccountRequestProvider {
         }
     }
     func listenAccount(currentUserID: String, completion: @escaping (Result<Account, Error>) -> Void) {
-            database.collection("accounts").document(currentUserID)
-                .addSnapshotListener { documentSnapshot, error in
-                    guard let document = documentSnapshot else {
-                        print("Error fetching document: \(error!)")
-                        return
-                    }
-                    do {
-                        if let data = try document.data(as: Account.self, decoder: Firestore.Decoder()) {
-                            completion(.success(data))
-                        }
-                    } catch {
-                        completion(.failure(error))
-                    }
-                    
+        database.collection("accounts").document(currentUserID)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
                 }
-        }
-//    func listenAccount(currentUserID: String, completion: @escaping () -> Void) {
-//        database.collection("accounts").document(currentUserID)
-//            .addSnapshotListener { documentSnapshot, error in
-//                guard let document = documentSnapshot else {
-//                    print("Error fetching document: \(error!)")
-//                    return
-//                }
-//                guard let data = document.data() else {
-//                    print("Document data was empty.")
-//                    return
-//                }
-//                completion()
-//            }
-//    }
+                do {
+                    if let data = try document.data(as: Account.self, decoder: Firestore.Decoder()) {
+                        completion(.success(data))
+                    }
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+    }
+  
     func checkUserDocExists(userID: String, completion: @escaping (Bool) -> Void) {
         // [START get_document]
         let docRef = database.collection("accounts").document(userID)

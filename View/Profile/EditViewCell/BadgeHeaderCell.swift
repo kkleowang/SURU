@@ -8,7 +8,7 @@
 import UIKit
 
 class BadgeHeaderCell: UICollectionReusableView {
-
+    
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .B3

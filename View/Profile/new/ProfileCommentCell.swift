@@ -9,7 +9,7 @@ import UIKit
 import CHTCollectionViewWaterfallLayout
 
 class ProfileCommentCell: UITableViewCell {
-
+    
     var dataSource: [Comment]?
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -28,29 +28,29 @@ class ProfileCommentCell: UITableViewCell {
     }
 }
 extension ProfileCommentCell: UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout {
-   
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            guard let comment = dataSource else { return 0 }
-            if comment.isEmpty {
-                collectionView.setEmptyMessage("你還沒有發表過評論喔！")
-            } else {
-                collectionView.restore()
-            }
-            return comment.count
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let comment = dataSource else { return 0 }
+        if comment.isEmpty {
+            collectionView.setEmptyMessage("你還沒有發表過評論喔！")
+        } else {
+            collectionView.restore()
         }
+        return comment.count
+    }
     
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCommentsCell.identifier, for: indexPath) as? ProfileCommentsCell else { return ProfileCommentsCell() }
-            guard let comment = dataSource else { return cell }
-            cell.layoutCell(comment: comment[indexPath.item])
-            return cell
-        }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCommentsCell.identifier, for: indexPath) as? ProfileCommentsCell else { return ProfileCommentsCell() }
+        guard let comment = dataSource else { return cell }
+        cell.layoutCell(comment: comment[indexPath.item])
+        return cell
+    }
     
     
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let width = (UIScreen.width - 3 * 2) / 3
-    
-            return CGSize(width: width, height: width)
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (UIScreen.width - 3 * 2) / 3
+        
+        return CGSize(width: width, height: width)
+    }
     
 }

@@ -30,7 +30,7 @@ class LiquidBarViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     func setLottieView(_ type: SelectionType) {
         selectionType = type

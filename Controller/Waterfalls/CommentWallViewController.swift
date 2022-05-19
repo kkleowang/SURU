@@ -16,7 +16,7 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
     var stores: [Store] = []
     var currentAccount: Account?
     
-//    @IBOutlet weak var scrollerView: UIScrollView!
+    //    @IBOutlet weak var scrollerView: UIScrollView!
     override func viewDidLoad() {
         
         settings.style.selectedBarBackgroundColor = UIColor.C4!
@@ -31,7 +31,7 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
         containerView.bounces = false
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
-
+            
             oldCell?.label.textColor = .secondaryLabel
             newCell?.label.textColor = .label
         }
@@ -44,7 +44,7 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
         guard let followedVC = storyboard.instantiateViewController(identifier: "FollowViewController") as? FollowViewController else { return [] }
         // 收藏的
         guard let collectedVC = storyboard.instantiateViewController(identifier: "CollectViewController") as? CollectViewController else { return [] }
-  
+        
         return [discoveryVC, followedVC, collectedVC]
     }
 }

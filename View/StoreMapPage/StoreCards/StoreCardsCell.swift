@@ -19,6 +19,7 @@ class StoreCardsCell: UICollectionViewCell {
     // MARK: - Property
     private var store: Store?
     private var userIsLogin: Bool?
+    
     @IBOutlet weak private var storeImageView: UIImageView!
     @IBOutlet weak private var storeNameLabel: UILabel!
     @IBOutlet weak private var followerLabel: UILabel!
@@ -105,27 +106,26 @@ class StoreCardsCell: UICollectionViewCell {
             let count = Double(comments.count)
             let noodle: Double = comments.map { $0.contentValue.noodle }.reduce(0, +)
             let soup: Double = comments.map { $0.contentValue.soup }.reduce(0, +)
-            let happy: Double = comments.map { $0.contentValue.happiness }.reduce(0, +)
+            let overall: Double = comments.map { $0.contentValue.happiness }.reduce(0, +)
             
-            let data = [
-                (noodle / count).ceiling(toDecimal: 1),
-                (soup / count).ceiling(toDecimal: 1),
-                (happy / count).ceiling(toDecimal: 1)
-            ]
-            if data[0] == 10.0 {
+            let noodleAvg = (noodle / count).ceiling(toDecimal: 1)
+            let soupAvg = (soup / count).ceiling(toDecimal: 1)
+            let overallAvg = (overall / count).ceiling(toDecimal: 1)
+            
+            if noodleAvg >= 10.0 {
                 noodleValueLabel.text = String(10)
             } else {
-                noodleValueLabel.text = String(data[0])
+                noodleValueLabel.text = String(noodleAvg)
             }
-            if data[1] == 10.0 {
+            if soupAvg >= 10.0 {
                 soupValueLabel.text = String(10)
             } else {
-                soupValueLabel.text = String(data[1])
+                soupValueLabel.text = String(soupAvg)
             }
-            if data[2] == 10.0 {
+            if overallAvg >= 10.0 {
                 overallValueLabel.text = String(10)
             } else {
-                overallValueLabel.text = String(data[2])
+                overallValueLabel.text = String(overallAvg)
             }
         } else {
             soupValueLabel.text = "無"

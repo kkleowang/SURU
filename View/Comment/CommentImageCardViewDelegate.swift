@@ -30,7 +30,7 @@ class CommentImageCardView: UIView {
         imageView.addGestureRecognizer(tab)
         return imageView
     }
-   
+    
     var imagePicker: UIImagePickerController? {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self

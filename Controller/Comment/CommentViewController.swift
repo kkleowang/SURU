@@ -11,7 +11,7 @@ import UIKit
 class CommentViewController: UIViewController {
     // View
     var startingView = CommentStartingView()
-//    let sendButton = UIButton()
+    //    let sendButton = UIButton()
     var imageCardView = CommentImageCardView()
     
     var selectionView = CommentSelectionView()
@@ -52,7 +52,7 @@ class CommentViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        settingKVO()
+        //        settingKVO()
         self.navigationItem.title = "新增評論"
         fetchStoreData()
         fetchCoreData {
@@ -136,8 +136,8 @@ class CommentViewController: UIViewController {
         imageCardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
         imageCardView.heightAnchor.constraint(equalTo: imageCardView.widthAnchor, multiplier: 1).isActive = true
         imageCardView.delegate = self
-//        imageCardView.clipsToBounds = true
-//        imageCardView.makeShadow()
+        //        imageCardView.clipsToBounds = true
+        //        imageCardView.makeShadow()
         imageCardView.layoutCommendCardView(image: image) { [weak self] in
             
             self?.setupCommentSelectionView()
@@ -180,7 +180,7 @@ class CommentViewController: UIViewController {
                 print("上傳評論成功", message)
                 LKProgressHUD.dismiss()
                 LKProgressHUD.showSuccess(text: "上傳評論成功")
-//                self.sendButton.removeFromSuperview()
+                //                self.sendButton.removeFromSuperview()
                 self.fetchCommentOfUser {
                     self.setupStartingView()
                     self.commentData = self.originData
@@ -343,8 +343,8 @@ extension CommentViewController: CommentDraggingViewDelegate {
                 commentData.contentValue.soup != 50 &&
                 commentData.contentValue.happiness != 50 &&
                 commentData.storeID != "" && commentData.meal != "" {
-//            initSendButton()
-//            sendButton.isHidden = false
+            //            initSendButton()
+            //            sendButton.isHidden = false
         }
     }
 }
@@ -378,37 +378,37 @@ extension CommentViewController {
         writeCommentView.layoutView(comment: commentData, name: name ?? "")
         self.present(controller, animated: true, completion: nil)
     }
-//    let sendButton = UIButton()
-//    func initSendButton() {
-////        let button = UIButton()
-//        sendButton.isHidden = true
-//        view.addSubview(sendButton)
-//        sendButton.translatesAutoresizingMaskIntoConstraints = false
-//        sendButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-//        sendButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//        sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
-//        sendButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-//        sendButton.layer.cornerRadius = 20
-//        sendButton.setImage( UIImage(named: "plus"), for: .normal)
-//        sendButton.clipsToBounds = true
-////        sendButton.layer.borderWidth = 1
-////        sendButton.layer.borderColor = UIColor.
-////        sendButton.setTitle("送出評論", for: .normal)
-//        sendButton.addTarget(self, action: #selector(sendComment), for: .touchUpInside)
-//        sendButton.backgroundColor = .C4
-//        sendButton.tintColor = .white
-//        sendButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-//    }
+    //    let sendButton = UIButton()
+    //    func initSendButton() {
+    ////        let button = UIButton()
+    //        sendButton.isHidden = true
+    //        view.addSubview(sendButton)
+    //        sendButton.translatesAutoresizingMaskIntoConstraints = false
+    //        sendButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+    //        sendButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    //        sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+    //        sendButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+    //        sendButton.layer.cornerRadius = 20
+    //        sendButton.setImage( UIImage(named: "plus"), for: .normal)
+    //        sendButton.clipsToBounds = true
+    ////        sendButton.layer.borderWidth = 1
+    ////        sendButton.layer.borderColor = UIColor.
+    ////        sendButton.setTitle("送出評論", for: .normal)
+    //        sendButton.addTarget(self, action: #selector(sendComment), for: .touchUpInside)
+    //        sendButton.backgroundColor = .C4
+    //        sendButton.tintColor = .white
+    //        sendButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    //    }
     @objc func sendComment() {
-//        for view in selectionView.selectNoodelValueButton.subviews {
-//            view.removeFromSuperview()
-//        }
-//        for view in selectionView.selectSouplValueButton.subviews {
-//            view.removeFromSuperview()
-//        }
-//        for view in selectionView.selectHappyValueButton.subviews {
-//            view.removeFromSuperview()
-//        }
+        //        for view in selectionView.selectNoodelValueButton.subviews {
+        //            view.removeFromSuperview()
+        //        }
+        //        for view in selectionView.selectSouplValueButton.subviews {
+        //            view.removeFromSuperview()
+        //        }
+        //        for view in selectionView.selectHappyValueButton.subviews {
+        //            view.removeFromSuperview()
+        //        }
         guard let image = imageDataHolder else { return }
         LKProgressHUD.show()
         let fileName = "\(commentData.userID)_\(Date())"
@@ -462,7 +462,7 @@ extension CommentViewController {
 extension CommentViewController: WrireCommentViewControllerDelegate {
     func didTapSendComment(_ view: WriteCommentView, text: String) {
         commentData.contenText = text
-//        view.naviga
+        //        view.naviga
         guard let image = imageDataHolder else { return }
         let fileName = "\(commentData.userID)_\(Date())"
         FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in

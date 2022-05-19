@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class UICollectionViewSectionColorReusableView: UICollectionReusableView {
-
+    
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
         if let att = layoutAttributes as? UICollectionViewSectionColorLayoutAttributes {
@@ -23,21 +23,21 @@ class UICollectionViewSectionColorLayoutAttributes: UICollectionViewLayoutAttrib
     var sectionBgColor: UIColor?
 }
 class UICollectionViewSectionColorFlowLayout: UICollectionViewFlowLayout {
-
+    
     var decorationViewAttrs = [UICollectionViewSectionColorLayoutAttributes]()
-
+    
     override init() {
         super.init()
         
         register(UICollectionViewSectionColorReusableView.self, forDecorationViewOfKind: "UICollectionViewSectionColorReusableView")
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func prepare() {
-
+        
         super.prepare()
         
         //Section Number
@@ -53,8 +53,8 @@ class UICollectionViewSectionColorFlowLayout: UICollectionViewFlowLayout {
             guard numberOfItems > 0,
                   let firstItem = layoutAttributesForItem(at: IndexPath(item: 0, section: section)),
                   let lastItem = layoutAttributesForItem(at: IndexPath(item: numberOfItems - 1, section: section)) else {
-                      continue
-                   }
+                continue
+            }
             var sectionInset = self.sectionInset
             if let inset = delegate.collectionView?(collectionView, layout: self, insetForSectionAt: section) {
                 sectionInset = inset
@@ -69,7 +69,7 @@ class UICollectionViewSectionColorFlowLayout: UICollectionViewFlowLayout {
                 sectionFrame.size.width = collectionView.frame.width - 40
                 sectionFrame.size.height += sectionInset.top + sectionInset.bottom
             }
-
+            
             // 2、 Define view properties
             let attr = UICollectionViewSectionColorLayoutAttributes(forDecorationViewOfKind: "UICollectionViewSectionColorReusableView", with: IndexPath(item: 0, section: section))
             attr.frame = sectionFrame
@@ -80,7 +80,7 @@ class UICollectionViewSectionColorFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-
+        
         guard let attributes = super.layoutAttributesForElements(in: rect) else { return nil }
         var allAttributes = [UICollectionViewLayoutAttributes]()
         allAttributes.append(contentsOf: attributes)

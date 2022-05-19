@@ -173,5 +173,4 @@ class CommentRequestProvider {
             completion(.success(comments))
         }
     }
-    
 }

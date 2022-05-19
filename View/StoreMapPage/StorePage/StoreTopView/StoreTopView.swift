@@ -19,7 +19,7 @@ class StoreTopView: UIView {
     var storeID: String?
     var isUserCollected: Bool?
     func layOutView(store: Store, isCollect: Bool) {
-       
+        
         storeID = store.storeID
         isUserCollected = isCollect
         mainImage.layer.cornerRadius = mainImage.bounds.width / 2
@@ -30,12 +30,12 @@ class StoreTopView: UIView {
         
         mainImage.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "mainImage"))
         name.text = store.name
-      
-            if isCollect {
-                collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
-            } else {
-                collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
-            }
+        
+        if isCollect {
+            collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
+        } else {
+            collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
+        }
         
         
         
@@ -43,13 +43,13 @@ class StoreTopView: UIView {
     @IBAction func tapCollectButton(_ sender: UIButton) {
         
         
-            if collectButton.currentImage == UIImage(named: "collect.fill") {
-                self.delegate?.didtapUnCollectionButton(self)
-                collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
-            } else {
-                self.delegate?.didtapCollectionButton(self)
-                collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
-            }
+        if collectButton.currentImage == UIImage(named: "collect.fill") {
+            self.delegate?.didtapUnCollectionButton(self)
+            collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
+        } else {
+            self.delegate?.didtapCollectionButton(self)
+            collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
+        }
         
     }
 }

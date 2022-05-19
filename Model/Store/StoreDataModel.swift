@@ -41,17 +41,17 @@ struct Opentime: Codable {
     var sat: Time
     
     func byPropertyName(weekDay: String) -> Time {
-            switch weekDay {
-            case "sun": return sun
-            case "mon": return mon
-            case "tue": return tue
-            case "wed": return wed
-            case "thu": return thu
-            case "fri": return fri
-            case "sat": return sat
-            default: fatalError("Wrong property name")
-            }
+        switch weekDay {
+        case "sun": return sun
+        case "mon": return mon
+        case "tue": return tue
+        case "wed": return wed
+        case "thu": return thu
+        case "fri": return fri
+        case "sat": return sat
+        default: fatalError("Wrong property name")
         }
+    }
 }
 struct Time: Codable {
     var lunch: String
