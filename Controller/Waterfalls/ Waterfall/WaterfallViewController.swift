@@ -17,7 +17,7 @@ enum PageStatus {
     case collect
 }
 class WaterfallViewController: UIViewController {
-    var pageStatus: PageStatus = .discovery
+    var pageStatus: PageStatus?
     
     var commentData: [Comment] = []
     var currentAccount: Account?
@@ -31,9 +31,6 @@ class WaterfallViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .B6
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
         addlistener()
         fetchAllData {
             self.configData {
@@ -50,11 +47,10 @@ class WaterfallViewController: UIViewController {
             self.collectionView.reloadData()
             }
         }
-        
     }
    
     private func configData(completion: @escaping () -> Void) {
-        guard let user = currentAccount, let blockList = user.blockUserList else { return }
+        guard let user = currentAccount, let blockList = user.blockUserList, let pageStatus = pageStatus else { return }
         switch pageStatus {
         case .discovery:
             filteredCommentData = commentData.filter {comment in
@@ -81,8 +77,6 @@ class WaterfallViewController: UIViewController {
                 }
             }
         }
-        
-        
         completion()
     }
     func updataStore() {
@@ -101,6 +95,9 @@ class WaterfallViewController: UIViewController {
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = .B6
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         
         let layout = CHTCollectionViewWaterfallLayout()
         layout.columnCount = 2
@@ -109,9 +106,10 @@ class WaterfallViewController: UIViewController {
         let inset = UIEdgeInsets(top: 0, left: 4, bottom: 4, right: 4)
         layout.sectionInset = inset
         collectionView.collectionViewLayout = layout
-        collectionView.register(UINib(nibName: String(describing: DiscoveryCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: DiscoveryCell.self))
+        collectionView.register(UINib(nibName: DiscoveryCell.identifier, bundle: nil), forCellWithReuseIdentifier: DiscoveryCell.identifier)
     }
-    func fetchCommentData(com: @escaping () -> ()) {
+    
+    func fetchCommentData(com: @escaping () -> Void) {
         CommentRequestProvider.shared.fetchComments { result in
             switch result {
             case .success(let data) :
@@ -131,15 +129,12 @@ extension WaterfallViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return DiscoveryCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoveryCell.identifier, for: indexPath) as? DiscoveryCell else { return DiscoveryCell() }
         cell.delegate = self
         if !filteredCommentData.isEmpty {
             let comment = filteredCommentData[indexPath.row]
-            let store = storeData.first(where: {$0.storeID == comment.storeID}) ?? storeData[0]
-            guard let account = accountData.first(where: {$0.userID == comment.userID}) else {
-                print(comment.userID)
-                print("崩潰拉")
-                return cell }
+            let store = storeData.first { $0.storeID == comment.storeID } ?? storeData[0]
+            let account = accountData.first { $0.userID == comment.userID } ?? accountData[0]
             if let currentAccount = currentAccount {
                 cell.layoutCell(author: account, comment: comment, currentUser: currentAccount, store: store)
             }
@@ -150,11 +145,10 @@ extension WaterfallViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !filteredCommentData.isEmpty {
             let comment = filteredCommentData[indexPath.row]
-            let store = storeData.first(where: {$0.storeID == comment.storeID})
-            let account = accountData.first(where: {$0.userID == comment.userID})
+            let store = storeData.first { $0.storeID == comment.storeID } ?? storeData[0]
+            let account = accountData.first { $0.userID == comment.userID } ?? accountData[0]
             if let currentAccount = currentAccount {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+                guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
                 
                 controller.delegate = self
                 controller.modalPresentationStyle = .fullScreen
@@ -172,7 +166,7 @@ extension WaterfallViewController: UICollectionViewDataSource, UICollectionViewD
 extension WaterfallViewController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let comment = filteredCommentData[indexPath.row]
-        let store = storeData.first(where: {$0.storeID == comment.storeID})
+        let store = storeData.first { $0.storeID == comment.storeID }
         
         let storeName = store?.name ?? ""
         let mealName = comment.meal
@@ -197,7 +191,7 @@ extension WaterfallViewController: CHTCollectionViewDelegateWaterfallLayout {
         return CGSize(width: imageWidth, height: height)
     }
     
-    func labelSize(for text: String,font: UIFont?, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
+    func labelSize(for text: String, font: UIFont?, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font as Any
         ]
@@ -330,18 +324,9 @@ extension WaterfallViewController: DiscoveryCellDelegate {
         guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
         CommentRequestProvider.shared.unLikeComment(currentUserID: currentUserID, tagertComment: comment)
     }
-    
-    
 }
 extension WaterfallViewController: DetailViewControllerDelegate {
     func didtapAuthor(_ vc: DetailViewController, targetUserID: String?) {
-//        guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
-//        if targetUser != userID {
-//            showAlert(targetUser: targetUserID, vc: vc)
-//        } else {
-//            navigationController?.tabBarController?.selectedIndex = 3
-//        }
-        
     }
     func showAlert(targetUser: String?, vc: UIViewController) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -354,27 +339,23 @@ extension WaterfallViewController: DetailViewControllerDelegate {
         alert.popoverPresentationController?.sourceRect = popoverRect
         
         alert.popoverPresentationController?.permittedArrowDirections = .up
-        alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive) { _ in
             guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }
             AccountRequestProvider.shared.blockAccount(currentUserID: userID, tagertUserID: targetUser)
             LKProgressHUD.showFailure(text: "成功封鎖用戶")
-            self.filteredCommentData = self.filteredCommentData.filter({
+            self.filteredCommentData = self.filteredCommentData.filter {
                 if $0.userID != targetUser {
                     return true
                 } else {
                     return false
                 }
-            })
+            }
             self.collectionView.reloadData()
             vc.view.removeFromSuperview()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
-            print("User click Dismiss button")
-        }))
-        
-        self.present(alert, animated: true, completion: {
-            print("completion block")
         })
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
+        
+        self.present(alert, animated: true)
     }
 }

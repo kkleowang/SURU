@@ -23,7 +23,6 @@ class StoreTitleCell: UITableViewCell {
     @IBOutlet weak var collectButton: UIButton!
     
     @IBAction func tapCollectButton(_ sender: UIButton) {
-        
         if collectButton.currentTitle == "已收藏" {
             self.delegate?.didtapUnCollectionButton(view: self)
             collectButton.setTitle("收藏", for: .normal)

@@ -85,7 +85,6 @@ class Rows {
         let padding = 10
         var offset = padding
         for attribute in attributes {
-            
             attribute.frame.origin.x = CGFloat(offset)
             offset += Int(attribute.frame.width + spacing)
         }
@@ -98,7 +97,7 @@ class TagFlowLayouts: UICollectionViewFlowLayout {
             return nil
         }
         
-        var rows = [Row]()
+        var rows: [Row] = []
         var currentRowY: CGFloat = -1
         self.scrollDirection = .horizontal
         for attribute in attributes {

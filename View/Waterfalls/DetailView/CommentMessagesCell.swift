@@ -33,15 +33,10 @@ class CommentMessagesCell: UITableViewCell {
         authorImage.layer.cornerRadius = authorImage.frame.width / 2
         
         authorName.text = author.name
-//        authorName.setDefultFort()
-        
         
         let date = Date(timeIntervalSince1970: commentMessage.createdTime)
         commentDate.text = date.timeAgoDisplay()
-//        commentDate.setDefultFort()
-        
         commentContent.setDefultFort()
-//        commentContent.adjustsFontSizeToFitWidth = true
         commentContent.text = commentMessage.message
         
         

@@ -17,13 +17,8 @@ protocol StoreCommentCellDelegate: AnyObject {
 }
 
 class StoreCommentCell: UITableViewCell {
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        //
-        //        contentView.layer.cornerRadius = 15
-        //        contentView.clipsToBounds = true
-        //        contentView.backgroundColor = .blue
     }
     weak var delegate: StoreCommentCellDelegate?
     var targetUserID: String?
@@ -41,10 +36,8 @@ class StoreCommentCell: UITableViewCell {
         } else {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
-        
     }
     @IBAction func tapFollow(_ sender: Any) {
-        
         self.delegate?.didtapfollow(self, targetUserID: targetUserID, isLogin: isloginStatus, isFollow: isfollowStatus)
         
         if isfollowStatus {
@@ -52,35 +45,18 @@ class StoreCommentCell: UITableViewCell {
         } else {
             followButton.setTitle("已追蹤", for: .normal)
         }
-        
     }
     @IBAction func tapMore(_ sender: Any) {
         self.delegate?.didtapMore(self, targetUserID: targetUserID, isLogin: isloginStatus)
     }
     @objc private func doubleTap() {
-        
         self.delegate?.didtapLike(self, targetComment: commentData, isLogin: isloginStatus, isLike: islikeStatus)
         
         if islikeStatus {
-            //                let animationView = AnimationView(name: "like")
-            //                animationView.frame = commentImageView.frame
-            //                animationView.contentMode = .scaleAspectFit
-            //
-            //                animationView.loopMode = .playOnce
-            //                animationView.animationSpeed = 1
-            //                animationView.play()
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         } else {
-            //                let animationView = AnimationView(name: "unlike")
-            //                animationView.frame = commentImageView.frame
-            //                animationView.contentMode = .scaleAspectFit
-            //                
-            //                animationView.loopMode = .playOnce
-            //                animationView.animationSpeed = 1
-            //                animationView.play()
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
-        
     }
     
     @objc private func tapAuthorView() {
@@ -157,6 +133,5 @@ class StoreCommentCell: UITableViewCell {
         } else {
             followButton.setTitle("追蹤", for: .normal)
         }
-        
     }
 }

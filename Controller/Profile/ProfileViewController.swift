@@ -8,7 +8,6 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
     var currentAccount: Account?
     
     var pageAccountId: String?
@@ -27,9 +26,6 @@ class ProfileViewController: UIViewController {
     var isOnPush = false
     
     var badgeRef: [[Int]]?
-    
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -42,10 +38,9 @@ class ProfileViewController: UIViewController {
         } else {
             isOnPush = true
         }
-        
-        
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         fetchData {
             self.checkUserBadgeStatus()
             self.setupTableView()
@@ -70,7 +65,7 @@ class ProfileViewController: UIViewController {
             switch result {
             case .success(let data):
                 print("更新用戶成功")
-                if let index = self.accountData?.firstIndex(where: {$0.userID == data.userID}) {
+                if let index = self.accountData?.firstIndex { $0.userID == data.userID } {
                     self.accountData?[index] = data
                 }
                 
@@ -87,15 +82,15 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 1 {
             guard let comment = commentData, let pageAccountId = pageAccountId else { return 0 }
-            let data = comment.filter({
+            let data = comment.filter {
                 if $0.userID == pageAccountId {
                     return true
                 } else {
                     return false
                 }
-            })
+            }
             let lineNumber = ceil(Double(data.count) / 3.0)
-            let height = (UIScreen.width - 3*2) / 3 * lineNumber
+            let height = (UIScreen.width - 3 * 2) / 3 * lineNumber
             return height
         } else {
             return UITableView.automaticDimension
@@ -114,7 +109,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileBioCell.identifier, for: indexPath) as? ProfileBioCell else { return ProfileBioCell() }
-            guard let accountData = accountData?.first(where: {$0.userID == pageAccountId}) else { return  ProfileBioCell() }
+            guard let accountData = accountData?.first(where: { $0.userID == pageAccountId }) else { return  ProfileBioCell() }
             let bio = accountData.bio ?? "哈囉我是LEO"
             //            let badge = badgeRef ?? []
             cell.layoutCell(bio: bio)
@@ -147,20 +142,16 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                 isCurrent = false
             }
             let data = accountData ?? []
-            let accountData = data.first(where: {$0.userID == pageAccountId}) ?? Account(userID: "", provider: "")
+            let accountData = data.first { $0.userID == pageAccountId } ?? Account(userID: "", provider: "")
             header.layoutHeaderCell(isOnPush: isOnPush, isCurrenAccount: isCurrent, account: accountData)
             return header
         } else {
             return nil
         }
-        
     }
-    
-    
 }
 extension ProfileViewController: ProfileHeaderCellDelegate {
     func didtapBackBtn(_ view: ProfileHeaderCell) {
-        
     }
     
     func didtapBadgeBtn(_ view: ProfileHeaderCell) {
@@ -172,28 +163,22 @@ extension ProfileViewController: ProfileHeaderCellDelegate {
     }
     
     func didtapSettingBtn(_ view: ProfileHeaderCell, targetUserID: String?) {
-        showAlert() 
+        showAlert()
     }
     
     func didtapPost(_ view: ProfileHeaderCell) {
-        
     }
     
     func didtapFans(_ view: ProfileHeaderCell) {
-        
     }
     
     func didtapFollower(_ view: ProfileHeaderCell) {
-        
     }
-    
-    
 }
 
 extension ProfileViewController {
-    
     private func fetchData(competion: @escaping () -> Void) {
-        let group: DispatchGroup = DispatchGroup()
+        let group = DispatchGroup()
         let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
         let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
         let concurrentQueue3 = DispatchQueue(label: "com.leowang.queue3", attributes: .concurrent)
@@ -223,7 +208,6 @@ extension ProfileViewController {
                 case .failure(let error) :
                     print("下載評論失敗", error)
                     LKProgressHUD.dismiss()
-                    //EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0)
                     LKProgressHUD.showFailure(text: "下載評論失敗")
                 }
                 group.leave()
@@ -231,7 +215,6 @@ extension ProfileViewController {
         }
         group.enter()
         concurrentQueue3.async(group: group) {
-            
             AccountRequestProvider.shared.fetchAccounts { result in
                 switch result {
                 case .success(let data) :
@@ -256,7 +239,7 @@ extension ProfileViewController {
     func checkUserBadgeStatus() {
         var ref: [[Int]] = [[], [], [], [], []]
         
-        guard let user = accountData?.first(where: {$0.userID == pageAccountId}) else { return }
+        guard let user = accountData?.first(where: { $0.userID == pageAccountId }) else { return }
         
         let followerCount = user.follower.count
         let loginCount = user.loginHistory?.count ?? 0
@@ -345,31 +328,24 @@ extension ProfileViewController {
         
         alert.popoverPresentationController?.permittedArrowDirections = .up
         
-        alert.addAction(UIAlertAction(title: "登出帳號", style: .default , handler:{ (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "登出帳號", style: .default) { _ in
             UserRequestProvider.shared.logOut()
             self.tabBarController?.selectedIndex = 0
             LKProgressHUD.showSuccess(text: "登出成功")
-        }))
-        
-        alert.addAction(UIAlertAction(title: "刪除帳號", style: .destructive , handler:{ (UIAlertAction) in
-            
-            self.showDestructiveAlert()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
-            print("User click Dismiss button")
-        }))
-        
-        self.present(alert, animated: true, completion: {
-            print("completion block")
         })
+        
+        alert.addAction(UIAlertAction(title: "刪除帳號", style: .destructive) { _ in
+            self.showDestructiveAlert()
+        })
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
+        
+        self.present(alert, animated: true)
     }
     func showDestructiveAlert() {
         let alert = UIAlertController(title: "提示", message: "刪除帳號後資料永久不可復原，你確定要刪除帳號嗎？", preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "再想想", style: .default) { _ in
-            
-        }
+        let okAction = UIAlertAction(title: "再想想", style: .default)
         let cancelAction = UIAlertAction(title: "刪除帳號", style: .destructive) { _ in
             self.showAuthAlert()
         }
@@ -415,7 +391,7 @@ extension ProfileViewController {
         UserRequestProvider.shared.nativeDeleteAccount(password: password) { result in
             switch result {
             case .failure(let error):
-                print("刪除失敗 稍後再試",error)
+                print("刪除失敗 稍後再試", error)
                 LKProgressHUD.showFailure(text: error.localizedDescription)
             case .success(let message):
                 self.deleteUserInfo(userID: userID)

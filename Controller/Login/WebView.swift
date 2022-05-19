@@ -19,12 +19,9 @@ class WebView: UIViewController {
         view.stickSubView(webView)
         addDragFloatBtn()
     }
-    
-    
 }
 extension WebView {
     private func addDragFloatBtn() {
-        
         reportButton.frame = CGRect(x: UIScreen.width-70, y: 70, width: 60, height: 60)
         
         reportButton.layer.cornerRadius = 30.0
@@ -42,12 +39,9 @@ extension WebView {
     @objc private func dragAction(gesture: UIPanGestureRecognizer) {
         let moveState = gesture.state
         switch moveState {
-        case .began:
-            break
         case .changed:
             let point = gesture.translation(in: self.view)
             self.reportButton.center = CGPoint(x: self.reportButton.center.x + point.x, y: self.reportButton.center.y + point.y)
-            break
         case .ended:
             let point = gesture.translation(in: self.view)
             var newPoint = CGPoint(x: self.reportButton.center.x + point.x, y: self.reportButton.center.y + point.y)
@@ -64,7 +58,6 @@ extension WebView {
             UIView.animate(withDuration: 0.5) {
                 self.reportButton.center = newPoint
             }
-            break
         default:
             break
         }

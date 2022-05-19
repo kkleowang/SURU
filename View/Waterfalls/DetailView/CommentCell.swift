@@ -27,13 +27,12 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var contentTextView: UITextView!
     
     
-    
     func layoutCell(data: Comment, store: Store) {
         for view in [noodleValueView, soupValueView, happyValueView] {
             view?.clipsToBounds = true
             view?.layer.cornerRadius = 60 / 2
         }
-        mainImageView.cornerForAll(radii: 1-0)
+        mainImageView.cornerForAll(radii: 10)
         storeNameLabel.adjustsFontSizeToFitWidth = true
         mealLabel.adjustsFontSizeToFitWidth = true
         sideDishesLabel.adjustsFontSizeToFitWidth = true
@@ -75,7 +74,7 @@ class CommentCell: UITableViewCell {
     }
     private func initValueView(on view: UIView, value: Double, color: CGColor) {
         let circlePath = UIBezierPath(
-            arcCenter: CGPoint (x: view.frame.size.width / 2,y: view.frame.size.height / 2),
+            arcCenter: CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 2),
             radius: view.frame.size.width / 2,
             startAngle: CGFloat(-0.5 * .pi),
             endAngle: CGFloat(1.5 * .pi),

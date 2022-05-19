@@ -35,7 +35,6 @@ class AccountRequestProvider {
                 }
             }
         }
-        
     }
     
     func fetchAccounts(completion: @escaping (Result<[Account], Error>) -> Void) {
@@ -43,7 +42,7 @@ class AccountRequestProvider {
             if let error = error {
                 completion(.failure(error))
             } else {
-                var accounts = [Account]()
+                var accounts: [Account] = []
                 guard let snapshot = querySnapshot else { return }
                 for document in snapshot.documents {
                     do {
@@ -72,10 +71,7 @@ class AccountRequestProvider {
     
     func deleteAccountInfo(userID: String, completion: @escaping (Result<String, Error>) -> Void) {
         let docRef = database.collection("accounts").document(userID)
-        docRef.updateData([
-            "mainImage": "",
-            "name": "刪除的帳號"
-        ]) { error in
+        docRef.updateData(["mainImage": "", "name": "刪除的帳號"]) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -140,7 +136,6 @@ class AccountRequestProvider {
     func updateDataAccount(currentUserID: String, type: [String], content: [String]) {
         let currentDocment = database.collection("accounts").document(currentUserID)
         if type.count == content.count {
-            
             for i in 0..<type.count {
                 currentDocment.updateData([
                     type[i]: content[i]
@@ -149,27 +144,30 @@ class AccountRequestProvider {
         }
     }
     func listenAccount(currentUserID: String, completion: @escaping (Result<Account, Error>) -> Void) {
-        database.collection("accounts").document(currentUserID)
-            .addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
-                    return
-                }
-                do {
-                    if let data = try document.data(as: Account.self, decoder: Firestore.Decoder()) {
-                        completion(.success(data))
-                    }
-                } catch {
-                    completion(.failure(error))
-                }
+        database.collection("accounts").document(currentUserID).addSnapshotListener { documentSnapshot, error in
+            if let error = error {
+                print("Error fetching document: \(error)")
             }
+            guard let document = documentSnapshot else {
+                return
+            }
+            do {
+                if let data = try document.data(as: Account.self, decoder: Firestore.Decoder()) {
+                    completion(.success(data))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
-  
+    
     func checkUserDocExists(userID: String, completion: @escaping (Bool) -> Void) {
-        // [START get_document]
         let docRef = database.collection("accounts").document(userID)
         
-        docRef.getDocument { (document, error) in
+        docRef.getDocument { document, error in
+            if let error = error {
+                print("Error fetching document: \(error)")
+            }
             if let document = document, document.exists {
                 let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                 print("Document data: \(dataDescription)")
@@ -179,6 +177,5 @@ class AccountRequestProvider {
                 completion(false)
             }
         }
-        // [END get_document]
     }
 }

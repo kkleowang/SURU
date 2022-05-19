@@ -120,7 +120,7 @@ class CommentRequestProvider {
         let commentDocment = database.collection("comments").document(tagertCommentID)
         message.createdTime = Date().timeIntervalSince1970
         
-        let data = ["userID": message.userID, "message": message.message, "createdTime": message.createdTime] as [String : Any]
+        let data = ["userID": message.userID, "message": message.message, "createdTime": message.createdTime] as [String: Any]
         
         commentDocment.updateData([
             "userComment": FieldValue.arrayUnion([data])
@@ -134,10 +134,11 @@ class CommentRequestProvider {
     }
     
     func listenComment(for comment: String, completion: @escaping (Result<Comment, Error>) -> Void) {
-        database.collection("comments").document(comment)
-            .addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
+        database.collection("comments").document(comment).addSnapshotListener { documentSnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+            guard let document = documentSnapshot else {
                     return
                 }
                 do {
@@ -155,11 +156,9 @@ class CommentRequestProvider {
                 completion(.failure(error))
             }
             guard let documents = documentSnapshot else {
-                print("Error fetching document: \(error!)")
-                
                 return
             }
-            var comments = [Comment]()
+            var comments: [Comment] = []
             
             for document in documents.documents {
                 do {

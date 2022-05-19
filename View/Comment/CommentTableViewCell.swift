@@ -51,11 +51,13 @@ class CommentTableViewCell: UITableViewCell {
         roundView.backgroundColor = .B5
         roundView.layer.cornerRadius = roundView.frame.size.width / 2
         
-        let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
-                                      radius: roundView.frame.size.width / 2,
-                                      startAngle: CGFloat(-0.5 * .pi),
-                                      endAngle: CGFloat(1.5 * .pi),
-                                      clockwise: true)
+        let circlePath = UIBezierPath(
+            arcCenter: CGPoint(x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
+            radius: roundView.frame.size.width / 2,
+            startAngle: CGFloat(-0.5 * .pi),
+            endAngle: CGFloat(1.5 * .pi),
+            clockwise: true
+        )
         let circleShape = CAShapeLayer()
         circleShape.path = circlePath.cgPath
         circleShape.strokeColor = color
@@ -63,7 +65,7 @@ class CommentTableViewCell: UITableViewCell {
         circleShape.lineWidth = 4
         // set start and end values
         circleShape.strokeStart = 0.0
-        circleShape.strokeEnd = value*0.1
+        circleShape.strokeEnd = value * 0.1
         
         // add sublayer
         roundView.layer.addSublayer(circleShape)

@@ -23,7 +23,6 @@ class UICollectionViewSectionColorLayoutAttributes: UICollectionViewLayoutAttrib
     var sectionBgColor: UIColor?
 }
 class UICollectionViewSectionColorFlowLayout: UICollectionViewFlowLayout {
-    
     var decorationViewAttrs = [UICollectionViewSectionColorLayoutAttributes]()
     
     override init() {
@@ -39,8 +38,6 @@ class UICollectionViewSectionColorFlowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         
         super.prepare()
-        
-        //Section Number
         guard let collectionView = collectionView else { return }
         let numberOfSections = collectionView.numberOfSections
         guard let delegate = collectionView.delegate as? UICollectionViewSectionColorDelegateFlowLayout
@@ -80,7 +77,6 @@ class UICollectionViewSectionColorFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        
         guard let attributes = super.layoutAttributesForElements(in: rect) else { return nil }
         var allAttributes = [UICollectionViewLayoutAttributes]()
         allAttributes.append(contentsOf: attributes)

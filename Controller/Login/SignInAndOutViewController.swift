@@ -58,7 +58,6 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
         UserRequestProvider.shared.nativeSignUp(withEmail: email, withPassword: password) { result in
             switch result {
             case .failure(let error):
-                //                LKProgressHUD.showFailure(text: error.localizedDescription)
                 LKProgressHUD.showFailure(text: "登入失敗請再試一次")
             case .success(let message):
                 self.showAddInfoAlert()
@@ -68,7 +67,6 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
     }
     
     func signIn(email: String, password: String) {
-        
         UserRequestProvider.shared.nativeSignIn(withEmail: email, withPassword: password) { result in
             switch result {
             case .failure(let error):
@@ -76,7 +74,6 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
             case .success(let message):
                 self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
                 LKProgressHUD.showSuccess(text: message)
-                
             }
         }
     }
@@ -86,7 +83,6 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
         let okAction = UIAlertAction(title: "好", style: .default) { _ in
             self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
             self.delegate?.didSelectGoEditProfile(self)
-            
         }
         let cancelAction = UIAlertAction(title: "先去逛逛", style: .cancel) { _ in
             self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
@@ -105,13 +101,8 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
             if let sheet = controller.sheetPresentationController {
                 sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 20
-                
             }
         }
         self.present(controller, animated: true, completion: nil)
     }
-    
-    
-    
-    
 }

@@ -32,7 +32,7 @@ class CommentStartingView: UIView {
         return button
     }
     
-    var commentTableView =  UITableView()
+    var commentTableView = UITableView()
     
     var imagePicker: UIImagePickerController? {
         let imagePicker = UIImagePickerController()

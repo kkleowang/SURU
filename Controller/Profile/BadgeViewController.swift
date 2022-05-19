@@ -75,7 +75,7 @@ class BadgeViewController: UIViewController {
         }
         totalBadge = 0
         for badgeType in badgeRef {
-            let filterArr = badgeType.filter { $0 == 1}
+            let filterArr = badgeType.filter { $0 == 1 }
             totalBadge += filterArr.count
         }
     }
@@ -97,18 +97,20 @@ extension BadgeViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: BadgeCell.self), for: indexPath) as? BadgeCell, let badgeRef = badgeRef else { return BadgeCell() }
         
-        
         if badgeRef[indexPath.section][indexPath.row] == 0 {
-            cell.layoutCell(image: UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0),
-                            text: badgeName[indexPath.section][indexPath.row],
-                            textColor: .gray,
-                            waringText: badgeSubTitle[indexPath.section][indexPath.row])
-            
+            cell.layoutCell(
+                image: UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0),
+                text: badgeName[indexPath.section][indexPath.row],
+                textColor: .gray,
+                waringText: badgeSubTitle[indexPath.section][indexPath.row]
+            )
         } else {
-            cell.layoutCell(image: UIImage(named: badgeFile[indexPath.section][indexPath.item]),
-                            text: badgeName[indexPath.section][indexPath.row],
-                            textColor: .systemBrown,
-                            waringText: badgeSubTitle[indexPath.section][indexPath.row])
+            cell.layoutCell(
+                image: UIImage(named: badgeFile[indexPath.section][indexPath.item]),
+                text: badgeName[indexPath.section][indexPath.row],
+                textColor: .systemBrown,
+                waringText: badgeSubTitle[indexPath.section][indexPath.row]
+            )
         }
         cell.badgeNameLabel.text = badgeName[indexPath.section][indexPath.row]
         cell.badgeNameLabel.layer.shadowOpacity = 0

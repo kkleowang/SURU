@@ -1,7 +1,7 @@
 //
-//import UIKit
+// import UIKit
 //
-//class anc: UIView {
+// class anc: UIView {
 ////    //
 //    lazy var selectedStoreTextField = UITextField() {
 //
@@ -117,5 +117,5 @@
 //        let storeTextField = selectedStoreTextField()
 //        let mealTextField = selectedMealTextField()
 //    }
-//}
+// }
 //

@@ -14,7 +14,7 @@ import CryptoKit
 class WelcomeViewController: UIViewController {
     weak var delegate: SignInAndOutViewControllerDelegate?
     private let welcomeView: WelcomeView = .fromNib()
-    fileprivate var currentNonce: String?
+    private var currentNonce: String?
     var webView = WKWebView() {
         didSet {
             webView.allowsBackForwardNavigationGestures = true
@@ -76,7 +76,6 @@ extension WelcomeViewController: WelcomeViewDelegate {
     }
 }
 extension WelcomeViewController {
-    
     @available(iOS 13, *)
     func startSignInWithAppleFlow() {
         let nonce = randomNonceString()
@@ -124,9 +123,7 @@ extension WelcomeViewController {
     private func sha256(_ input: String) -> String {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
-        let hashString = hashedData.compactMap {
-            String(format: "%02x", $0)
-        }.joined()
+        let hashString = hashedData.compactMap { String(format: "%02x", $0) }.joined()
         
         return hashString
     }
@@ -158,10 +155,12 @@ extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizat
             }
             // Initialize a Firebase credential.
             
-            let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                      idToken: idTokenString,
-                                                      rawNonce: nonce)
-            UserRequestProvider.shared.appleLogin(credential: credential,name: name) { result in
+            let credential = OAuthProvider.credential(
+                withProviderID: "apple.com",
+                idToken: idTokenString,
+                rawNonce: nonce
+            )
+            UserRequestProvider.shared.appleLogin(credential: credential, name: name) { result in
                 switch result {
                 case .failure(let error):
                     print("apple登入失敗", error)

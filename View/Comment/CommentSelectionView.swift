@@ -99,7 +99,6 @@ class CommentSelectionView: UIView {
         selectedMealTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         selectedMealTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         selectedMealTextField.inputView = mealPickerView
-        
     }
     func initPickerView() {
         storePickerView.tag = 1
@@ -159,7 +158,6 @@ class CommentSelectionView: UIView {
         selectHappyValueButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         
         
-        
         notWriteCommentButton.translatesAutoresizingMaskIntoConstraints = false
         notWriteCommentButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         notWriteCommentButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -170,19 +168,6 @@ class CommentSelectionView: UIView {
         notWriteCommentButton.tintColor = .white
         notWriteCommentButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         
-        
-        //        self.addSubview(saveDraftButton)
-        //        saveDraftButton.translatesAutoresizingMaskIntoConstraints = false
-        //        saveDraftButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        //        saveDraftButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        //        saveDraftButton.layer.cornerRadius = 20
-        //        saveDraftButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        //        saveDraftButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-        //        saveDraftButton.setImage( UIImage(named: "draftmark"), for: .normal)
-        //        saveDraftButton.addTarget(self, action: #selector(saveCommentDraft), for: .touchUpInside)
-        //        saveDraftButton.backgroundColor = .black.withAlphaComponent(0.4)
-        //        saveDraftButton.tintColor = .white
-        //        saveDraftButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
     func initValueView(on view: UIView, value: Double) {
         // round view
@@ -198,11 +183,12 @@ class CommentSelectionView: UIView {
         roundView.layer.cornerRadius = roundView.frame.size.width / 2
         
         // bezier path
-        let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
-                                      radius: roundView.frame.size.width / 2,
-                                      startAngle: CGFloat(-0.5 * .pi),
-                                      endAngle: CGFloat(1.5 * .pi),
-                                      clockwise: true)
+        let circlePath = UIBezierPath(
+            arcCenter: CGPoint(x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
+            radius: roundView.frame.size.width / 2,
+            startAngle: CGFloat(-0.5 * .pi),
+            endAngle: CGFloat(1.5 * .pi),
+            clockwise: true)
         // circle shape
         let circleShape = CAShapeLayer()
         circleShape.path = circlePath.cgPath
@@ -211,7 +197,7 @@ class CommentSelectionView: UIView {
         circleShape.lineWidth = 4
         // set start and end values
         circleShape.strokeStart = 0.0
-        circleShape.strokeEnd = value*0.1
+        circleShape.strokeEnd = value * 0.1
         
         // add sublayer
         roundView.layer.addSublayer(circleShape)
@@ -335,4 +321,3 @@ extension CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 }
-

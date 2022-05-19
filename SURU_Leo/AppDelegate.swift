@@ -10,11 +10,6 @@ import Firebase
 import IQKeyboardManagerSwift
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    // swiftlint:disable force_cast
-    
-    // swiftlint:enable force_cast
-    
-        
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()

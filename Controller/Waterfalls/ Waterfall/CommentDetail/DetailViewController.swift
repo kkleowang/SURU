@@ -26,8 +26,10 @@ class DetailViewController: UIViewController {
                 comment = newCommet
                 guard let message = comment?.userComment, let currentUserID = UserRequestProvider.shared.currentUserID else { return }
                 self.tableView.reloadSections([1], with: .automatic)
-                if message.sorted(by: {$0.createdTime > $1.createdTime}).last!.userID == currentUserID  {
+                if let author = message.sorted(by: {$0.createdTime > $1.createdTime}).last?.userID {
+                    if author == currentUserID {
                     self.tableView.scrollToRow(at: IndexPath(row: message.count - 1, section: 1), at: .top, animated: true)
+                    }
                 }
             }
         }
@@ -35,17 +37,16 @@ class DetailViewController: UIViewController {
     func configMessage() {
         guard let blockList = currentUser?.blockUserList, let messages = comment?.userComment else { return }
         
-        self.comment?.userComment = messages.filter({ if blockList.contains($0.userID) {
+        self.comment?.userComment = messages.filter { if blockList.contains($0.userID) {
             return false
         } else {
             return true
         }
-        })
+        }
     }
     
     @IBOutlet weak var tableView: UITableView!
-    
-    //上方
+
     @IBOutlet weak var badgeImageView: UIImageView!
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorStackView: UIStackView!
@@ -53,7 +54,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var followButton: UIButton!
     
     @IBAction func tapFollowButton(_ sender: UIButton) {
-        
         guard let userID = UserRequestProvider.shared.currentUserID, let account = author else { return }
         
         if sender.currentTitle == "追蹤" {
@@ -69,9 +69,6 @@ class DetailViewController: UIViewController {
     }
     
     
-    //下方
-    
-    
     @IBAction func showTextView() {
         inputTextField.becomeFirstResponder()
         textViewBarView.isHidden = false
@@ -84,8 +81,6 @@ class DetailViewController: UIViewController {
             let sectionRect = tableView.rectForHeader(inSection: 1)
             tableView.scrollRectToVisible(sectionRect, animated: true)
         }
-        
-        
     }
     @IBAction func tapLikeButton(_ sender: UIButton) {
         guard let currentUserID = UserRequestProvider.shared.currentUserID, let tagertComment = comment else { return }
@@ -99,7 +94,6 @@ class DetailViewController: UIViewController {
             sender.setTitle("\((Int(sender.currentTitle ?? "0") ?? 0 ) + 1 )", for: .normal)
             CommentRequestProvider.shared.unLikeComment(currentUserID: currentUserID, tagertComment: tagertComment)
         }
-        
     }
     
     @IBAction func postComment(_ sender: Any) {
@@ -107,8 +101,6 @@ class DetailViewController: UIViewController {
             if !text.isEmpty {
                 inputTextField.resignFirstResponder()
                 publishMessage()
-            } else {
-                
             }
             inputTextField.text = ""
         }
@@ -128,7 +120,6 @@ class DetailViewController: UIViewController {
             case .failure:
                 //                LKProgressHUD.dismiss()
                 LKProgressHUD.showFailure(text: "新增評論失敗\n稍候再試")
-                
             }
         }
     }
@@ -139,7 +130,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var textViewBarBottomConstraint: NSLayoutConstraint!
     
-    @objc func dismissKeyboard(){
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -148,21 +139,18 @@ class DetailViewController: UIViewController {
             guard let userID = self.comment?.userID else { return }
             self.delegate?.didtapAuthor(self, targetUserID: userID)
         }
-        
     }
     func setupTopView() {
         guard let currentUserId = UserRequestProvider.shared.currentUserID,
               let account = author,
               let comment = comment else { return }
-        let message = comment.userComment ?? []
         CommentRequestProvider.shared.listenComment(for: comment.commentID) { result in
             switch result {
             case .success(let data):
                 self.newCommet = data
-            case .failure(let error):
+            case .failure:
                 LKProgressHUD.showFailure(text: "下載評論失敗")
             }
-            
         }
         let tapAuthor = UITapGestureRecognizer(target: self, action: #selector(tapAuthorView))
         authorStackView.isUserInteractionEnabled = true
@@ -193,7 +181,6 @@ class DetailViewController: UIViewController {
     }
     
     func setupButtonView() {
-        
         guard let currentUserId = UserRequestProvider.shared.currentUserID,
               let _ = author,
               let comment = comment else { return }
@@ -224,7 +211,6 @@ class DetailViewController: UIViewController {
         tableView.delegate = self
     }
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         listenToKeyStatus()
     }
@@ -242,7 +228,6 @@ class DetailViewController: UIViewController {
         setuptableView()
     }
     
-    //黑色的view
     lazy var overlayView: UIView = {
         let overlayView = UIView(frame: view.frame)
         overlayView.backgroundColor = UIColor(white: 0, alpha: 0.1)
@@ -274,19 +259,15 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         2
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return UITableView.automaticDimension
-        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else {
-            
             guard let messages = comment?.userComment else { return 0 }
             
             return messages.count
-            
         }
     }
     
@@ -301,16 +282,14 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             
             guard let messages = comment?.userComment else { return cell }
             cell.delegate = self
-            let dataSource = messages.sorted(by: {$0.createdTime > $1.createdTime})
+            let dataSource = messages.sorted { $0.createdTime > $1.createdTime }
             let message = dataSource[indexPath.row]
-            let author = accountData.first(where: {$0.userID == message.userID}) ?? Account(userID: "123", provider: "")
+            let author = accountData.first { $0.userID == message.userID } ?? Account(userID: "123", provider: "")
             cell.layoutCell(commentMessage: messages[indexPath.row], author: author)
             
             return cell
         }
     }
-    
-    
 }
 extension DetailViewController: CommentMessagesCellDelegate {
     func didTapMoreButton(_ view: CommentMessagesCell, targetUserID: String?) {
@@ -327,44 +306,39 @@ extension DetailViewController: CommentMessagesCellDelegate {
         alert.popoverPresentationController?.sourceRect = popoverRect
         
         alert.popoverPresentationController?.permittedArrowDirections = .up
-        alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive) { _ in
             guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }
             AccountRequestProvider.shared.blockAccount(currentUserID: userID, tagertUserID: targetUser)
             LKProgressHUD.showFailure(text: "成功封鎖用戶")
             
             guard let messages = self.comment?.userComment else { return }
             
-            self.comment?.userComment = messages.filter({ if $0.userID == targetUser {
-                return false
-            } else {
-                return true
+            self.comment?.userComment = messages.filter {
+                if $0.userID == targetUser {
+                    return false
+                } else {
+                    return true
+                }
             }
-            })
             
             self.tableView.reloadSections([1], with: .automatic)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler:{ (UIAlertAction) in
-            print("User click Dismiss button")
-        }))
-        
-        self.present(alert, animated: true, completion: {
-            print("completion block")
         })
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
+        
+        self.present(alert, animated: true)
     }
-    
 }
 extension DetailViewController {
-    @objc private func keyboardWillChangeFrame(_ notification: Notification){
-        if let endFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
-            //键盘的当前高度(弹起时大于0,收起时为0)
+    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
+        if let endFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            // when keyboard show >0, dismiss <0
             let keyboardH = UIScreen.height - endFrame.origin.y
             
-            if keyboardH > 0{
-                view.insertSubview(overlayView, belowSubview: textViewBarView)//给背景加黑色透明遮罩
+            if keyboardH > 0 {
+                view.insertSubview(overlayView, belowSubview: textViewBarView)
             } else {
                 overlayView.removeFromSuperview()
-                //移除黑色透明遮罩
                 textViewBarView.isHidden = true
             }
             textViewBarBottomConstraint.constant = keyboardH

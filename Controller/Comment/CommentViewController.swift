@@ -6,48 +6,41 @@
 //
 
 import UIKit
-//import SwiftUI
+
 
 class CommentViewController: UIViewController {
-    // View
     var startingView = CommentStartingView()
-    //    let sendButton = UIButton()
     var imageCardView = CommentImageCardView()
-    
     var selectionView = CommentSelectionView()
     
-    // datasource放置
     var orderObserver: NSKeyValueObservation!
     var stores: [Store] = []
     var comments: [Comment] = []
     var commentDrafts: [CommentDraft] = []
     let userID = UserRequestProvider.shared.currentUserID
-    var commentData: Comment = Comment(
+    var commentData = Comment(
         userID: "",
         storeID: "",
         meal: "",
         contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0),
         contenText: "",
         mainImage: "")
-    var originData: Comment = Comment(
+    var originData = Comment(
         userID: "",
         storeID: "",
         meal: "",
         contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0),
         contenText: "",
         mainImage: "")
-    
-    
-    
     // 上傳前的照片
     var imageDataHolder: Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "新增評論"
-        if userID != nil {
-            commentData.userID = userID!
-        }
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+            commentData.userID = userID
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,18 +53,12 @@ class CommentViewController: UIViewController {
         fetchCommentOfUser {
             self.setupStartingView()
         }
-        
     }
     
     func settingKVO() {
-        orderObserver = StorageManager.shared.observe(
-            \StorageManager.comments,
-             options: .new,
-             changeHandler: { [weak self] _, change in
-                 self!.startingView.commentTableView.reloadSections([0], with: .none)
-                 
-             }
-        )
+        orderObserver = StorageManager.shared.observe(\StorageManager.comments, options: .new) { [weak self] _, _ in
+            self?.startingView.commentTableView.reloadSections([0], with: .none)
+        }
     }
     
     func fetchStoreData() {
@@ -139,7 +126,6 @@ class CommentViewController: UIViewController {
         //        imageCardView.clipsToBounds = true
         //        imageCardView.makeShadow()
         imageCardView.layoutCommendCardView(image: image) { [weak self] in
-            
             self?.setupCommentSelectionView()
         }
     }
@@ -218,12 +204,12 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
         if indexPath.section == 0 {
-            let name = stores.first(where: {$0.storeID == commentDrafts[indexPath.row].storeID})?.name
-            cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name ?? "未輸入店名")
+            let name = stores.first { $0.storeID == commentDrafts[indexPath.row].storeID }?.name ?? "未輸入店名"
+            cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name)
             return cell
         } else {
-            let name = stores.first(where: {$0.storeID == comments[indexPath.row].storeID})?.name
-            cell.layoutCommentCell(data: comments[indexPath.row], name: name ?? "未輸入店名")
+            let name = stores.first { $0.storeID == comments[indexPath.row].storeID }?.name ?? "未輸入店名"
+            cell.layoutCommentCell(data: comments[indexPath.row], name: name)
             return cell
         }
     }
@@ -247,7 +233,6 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
             return
         }
         present(imagePicker, animated: true) {
-            
             self.startingView.commentTableView.removeFromSuperview()
         }
     }
@@ -304,7 +289,7 @@ extension CommentViewController: CommentSelectionViewDelegate {
     }
     
     func didTapSaveComment(_ view: CommentSelectionView) {
-        StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
+        StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder ?? Data()) { result in
             switch result {
             case .success(let data):
                 print("Coredata")
@@ -342,7 +327,7 @@ extension CommentViewController: CommentDraggingViewDelegate {
                 commentData.contentValue.noodle != 50 &&
                 commentData.contentValue.soup != 50 &&
                 commentData.contentValue.happiness != 50 &&
-                commentData.storeID != "" && commentData.meal != "" {
+                !commentData.storeID.isEmpty && !commentData.meal.isEmpty {
             //            initSendButton()
             //            sendButton.isHidden = false
         }
@@ -353,18 +338,16 @@ extension CommentViewController: LiquidViewDelegate {
         switch type {
         case .noodle:
             commentData.contentValue.noodle = value
-            initValueView(on: selectionView.selectNoodelValueButton, value: value,color: UIColor.main1?.cgColor ?? UIColor.yellow.cgColor)
+            initValueView(on: selectionView.selectNoodelValueButton, value: value, color: UIColor.main1?.cgColor ?? UIColor.yellow.cgColor)
             
         case .soup:
             commentData.contentValue.soup = value
-            initValueView(on: selectionView.selectSouplValueButton, value: value,color: UIColor.main2?.cgColor ?? UIColor.yellow.cgColor)
+            initValueView(on: selectionView.selectSouplValueButton, value: value, color: UIColor.main2?.cgColor ?? UIColor.yellow.cgColor)
             
         case .happy:
             commentData.contentValue.happiness = value
-            initValueView(on: selectionView.selectHappyValueButton, value: value,color: UIColor.main3?.cgColor ?? UIColor.yellow.cgColor)
-            
+            initValueView(on: selectionView.selectHappyValueButton, value: value, color: UIColor.main3?.cgColor ?? UIColor.yellow.cgColor)
         }
-        
     }
 }
 
@@ -374,41 +357,11 @@ extension CommentViewController {
         let writeCommentView: WriteCommentView = UIView.fromNib()
         writeCommentView.delegate = self
         controller.view.stickSubView(writeCommentView)
-        let name = stores.first(where: {$0.storeID == commentData.storeID})?.name
-        writeCommentView.layoutView(comment: commentData, name: name ?? "")
+        let name = stores.first { $0.storeID == commentData.storeID }?.name ?? ""
+        writeCommentView.layoutView(comment: commentData, name: name)
         self.present(controller, animated: true, completion: nil)
     }
-    //    let sendButton = UIButton()
-    //    func initSendButton() {
-    ////        let button = UIButton()
-    //        sendButton.isHidden = true
-    //        view.addSubview(sendButton)
-    //        sendButton.translatesAutoresizingMaskIntoConstraints = false
-    //        sendButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-    //        sendButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    //        sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
-    //        sendButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-    //        sendButton.layer.cornerRadius = 20
-    //        sendButton.setImage( UIImage(named: "plus"), for: .normal)
-    //        sendButton.clipsToBounds = true
-    ////        sendButton.layer.borderWidth = 1
-    ////        sendButton.layer.borderColor = UIColor.
-    ////        sendButton.setTitle("送出評論", for: .normal)
-    //        sendButton.addTarget(self, action: #selector(sendComment), for: .touchUpInside)
-    //        sendButton.backgroundColor = .C4
-    //        sendButton.tintColor = .white
-    //        sendButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-    //    }
     @objc func sendComment() {
-        //        for view in selectionView.selectNoodelValueButton.subviews {
-        //            view.removeFromSuperview()
-        //        }
-        //        for view in selectionView.selectSouplValueButton.subviews {
-        //            view.removeFromSuperview()
-        //        }
-        //        for view in selectionView.selectHappyValueButton.subviews {
-        //            view.removeFromSuperview()
-        //        }
         guard let image = imageDataHolder else { return }
         LKProgressHUD.show()
         let fileName = "\(commentData.userID)_\(Date())"
@@ -441,11 +394,13 @@ extension CommentViewController {
         label.text = "\(value)"
         label.font = .boldSystemFont(ofSize: 16)
         roundView.addSubview(label)
-        let circlePath = UIBezierPath(arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
-                                      radius: roundView.frame.size.width / 2,
-                                      startAngle: CGFloat(-0.5 * .pi),
-                                      endAngle: CGFloat(1.5 * .pi),
-                                      clockwise: true)
+        let circlePath = UIBezierPath(
+            arcCenter: CGPoint (x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
+            radius: roundView.frame.size.width / 2,
+            startAngle: CGFloat(-0.5 * .pi),
+            endAngle: CGFloat(1.5 * .pi),
+            clockwise: true
+        )
         let circleShape = CAShapeLayer()
         circleShape.path = circlePath.cgPath
         circleShape.strokeColor = color
@@ -453,7 +408,7 @@ extension CommentViewController {
         circleShape.lineWidth = 4
         // set start and end values
         circleShape.strokeStart = 0.0
-        circleShape.strokeEnd = value*0.1
+        circleShape.strokeEnd = value * 0.1
         roundView.layer.addSublayer(circleShape)
         view.addSubview(roundView)
         view.backgroundColor = .B6
@@ -462,7 +417,6 @@ extension CommentViewController {
 extension CommentViewController: WrireCommentViewControllerDelegate {
     func didTapSendComment(_ view: WriteCommentView, text: String) {
         commentData.contenText = text
-        //        view.naviga
         guard let image = imageDataHolder else { return }
         let fileName = "\(commentData.userID)_\(Date())"
         FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in

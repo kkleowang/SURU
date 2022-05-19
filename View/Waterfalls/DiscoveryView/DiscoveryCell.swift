@@ -82,7 +82,6 @@ class DiscoveryCell: UICollectionViewCell {
         
         if !comment.likedUserList.isEmpty {
             likeButton.setTitle(String(comment.likedUserList.count), for: .normal)
-            
         } else {
             likeButton.setTitle("", for: .normal)
         }
@@ -96,7 +95,6 @@ class DiscoveryCell: UICollectionViewCell {
         }
         
         if author.badgeStatus != nil {
-            
             //            badgeImageView.image = UIImage(named: "\(author.badgeStatus!)")
         }
     }

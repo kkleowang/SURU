@@ -19,7 +19,6 @@ class StoreTopView: UIView {
     var storeID: String?
     var isUserCollected: Bool?
     func layOutView(store: Store, isCollect: Bool) {
-        
         storeID = store.storeID
         isUserCollected = isCollect
         mainImage.layer.cornerRadius = mainImage.bounds.width / 2
@@ -36,9 +35,6 @@ class StoreTopView: UIView {
         } else {
             collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
         }
-        
-        
-        
     }
     @IBAction func tapCollectButton(_ sender: UIButton) {
         

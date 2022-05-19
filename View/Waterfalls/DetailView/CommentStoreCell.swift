@@ -44,12 +44,10 @@ class CommentStoreCell: UITableViewCell {
         MKmap.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), latitudinalMeters: 400, longitudinalMeters: 400)
         
         let mark = MKPointAnnotation()
-        mark.coordinate =  CLLocationCoordinate2D(
+        mark.coordinate = CLLocationCoordinate2D(
             latitude: lat,
             longitude: long)
         mark.title = store.name
         MKmap.addAnnotation(mark)
-        
     }
-    
 }
