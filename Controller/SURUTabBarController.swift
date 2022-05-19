@@ -10,9 +10,9 @@ import Alamofire
 
 
 private struct StoryboardCategory {
-    static let waterfalls = "CommentWallViewController"
-    
     static let storeMap = "StoreMapViewController"
+    
+    static let commentWall = "CommentWallViewController"
     
     static let comment = "CommentViewController"
     
@@ -33,7 +33,7 @@ private enum Tab {
         let storyboard = UIStoryboard.main
         
         switch self {
-        case .commentWall: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.waterfalls)
+        case .commentWall: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.commentWall)
             
         case .storeMap: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.storeMap)
             
