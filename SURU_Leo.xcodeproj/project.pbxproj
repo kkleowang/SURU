@@ -87,9 +87,7 @@
 		B8A4FFCC28224EA20023F0BA /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A4FFCB28224EA20023F0BA /* ReportView.xib */; };
 		B8A4FFCE282252B30023F0BA /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4FFCD282252B30023F0BA /* ReportView.swift */; };
 		B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */; };
-		B8BBBE7C281D328B001782F5 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */; };
-		B8BBBE7E281D32AE001782F5 /* CollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */; };
-		B8BBBE80281D32C7001782F5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7F281D32C7001782F5 /* FollowViewController.swift */; };
+		B8BBBE7C281D328B001782F5 /* WaterfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7B281D328B001782F5 /* WaterfallViewController.swift */; };
 		B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */; };
 		B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */; };
 		B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BD5F96282072DF00A1C138 /* DetailViewController.swift */; };
@@ -232,9 +230,7 @@
 		B8A4FFCB28224EA20023F0BA /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
 		B8A4FFCD282252B30023F0BA /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWallViewController.swift; sourceTree = "<group>"; };
-		B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
-		B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectViewController.swift; sourceTree = "<group>"; };
-		B8BBBE7F281D32C7001782F5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
+		B8BBBE7B281D328B001782F5 /* WaterfallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallViewController.swift; sourceTree = "<group>"; };
 		B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryCell.xib; sourceTree = "<group>"; };
 		B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCell.swift; sourceTree = "<group>"; };
 		B8BD5F96282072DF00A1C138 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -522,8 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */,
-				B8BBBE7A281D3274001782F5 /* ChildVC */,
-				B8BD5F96282072DF00A1C138 /* DetailViewController.swift */,
+				B8BBBE7A281D3274001782F5 /*  Waterfall */,
 			);
 			path = Waterfalls;
 			sourceTree = "<group>";
@@ -604,14 +599,13 @@
 			path = StoreMapPage;
 			sourceTree = "<group>";
 		};
-		B8BBBE7A281D3274001782F5 /* ChildVC */ = {
+		B8BBBE7A281D3274001782F5 /*  Waterfall */ = {
 			isa = PBXGroup;
 			children = (
-				B8BBBE7B281D328B001782F5 /* DiscoveryViewController.swift */,
-				B8BBBE7D281D32AE001782F5 /* CollectViewController.swift */,
-				B8BBBE7F281D32C7001782F5 /* FollowViewController.swift */,
+				B8BBBE7B281D328B001782F5 /* WaterfallViewController.swift */,
+				B8E59B6028363154002AEBB7 /* CommentDetail */,
 			);
-			path = ChildVC;
+			path = " Waterfall";
 			sourceTree = "<group>";
 		};
 		B8BBBE82281E9AA0001782F5 /* DiscoveryView */ = {
@@ -713,6 +707,14 @@
 				B83B1943282834D400686D16 /* FullScreenView.xib */,
 			);
 			path = FullScreenView;
+			sourceTree = "<group>";
+		};
+		B8E59B6028363154002AEBB7 /* CommentDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B8BD5F96282072DF00A1C138 /* DetailViewController.swift */,
+			);
+			path = CommentDetail;
 			sourceTree = "<group>";
 		};
 		B8EC6FFF2805274100DA8B78 /* Extension */ = {
@@ -1073,7 +1075,7 @@
 				B8F92C842830CE550002B252 /* ProfileBioCell.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
 				B8F35184281794D9002E2A3C /* UserRequestProvider.swift in Sources */,
-				B8BBBE7C281D328B001782F5 /* DiscoveryViewController.swift in Sources */,
+				B8BBBE7C281D328B001782F5 /* WaterfallViewController.swift in Sources */,
 				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
 				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
 				B8532A23282E3FB400FA4D60 /* CommentMessagesCell.swift in Sources */,
@@ -1095,7 +1097,6 @@
 				B83B19312827D99900686D16 /* StoreOpenTimeCell.swift in Sources */,
 				B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */,
 				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
-				B8BBBE7E281D32AE001782F5 /* CollectViewController.swift in Sources */,
 				B83E9596280EB666009DD17F /* AccountDataModel.swift in Sources */,
 				B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */,
 				B83E9594280EB653009DD17F /* CommentDataModel.swift in Sources */,
@@ -1134,7 +1135,6 @@
 				B83E4539280E8B7200B13B0C /* SURU.xcdatamodeld in Sources */,
 				B80096002817FEC800BB05AE /* SignInAndOutViewController.swift in Sources */,
 				B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */,
-				B8BBBE80281D32C7001782F5 /* FollowViewController.swift in Sources */,
 				B8DBDD5028246D50008DC615 /* UICollectionView+.swift in Sources */,
 				B8F92C882830ED060002B252 /* ProfileCommentCell.swift in Sources */,
 				B8BD5FA22820819D00A1C138 /* CommentCell.swift in Sources */,

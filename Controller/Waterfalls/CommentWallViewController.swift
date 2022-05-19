@@ -10,7 +10,6 @@ import XLPagerTabStrip
 
 
 class CommentWallViewController: ButtonBarPagerTabStripViewController {
-    
     override func viewDidLoad() {
         settings.style.selectedBarBackgroundColor = UIColor.C4 ?? UIColor.systemOrange
         settings.style.selectedBarHeight = 3
@@ -21,7 +20,7 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
         
         self.navigationItem.title = "探索食記"
         containerView.bounces = false
-        changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+        changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, _: CGFloat, changeCurrentIndex: Bool, _: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             
             oldCell?.label.textColor = .secondaryLabel
@@ -29,12 +28,14 @@ class CommentWallViewController: ButtonBarPagerTabStripViewController {
         }
     }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let discoveryVC = storyboard.instantiateViewController(identifier: "DiscoveryViewController") as? DiscoveryViewController else { return [] }
-        guard let followedVC = storyboard.instantiateViewController(identifier: "FollowViewController") as? FollowViewController else { return [] }
-        guard let collectedVC = storyboard.instantiateViewController(identifier: "CollectViewController") as? CollectViewController else { return [] }
+        let storyboard = UIStoryboard.main
+        guard let discoveryVC = storyboard.instantiateViewController(identifier: "WaterfallViewController") as? WaterfallViewController else { return [] }
+        discoveryVC.pageStatus = .discovery
+        guard let followedVC = storyboard.instantiateViewController(identifier: "WaterfallViewController") as? WaterfallViewController else { return [] }
+        followedVC.pageStatus = .follow
+        guard let collectedVC = storyboard.instantiateViewController(identifier: "WaterfallViewController") as? WaterfallViewController else { return [] }
+        collectedVC.pageStatus = .collect
         
         return [discoveryVC, followedVC, collectedVC]
     }
 }
-

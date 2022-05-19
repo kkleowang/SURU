@@ -1,5 +1,5 @@
 //
-//  FollowViewController.swift
+//  DiscoveryViewController.swift
 //  SURU_Leo
 //
 //  Created by LEO W on 2022/4/30.
@@ -11,30 +11,30 @@ import CHTCollectionViewWaterfallLayout
 import Firebase
 import FirebaseFirestoreSwift
 
-class FollowViewController: UIViewController {
+enum PageStatus {
+    case discovery
+    case follow
+    case collect
+}
+class WaterfallViewController: UIViewController {
+    var pageStatus: PageStatus = .discovery
+    
     var commentData: [Comment] = []
     var currentAccount: Account?
     var storeData: [Store] = []
-    var accountData: [Account] = []
     
     var filteredCommentData: [Comment] = []
-    var dataSourceComment: [Comment] = []
+    var accountData: [Account] = []
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     
     override func viewDidLoad() {
-        collectionView.showsHorizontalScrollIndicator = false
+        super.viewDidLoad()
+        collectionView.backgroundColor = .B6
         collectionView.showsVerticalScrollIndicator = false
-            collectionView.backgroundColor = .B6
-//        StoreRequestProvider.shared.listenStore {
-//            self.updataStore()
-//        }
-//       
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        collectionView.showsHorizontalScrollIndicator = false
+        addlistener()
         fetchAllData {
             self.configData {
                 self.setupCollectionView()
@@ -42,23 +42,47 @@ class FollowViewController: UIViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchCommentData {
+            self.configData {
+            self.collectionView.reloadData()
+            }
+        }
+        
+    }
+   
     private func configData(completion: @escaping () -> Void) {
-        guard let user = currentAccount else { return }
-        filteredCommentData = commentData.filter({comment in
-            guard let blockList = user.blockUserList else { return true }
-            if blockList.contains(comment.userID) {
-                return false
-            } else {
-                return true
+        guard let user = currentAccount, let blockList = user.blockUserList else { return }
+        switch pageStatus {
+        case .discovery:
+            filteredCommentData = commentData.filter {comment in
+                if !blockList.contains(comment.userID) {
+                    return true
+                } else {
+                    return false
+                }
             }
-        })
-        dataSourceComment = filteredCommentData.filter({ comment in
-            if user.followedUser.contains(comment.userID) {
-                return true
-            } else {
-                return false
+        case .follow:
+            filteredCommentData = commentData.filter {comment in
+                if !blockList.contains(comment.userID) && user.followedUser.contains(comment.userID) {
+                    return true
+                } else {
+                    return false
+                }
             }
-        })
+        case .collect:
+            filteredCommentData = commentData.filter {comment in
+                if !blockList.contains(comment.userID) && user.collectedStore.contains(comment.storeID) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+        
+        
         completion()
     }
     func updataStore() {
@@ -67,7 +91,7 @@ class FollowViewController: UIViewController {
             case .success(let data) :
                 self.storeData = data
                 self.configData {
-                self.collectionView.reloadData()
+                    self.collectionView.reloadData()
                 }
             case .failure(let error) :
                 print("下載商店資料失敗", error)
@@ -80,103 +104,122 @@ class FollowViewController: UIViewController {
         
         let layout = CHTCollectionViewWaterfallLayout()
         layout.columnCount = 2
-        layout.minimumColumnSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        let inset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.minimumColumnSpacing = 4
+        layout.minimumInteritemSpacing = 4
+        let inset = UIEdgeInsets(top: 0, left: 4, bottom: 4, right: 4)
         layout.sectionInset = inset
         collectionView.collectionViewLayout = layout
         collectionView.register(UINib(nibName: String(describing: DiscoveryCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: DiscoveryCell.self))
     }
     func fetchCommentData(com: @escaping () -> ()) {
-    CommentRequestProvider.shared.fetchComments { result in
-        switch result {
-        case .success(let data) :
-            self.commentData = data
-            com()
-        case .failure(let error) :
-            print("評論頁下載帳號失敗", error)
-            com()
+        CommentRequestProvider.shared.fetchComments { result in
+            switch result {
+            case .success(let data) :
+                self.commentData = data
+                com()
+            case .failure(let error) :
+                print("評論頁下載帳號失敗", error)
+                com()
+            }
         }
     }
-    }
-    
 }
 
-extension FollowViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension WaterfallViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSourceComment.count
+        return filteredCommentData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(DiscoveryCell.self)", for: indexPath) as? DiscoveryCell else { return DiscoveryCell() }
         cell.delegate = self
-        if !dataSourceComment.isEmpty {
-        let comment = dataSourceComment[indexPath.row]
-        let store = storeData.first(where: {$0.storeID == comment.storeID}) ?? storeData[0]
-        let account = accountData.first(where: {$0.userID == comment.userID})
+        if !filteredCommentData.isEmpty {
+            let comment = filteredCommentData[indexPath.row]
+            let store = storeData.first(where: {$0.storeID == comment.storeID}) ?? storeData[0]
+            guard let account = accountData.first(where: {$0.userID == comment.userID}) else {
+                print(comment.userID)
+                print("崩潰拉")
+                return cell }
             if let currentAccount = currentAccount {
-        cell.layoutCell(author: account!, comment: comment, currentUser: currentAccount, store: store)
-        }
+                cell.layoutCell(author: account, comment: comment, currentUser: currentAccount, store: store)
+            }
         }
         
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if !dataSourceComment.isEmpty {
-        let comment = dataSourceComment[indexPath.row]
-        let store = storeData.first(where: {$0.storeID == comment.storeID})
-        let account = accountData.first(where: {$0.userID == comment.userID})
+        if !filteredCommentData.isEmpty {
+            let comment = filteredCommentData[indexPath.row]
+            let store = storeData.first(where: {$0.storeID == comment.storeID})
+            let account = accountData.first(where: {$0.userID == comment.userID})
             if let currentAccount = currentAccount {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 guard let controller = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+                
                 controller.delegate = self
                 controller.modalPresentationStyle = .fullScreen
                 controller.comment = comment
+                controller.accountData = accountData
                 controller.store = store
+                controller.currentUser = currentAccount
                 controller.author = account
                 self.present(controller, animated: true, completion: nil)
+            }
         }
+    }
+}
+
+extension WaterfallViewController: CHTCollectionViewDelegateWaterfallLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let comment = filteredCommentData[indexPath.row]
+        let store = storeData.first(where: {$0.storeID == comment.storeID})
+        
+        let storeName = store?.name ?? ""
+        let mealName = comment.meal
+        
+        let imageWidth = (UIScreen.width - 4 * 3) / 2
+        let labelWidth = imageWidth - 16
+        
+        let storeLabelSize = labelSize(for: storeName, font: .medium(size: 16), maxWidth: labelWidth, maxHeight: 60)
+        
+        let mealLabelSize = labelSize(for: mealName, font: .medium(size: 14), maxWidth: labelWidth, maxHeight: 60)
+        var height = imageWidth + storeLabelSize.height + mealLabelSize.height + 4 + 8 + 20 + 8 + 20 + 8
+        
+        var random: Int {
+            return Int.random(in: 0...10)
         }
+        
+        let randomExtraHeight = Double(random)
+        
+        height += randomExtraHeight
+        
+        
+        return CGSize(width: imageWidth, height: height)
     }
     
-}
+    func labelSize(for text: String,font: UIFont?, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font as Any
+        ]
 
+        let attributedText = NSAttributedString(string: text, attributes: attributes)
 
-extension FollowViewController: CHTCollectionViewDelegateWaterfallLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //        commentData[indexPath.row].contentValue.happiness > 80
-        
-        let comment = dataSourceComment[indexPath.row]
-        
-        let store = storeData.first(where: {$0.storeID == comment.storeID})
-        let text = "\(store?.name ?? "") - \(comment.meal)"
-//
-//        if text.count > 12 {
-//            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
-//        } else {
-//            return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
-//        }
-        let account = accountData.first(where: {$0.userID == comment.userID})?.badgeStatus ?? ""
-        if text.count > 12 {
-            if account != "" {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 335)
-            } else {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 300)
-            }
-        } else {
-            if account != "" {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 305)
-            } else {
-                return CGSize(width: (UIScreen.width - 10 * 3) / 2, height: 270)
-            }
-        }
+        let constraintBox = CGSize(width: maxWidth, height: maxHeight)
+        let rect = attributedText.boundingRect(with: constraintBox, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).integral
+
+        return rect.size
     }
 }
-
-extension FollowViewController {
+extension WaterfallViewController: IndicatorInfoProvider {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        IndicatorInfo(title: NSLocalizedString("推薦", comment: "barTagString"))
+    }
+}
+extension WaterfallViewController {
     func fetchAllData(com: @escaping () -> ()) {
+        guard let currentUser = UserRequestProvider.shared.currentUser else { return }
         let group: DispatchGroup = DispatchGroup()
-        let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent)
+        let concurrentQueue1 = DispatchQueue(label: "com.leowang.queue1", attributes: .concurrent) //
         let concurrentQueue2 = DispatchQueue(label: "com.leowang.queue2", attributes: .concurrent)
         let concurrentQueue3 = DispatchQueue(label: "com.leowang.queue3", attributes: .concurrent)
         let concurrentQueue4 = DispatchQueue(label: "com.leowang.queue4", attributes: .concurrent)
@@ -197,10 +240,7 @@ extension FollowViewController {
             }
         }
         group.enter()
-        guard let currentUser = UserRequestProvider.shared.currentUser else {
-            group.leave()
-            return
-        }
+        
         concurrentQueue2.async(group: group) {
             AccountRequestProvider.shared.fetchAccount(currentUserID: currentUser.uid) { result in
                 switch result {
@@ -218,6 +258,7 @@ extension FollowViewController {
                                 LKProgressHUD.showFailure(text: "請聯繫客服")
                             }
                         }
+                        group.leave()
                     }
                 case .failure(let error) :
                     print("下載2 使用者失敗", error)
@@ -226,7 +267,6 @@ extension FollowViewController {
                 }
                 group.leave()
             }
-            
         }
         group.enter()
         concurrentQueue3.async(group: group) {
@@ -264,40 +304,36 @@ extension FollowViewController {
             LKProgressHUD.showSuccess(text: "下載資料成功")
         }
     }
+    func addlistener() {
+        guard let userID = UserRequestProvider.shared.currentUserID else { return }
+        AccountRequestProvider.shared.listenAccount(currentUserID: userID) { result in
+            switch result {
+            case .success(let data):
+                self.currentAccount = data
+            case .failure(let error):
+                print("更新用戶失敗", error)
+            }
+        }
+    }
 }
 
-extension FollowViewController: DiscoveryCellDelegate {
+extension WaterfallViewController: DiscoveryCellDelegate {
     func didTapCommentBtn(_ view: DiscoveryCell, comment: Comment) {
         //
     }
-    
-    
-    
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment) {
-        guard let currentUserID = UserRequestProvider.shared.currentUserID else {
-            LKProgressHUD.showFailure(text: "你沒有登入喔")
-            return
-        }
+        guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
         CommentRequestProvider.shared.likeComment(currentUserID: currentUserID, tagertComment: comment)
     }
     
     func didTapUnLikeButton(_ view: DiscoveryCell, comment: Comment) {
-        guard let currentUserID = UserRequestProvider.shared.currentUserID else {
-            LKProgressHUD.showFailure(text: "你沒有登入喔")
-            return
-        }
+        guard let currentUserID = UserRequestProvider.shared.currentUserID else { return }
         CommentRequestProvider.shared.unLikeComment(currentUserID: currentUserID, tagertComment: comment)
     }
+    
+    
 }
-
-
-
-extension FollowViewController: IndicatorInfoProvider {
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        IndicatorInfo(title: NSLocalizedString("追蹤中", comment: "barTagString"))
-    }
-}
-extension FollowViewController: DetailViewControllerDelegate {
+extension WaterfallViewController: DetailViewControllerDelegate {
     func didtapAuthor(_ vc: DetailViewController, targetUserID: String?) {
 //        guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUserID else { return }
 //        if targetUser != userID {
@@ -305,18 +341,18 @@ extension FollowViewController: DetailViewControllerDelegate {
 //        } else {
 //            navigationController?.tabBarController?.selectedIndex = 3
 //        }
-    
+        
     }
     func showAlert(targetUser: String?, vc: UIViewController) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = self.view
-                
-                let xOrigin = self.view.bounds.width / 2
-                
-                let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-                
+        
+        let xOrigin = self.view.bounds.width / 2
+        
+        let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+        
         alert.popoverPresentationController?.sourceRect = popoverRect
-                
+        
         alert.popoverPresentationController?.permittedArrowDirections = .up
         alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive , handler:{ (UIAlertAction) in
             guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }
@@ -341,5 +377,4 @@ extension FollowViewController: DetailViewControllerDelegate {
             print("completion block")
         })
     }
-    
 }
