@@ -17,9 +17,7 @@ class StoreTitleCell: UITableViewCell {
     weak var delegate: StoreTitleCellDelegate?
     var storedata: Store?
     @IBAction func tapCollectButton(_ sender: UIButton) {
-        guard let isLogin = isUserLogin else { return }
         
-        if isLogin {
             if collectButton.currentTitle == "已收藏" {
                 self.delegate?.didtapUnCollectionButton(view: self)
                 collectButton.setTitle("收藏", for: .normal)
@@ -32,9 +30,7 @@ class StoreTitleCell: UITableViewCell {
                 collectLabel.text = "\(storedata?.collectedUser?.count ?? 0 + 1) 人收藏"
                 
             }
-        } else {
-            self.delegate?.didtapWhenNotLogin(view: self)
-        }
+      
     }
 
     @IBOutlet weak var mainImageView: UIImageView!
@@ -42,17 +38,14 @@ class StoreTitleCell: UITableViewCell {
     @IBOutlet weak var collectLabel: UILabel!
 
     @IBOutlet weak var collectButton: UIButton!
-    var isUserLogin: Bool?
     var isUserCollect: Bool?
 
-    func layoutCell(store: Store?, isCollect: Bool, isLogin: Bool) {
+    func layoutCell(store: Store?, isCollect: Bool) {
         guard let store = store else {
             return
         }
         isUserCollect = isCollect
-        isUserLogin = isLogin
         storedata = store
-        if isLogin {
             if isCollect {
                 collectButton.setTitle("已收藏", for: .normal)
                 collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
@@ -60,10 +53,7 @@ class StoreTitleCell: UITableViewCell {
                 collectButton.setTitle("收藏", for: .normal)
                 collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
             }
-        } else {
-            collectButton.setTitle("收藏", for: .normal)
-            collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
-        }
+     
        
         collectButton.layer.cornerRadius = 10
         collectButton.clipsToBounds = true

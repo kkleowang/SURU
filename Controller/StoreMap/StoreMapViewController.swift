@@ -170,7 +170,6 @@ class StoreMapViewController: UIViewController {
         guard let tabbarController = tabBarController as? TabBarViewController else { return }
         tabbarController.presentWelcomePage()
     }
-    
 }
 // MARK: - MapViewDelegate
 extension StoreMapViewController: MKMapViewDelegate {
@@ -284,7 +283,7 @@ extension StoreMapViewController: UICollectionViewDataSource {
             }
         }
         let report = cogfigReport(store: store)
-        cell.layoutCell(storeData: store, commentData: comments,report: report, isCollect: isCollect, isLogin: isLogin)
+        cell.layoutCell(storeData: store, commentData: comments, report: report, isCollect: isCollect, isLogin: isLogin)
         return cell
     }
 }
@@ -385,8 +384,6 @@ extension StoreMapViewController: StoreCardsCellDelegate {
 }
 // MARK: - ReportView
 extension StoreMapViewController {
-    
-    
     @objc private func dragAction(gesture: UIPanGestureRecognizer) {
         let moveState = gesture.state
         switch moveState {

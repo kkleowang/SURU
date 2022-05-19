@@ -77,7 +77,7 @@ class StorePageViewController: UIViewController {
         guard let storeData = storeData else { return }
         
         navigationController?.navigationBar.stickSubView(topView, inset: UIEdgeInsets(top: 4, left: 40, bottom: 4, right: 0))
-        topView.layOutView(store: storeData, isCollect: isCollected, isLogin: isLogin)
+        topView.layOutView(store: storeData, isCollect: isCollected)
     }
     func configLoginStatus() {
         guard let storeData = storeData else { return }
@@ -149,7 +149,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 0:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTitleCell.identifier, for: indexPath) as? StoreTitleCell else { return StoreTitleCell() }
                 cell.delegate = self
-                cell.layoutCell(store: storeData, isCollect: isCollected, isLogin: isLogin)
+                cell.layoutCell(store: storeData, isCollect: isCollected)
                 cell.selectionStyle = .none
                 return cell
             case 1:
@@ -170,33 +170,13 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             case 2:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
-                cell.collectionView.register(UINib(nibName: String(describing: TagsCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TagsCell.self))
-                cell.collectionView.dataSource = self
-                cell.collectionView.delegate = self
-                cell.collectionView.showsHorizontalScrollIndicator = false
-                cell.collectionView.showsVerticalScrollIndicator = false
-                cell.collectionView.tag = 80
-                cell.selectionStyle = .none
-                let layout = UICollectionViewFlowLayout()
-                layout.scrollDirection = .horizontal
-                layout.estimatedItemSize = CGSize(width: 60, height: 40)
-                cell.collectionView.collectionViewLayout = layout
+                
+                cell.layoutCell(isMeal: false, store: storeData)
                 
                 return cell
             case 3:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
-                cell.collectionView.register(UINib(nibName: String(describing: TagsCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TagsCell.self))
-                cell.collectionView.dataSource = self
-                cell.collectionView.delegate = self
-                cell.collectionView.showsHorizontalScrollIndicator = false
-                cell.collectionView.showsVerticalScrollIndicator = false
-                cell.collectionView.tag = 90
-                let layout = UICollectionViewFlowLayout()
-                layout.scrollDirection = .horizontal
-                layout.estimatedItemSize = CGSize(width: 50, height: 40)
-                cell.collectionView.collectionViewLayout = layout
-                cell.layoutForMealCell()
-                cell.selectionStyle = .none
+                cell.layoutCell(isMeal: true, store: storeData)
                 return cell
             case 4:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }
@@ -244,7 +224,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 isLike =  comment.likedUserList.contains(user.userID)
                 isfollow = user.followedUser.contains(comment.userID)
             }
-            cell.layoutView(author: author, comment: comment, isLogin: isLogin, isFollow: isfollow, isLike: isLike)
+            cell.layoutView(author: author, comment: comment, isFollow: isfollow, isLike: isLike)
             if indexPath.row % 2 == 0 {
                 cell.backgroundColor = UIColor.hexStringToUIColor(hex: "#fafafa")
             } else {
@@ -394,36 +374,7 @@ extension StorePageViewController: StoreImageCellDelegate {
         sender.view?.removeFromSuperview()
     }
 }
-extension StorePageViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let storeData = storeData else { return 0 }
-        if collectionView.tag == 80 {
-            return storeData.tags.count
-        } else {
-            return storeData.meals.count
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TagsCell.self), for: indexPath) as? TagsCell else { return TagsCell() }
-        guard let storeData = storeData else { return TagsCell() }
-        
-        
-        if collectionView.tag == 80 {
-            cell.tagLabel.text = storeData.tags[indexPath.row]
-            cell.backgroundColor = .C4
-            return cell
-        } else {
-            cell.layoutForMeal()
-            cell.tagLabel.text = storeData.meals[indexPath.row]
-            cell.backgroundColor = .C2
-            return cell
-        }
-    }
+extension StorePageViewController {
     func showAlert(targetUser: String?) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = self.view

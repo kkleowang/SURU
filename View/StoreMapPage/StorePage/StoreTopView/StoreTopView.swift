@@ -10,7 +10,6 @@ import Kingfisher
 protocol StoreTopViewDelegate: AnyObject {
     func didtapCollectionButton(_ view: StoreTopView)
     func didtapUnCollectionButton(_ view: StoreTopView)
-    func didtapWhenNotLogin(_ view: StoreTopView)
 }
 class StoreTopView: UIView {
     weak var delegate: StoreTopViewDelegate?
@@ -18,10 +17,9 @@ class StoreTopView: UIView {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var collectButton: UIButton!
     var storeID: String?
-    var isUserLogin: Bool?
     var isUserCollected: Bool?
-    func layOutView(store: Store, isCollect: Bool, isLogin: Bool) {
-        isUserLogin = isLogin
+    func layOutView(store: Store, isCollect: Bool) {
+       
         storeID = store.storeID
         isUserCollected = isCollect
         mainImage.layer.cornerRadius = mainImage.bounds.width / 2
@@ -32,22 +30,19 @@ class StoreTopView: UIView {
         
         mainImage.kf.setImage(with: URL(string: store.mainImage), placeholder: UIImage(named: "mainImage"))
         name.text = store.name
-        if isLogin {
+      
             if isCollect {
                 collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
             } else {
                 collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
             }
-        } else {
-            collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
-        }
+        
         
         
     }
     @IBAction func tapCollectButton(_ sender: UIButton) {
         
         
-        if UserRequestProvider.shared.currentUser != nil {
             if collectButton.currentImage == UIImage(named: "collect.fill") {
                 self.delegate?.didtapUnCollectionButton(self)
                 collectButton.setImage(UIImage(named: "collect.empty"), for: .normal)
@@ -55,8 +50,6 @@ class StoreTopView: UIView {
                 self.delegate?.didtapCollectionButton(self)
                 collectButton.setImage(UIImage(named: "collect.fill"), for: .normal)
             }
-        } else {
-            self.delegate?.didtapWhenNotLogin(self)
-        }
+        
     }
 }
