@@ -235,9 +235,7 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController {
-    // swiftlint:disable cyclomatic_complexity
     func checkUserBadgeStatus() {
-        var ref: [[Int]] = [[], [], [], [], []]
         
         guard let user = accountData?.first(where: { $0.userID == pageAccountId }) else { return }
         
@@ -247,74 +245,22 @@ extension ProfileViewController {
         let publishReportCount = user.sendReportCount ?? 0
         let likeCount = user.myCommentLike ?? 0
         
-        // 如果需求變成10個level;
-        if  loginCount >= 30 {
-            ref[0] = [1, 1, 1, 1, 1]
-        } else if loginCount >= 15 {
-            ref[0] = [1, 1, 1, 1, 0]
-        } else if loginCount >= 7 {
-            ref[0] = [1, 1, 1, 0, 0]
-        } else if loginCount >= 3 {
-            ref[0] = [1, 1, 0, 0, 0]
-        } else if loginCount >= 1 {
-            ref[0] = [1, 0, 0, 0, 0]
-        } else {
-            ref[0] = [0, 0, 0, 0, 0]
-        }
+        let loginCountManager = BadgeTierManager(tierCondition: [1, 3, 7, 15, 30])
+        let likeCountManager = BadgeTierManager(tierCondition: [10, 30, 50, 100, 200])
+        let commentCountManager = BadgeTierManager(tierCondition: [1, 5, 10, 20, 30])
+        let followerCountManager = BadgeTierManager(tierCondition: [5, 10, 20, 30, 50])
+        let reportCountManager = BadgeTierManager(tierCondition: [1, 5, 10, 15, 20])
+            
+            
         
-        if  likeCount >= 200 {
-            ref[3] = [1, 1, 1, 1, 1]
-        } else if likeCount >= 100 {
-            ref[3] = [1, 1, 1, 1, 0]
-        } else if likeCount >= 50 {
-            ref[3] = [1, 1, 1, 0, 0]
-        } else if likeCount >= 30 {
-            ref[3] = [1, 1, 0, 0, 0]
-        } else if likeCount >= 10 {
-            ref[3] = [1, 0, 0, 0, 0]
-        } else {
-            ref[3] = [0, 0, 0, 0, 0]
-        }
-        if  publishCommentCount >= 30 {
-            ref[1] = [1, 1, 1, 1, 1]
-        } else if publishCommentCount >= 20 {
-            ref[1] = [1, 1, 1, 1, 0]
-        } else if publishCommentCount >= 10 {
-            ref[1] = [1, 1, 1, 0, 0]
-        } else if publishCommentCount >= 5 {
-            ref[1] = [1, 1, 0, 0, 0]
-        } else if publishCommentCount >= 1 {
-            ref[1] = [1, 0, 0, 0, 0]
-        } else {
-            ref[1] = [0, 0, 0, 0, 0]
-        }
-        if  followerCount >= 50 {
-            ref[4] = [1, 1, 1, 1, 1]
-        } else if followerCount >= 30 {
-            ref[4] = [1, 1, 1, 1, 0]
-        } else if followerCount >= 20 {
-            ref[4] = [1, 1, 1, 0, 0]
-        } else if followerCount >= 10 {
-            ref[4] = [1, 1, 0, 0, 0]
-        } else if followerCount >= 5 {
-            ref[4] = [1, 0, 0, 0, 0]
-        } else {
-            ref[4] = [0, 0, 0, 0, 0]
-        }
-        if  publishReportCount >= 20 {
-            ref[2] = [1, 1, 1, 1, 1]
-        } else if publishReportCount >= 15 {
-            ref[2] = [1, 1, 1, 1, 0]
-        } else if publishReportCount >= 10 {
-            ref[2] = [1, 1, 1, 0, 0]
-        } else if publishReportCount >= 5 {
-            ref[2] = [1, 1, 0, 0, 0]
-        } else if publishReportCount >= 1 {
-            ref[2] = [1, 0, 0, 0, 0]
-        } else {
-            ref[2] = [0, 0, 0, 0, 0]
-        }
-        badgeRef = ref
+        badgeRef = [
+            loginCountManager.inRange(loginCount),
+            commentCountManager.inRange( publishCommentCount),
+            reportCountManager.inRange(publishReportCount),
+            likeCountManager.inRange(likeCount),
+            followerCountManager.inRange(followerCount)
+        ]
+        
     }
     func showAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

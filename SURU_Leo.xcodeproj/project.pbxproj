@@ -86,6 +86,7 @@
 		B8A00352280B064200A64750 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00351280B064200A64750 /* MapView.swift */; };
 		B8A4FFCC28224EA20023F0BA /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A4FFCB28224EA20023F0BA /* ReportView.xib */; };
 		B8A4FFCE282252B30023F0BA /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4FFCD282252B30023F0BA /* ReportView.swift */; };
+		B8B0121428373E5E00EED2F7 /* SURU_LeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0121328373E5E00EED2F7 /* SURU_LeoTests.swift */; };
 		B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */; };
 		B8BBBE7C281D328B001782F5 /* WaterfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7B281D328B001782F5 /* WaterfallViewController.swift */; };
 		B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */; };
@@ -111,6 +112,7 @@
 		B8DBDD4D28246A57008DC615 /* ProfileCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DBDD4B28246A57008DC615 /* ProfileCommentsCell.swift */; };
 		B8DBDD4E28246A57008DC615 /* ProfileCommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DBDD4C28246A57008DC615 /* ProfileCommentsCell.xib */; };
 		B8DBDD5028246D50008DC615 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DBDD4F28246D50008DC615 /* UICollectionView+.swift */; };
+		B8E59B62283672E4002AEBB7 /* BadgeTierManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E59B61283672E4002AEBB7 /* BadgeTierManager.swift */; };
 		B8EC6FFB28051C7D00DA8B78 /* DragingValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */; };
 		B8EC70012805275300DA8B78 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70002805275300DA8B78 /* UIView+.swift */; };
 		B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */; };
@@ -132,6 +134,16 @@
 		B8F92C882830ED060002B252 /* ProfileCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F92C862830ED060002B252 /* ProfileCommentCell.swift */; };
 		B8F92C892830ED060002B252 /* ProfileCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F92C872830ED060002B252 /* ProfileCommentCell.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B8B0121528373E5E00EED2F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B830607C28015A9D002558BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B830608328015A9D002558BE;
+			remoteInfo = SURU_Leo;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		78C47A99BAC6766DE55A8ACD /* Pods-SURU_Leo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.release.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.release.xcconfig"; sourceTree = "<group>"; };
@@ -217,6 +229,8 @@
 		B8A00351280B064200A64750 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B8A4FFCB28224EA20023F0BA /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
 		B8A4FFCD282252B30023F0BA /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		B8B0121128373E5E00EED2F7 /* SURU_LeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SURU_LeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B0121328373E5E00EED2F7 /* SURU_LeoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SURU_LeoTests.swift; sourceTree = "<group>"; };
 		B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWallViewController.swift; sourceTree = "<group>"; };
 		B8BBBE7B281D328B001782F5 /* WaterfallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallViewController.swift; sourceTree = "<group>"; };
 		B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryCell.xib; sourceTree = "<group>"; };
@@ -242,6 +256,7 @@
 		B8DBDD4B28246A57008DC615 /* ProfileCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentsCell.swift; sourceTree = "<group>"; };
 		B8DBDD4C28246A57008DC615 /* ProfileCommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentsCell.xib; sourceTree = "<group>"; };
 		B8DBDD4F28246D50008DC615 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
+		B8E59B61283672E4002AEBB7 /* BadgeTierManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeTierManager.swift; sourceTree = "<group>"; };
 		B8EC6FFA28051C7D00DA8B78 /* DragingValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragingValueViewController.swift; sourceTree = "<group>"; };
 		B8EC70002805275300DA8B78 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		B8EC700B2805432500DA8B78 /* liquidBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = liquidBarViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +287,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B0120E28373E5E00EED2F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +337,7 @@
 				B8EC70062805290F00DA8B78 /* View */,
 				B8EC70052805290A00DA8B78 /* Model */,
 				B830608628015A9D002558BE /* SURU_Leo */,
+				B8B0121228373E5E00EED2F7 /* SURU_LeoTests */,
 				B830608528015A9D002558BE /* Products */,
 				70C4D18F69DE8D1F3776D85F /* Pods */,
 				722176CD197EF0B42744BAD9 /* Frameworks */,
@@ -325,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				B830608428015A9D002558BE /* SURU_Leo.app */,
+				B8B0121128373E5E00EED2F7 /* SURU_LeoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -469,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				B87D72552824D52B00289283 /* BadgeDataModel.swift */,
+				B8E59B61283672E4002AEBB7 /* BadgeTierManager.swift */,
 			);
 			path = Badge;
 			sourceTree = "<group>";
@@ -573,6 +598,14 @@
 				B83B19152827D85600686D16 /* StorePage */,
 			);
 			path = StoreMapPage;
+			sourceTree = "<group>";
+		};
+		B8B0121228373E5E00EED2F7 /* SURU_LeoTests */ = {
+			isa = PBXGroup;
+			children = (
+				B8B0121328373E5E00EED2F7 /* SURU_LeoTests.swift */,
+			);
+			path = SURU_LeoTests;
 			sourceTree = "<group>";
 		};
 		B8BBBE7A281D3274001782F5 /*  Waterfall */ = {
@@ -832,6 +865,24 @@
 			productReference = B830608428015A9D002558BE /* SURU_Leo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B8B0121028373E5E00EED2F7 /* SURU_LeoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8B0121928373E5E00EED2F7 /* Build configuration list for PBXNativeTarget "SURU_LeoTests" */;
+			buildPhases = (
+				B8B0120D28373E5E00EED2F7 /* Sources */,
+				B8B0120E28373E5E00EED2F7 /* Frameworks */,
+				B8B0120F28373E5E00EED2F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8B0121628373E5E00EED2F7 /* PBXTargetDependency */,
+			);
+			name = SURU_LeoTests;
+			productName = SURU_LeoTests;
+			productReference = B8B0121128373E5E00EED2F7 /* SURU_LeoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -839,11 +890,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					B830608328015A9D002558BE = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					B8B0121028373E5E00EED2F7 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = B830608328015A9D002558BE;
 					};
 				};
 			};
@@ -861,6 +916,7 @@
 			projectRoot = "";
 			targets = (
 				B830608328015A9D002558BE /* SURU_Leo */,
+				B8B0121028373E5E00EED2F7 /* SURU_LeoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -910,6 +966,13 @@
 				B8060385283187B2006619FF /* unlike.json in Resources */,
 				B87D725A2824FC6F00289283 /* BadgeHeaderCell.xib in Resources */,
 				B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B0120F28373E5E00EED2F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1060,6 +1123,7 @@
 				B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */,
 				B89337942819120D000C75C3 /* ProfileView.swift in Sources */,
 				B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */,
+				B8E59B62283672E4002AEBB7 /* BadgeTierManager.swift in Sources */,
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
 				B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */,
 				B85592B8282A370200B1A920 /* WebView.swift in Sources */,
@@ -1103,7 +1167,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8B0120D28373E5E00EED2F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B0121428373E5E00EED2F7 /* SURU_LeoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B8B0121628373E5E00EED2F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B830608328015A9D002558BE /* SURU_Leo */;
+			targetProxy = B8B0121528373E5E00EED2F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B830608D28015A9D002558BE /* Main.storyboard */ = {
@@ -1321,6 +1401,45 @@
 			};
 			name = Release;
 		};
+		B8B0121728373E5E00EED2F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = WAYYQS9S9G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.leowang.SURU-LeoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SURU_Leo.app/SURU_Leo";
+			};
+			name = Debug;
+		};
+		B8B0121828373E5E00EED2F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WAYYQS9S9G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.leowang.SURU-LeoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SURU_Leo.app/SURU_Leo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1338,6 +1457,15 @@
 			buildConfigurations = (
 				B830609928015A9E002558BE /* Debug */,
 				B830609A28015A9E002558BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8B0121928373E5E00EED2F7 /* Build configuration list for PBXNativeTarget "SURU_LeoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8B0121728373E5E00EED2F7 /* Debug */,
+				B8B0121828373E5E00EED2F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

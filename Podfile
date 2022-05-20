@@ -23,11 +23,14 @@ target 'SURU_Leo' do
   pod 'Cosmos', '~> 23.0'
   pod 'XLPagerTabStrip', '~> 9.0'
   pod 'CHTCollectionViewWaterfallLayout/Swift'
+
+        inherit! :search_paths
+        pod 'Firebase'
+  
 end
 
 post_install do |installer|
   installer.pods_project.build_configurations.each do |config|
     config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-
   end
 end
