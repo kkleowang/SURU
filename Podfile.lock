@@ -212,7 +212,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
-  - Alamofire (5.5.0)
+  - Alamofire (5.6.1)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -345,9 +345,9 @@ PODS:
   - GTMSessionFetcher/Core (1.7.1)
   - IQKeyboardManagerSwift (6.5.9)
   - JGProgressHUD (2.2)
-  - Kingfisher (7.2.0)
+  - Kingfisher (6.3.1)
   - leveldb-library (1.22.1)
-  - lottie-ios (3.3.0)
+  - lottie-ios (3.2.3)
   - MJRefresh (3.7.5)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -355,7 +355,7 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.12)
-  - SwiftLint (0.46.5)
+  - SwiftLint (0.47.0)
   - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
@@ -370,7 +370,7 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - IQKeyboardManagerSwift
   - JGProgressHUD
-  - Kingfisher (~> 7.0)
+  - Kingfisher
   - lottie-ios
   - MJRefresh
   - SwiftLint
@@ -412,7 +412,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
-  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   CHTCollectionViewWaterfallLayout: b989a459788d7657ac010e03bc0f7eedca95a420
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
@@ -434,15 +434,15 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 4577a4cc914a5a07c40a8a0ad0acc22080418c2d
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
-  Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
-  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
+  SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: e8614efafefa49d1b9bd7d4ebac925760febd855
+PODFILE CHECKSUM: 45d966ac632a217c6082d1ffc889d955f009cf5d
 
 COCOAPODS: 1.11.3

@@ -6,10 +6,12 @@
 //
 
 import XCTest
-
+// swiftlint:disable type_name
+@testable import SURU_Leo
 class SURU_LeoTests: XCTestCase {
-
+    var sut: BadgeTierManager!
     override func setUpWithError() throws {
+//        sut = BadgeTierManager(tierCondition: <#T##[Int]#>)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 

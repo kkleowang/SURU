@@ -7,13 +7,15 @@ inhibit_all_warnings!
 
 target 'SURU_Leo' do
   # your other pod
-  # ...
-  pod 'Kingfisher', '~> 7.0'
+  # ... 
+  
+  pod 'Kingfisher'
   pod 'MJRefresh'
   pod 'Alamofire', '~> 5.5'
   pod 'IQKeyboardManagerSwift'
   pod 'JGProgressHUD'
   pod 'lottie-ios'
+  pod 'Firebase'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Auth'
@@ -23,10 +25,10 @@ target 'SURU_Leo' do
   pod 'Cosmos', '~> 23.0'
   pod 'XLPagerTabStrip', '~> 9.0'
   pod 'CHTCollectionViewWaterfallLayout/Swift'
-
+target 'SURU_LeoTests' do
         inherit! :search_paths
-        pod 'Firebase'
-  
+       pod 'Firebase'
+  end
 end
 
 post_install do |installer|

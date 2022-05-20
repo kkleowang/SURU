@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */; };
+		2B0D5EFDC7390FC86B8251DA /* Pods_SURU_LeoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805F1484C48065EE92619B99 /* Pods_SURU_LeoTests.framework */; };
 		B80096002817FEC800BB05AE /* SignInAndOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */; };
 		B8060383283187AD006619FF /* like.json in Resources */ = {isa = PBXBuildFile; fileRef = B8060382283187AD006619FF /* like.json */; };
 		B8060385283187B2006619FF /* unlike.json in Resources */ = {isa = PBXBuildFile; fileRef = B8060384283187B2006619FF /* unlike.json */; };
@@ -86,7 +86,6 @@
 		B8A00352280B064200A64750 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00351280B064200A64750 /* MapView.swift */; };
 		B8A4FFCC28224EA20023F0BA /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A4FFCB28224EA20023F0BA /* ReportView.xib */; };
 		B8A4FFCE282252B30023F0BA /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4FFCD282252B30023F0BA /* ReportView.swift */; };
-		B8B0121428373E5E00EED2F7 /* SURU_LeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0121328373E5E00EED2F7 /* SURU_LeoTests.swift */; };
 		B8BBBE79281D2DD2001782F5 /* CommentWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */; };
 		B8BBBE7C281D328B001782F5 /* WaterfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7B281D328B001782F5 /* WaterfallViewController.swift */; };
 		B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */; };
@@ -133,10 +132,12 @@
 		B8F92C852830CE550002B252 /* ProfileBioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F92C832830CE550002B252 /* ProfileBioCell.xib */; };
 		B8F92C882830ED060002B252 /* ProfileCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F92C862830ED060002B252 /* ProfileCommentCell.swift */; };
 		B8F92C892830ED060002B252 /* ProfileCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F92C872830ED060002B252 /* ProfileCommentCell.xib */; };
+		B8FF1BF228375D4800A94807 /* SURU_LeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FF1BF128375D4800A94807 /* SURU_LeoTests.swift */; };
+		FF78EFB0E0E63BE37FB6C685 /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C933656BC4FDA9F1022B21CD /* Pods_SURU_Leo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B8B0121528373E5E00EED2F7 /* PBXContainerItemProxy */ = {
+		B8FF1BF328375D4800A94807 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B830607C28015A9D002558BE /* Project object */;
 			proxyType = 1;
@@ -146,8 +147,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		582F1F97A0AAB1163722BDE2 /* Pods-SURUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURUTests.debug.xcconfig"; path = "Target Support Files/Pods-SURUTests/Pods-SURUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		78C47A99BAC6766DE55A8ACD /* Pods-SURU_Leo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.release.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.release.xcconfig"; sourceTree = "<group>"; };
-		8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_Leo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		805F1484C48065EE92619B99 /* Pods_SURU_LeoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_LeoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6881D7865F15F14D2AA4ED3 /* Pods-SURUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURUTests.release.xcconfig"; path = "Target Support Files/Pods-SURUTests/Pods-SURUTests.release.xcconfig"; sourceTree = "<group>"; };
 		B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndOutViewController.swift; sourceTree = "<group>"; };
 		B8060382283187AD006619FF /* like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = like.json; sourceTree = "<group>"; };
 		B8060384283187B2006619FF /* unlike.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unlike.json; sourceTree = "<group>"; };
@@ -229,8 +232,6 @@
 		B8A00351280B064200A64750 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B8A4FFCB28224EA20023F0BA /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
 		B8A4FFCD282252B30023F0BA /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
-		B8B0121128373E5E00EED2F7 /* SURU_LeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SURU_LeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B0121328373E5E00EED2F7 /* SURU_LeoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SURU_LeoTests.swift; sourceTree = "<group>"; };
 		B8BBBE78281D2DD2001782F5 /* CommentWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentWallViewController.swift; sourceTree = "<group>"; };
 		B8BBBE7B281D328B001782F5 /* WaterfallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallViewController.swift; sourceTree = "<group>"; };
 		B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryCell.xib; sourceTree = "<group>"; };
@@ -278,7 +279,13 @@
 		B8F92C862830ED060002B252 /* ProfileCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentCell.swift; sourceTree = "<group>"; };
 		B8F92C872830ED060002B252 /* ProfileCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCell.xib; sourceTree = "<group>"; };
 		B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SURU_Leo.entitlements; sourceTree = "<group>"; };
+		B8FF1BEF28375D4800A94807 /* SURU_LeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SURU_LeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8FF1BF128375D4800A94807 /* SURU_LeoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SURU_LeoTests.swift; sourceTree = "<group>"; };
+		BC19B6FBB1A73E2B6DE8D28E /* Pods-SURU_LeoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_LeoTests.release.xcconfig"; path = "Target Support Files/Pods-SURU_LeoTests/Pods-SURU_LeoTests.release.xcconfig"; sourceTree = "<group>"; };
+		BCBBA6885B3B58B65134B92E /* Pods_SURUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C933656BC4FDA9F1022B21CD /* Pods_SURU_Leo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_Leo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_Leo.debug.xcconfig"; path = "Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo.debug.xcconfig"; sourceTree = "<group>"; };
+		ED3BDA4F65DD87614DEEFE6A /* Pods-SURU_LeoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURU_LeoTests.debug.xcconfig"; path = "Target Support Files/Pods-SURU_LeoTests/Pods-SURU_LeoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,14 +293,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F1969D7D790140C710C6DEC /* Pods_SURU_Leo.framework in Frameworks */,
+				FF78EFB0E0E63BE37FB6C685 /* Pods_SURU_Leo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8B0120E28373E5E00EED2F7 /* Frameworks */ = {
+		B8FF1BEC28375D4800A94807 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0D5EFDC7390FC86B8251DA /* Pods_SURU_LeoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +313,10 @@
 			children = (
 				DCF0A150553282AB0F99034C /* Pods-SURU_Leo.debug.xcconfig */,
 				78C47A99BAC6766DE55A8ACD /* Pods-SURU_Leo.release.xcconfig */,
+				582F1F97A0AAB1163722BDE2 /* Pods-SURUTests.debug.xcconfig */,
+				B6881D7865F15F14D2AA4ED3 /* Pods-SURUTests.release.xcconfig */,
+				ED3BDA4F65DD87614DEEFE6A /* Pods-SURU_LeoTests.debug.xcconfig */,
+				BC19B6FBB1A73E2B6DE8D28E /* Pods-SURU_LeoTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -312,7 +324,9 @@
 		722176CD197EF0B42744BAD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8B11AB716BC413A0D40B7630 /* Pods_SURU_Leo.framework */,
+				BCBBA6885B3B58B65134B92E /* Pods_SURUTests.framework */,
+				C933656BC4FDA9F1022B21CD /* Pods_SURU_Leo.framework */,
+				805F1484C48065EE92619B99 /* Pods_SURU_LeoTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -337,7 +351,7 @@
 				B8EC70062805290F00DA8B78 /* View */,
 				B8EC70052805290A00DA8B78 /* Model */,
 				B830608628015A9D002558BE /* SURU_Leo */,
-				B8B0121228373E5E00EED2F7 /* SURU_LeoTests */,
+				B8FF1BF028375D4800A94807 /* SURU_LeoTests */,
 				B830608528015A9D002558BE /* Products */,
 				70C4D18F69DE8D1F3776D85F /* Pods */,
 				722176CD197EF0B42744BAD9 /* Frameworks */,
@@ -348,7 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				B830608428015A9D002558BE /* SURU_Leo.app */,
-				B8B0121128373E5E00EED2F7 /* SURU_LeoTests.xctest */,
+				B8FF1BEF28375D4800A94807 /* SURU_LeoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -600,14 +614,6 @@
 			path = StoreMapPage;
 			sourceTree = "<group>";
 		};
-		B8B0121228373E5E00EED2F7 /* SURU_LeoTests */ = {
-			isa = PBXGroup;
-			children = (
-				B8B0121328373E5E00EED2F7 /* SURU_LeoTests.swift */,
-			);
-			path = SURU_LeoTests;
-			sourceTree = "<group>";
-		};
 		B8BBBE7A281D3274001782F5 /*  Waterfall */ = {
 			isa = PBXGroup;
 			children = (
@@ -840,6 +846,14 @@
 			path = collectionView;
 			sourceTree = "<group>";
 		};
+		B8FF1BF028375D4800A94807 /* SURU_LeoTests */ = {
+			isa = PBXGroup;
+			children = (
+				B8FF1BF128375D4800A94807 /* SURU_LeoTests.swift */,
+			);
+			path = SURU_LeoTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -851,10 +865,10 @@
 				B830608028015A9D002558BE /* Sources */,
 				B830608128015A9D002558BE /* Frameworks */,
 				B830608228015A9D002558BE /* Resources */,
-				BE39D12141A18368668C13B9 /* [CP] Embed Pods Frameworks */,
 				B8643B75280161E200A4E366 /* ShellScript */,
 				B8659C3928068262006C85F3 /* Multiple Simulators */,
 				B8E59B582834826C002AEBB7 /* SwiftLint */,
+				B08CB2645773763022841D07 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -865,22 +879,24 @@
 			productReference = B830608428015A9D002558BE /* SURU_Leo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B8B0121028373E5E00EED2F7 /* SURU_LeoTests */ = {
+		B8FF1BEE28375D4800A94807 /* SURU_LeoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B0121928373E5E00EED2F7 /* Build configuration list for PBXNativeTarget "SURU_LeoTests" */;
+			buildConfigurationList = B8FF1BF728375D4800A94807 /* Build configuration list for PBXNativeTarget "SURU_LeoTests" */;
 			buildPhases = (
-				B8B0120D28373E5E00EED2F7 /* Sources */,
-				B8B0120E28373E5E00EED2F7 /* Frameworks */,
-				B8B0120F28373E5E00EED2F7 /* Resources */,
+				4178C6A1445670960CBAB002 /* [CP] Check Pods Manifest.lock */,
+				B8FF1BEB28375D4800A94807 /* Sources */,
+				B8FF1BEC28375D4800A94807 /* Frameworks */,
+				B8FF1BED28375D4800A94807 /* Resources */,
+				B0E85C6FB0D99B18A22D9488 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B8B0121628373E5E00EED2F7 /* PBXTargetDependency */,
+				B8FF1BF428375D4800A94807 /* PBXTargetDependency */,
 			);
 			name = SURU_LeoTests;
 			productName = SURU_LeoTests;
-			productReference = B8B0121128373E5E00EED2F7 /* SURU_LeoTests.xctest */;
+			productReference = B8FF1BEF28375D4800A94807 /* SURU_LeoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -896,7 +912,7 @@
 					B830608328015A9D002558BE = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
-					B8B0121028373E5E00EED2F7 = {
+					B8FF1BEE28375D4800A94807 = {
 						CreatedOnToolsVersion = 13.3.1;
 						TestTargetID = B830608328015A9D002558BE;
 					};
@@ -916,7 +932,7 @@
 			projectRoot = "";
 			targets = (
 				B830608328015A9D002558BE /* SURU_Leo */,
-				B8B0121028373E5E00EED2F7 /* SURU_LeoTests */,
+				B8FF1BEE28375D4800A94807 /* SURU_LeoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -969,7 +985,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8B0120F28373E5E00EED2F7 /* Resources */ = {
+		B8FF1BED28375D4800A94807 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -979,6 +995,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4178C6A1445670960CBAB002 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SURU_LeoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		873E44E23E87E058145B672E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -999,6 +1037,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B08CB2645773763022841D07 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0E85C6FB0D99B18A22D9488 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SURU_LeoTests/Pods-SURU_LeoTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SURU_LeoTests/Pods-SURU_LeoTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SURU_LeoTests/Pods-SURU_LeoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B8643B75280161E200A4E366 /* ShellScript */ = {
@@ -1055,23 +1127,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
-		};
-		BE39D12141A18368668C13B9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SURU_Leo/Pods-SURU_Leo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1167,21 +1222,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8B0120D28373E5E00EED2F7 /* Sources */ = {
+		B8FF1BEB28375D4800A94807 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B0121428373E5E00EED2F7 /* SURU_LeoTests.swift in Sources */,
+				B8FF1BF228375D4800A94807 /* SURU_LeoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B8B0121628373E5E00EED2F7 /* PBXTargetDependency */ = {
+		B8FF1BF428375D4800A94807 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B830608328015A9D002558BE /* SURU_Leo */;
-			targetProxy = B8B0121528373E5E00EED2F7 /* PBXContainerItemProxy */;
+			targetProxy = B8FF1BF328375D4800A94807 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1401,8 +1456,9 @@
 			};
 			name = Release;
 		};
-		B8B0121728373E5E00EED2F7 /* Debug */ = {
+		B8FF1BF528375D4800A94807 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED3BDA4F65DD87614DEEFE6A /* Pods-SURU_LeoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1421,8 +1477,9 @@
 			};
 			name = Debug;
 		};
-		B8B0121828373E5E00EED2F7 /* Release */ = {
+		B8FF1BF628375D4800A94807 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC19B6FBB1A73E2B6DE8D28E /* Pods-SURU_LeoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1461,11 +1518,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8B0121928373E5E00EED2F7 /* Build configuration list for PBXNativeTarget "SURU_LeoTests" */ = {
+		B8FF1BF728375D4800A94807 /* Build configuration list for PBXNativeTarget "SURU_LeoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8B0121728373E5E00EED2F7 /* Debug */,
-				B8B0121828373E5E00EED2F7 /* Release */,
+				B8FF1BF528375D4800A94807 /* Debug */,
+				B8FF1BF628375D4800A94807 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
