@@ -5,11 +5,30 @@
 //  Created by LEO W on 2022/5/19.
 //
 
-import Foundation
+//import Foundation
 
-
+// swiftlint: disable implicitly_unwrapped_optional
+/*
+ This Model convert a sequence Of archivment condition, and judge the level of user.
+ 
+ Input example:
+ 
+        let loginManager = BadgeTierManager()
+        BadgeTierManager.tierCondition = [5, 10, 15, 20, 30]  // level 1~5
+ 
+        let loginCount = user.loginCount
+        BadgeTierManager.inRange(loginCount)
+                                                // if loginCount = 15 outPut:[1,1,1,0,0]
+ Use case :
+        let badgeStatus = BadgeTierManager.inRange(loginCount)
+        if badgeStatus[indexPath.row] == 1 {
+            enable Button
+        } else {
+            disable Button , set gray background.
+        }
+ */
 struct BadgeTierManager {
-    var tierCondition: [Int]
+    var tierCondition: [Int]!
     
     func inRange(_ data: Int) -> [Int] {
         let tier: [Int] = Array(tierCondition.reversed())

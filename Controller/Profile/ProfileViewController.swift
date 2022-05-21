@@ -236,7 +236,6 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     func checkUserBadgeStatus() {
-        
         guard let user = accountData?.first(where: { $0.userID == pageAccountId }) else { return }
         
         let followerCount = user.follower.count
@@ -252,7 +251,6 @@ extension ProfileViewController {
         let reportCountManager = BadgeTierManager(tierCondition: [1, 5, 10, 15, 20])
             
             
-        
         badgeRef = [
             loginCountManager.inRange(loginCount),
             commentCountManager.inRange( publishCommentCount),
@@ -260,7 +258,6 @@ extension ProfileViewController {
             likeCountManager.inRange(likeCount),
             followerCountManager.inRange(followerCount)
         ]
-        
     }
     func showAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

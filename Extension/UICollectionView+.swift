@@ -12,13 +12,11 @@ extension UICollectionView {
     
     func registerCellWithNib(identifier: String, bundle: Bundle?) {
         let nib = UINib(nibName: identifier, bundle: bundle)
-        
         register(nib, forCellWithReuseIdentifier: identifier)
     }
     
     func registerHeaderWithNib(identifier: String, bundle: Bundle?) {
         let nib = UINib(nibName: identifier, bundle: bundle)
-        
         register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier)
     }
     func setEmptyMessage(_ message: String) {

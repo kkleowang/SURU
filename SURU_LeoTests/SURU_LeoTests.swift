@@ -7,31 +7,44 @@
 
 import XCTest
 // swiftlint:disable type_name
+// swiftlint:disable implicitly_unwrapped_optional
 @testable import SURU_Leo
 class SURU_LeoTests: XCTestCase {
     var sut: BadgeTierManager!
+    
     override func setUpWithError() throws {
-//        sut = BadgeTierManager(tierCondition: <#T##[Int]#>)
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        sut = BadgeTierManager()
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        try super.tearDownWithError()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testjudgeBadgeLevel() {
+        // given
+        let level = [10, 20, 30, 40, 50]
+        sut.tierCondition = level
+        
+        // when then
+        XCTAssertEqual(sut.inRange(level[0] - 5), [0, 0, 0, 0, 0], "Level 0 result Not right")
+        XCTAssertEqual(sut.inRange(level[0]), [1, 0, 0, 0, 0], "Level 1 result Not right")
+        XCTAssertEqual(sut.inRange(level[1]), [1, 1, 0, 0, 0], "Level 2 result Not right")
+        XCTAssertEqual(sut.inRange(level[2]), [1, 1, 1, 0, 0], "Level 3 result Not right")
+        XCTAssertEqual(sut.inRange(level[3]), [1, 1, 1, 1, 0], "Level 4 result Not right")
+        XCTAssertEqual(sut.inRange(level[4]), [1, 1, 1, 1, 1], "Level 5 result Not right")
+        XCTAssertEqual(sut.inRange(level[4] + 5), [1, 1, 1, 1, 1], "Level 5 result Not right")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    func testjudgeBadgeResultCount() {
+        var conditionArray: [Int] = []
+        for i in 0...20 {
+            // given
+            conditionArray = Array(repeating: i * 5, count: i)
+            sut.tierCondition = conditionArray
+            // when than
+            XCTAssertEqual(conditionArray.count, sut.inRange(10).count, "ResultArray's count not fit")
         }
     }
-
 }
