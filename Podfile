@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '10.0'
+platform :ios, '13.0'
 use_frameworks!
 # ignore all warnings from all pods
 inhibit_all_warnings!
@@ -9,7 +9,7 @@ target 'SURU_Leo' do
   # your other pod
   # ... 
   
-  pod 'Kingfisher'
+  pod 'Kingfisher', '~> 7.0'
   pod 'MJRefresh'
   pod 'Alamofire', '~> 5.5'
   pod 'IQKeyboardManagerSwift'
@@ -25,6 +25,7 @@ target 'SURU_Leo' do
   pod 'Cosmos', '~> 23.0'
   pod 'XLPagerTabStrip', '~> 9.0'
   pod 'CHTCollectionViewWaterfallLayout/Swift'
+
 target 'SURU_LeoTests' do
         inherit! :search_paths
        pod 'Firebase'

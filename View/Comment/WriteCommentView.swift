@@ -16,25 +16,26 @@ class WriteCommentView: UIView {
     weak var delegate: WrireCommentViewControllerDelegate?
     var commentData: Comment?
     var storename: String?
-    @IBOutlet weak var contentTextView: UITextView!
-    @IBAction func sendComment(_ sender: Any) {
-        self.delegate?.didTapSendComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
-        self.topMostController()?.dismiss(animated: true, completion: nil)
+    @IBOutlet var contentTextView: UITextView!
+    @IBAction func sendComment(_: Any) {
+        delegate?.didTapSendComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
+        topMostController()?.dismiss(animated: true, completion: nil)
     }
-    
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var importTempButton: UIButton!
-    @IBOutlet weak var sendButton: UIButton!
-    @IBAction func tapImportTemp(_ sender: Any) {
+
+    @IBOutlet var saveButton: UIButton!
+    @IBOutlet var importTempButton: UIButton!
+    @IBOutlet var sendButton: UIButton!
+    @IBAction func tapImportTemp(_: Any) {
         contentTextView.text = "| 店家： \(storename!)\n| 時間 ：2022/5/16\n| 品項 ：\(commentData!.meal)\n| 配置 ：\n| 評論：\n"
-        
     }
-    @IBAction func tapSendComment(_ sender: Any) {
-        self.delegate?.didTapSaveComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
-        
-        self.topMostController()?.dismiss(animated: true, completion: nil)
+
+    @IBAction func tapSendComment(_: Any) {
+        delegate?.didTapSaveComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
+
+        topMostController()?.dismiss(animated: true, completion: nil)
     }
-    func layoutView(comment: Comment,name: String) {
+
+    func layoutView(comment: Comment, name: String) {
         commentData = comment
         storename = name
         setTextView(textBox: contentTextView)
@@ -46,7 +47,7 @@ class WriteCommentView: UIView {
         sendButton.layer.cornerRadius = 10
         //        contentTextView.text = "| 店家： \(storename!)\n| 時間 ：2022/5/16\n| 品項 ：\(commentData!.meal)\n| 配置 ：\n| 評論：\n"
     }
-    
+
     private func setTextView(textBox: UITextView) {
         textBox.autocorrectionType = .no
         textBox.backgroundColor = .secondarySystemBackground
@@ -54,11 +55,10 @@ class WriteCommentView: UIView {
         textBox.font = UIFont.preferredFont(forTextStyle: .body)
         textBox.layer.cornerRadius = 20
         textBox.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        textBox.layer.shadowColor = UIColor.gray.cgColor;
+        textBox.layer.shadowColor = UIColor.gray.cgColor
         textBox.layer.shadowOffset = CGSize(width: 0.75, height: 0.75)
         textBox.layer.shadowOpacity = 0.4
         textBox.layer.shadowRadius = 20
         textBox.layer.masksToBounds = false
     }
-    
 }

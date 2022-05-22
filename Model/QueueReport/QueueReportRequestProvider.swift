@@ -10,9 +10,9 @@ import FirebaseFirestoreSwift
 
 class QueueReportRequestProvider {
     static let shared = CommentRequestProvider()
-    
+
     private lazy var database = Firestore.firestore()
-    
+
     func fetchQueueReport(targetStoreID: String, completion: @escaping (Result<[QueueReport], Error>) -> Void) {
         database.collection("stores").document(targetStoreID).collection("queueReport").getDocuments { querySnapshot, error in
             if let error = error {
@@ -32,7 +32,7 @@ class QueueReportRequestProvider {
             }
         }
     }
-    
+
     func publishQueueReport(targetStoreID: String, report: inout QueueReport, completion: @escaping (Result<String, Error>) -> Void) {
         let docment = database.collection("stores").document(targetStoreID).collection("queueReport").document()
         report.reportID = docment.documentID

@@ -5,23 +5,22 @@
 //  Created by LEO W on 2022/5/8.
 //
 
-import UIKit
 import MapKit
+import UIKit
 
 class StoreLocaltionCell: UITableViewCell {
     var localtionText: String = ""
-    @IBOutlet weak var iconImageView: UIImageView!
-    
-    @IBOutlet weak var mapButton: UIButton!
-    @IBOutlet weak var label: UILabel!
-    
-    @IBAction func tapMap(_ sender: Any) {
+    @IBOutlet var iconImageView: UIImageView!
+
+    @IBOutlet var mapButton: UIButton!
+    @IBOutlet var label: UILabel!
+
+    @IBAction func tapMap(_: Any) {
         UIPasteboard.general.string = localtionText
         LKProgressHUD.showSuccess(text: "已複製地址")
-        
-        
     }
-    func layoutCell(localtion: String? = "",seat: String? = "") {
+
+    func layoutCell(localtion: String? = "", seat: String? = "") {
         selectionStyle = .none
         guard let localtion = localtion, let seat = seat else {
             return

@@ -11,9 +11,9 @@ import FirebaseFirestoreSwift
 
 class StoreRequestProvider {
     static let shared = StoreRequestProvider()
-    
+
     private lazy var database = Firestore.firestore()
-    
+
     func fetchStores(completion: @escaping (Result<[Store], Error>) -> Void) {
         database.collection("stores").getDocuments { querySnapshot, error in
             if let error = error {
@@ -34,6 +34,7 @@ class StoreRequestProvider {
             }
         }
     }
+
     func adminPublishNewStore(store: inout Store, completion: @escaping (Result<String, Error>) -> Void) {
         let docment = database.collection("stores").document()
         store.storeID = docment.documentID
@@ -44,16 +45,16 @@ class StoreRequestProvider {
         }
         completion(.success(docment.documentID))
     }
-    
+
     func collectStore(currentUserID: String, tagertStoreID: String, completion: @escaping (Result<String, Error>) -> Void) {
         let tagertStoreDocment = database.collection("stores").document(tagertStoreID)
         let currentUserDocment = database.collection("accounts").document(currentUserID)
-        
+
         tagertStoreDocment.updateData([
-            "collectedUser": FieldValue.arrayUnion([currentUserID])
+            "collectedUser": FieldValue.arrayUnion([currentUserID]),
         ])
         currentUserDocment.updateData([
-            "collectedStore": FieldValue.arrayUnion([tagertStoreID])
+            "collectedStore": FieldValue.arrayUnion([tagertStoreID]),
         ]) { error in
             if let error = error {
                 completion(.failure(error))
@@ -62,16 +63,16 @@ class StoreRequestProvider {
             }
         }
     }
-    
+
     func unCollectStore(currentUserID: String, tagertStoreID: String, completion: @escaping (Result<String, Error>) -> Void) {
         let tagertStoreDocment = database.collection("stores").document(tagertStoreID)
         let currentUserDocment = database.collection("accounts").document(currentUserID)
-        
+
         tagertStoreDocment.updateData([
-            "collectedUser": FieldValue.arrayRemove([currentUserID])
+            "collectedUser": FieldValue.arrayRemove([currentUserID]),
         ])
         currentUserDocment.updateData([
-            "collectedStore": FieldValue.arrayRemove([tagertStoreID])
+            "collectedStore": FieldValue.arrayRemove([tagertStoreID]),
         ]) { error in
             if let error = error {
                 completion(.failure(error))
@@ -80,6 +81,7 @@ class StoreRequestProvider {
             }
         }
     }
+
     func listenStore(completion: @escaping (Result<Store, Error>) -> Void) {
         // [START listen_document]
         database.collection("stores").addSnapshotListener { querySnapshot, error in

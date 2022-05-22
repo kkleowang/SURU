@@ -8,7 +8,6 @@
 import JGProgressHUD
 
 enum HUDType {
-
     case success(String)
 
     case failure(String)
@@ -17,7 +16,7 @@ enum HUDType {
 class LKProgressHUD {
     static let shared = LKProgressHUD()
 
-    private init() { }
+    private init() {}
 
     let hud = JGProgressHUD(style: .dark)
 
@@ -28,11 +27,11 @@ class LKProgressHUD {
 
     static func show(type: HUDType) {
         switch type {
-        case .success(let text):
+        case let .success(text):
 
             showSuccess(text: text)
 
-        case .failure(let text):
+        case let .failure(text):
 
             showFailure(text: text)
         }

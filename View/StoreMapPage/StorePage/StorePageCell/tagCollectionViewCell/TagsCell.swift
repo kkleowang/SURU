@@ -8,37 +8,35 @@
 import UIKit
 
 class TagsCell: UICollectionViewCell {
-    
     @IBOutlet var tagLabel: UILabel!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = 20 / 2.0
-        self.tagLabel.textColor = .B6
+        layer.cornerRadius = 20 / 2.0
+        tagLabel.textColor = .B6
     }
+
     func layoutForMeal() {
         tagLabel.textColor = .B1
     }
-    
 }
+
 class Row {
     var attributes = [UICollectionViewLayoutAttributes]()
     var spacing: CGFloat = 0
-    
+
     init(spacing: CGFloat) {
         self.spacing = spacing
     }
-    
+
     func add(attribute: UICollectionViewLayoutAttributes) {
         attributes.append(attribute)
     }
-    
-    func tagLayout(collectionViewWidth: CGFloat) {
+
+    func tagLayout(collectionViewWidth _: CGFloat) {
         let padding = 10
         var offset = padding
         for attribute in attributes {
-            
             attribute.frame.origin.x = CGFloat(offset)
             offset += Int(attribute.frame.width + spacing)
         }
@@ -50,10 +48,10 @@ class TagFlowLayout: UICollectionViewFlowLayout {
         guard let attributes = super.layoutAttributesForElements(in: rect) else {
             return nil
         }
-        
+
         var rows = [Row]()
         var currentRowY: CGFloat = -1
-        self.scrollDirection = .horizontal
+        scrollDirection = .horizontal
         for attribute in attributes {
             if currentRowY != attribute.frame.origin.y {
                 currentRowY = attribute.frame.origin.y
@@ -61,7 +59,7 @@ class TagFlowLayout: UICollectionViewFlowLayout {
             }
             rows.last?.add(attribute: attribute)
         }
-        
+
         rows.forEach {
             $0.tagLayout(collectionViewWidth: collectionView?.frame.width ?? 0)
         }
@@ -72,16 +70,16 @@ class TagFlowLayout: UICollectionViewFlowLayout {
 class Rows {
     var attributes = [UICollectionViewLayoutAttributes]()
     var spacing: CGFloat = 0
-    
+
     init(spacing: CGFloat) {
         self.spacing = spacing
     }
-    
+
     func add(attribute: UICollectionViewLayoutAttributes) {
         attributes.append(attribute)
     }
-    
-    func tagLayout(collectionViewWidth: CGFloat) {
+
+    func tagLayout(collectionViewWidth _: CGFloat) {
         let padding = 10
         var offset = padding
         for attribute in attributes {
@@ -96,10 +94,10 @@ class TagFlowLayouts: UICollectionViewFlowLayout {
         guard let attributes = super.layoutAttributesForElements(in: rect) else {
             return nil
         }
-        
+
         var rows: [Row] = []
         var currentRowY: CGFloat = -1
-        self.scrollDirection = .horizontal
+        scrollDirection = .horizontal
         for attribute in attributes {
             if currentRowY != attribute.frame.origin.y {
                 currentRowY = attribute.frame.origin.y
@@ -107,7 +105,7 @@ class TagFlowLayouts: UICollectionViewFlowLayout {
             }
             rows.last?.add(attribute: attribute)
         }
-        
+
         rows.forEach {
             $0.tagLayout(collectionViewWidth: collectionView?.frame.width ?? 0)
         }

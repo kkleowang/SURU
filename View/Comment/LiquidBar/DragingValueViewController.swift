@@ -10,11 +10,13 @@ import UIKit
 protocol CommentDraggingViewDelegate: AnyObject {
     func didTapBackButton(vc: DragingValueViewController)
 }
+
 enum SelectionType: String {
     case noodle = "麵條喜好度："
     case soup = "湯頭喜好度："
     case happy = "綜合評價："
 }
+
 enum SelectionSubTitle: String {
     case text = "拖曳後記得按下儲存"
 }
@@ -26,15 +28,15 @@ class DragingValueViewController: UIViewController {
     let valueLabel = UILabel()
     let liquilBarview = LiquidBarViewController()
     var selectionType: SelectionType = .noodle
-    
+
     func setupLayout(_ type: SelectionType) {
         selectionType = type
         switch selectionType {
-        case .noodle :
+        case .noodle:
             titleLabel.text = selectionType.rawValue
-        case .soup :
+        case .soup:
             titleLabel.text = selectionType.rawValue
-        case .happy :
+        case .happy:
             titleLabel.text = selectionType.rawValue
         }
         setBackButton()
@@ -44,18 +46,18 @@ class DragingValueViewController: UIViewController {
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.characterSpacing = 2.5
         titleLabel.textColor = UIColor.B1
-        
+
         subTitleLabel.font = UIFont.regular(size: 18)
-        
+
         subTitleLabel.characterSpacing = 2.5
         subTitleLabel.textColor = UIColor.B2
-        self.view.addSubview(titleLabel)
-        self.view.addSubview(subTitleLabel)
+        view.addSubview(titleLabel)
+        view.addSubview(subTitleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.leadingAnchor.constraint(equalTo: liquilBarview.view.leadingAnchor, constant: 0).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: spacing).isActive = true
-        self.view.addSubview(valueLabel)
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: spacing).isActive = true
+        view.addSubview(valueLabel)
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         valueLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 5).isActive = true
         valueLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
@@ -66,22 +68,23 @@ class DragingValueViewController: UIViewController {
         //        subTitleLabel.text = SelectionSubTitle.text.rawValue
         initDashBar(position: [96, 144, 192, 240, 288, 336, 384], value: [8, 7, 6, 5, 4, 3, 2])
     }
+
     func initDashBar(position: [CGFloat], value: [Int]) {
-        for line in 0..<position.count {
+        for line in 0 ..< position.count {
             let positionOfDashBar = position[line]
             let valueOfDashBar = value[line]
             let dashBar = UIView()
-            self.view.addSubview(dashBar)
+            view.addSubview(dashBar)
             dashBar.translatesAutoresizingMaskIntoConstraints = false
             dashBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 135).isActive = true
             dashBar.centerYAnchor.constraint(equalTo: liquilBarview.view.topAnchor, constant: positionOfDashBar).isActive = true
             dashBar.heightAnchor.constraint(equalToConstant: 1).isActive = true
             dashBar.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-            
+
             if valueOfDashBar % 20 == 0 {
                 dashBar.widthAnchor.constraint(equalToConstant: 70).isActive = true
                 let valueLabel = UILabel()
-                self.view.addSubview(valueLabel)
+                view.addSubview(valueLabel)
                 valueLabel.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                 valueLabel.translatesAutoresizingMaskIntoConstraints = false
                 valueLabel.leadingAnchor.constraint(equalTo: dashBar.trailingAnchor, constant: 5).isActive = true
@@ -93,56 +96,56 @@ class DragingValueViewController: UIViewController {
             }
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
-    
+
     func setLiquidView() {
-        self.addChild(liquilBarview)
-        self.view.addSubview(liquilBarview.view)
+        addChild(liquilBarview)
+        view.addSubview(liquilBarview.view)
         liquilBarview.setLottieView(selectionType)
         liquilBarview.view.translatesAutoresizingMaskIntoConstraints = false
         liquilBarview.view.layer.cornerRadius = 40
         liquilBarview.valueDelegate = self
-        liquilBarview.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -UIScreen.height/10).isActive = true
-        liquilBarview.view.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
+        liquilBarview.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIScreen.height / 10).isActive = true
+        liquilBarview.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
         liquilBarview.view.widthAnchor.constraint(equalToConstant: 80).isActive = true
         liquilBarview.view.heightAnchor.constraint(equalToConstant: 480).isActive = true
         liquilBarview.view.backgroundColor = UIColor.white
     }
-    
+
     func setBackButton() {
         let backButton = UIButton()
-        self.view.addSubview(backButton)
+        view.addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
         backButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         backButton.layer.cornerRadius = 30
-        
-        backButton.setImage( UIImage(named: "plus"), for: .normal)
-        
+
+        backButton.setImage(UIImage(named: "plus"), for: .normal)
+
         backButton.backgroundColor = .B6
         backButton.tintColor = .white
         backButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        
+
         backButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
     }
-    
+
     @objc func dismissSelf() {
-        self.delegate?.didTapBackButton(vc: self)
+        delegate?.didTapBackButton(vc: self)
     }
-}
-extension DragingValueViewController: LiquidBarViewControllerTOValue {
-    func didChangeValue(view: LiquidBarViewController, value: Double) {
-        valueLabel.text = String(value)
-    }
-    
 }
 
+extension DragingValueViewController: LiquidBarViewControllerTOValue {
+    func didChangeValue(view _: LiquidBarViewController, value: Double) {
+        valueLabel.text = String(value)
+    }
+}

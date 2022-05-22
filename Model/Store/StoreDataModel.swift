@@ -27,10 +27,12 @@ struct Store: Codable {
     var queueReport: [QueueReport]? = []
     var collectedUser: [String]? = []
 }
+
 struct Coordinate: Codable {
     var long: Double
     var lat: Double
 }
+
 struct Opentime: Codable {
     var sun: Time
     var mon: Time
@@ -39,7 +41,7 @@ struct Opentime: Codable {
     var thu: Time
     var fri: Time
     var sat: Time
-    
+
     func byPropertyName(weekDay: String) -> Time {
         switch weekDay {
         case "sun": return sun
@@ -53,6 +55,7 @@ struct Opentime: Codable {
         }
     }
 }
+
 struct Time: Codable {
     var lunch: String
     var dinner: String

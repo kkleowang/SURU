@@ -8,8 +8,7 @@
 import UIKit
 
 class FullScreenView: UIView {
-
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet var imageView: UIImageView!
     func layoutView(image: String) {
         imageView.loadImage(image, placeHolder: UIImage.asset(.mainImage))
     }

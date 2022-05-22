@@ -5,48 +5,47 @@
 //  Created by LEO W on 2022/4/16.
 //
 
-import UIKit
 import Alamofire
+import UIKit
 
-
-private struct StoryboardCategory {
+private enum StoryboardCategory {
     static let storeMap = "StoreMapViewController"
-    
+
     static let commentWall = "CommentWallViewController"
-    
+
     static let comment = "CommentViewController"
-    
+
     static let profile = "ProfileViewController"
 }
 
 private enum Tab {
     case commentWall
-    
+
     case storeMap
-    
+
     case publishComment
-    
+
     case profile
-    
+
     func controller() -> UIViewController {
         var controller: UIViewController
         let storyboard = UIStoryboard.main
-        
+
         switch self {
         case .commentWall: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.commentWall)
-            
+
         case .storeMap: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.storeMap)
-            
+
         case .publishComment: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.comment)
-            
+
         case .profile: controller = storyboard.instantiateViewController(withIdentifier: StoryboardCategory.profile)
         }
-        
+
         controller.tabBarItem = tabBarItem()
         controller.tabBarItem.imageInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         return controller
     }
-    
+
     func tabBarItem() -> UITabBarItem {
         switch self {
         case .storeMap:
@@ -55,21 +54,21 @@ private enum Tab {
                 image: UIImage(systemName: "location.circle"),
                 selectedImage: UIImage(systemName: "location.circle.fill")
             )
-            
+
         case .commentWall:
             return UITabBarItem(
                 title: "探索",
                 image: UIImage(systemName: "mosaic"),
                 selectedImage: UIImage(systemName: "mosaic.fill")
             )
-            
+
         case .publishComment:
             return UITabBarItem(
                 title: "發表食記",
                 image: UIImage(systemName: "rectangle.stack.badge.plus"),
                 selectedImage: UIImage(systemName: "rectangle.stack.badge.plus")
             )
-            
+
         case .profile:
             return UITabBarItem(
                 title: "我的",
@@ -82,7 +81,7 @@ private enum Tab {
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private let tabs: [Tab] = [.storeMap, .commentWall, .publishComment, .profile]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = .C4
@@ -99,12 +98,14 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
             presentWelcomePage()
         }
     }
+
     func presentWelcomePage() {
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController else { return }
         controller.delegate = self
-        self.present(controller, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+
+    func tabBarController(_: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if UserRequestProvider.shared.currentUser == nil {
             switch viewController {
             case viewControllers?[0]:
@@ -118,12 +119,13 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
     }
 }
+
 extension TabBarViewController: SignInAndOutViewControllerDelegate {
-    func didSelectLookAround(_ view: SignInAndOutViewController) {
+    func didSelectLookAround(_: SignInAndOutViewController) {
         selectedIndex = 0
     }
-    
-    func didSelectGoEditProfile(_ view: SignInAndOutViewController) {
+
+    func didSelectGoEditProfile(_: SignInAndOutViewController) {
         selectedIndex = 3
     }
 }

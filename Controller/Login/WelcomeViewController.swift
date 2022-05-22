@@ -5,11 +5,11 @@
 //  Created by LEO W on 2022/4/27.
 //
 
+import AuthenticationServices
+import CryptoKit
+import FirebaseAuth
 import UIKit
 import WebKit
-import AuthenticationServices
-import FirebaseAuth
-import CryptoKit
 
 class WelcomeViewController: UIViewController {
     weak var delegate: SignInAndOutViewControllerDelegate?
@@ -20,10 +20,12 @@ class WelcomeViewController: UIViewController {
             webView.allowsBackForwardNavigationGestures = true
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWelcomView()
     }
+
     private func setupWelcomView() {
         if #available(iOS 13.2, *) {
             welcomeView.setAppleButton()
@@ -33,9 +35,10 @@ class WelcomeViewController: UIViewController {
         welcomeView.delegate = self
         view.stickSubView(welcomeView)
     }
+
     private func initSignView(state: SignPageState) {
         guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "SignInAndOutViewController") as? SignInAndOutViewController else { return }
-        controller.delegate = self.delegate
+        controller.delegate = delegate
         controller.pageState = state
         controller.layoutSignView()
         if #available(iOS 15.0, *) {
@@ -49,32 +52,35 @@ class WelcomeViewController: UIViewController {
 }
 
 extension WelcomeViewController: WelcomeViewDelegate {
-    func didTapAppleButton(_ view: WelcomeView) {
+    func didTapAppleButton(_: WelcomeView) {
         startSignInWithAppleFlow()
     }
-    
-    func didTapPrivacyLabel(_ view: WelcomeView) {
+
+    func didTapPrivacyLabel(_: WelcomeView) {
         let controller = WebView()
         controller.url = "https://www.privacypolicies.com/live/2dbb6a88-d041-40f9-ae5b-d1385b4f9b97"
         present(controller, animated: true)
     }
-    
-    func didTapEulaLabel(_ view: WelcomeView) {
+
+    func didTapEulaLabel(_: WelcomeView) {
         let controller = WebView()
         controller.url = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
         present(controller, animated: true)
     }
-    
-    func didTapSignUp(_ view: WelcomeView) {
+
+    func didTapSignUp(_: WelcomeView) {
         initSignView(state: .sighUp)
     }
-    func didTapLogIn(_ view: WelcomeView) {
+
+    func didTapLogIn(_: WelcomeView) {
         initSignView(state: .signIn)
     }
-    func didTapVisetAsGuest(_ view: WelcomeView) {
+
+    func didTapVisetAsGuest(_: WelcomeView) {
         dismiss(animated: true, completion: nil)
     }
 }
+
 extension WelcomeViewController {
     @available(iOS 13, *)
     func startSignInWithAppleFlow() {
@@ -84,16 +90,17 @@ extension WelcomeViewController {
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
         request.nonce = sha256(nonce)
-        
+
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
+
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         let charset: [Character] =
-        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
         var remainingLength = length
         while remainingLength > 0 {
@@ -119,22 +126,24 @@ extension WelcomeViewController {
         }
         return result
     }
+
     @available(iOS 13, *)
     private func sha256(_ input: String) -> String {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
         let hashString = hashedData.compactMap { String(format: "%02x", $0) }.joined()
-        
+
         return hashString
     }
 }
+
 @available(iOS 13.0, *)
 extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    func presentationAnchor(for _: ASAuthorizationController) -> ASPresentationAnchor {
         view.window!
     }
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+
+    func authorizationController(controller _: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
@@ -154,7 +163,7 @@ extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizat
                 }
             }
             // Initialize a Firebase credential.
-            
+
             let credential = OAuthProvider.credential(
                 withProviderID: "apple.com",
                 idToken: idTokenString,
@@ -162,10 +171,10 @@ extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizat
             )
             UserRequestProvider.shared.appleLogin(credential: credential, name: name) { result in
                 switch result {
-                case .failure(let error):
+                case let .failure(error):
                     print("apple登入失敗", error)
                     LKProgressHUD.showFailure(text: "登入失敗")
-                case .success(let message):
+                case let .success(message):
                     LKProgressHUD.showSuccess(text: message)
                     print("apple登入成功", message)
                     self.dismiss(animated: true)
@@ -173,7 +182,8 @@ extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizat
             }
         }
     }
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+
+    func authorizationController(controller _: ASAuthorizationController, didCompleteWithError error: Error) {
         print("Sign in with Apple errored: \(error)")
     }
 }

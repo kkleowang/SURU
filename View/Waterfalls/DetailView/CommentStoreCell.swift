@@ -5,27 +5,29 @@
 //  Created by LEO W on 2022/5/3.
 //
 
-import UIKit
 import Kingfisher
 import MapKit
+import UIKit
 protocol CommentStoreCellDelegate: AnyObject {
     func didTapCollectStore(_ view: CommentStoreCell, storeID: String)
 }
+
 class CommentStoreCell: UITableViewCell {
     weak var delegate: CommentStoreCellDelegate?
     var storeData: Store?
-    
-    @IBOutlet weak var mapView: UIView!
-    @IBAction func tapCollectButton(_ sender: Any) {
+
+    @IBOutlet var mapView: UIView!
+    @IBAction func tapCollectButton(_: Any) {
         guard let storeData = storeData else {
             return
         }
 
-        self.delegate?.didTapCollectStore(self, storeID: storeData.storeID)
+        delegate?.didTapCollectStore(self, storeID: storeData.storeID)
     }
-    @IBOutlet weak var storeNameLabel: UILabel!
-    @IBOutlet weak var storeImageView: UIImageView!
-    
+
+    @IBOutlet var storeNameLabel: UILabel!
+    @IBOutlet var storeImageView: UIImageView!
+
     func layoutCell(store: Store) {
         storeData = store
         storeNameLabel.text = store.name
@@ -39,14 +41,14 @@ class CommentStoreCell: UITableViewCell {
         MKmap.bottomAnchor.constraint(equalTo: mapView.bottomAnchor).isActive = true
         MKmap.leadingAnchor.constraint(equalTo: mapView.leadingAnchor).isActive = true
         MKmap.trailingAnchor.constraint(equalTo: mapView.trailingAnchor).isActive = true
-        
-        
+
         MKmap.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), latitudinalMeters: 400, longitudinalMeters: 400)
-        
+
         let mark = MKPointAnnotation()
         mark.coordinate = CLLocationCoordinate2D(
             latitude: lat,
-            longitude: long)
+            longitude: long
+        )
         mark.title = store.name
         MKmap.addAnnotation(mark)
     }

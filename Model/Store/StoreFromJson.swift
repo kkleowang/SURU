@@ -5,12 +5,12 @@
 ////  Created by LEO W on 2022/4/24.
 ////
 //
-//import Foundation
+// import Foundation
 //
-//struct Excel: Codable {
+// struct Excel: Codable {
 //    let page1: [ExcelData]
-//}
-//struct ExcelData: Codable {
+// }
+// struct ExcelData: Codable {
 //    let name: String
 //    var engName: String? = ""
 //    let address: String
@@ -57,9 +57,9 @@
 //        case note
 //        case closeDay
 //    }
-//}
+// }
 //
-//class AppDataProvider {
+// class AppDataProvider {
 //    static let shared = AppDataProvider()
 //
 //    func allInOne() {
@@ -156,4 +156,4 @@
 //        com(storeArray)
 //    }
 //
-//}
+// }

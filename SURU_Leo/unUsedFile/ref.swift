@@ -44,7 +44,7 @@
 //        pickView.reloadAllComponents()
 //        return pickView
 //    }
-//    
+//
 //    var mealPickerView: UIPickerView? {
 //        let pickView = UIPickerView()
 //        pickView.tag = 2
@@ -53,7 +53,7 @@
 //        pickView.reloadAllComponents()
 //        return pickView
 //    }
-//    
+//
 //    var selectNoodelValueButton: UIButton? {
 //        let button = UIButton()
 //        self.addSubview(button)
@@ -87,7 +87,7 @@
 //        button.addTarget(self, action: #selector(selectValue), for: .touchUpInside)
 //        return button
 //    }
-//    
+//
 //    var writeCommentButton: UIButton? {
 //        let button = UIButton()
 //        self.addSubview(button)

@@ -5,8 +5,8 @@
 //  Created by LEO W on 2022/5/5.
 //
 
-import UIKit
 import CHTCollectionViewWaterfallLayout
+import UIKit
 
 class EditProfileViewController: UIViewController {
     var mainImage = UIImage()
@@ -24,6 +24,7 @@ class EditProfileViewController: UIViewController {
             self.view.stickSubView(editProfileView)
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         editProfileView.delegate = self
@@ -31,9 +32,11 @@ class EditProfileViewController: UIViewController {
         settingNavBtn()
         mappingUserData()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+
     //    func setupCollectionView() {
     //        editProfileView.collectionView.dataSource = self
     //        editProfileView.collectionView.delegate = self
@@ -56,10 +59,12 @@ class EditProfileViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftItem
         navigationItem.rightBarButtonItem = rightItem
     }
+
     @objc func cancel() {
         dismiss(animated: true, completion: nil)
         LKProgressHUD.showSuccess(text: "取消編輯")
     }
+
     func mappingUserData() {
         guard let userData = userData else { return }
         nickName = userData.name
@@ -67,14 +72,15 @@ class EditProfileViewController: UIViewController {
         webside = userData.websideLink ?? ""
         image = userData.mainImage
     }
+
     @objc func save() {
         guard let userData = userData else { return }
         if image == userData.mainImage {
             let type = ["name", "bio", "websideLink", "mainImage"]
-            let content = [self.nickName, self.bio, self.webside, self.image]
+            let content = [nickName, bio, webside, image]
             AccountRequestProvider.shared.updateDataAccount(currentUserID: userData.userID, type: type, content: content)
-            
-            self.dismiss(animated: true) {
+
+            dismiss(animated: true) {
                 LKProgressHUD.showSuccess(text: "更新成功")
             }
         } else {
@@ -82,14 +88,14 @@ class EditProfileViewController: UIViewController {
                 let type = ["name", "bio", "websideLink", "mainImage"]
                 let content = [self.nickName, self.bio, self.webside, self.image]
                 AccountRequestProvider.shared.updateDataAccount(currentUserID: userData.userID, type: type, content: content)
-                
+
                 self.dismiss(animated: true) {
                     LKProgressHUD.showSuccess(text: "更新成功")
                 }
             }
         }
-        
     }
+
     private func uploadImage(com: @escaping () -> Void) {
         guard let userData = userData else { return }
         guard let image = mainImage.jpegData(compressionQuality: 0.1) else { return }
@@ -97,12 +103,12 @@ class EditProfileViewController: UIViewController {
         LKProgressHUD.show()
         FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
             switch result {
-            case .success(let url) :
+            case let .success(url):
                 LKProgressHUD.dismiss()
                 LKProgressHUD.showSuccess(text: "上傳圖片成功")
                 print("上傳圖片成功", url.description)
                 self.image = url.description
-            case .failure(let error) :
+            case let .failure(error):
                 LKProgressHUD.dismiss()
                 LKProgressHUD.showFailure(text: "上傳圖片失敗")
                 print("上傳圖片失敗", error)
@@ -110,56 +116,57 @@ class EditProfileViewController: UIViewController {
             com()
         }
     }
-    
 }
+
 extension EditProfileViewController: EditProfileViewDelegate {
-    func didSelectImage(_ view: EditProfileView, image: UIImage) {
+    func didSelectImage(_: EditProfileView, image: UIImage) {
         mainImage = image
         LKProgressHUD.showSuccess(text: "刪除成功")
     }
-    
-    func didTapEditImage(_ view: EditProfileView, alert: UIAlertController) {
-        alert.popoverPresentationController?.sourceView = self.view
-        
-        let xOrigin = self.view.bounds.width / 2
-        
+
+    func didTapEditImage(_: EditProfileView, alert: UIAlertController) {
+        alert.popoverPresentationController?.sourceView = view
+
+        let xOrigin = view.bounds.width / 2
+
         let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-        
+
         alert.popoverPresentationController?.sourceRect = popoverRect
-        
+
         alert.popoverPresentationController?.permittedArrowDirections = .up
         present(alert, animated: true, completion: nil)
     }
-    
-    func didSelectImage(_ view: EditProfileView, image: UIImage, imagePickView: UIImagePickerController) {
+
+    func didSelectImage(_: EditProfileView, image: UIImage, imagePickView: UIImagePickerController) {
         mainImage = image
         imagePickView.dismiss(animated: true) {
             LKProgressHUD.showSuccess(text: "上傳成功")
         }
     }
-    
-    func didTapImagePicker(_ view: EditProfileView, imagePicker: UIImagePickerController?) {
+
+    func didTapImagePicker(_: EditProfileView, imagePicker: UIImagePickerController?) {
         guard let imagePicker = imagePicker else { return }
         present(imagePicker, animated: true, completion: nil)
     }
-    
-    func didEditNickName(_ view: EditProfileView, text: String) {
+
+    func didEditNickName(_: EditProfileView, text: String) {
         nickName = text
         //        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
         //        controller.badgeRef = badgeRef
         //        controller.seletedBadgeName = userData?.badgeStatus
         //        navigationController?.pushViewController(controller, animated: true)
     }
-    
-    func didEditWebSide(_ view: EditProfileView, text: String) {
+
+    func didEditWebSide(_: EditProfileView, text: String) {
         webside = text
     }
-    
-    func didEditBio(_ view: EditProfileView, text: String) {
+
+    func didEditBio(_: EditProfileView, text: String) {
         bio = text
     }
 }
-//extension EditProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+// extension EditProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 //
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: BadgeHeaderCell.self), for: indexPath) as? BadgeHeaderCell else {
@@ -188,13 +195,12 @@ extension EditProfileViewController: EditProfileViewDelegate {
 //
 //        return cell
 //    }
-//}
+// }
 
 //
-//extension EditProfileViewController: CHTCollectionViewDelegateWaterfallLayout {
+// extension EditProfileViewController: CHTCollectionViewDelegateWaterfallLayout {
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        CGSize(width: 200, height: 200)
 //    }
 
-
-//}
+// }

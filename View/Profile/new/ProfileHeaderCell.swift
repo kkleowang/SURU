@@ -7,57 +7,62 @@
 
 import UIKit
 protocol ProfileHeaderCellDelegate: AnyObject {
-    func didtapBackBtn(_ view:  ProfileHeaderCell)
-    func didtapBadgeBtn(_ view:  ProfileHeaderCell)
-    func didtapSettingBtn(_ view:  ProfileHeaderCell, targetUserID: String?)
+    func didtapBackBtn(_ view: ProfileHeaderCell)
+    func didtapBadgeBtn(_ view: ProfileHeaderCell)
+    func didtapSettingBtn(_ view: ProfileHeaderCell, targetUserID: String?)
     //    func didtapBlockBtn(_ view:  ProfileHeaderCell)
-    
-    func didtapPost(_ view:  ProfileHeaderCell)
-    func didtapFans(_ view:  ProfileHeaderCell)
-    func didtapFollower(_ view:  ProfileHeaderCell)
+
+    func didtapPost(_ view: ProfileHeaderCell)
+    func didtapFans(_ view: ProfileHeaderCell)
+    func didtapFollower(_ view: ProfileHeaderCell)
 }
+
 class ProfileHeaderCell: UITableViewHeaderFooterView {
     weak var delegate: ProfileHeaderCellDelegate?
     var accountID: String?
-    
-    @IBAction func tapBackBtn(_ sender: Any) {
-        self.delegate?.didtapBackBtn(self)
+
+    @IBAction func tapBackBtn(_: Any) {
+        delegate?.didtapBackBtn(self)
     }
-    @IBAction func tapBadgeBtn(_ sender: Any) {
-        self.delegate?.didtapBadgeBtn(self)
+
+    @IBAction func tapBadgeBtn(_: Any) {
+        delegate?.didtapBadgeBtn(self)
     }
-    @IBAction func tapSettingBtn(_ sender: Any) {
-        self.delegate?.didtapSettingBtn(self, targetUserID: accountID)
+
+    @IBAction func tapSettingBtn(_: Any) {
+        delegate?.didtapSettingBtn(self, targetUserID: accountID)
     }
+
     @objc func tapPost() {
-        self.delegate?.didtapPost(self)
+        delegate?.didtapPost(self)
     }
+
     @objc func tapFans() {
-        self.delegate?.didtapFans(self)
+        delegate?.didtapFans(self)
     }
+
     @objc func tapFollower() {
-        self.delegate?.didtapFollower(self)
+        delegate?.didtapFollower(self)
     }
-    
-    
-    @IBOutlet weak var bgImageView: UIImageView!
-    
-    @IBOutlet weak var backBtn: UIButton!
-    @IBOutlet weak var badgeBtv: UIButton!
-    @IBOutlet weak var settingBtn: UIButton!
-    
-    @IBOutlet weak var accountImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var badgeImageView: UIImageView!
-    
-    @IBOutlet weak var postLabel: UILabel!
-    @IBOutlet weak var followerLabel: UILabel!
-    @IBOutlet weak var followedLabel: UILabel!
-    
-    @IBOutlet weak var postLabelView: UIStackView!
-    @IBOutlet weak var followerLabelView: UIStackView!
-    @IBOutlet weak var followedLabelView: UIStackView!
-    
+
+    @IBOutlet var bgImageView: UIImageView!
+
+    @IBOutlet var backBtn: UIButton!
+    @IBOutlet var badgeBtv: UIButton!
+    @IBOutlet var settingBtn: UIButton!
+
+    @IBOutlet var accountImageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var badgeImageView: UIImageView!
+
+    @IBOutlet var postLabel: UILabel!
+    @IBOutlet var followerLabel: UILabel!
+    @IBOutlet var followedLabel: UILabel!
+
+    @IBOutlet var postLabelView: UIStackView!
+    @IBOutlet var followerLabelView: UIStackView!
+    @IBOutlet var followedLabelView: UIStackView!
+
     // Icons_24px_ListView
     func layoutHeaderCell(isOnPush: Bool, isCurrenAccount: Bool, account: Account) {
         if !isOnPush {
@@ -82,17 +87,16 @@ class ProfileHeaderCell: UITableViewHeaderFooterView {
         postLabelView.addGestureRecognizer(tapPost)
         followerLabelView.addGestureRecognizer(tapFans)
         followedLabelView.addGestureRecognizer(tapFollower)
-        
+
         accountImageView.loadImage(account.mainImage, placeHolder: UIImage(named: "mainImage"))
         accountImageView.layer.cornerRadius = 90 / 2
         accountImageView.layer.borderWidth = 2.0
         accountImageView.layer.borderColor = UIColor.white.cgColor
         accountImageView.contentMode = .scaleAspectFill
         accountImageView.clipsToBounds = true
-        
+
         nameLabel.text = account.name
-        
-        
+
         postLabel.text = "\(account.commentCount)"
         followerLabel.text = "\(account.follower.count)"
         followedLabel.text = "\(account.followedUser.count)"

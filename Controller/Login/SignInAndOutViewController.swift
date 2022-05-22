@@ -12,20 +12,23 @@ protocol SignInAndOutViewControllerDelegate: AnyObject {
     func didSelectGoEditProfile(_ view: SignInAndOutViewController)
     func didSelectLookAround(_ view: SignInAndOutViewController)
 }
+
 enum SignPageState {
     case sighUp
     case signIn
 }
+
 class SignInAndOutViewController: UIViewController {
     weak var delegate: SignInAndOutViewControllerDelegate?
     var pageState: SignPageState?
     let signInAndOutView: SignInAndOutView = .fromNib()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.stickSubView(signInAndOutView)
         signInAndOutView.delegate = self
     }
+
     func layoutSignView() {
         guard let state = pageState else { return }
         switch state {
@@ -38,14 +41,14 @@ class SignInAndOutViewController: UIViewController {
 }
 
 extension SignInAndOutViewController: SignInAndOutViewDelegate {
-    func didGotWrongInput(_ view: UIView, message: String) {
+    func didGotWrongInput(_: UIView, message: String) {
         let alert = UIAlertController(title: "登入提示", message: message, preferredStyle: .alert)
         let notify = UIAlertAction(title: "好", style: .default)
         alert.addAction(notify)
         present(alert, animated: true, completion: nil)
     }
-    
-    func didTapSendButton(_ view: UIView, email: String, password: String) {
+
+    func didTapSendButton(_: UIView, email: String, password: String) {
         guard let state = pageState else { return }
         switch state {
         case .sighUp:
@@ -54,30 +57,31 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
             signIn(email: email, password: password)
         }
     }
+
     func signUP(email: String, password: String) {
         UserRequestProvider.shared.nativeSignUp(withEmail: email, withPassword: password) { result in
             switch result {
-            case .failure(let error):
+            case let .failure(error):
                 LKProgressHUD.showFailure(text: "登入失敗請再試一次")
-            case .success(let message):
+            case let .success(message):
                 self.showAddInfoAlert()
                 LKProgressHUD.showSuccess(text: message)
             }
         }
     }
-    
+
     func signIn(email: String, password: String) {
         UserRequestProvider.shared.nativeSignIn(withEmail: email, withPassword: password) { result in
             switch result {
-            case .failure(let error):
+            case let .failure(error):
                 LKProgressHUD.showFailure(text: error.localizedDescription)
-            case .success(let message):
+            case let .success(message):
                 self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
                 LKProgressHUD.showSuccess(text: message)
             }
         }
     }
-    
+
     func showAddInfoAlert() {
         let alert = UIAlertController(title: "提示", message: "現在就去編輯自己的個人資料嗎", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "好", style: .default) { _ in
@@ -92,7 +96,7 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    
+
     func initInfoView() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let controller = storyboard.instantiateViewController(withIdentifier: "SignInAndOutViewController") as? SignInAndOutViewController else { return }
@@ -103,6 +107,6 @@ extension SignInAndOutViewController: SignInAndOutViewDelegate {
                 sheet.preferredCornerRadius = 20
             }
         }
-        self.present(controller, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
 }

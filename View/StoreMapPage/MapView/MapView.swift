@@ -5,9 +5,9 @@
 //  Created by LEO W on 2022/4/16.
 //
 
-import UIKit
-import MapKit
 import Kingfisher
+import MapKit
+import UIKit
 
 class MapView: MKMapView {
     func layoutView(from stores: [Store]) {
@@ -16,7 +16,7 @@ class MapView: MKMapView {
                 let mark = MKPointAnnotation()
                 mark.coordinate = CLLocationCoordinate2D(latitude: store.coordinate.lat, longitude: store.coordinate.long)
                 mark.title = store.name
-                self.addAnnotation(mark)
+                addAnnotation(mark)
             }
         }
     }

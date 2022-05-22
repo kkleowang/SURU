@@ -8,16 +8,14 @@
 import UIKit
 
 class StoreRatingCell: UITableViewCell {
-    
-    
-    @IBOutlet weak var soupView: UIView!
-    @IBOutlet weak var noodleView: UIView!
-    @IBOutlet weak var overallView: UIView!
-    
-    @IBOutlet weak var soupValueLabel: UILabel!
-    @IBOutlet weak var noodleValueLabel: UILabel!
-    @IBOutlet weak var overallValueLabel: UILabel!
-    
+    @IBOutlet var soupView: UIView!
+    @IBOutlet var noodleView: UIView!
+    @IBOutlet var overallView: UIView!
+
+    @IBOutlet var soupValueLabel: UILabel!
+    @IBOutlet var noodleValueLabel: UILabel!
+    @IBOutlet var overallValueLabel: UILabel!
+
     func layoutCell(comments: [Comment]) {
         selectionStyle = .none
         soupView.cornerRadii(radii: soupView.bounds.width / 2)
@@ -26,20 +24,21 @@ class StoreRatingCell: UITableViewCell {
         soupView.backgroundColor = .main1
         noodleView.backgroundColor = .main2
         overallView.backgroundColor = .main3
-        
+
         configAvgRating(comments)
     }
+
     private func configAvgRating(_ comments: [Comment]) {
         if !comments.isEmpty {
             let count = Double(comments.count)
             let noodle: Double = comments.map { $0.contentValue.noodle }.reduce(0, +)
             let soup: Double = comments.map { $0.contentValue.soup }.reduce(0, +)
             let overall: Double = comments.map { $0.contentValue.happiness }.reduce(0, +)
-            
+
             let noodleAvg = (noodle / count).ceiling(toDecimal: 1)
             let soupAvg = (soup / count).ceiling(toDecimal: 1)
             let overallAvg = (overall / count).ceiling(toDecimal: 1)
-            
+
             if noodleAvg >= 10.0 {
                 noodleValueLabel.text = String(10)
             } else {

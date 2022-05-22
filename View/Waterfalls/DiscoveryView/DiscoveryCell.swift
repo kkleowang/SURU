@@ -5,64 +5,61 @@
 //  Created by LEO W on 2022/5/1.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 protocol DiscoveryCellDelegate: AnyObject {
     func didTapLikeButton(_ view: DiscoveryCell, comment: Comment)
-    
+
     func didTapUnLikeButton(_ view: DiscoveryCell, comment: Comment)
-    
+
     func didTapCommentBtn(_ view: DiscoveryCell, comment: Comment)
-    
 }
 
 class DiscoveryCell: UICollectionViewCell {
     weak var delegate: DiscoveryCellDelegate?
     var commentHolder: Comment?
-    
-    
-    @IBOutlet weak var mainImageView: UIImageView!
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var mealLabel: UILabel!
-    
-    @IBOutlet weak var authorImageView: UIImageView!
-    @IBOutlet weak var authorNameLabel: UILabel!
-    
+
+    @IBOutlet var mainImageView: UIImageView!
+
+    @IBOutlet var nameLabel: UILabel!
+
+    @IBOutlet var mealLabel: UILabel!
+
+    @IBOutlet var authorImageView: UIImageView!
+    @IBOutlet var authorNameLabel: UILabel!
+
     //    @IBOutlet weak var badgeImageView: UIImageView!
-    
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var commentButton: UIButton!
-    
-    @IBAction func tapCommentBtn(_ sender: Any) {
+
+    @IBOutlet var likeButton: UIButton!
+    @IBOutlet var commentButton: UIButton!
+
+    @IBAction func tapCommentBtn(_: Any) {
         guard let commentHolder = commentHolder else { return }
-        self.delegate?.didTapCommentBtn(self, comment: commentHolder)
+        delegate?.didTapCommentBtn(self, comment: commentHolder)
     }
+
     @IBAction func tapLikeButton(_ sender: UIButton) {
         guard let commentHolder = commentHolder else { return }
         guard let image = sender.imageView?.image else { return }
         if image == UIImage(systemName: "heart.fill") {
-            self.delegate?.didTapUnLikeButton(self, comment: commentHolder)
+            delegate?.didTapUnLikeButton(self, comment: commentHolder)
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            likeButton.setTitle("\((Int(likeButton.currentTitle ?? "1") ?? 1 ) - 1)", for: .normal)
+            likeButton.setTitle("\((Int(likeButton.currentTitle ?? "1") ?? 1) - 1)", for: .normal)
         } else {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            likeButton.setTitle("\((Int(likeButton.currentTitle ?? "0") ?? 0 ) + 1 )", for: .normal)
-            self.delegate?.didTapLikeButton(self, comment: commentHolder)
+            likeButton.setTitle("\((Int(likeButton.currentTitle ?? "0") ?? 0) + 1)", for: .normal)
+            delegate?.didTapLikeButton(self, comment: commentHolder)
         }
-        
     }
-    
-    
+
     func layoutCell(author: Account, comment: Comment, currentUser: Account, store: Store) {
         mainImageView.clipsToBounds = true
         mainImageView.layer.cornerRadius = 10
         authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
         commentHolder = comment
         mainImageView.kf.setImage(with: URL(string: comment.mainImage))
-        
+
         nameLabel.text = "\(store.name)"
         //        nameLabel.font = .medium(size: 16)
         mealLabel.font = .medium(size: 14)
@@ -73,27 +70,27 @@ class DiscoveryCell: UICollectionViewCell {
         authorNameLabel.adjustsFontSizeToFitWidth = true
         authorImageView.loadImage(author.mainImage, placeHolder: UIImage(named: "mainImage"))
         authorNameLabel.text = author.name
-        
+
         if currentUser.likedComment.contains(comment.commentID) {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
-        
+
         if !comment.likedUserList.isEmpty {
             likeButton.setTitle(String(comment.likedUserList.count), for: .normal)
         } else {
             likeButton.setTitle("", for: .normal)
         }
-        
+
         let messages = comment.userComment ?? []
-        
+
         if !messages.isEmpty {
             commentButton.setTitle(String(messages.count), for: .normal)
         } else {
             commentButton.setTitle("", for: .normal)
         }
-        
+
         if author.badgeStatus != nil {
             //            badgeImageView.image = UIImage(named: "\(author.badgeStatus!)")
         }

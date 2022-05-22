@@ -11,9 +11,9 @@ import Kingfisher
 extension UIImageView {
     
     func loadImage(_ urlString: String?, placeHolder: UIImage? = nil) {
-        if let  urlString = urlString {
+        if let urlString = urlString {
             let url = URL(string: urlString)
-            self.kf.setImage(with: url, placeholder: placeHolder)
+            kf.setImage(with: url, placeholder: placeHolder)
         }
     }
 }

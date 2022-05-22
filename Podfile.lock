@@ -345,7 +345,7 @@ PODS:
   - GTMSessionFetcher/Core (1.7.1)
   - IQKeyboardManagerSwift (6.5.9)
   - JGProgressHUD (2.2)
-  - Kingfisher (6.3.1)
+  - Kingfisher (7.2.1)
   - leveldb-library (1.22.1)
   - lottie-ios (3.2.3)
   - MJRefresh (3.7.5)
@@ -370,7 +370,7 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - IQKeyboardManagerSwift
   - JGProgressHUD
-  - Kingfisher
+  - Kingfisher (~> 7.0)
   - lottie-ios
   - MJRefresh
   - SwiftLint
@@ -434,7 +434,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 4577a4cc914a5a07c40a8a0ad0acc22080418c2d
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
-  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  Kingfisher: 7c084bebf7d548c623ad41bcf765fb200efed369
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
@@ -443,6 +443,6 @@ SPEC CHECKSUMS:
   SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 45d966ac632a217c6082d1ffc889d955f009cf5d
+PODFILE CHECKSUM: bf8b645b2dc2443513d489d0882ffcc53c317d80
 
 COCOAPODS: 1.11.3

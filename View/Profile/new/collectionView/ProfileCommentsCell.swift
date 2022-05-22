@@ -5,12 +5,12 @@
 //  Created by LEO W on 2022/5/6.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 class ProfileCommentsCell: UICollectionViewCell {
-    @IBOutlet weak var mainImageView: UIImageView!
-    func layoutCell (comment: Comment) {
+    @IBOutlet var mainImageView: UIImageView!
+    func layoutCell(comment: Comment) {
         mainImageView.loadImage(comment.mainImage, placeHolder: nil)
     }
 }

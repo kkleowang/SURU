@@ -8,9 +8,5 @@
 import UIKit
 
 class StoreSeatsCell: UITableViewCell {
-
-    func layoutCell() {
-        
-    }
-    
+    func layoutCell() {}
 }

@@ -5,8 +5,8 @@
 //  Created by LEO W on 2022/4/27.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 protocol ProfileViewDelegate: AnyObject {
     func didTapAccountButton(_ view: ProfileView)
@@ -15,32 +15,32 @@ protocol ProfileViewDelegate: AnyObject {
 }
 
 class ProfileView: UIView {
-    
     weak var delegate: ProfileViewDelegate?
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var editProfileButton: UIButton!
-    @IBOutlet weak var badgeImageView: UIImageView!
-    
-    @IBAction func tapEditProfilebutton(_ sender: UIButton) {
-        self.delegate?.didTapEditProfilebutton(self)
+
+    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var editProfileButton: UIButton!
+    @IBOutlet var badgeImageView: UIImageView!
+
+    @IBAction func tapEditProfilebutton(_: UIButton) {
+        delegate?.didTapEditProfilebutton(self)
     }
-    
-    @IBOutlet weak var tapAccountButton: UIButton!
-    @IBAction func tapAccountButton(_ sender: Any) {
-        self.delegate?.didTapAccountButton(self)
+
+    @IBOutlet var tapAccountButton: UIButton!
+    @IBAction func tapAccountButton(_: Any) {
+        delegate?.didTapAccountButton(self)
     }
-    
-    @IBOutlet weak var mainImageView: UIImageView!
-    @IBOutlet weak var follwersCountLabel: UILabel!
-    @IBOutlet weak var follwingCountLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var bioLabel: UILabel!
+
+    @IBOutlet var mainImageView: UIImageView!
+    @IBOutlet var follwersCountLabel: UILabel!
+    @IBOutlet var follwingCountLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var bioLabel: UILabel!
     var webLink = URL(string: "")
     @objc func linkWeb() {
         guard let webLink = webLink else { return }
         UIApplication.shared.open(webLink)
     }
+
     func layoutView(account: Account) {
         let web = account.websideLink ?? ""
         webLikeImageView.tintColor = .B1
@@ -74,8 +74,10 @@ class ProfileView: UIView {
         badgeImageView.isUserInteractionEnabled = true
         badgeImageView.addGestureRecognizer(tap)
     }
+
     @objc func initBadge() {
-        self.delegate?.didTapBadge(self)
+        delegate?.didTapBadge(self)
     }
-    @IBOutlet weak var webLikeImageView: UIImageView!
+
+    @IBOutlet var webLikeImageView: UIImageView!
 }

@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 enum ImageAsset: String {
-    
     case mainImage
     case noData
 }
@@ -18,9 +17,9 @@ extension UIImage {
     static func asset(_ asset: ImageAsset) -> UIImage? {
         return UIImage(named: asset.rawValue)
     }
-    
+
     func withSaturationAdjustment(byVal: CGFloat) -> UIImage {
-        guard let cgImage = self.cgImage else { return self }
+        guard let cgImage = cgImage else { return self }
         guard let filter = CIFilter(name: "CIColorControls") else { return self }
         filter.setValue(CIImage(cgImage: cgImage), forKey: kCIInputImageKey)
         filter.setValue(byVal, forKey: kCIInputSaturationKey)

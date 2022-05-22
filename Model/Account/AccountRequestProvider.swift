@@ -12,9 +12,9 @@ import FirebaseFirestoreSwift
 // user
 class AccountRequestProvider {
     static let shared = AccountRequestProvider()
-    
+
     private lazy var database = Firestore.firestore()
-    
+
     func fetchAccount(currentUserID: String, completion: @escaping (Result<Account?, Error>) -> Void) {
         database.collection("accounts").whereField("userID", isEqualTo: currentUserID as Any).getDocuments { querySnapshot, error in
             if let error = error {
@@ -36,7 +36,7 @@ class AccountRequestProvider {
             }
         }
     }
-    
+
     func fetchAccounts(completion: @escaping (Result<[Account], Error>) -> Void) {
         database.collection("accounts").getDocuments { querySnapshot, error in
             if let error = error {
@@ -57,7 +57,7 @@ class AccountRequestProvider {
             }
         }
     }
-    
+
     func publishRegistedAccount(account: inout Account, completion: @escaping (Result<String, Error>) -> Void) {
         let docment = database.collection("accounts").document(account.userID)
         account.createdTime = Date().timeIntervalSince1970
@@ -68,7 +68,7 @@ class AccountRequestProvider {
         }
         completion(.success("註冊成功"))
     }
-    
+
     func deleteAccountInfo(userID: String, completion: @escaping (Result<String, Error>) -> Void) {
         let docRef = database.collection("accounts").document(userID)
         docRef.updateData(["mainImage": "", "name": "刪除的帳號"]) { error in
@@ -79,70 +79,75 @@ class AccountRequestProvider {
             }
         }
     }
+
     func followAccount(currentUserID: String, tagertUserID: String) {
         let targetDocment = database.collection("accounts").document(tagertUserID)
         let currentDocment = database.collection("accounts").document(currentUserID)
-        
+
         targetDocment.updateData([
-            "follower": FieldValue.arrayUnion([currentUserID])
+            "follower": FieldValue.arrayUnion([currentUserID]),
         ])
         currentDocment.updateData([
-            "followedUser": FieldValue.arrayUnion([tagertUserID])
+            "followedUser": FieldValue.arrayUnion([tagertUserID]),
         ])
     }
-    
+
     func unfollowAccount(currentUserID: String, tagertUserID: String) {
         let targetDocment = database.collection("accounts").document(tagertUserID)
         let currentDocment = database.collection("accounts").document(currentUserID)
-        
+
         targetDocment.updateData([
-            "follower": FieldValue.arrayRemove([currentUserID])
+            "follower": FieldValue.arrayRemove([currentUserID]),
         ])
         currentDocment.updateData([
-            "followedUser": FieldValue.arrayRemove([tagertUserID])
+            "followedUser": FieldValue.arrayRemove([tagertUserID]),
         ])
     }
+
     func blockAccount(currentUserID: String, tagertUserID: String) {
         let currentDocment = database.collection("accounts").document(currentUserID)
-        
+
         currentDocment.updateData([
-            "blockUserList": FieldValue.arrayUnion([tagertUserID])
+            "blockUserList": FieldValue.arrayUnion([tagertUserID]),
         ])
     }
-    
+
     func unblockAccount(currentUserID: String, tagertUserID: String) {
         let currentDocment = database.collection("accounts").document(currentUserID)
-        
-        
+
         currentDocment.updateData([
-            "blockUserList": FieldValue.arrayRemove([tagertUserID])
+            "blockUserList": FieldValue.arrayRemove([tagertUserID]),
         ])
     }
+
     func addLoginHistroy(date: Date, currentUserID: String) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY/MM/dd"
         let weekDay = dateFormatter.string(from: date)
         let currentDocment = database.collection("accounts").document(currentUserID)
         currentDocment.updateData([
-            "loginHistory": FieldValue.arrayUnion([weekDay])
+            "loginHistory": FieldValue.arrayUnion([weekDay]),
         ])
     }
+
     func changeBadgeStatus(status: String, currentUserID: String) {
         let currentDocment = database.collection("accounts").document(currentUserID)
         currentDocment.updateData([
-            "badgeStatus": status
+            "badgeStatus": status,
         ])
     }
+
     func updateDataAccount(currentUserID: String, type: [String], content: [String]) {
         let currentDocment = database.collection("accounts").document(currentUserID)
         if type.count == content.count {
-            for i in 0..<type.count {
+            for i in 0 ..< type.count {
                 currentDocment.updateData([
-                    type[i]: content[i]
+                    type[i]: content[i],
                 ])
             }
         }
     }
+
     func listenAccount(currentUserID: String, completion: @escaping (Result<Account, Error>) -> Void) {
         database.collection("accounts").document(currentUserID).addSnapshotListener { documentSnapshot, error in
             if let error = error {
@@ -160,10 +165,10 @@ class AccountRequestProvider {
             }
         }
     }
-    
+
     func checkUserDocExists(userID: String, completion: @escaping (Bool) -> Void) {
         let docRef = database.collection("accounts").document(userID)
-        
+
         docRef.getDocument { document, error in
             if let error = error {
                 print("Error fetching document: \(error)")
