@@ -15,6 +15,13 @@ class StoreTagsCell: UITableViewCell {
     func layoutCell(isMeal: Bool, store: Store?) {
         storeData = store
         selectionStyle = .none
+        if isMeal {
+            collectionView.tag = 90
+            iconImageView.image = UIImage(named: "noodle")
+        } else {
+            collectionView.tag = 80
+            iconImageView.image = UIImage(named: "hashTag ")
+        }
         collectionView.register(UINib(nibName: TagsCell.identifier, bundle: nil), forCellWithReuseIdentifier: TagsCell.identifier)
         collectionView.dataSource = self
         collectionView.showsHorizontalScrollIndicator = false
@@ -24,13 +31,7 @@ class StoreTagsCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = CGSize(width: 200, height: 40)
         collectionView.collectionViewLayout = layout
-
-        if isMeal {
-            collectionView.tag = 90
-            iconImageView.image = UIImage(named: "noodle")
-        } else {
-            collectionView.tag = 80
-        }
+        collectionView.reloadData()
     }
 }
 

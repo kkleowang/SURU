@@ -19,7 +19,9 @@ class StorePageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchUserData()
+        fetchUserData {
+            
+        }
         filterBlockedUser()
         setTopView()
         setupTableView()
@@ -88,7 +90,7 @@ class StorePageViewController: UIViewController {
         tableView.registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
     }
 
-    func fetchUserData() {
+    func fetchUserData(competion: @escaping () -> Void) {
         AccountRequestProvider.shared.fetchAccounts { result in
             switch result {
             case let .success(data):
@@ -96,6 +98,7 @@ class StorePageViewController: UIViewController {
             case .failure:
                 LKProgressHUD.showFailure(text: "載入用戶資料失敗/n請退出重試")
             }
+            competion()
         }
     }
 
@@ -140,7 +143,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    // swiftlint:disable cyclomatic_complexity
+//     swiftlint:disable cyclomatic_complexity
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let storeData = storeData else { return UITableViewCell() }
         if indexPath.section == 0 {

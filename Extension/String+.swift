@@ -10,7 +10,8 @@ import UIKit
 
 extension String {
     func toYYYYMMDDHHMM() -> String {
-        let date = NSDate(timeIntervalSince1970: Double(self)!)
+        guard let number = Double(self) else { return ""}
+        let date = NSDate(timeIntervalSince1970: number)
         let dateFormatter = DateFormatter()
         // Set Date Format
         dateFormatter.dateFormat = "y/M/d hh:mm"

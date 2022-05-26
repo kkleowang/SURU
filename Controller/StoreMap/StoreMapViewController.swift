@@ -29,7 +29,7 @@ class StoreMapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         observeCurrentAccount()
         observeCommentData()
         observeLoginStatus()

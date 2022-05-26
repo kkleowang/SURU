@@ -94,12 +94,8 @@ class StoreCommentCell: UITableViewCell {
         isfollowStatus = isFollow
         commentData = comment
         targetUserID = comment.userID
-
-        authorImageView.layer.cornerRadius = authorImageView.bounds.width / 2
-        authorImageView.layer.borderWidth = 1.0
-        authorImageView.layer.borderColor = UIColor.white.cgColor
-        authorImageView.contentMode = .scaleAspectFill
-        authorImageView.clipsToBounds = true
+        authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
+        
         authorImageView.kf.setImage(with: URL(string: author.mainImage), placeholder: UIImage(named: "mainImage"))
 
         authorNameLabel.text = author.name
