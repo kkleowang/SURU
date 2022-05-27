@@ -9,12 +9,12 @@ target 'SURU_Leo' do
   # your other pod
   # ... 
   
+  pod 'SwiftLint'
   pod 'Kingfisher', '~> 7.0'
   pod 'MJRefresh'
   pod 'IQKeyboardManagerSwift'
   pod 'JGProgressHUD'
   pod 'lottie-ios'
-  pod 'SwiftLint'
   pod 'XLPagerTabStrip', '~> 9.0'
   pod 'CHTCollectionViewWaterfallLayout/Swift'
 
