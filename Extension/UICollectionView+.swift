@@ -9,9 +9,18 @@ import Foundation
 import UIKit
 
 extension UICollectionView {
+    func registerCellWithNib(identifier: String, bundle: Bundle?) {
+        let nib = UINib(nibName: identifier, bundle: bundle)
+        register(nib, forCellWithReuseIdentifier: identifier)
+    }
+
+    func registerHeaderWithNib(identifier: String, bundle: Bundle?) {
+        let nib = UINib(nibName: identifier, bundle: bundle)
+        register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier)
+    }
 
     func setEmptyMessage(_ message: String) {
-        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: bounds.size.width, height: bounds.size.height))
         messageLabel.text = message
         messageLabel.textColor = .B4
         messageLabel.numberOfLines = 0
@@ -19,10 +28,16 @@ extension UICollectionView {
         messageLabel.font = .medium(size: 18)
         messageLabel.sizeToFit()
 
-        self.backgroundView = messageLabel
+        backgroundView = messageLabel
     }
 
     func restore() {
-        self.backgroundView = nil
+        backgroundView = nil
+    }
+}
+
+extension UICollectionReusableView {
+    static var identifier: String {
+        return String(describing: self)
     }
 }

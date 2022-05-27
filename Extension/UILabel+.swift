@@ -8,7 +8,6 @@
 import UIKit
 
 extension UILabel {
-    // 字距
     @IBInspectable var characterSpacing: CGFloat {
         set {
             if let labelText = text, labelText.isEmpty != true {
@@ -30,7 +29,8 @@ extension UILabel {
             // swiftlint:enable force_cast
         }
     }
+
     func setDefultFort() {
-        self.font = UIFont.medium(size: self.font.pointSize)
+        font = UIFont.medium(size: font.pointSize)
     }
 }

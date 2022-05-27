@@ -5,19 +5,18 @@
 //  Created by LEO W on 2022/4/18.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 class SampleCommentCellTableViewCell: UITableViewCell {
+    @IBOutlet var commentIDLabel: UILabel!
+    @IBOutlet var storNameLabel: UILabel!
+    @IBOutlet var mealImageView: UIImageView!
+    @IBOutlet var mealLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var authorLabel: UILabel!
+    @IBOutlet var authorImageView: UIImageView!
 
-    @IBOutlet weak var commentIDLabel: UILabel!
-    @IBOutlet weak var storNameLabel: UILabel!
-    @IBOutlet weak var mealImageView: UIImageView!
-    @IBOutlet weak var mealLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var authorImageView: UIImageView!
-    
     func layoutSampleCommentCell(store: Store?, comment: Comment?, account: Account?) {
         guard let store = store, let comment = comment, let account = account else {
             return

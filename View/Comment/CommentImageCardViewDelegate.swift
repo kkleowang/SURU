@@ -9,28 +9,29 @@ import UIKit
 
 protocol CommentImageCardViewDelegate: AnyObject {
     func didTapImageView(_ view: CommentImageCardView)
-    
+
     func didFinishPickImage(_ view: CommentImageCardView, imagePicker: UIImagePickerController)
 }
+
 class CommentImageCardView: UIView {
     weak var delegate: CommentImageCardViewDelegate?
-    
+
     var commentImageView: UIImageView? {
         let imageView = UIImageView()
-        self.addSubview(imageView)
+        addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
-        imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+        imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.contentMode = .scaleAspectFill
-        
+
         imageView.isUserInteractionEnabled = true
         let tab = UITapGestureRecognizer(target: self, action: #selector(tapGesture(sender:)))
         imageView.addGestureRecognizer(tab)
         return imageView
     }
-   
+
     var imagePicker: UIImagePickerController? {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -38,16 +39,16 @@ class CommentImageCardView: UIView {
         imagePicker.sourceType = .photoLibrary
         return imagePicker
     }
-    
+
     func layoutCommendCardView(image: UIImage, completion: @escaping () -> Void) {
-        self.layer.cornerRadius = 10
-        self.clipsToBounds = true
+        layer.cornerRadius = 10
+        clipsToBounds = true
         commentImageView?.image = image
         completion()
     }
-    
-    @objc func tapGesture(sender: UITapGestureRecognizer) {
-        self.delegate?.didTapImageView(self)
+
+    @objc func tapGesture(sender _: UITapGestureRecognizer) {
+        delegate?.didTapImageView(self)
     }
 }
 
@@ -58,6 +59,6 @@ extension CommentImageCardView: UIImagePickerControllerDelegate, UINavigationCon
     ) {
         guard let image = info[.editedImage] as? UIImage else { return }
         commentImageView?.image = image
-        self.delegate?.didFinishPickImage(self, imagePicker: picker)
+        delegate?.didFinishPickImage(self, imagePicker: picker)
     }
 }

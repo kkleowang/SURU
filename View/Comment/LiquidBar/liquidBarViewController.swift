@@ -5,15 +5,17 @@
 //  Created by LEO W on 2022/4/12.
 //
 
-import UIKit
 import Lottie
+import UIKit
 
 protocol LiquidViewDelegate: AnyObject {
     func didGetSelectionValue(view: LiquidBarViewController, type: SelectionType, value: Double)
 }
+
 protocol LiquidViewDrawValueDelegate: AnyObject {
     func didGetSelectionValue(view: LiquidBarViewController, type: SelectionType, value: Double)
 }
+
 protocol LiquidBarViewControllerTOValue: AnyObject {
     func didChangeValue(view: LiquidBarViewController, value: Double)
 }
@@ -28,23 +30,24 @@ class LiquidBarViewController: UIViewController {
         super.viewDidLoad()
         view.clipsToBounds = true
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
     }
+
     func setLottieView(_ type: SelectionType) {
         selectionType = type
         view.clipsToBounds = true
         let animationView = settingLottieView()
-        self.view.addSubview(animationView)
+        view.addSubview(animationView)
         setGesture(importView: animationView)
     }
-    
+
     func setGesture(importView: UIView) {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))
         importView.addGestureRecognizer(pan)
     }
-    
+
     @objc func handlePan(sender: UIPanGestureRecognizer) {
         let controledView = sender.view
         let translation = sender.translation(in: view)
@@ -54,24 +57,24 @@ class LiquidBarViewController: UIViewController {
             let total = positionY + translation.y
             if total < 240 {
                 let selectionValue = Double((total - 720) / -48).ceiling(toDecimal: 1)
-                self.valueDelegate?.didChangeValue(view: self, value: selectionValue)
+                valueDelegate?.didChangeValue(view: self, value: selectionValue)
                 controledView?.center = CGPoint(x: positionX, y: 240)
             } else if total > 680 {
                 let selectionValue = Double((total - 720) / -48).ceiling(toDecimal: 1)
-                self.valueDelegate?.didChangeValue(view: self, value: selectionValue)
+                valueDelegate?.didChangeValue(view: self, value: selectionValue)
                 controledView?.center = CGPoint(x: positionX, y: 600)
             } else {
                 let selectionValue = Double((total - 720) / -48).ceiling(toDecimal: 1)
-                self.valueDelegate?.didChangeValue(view: self, value: selectionValue)
+                valueDelegate?.didChangeValue(view: self, value: selectionValue)
                 controledView?.center = CGPoint(x: positionX, y: total)
             }
-            
+
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
             guard let positionY = controledView?.center.y, let selectionType = selectionType else { return }
             let selectionValue = Double((positionY - 720) / -48).ceiling(toDecimal: 1)
             print("Get Value", selectionValue)
-            
+
             delegate?.didGetSelectionValue(view: self, type: selectionType, value: selectionValue)
             drawDelegate?.didGetSelectionValue(view: self, type: selectionType, value: selectionValue)
             print("end")
@@ -80,23 +83,24 @@ class LiquidBarViewController: UIViewController {
         }
     }
 }
+
 // setGradientView
 extension LiquidBarViewController {
     func settingLottieView() -> UIView {
         guard let selectionType = selectionType else { return UIView() }
         var liqid = ""
         switch selectionType {
-        case .noodle :
+        case .noodle:
             liqid = "yellow"
-        case .soup :
+        case .soup:
             liqid = "blue"
-        case .happy :
+        case .happy:
             liqid = "orange"
         }
         let animationView = AnimationView(name: liqid)
         animationView.frame = CGRect(x: 0, y: 192, width: 80, height: 480)
         animationView.contentMode = .scaleAspectFill
-        
+
         animationView.loopMode = .loop
         animationView.animationSpeed = 1
         animationView.play()
