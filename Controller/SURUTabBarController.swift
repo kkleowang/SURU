@@ -87,6 +87,26 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         tabBar.backgroundColor = .white
         viewControllers = tabs.map { $0.controller() }
         delegate = self
+        trolleyTabBarItem = viewControllers?[2].tabBarItem
+
+        trolleyTabBarItem.badgeColor = .C4
+        orderObserver = StorageManager.shared.observe(
+            \StorageManager.comments,
+            options: .new,
+            changeHandler: { [weak self] _, change in
+
+                guard let newValue = change.newValue else { return }
+
+                if newValue.count > 0 {
+
+                    self?.trolleyTabBarItem.badgeValue = String(newValue.count)
+
+                } else {
+
+                    self?.trolleyTabBarItem.badgeValue = nil
+                }
+            }
+        )
     }
 
     override func viewDidAppear(_ animated: Bool) {

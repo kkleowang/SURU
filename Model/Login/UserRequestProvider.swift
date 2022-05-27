@@ -11,9 +11,15 @@ import Foundation
 // auth
 class UserRequestProvider {
     static let shared = UserRequestProvider()
+    var currentUser: User? {
+        firebaseAuth.currentUser
+    }
     lazy var firebaseAuth = Auth.auth()
-    lazy var currentUser = firebaseAuth.currentUser
-    lazy var currentUserID = firebaseAuth.currentUser?.uid
+    var currentUserID: String? {
+        firebaseAuth.currentUser?.uid
+    }
+
+
 
 //    func listenFirebaseLogin(completion: @escaping (String?) -> Void) {
 //        firebaseAuth.addStateDidChangeListener { _, user in
@@ -24,8 +30,8 @@ class UserRequestProvider {
 //    }
     func listenFirebaseLoginSendAccount(completion: @escaping (Result<Account?, Error>) -> Void) {
         firebaseAuth.addStateDidChangeListener { _, user in
-            self.currentUser = user
-            self.currentUserID = user?.uid
+//            self.currentUser = user
+//            self.currentUserID = user?.uid
             guard let id = user?.uid else { return }
             AccountRequestProvider.shared.fetchAccount(currentUserID: id) { result in
                 switch result {

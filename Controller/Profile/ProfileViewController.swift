@@ -21,8 +21,8 @@ class ProfileViewController: UIViewController {
             checkUserBadgeStatus()
         }
     }
-    
-    
+
+
     var isOnPush = false
 
     var badgeRef: [[Int]]?

@@ -177,6 +177,15 @@ class CommentViewController: UIViewController {
             }
         }
     }
+//    func resetCurrentVC() {
+//
+//        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "CommentViewController")
+//        if let navigationController = self.navigationController {
+//            navigationController.viewControllers.removeLast()
+//            navigationController.viewControllers.append(vc)
+//            navigationController.setViewControllers(navigationController.viewControllers, animated: true)
+//        }
+//    }
 }
 
 // StartingView Delegate
@@ -207,15 +216,11 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
-        if indexPath.section == 0 {
-            let name = stores.first { $0.storeID == commentDrafts[indexPath.row].storeID }?.name ?? "未輸入店名"
-            cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name)
+
+            let name = stores.first(where: {$0.storeID == commentDrafts[indexPath.row].storeID})?.name
+            cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name ?? "未輸入店名")
             return cell
-        } else {
-            let name = stores.first { $0.storeID == comments[indexPath.row].storeID }?.name ?? "未輸入店名"
-            cell.layoutCommentCell(data: comments[indexPath.row], name: name)
-            return cell
-        }
+
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -293,15 +298,21 @@ extension CommentViewController: CommentSelectionViewDelegate {
         }
     }
 
-    func didTapSaveComment(_: CommentSelectionView) {
-        StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder ?? Data()) { result in
-            switch result {
-            case let .success(data):
-                print("Coredata")
-            case let .failure(error):
-                print(error)
-            }
-        }
+    func didTapSaveComment(_ view: CommentSelectionView) {
+//        StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
+//            switch result {
+//            case .success(let data):
+////                self.resetCurrentVC()
+//                LKProgressHUD.showSuccess(text: "儲存成功")
+//                self.setupStartingView()
+//                self.commentData = self.originData
+//                print("Coredata")
+//            case .failure(let error):
+//                LKProgressHUD.showSuccess(text: "儲存失敗")
+//
+//                print(error)
+//            }
+//        }
         print("didTapSaveComment")
     }
 
@@ -426,8 +437,27 @@ extension CommentViewController {
 }
 
 extension CommentViewController: WrireCommentViewControllerDelegate {
-    func didTapSendComment(_: WriteCommentView, text: String) {
+    func didTapSaveDraft(_ view: WriteCommentView, text: String) {
         commentData.contenText = text
+        let image = imageDataHolder ?? Data()
+        StorageManager.shared.addDraftComment(comment: commentData, image: image) { result in
+            switch result {
+            case .success(let data):
+                LKProgressHUD.showSuccess(text: "儲存草稿成功")
+                self.setupStartingView()
+                self.commentData = self.originData
+                print("Coredata")
+            case .failure(let error):
+                LKProgressHUD.showFailure(text: "儲存草稿失敗")
+                print(error)
+            }
+        }
+
+    }
+
+    func didTapSendComment(_ view: WriteCommentView, text: String) {
+        commentData.contenText = text
+        LKProgressHUD.show()
         guard let image = imageDataHolder else { return }
         let fileName = "\(commentData.userID)_\(Date())"
         FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
@@ -442,7 +472,4 @@ extension CommentViewController: WrireCommentViewControllerDelegate {
         }
     }
 
-    func didTapSaveComment(_: WriteCommentView, text: String) {
-        commentData.contenText = text
-    }
 }

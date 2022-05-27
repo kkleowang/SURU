@@ -8,34 +8,33 @@
 import UIKit
 
 protocol WrireCommentViewControllerDelegate: AnyObject {
-    func didTapSaveComment(_ view: WriteCommentView, text: String)
     func didTapSendComment(_ view: WriteCommentView, text: String)
+    func didTapSaveDraft(_ view: WriteCommentView, text: String)
 }
 
 class WriteCommentView: UIView {
     weak var delegate: WrireCommentViewControllerDelegate?
     var commentData: Comment?
     var storename: String?
-    @IBOutlet var contentTextView: UITextView!
-    @IBAction func sendComment(_: Any) {
-        delegate?.didTapSendComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
-        topMostController()?.dismiss(animated: true, completion: nil)
+    @IBOutlet weak var contentTextView: UITextView!
+
+
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var importTempButton: UIButton!
+    @IBOutlet weak var sendButton: UIButton!
+    @IBAction func tapImportTemp(_ sender: Any) {
+        contentTextView.text = "| 店家： \(storename ?? "")\n| 時間 ：5/17\n| 品項 ：\(commentData?.meal ?? "")\n| 配置 ：\n| 評論：\n"
+
     }
+    @IBAction func tapSendComment(_ sender: Any) {
+        self.delegate?.didTapSendComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
 
-    @IBOutlet var saveButton: UIButton!
-    @IBOutlet var importTempButton: UIButton!
-    @IBOutlet var sendButton: UIButton!
-    @IBAction func tapImportTemp(_: Any) {
-        contentTextView.text = "| 店家： \(storename!)\n| 時間 ：2022/5/16\n| 品項 ：\(commentData!.meal)\n| 配置 ：\n| 評論：\n"
+        self.topMostController()?.dismiss(animated: true, completion: nil)
     }
-
-    @IBAction func tapSendComment(_: Any) {
-        delegate?.didTapSaveComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
-
-        topMostController()?.dismiss(animated: true, completion: nil)
+    @IBAction func tapSaveToDraft(_ sender: Any) {
+        self.delegate?.didTapSaveDraft(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
     }
-
-    func layoutView(comment: Comment, name: String) {
+    func layoutView(comment: Comment,name: String) {
         commentData = comment
         storename = name
         setTextView(textBox: contentTextView)
