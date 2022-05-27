@@ -80,16 +80,18 @@ private enum Tab {
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private let tabs: [Tab] = [.storeMap, .commentWall, .publishComment, .profile]
-
+    
+    var draftTabBarItem: UITabBarItem!
+    var orderObserver: NSKeyValueObservation!
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = .C4
         tabBar.backgroundColor = .white
         viewControllers = tabs.map { $0.controller() }
         delegate = self
-        trolleyTabBarItem = viewControllers?[2].tabBarItem
+        draftTabBarItem = viewControllers?[2].tabBarItem
 
-        trolleyTabBarItem.badgeColor = .C4
+        draftTabBarItem.badgeColor = .C4
         orderObserver = StorageManager.shared.observe(
             \StorageManager.comments,
             options: .new,
@@ -97,13 +99,13 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
                 guard let newValue = change.newValue else { return }
 
-                if newValue.count > 0 {
+                if !newValue.isEmpty {
 
-                    self?.trolleyTabBarItem.badgeValue = String(newValue.count)
+                    self?.draftTabBarItem.badgeValue = String(newValue.count)
 
                 } else {
 
-                    self?.trolleyTabBarItem.badgeValue = nil
+                    self?.draftTabBarItem.badgeValue = nil
                 }
             }
         )
