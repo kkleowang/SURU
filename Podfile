@@ -11,20 +11,19 @@ target 'SURU_Leo' do
   
   pod 'Kingfisher', '~> 7.0'
   pod 'MJRefresh'
-  pod 'Alamofire', '~> 5.5'
   pod 'IQKeyboardManagerSwift'
   pod 'JGProgressHUD'
   pod 'lottie-ios'
+  pod 'SwiftLint'
+  pod 'XLPagerTabStrip', '~> 9.0'
+  pod 'CHTCollectionViewWaterfallLayout/Swift'
+
   pod 'Firebase'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Firebase/Crashlytics'
-  pod 'SwiftLint'
-  pod 'Cosmos', '~> 23.0'
-  pod 'XLPagerTabStrip', '~> 9.0'
-  pod 'CHTCollectionViewWaterfallLayout/Swift'
 
 target 'SURU_LeoTests' do
         inherit! :search_paths

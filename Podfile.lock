@@ -212,7 +212,6 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
-  - Alamofire (5.6.1)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -220,7 +219,6 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
   - CHTCollectionViewWaterfallLayout/Swift (0.9.10)
-  - Cosmos (23.0.0)
   - Firebase (6.34.0):
     - Firebase/Core (= 6.34.0)
   - Firebase/Auth (6.34.0):
@@ -359,9 +357,7 @@ PODS:
   - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.5)
   - CHTCollectionViewWaterfallLayout/Swift
-  - Cosmos (~> 23.0)
   - Firebase
   - Firebase/Auth
   - Firebase/Crashlytics
@@ -379,10 +375,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - abseil
-    - Alamofire
     - BoringSSL-GRPC
     - CHTCollectionViewWaterfallLayout
-    - Cosmos
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -412,10 +406,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
-  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   CHTCollectionViewWaterfallLayout: b989a459788d7657ac010e03bc0f7eedca95a420
-  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
   FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
@@ -443,6 +435,6 @@ SPEC CHECKSUMS:
   SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: bf8b645b2dc2443513d489d0882ffcc53c317d80
+PODFILE CHECKSUM: bfd531e4f061b7b1cb964563a4279fce011ad5bf
 
 COCOAPODS: 1.11.3

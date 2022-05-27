@@ -5,7 +5,6 @@
 //  Created by LEO W on 2022/4/16.
 //
 
-import Alamofire
 import UIKit
 
 private enum StoryboardCategory {
