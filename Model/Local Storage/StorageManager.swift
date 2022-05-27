@@ -12,7 +12,6 @@ typealias CommentDraftResults = (Result<[CommentDraft], Error>) -> Void
 typealias CommentDraftResult = (Result<CommentDraft, Error>) -> Void
 
 @objc class StorageManager: NSObject {
-    
     static let shared = StorageManager()
 
     private enum Entity: String, CaseIterable {

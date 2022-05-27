@@ -88,7 +88,7 @@ class LiquidBarViewController: UIViewController {
 extension LiquidBarViewController {
     func settingLottieView() -> UIView {
         guard let selectionType = selectionType else { return UIView() }
-        var liqid = ""
+        var liqid = "yellow"
         switch selectionType {
         case .noodle:
             liqid = "yellow"

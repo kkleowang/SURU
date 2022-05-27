@@ -217,10 +217,9 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
 
-            let name = stores.first(where: {$0.storeID == commentDrafts[indexPath.row].storeID})?.name
-            cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name ?? "未輸入店名")
-            return cell
-
+        let name = stores.first(where: { $0.storeID == commentDrafts[indexPath.row].storeID })?.name
+        cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name ?? "未輸入店名")
+        return cell
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -298,11 +297,11 @@ extension CommentViewController: CommentSelectionViewDelegate {
         }
     }
 
-    func didTapSaveComment(_ view: CommentSelectionView) {
+    func didTapSaveComment(_: CommentSelectionView) {
 //        StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
 //            switch result {
 //            case .success(let data):
-////                self.resetCurrentVC()
+        ////                self.resetCurrentVC()
 //                LKProgressHUD.showSuccess(text: "儲存成功")
 //                self.setupStartingView()
 //                self.commentData = self.originData
@@ -437,25 +436,24 @@ extension CommentViewController {
 }
 
 extension CommentViewController: WrireCommentViewControllerDelegate {
-    func didTapSaveDraft(_ view: WriteCommentView, text: String) {
+    func didTapSaveDraft(_: WriteCommentView, text: String) {
         commentData.contenText = text
         let image = imageDataHolder ?? Data()
         StorageManager.shared.addDraftComment(comment: commentData, image: image) { result in
             switch result {
-            case .success(let data):
+            case let .success(data):
                 LKProgressHUD.showSuccess(text: "儲存草稿成功")
                 self.setupStartingView()
                 self.commentData = self.originData
                 print("Coredata")
-            case .failure(let error):
+            case let .failure(error):
                 LKProgressHUD.showFailure(text: "儲存草稿失敗")
                 print(error)
             }
         }
-
     }
 
-    func didTapSendComment(_ view: WriteCommentView, text: String) {
+    func didTapSendComment(_: WriteCommentView, text: String) {
         commentData.contenText = text
         LKProgressHUD.show()
         guard let image = imageDataHolder else { return }
@@ -471,5 +469,4 @@ extension CommentViewController: WrireCommentViewControllerDelegate {
             }
         }
     }
-
 }

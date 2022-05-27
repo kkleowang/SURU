@@ -13,7 +13,7 @@ class StoreMapViewController: UIViewController {
 
     private var isSearchResults = false
     let reportView: ReportView = UIView.fromNib()
-    
+
     var reportViewHeight: NSLayoutConstraint!
     private let mapView = MapView()
 
@@ -31,7 +31,7 @@ class StoreMapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         observeCurrentAccount()
         observeCommentData()
         observeLoginStatus()
@@ -446,11 +446,11 @@ extension StoreMapViewController {
 
     private func initReportQueueView() {
         let storeName = storeData[selectedIndex].name
-        
+
         reportView.delegate = self
         view.addSubview(reportView)
         reportView.layoutView(name: storeName)
-        
+
         reportViewHeight = reportView.heightAnchor.constraint(equalToConstant: 50)
         reportViewHeight.isActive = true
         reportView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true

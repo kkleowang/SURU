@@ -9,19 +9,18 @@ import Kingfisher
 import UIKit
 
 class CommentTableViewCell: UITableViewCell {
+    @IBOutlet var mainImage: UIImageView!
 
-    @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet var storeNameLabel: UILabel!
+    @IBOutlet var mealNameLabel: UILabel!
+    @IBOutlet var createTimeLabel: UILabel!
+    @IBOutlet var noodleValueView: UIView!
+    @IBOutlet var soupValueView: UIView!
+    @IBOutlet var happyValueView: UIView!
 
-    @IBOutlet weak var storeNameLabel: UILabel!
-    @IBOutlet weak var mealNameLabel: UILabel!
-    @IBOutlet weak var createTimeLabel: UILabel!
-    @IBOutlet weak var noodleValueView: UIView!
-    @IBOutlet weak var soupValueView: UIView!
-    @IBOutlet weak var happyValueView: UIView!
-
-    @IBOutlet weak var noodleValueLabel: UILabel!
-    @IBOutlet weak var soupValueLabel: UILabel!
-    @IBOutlet weak var happyValueLabel: UILabel!
+    @IBOutlet var noodleValueLabel: UILabel!
+    @IBOutlet var soupValueLabel: UILabel!
+    @IBOutlet var happyValueLabel: UILabel!
 
     //    func layoutCommentCell(data: Comment, name: String) {
     //        mainImage.kf.setImage(with: URL(string: data.mainImage))
@@ -38,7 +37,7 @@ class CommentTableViewCell: UITableViewCell {
         happyValueView.clipsToBounds = true
         mainImage.clipsToBounds = true
         noodleValueView.layer.cornerRadius = 20
-    soupValueView.layer.cornerRadius = 20
+        soupValueView.layer.cornerRadius = 20
         happyValueView.layer.cornerRadius = 20
 
         mainImage.layer.cornerRadius = 10
@@ -60,9 +59,7 @@ class CommentTableViewCell: UITableViewCell {
             happyValueLabel.text = String(data.happyValue)
         }
 
-
         createTimeLabel.text = String(data.createTime).toYYYYMMDDHHMM()
-
     }
     //    private func initValueView(on view: UIView, value: Double, color: CGColor) {
     //        // round view
