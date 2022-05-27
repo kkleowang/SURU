@@ -10,19 +10,20 @@ import UIKit
 
 extension String {
     func toYYYYMMDDHHMM() -> String {
-        let date = NSDate(timeIntervalSince1970: Double(self)!)
+        guard let number = Double(self) else { return ""}
+        let date = NSDate(timeIntervalSince1970: number)
         let dateFormatter = DateFormatter()
         // Set Date Format
         dateFormatter.dateFormat = "y/M/d hh:mm"
         // Convert Date to String
         return dateFormatter.string(from: date as Date)
     }
+
     func widthWithConstrainedHeight(_ height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: height)
-        
+
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
-        
+
         return boundingBox.width
     }
-    
 }

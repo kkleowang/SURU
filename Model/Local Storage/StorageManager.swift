@@ -14,21 +14,22 @@ typealias CommentDraftResult = (Result<CommentDraft, Error>) -> Void
 @objc class StorageManager: NSObject {
     
     static let shared = StorageManager()
-    
+
     private enum Entity: String, CaseIterable {
         case commentDraft = "CommentDraft"
     }
-    
+
     private enum Draft: String {
-        case createTime 
+        case createTime
     }
-    
-    private override init() {
+
+    override private init() {
         print(" Core data file path: \(NSPersistentContainer.defaultDirectoryURL())")
     }
+
     // KVO
     @objc dynamic var comments: [CommentDraft] = []
-    
+
     lazy var persistanceContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "SURU")
         container.loadPersistentStores { _, error in
@@ -38,11 +39,11 @@ typealias CommentDraftResult = (Result<CommentDraft, Error>) -> Void
         }
         return container
     }()
-    
+
     var viewContext: NSManagedObjectContext {
         return persistanceContainer.viewContext
     }
-    
+
     func addDraftComment(comment: Comment, image: Data, completion: (Result<Void, Error>) -> Void) {
         let draft = CommentDraft(context: viewContext)
         draft.image = image
@@ -50,8 +51,8 @@ typealias CommentDraftResult = (Result<CommentDraft, Error>) -> Void
         draft.createTime = Double(Date().timeIntervalSince1970)
         save(completion: completion)
     }
-    
-    func updateToCoreData(commentDraft: CommentDraft, comment: Comment, image: Data, completion: (Result<Void, Error>) -> Void) {
+
+    func updateToCoreData(commentDraft: CommentDraft, comment: Comment, image: Data, completion _: (Result<Void, Error>) -> Void) {
         deleteComment(commentDraft) { _ in
             let draft = CommentDraft(context: viewContext)
             draft.image = image
@@ -60,12 +61,12 @@ typealias CommentDraftResult = (Result<CommentDraft, Error>) -> Void
             save()
         }
     }
-    
+
     func fetchComments(completion: CommentDraftResults = { _ in }) {
         let request = NSFetchRequest<CommentDraft>(entityName: Entity.commentDraft.rawValue)
-        
+
         request.sortDescriptors = [NSSortDescriptor(key: Draft.createTime.rawValue, ascending: true)]
-        
+
         do {
             let comments = try viewContext.fetch(request)
             self.comments = comments
@@ -74,26 +75,27 @@ typealias CommentDraftResult = (Result<CommentDraft, Error>) -> Void
             completion(Result.failure(error))
         }
     }
-    
+
     func save(completion: (Result<Void, Error>) -> Void = { _ in }) {
         do {
             try viewContext.save()
             fetchComments { result in
                 switch result {
                 case .success: completion(Result.success(()))
-                case .failure(let error): completion(Result.failure(error))
+                case let .failure(error): completion(Result.failure(error))
                 }
             }
         } catch {
             completion(Result.failure(error))
         }
     }
-    func deleteComment(_ comment: CommentDraft, completion: (Result<Void, Error>) -> Void) {
+
+    func deleteComment(_ comment: CommentDraft, completion _: (Result<Void, Error>) -> Void) {
         viewContext.delete(comment)
         save()
     }
+
     func deleteAllComment(completion: (Result<Void, Error>) -> Void) {
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Entity.commentDraft.rawValue)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {

@@ -8,11 +8,11 @@
 import UIKit
 
 class BadgeCell: UICollectionViewCell {
+    @IBOutlet var badgeImageView: UIImageView!
+    @IBOutlet var badgeNameLabel: UILabel!
+    @IBOutlet var waringLabel: UILabel!
 
-    @IBOutlet weak var badgeImageView: UIImageView!
-    @IBOutlet weak var badgeNameLabel: UILabel!
-    @IBOutlet weak var waringLabel: UILabel!
-    func layoutCell(image: UIImage?, text: String ,textColor: UIColor,waringText: String ) {
+    func layoutCell(image: UIImage?, text: String, textColor: UIColor, waringText: String) {
         badgeNameLabel.font = .medium(size: 12)
         badgeNameLabel.textColor = textColor
         badgeNameLabel.text = text
@@ -26,9 +26,9 @@ class BadgeCell: UICollectionViewCell {
             waringLabel.text = waringText
         }
     }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
 }

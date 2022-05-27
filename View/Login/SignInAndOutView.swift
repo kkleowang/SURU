@@ -10,72 +10,69 @@ import UIKit
 
 protocol SignInAndOutViewDelegate: AnyObject {
     func didTapSendButton(_ view: UIView, email: String, password: String)
-   
+
     func didGotWrongInput(_ view: UIView, message: String)
-    
-    
 }
 
 class SignInAndOutView: UIView {
     weak var delegate: SignInAndOutViewDelegate?
     var status: SignPageState?
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordCheckTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    
-    @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet weak var forgotPasswordButton: UIButton!
-    
-    @IBAction func tapSendButton(_ sender: UIButton) {
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var passwordCheckTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
+
+    @IBOutlet var sendButton: UIButton!
+    @IBOutlet var forgotPasswordButton: UIButton!
+
+    @IBAction func tapSendButton(_: UIButton) {
         guard let status = status else { return }
-        
+
         guard let email = emailTextField.text else {
-            self.delegate?.didGotWrongInput(self, message: "請輸入Email。")
+            delegate?.didGotWrongInput(self, message: "請輸入Email。")
             return
         }
         guard let password = passwordTextField.text else {
-            self.delegate?.didGotWrongInput(self, message: "請輸入密碼。")
+            delegate?.didGotWrongInput(self, message: "請輸入密碼。")
             return
         }
         guard let passwordCheck = passwordCheckTextField.text else {
-            self.delegate?.didGotWrongInput(self, message: "請再次輸入你的密碼。")
+            delegate?.didGotWrongInput(self, message: "請再次輸入你的密碼。")
             return
         }
-        
-        
+
         if status == .sighUp {
             if !isValidEmail(email) {
-                self.delegate?.didGotWrongInput(self, message: "請輸入正確的Email。")
+                delegate?.didGotWrongInput(self, message: "請輸入正確的Email。")
                 emailTextField.textColor = .red
                 return
             }
             if password.count < 6 {
-                
-                self.delegate?.didGotWrongInput(self, message: "密碼最少需要六個字以上。")
+                delegate?.didGotWrongInput(self, message: "密碼最少需要六個字以上。")
                 passwordTextField.textColor = .red
                 return
             }
             if password != passwordCheck {
-                self.delegate?.didGotWrongInput(self, message: "密碼不一致。")
+                delegate?.didGotWrongInput(self, message: "密碼不一致。")
                 passwordCheckTextField.textColor = .red
                 return
             } else {
                 if !isValidEmail(email) {
-                    self.delegate?.didGotWrongInput(self, message: "Email無效。")
+                    delegate?.didGotWrongInput(self, message: "Email無效。")
                     emailTextField.textColor = .red
                     return
                 }
                 if password.count < 6 {
-                    self.delegate?.didGotWrongInput(self, message: "密碼最少需要六個字以上喔！")
+                    delegate?.didGotWrongInput(self, message: "密碼最少需要六個字以上喔！")
                     passwordTextField.textColor = .red
                     return
                 }
             }
         }
-        self.delegate?.didTapSendButton(self, email: email, password: password)
+        delegate?.didTapSendButton(self, email: email, password: password)
     }
-    @IBAction func tapForgotButton(_ sender: UIButton) {
-    }
+
+    @IBAction func tapForgotButton(_: UIButton) {}
+
     func layoutSignInPage() {
         status = .signIn
         forgotPasswordButton.isHidden = true
@@ -84,6 +81,7 @@ class SignInAndOutView: UIView {
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
+
     func layoutSignUpPage() {
         status = .sighUp
         forgotPasswordButton.isHidden = true
@@ -94,19 +92,17 @@ class SignInAndOutView: UIView {
         passwordCheckTextField.delegate = self
         passwordCheckTextField.isEnabled = false
     }
-    
-    
+
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
-    
 }
+
 extension SignInAndOutView: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-    }
+    func textFieldDidEndEditing(_: UITextField) {}
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == passwordTextField {
             passwordCheckTextField.isEnabled = true

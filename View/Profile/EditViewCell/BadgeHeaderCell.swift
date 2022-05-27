@@ -8,15 +8,14 @@
 import UIKit
 
 class BadgeHeaderCell: UICollectionReusableView {
-
-    @IBOutlet weak var titleLabel: UILabel! {
+    @IBOutlet var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .B3
         }
     }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
 }

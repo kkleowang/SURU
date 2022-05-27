@@ -4,10 +4,10 @@
 ////
 ////  Created by LEO W on 2022/4/27.
 ////
-//import AuthenticationServices
-//import UIKit
+// import AuthenticationServices
+// import UIKit
 //
-//class MyAuthorizationAppleIDButton: UIButton {
+// class MyAuthorizationAppleIDButton: UIButton {
 //    @IBInspectable
 //    var cornerRadius: CGFloat = 6.0
 //    @IBInspectable
@@ -46,5 +46,5 @@
 //            authorizationButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0.0),
 //        ])
 //
-//}
-//}
+// }
+// }

@@ -21,11 +21,13 @@ struct Comment: Codable {
     var userComment: [Message]? = []
     var sideDishes: String?
 }
+
 struct CommentContent: Codable {
     var happiness: Double
     var noodle: Double
     var soup: Double
 }
+
 struct Message: Codable {
     var userID: String
     var message: String

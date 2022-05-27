@@ -5,24 +5,24 @@
 //  Created by LEO W on 2022/4/25.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 class CommentTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var mainImage: UIImageView!
-    
+
     @IBOutlet weak var storeNameLabel: UILabel!
     @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var createTimeLabel: UILabel!
     @IBOutlet weak var noodleValueView: UIView!
     @IBOutlet weak var soupValueView: UIView!
     @IBOutlet weak var happyValueView: UIView!
-    
+
     @IBOutlet weak var noodleValueLabel: UILabel!
     @IBOutlet weak var soupValueLabel: UILabel!
     @IBOutlet weak var happyValueLabel: UILabel!
-    
+
     //    func layoutCommentCell(data: Comment, name: String) {
     //        mainImage.kf.setImage(with: URL(string: data.mainImage))
     //        storeNameLabel.text = name
@@ -40,7 +40,7 @@ class CommentTableViewCell: UITableViewCell {
         noodleValueView.layer.cornerRadius = 20
     soupValueView.layer.cornerRadius = 20
         happyValueView.layer.cornerRadius = 20
-        
+
         mainImage.layer.cornerRadius = 10
         storeNameLabel.text = name
         mealNameLabel.text = meal
@@ -59,10 +59,10 @@ class CommentTableViewCell: UITableViewCell {
         } else {
             happyValueLabel.text = String(data.happyValue)
         }
-        
-        
+
+
         createTimeLabel.text = String(data.createTime).toYYYYMMDDHHMM()
-        
+
     }
     //    private func initValueView(on view: UIView, value: Double, color: CGColor) {
     //        // round view

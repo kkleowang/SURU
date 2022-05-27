@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 import Firebase
 import FirebaseFirestoreSwift
 import FirebaseStorage
@@ -15,7 +14,7 @@ import FirebaseStorage
 class FirebaseStorageRequestProvider {
     static let shared = FirebaseStorageRequestProvider()
     private lazy var storage = Storage.storage().reference()
-    
+
     func postImageToFirebaseStorage(data: Data, fileName: String, completion: @escaping (Result<URL, Error>) -> Void) {
         let imageRef = storage.child("SURU_App_Assets/Comment_Image/\(fileName).jpg")
         // Upload the file to the path "images/rivers.jpg"

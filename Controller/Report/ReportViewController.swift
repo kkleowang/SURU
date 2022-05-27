@@ -8,12 +8,9 @@
 import UIKit
 
 class ReportViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "回報頁面"
         // Do any additional setup after loading the view.
     }
-    
-
 }

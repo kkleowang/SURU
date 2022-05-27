@@ -9,20 +9,17 @@ import UIKit
 import XLPagerTabStrip
 
 class FollowViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
     var commentData: [Comment] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
-    
-    
 }
 
-
 extension FollowViewController: IndicatorInfoProvider {
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+    func indicatorInfo(for _: PagerTabStripViewController) -> IndicatorInfo {
         IndicatorInfo(title: NSLocalizedString("追蹤中", comment: "barTagString"))
     }
 }

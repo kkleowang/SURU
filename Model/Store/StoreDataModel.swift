@@ -27,10 +27,12 @@ struct Store: Codable {
     var queueReport: [QueueReport]? = []
     var collectedUser: [String]? = []
 }
+
 struct Coordinate: Codable {
     var long: Double
     var lat: Double
 }
+
 struct Opentime: Codable {
     var sun: Time
     var mon: Time
@@ -39,20 +41,21 @@ struct Opentime: Codable {
     var thu: Time
     var fri: Time
     var sat: Time
-    
+
     func byPropertyName(weekDay: String) -> Time {
-            switch weekDay {
-            case "sun": return sun
-            case "mon": return mon
-            case "tue": return tue
-            case "wed": return wed
-            case "thu": return thu
-            case "fri": return fri
-            case "sat": return sat
-            default: fatalError("Wrong property name")
-            }
+        switch weekDay {
+        case "sun": return sun
+        case "mon": return mon
+        case "tue": return tue
+        case "wed": return wed
+        case "thu": return thu
+        case "fri": return fri
+        case "sat": return sat
+        default: fatalError("Wrong property name")
         }
+    }
 }
+
 struct Time: Codable {
     var lunch: String
     var dinner: String
