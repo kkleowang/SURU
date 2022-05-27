@@ -12,7 +12,9 @@ class StoreMapViewController: UIViewController {
     // MARK: - Property
 
     private var isSearchResults = false
-
+    let reportView: ReportView = UIView.fromNib()
+    
+    var reportViewHeight: NSLayoutConstraint!
     private let mapView = MapView()
 
     private var searchBar = UISearchBar()
@@ -444,13 +446,23 @@ extension StoreMapViewController {
 
     private func initReportQueueView() {
         let storeName = storeData[selectedIndex].name
-        let reportView: ReportView = UIView.fromNib()
+        
         reportView.delegate = self
         view.addSubview(reportView)
         reportView.layoutView(name: storeName)
-        reportView.frame = CGRect(x: 0, y: UIScreen.height, width: UIScreen.width, height: 400) //
-        UIView.animate(withDuration: 0.5) {
-            reportView.frame = CGRect(x: 0, y: UIScreen.height - 300, width: UIScreen.width, height: 400)
+        
+        reportViewHeight = reportView.heightAnchor.constraint(equalToConstant: 50)
+        reportViewHeight.isActive = true
+        reportView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        reportView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        reportView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+//        reportViewHeight.isActive = false
+        reportViewHeight.constant = 100
+//        reportViewHeight.isActive = true
+//        reportView.frame = CGRect(x: 0, y: UIScreen.height, width: UIScreen.width, height: 400) //
+        UIView.animate(withDuration: 10) {
+//            reportView.frame = CGRect(x: 0, y: UIScreen.height - 300, width: UIScreen.width, height: 400)
+            self.view.layoutIfNeeded()
         }
     }
 

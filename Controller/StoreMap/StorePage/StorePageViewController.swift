@@ -19,9 +19,7 @@ class StorePageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchUserData {
-            
-        }
+        fetchUserData()
         filterBlockedUser()
         setTopView()
         setupTableView()
@@ -44,7 +42,6 @@ class StorePageViewController: UIViewController {
                 return false
             }
         }
-        tableView.reloadSections([1], with: .automatic)
     }
 
     func listenAuth() {
@@ -84,21 +81,22 @@ class StorePageViewController: UIViewController {
         tableView.registerCellWithNib(identifier: StoreTitleCell.identifier, bundle: nil)
         tableView.registerCellWithNib(identifier: StoreImageCell.identifier, bundle: nil)
         tableView.registerCellWithNib(identifier: StoreTagsCell.identifier, bundle: nil)
+        tableView.registerCellWithNib(identifier: StoreMealsCell.identifier, bundle: nil)
         tableView.registerCellWithNib(identifier: StoreLocaltionCell.identifier, bundle: nil)
         tableView.registerCellWithNib(identifier: StoreOpenTimeCell.identifier, bundle: nil)
         tableView.registerCellWithNib(identifier: StoreCommentCell.identifier, bundle: nil)
         tableView.registerCellWithNib(identifier: StoreRatingCell.identifier, bundle: nil)
     }
 
-    func fetchUserData(competion: @escaping () -> Void) {
+    func fetchUserData() {
         AccountRequestProvider.shared.fetchAccounts { result in
             switch result {
             case let .success(data):
                 self.userData = data
+                self.tableView.reloadSections([1], with: .automatic)
             case .failure:
                 LKProgressHUD.showFailure(text: "載入用戶資料失敗/n請退出重試")
             }
-            competion()
         }
     }
 
@@ -139,11 +137,15 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 8
         } else {
-            return commentData.count
+            if userData.isEmpty {
+                return 0
+            } else {
+                return commentData.count
+            }
         }
     }
-
-//     swiftlint:disable cyclomatic_complexity
+    
+    //     swiftlint:disable cyclomatic_complexity
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let storeData = storeData else { return UITableViewCell() }
         if indexPath.section == 0 {
@@ -160,11 +162,11 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             case 2:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
-                cell.layoutCell(isMeal: false, store: storeData)
+                cell.layoutCell(store: storeData)
                 return cell
             case 3:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTagsCell.identifier, for: indexPath) as? StoreTagsCell else { return StoreTagsCell() }
-                cell.layoutCell(isMeal: true, store: storeData)
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreMealsCell.identifier, for: indexPath) as? StoreMealsCell else { return StoreMealsCell() }
+                cell.layoutCell(store: storeData)
                 return cell
             case 4:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreLocaltionCell.identifier, for: indexPath) as? StoreLocaltionCell else { return StoreLocaltionCell() }

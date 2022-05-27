@@ -90,6 +90,8 @@
 		B8BBBE7C281D328B001782F5 /* WaterfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE7B281D328B001782F5 /* WaterfallViewController.swift */; };
 		B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */; };
 		B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */; };
+		B8BC5481283F7C5900FC0DAB /* StoreMealsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC547F283F7C5900FC0DAB /* StoreMealsCell.swift */; };
+		B8BC5482283F7C5900FC0DAB /* StoreMealsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BC5480283F7C5900FC0DAB /* StoreMealsCell.xib */; };
 		B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BD5F96282072DF00A1C138 /* DetailViewController.swift */; };
 		B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BD5F9B28207E9900A1C138 /* CommentCell.xib */; };
 		B8BD5F9E28207F4B00A1C138 /* CommentStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BD5F9D28207F4B00A1C138 /* CommentStoreCell.xib */; };
@@ -236,6 +238,8 @@
 		B8BBBE7B281D328B001782F5 /* WaterfallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallViewController.swift; sourceTree = "<group>"; };
 		B8BBBE83281E9AC6001782F5 /* DiscoveryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryCell.xib; sourceTree = "<group>"; };
 		B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCell.swift; sourceTree = "<group>"; };
+		B8BC547F283F7C5900FC0DAB /* StoreMealsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMealsCell.swift; sourceTree = "<group>"; };
+		B8BC5480283F7C5900FC0DAB /* StoreMealsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreMealsCell.xib; sourceTree = "<group>"; };
 		B8BD5F96282072DF00A1C138 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B8BD5F9B28207E9900A1C138 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		B8BD5F9D28207F4B00A1C138 /* CommentStoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentStoreCell.xib; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 				B83B19222827D94100686D16 /* StoreImageCell.xib */,
 				B83B19252827D95300686D16 /* StoreTagsCell.swift */,
 				B83B19262827D95300686D16 /* StoreTagsCell.xib */,
+				B8BC547F283F7C5900FC0DAB /* StoreMealsCell.swift */,
+				B8BC5480283F7C5900FC0DAB /* StoreMealsCell.xib */,
 				B83B192B2827D98A00686D16 /* StoreLocaltionCell.swift */,
 				B83B192C2827D98A00686D16 /* StoreLocaltionCell.xib */,
 				B83B192F2827D99900686D16 /* StoreOpenTimeCell.swift */,
@@ -965,6 +971,7 @@
 				B83B194A28284CB600686D16 /* StoreCardsCell.xib in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
 				B893379228190F08000C75C3 /* ProfileView.xib in Resources */,
+				B8BC5482283F7C5900FC0DAB /* StoreMealsCell.xib in Resources */,
 				B8D06723282B534700BF74D2 /* StoreCommentCell.xib in Resources */,
 				B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */,
 				B8CD43872818F17400D2BCCE /* SignInAndOutView.xib in Resources */,
@@ -1175,6 +1182,7 @@
 				B8DBDD4D28246A57008DC615 /* ProfileCommentsCell.swift in Sources */,
 				B87D72662826483100289283 /* BadgeCell.swift in Sources */,
 				B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */,
+				B8BC5481283F7C5900FC0DAB /* StoreMealsCell.swift in Sources */,
 				B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */,
 				B89337942819120D000C75C3 /* ProfileView.swift in Sources */,
 				B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */,
