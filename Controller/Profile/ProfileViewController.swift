@@ -22,7 +22,6 @@ class ProfileViewController: UIViewController {
         }
     }
 
-
     var isOnPush = false
 
     var badgeRef: [[Int]]?

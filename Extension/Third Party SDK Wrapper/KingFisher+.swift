@@ -9,7 +9,6 @@ import Foundation
 import Kingfisher
 
 extension UIImageView {
-    
     func loadImage(_ urlString: String?, placeHolder: UIImage? = nil) {
         if let urlString = urlString {
             let url = URL(string: urlString)

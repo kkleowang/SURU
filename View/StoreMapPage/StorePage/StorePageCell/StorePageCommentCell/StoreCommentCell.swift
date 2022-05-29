@@ -95,7 +95,7 @@ class StoreCommentCell: UITableViewCell {
         commentData = comment
         targetUserID = comment.userID
         authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
-        
+
         authorImageView.kf.setImage(with: URL(string: author.mainImage), placeholder: UIImage(named: "mainImage"))
 
         authorNameLabel.text = author.name

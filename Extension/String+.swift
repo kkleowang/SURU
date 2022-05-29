@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
     func toYYYYMMDDHHMM() -> String {
-        guard let number = Double(self) else { return ""}
+        guard let number = Double(self) else { return "" }
         let date = NSDate(timeIntervalSince1970: number)
         let dateFormatter = DateFormatter()
         // Set Date Format

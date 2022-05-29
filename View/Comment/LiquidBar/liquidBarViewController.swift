@@ -55,14 +55,15 @@ class LiquidBarViewController: UIViewController {
         case .began, .changed:
             guard let positionY = controledView?.center.y, let positionX = controledView?.center.x else { return }
             let total = positionY + translation.y
-            if total < 240 {
-                let selectionValue = Double((total - 720) / -48).ceiling(toDecimal: 1)
+            if total <= 240 {
+                let selectionValue = 10.0
                 valueDelegate?.didChangeValue(view: self, value: selectionValue)
                 controledView?.center = CGPoint(x: positionX, y: 240)
-            } else if total > 680 {
-                let selectionValue = Double((total - 720) / -48).ceiling(toDecimal: 1)
+            } else if total >= 600 {
+                let selectionValue = 2.5
                 valueDelegate?.didChangeValue(view: self, value: selectionValue)
                 controledView?.center = CGPoint(x: positionX, y: 600)
+                print("fix")
             } else {
                 let selectionValue = Double((total - 720) / -48).ceiling(toDecimal: 1)
                 valueDelegate?.didChangeValue(view: self, value: selectionValue)
@@ -72,9 +73,13 @@ class LiquidBarViewController: UIViewController {
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
             guard let positionY = controledView?.center.y, let selectionType = selectionType else { return }
-            let selectionValue = Double((positionY - 720) / -48).ceiling(toDecimal: 1)
+            var selectionValue = Double((positionY - 720) / -48).ceiling(toDecimal: 1)
             print("Get Value", selectionValue)
-
+            if selectionValue > 10.0 {
+                selectionValue = 10.0
+            } else if selectionValue <= 2.5 {
+                selectionValue = 2.5
+            }
             delegate?.didGetSelectionValue(view: self, type: selectionType, value: selectionValue)
             drawDelegate?.didGetSelectionValue(view: self, type: selectionType, value: selectionValue)
             print("end")
@@ -88,7 +93,7 @@ class LiquidBarViewController: UIViewController {
 extension LiquidBarViewController {
     func settingLottieView() -> UIView {
         guard let selectionType = selectionType else { return UIView() }
-        var liqid = ""
+        var liqid = "yellow"
         switch selectionType {
         case .noodle:
             liqid = "yellow"

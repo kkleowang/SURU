@@ -11,7 +11,7 @@ class StoreMealsCell: UITableViewCell {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var iconImageView: UIImageView!
     var storeData: Store?
-    
+
     func layoutCell(store: Store?) {
         storeData = store
         selectionStyle = .none
@@ -27,26 +27,23 @@ class StoreMealsCell: UITableViewCell {
     }
 }
 
-
 extension StoreMealsCell: UICollectionViewDataSource {
     func numberOfSections(in _: UICollectionView) -> Int {
         return 1
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         guard let storeData = storeData else { return 0 }
-        
+
         return storeData.meals.count
-        
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TagsCell.self), for: indexPath) as? TagsCell else { return TagsCell() }
         guard let storeData = storeData else { return TagsCell() }
-            cell.layoutForMeal()
-            cell.tagLabel.text = storeData.meals[indexPath.row]
-            cell.backgroundColor = .C2
-            return cell
-        
+        cell.layoutForMeal()
+        cell.tagLabel.text = storeData.meals[indexPath.row]
+        cell.backgroundColor = .C2
+        return cell
     }
 }

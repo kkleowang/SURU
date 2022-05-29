@@ -182,21 +182,12 @@ extension WaterfallViewController: CHTCollectionViewDelegateWaterfallLayout {
         let mealLabelSize = labelSize(for: mealName, font: .medium(size: 14), maxWidth: labelWidth, maxHeight: 60)
         var height = imageWidth + storeLabelSize.height + mealLabelSize.height + 4 + 8 + 20 + 8 + 20 + 8
 
-        var random: Int {
-            return Int.random(in: 0 ... 10)
-        }
-
-        let randomExtraHeight = Double(random)
-
-        height += randomExtraHeight
 
         return CGSize(width: imageWidth, height: height)
     }
 
     func labelSize(for text: String, font: UIFont?, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: font as Any,
-        ]
+        let attributes: [NSAttributedString.Key: Any] = [.font: font as Any]
 
         let attributedText = NSAttributedString(string: text, attributes: attributes)
 
@@ -209,7 +200,19 @@ extension WaterfallViewController: CHTCollectionViewDelegateWaterfallLayout {
 
 extension WaterfallViewController: IndicatorInfoProvider {
     func indicatorInfo(for _: PagerTabStripViewController) -> IndicatorInfo {
-        IndicatorInfo(title: NSLocalizedString("推薦", comment: "barTagString"))
+        guard let pageStatus = pageStatus else {
+            return IndicatorInfo(title: NSLocalizedString("", comment: "barTagString"))
+        }
+        var indicatorTitle = ""
+        switch pageStatus {
+        case .discovery:
+            indicatorTitle = "推薦"
+        case .follow:
+            indicatorTitle = "追隨"
+        case .collect:
+            indicatorTitle = "收藏"
+        }
+        return IndicatorInfo(title: NSLocalizedString(indicatorTitle, comment: "barTagString"))
     }
 }
 

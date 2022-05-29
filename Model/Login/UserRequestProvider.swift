@@ -14,12 +14,11 @@ class UserRequestProvider {
     var currentUser: User? {
         firebaseAuth.currentUser
     }
+
     lazy var firebaseAuth = Auth.auth()
     var currentUserID: String? {
         firebaseAuth.currentUser?.uid
     }
-
-
 
 //    func listenFirebaseLogin(completion: @escaping (String?) -> Void) {
 //        firebaseAuth.addStateDidChangeListener { _, user in
