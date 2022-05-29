@@ -24,6 +24,32 @@ Users can interact with others and earn achievements by reporting queues or publ
 * [License](#License)
 
 ## Features
+### Store Map
+<p align="left">
+<img src="https://imgur.com/FBJXf1V.png"  height="400">
+ <--   <img src="https://imgur.com/X12IeSu.gif"  height="400">  -->
+ <img src="https://imgur.com/ATKgOA9.png"  height="400">
+</p>
+
+### Comment Wall
+<p align="left">
+<img src="https://imgur.com/c3pPqzF.png"  height="400">
+ <img src="https://imgur.com/NbaC9Wc.png"  height="400">
+ <img src="https://user-images.githubusercontent.com/23053223/144701721-e150997c-c865-499c-8cdc-45e704738033.png"  height="400">
+</p>
+
+### Publish Article
+<p align="left">
+<img src="https://imgur.com/gO1hzGD.png"  height="400">
+ <img src="https://imgur.com/ztYFW0t.gif"  height="400">
+</p>
+
+### Profile
+
+<p align="left">
+<img src="https://imgur.com/NQl0M6A.png"  height="400">
+ <img src="https://imgur.com/r8y4T0R.png"  height="400">
+</p>
 ## Techniques
 - Developed with **MVC** pattern to build organized code which could be maintained easily.
 - Built interfaces both with **Xib** and **Programmatically Auto Layout**.
