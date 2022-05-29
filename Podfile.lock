@@ -345,7 +345,7 @@ PODS:
   - JGProgressHUD (2.2)
   - Kingfisher (7.2.1)
   - leveldb-library (1.22.1)
-  - lottie-ios (3.2.3)
+  - lottie-ios (3.3.0)
   - MJRefresh (3.7.5)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -428,13 +428,13 @@ SPEC CHECKSUMS:
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   Kingfisher: 7c084bebf7d548c623ad41bcf765fb200efed369
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
-  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: bfd531e4f061b7b1cb964563a4279fce011ad5bf
+PODFILE CHECKSUM: 34a1d38e35686e9a4c0ff6f064a92cb5b3e378b4
 
 COCOAPODS: 1.11.3

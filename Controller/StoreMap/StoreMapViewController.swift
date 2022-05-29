@@ -12,11 +12,8 @@ class StoreMapViewController: UIViewController {
     // MARK: - Property
 
     private var isSearchResults = false
-    let reportView: ReportView = UIView.fromNib()
-    
-    var reportViewHeight: NSLayoutConstraint!
     private let mapView = MapView()
-
+    var reportViewButtonConstraint: NSLayoutConstraint!
     private var searchBar = UISearchBar()
     private var reportButton = UIButton()
     private var storeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -31,7 +28,7 @@ class StoreMapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         observeCurrentAccount()
         observeCommentData()
         observeLoginStatus()
@@ -42,6 +39,7 @@ class StoreMapViewController: UIViewController {
         fetchData { [weak self] in
             self?.setupMapView()
             self?.setupCollectionView()
+            self?.hiddenReportView()
         }
     }
 
@@ -443,25 +441,31 @@ extension StoreMapViewController {
         storeCollectionView.isHidden = true
         initReportQueueView() // child view controller?
     }
-
+    func hiddenReportView() {
+//
+    }
     private func initReportQueueView() {
         let storeName = storeData[selectedIndex].name
         
-        reportView.delegate = self
-        view.addSubview(reportView)
+        let reportView: ReportView = UIView.fromNib()
         reportView.layoutView(name: storeName)
+        reportView.delegate = self
         
-        reportViewHeight = reportView.heightAnchor.constraint(equalToConstant: 50)
-        reportViewHeight.isActive = true
+        view.addSubview(reportView)
+        
+        reportView.translatesAutoresizingMaskIntoConstraints = false
         reportView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         reportView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        reportView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-//        reportViewHeight.isActive = false
-        reportViewHeight.constant = 100
-//        reportViewHeight.isActive = true
-//        reportView.frame = CGRect(x: 0, y: UIScreen.height, width: UIScreen.width, height: 400) //
-        UIView.animate(withDuration: 10) {
-//            reportView.frame = CGRect(x: 0, y: UIScreen.height - 300, width: UIScreen.width, height: 400)
+        reportView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        reportViewButtonConstraint = reportView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 200)
+        reportViewButtonConstraint.isActive = true
+        
+        
+        view.layoutIfNeeded()
+        reportViewButtonConstraint.constant = 0
+        UIView.animate(withDuration: 0.7) {
+            //            reportViewHeight.isActive = true
             self.view.layoutIfNeeded()
         }
     }
@@ -492,7 +496,12 @@ extension StoreMapViewController: ReportViewDelegate {
             pulishQueue(queue: queue)
             storeCollectionView.isHidden = false
             reportButton.isHidden = false
-            view.removeFromSuperview()
+            reportViewButtonConstraint.constant = 200
+            UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut) {
+                self.view.layoutIfNeeded()
+            } completion: { _ in
+                view.removeFromSuperview()
+            }
         } else {
             showLoginPage()
         }
@@ -501,7 +510,12 @@ extension StoreMapViewController: ReportViewDelegate {
     func didTapCloseButton(_ view: ReportView) {
         storeCollectionView.isHidden = false
         reportButton.isHidden = false
-        view.removeFromSuperview()
+        reportViewButtonConstraint.constant = 200
+        UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut) {
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            view.removeFromSuperview()
+        }
     }
 }
 

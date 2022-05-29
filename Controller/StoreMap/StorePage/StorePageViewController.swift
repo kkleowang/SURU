@@ -144,7 +144,7 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    
+
     //     swiftlint:disable cyclomatic_complexity
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let storeData = storeData else { return UITableViewCell() }
