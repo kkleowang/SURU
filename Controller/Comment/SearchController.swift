@@ -25,11 +25,11 @@ class SearchViewController: UIViewController {
     private func setupTableView() {
         
         self.searchNotesTableView.separatorColor = .clear
-        searchNotesTableView.registerCellWithNib(identifier: String(describing: NoteResultTableViewCell.self), bundle: nil)
-        searchNotesTableView.dataSource = self
-        searchNotesTableView.delegate = self
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
-        searchNotesTableView.addGestureRecognizer(longPress)
+//        searchNotesTableView.registerCellWithNib(identifier: String(describing: NoteResultTableViewCell.self), bundle: nil)
+//        searchNotesTableView.dataSource = self
+//        searchNotesTableView.delegate = self
+//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
+//        searchNotesTableView.addGestureRecognizer(longPress)
         view.addSubview(searchNotesTableView)
         searchNotesTableView.translatesAutoresizingMaskIntoConstraints = false
         searchNotesTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
