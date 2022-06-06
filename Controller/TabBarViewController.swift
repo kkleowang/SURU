@@ -107,6 +107,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 }
             }
         )
+        StorageManager.shared.fetchComments()
     }
 
     override func viewDidAppear(_ animated: Bool) {

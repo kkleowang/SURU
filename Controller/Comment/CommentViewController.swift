@@ -11,7 +11,10 @@ class CommentViewController: UIViewController {
     var startingView = CommentStartingView()
     var imageCardView = CommentImageCardView()
     var selectionView = CommentSelectionView()
-
+    var searchController = UISearchController()
+    func setupSearchController() {
+        searchController.title = "選取店鋪"
+    }
     var orderObserver: NSKeyValueObservation!
     var stores: [Store] = []
     var comments: [Comment] = []
@@ -39,6 +42,7 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "新增評論"
+        setupSearchController()
         guard let userID = UserRequestProvider.shared.currentUserID else { return }
         commentData.userID = userID
     }
@@ -52,6 +56,7 @@ class CommentViewController: UIViewController {
         fetchCommentOfUser {
             self.setupStartingView()
         }
+        navigationController?.pushViewController(searchController, animated: true)
     }
 
     func settingKVO() {
@@ -203,7 +208,7 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     }
 
     func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
-        return 100
+        return 120
     }
 
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {

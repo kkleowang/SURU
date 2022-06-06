@@ -154,11 +154,14 @@ extension WaterfallViewController: UICollectionViewDataSource, UICollectionViewD
                 guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
 
                 controller.delegate = self
+                
                 controller.modalPresentationStyle = .fullScreen
+                
                 controller.comment = comment
                 controller.accountData = accountData
                 controller.store = store
                 controller.currentUser = currentAccount
+                
                 controller.author = account
                 present(controller, animated: true, completion: nil)
             }
@@ -176,11 +179,9 @@ extension WaterfallViewController: CHTCollectionViewDelegateWaterfallLayout {
 
         let imageWidth = (UIScreen.width - 4 * 3) / 2
         let labelWidth = imageWidth - 16
-
         let storeLabelSize = labelSize(for: storeName, font: .medium(size: 16), maxWidth: labelWidth, maxHeight: 60)
-
         let mealLabelSize = labelSize(for: mealName, font: .medium(size: 14), maxWidth: labelWidth, maxHeight: 60)
-        var height = imageWidth + storeLabelSize.height + mealLabelSize.height + 4 + 8 + 20 + 8 + 20 + 8
+        let height = imageWidth + storeLabelSize.height + mealLabelSize.height + 4 + 8 + 30 + 8 + 20 + 8
 
 
         return CGSize(width: imageWidth, height: height)
@@ -320,8 +321,24 @@ extension WaterfallViewController {
 }
 
 extension WaterfallViewController: DiscoveryCellDelegate {
-    func didTapCommentBtn(_: DiscoveryCell, comment _: Comment) {
-        //
+    func didTapCommentBtn(_: DiscoveryCell, comment: Comment) {
+        let store = storeData.first { $0.storeID == comment.storeID } ?? storeData[0]
+        let account = accountData.first { $0.userID == comment.userID } ?? accountData[0]
+        if let currentAccount = currentAccount {
+            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+            
+            controller.delegate = self
+            
+            controller.modalPresentationStyle = .fullScreen
+            controller.isClickComment = true
+            controller.comment = comment
+            controller.accountData = accountData
+            controller.store = store
+            controller.currentUser = currentAccount
+            
+            controller.author = account
+            present(controller, animated: true, completion: nil)
+        }
     }
 
     func didTapLikeButton(_: DiscoveryCell, comment: Comment) {

@@ -218,7 +218,15 @@ extension StorePageViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 return UIScreen.width / 1.5 - 20
             case 7:
+                guard let naviHeight = navigationController?.navigationBar.bounds.height else { return 150 }
+                let window = UIApplication.shared.windows[0]
+                let safeFrame = window.safeAreaLayoutGuide.layoutFrame.minY
+                let height = UIScreen.height - 80 - ( UIScreen.width / 1.5 - 20 ) - 250 - naviHeight - safeFrame
+                if height > 150 {
+                    return height
+                } else {
                 return 150
+                }
             default:
                 return 50
             }
@@ -313,17 +321,11 @@ extension StorePageViewController: StoreTopViewDelegate {
 
 extension StorePageViewController: StoreImageCellDelegate {
     func didTapPopularImage(_ view: StoreImageCell, image: UIImage) {
-        let view: FullScreenView = UIView.fromNib()
-        view.imageView.image = image
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dissmiss))
-        view.addGestureRecognizer(tap)
-        self.view.stickSubView(view)
-
-        print("didTapPopularImage")
+        showImage(image: image)
     }
 
-    func didTapmenuImage(_: StoreImageCell, image _: UIImage) {
-        print("didTapmenuImage")
+    func didTapmenuImage(_: StoreImageCell, image: UIImage) {
+        showImage(image: image)
     }
 
     func didTapmoreImage(_: StoreImageCell, image _: UIImage) {
@@ -334,6 +336,13 @@ extension StorePageViewController: StoreImageCellDelegate {
 
     @objc func dissmiss(sender: UITapGestureRecognizer) {
         sender.view?.removeFromSuperview()
+    }
+    func showImage(image: UIImage) {
+        let view: FullScreenView = UIView.fromNib()
+        view.imageView.image = image
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dissmiss))
+        view.addGestureRecognizer(tap)
+        self.view.stickSubView(view)
     }
 }
 

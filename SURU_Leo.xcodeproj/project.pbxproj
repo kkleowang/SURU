@@ -67,6 +67,7 @@
 		B87D72672826483100289283 /* BadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87D72652826483100289283 /* BadgeCell.xib */; };
 		B87D726928265E1200289283 /* BadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D726828265E1200289283 /* BadgeViewController.swift */; };
 		B87D726C28266C2900289283 /* CollectionViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D726B28266C2900289283 /* CollectionViewBackground.swift */; };
+		B87FCB36284DDF4900DECA59 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB35284DDF4900DECA59 /* SearchController.swift */; };
 		B893379228190F08000C75C3 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379128190F08000C75C3 /* ProfileView.xib */; };
 		B89337942819120D000C75C3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89337932819120D000C75C3 /* ProfileView.swift */; };
 		B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379928197F24000C75C3 /* AddInfoView.xib */; };
@@ -215,6 +216,7 @@
 		B87D72652826483100289283 /* BadgeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeCell.xib; sourceTree = "<group>"; };
 		B87D726828265E1200289283 /* BadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewController.swift; sourceTree = "<group>"; };
 		B87D726B28266C2900289283 /* CollectionViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBackground.swift; sourceTree = "<group>"; };
+		B87FCB35284DDF4900DECA59 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		B893379128190F08000C75C3 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		B89337932819120D000C75C3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B893379928197F24000C75C3 /* AddInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddInfoView.xib; sourceTree = "<group>"; };
@@ -557,6 +559,7 @@
 			isa = PBXGroup;
 			children = (
 				B87BF623280C61E100FE885C /* CommentViewController.swift */,
+				B87FCB35284DDF4900DECA59 /* SearchController.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -1218,6 +1221,7 @@
 				B8CD43812818EF0600D2BCCE /* WelcomeViewController.swift in Sources */,
 				B8F92C7F2830C41D0002B252 /* ProfileHeaderCell.swift in Sources */,
 				B8A00346280A97A100A64750 /* UIStoryboard+.swift in Sources */,
+				B87FCB36284DDF4900DECA59 /* SearchController.swift in Sources */,
 				B8F3517E2815E8EE002E2A3C /* CommentTableViewCell.swift in Sources */,
 				B8EC700E2805468400DA8B78 /* UIColor+.swift in Sources */,
 				B8659C442806BB5B006C85F3 /* Date+.swift in Sources */,
