@@ -116,6 +116,7 @@ class StoreMapViewController: UIViewController {
         }
         storeCollectionView.reloadData()
         mapView.layoutView(from: filteredStoreData)
+//        reloadMapView()
     }
 
     private func setOriginRegion() {
