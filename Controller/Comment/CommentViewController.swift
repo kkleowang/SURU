@@ -9,38 +9,22 @@ import UIKit
 
 class CommentViewController: UIViewController {
     var startingView = CommentStartingView()
-    var imageCardView = CommentImageCardView()
-    var selectionView = CommentSelectionView()
+//    var imageCardView = CommentImageCardView()
+//    var selectionView = CommentSelectionView()
     
     var orderObserver: NSKeyValueObservation!
     var stores: [Store] = []
     var comments: [Comment] = []
     var commentDrafts: [CommentDraft] = []
-    let userID = UserRequestProvider.shared.currentUserID
-    var commentData = Comment(
-        userID: "",
-        storeID: "",
-        meal: "",
-        contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0),
-        contenText: "",
-        mainImage: ""
-    )
-    var originData = Comment(
-        userID: "",
-        storeID: "",
-        meal: "",
-        contentValue: CommentContent(happiness: 0, noodle: 0, soup: 0),
-        contenText: "",
-        mainImage: ""
-    )
-    // 上傳前的照片
-    var imageDataHolder: Data?
+    var currentUserID: String!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "新增評論"
+        
+        
         guard let userID = UserRequestProvider.shared.currentUserID else { return }
-        commentData.userID = userID
+        currentUserID = userID
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -49,9 +33,9 @@ class CommentViewController: UIViewController {
         navigationItem.title = "新增評論"
         fetchStoreData()
         fetchCoreData {}
-        fetchCommentOfUser {
-            self.setupStartingView()
-        }
+        
+        setupStartingView()
+        
     }
 
     func settingKVO() {
@@ -67,20 +51,6 @@ class CommentViewController: UIViewController {
                 self.stores = data
             case let .failure(error):
                 print(error)
-            }
-        }
-    }
-
-    func fetchCommentOfUser(com: @escaping () -> Void) {
-        guard let userID = UserRequestProvider.shared.currentUserID else { return }
-        CommentRequestProvider.shared.fetchCommentsOfUser(useID: userID) { result in
-            switch result {
-            case let .success(data):
-                self.comments = data
-                com()
-            case let .failure(error):
-                print(error)
-                com()
             }
         }
     }
@@ -115,34 +85,7 @@ class CommentViewController: UIViewController {
         startingView.layoutStartingView()
     }
 
-    func setupImageCardView(_ image: UIImage) {
-        imageCardView = CommentImageCardView()
-        view.addSubview(imageCardView)
-        imageCardView.translatesAutoresizingMaskIntoConstraints = false
-        imageCardView.topAnchor.constraint(equalTo: view.topAnchor, constant: 84).isActive = true
-        imageCardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        imageCardView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
-        imageCardView.heightAnchor.constraint(equalTo: imageCardView.widthAnchor, multiplier: 1).isActive = true
-        imageCardView.delegate = self
-        //        imageCardView.clipsToBounds = true
-        //        imageCardView.makeShadow()
-        imageCardView.layoutCommendCardView(image: image) { [weak self] in
-            self?.setupCommentSelectionView()
-        }
-    }
-
-    func setupCommentSelectionView() {
-        selectionView = CommentSelectionView()
-        view.insertSubview(selectionView, belowSubview: imageCardView)
-        selectionView.translatesAutoresizingMaskIntoConstraints = false
-        selectionView.delegate = self
-        selectionView.backgroundColor = .B6
-        selectionView.topAnchor.constraint(equalTo: imageCardView.bottomAnchor, constant: 8).isActive = true
-        selectionView.leadingAnchor.constraint(equalTo: imageCardView.leadingAnchor).isActive = true
-        selectionView.trailingAnchor.constraint(equalTo: imageCardView.trailingAnchor).isActive = true
-        selectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
-        selectionView.layoutSelectView(dataSource: stores)
-    }
+    
 
     func setupDraggingView(_ type: SelectionType) {
         let controller = DragingValueViewController()
@@ -159,33 +102,15 @@ class CommentViewController: UIViewController {
             controller.view.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.main.bounds.height)
         }
     }
-
-    func publishComment() {
-        CommentRequestProvider.shared.publishComment(comment: &commentData) { result in
-            switch result {
-            case let .success(message):
-                print("上傳評論成功", message)
-                LKProgressHUD.dismiss()
-                LKProgressHUD.showSuccess(text: "上傳評論成功")
-                //                self.sendButton.removeFromSuperview()
-                self.fetchCommentOfUser {
-                    self.setupStartingView()
-                    self.commentData = self.originData
-                }
-            case let .failure(error):
-                print("上傳評論失敗", error)
-            }
-        }
+    func initSelection(image: UIImage) {
+        let controller = CommentSeletionController(userID: currentUserID, image: image)
+        navigationController?.pushViewController(controller, animated: true)
     }
-//    func resetCurrentVC() {
-//
-//        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "CommentViewController")
-//        if let navigationController = self.navigationController {
-//            navigationController.viewControllers.removeLast()
-//            navigationController.viewControllers.append(vc)
-//            navigationController.setViewControllers(navigationController.viewControllers, animated: true)
-//        }
-//    }
+    
+    func initSelectionByDraft(draft: CommentDraft) {
+        let controller = CommentSeletionController(userID: currentUserID, draft: draft)
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 // StartingView Delegate
@@ -195,11 +120,7 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     }
 
     func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "你的評論草稿"
-        } else {
-            return "你發表過的評論"
-        }
+        "你的評論草稿"
     }
 
     func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
@@ -207,44 +128,31 @@ extension CommentViewController: CommentStartingViewDelegate, UITableViewDelegat
     }
 
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return commentDrafts.count
-        } else {
-            return comments.count
-        }
+        commentDrafts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
-
-        let name = stores.first(where: { $0.storeID == commentDrafts[indexPath.row].storeID })?.name
-        cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name ?? "未輸入店名")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else { return CommentTableViewCell() }
+        
+        let name = stores.first(where: { $0.storeID == commentDrafts[indexPath.row].storeID })?.name ?? "未輸入店名"
+        cell.layoutDraftCell(data: commentDrafts[indexPath.row], name: name)
         return cell
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            guard let imageData = commentDrafts[indexPath.row].image else { return }
-            guard let imageView = UIImage(data: imageData) else { return }
-            setupImageCardView(imageView)
-            startingView.removeFromSuperview()
-        }
+        initSelectionByDraft(draft: commentDrafts[indexPath.row])
     }
 
+    
+    
     func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage) {
-        setupImageCardView(image)
-        imageDataHolder = image.jpegData(compressionQuality: 0.1) ?? Data()
-        imagePicker.dismiss(animated: true) {
-            view.removeFromSuperview()
-        }
+        initSelection(image: image)
+        imagePicker.dismiss(animated: true)
     }
 
     func didTapImageView(_: CommentStartingView, imagePicker: UIImagePickerController?) {
-        guard let imagePicker = imagePicker else {
-            return
-        }
-        present(imagePicker, animated: true) {
-            self.startingView.commentTableView.removeFromSuperview()
+        if let imagePicker = imagePicker {
+            present(imagePicker, animated: true)
         }
     }
 }
@@ -260,13 +168,7 @@ extension CommentViewController: CommentImageCardViewDelegate {
         present(imagePicker, animated: true, completion: nil)
     }
 }
-extension CommentViewController: SearchViewControllerDelegate {
-    func didTapResult(_ view: SearchViewController, content: String) {
-        selectionView.selectedStoreTextField.text = content
-    }
-    
-    
-}
+
 extension CommentViewController: CommentSelectionViewDelegate {
     func didTapStoreSelection(_ view: CommentSelectionView) {
         let controller = SearchViewController()
@@ -310,79 +212,51 @@ extension CommentViewController: CommentSelectionViewDelegate {
         }
     }
 
-    func didTapSaveComment(_: CommentSelectionView) {
-//        StorageManager.shared.addDraftComment(comment: commentData, image: imageDataHolder!) { result in
-//            switch result {
-//            case .success(let data):
-        ////                self.resetCurrentVC()
-//                LKProgressHUD.showSuccess(text: "儲存成功")
-//                self.setupStartingView()
-//                self.commentData = self.originData
-//                print("Coredata")
-//            case .failure(let error):
-//                LKProgressHUD.showSuccess(text: "儲存失敗")
-//
-//                print(error)
-//            }
+}
+
+//extension CommentViewController: CommentDraggingViewDelegate {
+//    func didTapBackButton(vc: DragingValueViewController) {
+//        UIView.animate(withDuration: 0.5) {
+//            vc.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
+//            self.navigationItem.title = "新增評論"
+//            self.navigationController?.navigationBar.isHidden = false
+//            self.tabBarController?.tabBar.isHidden = false
+//            self.imageCardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
 //        }
-        print("didTapSaveComment")
-    }
+//        if commentData.contentValue.noodle != 0,
+//           commentData.contentValue.soup != 0,
+//           commentData.contentValue.happiness != 0,
+//           commentData.contentValue.noodle != 50,
+//           commentData.contentValue.soup != 50,
+//           commentData.contentValue.happiness != 50,
+//           !commentData.storeID.isEmpty, !commentData.meal.isEmpty
+//        {
+//            //            initSendButton()
+//            //            sendButton.isHidden = false
+//        }
+//    }
+//}
 
-    func didTapDownloadImage(_: CommentSelectionView) {
-        print("didTapDownloadImage")
-    }
-
-    func didTapAddoneMore(_: CommentSelectionView) {
-        print("didTapAddoneMore")
-    }
-
-    func didTapGoAllPage(_: CommentSelectionView) {
-        print("didTapGoAllPage")
-    }
-}
-
-extension CommentViewController: CommentDraggingViewDelegate {
-    func didTapBackButton(vc: DragingValueViewController) {
-        UIView.animate(withDuration: 0.5) {
-            vc.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
-            self.navigationItem.title = "新增評論"
-            self.navigationController?.navigationBar.isHidden = false
-            self.tabBarController?.tabBar.isHidden = false
-            self.imageCardView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
-        }
-        if commentData.contentValue.noodle != 0,
-           commentData.contentValue.soup != 0,
-           commentData.contentValue.happiness != 0,
-           commentData.contentValue.noodle != 50,
-           commentData.contentValue.soup != 50,
-           commentData.contentValue.happiness != 50,
-           !commentData.storeID.isEmpty, !commentData.meal.isEmpty
-        {
-            //            initSendButton()
-            //            sendButton.isHidden = false
-        }
-    }
-}
-
-extension CommentViewController: LiquidViewDelegate {
-    func didGetSelectionValue(view _: LiquidBarViewController, type: SelectionType, value: Double) {
-        switch type {
-        case .noodle:
-            commentData.contentValue.noodle = value
-            initValueView(on: selectionView.selectNoodelValueButton, value: value, color: UIColor.main1?.cgColor ?? UIColor.yellow.cgColor)
-
-        case .soup:
-            commentData.contentValue.soup = value
-            initValueView(on: selectionView.selectSouplValueButton, value: value, color: UIColor.main2?.cgColor ?? UIColor.yellow.cgColor)
-
-        case .happy:
-            commentData.contentValue.happiness = value
-            initValueView(on: selectionView.selectHappyValueButton, value: value, color: UIColor.main3?.cgColor ?? UIColor.yellow.cgColor)
-        }
-    }
-}
+//extension CommentViewController: LiquidViewDelegate {
+//    func didGetSelectionValue(view _: LiquidBarViewController, type: SelectionType, value: Double) {
+//        switch type {
+//        case .noodle:
+//            commentData.contentValue.noodle = value
+//            initValueView(on: selectionView.selectNoodelValueButton, value: value, color: UIColor.main1?.cgColor ?? UIColor.yellow.cgColor)
+//
+//        case .soup:
+//            commentData.contentValue.soup = value
+//            initValueView(on: selectionView.selectSouplValueButton, value: value, color: UIColor.main2?.cgColor ?? UIColor.yellow.cgColor)
+//
+//        case .happy:
+//            commentData.contentValue.happiness = value
+//            initValueView(on: selectionView.selectHappyValueButton, value: value, color: UIColor.main3?.cgColor ?? UIColor.yellow.cgColor)
+//        }
+//    }
+//}
 
 extension CommentViewController {
+     
     func preSentWriteCommentView() {
         let controller = UIViewController()
         let writeCommentView: WriteCommentView = UIView.fromNib()
