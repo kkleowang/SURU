@@ -8,6 +8,9 @@
 import UIKit
 
 protocol CommentSelectionViewDelegate: AnyObject {
+    
+    func didTapStoreSelection(_ view: CommentSelectionView)
+    
     func didGetSelectStore(_ view: CommentSelectionView, storeID: String)
 
     func didGetSelectMeal(_ view: CommentSelectionView, meal: String)
@@ -81,6 +84,7 @@ class CommentSelectionView: UIView {
 
     func initTextField() {
         addSubview(selectedStoreTextField)
+        selectedStoreTextField.delegate = self
         selectedStoreTextField.translatesAutoresizingMaskIntoConstraints = false
         selectedStoreTextField.backgroundColor = .clear
         selectedStoreTextField.text = "輸入店家"
@@ -253,6 +257,11 @@ extension CommentSelectionView {
 }
 
 extension CommentSelectionView: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        self.delegate?.didTapStoreSelection(self)
+        return false
+    }
     private func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = ""
@@ -273,6 +282,7 @@ extension CommentSelectionView: UITextFieldDelegate {
             }
         }
     }
+    
 }
 
 extension CommentSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {

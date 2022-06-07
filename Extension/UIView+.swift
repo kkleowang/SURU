@@ -61,6 +61,21 @@ extension UIView {
 
         objectView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
+    func stickSubViewSafeArea(_ objectView: UIView) {
+        objectView.removeFromSuperview()
+
+        addSubview(objectView)
+
+        objectView.translatesAutoresizingMaskIntoConstraints = false
+
+        objectView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+
+        objectView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+
+        objectView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+
+        objectView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
 
     func stickSubView(_ objectView: UIView, inset: UIEdgeInsets) {
         objectView.removeFromSuperview()

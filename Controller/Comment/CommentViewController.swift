@@ -11,10 +11,7 @@ class CommentViewController: UIViewController {
     var startingView = CommentStartingView()
     var imageCardView = CommentImageCardView()
     var selectionView = CommentSelectionView()
-    var searchController = UISearchController()
-    func setupSearchController() {
-        searchController.title = "選取店鋪"
-    }
+    
     var orderObserver: NSKeyValueObservation!
     var stores: [Store] = []
     var comments: [Comment] = []
@@ -42,21 +39,19 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "新增評論"
-        setupSearchController()
         guard let userID = UserRequestProvider.shared.currentUserID else { return }
         commentData.userID = userID
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //        settingKVO()
+        settingKVO()
         navigationItem.title = "新增評論"
         fetchStoreData()
         fetchCoreData {}
         fetchCommentOfUser {
             self.setupStartingView()
         }
-        navigationController?.pushViewController(searchController, animated: true)
     }
 
     func settingKVO() {
@@ -265,8 +260,21 @@ extension CommentViewController: CommentImageCardViewDelegate {
         present(imagePicker, animated: true, completion: nil)
     }
 }
-
+extension CommentViewController: SearchViewControllerDelegate {
+    func didTapResult(_ view: SearchViewController, content: String) {
+        selectionView.selectedStoreTextField.text = content
+    }
+    
+    
+}
 extension CommentViewController: CommentSelectionViewDelegate {
+    func didTapStoreSelection(_ view: CommentSelectionView) {
+        let controller = SearchViewController()
+        controller.storeData = stores
+        controller.delegate = self
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func didGetSelectStore(_: CommentSelectionView, storeID: String) {
         commentData.storeID = storeID
     }

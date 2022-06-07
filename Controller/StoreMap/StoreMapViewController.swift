@@ -550,6 +550,7 @@ extension StoreMapViewController: UISearchBarDelegate {
     func searchBar(_: UISearchBar, textDidChange searchText: String) {
         configStoreData(srarchText: searchText)
     }
+    
 }
 
 // MARK: - Call Model
