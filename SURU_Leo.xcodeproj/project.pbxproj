@@ -67,7 +67,7 @@
 		B87D72672826483100289283 /* BadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87D72652826483100289283 /* BadgeCell.xib */; };
 		B87D726928265E1200289283 /* BadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D726828265E1200289283 /* BadgeViewController.swift */; };
 		B87D726C28266C2900289283 /* CollectionViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D726B28266C2900289283 /* CollectionViewBackground.swift */; };
-		B87FCB36284DDF4900DECA59 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB35284DDF4900DECA59 /* SearchController.swift */; };
+		B87FCB36284DDF4900DECA59 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB35284DDF4900DECA59 /* SearchViewController.swift */; };
 		B87FCB3A284DE21400DECA59 /* ResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB38284DE21400DECA59 /* ResultsCell.swift */; };
 		B87FCB3B284DE21400DECA59 /* ResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87FCB39284DE21400DECA59 /* ResultsCell.xib */; };
 		B87FCB3E284DFA2B00DECA59 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB3D284DFA2B00DECA59 /* CoreLocationManager.swift */; };
@@ -139,6 +139,9 @@
 		B8F92C882830ED060002B252 /* ProfileCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F92C862830ED060002B252 /* ProfileCommentCell.swift */; };
 		B8F92C892830ED060002B252 /* ProfileCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F92C872830ED060002B252 /* ProfileCommentCell.xib */; };
 		B8F9B44C284F312D00720C62 /* CommentSeletionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9B44B284F312D00720C62 /* CommentSeletionController.swift */; };
+		B8F9B44E284F4AB900720C62 /* SeletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9B44D284F4AB900720C62 /* SeletionView.swift */; };
+		B8F9B4512850563D00720C62 /* MealResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9B44F2850563D00720C62 /* MealResultsCell.swift */; };
+		B8F9B4522850563D00720C62 /* MealResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F9B4502850563D00720C62 /* MealResultsCell.xib */; };
 		B8FF1BF228375D4800A94807 /* SURU_LeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FF1BF128375D4800A94807 /* SURU_LeoTests.swift */; };
 		FF78EFB0E0E63BE37FB6C685 /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C933656BC4FDA9F1022B21CD /* Pods_SURU_Leo.framework */; };
 /* End PBXBuildFile section */
@@ -220,7 +223,7 @@
 		B87D72652826483100289283 /* BadgeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeCell.xib; sourceTree = "<group>"; };
 		B87D726828265E1200289283 /* BadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewController.swift; sourceTree = "<group>"; };
 		B87D726B28266C2900289283 /* CollectionViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBackground.swift; sourceTree = "<group>"; };
-		B87FCB35284DDF4900DECA59 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		B87FCB35284DDF4900DECA59 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B87FCB38284DE21400DECA59 /* ResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCell.swift; sourceTree = "<group>"; };
 		B87FCB39284DE21400DECA59 /* ResultsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsCell.xib; sourceTree = "<group>"; };
 		B87FCB3D284DFA2B00DECA59 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
@@ -292,6 +295,9 @@
 		B8F92C862830ED060002B252 /* ProfileCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentCell.swift; sourceTree = "<group>"; };
 		B8F92C872830ED060002B252 /* ProfileCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCell.xib; sourceTree = "<group>"; };
 		B8F9B44B284F312D00720C62 /* CommentSeletionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSeletionController.swift; sourceTree = "<group>"; };
+		B8F9B44D284F4AB900720C62 /* SeletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeletionView.swift; sourceTree = "<group>"; };
+		B8F9B44F2850563D00720C62 /* MealResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealResultsCell.swift; sourceTree = "<group>"; };
+		B8F9B4502850563D00720C62 /* MealResultsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealResultsCell.xib; sourceTree = "<group>"; };
 		B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SURU_Leo.entitlements; sourceTree = "<group>"; };
 		B8FF1BEF28375D4800A94807 /* SURU_LeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SURU_LeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8FF1BF128375D4800A94807 /* SURU_LeoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SURU_LeoTests.swift; sourceTree = "<group>"; };
@@ -541,6 +547,8 @@
 			children = (
 				B87FCB38284DE21400DECA59 /* ResultsCell.swift */,
 				B87FCB39284DE21400DECA59 /* ResultsCell.xib */,
+				B8F9B44F2850563D00720C62 /* MealResultsCell.swift */,
+				B8F9B4502850563D00720C62 /* MealResultsCell.xib */,
 			);
 			path = SearchController;
 			sourceTree = "<group>";
@@ -585,7 +593,8 @@
 			children = (
 				B87BF623280C61E100FE885C /* CommentViewController.swift */,
 				B8F9B44B284F312D00720C62 /* CommentSeletionController.swift */,
-				B87FCB35284DDF4900DECA59 /* SearchController.swift */,
+				B8F9B44D284F4AB900720C62 /* SeletionView.swift */,
+				B87FCB35284DDF4900DECA59 /* SearchViewController.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -999,6 +1008,7 @@
 				B8DBDD4E28246A57008DC615 /* ProfileCommentsCell.xib in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
 				B83B194A28284CB600686D16 /* StoreCardsCell.xib in Resources */,
+				B8F9B4522850563D00720C62 /* MealResultsCell.xib in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
 				B893379228190F08000C75C3 /* ProfileView.xib in Resources */,
 				B87FCB3B284DE21400DECA59 /* ResultsCell.xib in Resources */,
@@ -1184,6 +1194,7 @@
 				B8F92C842830CE550002B252 /* ProfileBioCell.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
 				B8F35184281794D9002E2A3C /* UserRequestProvider.swift in Sources */,
+				B8F9B44E284F4AB900720C62 /* SeletionView.swift in Sources */,
 				B8BBBE7C281D328B001782F5 /* WaterfallViewController.swift in Sources */,
 				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
 				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
@@ -1230,6 +1241,7 @@
 				B8D0671B282A74EC00BF74D2 /* StoreTopView.swift in Sources */,
 				B814DF312810741900176C13 /* ref.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
+				B8F9B4512850563D00720C62 /* MealResultsCell.swift in Sources */,
 				B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */,
 				B87D7263282560A400289283 /* Sequence+.swift in Sources */,
 				B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */,
@@ -1253,7 +1265,7 @@
 				B8F92C7F2830C41D0002B252 /* ProfileHeaderCell.swift in Sources */,
 				B87FCB3A284DE21400DECA59 /* ResultsCell.swift in Sources */,
 				B8A00346280A97A100A64750 /* UIStoryboard+.swift in Sources */,
-				B87FCB36284DDF4900DECA59 /* SearchController.swift in Sources */,
+				B87FCB36284DDF4900DECA59 /* SearchViewController.swift in Sources */,
 				B8F3517E2815E8EE002E2A3C /* CommentTableViewCell.swift in Sources */,
 				B8EC700E2805468400DA8B78 /* UIColor+.swift in Sources */,
 				B8659C442806BB5B006C85F3 /* Date+.swift in Sources */,

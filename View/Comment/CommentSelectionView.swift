@@ -30,21 +30,14 @@ protocol CommentSelectionViewDelegate: AnyObject {
     func didTapAddoneMore(_ view: CommentSelectionView)
 
     func didTapGoAllPage(_ view: CommentSelectionView)
+    
+    func didTapImageView(_ view: CommentImageCardView)
+
+    func didFinishPickImage(_ view: CommentImageCardView, imagePicker: UIImagePickerController)
 }
 
 // 素材名稱
-enum SelectionButton: String {
-    case addPicture = "addMedia"
-    case selectNoodle = "noodle"
-    case selectSoup = "water"
-    case selectHappy = "thumb"
-    case writeComment
-    case notWriteComment = "notwriteComment"
-    case saveCommentToDraft = "draftmark"
-    case downloadPicture = "download"
-    case backToCommentPage = "back"
-    case addAnotherOne = "goPage"
-}
+
 
 class CommentSelectionView: UIView {
     weak var delegate: CommentSelectionViewDelegate?
@@ -66,8 +59,6 @@ class CommentSelectionView: UIView {
 
     var selectedStoreTextField = UITextField()
     var selectedMealTextField = UITextField()
-    var storePickerView = UIPickerView()
-    var mealPickerView = UIPickerView()
 
     // MARK: - Value按鈕
 
@@ -78,7 +69,6 @@ class CommentSelectionView: UIView {
     // MARK: - 評論按鈕
 
     let writeCommentButton = UIButton()
-    let notWriteCommentButton = UIButton()
     let stackView = UIStackView()
     //    let saveDraftButton = UIButton()
 
@@ -134,7 +124,7 @@ class CommentSelectionView: UIView {
         stackView.addArrangedSubview(selectNoodelValueButton)
         stackView.addArrangedSubview(selectSouplValueButton)
         stackView.addArrangedSubview(selectHappyValueButton)
-        stackView.addArrangedSubview(notWriteCommentButton)
+        stackView.addArrangedSubview(writeCommentButton)
 
         selectNoodelValueButton.translatesAutoresizingMaskIntoConstraints = false
         selectNoodelValueButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
@@ -166,15 +156,15 @@ class CommentSelectionView: UIView {
         selectHappyValueButton.tintColor = .white
         selectHappyValueButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
 
-        notWriteCommentButton.translatesAutoresizingMaskIntoConstraints = false
-        notWriteCommentButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        notWriteCommentButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        notWriteCommentButton.layer.cornerRadius = 15
+        writeCommentButton.translatesAutoresizingMaskIntoConstraints = false
+        writeCommentButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        writeCommentButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        writeCommentButton.layer.cornerRadius = 15
         notWriteCommentButton.setImage(UIImage(named: SelectionButton.writeComment.rawValue), for: .normal)
-        notWriteCommentButton.addTarget(self, action: #selector(notWriteComment), for: .touchUpInside)
-        notWriteCommentButton.backgroundColor = .black.withAlphaComponent(0.4)
-        notWriteCommentButton.tintColor = .white
-        notWriteCommentButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        writeCommentButton.addTarget(self, action: #selector(notWriteComment), for: .touchUpInside)
+        writeCommentButton.backgroundColor = .black.withAlphaComponent(0.4)
+        writeCommentButton.tintColor = .white
+        writeCommentButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
     }
 
     func initValueView(on view: UIView, value: Double) {

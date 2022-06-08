@@ -94,7 +94,17 @@ class CommentSeletionController: UIViewController {
 
 }
 extension CommentSeletionController: SearchViewControllerDelegate {
-    func didTapResult(_ view: SearchViewController, content: String) {
+    func didSelectedStore(_ view: SearchViewController, content: String) {
         selectionView.selectedStoreTextField.text = content
+    }
+}
+extension CommentSeletionController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        commentImageView?.image = image
+        delegate?.didFinishPickImage(self, imagePicker: picker)
     }
 }
