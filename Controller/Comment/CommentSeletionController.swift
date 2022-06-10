@@ -9,7 +9,7 @@ import UIKit
 
 class CommentSeletionController: UIViewController {
     
-    var selectionView =  SeletionView()
+    var selectionView = SeletionView(frame: .zero)
     
     var mainImage: UIImage!
     var comment: Comment!
@@ -54,7 +54,7 @@ class CommentSeletionController: UIViewController {
     }
     func configSeletionView() {
         view.stickSubView(selectionView)
-        selectionView.configView()
+        selectionView.configView(image: mainImage)
         selectionView.delegate = self
     }
     func initSecrchController(storeID: String? = nil) {
@@ -62,6 +62,7 @@ class CommentSeletionController: UIViewController {
         controller.storeData = stores
         controller.delegate = self
         if let storeID = storeID {
+            controller.mealData = stores.first(where: { $0.storeID == storeID })?.meals
             controller.searchPlaceholder = "搜尋品項"
             controller.isMealSelection = true
             controller.selectStoreID = storeID
@@ -147,8 +148,9 @@ extension CommentSeletionController: SearchViewControllerDelegate {
         comment.meal = meal
     }
     
-    func didSelectedStore(_ view: SearchViewController, storeID content: String) {
+    func didSelectedStore(_ view: SearchViewController, storeID content: String, name: String) {
         selectionView.selectedStoreID = content
+        selectionView.selectedStoreName = name
         if comment.storeID != content {
             comment.meal = ""
         }

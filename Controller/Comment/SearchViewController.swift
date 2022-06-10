@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 protocol SearchViewControllerDelegate: AnyObject {
-    func didSelectedStore(_ view: SearchViewController, storeID: String)
+    func didSelectedStore(_ view: SearchViewController, storeID: String, name: String)
     func didSelectedMeal(_ view: SearchViewController, meal: String)
 }
 
@@ -33,20 +33,14 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSearchBar()
-        setupTableView()
-        configStatus()
+        
         if !isMealSelection {
             configDistance()
-        } else {
-            configStatus()
         }
+        setupSearchBar()
+        setupTableView()
     }
-    func configStatus() {
-        if let store = storeData.first(where: { $0.storeID == selectStoreID }) {
-            mealData = store.meals
-        }
-    }
+    
     private func configDistance() {
         if let localtion = CoreLocationManager.shared.currentLocation {
             if isGotLocaltion {
@@ -170,9 +164,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isMealSelection {
             if isSearchResults {
-                self.delegate?.didSelectedStore(self, storeID: filteredStoreData[indexPath.row].name)
+                self.delegate?.didSelectedStore(self, storeID: filteredStoreData[indexPath.row].storeID, name: filteredStoreData[indexPath.row].name)
             } else {
-                self.delegate?.didSelectedStore(self, storeID: storeData[indexPath.row].name)
+                self.delegate?.didSelectedStore(self, storeID: storeData[indexPath.row].storeID, name: storeData[indexPath.row].name)
             }
         } else {
             if isSearchResults {

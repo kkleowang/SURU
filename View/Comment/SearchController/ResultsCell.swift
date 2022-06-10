@@ -16,7 +16,8 @@ class ResultsCell: UITableViewCell {
     @IBOutlet weak var storeDistanceLabel: UILabel!
     
     func layoutCell(store: Store) {
-        storeImage.cornerRadii(radii: 10)
+        storeImage.addCircle(color: UIColor.B1?.cgColor ?? UIColor.black.cgColor)
+        storeImage.loadImage(store.mainImage)
         storeNameLabel.text = store.name
         storeAddressLabel.text = store.address
         if let localtion = CoreLocationManager.shared.currentLocation {

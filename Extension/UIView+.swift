@@ -30,13 +30,14 @@ extension UIView {
         layer.cornerRadius = radii
     }
 
-    func makeShadow(shadowOpacity: Float? = 0.4, shadowRadius: CGFloat? = 15, color: CGColor? = UIColor.black.cgColor) {
+    func makeShadow(shadowOpacity: Float? = 0.4, shadowRadius: CGFloat? = 5, color: CGColor? = UIColor.black.cgColor, offset: CGSize = .zero) {
         guard let shadowRadius = shadowRadius, let shadowOpacity = shadowOpacity else {
             return
         }
+        layer.masksToBounds = false
         layer.shadowColor = color
         layer.shadowOpacity = shadowOpacity
-        layer.shadowOffset = .zero
+        layer.shadowOffset = offset
         layer.shadowRadius = shadowRadius
         layer.rasterizationScale = UIScreen.main.scale
     }
