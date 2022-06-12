@@ -8,26 +8,21 @@
 import UIKit
 
 class CommentSeletionController: UIViewController {
-    
-    var selectionView = SeletionView(frame: .zero)
-    
+    lazy var selectionView = SeletionView(frame: .zero, topBarHeight: self.topbarHeight)
     var mainImage: UIImage!
     var comment: Comment!
     var stores: [Store]!
     var draftData: CommentDraft!
     var isDraft = false
-    // 上傳前的照片
     var imageDataHolder: Data!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .B1
-        
+        configSeletionView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        configSeletionView()
     }
     init(userID: String, draft: CommentDraft, storeData: [Store]) {
         let imageData = draft.image ?? Data()
@@ -37,7 +32,6 @@ class CommentSeletionController: UIViewController {
         comment.userID = userID
         self.stores = storeData
         self.draftData = draft
-        //        self.comment = comment
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -71,57 +65,53 @@ class CommentSeletionController: UIViewController {
         }
         navigationController?.pushViewController(controller, animated: true)
     }
-    func publishComment() {
-        CommentRequestProvider.shared.publishComment(comment: &comment) { result in
-            switch result {
-            case let .success(message):
-                print("上傳評論成功", message)
-                LKProgressHUD.dismiss()
-                LKProgressHUD.showSuccess(text: "上傳評論成功")
-                //                self.sendButton.removeFromSuperview()
-                //                self.fetchCommentOfUser {
-                //                    self.setupStartingView()
-                //                    self.commentData = self.originData
-                //                }
-            case let .failure(error):
-                print("上傳評論失敗", error)
-            }
-        }
-    }
+    
     
     func setupDraggingView(_ type: SelectionType) {
         let controller = DragingValueViewController()
-                controller.liquilBarview.delegate = self
-                controller.delegate = self
+        controller.delegate = self
         addChild(controller)
         view.addSubview(controller.view)
         controller.view.backgroundColor = UIColor.B5
         controller.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
         controller.view.corner(byRoundingCorners: [UIRectCorner.topRight, UIRectCorner.bottomRight], radii: 30)
         controller.setupLayout(type)
+        
         UIView.animate(withDuration: 0.5) {
+            self.navigationController?.navigationBar.isHidden = true
             self.tabBarController?.tabBar.isHidden = true
             controller.view.frame = CGRect(x: 0, y: 0, width: 300, height: UIScreen.main.bounds.height)
         }
     }
     
-    func preSentWriteCommentView() {
-        let controller = UIViewController()
-        let writeCommentView: WriteCommentView = UIView.fromNib()
-        writeCommentView.delegate = self
-        controller.view = writeCommentView
-        let name = stores.first { $0.storeID == comment.storeID }?.name ?? ""
-        writeCommentView.layoutView(comment: comment, storeName: name)
+    func presentWriteCommentView() {
+        if commentIsComplete() {
+            let controller = UIViewController()
+            let writeCommentView: WriteCommentView = UIView.fromNib()
+            writeCommentView.delegate = self
+            controller.view = writeCommentView
+            let name = stores.first { $0.storeID == comment.storeID }?.name ?? ""
+            writeCommentView.layoutView(comment: comment, storeName: name)
+            present(controller, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "提示", message: "你還沒有完成評論喔！", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "好", style: .default)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
         
-        present(controller, animated: true, completion: nil)
+    }
+    func commentIsComplete() -> Bool {
+        if !comment.storeID.isEmpty && !comment.meal.isEmpty {
+            return true
+        }
+        return false
     }
 }
 extension CommentSeletionController: SelectionViewDelegate {
     func didTapImageView(_ view: SeletionView, imagePicker: UIImagePickerController) {
         present(imagePicker, animated: true)
-        
     }
-    
     func didFinishPickImage(_ view: SeletionView, image: UIImage, imagePicker: UIImagePickerController) {
         imagePicker.dismiss(animated: true, completion: nil)
     }
@@ -139,10 +129,8 @@ extension CommentSeletionController: SelectionViewDelegate {
     }
     
     func didTapWriteComment(_ view: SeletionView) {
-        preSentWriteCommentView()
+        presentWriteCommentView()
     }
-    
-    
 }
 extension CommentSeletionController: SearchViewControllerDelegate {
     func didSelectedMeal(_ view: SearchViewController, meal: String) {
@@ -155,18 +143,74 @@ extension CommentSeletionController: SearchViewControllerDelegate {
         selectionView.selectedStoreName = name
         if comment.storeID != content {
             comment.meal = ""
+            selectionView.selectedMealTextField.text = ""
         }
         comment.storeID = content
     }
 }
 extension CommentSeletionController: WrireCommentViewControllerDelegate {
-    func didTapSendComment(_ view: WriteCommentView, text: String, viewController: UIViewController) {
-        viewController.dismiss(animated: true)
-        
+    func didTapSendComment(_ viewController: UIViewController, _ view: WriteCommentView, text: String) {
+        comment.contenText = text
+        CommentRequestProvider.shared.publishComment(comment: &comment) { result in
+            switch result {
+            case let .success(message):
+                print("上傳評論成功", message)
+                LKProgressHUD.dismiss()
+                LKProgressHUD.showSuccess(text: "上傳評論成功")
+                viewController.dismiss(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
+            case let .failure(error):
+                LKProgressHUD.dismiss()
+                LKProgressHUD.showSuccess(text: "再試一次")
+                print("上傳評論失敗", error)
+            }
+        }
     }
     
-    func didTapSaveDraft(_ view: WriteCommentView, text: String, viewController: UIViewController) {
-        viewController.dismiss(animated: true)
-        
+    func didTapSaveDraft(_ viewController: UIViewController, _ view: WriteCommentView, text: String) {
+        comment.contenText = text
+        let image = imageDataHolder ?? Data()
+        LKProgressHUD.show()
+        StorageManager.shared.addDraftComment(comment: comment, image: image) { result in
+            switch result {
+            case .success:
+                LKProgressHUD.showSuccess(text: "儲存草稿成功")
+                self.navigationController?.popToRootViewController(animated: true)
+            case .failure:
+                LKProgressHUD.showFailure(text: "儲存失敗")
+            }
+        }
+    }
+}
+
+
+extension CommentSeletionController: CommentDraggingViewDelegate {
+    func didTapSendValue(_ viewController: DragingValueViewController, value: Double, type: SelectionType) {
+        setValueToComment(type: type, value: value)
+        UIView.animate(withDuration: 0.5) {
+            viewController.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
+            self.navigationController?.navigationBar.isHidden = false
+            self.tabBarController?.tabBar.isHidden = false
+        }
+        viewController.removeFromParent()
+    }
+    func setValueToComment(type: SelectionType, value: Double) {
+        switch type {
+        case .noodle:
+            comment.contentValue.noodle = value
+            let button = selectionView.selectNoodelValueButton
+            button.initValueSubView(value: value, color: UIColor.main1)
+        case .soup:
+            comment.contentValue.soup = value
+            let button = selectionView.selectSouplValueButton
+            button.initValueSubView(value: value, color: UIColor.main2)
+        case .happy:
+            comment.contentValue.happiness = value
+            let button = selectionView.selectOverAllValueButton
+            button.initValueSubView(value: value, color: UIColor.main3)
+        }
+        if !comment.contentValue.happiness.isZero && !comment.contentValue.soup.isZero && !comment.contentValue.noodle.isZero {
+            selectionView.showCommentButton()
+        }
     }
 }

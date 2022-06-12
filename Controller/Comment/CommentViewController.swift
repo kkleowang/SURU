@@ -79,10 +79,6 @@ class CommentViewController: UIViewController {
         startingView.delegate = self
         startingView.layoutStartingView()
     }
-
-    
-
-    
     func initSelection(image: UIImage) {
         let controller = CommentSeletionController(userID: currentUserID, image: image, storeData: stores)
         navigationController?.pushViewController(controller, animated: true)
@@ -123,7 +119,6 @@ extension CommentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         initSelectionByDraft(draft: commentDrafts[indexPath.row])
     }
-    
 }
 extension CommentViewController: CommentStartingViewDelegate {
     func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage) {
@@ -137,106 +132,3 @@ extension CommentViewController: CommentStartingViewDelegate {
         }
     }
 }
-//
-//extension CommentViewController {
-//
-//    func preSentWriteCommentView() {
-//        let controller = UIViewController()
-//        let writeCommentView: WriteCommentView = UIView.fromNib()
-//        writeCommentView.delegate = self
-//        controller.view.stickSubView(writeCommentView)
-//        let name = stores.first { $0.storeID == commentData.storeID }?.name ?? ""
-//        writeCommentView.layoutView(comment: commentData, name: name)
-//        present(controller, animated: true, completion: nil)
-//    }
-//
-//    @objc func sendComment() {
-//        guard let image = imageDataHolder else { return }
-//        LKProgressHUD.show()
-//        let fileName = "\(commentData.userID)_\(Date())"
-//        FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
-//            switch result {
-//            case let .success(url):
-//                print("上傳圖片成功", url.description)
-//                self.commentData.mainImage = url.description
-//
-//                self.publishComment()
-//            case let .failure(error):
-//                print("上傳圖片失敗", error)
-//            }
-//        }
-//    }
-//
-//    func initValueView(on view: UIView, value: Double, color: CGColor) {
-//        let roundView = UIView(
-//            frame: CGRect(
-//                x: view.bounds.origin.x,
-//                y: view.bounds.origin.y,
-//                width: view.bounds.size.width - 4,
-//                height: view.bounds.size.height - 4
-//            )
-//        )
-//        roundView.backgroundColor = .B5
-//        roundView.layer.cornerRadius = roundView.frame.size.width / 2
-//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: roundView.bounds.width, height: roundView.bounds.height))
-//        label.center = CGPoint(x: roundView.center.x, y: roundView.center.y)
-//        label.textAlignment = .center
-//        label.text = "\(value)"
-//        label.font = .boldSystemFont(ofSize: 16)
-//        roundView.addSubview(label)
-//        let circlePath = UIBezierPath(
-//            arcCenter: CGPoint(x: roundView.frame.size.width / 2, y: roundView.frame.size.height / 2),
-//            radius: roundView.frame.size.width / 2,
-//            startAngle: CGFloat(-0.5 * .pi),
-//            endAngle: CGFloat(1.5 * .pi),
-//            clockwise: true
-//        )
-//        let circleShape = CAShapeLayer()
-//        circleShape.path = circlePath.cgPath
-//        circleShape.strokeColor = color
-//        circleShape.fillColor = UIColor.clear.cgColor
-//        circleShape.lineWidth = 4
-//        // set start and end values
-//        circleShape.strokeStart = 0.0
-//        circleShape.strokeEnd = value * 0.1
-//        roundView.layer.addSublayer(circleShape)
-//        view.addSubview(roundView)
-//        view.backgroundColor = .B6
-//    }
-//}
-//
-//extension CommentViewController: WrireCommentViewControllerDelegate {
-//    func didTapSaveDraft(_: WriteCommentView, text: String) {
-//        commentData.contenText = text
-//        let image = imageDataHolder ?? Data()
-//        StorageManager.shared.addDraftComment(comment: commentData, image: image) { result in
-//            switch result {
-//            case let .success(data):
-//                LKProgressHUD.showSuccess(text: "儲存草稿成功")
-//                self.setupStartingView()
-//                self.commentData = self.originData
-//                print("Coredata")
-//            case let .failure(error):
-//                LKProgressHUD.showFailure(text: "儲存草稿失敗")
-//                print(error)
-//            }
-//        }
-//    }
-//
-//    func didTapSendComment(_: WriteCommentView, text: String) {
-//        commentData.contenText = text
-//        LKProgressHUD.show()
-//        guard let image = imageDataHolder else { return }
-//        let fileName = "\(commentData.userID)_\(Date())"
-//        FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
-//            switch result {
-//            case let .success(url):
-//                print("上傳圖片成功", url.description)
-//                self.commentData.mainImage = url.description
-//                self.publishComment()
-//            case let .failure(error):
-//                print("上傳圖片失敗", error)
-//            }
-//        }
-//    }
-//}

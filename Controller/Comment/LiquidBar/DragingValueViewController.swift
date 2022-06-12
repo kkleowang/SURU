@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CommentDraggingViewDelegate: AnyObject {
-    func didTapSendValue(_ viewController: DragingValueViewController, value: Double)
+    func didTapSendValue(_ viewController: DragingValueViewController, value: Double, type: SelectionType)
 }
 
 enum SelectionType: String {
@@ -100,54 +100,61 @@ class DragingValueViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSwipeGesture()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
     }
-
+    func setSwipeGesture() {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        swipe.direction = .left
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(swipe)
+    }
+    @objc func swipeLeft() {
+        self.delegate?.didTapSendValue(self, value: selectValue, type: selectionType)
+    }
     func setLiquidView() {
         addChild(liquilBarview)
         view.addSubview(liquilBarview.view)
         liquilBarview.setLottieView(selectionType)
         liquilBarview.view.translatesAutoresizingMaskIntoConstraints = false
         liquilBarview.view.layer.cornerRadius = 40
-        liquilBarview.valueDelegate = self
+        liquilBarview.delegate = self
         liquilBarview.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIScreen.height / 10).isActive = true
         liquilBarview.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
         liquilBarview.view.widthAnchor.constraint(equalToConstant: 80).isActive = true
         liquilBarview.view.heightAnchor.constraint(equalToConstant: 480).isActive = true
         liquilBarview.view.backgroundColor = UIColor.white
     }
-
+   
     func setBackButton() {
-        let backButton = UIButton()
-        view.addSubview(backButton)
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
-        backButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        backButton.layer.cornerRadius = 30
+        let sendButton = UIButton()
+        view.addSubview(sendButton)
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80).isActive = true
+        sendButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        sendButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        sendButton.cornerRadii(radii: 10)
 
-        backButton.setImage(UIImage(named: "plus"), for: .normal)
+//        sendButton.setImage(UIImage(named: "plus"), for: .normal)
+        sendButton.setTitle("送出評分", for: .normal)
+        sendButton.backgroundColor = .B1
+        sendButton.tintColor = .white
+        sendButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        sendButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
 
-        backButton.backgroundColor = .B6
-        backButton.tintColor = .white
-        backButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-
-        backButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
+        sendButton.addTarget(self, action: #selector(tapSend), for: .touchUpInside)
     }
 
-    @objc func dismissSelf() {
-        
-        delegate?.didTapSendValue(self, value: selectValue)
+    @objc func tapSend() {
+        self.delegate?.didTapSendValue(self, value: selectValue, type: selectionType)
     }
 }
 
-extension DragingValueViewController: LiquidBarViewGotValue {
-    func didChangeValue(view _: LiquidBarViewController, value: Double) {
+extension DragingValueViewController: LiquidBarViewControllerDelegate {
+    func didGetSelectionValue(_ viewController: LiquidBarViewController, value: Double) {
         selectValue = value
     }
 }

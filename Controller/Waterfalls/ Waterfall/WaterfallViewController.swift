@@ -33,7 +33,7 @@ class WaterfallViewController: UIViewController {
         super.viewDidLoad()
         addlistener()
         fetchAllData {
-            self.configData {
+            self.configCommentsData {
                 self.setupCollectionView()
                 self.collectionView.reloadData()
             }
@@ -43,49 +43,31 @@ class WaterfallViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchCommentData {
-            self.configData {
+            self.configCommentsData {
                 self.collectionView.reloadData()
             }
         }
     }
-
-    private func configData(completion: @escaping () -> Void) {
+    
+    private func configCommentsData(completion: @escaping () -> Void) {
         guard let user = currentAccount, let blockList = user.blockUserList, let pageStatus = pageStatus else { return }
         switch pageStatus {
         case .discovery:
-            filteredCommentData = commentData.filter { comment in
-                if !blockList.contains(comment.userID) {
-                    return true
-                } else {
-                    return false
-                }
-            }
+            filteredCommentData = commentData.filter { !blockList.contains($0.userID) }
         case .follow:
-            filteredCommentData = commentData.filter { comment in
-                if !blockList.contains(comment.userID), user.followedUser.contains(comment.userID) {
-                    return true
-                } else {
-                    return false
-                }
-            }
+            filteredCommentData = commentData.filter { !blockList.contains($0.userID) && user.followedUser.contains($0.userID) }
         case .collect:
-            filteredCommentData = commentData.filter { comment in
-                if !blockList.contains(comment.userID), user.collectedStore.contains(comment.storeID) {
-                    return true
-                } else {
-                    return false
-                }
-            }
+            filteredCommentData = commentData.filter { !blockList.contains($0.userID) && user.collectedStore.contains($0.storeID) }
         }
         completion()
     }
-
+    
     func updataStore() {
         StoreRequestProvider.shared.fetchStores { result in
             switch result {
             case let .success(data):
                 self.storeData = data
-                self.configData {
+                self.configCommentsData {
                     self.collectionView.reloadData()
                 }
             case let .failure(error):

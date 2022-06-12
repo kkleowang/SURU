@@ -37,7 +37,7 @@ var defultComment = Comment(
     userID: "",
     storeID: "",
     meal: "",
-    contentValue: CommentContent(happiness: 5.0, noodle: 5.0, soup: 5.0),
+    contentValue: CommentContent(happiness: 0.0, noodle: 0.0, soup: 0.0),
     contenText: "",
     mainImage: ""
 )

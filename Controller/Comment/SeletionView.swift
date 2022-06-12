@@ -9,17 +9,10 @@ import UIKit
 
 enum SelectionButton: String {
     case addPicture = "addMedia"
-    
     case selectNoodle = "noodle"
     case selectSoup = "water"
     case selectHappy = "thumb"
-    
-    case notWriteComment = "notwriteComment"
-    
-    case saveCommentToDraft = "draftmark"
-    case downloadPicture = "download"
-    case backToCommentPage = "back"
-    case addAnotherOne = "goPage"
+    case writeComment = "writeComment"
 }
 
 protocol SelectionViewDelegate: AnyObject {
@@ -30,7 +23,7 @@ protocol SelectionViewDelegate: AnyObject {
     func selectMeal(_ view: SeletionView, textField: UITextField, storeID: String)
     
     func didTapSelectValue(_ view: SeletionView, type: SelectionType)
-
+    
     func didTapWriteComment(_ view: SeletionView)
 }
 class SeletionView: UIView {
@@ -43,13 +36,13 @@ class SeletionView: UIView {
     var selectedStoreID: String! {
         willSet {
             selectedMealTextField.isHidden = false
-            self.setupButtons()
-            self.setupLabels()
         }
     }
     var selectedMeal: String! {
         willSet {
             selectedMealTextField.text = newValue
+            self.setupButtons()
+            self.setupLabels()
             showOtherSelection()
         }
     }
@@ -79,22 +72,14 @@ class SeletionView: UIView {
         
         backgroundColor = .white
     }
-    override init(frame: CGRect) {
+    init(frame: CGRect, topBarHeight: CGFloat) {
         super.init(frame: frame)
+        self.topBarHeight = topBarHeight
         self.setupImageView()
         self.setupBackgroundView()
         self.setupTextField()
-        
     }
-//    init() {
-//        setupImageView()
-//        setupBackgroundView()
-//        setupTextField()
-//        setupButtons()
-//        setupBackgroundView()
-//    }
-    
-    
+    var topBarHeight: CGFloat!
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -104,7 +89,7 @@ class SeletionView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.widthAnchor.constraint(equalToConstant: UIScreen.width - 32).isActive = true
         imageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
-        imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        imageView.topAnchor.constraint(equalTo: topAnchor, constant: topBarHeight).isActive = true
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
@@ -124,9 +109,8 @@ class SeletionView: UIView {
         selectionBackgroundView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8).isActive = true
         selectionBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         selectionBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
-        selectionBackgroundView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
+        selectionBackgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -UIDevice.current.bottomSafeAreaHeight - 8).isActive = true
         selectionBackgroundView.makeShadow(offset: CGSize(width: 3, height: 3))
-        
     }
     
     func setupTextField() {
@@ -144,8 +128,8 @@ class SeletionView: UIView {
         
         selectedStoreTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         
-//        bringSubviewToFront(selectedStoreTextField)
-
+        //        bringSubviewToFront(selectedStoreTextField)
+        
         selectionBackgroundView.addSubview(selectedMealTextField)
         selectedMealTextField.delegate = self
         
@@ -159,7 +143,7 @@ class SeletionView: UIView {
         selectedMealTextField.isHidden = true
         selectedMealTextField.borderStyle = UITextField.BorderStyle.roundedRect
         selectedMealTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-//        bringSubviewToFront(selectedMealTextField)
+        //        bringSubviewToFront(selectedMealTextField)
     }
     
     func setupButtons() {
@@ -168,7 +152,14 @@ class SeletionView: UIView {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
-        let height = selectionBackgroundView.bounds.height - selectedStoreTextField.bounds.height - selectedMealTextField.bounds.height - 16 - 8 - 24
+        var height: CGFloat {
+            let number = selectionBackgroundView.bounds.height - selectedStoreTextField.bounds.height - selectedMealTextField.bounds.height - 16 - 8 - 24
+            if number > 50 {
+                return 50
+            } else {
+                return number
+            }
+        }
         stackView.heightAnchor.constraint(equalToConstant: height).isActive = true
         stackView.leadingAnchor.constraint(equalTo: selectionBackgroundView.leadingAnchor, constant: 16).isActive = true
         stackView.trailingAnchor.constraint(equalTo: selectionBackgroundView.trailingAnchor, constant: -16).isActive = true
@@ -210,17 +201,14 @@ class SeletionView: UIView {
         writeCommentButton.translatesAutoresizingMaskIntoConstraints = false
         writeCommentButton.heightAnchor.constraint(equalTo: writeCommentButton.widthAnchor, multiplier: 1).isActive = true
         writeCommentButton.layer.cornerRadius = 15
-        writeCommentButton.setImage(UIImage(named: SelectionButton.notWriteComment.rawValue), for: .normal)
+        writeCommentButton.setImage(UIImage(named: SelectionButton.writeComment.rawValue), for: .normal)
         writeCommentButton.addTarget(self, action: #selector(writeComment), for: .touchUpInside)
         writeCommentButton.backgroundColor = .black.withAlphaComponent(0.4)
         writeCommentButton.tintColor = .white
         writeCommentButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         writeCommentButton.isHidden = true
-        
-        
     }
     func setupLabels() {
-        
         selectionBackgroundView.addSubview(noodleLabel)
         noodleLabel.translatesAutoresizingMaskIntoConstraints = false
         noodleLabel.topAnchor.constraint(equalTo: selectNoodelValueButton.bottomAnchor, constant: 4).isActive = true
@@ -250,11 +238,11 @@ class SeletionView: UIView {
         
         selectionBackgroundView.addSubview(writeCommentLabel)
         writeCommentLabel.translatesAutoresizingMaskIntoConstraints = false
-        writeCommentLabel.topAnchor.constraint(equalTo: writeCommentButton.bottomAnchor, constant: 8).isActive = true
-        writeCommentLabel.centerYAnchor.constraint(equalTo: writeCommentButton.centerYAnchor, constant: 0).isActive = true
-        writeCommentLabel.font = .medium(size: 8)
+        writeCommentLabel.topAnchor.constraint(equalTo: writeCommentButton.bottomAnchor, constant: 4).isActive = true
+        writeCommentLabel.centerXAnchor.constraint(equalTo: writeCommentButton.centerXAnchor, constant: 0).isActive = true
+        writeCommentLabel.font = .medium(size: 12)
         writeCommentLabel.tintColor = .B1
-        writeCommentLabel.text = "撰寫評論"
+        writeCommentLabel.text = "完成評論"
         writeCommentLabel.isHidden = true
     }
     func showOtherSelection() {
@@ -264,8 +252,9 @@ class SeletionView: UIView {
         overallLabel.isHidden = false
     }
     func showCommentButton() {
-        stackView.addArrangedSubview(writeCommentButton)
-        UIView.animate(withDuration: 0.7) {
+        writeCommentButton.isHidden = false
+        writeCommentLabel.isHidden = false
+        UIView.animate(withDuration: 0.8) {
             self.layoutIfNeeded()
         }
     }
@@ -283,6 +272,21 @@ class SeletionView: UIView {
             case selectSouplValueButton:
                 return SelectionType.soup
             case selectOverAllValueButton:
+                return SelectionType.happy
+            default:
+                return SelectionType.noodle
+            }
+        }()
+        delegate?.didTapSelectValue(self, type: type)
+    }
+    @objc func selectValueFromView(sender: UIView) {
+        let type: SelectionType = {
+            switch sender.backgroundColor {
+            case UIColor.main1:
+                return SelectionType.noodle
+            case UIColor.main2:
+                return SelectionType.soup
+            case UIColor.main3:
                 return SelectionType.happy
             default:
                 return SelectionType.noodle

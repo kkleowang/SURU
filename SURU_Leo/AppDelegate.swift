@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
         return true
-        
     }
 
     // MARK: UISceneSession Lifecycle

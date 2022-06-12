@@ -45,10 +45,9 @@ class CommentCell: UITableViewCell {
         storeNameLabel.text = store.name
         mealLabel.text = data.meal
         sideDishesLabel.text = data.sideDishes ?? "無"
-        
-        initValueView(on: noodleValueView, value: data.contentValue.noodle, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
-        initValueView(on: soupValueView, value: data.contentValue.soup, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
-        initValueView(on: happyValueView, value: data.contentValue.happiness, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        noodleValueView.initValueCircle(value: data.contentValue.noodle, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        soupValueView.initValueCircle(value: data.contentValue.soup, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        happyValueView.initValueCircle(value: data.contentValue.happiness, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
         
         soupLabel.adjustsFontSizeToFitWidth = true
         noodleLabel.adjustsFontSizeToFitWidth = true
@@ -60,26 +59,5 @@ class CommentCell: UITableViewCell {
         
         oveallLabel.text = "\(data.contentValue.happiness)"
         
-    }
-    
-    private func initValueView(on view: UIView, value: Double, color: CGColor) {
-        let circlePath = UIBezierPath(
-            arcCenter: CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 2),
-            radius: view.frame.size.width / 2,
-            startAngle: CGFloat(-0.5 * .pi),
-            endAngle: CGFloat(1.5 * .pi),
-            clockwise: true
-        )
-        // circle shape
-        let circleShape = CAShapeLayer()
-        circleShape.path = circlePath.cgPath
-        circleShape.strokeColor = color
-        circleShape.fillColor = UIColor.clear.cgColor
-        circleShape.lineWidth = 2
-        // set start and end values
-        circleShape.strokeStart = 0.0
-        circleShape.strokeEnd = value * 0.1
-        // add sublayer
-        view.layer.addSublayer(circleShape)
     }
 }

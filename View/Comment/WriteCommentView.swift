@@ -8,8 +8,8 @@
 import UIKit
 
 protocol WrireCommentViewControllerDelegate: AnyObject {
-    func didTapSendComment(_ view: WriteCommentView, text: String, viewController: UIViewController)
-    func didTapSaveDraft(_ view: WriteCommentView, text: String, viewController: UIViewController)
+    func didTapSendComment(_ viewController: UIViewController, _ view: WriteCommentView, text: String)
+    func didTapSaveDraft(_ viewController: UIViewController,_ view: WriteCommentView, text: String)
 }
 
 class WriteCommentView: UIView {
@@ -24,18 +24,18 @@ class WriteCommentView: UIView {
     @IBOutlet var importTempButton: UIButton!
     @IBOutlet var sendButton: UIButton!
     @IBAction func tapImportTemp(_: Any) {
-        contentTextView.text = "| 店家： \(storename)\n| 時間 ：\(time)\n| 品項 ：\(mealName)\n| 配置 ：\n| 評論：\n"
+        contentTextView.text = "| 店家： \(storename ?? "")\n| 時間 ：\(time ?? "")\n| 品項 ：\(mealName ?? "")\n| 配置 ：\n| 評論：\n"
     }
 
     @IBAction func tapSendComment(_: Any) {
-        if let vc =  topMostController() {
-            delegate?.didTapSendComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"), viewController: vc)
+        if let viewController =  topMostController() {
+            delegate?.didTapSendComment(viewController, self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
         }
     }
 
     @IBAction func tapSaveToDraft(_: Any) {
-        if let vc =  topMostController() {
-        delegate?.didTapSaveDraft(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"), viewController: vc)
+        if let viewController =  topMostController() {
+            delegate?.didTapSaveDraft(viewController, self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
         }
     }
 
@@ -45,7 +45,7 @@ class WriteCommentView: UIView {
         time = configTime()
         
         setTextView(textBox: contentTextView)
-        saveButton.cornerRadii(radii: 10)
+        importTempButton.cornerRadii(radii: 10)
         sendButton.cornerRadii(radii: 10)
         saveButton.cornerRadii(radii: 10)
     }

@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		2B0D5EFDC7390FC86B8251DA /* Pods_SURU_LeoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805F1484C48065EE92619B99 /* Pods_SURU_LeoTests.framework */; };
 		B80096002817FEC800BB05AE /* SignInAndOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */; };
-		B8060383283187AD006619FF /* like.json in Resources */ = {isa = PBXBuildFile; fileRef = B8060382283187AD006619FF /* like.json */; };
-		B8060385283187B2006619FF /* unlike.json in Resources */ = {isa = PBXBuildFile; fileRef = B8060384283187B2006619FF /* unlike.json */; };
-		B814DF312810741900176C13 /* ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814DF302810741900176C13 /* ref.swift */; };
 		B830608828015A9D002558BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608728015A9D002558BE /* AppDelegate.swift */; };
 		B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608928015A9D002558BE /* SceneDelegate.swift */; };
 		B830608F28015A9D002558BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830608D28015A9D002558BE /* Main.storyboard */; };
@@ -162,9 +159,6 @@
 		805F1484C48065EE92619B99 /* Pods_SURU_LeoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_LeoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6881D7865F15F14D2AA4ED3 /* Pods-SURUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURUTests.release.xcconfig"; path = "Target Support Files/Pods-SURUTests/Pods-SURUTests.release.xcconfig"; sourceTree = "<group>"; };
 		B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndOutViewController.swift; sourceTree = "<group>"; };
-		B8060382283187AD006619FF /* like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = like.json; sourceTree = "<group>"; };
-		B8060384283187B2006619FF /* unlike.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unlike.json; sourceTree = "<group>"; };
-		B814DF302810741900176C13 /* ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ref.swift; sourceTree = "<group>"; };
 		B814DF362811271400176C13 /* MapkitTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MapkitTest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B830608428015A9D002558BE /* SURU_Leo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SURU_Leo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830608728015A9D002558BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -519,7 +513,6 @@
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
 			isa = PBXGroup;
 			children = (
-				B814DF302810741900176C13 /* ref.swift */,
 				B814DF362811271400176C13 /* MapkitTest.playground */,
 			);
 			path = unUsedFile;
@@ -595,6 +588,7 @@
 				B8F9B44B284F312D00720C62 /* CommentSeletionController.swift */,
 				B8F9B44D284F4AB900720C62 /* SeletionView.swift */,
 				B87FCB35284DDF4900DECA59 /* SearchViewController.swift */,
+				B83E959D2810479A009DD17F /* LiquidBar */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -641,7 +635,6 @@
 				B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */,
 				B86AB7E728203CFA00154B26 /* WriteCommentView.swift */,
 				B86AB7E928203D0700154B26 /* WriteCommentView.xib */,
-				B83E959D2810479A009DD17F /* LiquidBar */,
 				B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */,
 				B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */,
 			);
@@ -805,8 +798,6 @@
 				B8BC548B2840DF9700FC0DAB /* blue.json */,
 				B8BC548A2840DF9700FC0DAB /* orange.json */,
 				B8BC54892840DF9700FC0DAB /* yellow.json */,
-				B8060382283187AD006619FF /* like.json */,
-				B8060384283187B2006619FF /* unlike.json */,
 			);
 			name = LottieFile;
 			path = ../View/LottieFile;
@@ -992,7 +983,6 @@
 				B8BD5F9E28207F4B00A1C138 /* CommentStoreCell.xib in Resources */,
 				B83B192E2827D98A00686D16 /* StoreLocaltionCell.xib in Resources */,
 				B83B191E2827D91500686D16 /* StoreTitleCell.xib in Resources */,
-				B8060383283187AD006619FF /* like.json in Resources */,
 				B8BC548E2840DF9700FC0DAB /* blue.json in Resources */,
 				B8D0671D282A74FA00BF74D2 /* StoreTopView.xib in Resources */,
 				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
@@ -1027,7 +1017,6 @@
 				B8BC548C2840DF9700FC0DAB /* yellow.json in Resources */,
 				B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */,
 				B87D72672826483100289283 /* BadgeCell.xib in Resources */,
-				B8060385283187B2006619FF /* unlike.json in Resources */,
 				B87D725A2824FC6F00289283 /* BadgeHeaderCell.xib in Resources */,
 				B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */,
 				B8BC548D2840DF9700FC0DAB /* orange.json in Resources */,
@@ -1239,7 +1228,6 @@
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */,
 				B8D0671B282A74EC00BF74D2 /* StoreTopView.swift in Sources */,
-				B814DF312810741900176C13 /* ref.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
 				B8F9B4512850563D00720C62 /* MealResultsCell.swift in Sources */,
 				B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */,
