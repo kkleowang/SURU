@@ -15,7 +15,7 @@ protocol SearchViewControllerDelegate: AnyObject {
 class SearchViewController: UIViewController {
     weak var delegate: SearchViewControllerDelegate?
     private var tableView = UITableView(frame: .zero)
-    private lazy var searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+    private lazy var searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44))
     
     var storeData: [Store] = []
     
@@ -33,7 +33,8 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = .B1
         if !isMealSelection {
             configDistance()
         }
@@ -54,8 +55,8 @@ class SearchViewController: UIViewController {
     private func setupSearchBar() {
         searchBar.placeholder = searchPlaceholder
         searchBar.delegate = self
-        let leftNavBarButton = UIBarButtonItem(customView: searchBar)
-        self.navigationItem.leftBarButtonItem = leftNavBarButton
+        tableView.tableHeaderView = searchBar
+        searchBar.tintColor = .B1
     }
     private func setupTableView() {
         view.stickSubViewSafeArea(tableView)

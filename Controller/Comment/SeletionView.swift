@@ -43,6 +43,8 @@ class SeletionView: UIView {
     var selectedStoreID: String! {
         willSet {
             selectedMealTextField.isHidden = false
+            self.setupButtons()
+            self.setupLabels()
         }
     }
     var selectedMeal: String! {
@@ -82,9 +84,7 @@ class SeletionView: UIView {
         self.setupImageView()
         self.setupBackgroundView()
         self.setupTextField()
-        self.setupButtons()
-        self.setupBackgroundView()
-        self.setupLabels()
+        
     }
 //    init() {
 //        setupImageView()
@@ -139,18 +139,26 @@ class SeletionView: UIView {
         selectedStoreTextField.topAnchor.constraint(equalTo: selectionBackgroundView.topAnchor, constant: 8).isActive = true
         selectedStoreTextField.leadingAnchor.constraint(equalTo: selectionBackgroundView.leadingAnchor, constant: 8).isActive = true
         selectedStoreTextField.font = UIFont.medium(size: 24)
+        
+        selectedStoreTextField.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        selectedStoreTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        
 //        bringSubviewToFront(selectedStoreTextField)
 
         selectionBackgroundView.addSubview(selectedMealTextField)
         selectedMealTextField.delegate = self
+        
         selectedMealTextField.translatesAutoresizingMaskIntoConstraints = false
         selectedMealTextField.backgroundColor = .B6
         selectedMealTextField.text = "點擊選取品項"
         selectedMealTextField.textColor = .B1
-        selectedStoreTextField.font = UIFont.medium(size: 16)
+        selectedStoreTextField.font = UIFont.medium(size: 20)
         selectedMealTextField.topAnchor.constraint(equalTo: selectedStoreTextField.bottomAnchor, constant: 8).isActive = true
         selectedMealTextField.leadingAnchor.constraint(equalTo: selectedStoreTextField.leadingAnchor, constant: 0).isActive = true
         selectedMealTextField.isHidden = true
+        selectedMealTextField.borderStyle = UITextField.BorderStyle.roundedRect
+        selectedMealTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 //        bringSubviewToFront(selectedMealTextField)
     }
     
@@ -160,16 +168,19 @@ class SeletionView: UIView {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
-        stackView.topAnchor.constraint(equalTo: selectedMealTextField.bottomAnchor, constant: 8).isActive = true
+        let height = selectionBackgroundView.bounds.height - selectedStoreTextField.bounds.height - selectedMealTextField.bounds.height - 16 - 8 - 24
+        stackView.heightAnchor.constraint(equalToConstant: height).isActive = true
         stackView.leadingAnchor.constraint(equalTo: selectionBackgroundView.leadingAnchor, constant: 16).isActive = true
         stackView.trailingAnchor.constraint(equalTo: selectionBackgroundView.trailingAnchor, constant: -16).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: selectionBackgroundView.bottomAnchor, constant: -8).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: selectionBackgroundView.bottomAnchor, constant: -24).isActive = true
         stackView.addArrangedSubview(selectNoodelValueButton)
         stackView.addArrangedSubview(selectSouplValueButton)
         stackView.addArrangedSubview(selectOverAllValueButton)
         stackView.addArrangedSubview(writeCommentButton)
-
+        stackView.isHidden = true
+        
         selectNoodelValueButton.translatesAutoresizingMaskIntoConstraints = false
+        
         selectNoodelValueButton.heightAnchor.constraint(equalTo: selectNoodelValueButton.widthAnchor, multiplier: 1).isActive = true
         selectNoodelValueButton.layer.cornerRadius = 15
         selectNoodelValueButton.setImage(UIImage(named: SelectionButton.selectNoodle.rawValue), for: .normal)
@@ -177,7 +188,6 @@ class SeletionView: UIView {
         selectNoodelValueButton.backgroundColor = .black.withAlphaComponent(0.4)
         selectNoodelValueButton.tintColor = .white
         selectNoodelValueButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        selectNoodelValueButton.isHidden = true
         
         selectSouplValueButton.translatesAutoresizingMaskIntoConstraints = false
         selectSouplValueButton.heightAnchor.constraint(equalTo: selectSouplValueButton.widthAnchor, multiplier: 1).isActive = true
@@ -187,7 +197,6 @@ class SeletionView: UIView {
         selectSouplValueButton.backgroundColor = .black.withAlphaComponent(0.4)
         selectSouplValueButton.tintColor = .white
         selectSouplValueButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        selectSouplValueButton.isHidden = true
         
         selectOverAllValueButton.translatesAutoresizingMaskIntoConstraints = false
         selectOverAllValueButton.heightAnchor.constraint(equalTo: selectOverAllValueButton.widthAnchor, multiplier: 1).isActive = true
@@ -197,7 +206,6 @@ class SeletionView: UIView {
         selectOverAllValueButton.backgroundColor = .black.withAlphaComponent(0.4)
         selectOverAllValueButton.tintColor = .white
         selectOverAllValueButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        selectOverAllValueButton.isHidden = true
         
         writeCommentButton.translatesAutoresizingMaskIntoConstraints = false
         writeCommentButton.heightAnchor.constraint(equalTo: writeCommentButton.widthAnchor, multiplier: 1).isActive = true
@@ -207,17 +215,17 @@ class SeletionView: UIView {
         writeCommentButton.backgroundColor = .black.withAlphaComponent(0.4)
         writeCommentButton.tintColor = .white
         writeCommentButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-//        bringSubviewToFront(stackView)
         writeCommentButton.isHidden = true
         
         
     }
     func setupLabels() {
+        
         selectionBackgroundView.addSubview(noodleLabel)
         noodleLabel.translatesAutoresizingMaskIntoConstraints = false
         noodleLabel.topAnchor.constraint(equalTo: selectNoodelValueButton.bottomAnchor, constant: 4).isActive = true
-        noodleLabel.centerYAnchor.constraint(equalTo: selectNoodelValueButton.centerYAnchor, constant: 0).isActive = true
-        noodleLabel.font = .medium(size: 9)
+        noodleLabel.centerXAnchor.constraint(equalTo: selectNoodelValueButton.centerXAnchor, constant: 0).isActive = true
+        noodleLabel.font = .medium(size: 12)
         noodleLabel.tintColor = .B1
         noodleLabel.text = "麵條評分"
         noodleLabel.isHidden = true
@@ -225,8 +233,8 @@ class SeletionView: UIView {
         selectionBackgroundView.addSubview(soupLabel)
         soupLabel.translatesAutoresizingMaskIntoConstraints = false
         soupLabel.topAnchor.constraint(equalTo: selectSouplValueButton.bottomAnchor, constant: 4).isActive = true
-        soupLabel.centerYAnchor.constraint(equalTo: selectSouplValueButton.centerYAnchor, constant: 0).isActive = true
-        soupLabel.font = .medium(size: 9)
+        soupLabel.centerXAnchor.constraint(equalTo: selectSouplValueButton.centerXAnchor, constant: 0).isActive = true
+        soupLabel.font = .medium(size: 12)
         soupLabel.tintColor = .B1
         soupLabel.text = "湯頭評分"
         soupLabel.isHidden = true
@@ -234,8 +242,8 @@ class SeletionView: UIView {
         selectionBackgroundView.addSubview(overallLabel)
         overallLabel.translatesAutoresizingMaskIntoConstraints = false
         overallLabel.topAnchor.constraint(equalTo: selectOverAllValueButton.bottomAnchor, constant: 4).isActive = true
-        overallLabel.centerYAnchor.constraint(equalTo: selectOverAllValueButton.centerYAnchor, constant: 0).isActive = true
-        overallLabel.font = .medium(size: 9)
+        overallLabel.centerXAnchor.constraint(equalTo: selectOverAllValueButton.centerXAnchor, constant: 0).isActive = true
+        overallLabel.font = .medium(size: 12)
         overallLabel.tintColor = .B1
         overallLabel.text = "綜合評分"
         overallLabel.isHidden = true
@@ -244,16 +252,13 @@ class SeletionView: UIView {
         writeCommentLabel.translatesAutoresizingMaskIntoConstraints = false
         writeCommentLabel.topAnchor.constraint(equalTo: writeCommentButton.bottomAnchor, constant: 8).isActive = true
         writeCommentLabel.centerYAnchor.constraint(equalTo: writeCommentButton.centerYAnchor, constant: 0).isActive = true
-        writeCommentLabel.font = .medium(size: 9)
+        writeCommentLabel.font = .medium(size: 8)
         writeCommentLabel.tintColor = .B1
         writeCommentLabel.text = "撰寫評論"
         writeCommentLabel.isHidden = true
     }
     func showOtherSelection() {
-        
-        selectOverAllValueButton.isHidden = false
-        selectSouplValueButton.isHidden = false
-        selectNoodelValueButton.isHidden = false
+        stackView.isHidden = false
         noodleLabel.isHidden = false
         soupLabel.isHidden = false
         overallLabel.isHidden = false

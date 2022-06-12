@@ -21,6 +21,7 @@ class CommentSeletionController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = .B1
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +47,7 @@ class CommentSeletionController: UIViewController {
         self.comment = defultComment
         self.comment.userID = userID
         self.stores = storeData
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -89,8 +91,8 @@ class CommentSeletionController: UIViewController {
     
     func setupDraggingView(_ type: SelectionType) {
         let controller = DragingValueViewController()
-        //        controller.liquilBarview.delegate = self
-        //        controller.delegate = self
+                controller.liquilBarview.delegate = self
+                controller.delegate = self
         addChild(controller)
         view.addSubview(controller.view)
         controller.view.backgroundColor = UIColor.B5

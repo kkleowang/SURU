@@ -34,11 +34,13 @@ extension UIView {
         guard let shadowRadius = shadowRadius, let shadowOpacity = shadowOpacity else {
             return
         }
+//        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
         layer.masksToBounds = false
         layer.shadowColor = color
         layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = offset
         layer.shadowRadius = shadowRadius
+        layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
     }
 

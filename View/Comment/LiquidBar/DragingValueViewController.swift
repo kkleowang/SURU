@@ -8,17 +8,13 @@
 import UIKit
 
 protocol CommentDraggingViewDelegate: AnyObject {
-    func didTapBackButton(vc: DragingValueViewController)
+    func didTapSendValue(_ viewController: DragingValueViewController, value: Double)
 }
 
 enum SelectionType: String {
     case noodle = "麵條喜好度："
     case soup = "湯頭喜好度："
     case happy = "綜合評價："
-}
-
-enum SelectionSubTitle: String {
-    case text = "拖曳後記得按下儲存"
 }
 
 class DragingValueViewController: UIViewController {
@@ -28,6 +24,11 @@ class DragingValueViewController: UIViewController {
     let valueLabel = UILabel()
     let liquilBarview = LiquidBarViewController()
     var selectionType: SelectionType = .noodle
+    var selectValue: Double = 5.0 {
+        didSet {
+            valueLabel.text = String(selectValue)
+        }
+    }
 
     func setupLayout(_ type: SelectionType) {
         selectionType = type
@@ -140,12 +141,13 @@ class DragingValueViewController: UIViewController {
     }
 
     @objc func dismissSelf() {
-        delegate?.didTapBackButton(vc: self)
+        
+        delegate?.didTapSendValue(self, value: selectValue)
     }
 }
 
-extension DragingValueViewController: LiquidBarViewControllerTOValue {
+extension DragingValueViewController: LiquidBarViewGotValue {
     func didChangeValue(view _: LiquidBarViewController, value: Double) {
-        valueLabel.text = String(value)
+        selectValue = value
     }
 }

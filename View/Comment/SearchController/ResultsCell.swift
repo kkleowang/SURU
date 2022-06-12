@@ -20,10 +20,16 @@ class ResultsCell: UITableViewCell {
         storeImage.loadImage(store.mainImage)
         storeNameLabel.text = store.name
         storeAddressLabel.text = store.address
-        if let localtion = CoreLocationManager.shared.currentLocation {
-            let distance = localtion.distance(from: CLLocation(latitude: store.coordinate.lat, longitude: store.coordinate.long))
-            
-        storeDistanceLabel.text = "距離 \(distance) 公里"
+        if let localtion = CoreLocationManager.shared.currentLocation?.coordinate {
+            print(localtion)
+            let postiiton = CLLocation(latitude: localtion.latitude, longitude: localtion.longitude)
+//            let local = CLLocation(latitude: 25.0856314, longitude: 121.5968892)
+            let distance = postiiton.distance(from: CLLocation(latitude: store.coordinate.lat, longitude: store.coordinate.long))
+            let km = ( distance / 1000 ).ceiling(toDecimal: 2)
+            print(localtion, distance, km)
+        storeDistanceLabel.text = "距離 \(km) 公里"
+        } else {
+            storeDistanceLabel.text = ""
         }
     }
 }
