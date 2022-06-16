@@ -54,7 +54,6 @@
 		B86AB7E828203CFA00154B26 /* WriteCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86AB7E728203CFA00154B26 /* WriteCommentView.swift */; };
 		B86AB7EA28203D0700154B26 /* WriteCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B86AB7E928203D0700154B26 /* WriteCommentView.xib */; };
 		B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF623280C61E100FE885C /* CommentViewController.swift */; };
-		B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */; };
 		B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87BF627280CA5A500FE885C /* CommentStartingView.swift */; };
 		B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72552824D52B00289283 /* BadgeDataModel.swift */; };
 		B87D72592824FC6F00289283 /* BadgeHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */; };
@@ -68,8 +67,6 @@
 		B87FCB3A284DE21400DECA59 /* ResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB38284DE21400DECA59 /* ResultsCell.swift */; };
 		B87FCB3B284DE21400DECA59 /* ResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87FCB39284DE21400DECA59 /* ResultsCell.xib */; };
 		B87FCB3E284DFA2B00DECA59 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB3D284DFA2B00DECA59 /* CoreLocationManager.swift */; };
-		B893379228190F08000C75C3 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379128190F08000C75C3 /* ProfileView.xib */; };
-		B89337942819120D000C75C3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89337932819120D000C75C3 /* ProfileView.swift */; };
 		B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379928197F24000C75C3 /* AddInfoView.xib */; };
 		B893379C281983BF000C75C3 /* AddInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893379B281983BF000C75C3 /* AddInfoView.swift */; };
 		B893379F281A1D9A000C75C3 /* JGProgressHUD+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893379E281A1D9A000C75C3 /* JGProgressHUD+.swift */; };
@@ -123,7 +120,6 @@
 		B8EC7012280546D900DA8B78 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC7011280546D900DA8B78 /* UITableView+.swift */; };
 		B8EC70142805471900DA8B78 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70132805471900DA8B78 /* UILabel+.swift */; };
 		B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC70152805B0FD00DA8B78 /* UIFont+.swift */; };
-		B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */; };
 		B8F22DED280CE2500096FB91 /* FirebaseStorageRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */; };
 		B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517728159A55002E2A3C /* StoreFromJson.swift */; };
 		B8F3517E2815E8EE002E2A3C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */; };
@@ -207,7 +203,6 @@
 		B86AB7E728203CFA00154B26 /* WriteCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentView.swift; sourceTree = "<group>"; };
 		B86AB7E928203D0700154B26 /* WriteCommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WriteCommentView.xib; sourceTree = "<group>"; };
 		B87BF623280C61E100FE885C /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
-		B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentImageCardViewDelegate.swift; sourceTree = "<group>"; };
 		B87BF627280CA5A500FE885C /* CommentStartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStartingView.swift; sourceTree = "<group>"; };
 		B87D72552824D52B00289283 /* BadgeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeDataModel.swift; sourceTree = "<group>"; };
 		B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeHeaderCell.swift; sourceTree = "<group>"; };
@@ -221,8 +216,6 @@
 		B87FCB38284DE21400DECA59 /* ResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCell.swift; sourceTree = "<group>"; };
 		B87FCB39284DE21400DECA59 /* ResultsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsCell.xib; sourceTree = "<group>"; };
 		B87FCB3D284DFA2B00DECA59 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
-		B893379128190F08000C75C3 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
-		B89337932819120D000C75C3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B893379928197F24000C75C3 /* AddInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddInfoView.xib; sourceTree = "<group>"; };
 		B893379B281983BF000C75C3 /* AddInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInfoView.swift; sourceTree = "<group>"; };
 		B893379E281A1D9A000C75C3 /* JGProgressHUD+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JGProgressHUD+.swift"; sourceTree = "<group>"; };
@@ -276,7 +269,6 @@
 		B8EC7011280546D900DA8B78 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		B8EC70132805471900DA8B78 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B8EC70152805B0FD00DA8B78 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
-		B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSelectionView.swift; sourceTree = "<group>"; };
 		B8F22DEC280CE2500096FB91 /* FirebaseStorageRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageRequestProvider.swift; sourceTree = "<group>"; };
 		B8F3517728159A55002E2A3C /* StoreFromJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFromJson.swift; sourceTree = "<group>"; };
 		B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -586,7 +578,6 @@
 			children = (
 				B87BF623280C61E100FE885C /* CommentViewController.swift */,
 				B8F9B44B284F312D00720C62 /* CommentSeletionController.swift */,
-				B8F9B44D284F4AB900720C62 /* SeletionView.swift */,
 				B87FCB35284DDF4900DECA59 /* SearchViewController.swift */,
 				B83E959D2810479A009DD17F /* LiquidBar */,
 			);
@@ -617,10 +608,7 @@
 			isa = PBXGroup;
 			children = (
 				B8F92C7D2830C3F80002B252 /* new */,
-				B8F92C7C282FB76F0002B252 /* ProfileViewCell */,
 				B87D726A28266C1300289283 /* CollectionViewBackGround */,
-				B893379128190F08000C75C3 /* ProfileView.xib */,
-				B89337932819120D000C75C3 /* ProfileView.swift */,
 				B8DA6E73282374D300868381 /* EditViewCell */,
 			);
 			path = Profile;
@@ -629,10 +617,9 @@
 		B8A0034E280B042C00A64750 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
+				B8F9B44D284F4AB900720C62 /* SeletionView.swift */,
 				B87FCB37284DE1DC00DECA59 /* SearchController */,
 				B87BF627280CA5A500FE885C /* CommentStartingView.swift */,
-				B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */,
-				B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */,
 				B86AB7E728203CFA00154B26 /* WriteCommentView.swift */,
 				B86AB7E928203D0700154B26 /* WriteCommentView.xib */,
 				B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */,
@@ -721,8 +708,8 @@
 				B8DA6E7E2823B7C700868381 /* EditProfileView.swift */,
 				B87D72582824FC6F00289283 /* BadgeHeaderCell.xib */,
 				B87D72572824FC6F00289283 /* BadgeHeaderCell.swift */,
-				B87D72642826483100289283 /* BadgeCell.swift */,
 				B87D72652826483100289283 /* BadgeCell.xib */,
+				B87D72642826483100289283 /* BadgeCell.swift */,
 			);
 			path = EditViewCell;
 			sourceTree = "<group>";
@@ -851,13 +838,6 @@
 				B8F35183281794D9002E2A3C /* UserRequestProvider.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		B8F92C7C282FB76F0002B252 /* ProfileViewCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ProfileViewCell;
 			sourceTree = "<group>";
 		};
 		B8F92C7D2830C3F80002B252 /* new */ = {
@@ -1000,7 +980,6 @@
 				B83B194A28284CB600686D16 /* StoreCardsCell.xib in Resources */,
 				B8F9B4522850563D00720C62 /* MealResultsCell.xib in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
-				B893379228190F08000C75C3 /* ProfileView.xib in Resources */,
 				B87FCB3B284DE21400DECA59 /* ResultsCell.xib in Resources */,
 				B8BC5482283F7C5900FC0DAB /* StoreMealsCell.xib in Resources */,
 				B8D06723282B534700BF74D2 /* StoreCommentCell.xib in Resources */,
@@ -1203,9 +1182,7 @@
 				B83B19462828353C00686D16 /* FullScreenView.swift in Sources */,
 				B83B19312827D99900686D16 /* StoreOpenTimeCell.swift in Sources */,
 				B899FF23280CF68000BD5715 /* SampleCommentCellTableViewCell.swift in Sources */,
-				B8F22DEB280CBF3F0096FB91 /* CommentSelectionView.swift in Sources */,
 				B83E9596280EB666009DD17F /* AccountDataModel.swift in Sources */,
-				B87BF626280C832300FE885C /* CommentImageCardViewDelegate.swift in Sources */,
 				B83E9594280EB653009DD17F /* CommentDataModel.swift in Sources */,
 				B8CD2D7728205EA800D047B9 /* String+.swift in Sources */,
 				B83B191D2827D91500686D16 /* StoreTitleCell.swift in Sources */,
@@ -1219,7 +1196,6 @@
 				B8CD437F2818EC2800D2BCCE /* WelcomeView.swift in Sources */,
 				B8BC5481283F7C5900FC0DAB /* StoreMealsCell.swift in Sources */,
 				B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */,
-				B89337942819120D000C75C3 /* ProfileView.swift in Sources */,
 				B8F3517828159A55002E2A3C /* StoreFromJson.swift in Sources */,
 				B8E59B62283672E4002AEBB7 /* BadgeTierManager.swift in Sources */,
 				B83E958A280EAD12009DD17F /* AccountRequestProvider.swift in Sources */,
