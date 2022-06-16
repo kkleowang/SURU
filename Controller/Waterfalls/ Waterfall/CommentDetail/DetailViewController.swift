@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     var accountData: [Account] = []
     var comment: Comment?
     var store: Store?
-
+    var isClickComment = false
     var newCommet: Comment? {
         didSet {
             guard let data = newCommet?.userComment else { return }
@@ -35,10 +35,10 @@ class DetailViewController: UIViewController {
             }
         }
     }
-
+    
     func configMessage() {
         guard let blockList = currentUser?.blockUserList, let messages = comment?.userComment else { return }
-
+        
         comment?.userComment = messages.filter { if blockList.contains($0.userID) {
             return false
         } else {
@@ -46,18 +46,18 @@ class DetailViewController: UIViewController {
         }
         }
     }
-
+    
     @IBOutlet var tableView: UITableView!
-
+    
     @IBOutlet var badgeImageView: UIImageView!
     @IBOutlet var authorImageView: UIImageView!
     @IBOutlet var authorStackView: UIStackView!
     @IBOutlet var authorNameLabel: UILabel!
     @IBOutlet var followButton: UIButton!
-
+    
     @IBAction func tapFollowButton(_ sender: UIButton) {
         guard let userID = UserRequestProvider.shared.currentUserID, let account = author else { return }
-
+        
         if sender.currentTitle == "追蹤" {
             followButton.setTitle("已追蹤", for: .normal)
             AccountRequestProvider.shared.followAccount(currentUserID: userID, tagertUserID: account.userID)
@@ -66,16 +66,16 @@ class DetailViewController: UIViewController {
             AccountRequestProvider.shared.unfollowAccount(currentUserID: userID, tagertUserID: account.userID)
         }
     }
-
+    
     @IBAction func tapBackButton(_: Any) {
         dismiss(animated: true, completion: nil)
     }
-
+    
     @IBAction func showTextView() {
         inputTextField.becomeFirstResponder()
         textViewBarView.isHidden = false
     }
-
+    
     @IBAction func tapCommentButton(_: UIButton) {
         let messages = comment?.userComment ?? []
         if !messages.isEmpty {
@@ -85,7 +85,7 @@ class DetailViewController: UIViewController {
             tableView.scrollRectToVisible(sectionRect, animated: true)
         }
     }
-
+    
     @IBAction func tapLikeButton(_ sender: UIButton) {
         guard let currentUserID = UserRequestProvider.shared.currentUserID, let tagertComment = comment else { return }
         guard let image = sender.imageView?.image else { return }
@@ -99,7 +99,7 @@ class DetailViewController: UIViewController {
             CommentRequestProvider.shared.unLikeComment(currentUserID: currentUserID, tagertComment: tagertComment)
         }
     }
-
+    
     @IBAction func postComment(_: Any) {
         if let text = inputTextField.text {
             if !text.isEmpty {
@@ -109,44 +109,40 @@ class DetailViewController: UIViewController {
             inputTextField.text = ""
         }
     }
-
+    
     func publishMessage() {
         guard let currentUserId = UserRequestProvider.shared.currentUserID,
-              let _ = author,
               let comment = comment,
               let content = inputTextField.text else { return }
         var message = Message(userID: currentUserId, message: content)
-        //        LKProgressHUD.show()
         CommentRequestProvider.shared.addMessage(message: &message, tagertCommentID: comment.commentID) { result in
             switch result {
             case let .success(message):
-                //                LKProgressHUD.dismiss()
                 LKProgressHUD.showSuccess(text: message)
             case .failure:
-                //                LKProgressHUD.dismiss()
                 LKProgressHUD.showFailure(text: "新增評論失敗\n稍候再試")
             }
         }
     }
-
+    
     @IBOutlet var likeBtn: UIButton!
     @IBOutlet var commentCountBtn: UIButton!
     @IBOutlet var likeVIew: UIView!
     @IBOutlet var textViewBarView: UIView!
     @IBOutlet var inputTextField: UITextField!
     @IBOutlet var textViewBarBottomConstraint: NSLayoutConstraint!
-
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-
+    
     @objc private func tapAuthorView() {
         dismiss(animated: true) {
             guard let userID = self.comment?.userID else { return }
             self.delegate?.didtapAuthor(self, targetUserID: userID)
         }
     }
-
+    
     func setupTopView() {
         guard let currentUserId = UserRequestProvider.shared.currentUserID,
               let account = author,
@@ -165,12 +161,12 @@ class DetailViewController: UIViewController {
         authorImageView.loadImage(account.mainImage, placeHolder: UIImage(named: "mainImage"))
         authorImageView.clipsToBounds = true
         authorImageView.layer.cornerRadius = authorImageView.bounds.width / 2
-
+        
         followButton.titleLabel?.adjustsFontSizeToFitWidth = true
         authorNameLabel.text = account.name
         authorNameLabel.adjustsFontSizeToFitWidth = true
         authorNameLabel.setDefultFort()
-
+        
         if let badge = account.badgeStatus {
             badgeImageView.image = UIImage(named: "long_\(badge)")
         } else {
@@ -186,12 +182,12 @@ class DetailViewController: UIViewController {
             followButton.setTitle("追蹤", for: .normal)
         }
     }
-
+    
     func setupButtonView() {
         guard let currentUserId = UserRequestProvider.shared.currentUserID,
               let _ = author,
               let comment = comment else { return }
-
+        
         if comment.likedUserList.contains(currentUserId) {
             likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
@@ -210,25 +206,25 @@ class DetailViewController: UIViewController {
             }
         }
     }
-
+    
     func setuptableView() {
         tableView.register(UINib(nibName: String(describing: CommentCell.self), bundle: nil), forCellReuseIdentifier: String(describing: CommentCell.self))
         tableView.register(UINib(nibName: String(describing: CommentMessagesCell.self), bundle: nil), forCellReuseIdentifier: String(describing: CommentMessagesCell.self))
         tableView.dataSource = self
         tableView.delegate = self
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         listenToKeyStatus()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.enable = true
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         IQKeyboardManager.shared.enableAutoToolbar = false
@@ -236,8 +232,15 @@ class DetailViewController: UIViewController {
         setupTopView()
         setupButtonView()
         setuptableView()
+        if isClickComment {
+                tableView.reloadSections([1], with: .automatic)
+        }
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
     lazy var overlayView: UIView = {
         let overlayView = UIView(frame: view.frame)
         overlayView.backgroundColor = UIColor(white: 0, alpha: 0.1)
@@ -245,11 +248,11 @@ class DetailViewController: UIViewController {
         overlayView.addGestureRecognizer(tap)
         return overlayView
     }()
-
+    
     func listenToKeyStatus() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-
+    
     //    func hideKeyboardWhenTappedAround(){
     //        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     //        tap.cancelsTouchesInView = false
@@ -265,25 +268,25 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
     }
-
+    
     func numberOfSections(in _: UITableView) -> Int {
         2
     }
-
+    
     func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-
+    
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else {
             guard let messages = comment?.userComment else { return 0 }
-
+            
             return messages.count
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let storeData = store, let commentData = comment else { return UITableViewCell() }
         if indexPath.section == 0 {
@@ -292,14 +295,14 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentMessagesCell.self), for: indexPath) as? CommentMessagesCell else { return CommentMessagesCell() }
-
+            
             guard let messages = comment?.userComment else { return cell }
             cell.delegate = self
             let dataSource = messages.sorted { $0.createdTime > $1.createdTime }
             let message = dataSource[indexPath.row]
             let author = accountData.first { $0.userID == message.userID } ?? Account(userID: "123", provider: "")
             cell.layoutCell(commentMessage: messages[indexPath.row], author: author)
-
+            
             return cell
         }
     }
@@ -309,25 +312,25 @@ extension DetailViewController: CommentMessagesCellDelegate {
     func didTapMoreButton(_: CommentMessagesCell, targetUserID: String?) {
         showAlert(targetUser: targetUserID)
     }
-
+    
     func showAlert(targetUser: String?) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = view
-
+        
         let xOrigin = view.bounds.width / 2
-
+        
         let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
-
+        
         alert.popoverPresentationController?.sourceRect = popoverRect
-
+        
         alert.popoverPresentationController?.permittedArrowDirections = .up
         alert.addAction(UIAlertAction(title: "封鎖用戶", style: .destructive) { _ in
             guard let userID = UserRequestProvider.shared.currentUserID, let targetUser = targetUser else { return }
             AccountRequestProvider.shared.blockAccount(currentUserID: userID, tagertUserID: targetUser)
             LKProgressHUD.showFailure(text: "成功封鎖用戶")
-
+            
             guard let messages = self.comment?.userComment else { return }
-
+            
             self.comment?.userComment = messages.filter {
                 if $0.userID == targetUser {
                     return false
@@ -335,12 +338,12 @@ extension DetailViewController: CommentMessagesCellDelegate {
                     return true
                 }
             }
-
+            
             self.tableView.reloadSections([1], with: .automatic)
         })
-
+        
         alert.addAction(UIAlertAction(title: "取消", style: .cancel))
-
+        
         present(alert, animated: true)
     }
 }
@@ -350,7 +353,7 @@ extension DetailViewController {
         if let endFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             // when keyboard show >0, dismiss <0
             let keyboardH = UIScreen.height - endFrame.origin.y
-
+            
             if keyboardH > 0 {
                 view.insertSubview(overlayView, belowSubview: textViewBarView)
             } else {

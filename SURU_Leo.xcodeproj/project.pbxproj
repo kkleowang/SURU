@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		2B0D5EFDC7390FC86B8251DA /* Pods_SURU_LeoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805F1484C48065EE92619B99 /* Pods_SURU_LeoTests.framework */; };
 		B80096002817FEC800BB05AE /* SignInAndOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */; };
-		B8060383283187AD006619FF /* like.json in Resources */ = {isa = PBXBuildFile; fileRef = B8060382283187AD006619FF /* like.json */; };
-		B8060385283187B2006619FF /* unlike.json in Resources */ = {isa = PBXBuildFile; fileRef = B8060384283187B2006619FF /* unlike.json */; };
-		B814DF312810741900176C13 /* ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814DF302810741900176C13 /* ref.swift */; };
 		B830608828015A9D002558BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608728015A9D002558BE /* AppDelegate.swift */; };
 		B830608A28015A9D002558BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830608928015A9D002558BE /* SceneDelegate.swift */; };
 		B830608F28015A9D002558BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830608D28015A9D002558BE /* Main.storyboard */; };
@@ -51,9 +48,6 @@
 		B8532A23282E3FB400FA4D60 /* CommentMessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8532A21282E3FB400FA4D60 /* CommentMessagesCell.swift */; };
 		B8532A24282E3FB400FA4D60 /* CommentMessagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8532A22282E3FB400FA4D60 /* CommentMessagesCell.xib */; };
 		B85592B8282A370200B1A920 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85592B7282A370200B1A920 /* WebView.swift */; };
-		B85B63C5280D2CDD00621E4A /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C2280D2CDD00621E4A /* blue.json */; };
-		B85B63C6280D2CDD00621E4A /* orange.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C3280D2CDD00621E4A /* orange.json */; };
-		B85B63C7280D2CDD00621E4A /* yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = B85B63C4280D2CDD00621E4A /* yellow.json */; };
 		B8659C3D28068850006C85F3 /* multipleSimulatorsStartup.sh in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */; };
 		B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */ = {isa = PBXBuildFile; fileRef = B8659C3C28068850006C85F3 /* multipleSimulators.config */; };
 		B8659C442806BB5B006C85F3 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8659C432806BB5B006C85F3 /* Date+.swift */; };
@@ -70,6 +64,10 @@
 		B87D72672826483100289283 /* BadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87D72652826483100289283 /* BadgeCell.xib */; };
 		B87D726928265E1200289283 /* BadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D726828265E1200289283 /* BadgeViewController.swift */; };
 		B87D726C28266C2900289283 /* CollectionViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87D726B28266C2900289283 /* CollectionViewBackground.swift */; };
+		B87FCB36284DDF4900DECA59 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB35284DDF4900DECA59 /* SearchViewController.swift */; };
+		B87FCB3A284DE21400DECA59 /* ResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB38284DE21400DECA59 /* ResultsCell.swift */; };
+		B87FCB3B284DE21400DECA59 /* ResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87FCB39284DE21400DECA59 /* ResultsCell.xib */; };
+		B87FCB3E284DFA2B00DECA59 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FCB3D284DFA2B00DECA59 /* CoreLocationManager.swift */; };
 		B893379228190F08000C75C3 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379128190F08000C75C3 /* ProfileView.xib */; };
 		B89337942819120D000C75C3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89337932819120D000C75C3 /* ProfileView.swift */; };
 		B893379A28197F24000C75C3 /* AddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B893379928197F24000C75C3 /* AddInfoView.xib */; };
@@ -80,7 +78,7 @@
 		B899FF27280D237200BD5715 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B899FF26280D237200BD5715 /* GoogleService-Info.plist */; };
 		B8A0033E280A92D300A64750 /* StoreMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0033D280A92D300A64750 /* StoreMapViewController.swift */; };
 		B8A00342280A931800A64750 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00341280A931800A64750 /* ProfileViewController.swift */; };
-		B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00343280A964B00A64750 /* SURUTabBarController.swift */; };
+		B8A00344280A964B00A64750 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00343280A964B00A64750 /* TabBarViewController.swift */; };
 		B8A00346280A97A100A64750 /* UIStoryboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00345280A97A100A64750 /* UIStoryboard+.swift */; };
 		B8A0034A280A9E1100A64750 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00349280A9E1100A64750 /* UIImage+.swift */; };
 		B8A00352280B064200A64750 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A00351280B064200A64750 /* MapView.swift */; };
@@ -92,6 +90,9 @@
 		B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */; };
 		B8BC5481283F7C5900FC0DAB /* StoreMealsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC547F283F7C5900FC0DAB /* StoreMealsCell.swift */; };
 		B8BC5482283F7C5900FC0DAB /* StoreMealsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BC5480283F7C5900FC0DAB /* StoreMealsCell.xib */; };
+		B8BC548C2840DF9700FC0DAB /* yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = B8BC54892840DF9700FC0DAB /* yellow.json */; };
+		B8BC548D2840DF9700FC0DAB /* orange.json in Resources */ = {isa = PBXBuildFile; fileRef = B8BC548A2840DF9700FC0DAB /* orange.json */; };
+		B8BC548E2840DF9700FC0DAB /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = B8BC548B2840DF9700FC0DAB /* blue.json */; };
 		B8BD5F97282072DF00A1C138 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BD5F96282072DF00A1C138 /* DetailViewController.swift */; };
 		B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BD5F9B28207E9900A1C138 /* CommentCell.xib */; };
 		B8BD5F9E28207F4B00A1C138 /* CommentStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8BD5F9D28207F4B00A1C138 /* CommentStoreCell.xib */; };
@@ -134,6 +135,10 @@
 		B8F92C852830CE550002B252 /* ProfileBioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F92C832830CE550002B252 /* ProfileBioCell.xib */; };
 		B8F92C882830ED060002B252 /* ProfileCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F92C862830ED060002B252 /* ProfileCommentCell.swift */; };
 		B8F92C892830ED060002B252 /* ProfileCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F92C872830ED060002B252 /* ProfileCommentCell.xib */; };
+		B8F9B44C284F312D00720C62 /* CommentSeletionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9B44B284F312D00720C62 /* CommentSeletionController.swift */; };
+		B8F9B44E284F4AB900720C62 /* SeletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9B44D284F4AB900720C62 /* SeletionView.swift */; };
+		B8F9B4512850563D00720C62 /* MealResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9B44F2850563D00720C62 /* MealResultsCell.swift */; };
+		B8F9B4522850563D00720C62 /* MealResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F9B4502850563D00720C62 /* MealResultsCell.xib */; };
 		B8FF1BF228375D4800A94807 /* SURU_LeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FF1BF128375D4800A94807 /* SURU_LeoTests.swift */; };
 		FF78EFB0E0E63BE37FB6C685 /* Pods_SURU_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C933656BC4FDA9F1022B21CD /* Pods_SURU_Leo.framework */; };
 /* End PBXBuildFile section */
@@ -154,9 +159,6 @@
 		805F1484C48065EE92619B99 /* Pods_SURU_LeoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SURU_LeoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6881D7865F15F14D2AA4ED3 /* Pods-SURUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SURUTests.release.xcconfig"; path = "Target Support Files/Pods-SURUTests/Pods-SURUTests.release.xcconfig"; sourceTree = "<group>"; };
 		B80095FF2817FEC800BB05AE /* SignInAndOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndOutViewController.swift; sourceTree = "<group>"; };
-		B8060382283187AD006619FF /* like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = like.json; sourceTree = "<group>"; };
-		B8060384283187B2006619FF /* unlike.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unlike.json; sourceTree = "<group>"; };
-		B814DF302810741900176C13 /* ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ref.swift; sourceTree = "<group>"; };
 		B814DF362811271400176C13 /* MapkitTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MapkitTest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B830608428015A9D002558BE /* SURU_Leo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SURU_Leo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830608728015A9D002558BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -199,9 +201,6 @@
 		B8532A21282E3FB400FA4D60 /* CommentMessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMessagesCell.swift; sourceTree = "<group>"; };
 		B8532A22282E3FB400FA4D60 /* CommentMessagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentMessagesCell.xib; sourceTree = "<group>"; };
 		B85592B7282A370200B1A920 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		B85B63C2280D2CDD00621E4A /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
-		B85B63C3280D2CDD00621E4A /* orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orange.json; sourceTree = "<group>"; };
-		B85B63C4280D2CDD00621E4A /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = yellow.json; sourceTree = "<group>"; };
 		B8659C3B28068850006C85F3 /* multipleSimulatorsStartup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = multipleSimulatorsStartup.sh; sourceTree = "<group>"; };
 		B8659C3C28068850006C85F3 /* multipleSimulators.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = multipleSimulators.config; sourceTree = "<group>"; };
 		B8659C432806BB5B006C85F3 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -218,6 +217,10 @@
 		B87D72652826483100289283 /* BadgeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeCell.xib; sourceTree = "<group>"; };
 		B87D726828265E1200289283 /* BadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewController.swift; sourceTree = "<group>"; };
 		B87D726B28266C2900289283 /* CollectionViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBackground.swift; sourceTree = "<group>"; };
+		B87FCB35284DDF4900DECA59 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		B87FCB38284DE21400DECA59 /* ResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCell.swift; sourceTree = "<group>"; };
+		B87FCB39284DE21400DECA59 /* ResultsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsCell.xib; sourceTree = "<group>"; };
+		B87FCB3D284DFA2B00DECA59 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
 		B893379128190F08000C75C3 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		B89337932819120D000C75C3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B893379928197F24000C75C3 /* AddInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddInfoView.xib; sourceTree = "<group>"; };
@@ -228,7 +231,7 @@
 		B899FF26280D237200BD5715 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8A0033D280A92D300A64750 /* StoreMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMapViewController.swift; sourceTree = "<group>"; };
 		B8A00341280A931800A64750 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		B8A00343280A964B00A64750 /* SURUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SURUTabBarController.swift; sourceTree = "<group>"; };
+		B8A00343280A964B00A64750 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B8A00345280A97A100A64750 /* UIStoryboard+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+.swift"; sourceTree = "<group>"; };
 		B8A00349280A9E1100A64750 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		B8A00351280B064200A64750 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -240,6 +243,9 @@
 		B8BBBE85281EBE54001782F5 /* DiscoveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCell.swift; sourceTree = "<group>"; };
 		B8BC547F283F7C5900FC0DAB /* StoreMealsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMealsCell.swift; sourceTree = "<group>"; };
 		B8BC5480283F7C5900FC0DAB /* StoreMealsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreMealsCell.xib; sourceTree = "<group>"; };
+		B8BC54892840DF9700FC0DAB /* yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = yellow.json; path = SURU_Leo/LottieFile/yellow.json; sourceTree = SOURCE_ROOT; };
+		B8BC548A2840DF9700FC0DAB /* orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = orange.json; path = SURU_Leo/LottieFile/orange.json; sourceTree = SOURCE_ROOT; };
+		B8BC548B2840DF9700FC0DAB /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = blue.json; path = SURU_Leo/LottieFile/blue.json; sourceTree = SOURCE_ROOT; };
 		B8BD5F96282072DF00A1C138 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B8BD5F9B28207E9900A1C138 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		B8BD5F9D28207F4B00A1C138 /* CommentStoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentStoreCell.xib; sourceTree = "<group>"; };
@@ -282,6 +288,10 @@
 		B8F92C832830CE550002B252 /* ProfileBioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileBioCell.xib; sourceTree = "<group>"; };
 		B8F92C862830ED060002B252 /* ProfileCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommentCell.swift; sourceTree = "<group>"; };
 		B8F92C872830ED060002B252 /* ProfileCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCommentCell.xib; sourceTree = "<group>"; };
+		B8F9B44B284F312D00720C62 /* CommentSeletionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSeletionController.swift; sourceTree = "<group>"; };
+		B8F9B44D284F4AB900720C62 /* SeletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeletionView.swift; sourceTree = "<group>"; };
+		B8F9B44F2850563D00720C62 /* MealResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealResultsCell.swift; sourceTree = "<group>"; };
+		B8F9B4502850563D00720C62 /* MealResultsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealResultsCell.xib; sourceTree = "<group>"; };
 		B8FEA61728210B8D009CE1F0 /* SURU_Leo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SURU_Leo.entitlements; sourceTree = "<group>"; };
 		B8FF1BEF28375D4800A94807 /* SURU_LeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SURU_LeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8FF1BF128375D4800A94807 /* SURU_LeoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SURU_LeoTests.swift; sourceTree = "<group>"; };
@@ -503,7 +513,6 @@
 		B85B63C8280D2D3B00621E4A /* unUsedFile */ = {
 			isa = PBXGroup;
 			children = (
-				B814DF302810741900176C13 /* ref.swift */,
 				B814DF362811271400176C13 /* MapkitTest.playground */,
 			);
 			path = unUsedFile;
@@ -524,6 +533,25 @@
 				B87D726B28266C2900289283 /* CollectionViewBackground.swift */,
 			);
 			path = CollectionViewBackGround;
+			sourceTree = "<group>";
+		};
+		B87FCB37284DE1DC00DECA59 /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				B87FCB38284DE21400DECA59 /* ResultsCell.swift */,
+				B87FCB39284DE21400DECA59 /* ResultsCell.xib */,
+				B8F9B44F2850563D00720C62 /* MealResultsCell.swift */,
+				B8F9B4502850563D00720C62 /* MealResultsCell.xib */,
+			);
+			path = SearchController;
+			sourceTree = "<group>";
+		};
+		B87FCB3C284DFA2000DECA59 /* CoreLocation */ = {
+			isa = PBXGroup;
+			children = (
+				B87FCB3D284DFA2B00DECA59 /* CoreLocationManager.swift */,
+			);
+			path = CoreLocation;
 			sourceTree = "<group>";
 		};
 		B893379D281A1D5D000C75C3 /* Third Party SDK Wrapper */ = {
@@ -557,6 +585,10 @@
 			isa = PBXGroup;
 			children = (
 				B87BF623280C61E100FE885C /* CommentViewController.swift */,
+				B8F9B44B284F312D00720C62 /* CommentSeletionController.swift */,
+				B8F9B44D284F4AB900720C62 /* SeletionView.swift */,
+				B87FCB35284DDF4900DECA59 /* SearchViewController.swift */,
+				B83E959D2810479A009DD17F /* LiquidBar */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -597,12 +629,12 @@
 		B8A0034E280B042C00A64750 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
+				B87FCB37284DE1DC00DECA59 /* SearchController */,
 				B87BF627280CA5A500FE885C /* CommentStartingView.swift */,
 				B87BF625280C832300FE885C /* CommentImageCardViewDelegate.swift */,
 				B8F22DEA280CBF3F0096FB91 /* CommentSelectionView.swift */,
 				B86AB7E728203CFA00154B26 /* WriteCommentView.swift */,
 				B86AB7E928203D0700154B26 /* WriteCommentView.xib */,
-				B83E959D2810479A009DD17F /* LiquidBar */,
 				B8F3517F2815F225002E2A3C /* CommentTableViewCell.xib */,
 				B8F3517D2815E8EE002E2A3C /* CommentTableViewCell.swift */,
 			);
@@ -763,11 +795,9 @@
 		B8EC7002280528F000DA8B78 /* LottieFile */ = {
 			isa = PBXGroup;
 			children = (
-				B8060382283187AD006619FF /* like.json */,
-				B8060384283187B2006619FF /* unlike.json */,
-				B85B63C2280D2CDD00621E4A /* blue.json */,
-				B85B63C3280D2CDD00621E4A /* orange.json */,
-				B85B63C4280D2CDD00621E4A /* yellow.json */,
+				B8BC548B2840DF9700FC0DAB /* blue.json */,
+				B8BC548A2840DF9700FC0DAB /* orange.json */,
+				B8BC54892840DF9700FC0DAB /* yellow.json */,
 			);
 			name = LottieFile;
 			path = ../View/LottieFile;
@@ -776,6 +806,7 @@
 		B8EC70052805290A00DA8B78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B87FCB3C284DFA2000DECA59 /* CoreLocation */,
 				B87D72522824D4F500289283 /* Badge */,
 				B8F35182281794C4002E2A3C /* Login */,
 				B83E9592280EB52A009DD17F /* FirebaseStorage */,
@@ -804,7 +835,7 @@
 		B8EC70072805291400DA8B78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B8A00343280A964B00A64750 /* SURUTabBarController.swift */,
+				B8A00343280A964B00A64750 /* TabBarViewController.swift */,
 				B8A00337280A922000A64750 /* StoreMap */,
 				B8A00335280A91F000A64750 /* Waterfalls */,
 				B8A00339280A924200A64750 /* Comment */,
@@ -871,7 +902,7 @@
 				B830608028015A9D002558BE /* Sources */,
 				B830608128015A9D002558BE /* Frameworks */,
 				B830608228015A9D002558BE /* Resources */,
-				B8643B75280161E200A4E366 /* ShellScript */,
+				B8643B75280161E200A4E366 /* FirebaseCrashlytics */,
 				B8659C3928068262006C85F3 /* Multiple Simulators */,
 				B8E59B582834826C002AEBB7 /* SwiftLint */,
 				B08CB2645773763022841D07 /* [CP] Embed Pods Frameworks */,
@@ -952,7 +983,7 @@
 				B8BD5F9E28207F4B00A1C138 /* CommentStoreCell.xib in Resources */,
 				B83B192E2827D98A00686D16 /* StoreLocaltionCell.xib in Resources */,
 				B83B191E2827D91500686D16 /* StoreTitleCell.xib in Resources */,
-				B8060383283187AD006619FF /* like.json in Resources */,
+				B8BC548E2840DF9700FC0DAB /* blue.json in Resources */,
 				B8D0671D282A74FA00BF74D2 /* StoreTopView.xib in Resources */,
 				B8659C3E28068850006C85F3 /* multipleSimulators.config in Resources */,
 				B83B1944282834D400686D16 /* FullScreenView.xib in Resources */,
@@ -964,13 +995,13 @@
 				B830609428015A9E002558BE /* LaunchScreen.storyboard in Resources */,
 				B83B19282827D95300686D16 /* StoreTagsCell.xib in Resources */,
 				B86AB7EA28203D0700154B26 /* WriteCommentView.xib in Resources */,
-				B85B63C5280D2CDD00621E4A /* blue.json in Resources */,
 				B8DBDD4E28246A57008DC615 /* ProfileCommentsCell.xib in Resources */,
 				B830609128015A9E002558BE /* Assets.xcassets in Resources */,
-				B85B63C7280D2CDD00621E4A /* yellow.json in Resources */,
 				B83B194A28284CB600686D16 /* StoreCardsCell.xib in Resources */,
+				B8F9B4522850563D00720C62 /* MealResultsCell.xib in Resources */,
 				B830608F28015A9D002558BE /* Main.storyboard in Resources */,
 				B893379228190F08000C75C3 /* ProfileView.xib in Resources */,
+				B87FCB3B284DE21400DECA59 /* ResultsCell.xib in Resources */,
 				B8BC5482283F7C5900FC0DAB /* StoreMealsCell.xib in Resources */,
 				B8D06723282B534700BF74D2 /* StoreCommentCell.xib in Resources */,
 				B8BD5F9C28207E9900A1C138 /* CommentCell.xib in Resources */,
@@ -979,16 +1010,16 @@
 				B83B193A2827D9C700686D16 /* StoreRatingCell.xib in Resources */,
 				B8A4FFCC28224EA20023F0BA /* ReportView.xib in Resources */,
 				B8F92C852830CE550002B252 /* ProfileBioCell.xib in Resources */,
-				B85B63C6280D2CDD00621E4A /* orange.json in Resources */,
 				B8CD43832818F0E900D2BCCE /* WelcomeView.xib in Resources */,
 				B8532A24282E3FB400FA4D60 /* CommentMessagesCell.xib in Resources */,
 				B83B19242827D94100686D16 /* StoreImageCell.xib in Resources */,
 				B8F92C892830ED060002B252 /* ProfileCommentCell.xib in Resources */,
+				B8BC548C2840DF9700FC0DAB /* yellow.json in Resources */,
 				B8DA6E7D2823B6A100868381 /* EditProfileView.xib in Resources */,
 				B87D72672826483100289283 /* BadgeCell.xib in Resources */,
-				B8060385283187B2006619FF /* unlike.json in Resources */,
 				B87D725A2824FC6F00289283 /* BadgeHeaderCell.xib in Resources */,
 				B8BBBE84281E9AC6001782F5 /* DiscoveryCell.xib in Resources */,
+				B8BC548D2840DF9700FC0DAB /* orange.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1080,7 +1111,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SURU_LeoTests/Pods-SURU_LeoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B8643B75280161E200A4E366 /* ShellScript */ = {
+		B8643B75280161E200A4E366 /* FirebaseCrashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
@@ -1091,6 +1122,7 @@
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
+			name = FirebaseCrashlytics;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -1143,12 +1175,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8DA6E7F2823B7C700868381 /* EditProfileView.swift in Sources */,
+				B87FCB3E284DFA2B00DECA59 /* CoreLocationManager.swift in Sources */,
+				B8F9B44C284F312D00720C62 /* CommentSeletionController.swift in Sources */,
 				B8A0033E280A92D300A64750 /* StoreMapViewController.swift in Sources */,
 				B87D726928265E1200289283 /* BadgeViewController.swift in Sources */,
 				B8EC70162805B0FD00DA8B78 /* UIFont+.swift in Sources */,
 				B8F92C842830CE550002B252 /* ProfileBioCell.swift in Sources */,
 				B87BF628280CA5A500FE885C /* CommentStartingView.swift in Sources */,
 				B8F35184281794D9002E2A3C /* UserRequestProvider.swift in Sources */,
+				B8F9B44E284F4AB900720C62 /* SeletionView.swift in Sources */,
 				B8BBBE7C281D328B001782F5 /* WaterfallViewController.swift in Sources */,
 				B83E9584280EA071009DD17F /* Double+.swift in Sources */,
 				B83E959A280EB6C9009DD17F /* QueueReportDataModel.swift in Sources */,
@@ -1174,7 +1209,7 @@
 				B83E9594280EB653009DD17F /* CommentDataModel.swift in Sources */,
 				B8CD2D7728205EA800D047B9 /* String+.swift in Sources */,
 				B83B191D2827D91500686D16 /* StoreTitleCell.swift in Sources */,
-				B8A00344280A964B00A64750 /* SURUTabBarController.swift in Sources */,
+				B8A00344280A964B00A64750 /* TabBarViewController.swift in Sources */,
 				B87BF624280C61E100FE885C /* CommentViewController.swift in Sources */,
 				B893379F281A1D9A000C75C3 /* JGProgressHUD+.swift in Sources */,
 				B83B1941282800E100686D16 /* TagsCell.swift in Sources */,
@@ -1193,8 +1228,8 @@
 				B8EC700C2805432500DA8B78 /* liquidBarViewController.swift in Sources */,
 				B8BBBE86281EBE54001782F5 /* DiscoveryCell.swift in Sources */,
 				B8D0671B282A74EC00BF74D2 /* StoreTopView.swift in Sources */,
-				B814DF312810741900176C13 /* ref.swift in Sources */,
 				B830608828015A9D002558BE /* AppDelegate.swift in Sources */,
+				B8F9B4512850563D00720C62 /* MealResultsCell.swift in Sources */,
 				B87D72562824D52B00289283 /* BadgeDataModel.swift in Sources */,
 				B87D7263282560A400289283 /* Sequence+.swift in Sources */,
 				B83E4536280E896A00B13B0C /* StorageManager.swift in Sources */,
@@ -1216,7 +1251,9 @@
 				B8A00342280A931800A64750 /* ProfileViewController.swift in Sources */,
 				B8CD43812818EF0600D2BCCE /* WelcomeViewController.swift in Sources */,
 				B8F92C7F2830C41D0002B252 /* ProfileHeaderCell.swift in Sources */,
+				B87FCB3A284DE21400DECA59 /* ResultsCell.swift in Sources */,
 				B8A00346280A97A100A64750 /* UIStoryboard+.swift in Sources */,
+				B87FCB36284DDF4900DECA59 /* SearchViewController.swift in Sources */,
 				B8F3517E2815E8EE002E2A3C /* CommentTableViewCell.swift in Sources */,
 				B8EC700E2805468400DA8B78 /* UIColor+.swift in Sources */,
 				B8659C442806BB5B006C85F3 /* Date+.swift in Sources */,

@@ -18,14 +18,14 @@ class BadgeViewController: UIViewController {
         ["新手", "鍵盤俠", "專業寫手", "三餐吃拉麵", "拉麵豪ㄘ"],
         ["好人", "熱心民眾", "大聲公", "排隊警察", "聖人"],
         ["沒人點我讚", "拜託點我讚", "可憐我一點讚", "就差你的讚", "不缺讚"],
-        ["默默無名", "小有名氣", "街頭巷尾", "遠近馳名", "萬人迷"],
+        ["默默無名", "小有名氣", "街頭巷尾", "遠近馳名", "萬人迷"]
     ]
     let badgeSubTitle: [[String]] = [
         ["登入1次", "登入3次", "登入7次", "登入15次", "登入30次"],
         ["發表1篇評論", "發表5篇評論", "發表10篇評論", "發表15篇評論", "發表30篇評論"],
         ["回報1次", "回報5次", "回報10次", "回報15次", "回報20次"],
         ["獲得10個讚", "獲得30個讚", "獲得50個讚", "獲得100個讚", "獲得200個讚"],
-        ["被5人追蹤", "被10人追蹤", "被20人追蹤", "被30人追蹤", "被50人追蹤"],
+        ["被5人追蹤", "被10人追蹤", "被20人追蹤", "被30人追蹤", "被50人追蹤"]
     ]
 
     override func viewDidLoad() {
@@ -35,14 +35,22 @@ class BadgeViewController: UIViewController {
         getBadgeCount()
         layoutView()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .B1
+        navigationController?.navigationBar.isHidden = false
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewSectionColorFlowLayout()
-        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width - 120) / 3, height: 140)
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.size.width - 120) / 3, height: 150)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
-        //        layout.sectionHeadersPinToVisibleBounds = true
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.delegate = self
@@ -58,7 +66,6 @@ class BadgeViewController: UIViewController {
 
     func layoutView() {
         navigationItem.title = "我的勳章"
-
         view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true

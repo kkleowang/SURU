@@ -33,7 +33,7 @@ class WaterfallViewController: UIViewController {
         super.viewDidLoad()
         addlistener()
         fetchAllData {
-            self.configData {
+            self.configCommentsData {
                 self.setupCollectionView()
                 self.collectionView.reloadData()
             }
@@ -43,49 +43,31 @@ class WaterfallViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchCommentData {
-            self.configData {
+            self.configCommentsData {
                 self.collectionView.reloadData()
             }
         }
     }
-
-    private func configData(completion: @escaping () -> Void) {
+    
+    private func configCommentsData(completion: @escaping () -> Void) {
         guard let user = currentAccount, let blockList = user.blockUserList, let pageStatus = pageStatus else { return }
         switch pageStatus {
         case .discovery:
-            filteredCommentData = commentData.filter { comment in
-                if !blockList.contains(comment.userID) {
-                    return true
-                } else {
-                    return false
-                }
-            }
+            filteredCommentData = commentData.filter { !blockList.contains($0.userID) }
         case .follow:
-            filteredCommentData = commentData.filter { comment in
-                if !blockList.contains(comment.userID), user.followedUser.contains(comment.userID) {
-                    return true
-                } else {
-                    return false
-                }
-            }
+            filteredCommentData = commentData.filter { !blockList.contains($0.userID) && user.followedUser.contains($0.userID) }
         case .collect:
-            filteredCommentData = commentData.filter { comment in
-                if !blockList.contains(comment.userID), user.collectedStore.contains(comment.storeID) {
-                    return true
-                } else {
-                    return false
-                }
-            }
+            filteredCommentData = commentData.filter { !blockList.contains($0.userID) && user.collectedStore.contains($0.storeID) }
         }
         completion()
     }
-
+    
     func updataStore() {
         StoreRequestProvider.shared.fetchStores { result in
             switch result {
             case let .success(data):
                 self.storeData = data
-                self.configData {
+                self.configCommentsData {
                     self.collectionView.reloadData()
                 }
             case let .failure(error):
@@ -154,11 +136,14 @@ extension WaterfallViewController: UICollectionViewDataSource, UICollectionViewD
                 guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
 
                 controller.delegate = self
+                
                 controller.modalPresentationStyle = .fullScreen
+                
                 controller.comment = comment
                 controller.accountData = accountData
                 controller.store = store
                 controller.currentUser = currentAccount
+                
                 controller.author = account
                 present(controller, animated: true, completion: nil)
             }
@@ -176,27 +161,16 @@ extension WaterfallViewController: CHTCollectionViewDelegateWaterfallLayout {
 
         let imageWidth = (UIScreen.width - 4 * 3) / 2
         let labelWidth = imageWidth - 16
-
         let storeLabelSize = labelSize(for: storeName, font: .medium(size: 16), maxWidth: labelWidth, maxHeight: 60)
-
         let mealLabelSize = labelSize(for: mealName, font: .medium(size: 14), maxWidth: labelWidth, maxHeight: 60)
-        var height = imageWidth + storeLabelSize.height + mealLabelSize.height + 4 + 8 + 20 + 8 + 20 + 8
+        let height = imageWidth + storeLabelSize.height + mealLabelSize.height + 4 + 8 + 30 + 8 + 20 + 8
 
-        var random: Int {
-            return Int.random(in: 0 ... 10)
-        }
-
-        let randomExtraHeight = Double(random)
-
-        height += randomExtraHeight
 
         return CGSize(width: imageWidth, height: height)
     }
 
     func labelSize(for text: String, font: UIFont?, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: font as Any,
-        ]
+        let attributes: [NSAttributedString.Key: Any] = [.font: font as Any]
 
         let attributedText = NSAttributedString(string: text, attributes: attributes)
 
@@ -209,7 +183,19 @@ extension WaterfallViewController: CHTCollectionViewDelegateWaterfallLayout {
 
 extension WaterfallViewController: IndicatorInfoProvider {
     func indicatorInfo(for _: PagerTabStripViewController) -> IndicatorInfo {
-        IndicatorInfo(title: NSLocalizedString("推薦", comment: "barTagString"))
+        guard let pageStatus = pageStatus else {
+            return IndicatorInfo(title: NSLocalizedString("", comment: "barTagString"))
+        }
+        var indicatorTitle = ""
+        switch pageStatus {
+        case .discovery:
+            indicatorTitle = "推薦"
+        case .follow:
+            indicatorTitle = "追隨"
+        case .collect:
+            indicatorTitle = "收藏"
+        }
+        return IndicatorInfo(title: NSLocalizedString(indicatorTitle, comment: "barTagString"))
     }
 }
 
@@ -317,8 +303,24 @@ extension WaterfallViewController {
 }
 
 extension WaterfallViewController: DiscoveryCellDelegate {
-    func didTapCommentBtn(_: DiscoveryCell, comment _: Comment) {
-        //
+    func didTapCommentBtn(_: DiscoveryCell, comment: Comment) {
+        let store = storeData.first { $0.storeID == comment.storeID } ?? storeData[0]
+        let account = accountData.first { $0.userID == comment.userID } ?? accountData[0]
+        if let currentAccount = currentAccount {
+            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+            
+            controller.delegate = self
+            
+            controller.modalPresentationStyle = .fullScreen
+            controller.isClickComment = true
+            controller.comment = comment
+            controller.accountData = accountData
+            controller.store = store
+            controller.currentUser = currentAccount
+            
+            controller.author = account
+            present(controller, animated: true, completion: nil)
+        }
     }
 
     func didTapLikeButton(_: DiscoveryCell, comment: Comment) {

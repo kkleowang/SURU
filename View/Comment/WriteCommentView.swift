@@ -8,43 +8,52 @@
 import UIKit
 
 protocol WrireCommentViewControllerDelegate: AnyObject {
-    func didTapSendComment(_ view: WriteCommentView, text: String)
-    func didTapSaveDraft(_ view: WriteCommentView, text: String)
+    func didTapSendComment(_ viewController: UIViewController, _ view: WriteCommentView, text: String)
+    func didTapSaveDraft(_ viewController: UIViewController,_ view: WriteCommentView, text: String)
 }
 
 class WriteCommentView: UIView {
     weak var delegate: WrireCommentViewControllerDelegate?
-    var commentData: Comment?
-    var storename: String?
-    @IBOutlet weak var contentTextView: UITextView!
+    
+    var storename: String!
+    var mealName: String!
+    var time: String!
+    @IBOutlet var contentTextView: UITextView!
 
-
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var importTempButton: UIButton!
-    @IBOutlet weak var sendButton: UIButton!
-    @IBAction func tapImportTemp(_ sender: Any) {
-        contentTextView.text = "| 店家： \(storename ?? "")\n| 時間 ：5/17\n| 品項 ：\(commentData?.meal ?? "")\n| 配置 ：\n| 評論：\n"
-
+    @IBOutlet var saveButton: UIButton!
+    @IBOutlet var importTempButton: UIButton!
+    @IBOutlet var sendButton: UIButton!
+    @IBAction func tapImportTemp(_: Any) {
+        contentTextView.text = "| 店家： \(storename ?? "")\n| 時間 ：\(time ?? "")\n| 品項 ：\(mealName ?? "")\n| 配置 ：\n| 評論：\n"
     }
-    @IBAction func tapSendComment(_ sender: Any) {
-        self.delegate?.didTapSendComment(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
 
-        self.topMostController()?.dismiss(animated: true, completion: nil)
+    @IBAction func tapSendComment(_: Any) {
+        if let viewController =  topMostController() {
+            delegate?.didTapSendComment(viewController, self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
+        }
     }
-    @IBAction func tapSaveToDraft(_ sender: Any) {
-        self.delegate?.didTapSaveDraft(self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
+
+    @IBAction func tapSaveToDraft(_: Any) {
+        if let viewController =  topMostController() {
+            delegate?.didTapSaveDraft(viewController, self, text: contentTextView.text!.replacingOccurrences(of: "\n", with: "\\n"))
+        }
     }
-    func layoutView(comment: Comment,name: String) {
-        commentData = comment
-        storename = name
+
+    func layoutView(comment: Comment, storeName: String) {
+        mealName = comment.meal
+        storename = storeName
+        time = configTime()
+        
         setTextView(textBox: contentTextView)
-        saveButton.clipsToBounds = true
-        importTempButton.clipsToBounds = true
-        sendButton.clipsToBounds = true
-        saveButton.layer.cornerRadius = 10
-        importTempButton.layer.cornerRadius = 10
-        sendButton.layer.cornerRadius = 10
-        //        contentTextView.text = "| 店家： \(storename!)\n| 時間 ：2022/5/16\n| 品項 ：\(commentData!.meal)\n| 配置 ：\n| 評論：\n"
+        importTempButton.cornerRadii(radii: 10)
+        sendButton.cornerRadii(radii: 10)
+        saveButton.cornerRadii(radii: 10)
+    }
+    func configTime() -> String {
+        let today = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd"
+        return formatter.string(from: today)
     }
 
     private func setTextView(textBox: UITextView) {

@@ -19,10 +19,10 @@ class StoreTagsCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = CGSize(width: 200, height: 40)
+    
         collectionView.collectionViewLayout = layout
         collectionView.reloadData()
     }
@@ -33,18 +33,18 @@ extension StoreTagsCell: UICollectionViewDataSource {
         return 1
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         guard let storeData = storeData else { return 0 }
-        
-            return storeData.tags.count
+
+        return storeData.tags.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TagsCell.self), for: indexPath) as? TagsCell else { return TagsCell() }
         guard let storeData = storeData else { return TagsCell() }
 
-            cell.tagLabel.text = storeData.tags[indexPath.row]
-            cell.backgroundColor = .C4
-            return cell
+        cell.tagLabel.text = storeData.tags[indexPath.row]
+        cell.backgroundColor = .C4
+        return cell
     }
 }

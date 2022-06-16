@@ -12,20 +12,20 @@ class CommentCell: UITableViewCell {
     @IBOutlet var noodleValueView: UIView!
     @IBOutlet var soupValueView: UIView!
     @IBOutlet var happyValueView: UIView!
-
+    
     @IBOutlet var mainImageView: UIImageView!
-
+    
     @IBOutlet var storeNameLabel: UILabel!
     @IBOutlet var sideDishesLabel: UILabel!
-
+    
     @IBOutlet var mealLabel: UILabel!
-
+    
     @IBOutlet var noodleLabel: UILabel!
     @IBOutlet var soupLabel: UILabel!
     @IBOutlet var oveallLabel: UILabel!
-
+    
     @IBOutlet var contentTextView: UITextView!
-
+    
     func layoutCell(data: Comment, store: Store) {
         for view in [noodleValueView, soupValueView, happyValueView] {
             view?.clipsToBounds = true
@@ -41,53 +41,23 @@ class CommentCell: UITableViewCell {
         contentTextView.isEditable = false
         contentTextView.text = data.contenText.replacingOccurrences(of: "\\n", with: "\n")
         mainImageView.loadImage(data.mainImage, placeHolder: UIImage(named: "mainImage"))
-
+        
         storeNameLabel.text = store.name
         mealLabel.text = data.meal
         sideDishesLabel.text = data.sideDishes ?? "無"
-
-        initValueView(on: noodleValueView, value: data.contentValue.noodle, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
-        initValueView(on: soupValueView, value: data.contentValue.soup, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
-        initValueView(on: happyValueView, value: data.contentValue.happiness, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
-
+        noodleValueView.initValueCircle(value: data.contentValue.noodle, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        soupValueView.initValueCircle(value: data.contentValue.soup, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        happyValueView.initValueCircle(value: data.contentValue.happiness, color: UIColor.C4?.cgColor ?? UIColor.black.cgColor)
+        
         soupLabel.adjustsFontSizeToFitWidth = true
         noodleLabel.adjustsFontSizeToFitWidth = true
         oveallLabel.adjustsFontSizeToFitWidth = true
-        if data.contentValue.soup == 10.0 {
-            soupLabel.text = "10"
-        } else {
-            soupLabel.text = "\(data.contentValue.soup)"
-        }
-        if data.contentValue.noodle == 10.0 {
-            noodleLabel.text = "10"
-        } else {
-            noodleLabel.text = "\(data.contentValue.noodle)"
-        }
-        if data.contentValue.happiness == 10.0 {
-            oveallLabel.text = "10"
-        } else {
-            oveallLabel.text = "\(data.contentValue.happiness)"
-        }
-    }
-
-    private func initValueView(on view: UIView, value: Double, color: CGColor) {
-        let circlePath = UIBezierPath(
-            arcCenter: CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 2),
-            radius: view.frame.size.width / 2,
-            startAngle: CGFloat(-0.5 * .pi),
-            endAngle: CGFloat(1.5 * .pi),
-            clockwise: true
-        )
-        // circle shape
-        let circleShape = CAShapeLayer()
-        circleShape.path = circlePath.cgPath
-        circleShape.strokeColor = color
-        circleShape.fillColor = UIColor.clear.cgColor
-        circleShape.lineWidth = 2
-        // set start and end values
-        circleShape.strokeStart = 0.0
-        circleShape.strokeEnd = value * 0.1
-        // add sublayer
-        view.layer.addSublayer(circleShape)
+        
+        soupLabel.text = "\(data.contentValue.soup)"
+        
+        noodleLabel.text = "\(data.contentValue.noodle)"
+        
+        oveallLabel.text = "\(data.contentValue.happiness)"
+        
     }
 }

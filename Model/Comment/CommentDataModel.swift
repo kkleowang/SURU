@@ -33,3 +33,11 @@ struct Message: Codable {
     var message: String
     var createdTime: Double = 0
 }
+var defultComment = Comment(
+    userID: "",
+    storeID: "",
+    meal: "",
+    contentValue: CommentContent(happiness: 0.0, noodle: 0.0, soup: 0.0),
+    contenText: "",
+    mainImage: ""
+)

@@ -29,20 +29,20 @@ class StoreCommentCell: UITableViewCell {
     var islikeStatus = false
     var isfollowStatus = false
 
-    @IBAction func tapLike(_: Any) {
+    @IBAction func tapLike(sender: UIButton) {
         delegate?.didtapLike(self, targetComment: commentData, isLogin: isloginStatus, isLike: islikeStatus)
 
-        if islikeStatus {
+        if sender.currentImage == UIImage(systemName: "heart.fill") {
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         } else {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
     }
 
-    @IBAction func tapFollow(_: Any) {
+    @IBAction func tapFollow(sender: UIButton) {
         delegate?.didtapfollow(self, targetUserID: targetUserID, isLogin: isloginStatus, isFollow: isfollowStatus)
 
-        if isfollowStatus {
+        if sender.currentTitle == "已追蹤" {
             followButton.setTitle("追蹤", for: .normal)
         } else {
             followButton.setTitle("已追蹤", for: .normal)
@@ -95,7 +95,7 @@ class StoreCommentCell: UITableViewCell {
         commentData = comment
         targetUserID = comment.userID
         authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
-        
+
         authorImageView.kf.setImage(with: URL(string: author.mainImage), placeholder: UIImage(named: "mainImage"))
 
         authorNameLabel.text = author.name
