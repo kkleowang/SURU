@@ -19,10 +19,10 @@ class StoreTagsCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = CGSize(width: 200, height: 40)
+    
         collectionView.collectionViewLayout = layout
         collectionView.reloadData()
     }

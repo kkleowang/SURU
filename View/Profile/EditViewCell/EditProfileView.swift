@@ -25,7 +25,11 @@ class EditProfileView: UIView {
     @IBOutlet var nickNameLabel: UILabel!
     @IBOutlet var websideLabel: UILabel!
     @IBOutlet var bioLabel: UILabel!
-
+    func endEditing() {
+        nickNameTextfield.resignFirstResponder()
+        websideTextField.resignFirstResponder()
+        bioTextView.resignFirstResponder()
+    }
     @IBOutlet var nickNameTextfield: UITextField!
     @IBOutlet var websideTextField: UITextField!
     @IBOutlet var bioTextView: UITextView!

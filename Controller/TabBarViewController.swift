@@ -92,6 +92,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         draftTabBarItem = viewControllers?[2].tabBarItem
 
         draftTabBarItem.badgeColor = .C4
+        CoreLocationManager.shared.getLocation()
         orderObserver = StorageManager.shared.observe(
             \StorageManager.comments,
             options: .new,
@@ -107,6 +108,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 }
             }
         )
+        StorageManager.shared.fetchComments()
     }
 
     override func viewDidAppear(_ animated: Bool) {

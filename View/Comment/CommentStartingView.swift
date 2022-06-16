@@ -9,14 +9,15 @@ import UIKit
 
 protocol CommentStartingViewDelegate: AnyObject {
     func didTapImageView(_ view: CommentStartingView, imagePicker: UIImagePickerController?)
-
+    
     func didFinishPickImage(_ view: CommentStartingView, imagePicker: UIImagePickerController, image: UIImage)
 }
 
 class CommentStartingView: UIView {
     weak var delegate: CommentStartingViewDelegate?
-
-    var startCommentButton: UIButton? {
+    var commentTableView = UITableView()
+    
+    var startCommentButton: UIButton! {
         let button = UIButton()
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -32,9 +33,6 @@ class CommentStartingView: UIView {
         button.addTarget(self, action: #selector(startComment), for: .touchUpInside)
         return button
     }
-
-    var commentTableView = UITableView()
-
     var imagePicker: UIImagePickerController? {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
@@ -42,30 +40,23 @@ class CommentStartingView: UIView {
         imagePicker.delegate = self
         return imagePicker
     }
-
+    
     func layoutStartingView() {
         addSubview(commentTableView)
-        commentTableView.register(UINib(nibName: String(describing: CommentTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: CommentTableViewCell.self))
-        commentTableView.translatesAutoresizingMaskIntoConstraints = false
-        commentTableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        commentTableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        commentTableView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-        commentTableView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        startCommentButton?.isHidden = false
+        commentTableView.registerCellWithNib(identifier: CommentTableViewCell.identifier, bundle: nil)
+        stickSubView(commentTableView)
+        addSubview(startCommentButton)
     }
-
+    
     @objc func startComment(_: UIButton) {
-        //        sender.isHidden = true
         delegate?.didTapImageView(self, imagePicker: imagePicker)
     }
 }
 
 extension CommentStartingView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
-    ) {
-        guard let image = info[.editedImage] as? UIImage else { return }
-        delegate?.didFinishPickImage(self, imagePicker: picker, image: image)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let image = info[.editedImage] as? UIImage {
+            delegate?.didFinishPickImage(self, imagePicker: picker, image: image)
+        }
     }
 }

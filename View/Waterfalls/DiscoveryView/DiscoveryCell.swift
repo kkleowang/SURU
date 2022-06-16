@@ -28,9 +28,7 @@ class DiscoveryCell: UICollectionViewCell {
 
     @IBOutlet var authorImageView: UIImageView!
     @IBOutlet var authorNameLabel: UILabel!
-
-    //    @IBOutlet weak var badgeImageView: UIImageView!
-
+    
     @IBOutlet var likeButton: UIButton!
     @IBOutlet var commentButton: UIButton!
 
@@ -54,19 +52,16 @@ class DiscoveryCell: UICollectionViewCell {
     }
 
     func layoutCell(author: Account, comment: Comment, currentUser: Account, store: Store) {
-        mainImageView.clipsToBounds = true
-        mainImageView.layer.cornerRadius = 10
+        mainImageView.cornerRadii(radii: 10)
         authorImageView.addCircle(color: UIColor.white.cgColor, borderWidth: 1)
         commentHolder = comment
         mainImageView.kf.setImage(with: URL(string: comment.mainImage))
-
+        
         nameLabel.text = "\(store.name)"
-        //        nameLabel.font = .medium(size: 16)
         mealLabel.font = .medium(size: 14)
         authorNameLabel.font = .medium(size: 14)
         mealLabel.text = comment.meal
-        //        nameLabel.adjustsFontSizeToFitWidth = true
-        //        mealLabel.adjustsFontSizeToFitWidth = true
+        
         authorNameLabel.adjustsFontSizeToFitWidth = true
         authorImageView.loadImage(author.mainImage, placeHolder: UIImage(named: "mainImage"))
         authorNameLabel.text = author.name

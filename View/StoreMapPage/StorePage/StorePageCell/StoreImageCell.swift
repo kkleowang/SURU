@@ -38,7 +38,7 @@ class StoreImageCell: UITableViewCell {
         popularImageView.isUserInteractionEnabled = true
         menuImageView.isUserInteractionEnabled = true
         moreImageView.isUserInteractionEnabled = true
-
+        moreBlurView.cornerRadii(radii: 10)
         popularImageView.cornerRadii(radii: 10)
         menuImageView.cornerRadii(radii: 10)
         moreImageView.cornerRadii(radii: 10)

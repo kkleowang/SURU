@@ -37,16 +37,17 @@ class StoreMapViewController: UIViewController {
         view.stickSubView(mapView)
         setupReportButton()
         fetchData { [weak self] in
-            self?.setupMapView()
-            self?.setupCollectionView()
-            self?.hiddenReportView()
+            guard let self = self else { return }
+            self.setupMapView()
+            self.setupCollectionView()
+            self.hiddenReportView()
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         storeCollectionView.reloadData()
-        reloadMapView()
+        reloadAnnotations()
     }
 
     // MARK: - Method
@@ -115,6 +116,7 @@ class StoreMapViewController: UIViewController {
             }
         }
         storeCollectionView.reloadData()
+        removeAnnotations()
         mapView.layoutView(from: filteredStoreData)
     }
 
@@ -165,10 +167,16 @@ class StoreMapViewController: UIViewController {
         }
     }
 
-    private func reloadMapView() {
+    private func reloadAnnotations() {
         for annotation in mapView.annotations {
             mapView.removeAnnotation(annotation)
             mapView.addAnnotation(annotation)
+        }
+    }
+    
+    private func removeAnnotations() {
+        for annotation in mapView.annotations {
+            mapView.removeAnnotation(annotation)
         }
     }
 
@@ -542,6 +550,7 @@ extension StoreMapViewController: UISearchBarDelegate {
     func searchBar(_: UISearchBar, textDidChange searchText: String) {
         configStoreData(srarchText: searchText)
     }
+    
 }
 
 // MARK: - Call Model
@@ -562,7 +571,7 @@ extension StoreMapViewController {
                     self.configStoreData(srarchText: text)
                 }
                 self.storeCollectionView.reloadData()
-                self.reloadMapView()
+                self.reloadAnnotations()
             case .failure:
                 LKProgressHUD.showFailure(text: "更新店家回報失敗")
             }

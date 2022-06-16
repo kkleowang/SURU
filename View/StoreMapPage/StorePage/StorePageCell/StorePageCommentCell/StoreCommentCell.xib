@@ -14,14 +14,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="505" id="KGk-i7-Jjw" customClass="StoreCommentCell" customModule="SURU_Leo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="505"/>
+            <rect key="frame" x="0.0" y="0.0" width="373" height="505"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="505"/>
+                <rect key="frame" x="0.0" y="0.0" width="373" height="505"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="V9u-oG-WBU">
-                        <rect key="frame" x="16" y="8" width="343" height="50"/>
+                        <rect key="frame" x="16" y="8" width="341" height="50"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AIY-43-oXn">
                                 <rect key="frame" x="0.0" y="0.0" width="138" height="50"/>
@@ -52,7 +52,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ViN-YF-fpd">
-                                <rect key="frame" x="271.5" y="0.0" width="71.5" height="50"/>
+                                <rect key="frame" x="269.5" y="0.0" width="71.5" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfE-FM-owH">
                                         <rect key="frame" x="0.0" y="10" width="53" height="30"/>
@@ -61,7 +61,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="追蹤"/>
                                         <connections>
-                                            <action selector="tapFollow:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bKM-WV-LFL"/>
+                                            <action selector="tapFollowWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mNj-fR-KZ6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f31-QJ-gpM">
@@ -87,16 +87,16 @@
                         </constraints>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hHw-Wb-smF">
-                        <rect key="frame" x="25" y="407" width="202" height="40.5"/>
+                        <rect key="frame" x="16" y="423" width="86" height="40.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,433 個喜歡" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3M-GQ-4f7">
-                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="19.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 個喜歡" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3M-GQ-4f7">
+                                <rect key="frame" x="0.0" y="0.0" width="63" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" name="B1"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="目前沒有留言查看全部27則留言" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpR-Kk-Nda">
-                                <rect key="frame" x="0.0" y="23.5" width="202" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="目前沒有留言" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpR-Kk-Nda">
+                                <rect key="frame" x="0.0" y="23.5" width="86" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" name="B2"/>
                                 <nil key="highlightedColor"/>
@@ -104,20 +104,19 @@
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBU-bq-qea">
-                        <rect key="frame" x="314" y="407" width="25" height="22"/>
+                        <rect key="frame" x="307" y="423" width="30" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="22" id="1cS-in-OVa"/>
-                            <constraint firstAttribute="width" constant="25" id="Nkp-Ns-fF6"/>
+                            <constraint firstAttribute="width" constant="30" id="Nkp-Ns-fF6"/>
                         </constraints>
                         <color key="tintColor" name="B1"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="heart" catalog="system"/>
                         <connections>
-                            <action selector="tapLike:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ciS-s3-y5f"/>
+                            <action selector="tapLikeWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="H9v-9L-6w6"/>
                         </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AvZ-v0-E1F">
-                        <rect key="frame" x="25" y="74" width="325" height="325"/>
+                        <rect key="frame" x="16" y="74" width="341" height="341"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="AvZ-v0-E1F" secondAttribute="height" multiplier="1:1" id="P8j-dL-ViW"/>
                         </constraints>
@@ -127,8 +126,8 @@
                     <constraint firstItem="mBU-bq-qea" firstAttribute="top" secondItem="AvZ-v0-E1F" secondAttribute="bottom" constant="8" id="6KX-g3-qiM"/>
                     <constraint firstItem="V9u-oG-WBU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="8SQ-HY-xqo"/>
                     <constraint firstItem="V9u-oG-WBU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="GEy-Tq-ySJ"/>
-                    <constraint firstAttribute="trailing" secondItem="AvZ-v0-E1F" secondAttribute="trailing" constant="25" id="Jw8-oI-xTC"/>
-                    <constraint firstItem="AvZ-v0-E1F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="Viv-HD-QN6"/>
+                    <constraint firstAttribute="trailing" secondItem="AvZ-v0-E1F" secondAttribute="trailing" constant="16" id="Jw8-oI-xTC"/>
+                    <constraint firstItem="AvZ-v0-E1F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Viv-HD-QN6"/>
                     <constraint firstItem="AvZ-v0-E1F" firstAttribute="top" secondItem="V9u-oG-WBU" secondAttribute="bottom" constant="16" id="YYt-gu-8bx"/>
                     <constraint firstAttribute="trailing" secondItem="V9u-oG-WBU" secondAttribute="trailing" constant="16" id="enD-Tw-rus"/>
                     <constraint firstAttribute="trailingMargin" secondItem="mBU-bq-qea" secondAttribute="trailing" constant="16" id="pY4-pn-EaB"/>
@@ -150,7 +149,7 @@
                 <outlet property="likeLabel" destination="F3M-GQ-4f7" id="N92-dE-TIO"/>
                 <outlet property="moreButton" destination="f31-QJ-gpM" id="DuV-01-fpE"/>
             </connections>
-            <point key="canvasLocation" x="171.73913043478262" y="278.90625"/>
+            <point key="canvasLocation" x="170.28985507246378" y="278.90625"/>
         </tableViewCell>
     </objects>
     <resources>
