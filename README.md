@@ -82,7 +82,7 @@ Users can interact with others and earn achievements by reporting queues or publ
 ## Release Notes
 | Version | Date           | Notes                              |
 | --------| --------       | --------                           |
-| 1.1.1   | 2022.05.27     | Fix bugs & improve code quality.   |
+| 1.1.1   | 2022.06.14     | Fix bugs & improve code quality.   |
 | 1.1.0   | 2022.05.18     | Add response feature, fix bugs.    |
 | 1.0.1   | 2022.05.12     | Released in App Store.             |
 ## Contact
