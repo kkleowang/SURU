@@ -45,7 +45,7 @@ class ProfileViewController: UIViewController {
             self.checkUserBadgeStatus()
             self.setupTableView()
         }
-        tableView.reloadData()
+        tableView.reloadSections([0], with: .automatic)
     }
 
     func setupTableView() {
@@ -54,8 +54,6 @@ class ProfileViewController: UIViewController {
         tableView.registerCellWithNib(identifier: ProfileCommentCell.identifier, bundle: nil)
         tableView.delegate = self
         tableView.dataSource = self
-        //        tableView.reloadData()
-        //        tableView.sectionHeaderTopPadding = 0
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
@@ -259,10 +257,16 @@ extension ProfileViewController {
             commentCountManager.inRange(publishCommentCount),
             reportCountManager.inRange(publishReportCount),
             likeCountManager.inRange(likeCount),
-            followerCountManager.inRange(followerCount),
+            followerCountManager.inRange(followerCount)
         ]
     }
-
+    func showEditingPage() {
+            guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
+            guard let userData = currentAccount else { return }
+            controller.userData = userData
+        navigationController?.pushViewController(controller, animated: true)
+        }
+    
     func showAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = view
@@ -274,7 +278,9 @@ extension ProfileViewController {
         alert.popoverPresentationController?.sourceRect = popoverRect
 
         alert.popoverPresentationController?.permittedArrowDirections = .up
-
+        alert.addAction(UIAlertAction(title: "編輯個人資料", style: .default) { _ in
+            self.showEditingPage()
+        })
         alert.addAction(UIAlertAction(title: "登出帳號", style: .default) { _ in
             UserRequestProvider.shared.logOut()
             self.tabBarController?.selectedIndex = 0
@@ -362,32 +368,3 @@ extension ProfileViewController {
         }
     }
 }
-
-// extension ProfileViewController: ProfileViewDelegate {
-//    func didTapBadge(_ view: ProfileView) {
-//        //        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
-//        //        guard let currentUserData = currentUserData else { return }
-//        //        controller.badgeRef = badgeRef
-//        //        controller.seletedBadgeName = currentUserData.badgeStatus
-//        //                navigationController?.pushViewController(controller, animated: true)
-//    }
-//
-//    func didTapEditProfilebutton(_ view: ProfileView) {
-//        showEditingPage()
-//    }
-//
-//    func didTapAccountButton(_ view: ProfileView) {
-//        showAlert()
-//    }
-//    func showEditingPage() {
-//        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
-//        guard let userData = currentUserData else { return }
-//        controller.userData = userData
-//        controller.badgeRef = badgeRef
-//        let nav = UINavigationController(rootViewController: controller)
-//        nav.modalPresentationStyle = .fullScreen
-//        present(nav, animated: true, completion: nil)
-//    }
-//
-
-// }

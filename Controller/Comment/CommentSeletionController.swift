@@ -15,7 +15,7 @@ class CommentSeletionController: UIViewController {
     var draftData: CommentDraft!
     var isDraft = false
     var imageDataHolder: Data!
-    
+    var isButtonClick = false
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .B1
@@ -28,8 +28,8 @@ class CommentSeletionController: UIViewController {
         let imageData = draft.image ?? Data()
         let image = UIImage(data: imageData)
         self.mainImage = image
-        imageDataHolder = imageData
-        comment.userID = userID
+        self.comment = defultComment
+        self.comment.userID = userID
         self.stores = storeData
         self.draftData = draft
         super.init(nibName: nil, bundle: nil)

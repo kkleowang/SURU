@@ -30,6 +30,7 @@ class CommentTableViewCell: UITableViewCell {
     //
     //    }
     func layoutDraftCell(data: CommentDraft, name: String) {
+        selectionStyle = .none
         guard let imageData = data.image, let meal = data.mealName else { return }
         mainImage.image = UIImage(data: imageData)
         noodleValueView.clipsToBounds = true

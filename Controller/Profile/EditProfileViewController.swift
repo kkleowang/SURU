@@ -14,8 +14,6 @@ class EditProfileViewController: UIViewController {
     var bio = ""
     var webside = ""
     var image = ""
-    var badgeTitle = ["登入次數", "發布評論", "回報次數", "收到的喜歡", "追蹤人數"]
-    var badgeRef: [[Int]]?
     let editProfileView: EditProfileView = UIView.fromNib()
     var userData: Account? {
         didSet {
@@ -24,47 +22,29 @@ class EditProfileViewController: UIViewController {
             self.view.stickSubView(editProfileView)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         editProfileView.delegate = self
-        //        setupCollectionView()
         settingNavBtn()
         mappingUserData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor  = .B1
+        navigationController?.navigationBar.isHidden = false
     }
-
-    //    func setupCollectionView() {
-    //        editProfileView.collectionView.dataSource = self
-    //        editProfileView.collectionView.delegate = self
-    //        let layout = CHTCollectionViewWaterfallLayout()
-    //        layout.columnCount = 3
-    //        layout.minimumColumnSpacing = 20
-    //        layout.minimumInteritemSpacing = 10
-    //        layout.headerHeight = 100
-    //        let inset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-    //        layout.sectionInset = inset
-    //        editProfileView.collectionView.collectionViewLayout = layout
-    //        editProfileView.collectionView.register(UINib(nibName: String(describing: ProfileCommentCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProfileCommentCell.self))
-    //
-    //        editProfileView.collectionView.register(UINib(nibName: String(describing: BadgeHeaderCell.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: BadgeHeaderCell.self))
-    //    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     func settingNavBtn() {
-        let leftItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancel))
-        leftItem.tintColor = .B2
         let rightItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: #selector(save))
-        navigationItem.leftBarButtonItem = leftItem
         navigationItem.rightBarButtonItem = rightItem
     }
-
-    @objc func cancel() {
-        dismiss(animated: true, completion: nil)
-        LKProgressHUD.showSuccess(text: "取消編輯")
-    }
-
+    
     func mappingUserData() {
         guard let userData = userData else { return }
         nickName = userData.name
@@ -74,15 +54,16 @@ class EditProfileViewController: UIViewController {
     }
 
     @objc func save() {
+        editProfileView.endEditing()
         guard let userData = userData else { return }
         if image == userData.mainImage {
             let type = ["name", "bio", "websideLink", "mainImage"]
             let content = [nickName, bio, webside, image]
             AccountRequestProvider.shared.updateDataAccount(currentUserID: userData.userID, type: type, content: content)
-
-            dismiss(animated: true) {
-                LKProgressHUD.showSuccess(text: "更新成功")
-            }
+            
+        LKProgressHUD.showSuccess(text: "更新成功")
+            navigationController?.popToRootViewController(animated: true)
+            
         } else {
             uploadImage {
                 let type = ["name", "bio", "websideLink", "mainImage"]
@@ -151,10 +132,6 @@ extension EditProfileViewController: EditProfileViewDelegate {
 
     func didEditNickName(_: EditProfileView, text: String) {
         nickName = text
-        //        guard let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "BadgeViewController") as? BadgeViewController else { return }
-        //        controller.badgeRef = badgeRef
-        //        controller.seletedBadgeName = userData?.badgeStatus
-        //        navigationController?.pushViewController(controller, animated: true)
     }
 
     func didEditWebSide(_: EditProfileView, text: String) {
@@ -165,42 +142,3 @@ extension EditProfileViewController: EditProfileViewDelegate {
         bio = text
     }
 }
-
-// extension EditProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-//
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: BadgeHeaderCell.self), for: indexPath) as? BadgeHeaderCell else {
-//            return UICollectionReusableView()
-//        }
-//        cell.titleLabel.text = badgeTitle[indexPath.section]
-//        return cell
-//    }
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        5
-//    }
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        5
-//    }
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCommentCell.self), for: indexPath) as? ProfileCommentCell, let badgeRef = badgeRef else {
-//            return UICollectionViewCell()
-//
-//        }
-//
-//        if badgeRef[indexPath.section][indexPath.row] == 0 {
-//            cell.mainImageView.kf.setImage(with: URL(string: ""), placeholder: UIImage(named: badgeFile[indexPath.section][indexPath.item])?.withSaturationAdjustment(byVal: 0))
-//        } else {
-//            cell.mainImageView.kf.setImage(with: URL(string: ""), placeholder: UIImage(named: badgeFile[indexPath.section][indexPath.item]))
-//        }
-//
-//        return cell
-//    }
-// }
-
-//
-// extension EditProfileViewController: CHTCollectionViewDelegateWaterfallLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        CGSize(width: 200, height: 200)
-//    }
-
-// }

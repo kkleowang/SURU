@@ -13,7 +13,11 @@ class CommentViewController: UIViewController {
     
     var stores: [Store] = []
     var comments: [Comment] = []
-    var commentDrafts: [CommentDraft] = []
+    var commentDrafts: [CommentDraft] = [] {
+        didSet {
+            commentDrafts.sort { $0.createTime > $1.createTime }
+        }
+    }
     
     var currentUserID: String!
     
@@ -22,9 +26,10 @@ class CommentViewController: UIViewController {
         guard let userID = UserRequestProvider.shared.currentUserID else { return }
         currentUserID = userID
         settingKVO()
-        fetchStoreData()
-        fetchCoreData {
-            self.setupStartingView()
+        fetchStoreData {
+            self.fetchCoreData {
+                self.setupStartingView()
+            }
         }
     }
 
@@ -34,12 +39,14 @@ class CommentViewController: UIViewController {
     }
 
     func settingKVO() {
-        orderObserver = StorageManager.shared.observe(\StorageManager.comments, options: .new) { [weak self] _, _ in
+        orderObserver = StorageManager.shared.observe(\StorageManager.comments, options: .new) { [weak self] _, change in
+            guard let newValue = change.newValue else { return }
+            self?.commentDrafts = newValue
             self?.startingView.commentTableView.reloadSections([0], with: .none)
         }
     }
 
-    func fetchStoreData() {
+    func fetchStoreData(completion: @escaping () -> Void) {
         StoreRequestProvider.shared.fetchStores { result in
             switch result {
             case let .success(data):
@@ -47,19 +54,19 @@ class CommentViewController: UIViewController {
             case let .failure(error):
                 print(error)
             }
+            completion()
         }
     }
 
-    func fetchCoreData(com: @escaping () -> Void) {
+    func fetchCoreData(completion: @escaping () -> Void) {
         StorageManager.shared.fetchComments { result in
             switch result {
             case let .success(data):
                 self.commentDrafts = data
-                com()
             case let .failure(error):
                 print(error)
-                com()
             }
+            completion()
         }
     }
 
