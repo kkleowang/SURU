@@ -147,24 +147,45 @@ extension CommentSeletionController: SearchViewControllerDelegate {
         }
         comment.storeID = content
     }
-}
-extension CommentSeletionController: WrireCommentViewControllerDelegate {
-    func didTapSendComment(_ viewController: UIViewController, _ view: WriteCommentView, text: String) {
-        comment.contenText = text
+    
+    func postImageToStorge(viewController: UIViewController) {
+        guard let image = imageDataHolder else { return }
+        let fileName = "\(comment.userID)_\(Date())"
+        LKProgressHUD.show()
+        FirebaseStorageRequestProvider.shared.postImageToFirebaseStorage(data: image, fileName: fileName) { result in
+            switch result {
+            case .success(let url) :
+                print("上傳圖片成功", url.description)
+                self.comment.mainImage = url.description
+                self.publishComment(viewController: viewController)
+            case .failure(let error) :
+                LKProgressHUD.dismiss()
+                LKProgressHUD.showFailure(text: "再試一次")
+                print("上傳圖片失敗", error)
+            }
+        }
+    }
+    func publishComment(viewController: UIViewController) {
         CommentRequestProvider.shared.publishComment(comment: &comment) { result in
             switch result {
-            case let .success(message):
-                print("上傳評論成功", message)
+            case .success:
                 LKProgressHUD.dismiss()
                 LKProgressHUD.showSuccess(text: "上傳評論成功")
                 viewController.dismiss(animated: true)
                 self.navigationController?.popToRootViewController(animated: true)
-            case let .failure(error):
+            case .failure:
                 LKProgressHUD.dismiss()
-                LKProgressHUD.showSuccess(text: "再試一次")
-                print("上傳評論失敗", error)
+                LKProgressHUD.showFailure(text: "再試一次")
             }
         }
+    }
+}
+extension CommentSeletionController: WrireCommentViewControllerDelegate {
+    
+       
+    func didTapSendComment(_ viewController: UIViewController, _ view: WriteCommentView, text: String) {
+        comment.contenText = text
+        postImageToStorge(viewController: viewController)
     }
     
     func didTapSaveDraft(_ viewController: UIViewController, _ view: WriteCommentView, text: String) {
@@ -174,10 +195,14 @@ extension CommentSeletionController: WrireCommentViewControllerDelegate {
         StorageManager.shared.addDraftComment(comment: comment, image: image) { result in
             switch result {
             case .success:
+                
+                LKProgressHUD.dismiss()
                 LKProgressHUD.showSuccess(text: "儲存草稿成功")
+                viewController.dismiss(animated: true)
                 self.navigationController?.popToRootViewController(animated: true)
             case .failure:
-                LKProgressHUD.showFailure(text: "儲存失敗")
+                LKProgressHUD.dismiss()
+                LKProgressHUD.showFailure(text: "再試一次")
             }
         }
     }
@@ -186,13 +211,15 @@ extension CommentSeletionController: WrireCommentViewControllerDelegate {
 
 extension CommentSeletionController: CommentDraggingViewDelegate {
     func didTapSendValue(_ viewController: DragingValueViewController, value: Double, type: SelectionType) {
-        setValueToComment(type: type, value: value)
+        setValueToComment(type: type, value   : value)
         UIView.animate(withDuration: 0.5) {
             viewController.view.frame = CGRect(x: -300, y: 0, width: 300, height: UIScreen.main.bounds.height)
             self.navigationController?.navigationBar.isHidden = false
             self.tabBarController?.tabBar.isHidden = false
         }
+        viewController.view.removeFromSuperview()
         viewController.removeFromParent()
+        
     }
     func setValueToComment(type: SelectionType, value: Double) {
         switch type {
