@@ -74,7 +74,7 @@ class StoreMapViewController: UIViewController {
 
     private func setupReportButton() {
         reportButton.isHidden = true
-        reportButton.frame = CGRect(x: UIScreen.width - 70, y: 400, width: 60, height: 60) //
+        reportButton.frame = CGRect(x: UIScreen.width - 70, y: UIScreen.height / 2, width: 60, height: 60) //
         reportButton.layer.cornerRadius = 30.0
         view.addSubview(reportButton)
         reportButton.setImage(UIImage(named: "broadcast"), for: .normal)
@@ -200,7 +200,6 @@ extension StoreMapViewController: MKMapViewDelegate {
             imageView.clipsToBounds = true
             return imageView
         }()
-        //
         if annotation is MKUserLocation { return nil }
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
 
